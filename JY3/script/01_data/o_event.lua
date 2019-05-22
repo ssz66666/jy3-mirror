@@ -1,0 +1,66 @@
+--[[1f04
+
+]]
+local t = {
+'o_event',
+{
+	{
+		['name']='进入地图事件',
+		['arg']={
+			[1]={
+				['id']='地图',
+				['type']='o_citymap_system_map',
+			},
+		},
+	},
+	{
+		['name']='离开地图事件',
+		['arg']={
+			[1]={
+				['id']='地图',
+				['type']='o_citymap_system_map',
+			},
+		},
+	},
+	{
+		['name']='点击城市事件',
+		['arg']={
+			[1]={
+				['id']='城市',
+				['type']='o_citymap_system_city',
+			},
+			[2]={
+				['id']='事件信息',
+				['type']='o_citymap_system_eventinfo',
+			},
+		},
+	},
+	{
+		['name']='选择结束',
+		['arg']={
+			[1]={
+				['id']='选择条目',
+				['type']='int',
+			},
+		},
+	},
+	{
+		['name']='作弊指令',
+		['arg']={
+			[1]={
+				['id']='指令',
+				['type']='string',
+			},
+		},
+	},
+	{
+		['name']='对话结束',
+		['arg']={
+			[1]={
+				['id']='文字',
+				['type']='string',
+			},
+		},
+	},
+}}
+return t
