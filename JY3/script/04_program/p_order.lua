@@ -830,11 +830,11 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     G.wait_time(500)
     G.removeUI('v_battle')
     G.Stop(1)
-    if int_狙杀 and int_狙杀 > 0 then
-        if string_事件 and string_事件 ~= '' then 
-            G.call('string_事件') 
-        end
-    end
+    -- if int_狙杀 and int_狙杀 > 0 then
+    --     if string_事件 and string_事件 ~= '' then 
+    --         G.call('string_事件') 
+    --     end
+    -- end
     for p = 81,89 do   --战斗后清除主角除了内伤外的其他异常状态
         G.call('set_point',p,0)
     end 
