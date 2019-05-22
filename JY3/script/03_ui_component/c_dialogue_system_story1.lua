@@ -8,7 +8,7 @@ local t = G.com()
 
 function t:init()
     self.角色 = self.obj.getChildByName('移动').getChildByName('角色')
-    self.文字 = self.obj.getChildByName('移动').getChildByName('对话框').getChildByName('文字')
+    self.文字 = self.obj.getChildByName('移动').getChildByName('文字')
     self.角色名称 = self.obj.getChildByName('移动').getChildByName('角色名称')
     self.对话框 = self.obj.getChildByName('移动').getChildByName('对话框')
     self.文字.dlgspeed = 80

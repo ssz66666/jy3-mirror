@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
-local c_jm = require 'c_jm'
-local c_nature = require 'c_nature'
 local c_button = require 'c_button'
+local c_nature = require 'c_nature'
+local c_jm = require 'c_jm'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -17,8 +17,8 @@ tp = tc
 	tc = G.loadUI('v_button')
 	tp.addChild(tc)
 	tc.name = '防下层点击11'
-	tc.left = -426.500
-	tc.right = 426.500
+	tc.left = -320.000
+	tc.right = 320.000
 	tc.bottom = -240.000
 	tc.top = 240.000
 	tp = tc

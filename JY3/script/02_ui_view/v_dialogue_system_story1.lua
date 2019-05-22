@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_dialogue_system_story1 = require 'c_dialogue_system_story1'
 local c_button = require 'c_button'
+local c_dialogue_system_story1 = require 'c_dialogue_system_story1'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -75,26 +75,9 @@ tp = tc
 		tc.bottom = -13.000
 		tc.top = 127.000
 		tc.mouseEnabled = true
+		tc.alpha = 120
 		tc.img = 0x56160025
 		tp = tc
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = '文字'
-			tc.left = -368.611
-			tc.right = 282.389
-			tc.bottom = -136.556
-			tc.top = 127.444
-			tc.scaleX = 0.500
-			tc.scaleY = 0.500
-			tc.text = '不知公子有什么事情发过火和会很反感和刚好分工会更好'
-			tc.wrap = true
-			tc.font = 0x61240000
-			tc.align = 1
-			tc.wordSpace = -3
-			tc.style = 2
-			tp = tc
-			tp = tp.parent
-			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -199,6 +182,24 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+		tp = tp.parent
+		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = '文字'
+		tc.left = -356.611
+		tc.right = 294.389
+		tc.bottom = -80.556
+		tc.top = 183.444
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.text = '不知公子有什么事情发过火和会很反感和刚好分工会更好'
+		tc.wrap = true
+		tc.font = 0x61240000
+		tc.align = 1
+		tc.wordSpace = -3
+		tc.style = 2
+		tp = tc
 		tp = tp.parent
 		--end
 	tp = tp.parent

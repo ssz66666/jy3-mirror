@@ -84,7 +84,12 @@ function t:update()
         self.蓝条.width = 111
     end  
     local TL = G.QueryName(0x10030001)[tostring(48)]
-    self.体力.width = TL*111/(G.QueryName(0x10030001)[tostring(49)])              
+    self.体力.width = TL*111/(G.QueryName(0x10030001)[tostring(49)])  
+    if G.getUI('v_skill') or G.getUI('v_nature') then
+        self.obj.getChildByName('load').visible = false
+    else
+        self.obj.getChildByName('load').visible = true
+    end            
 end   
 function t:刷新地图(string_地图名称,int_map,int_地图)  
     if int_地图 == 1 then
