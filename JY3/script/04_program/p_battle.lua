@@ -1370,7 +1370,6 @@ t['战斗系统_事件响应'] = function()
                 end			
             end 
             if ui.getChildByName('map').getChildByName(位置[1]).x >= 330 then   --主角战斗逻辑
-                G.call('地图系统_防修改监控')
                 G.misc().战斗状态 = 1
 				local int_代码 = tonumber(ui.getChildByName('代码').getChildByName(位置[1]).text)
                 i_skill = 0x10050000+int_代码
