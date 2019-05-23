@@ -289,7 +289,8 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-   G.call('call_battle',1,7,1,30,229,0,0,0,0,0)
+    -- G.call('add_time',4) 
+    -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 
     G.misc().测试 = 1
@@ -1619,7 +1620,7 @@ t['add_time'] = function(int_时刻) --增加时刻
     G.call('set_newpoint',124,G.call('get_newpoint',124) - int_时刻 ) 
     if G.call('get_point',124) > 8 then 
        G.call('add_hour',math.floor(G.call('get_point',124)/8)) 
-       G.call('set_newpoint',124,-(-G.call('get_newpoint',124)%8)) 
+       G.call('set_newpoint',124,- ( (-G.call('get_newpoint',124))  %8)  ) 
        G.call('set_point',124,G.call('get_point',124)%8) 
        
     end 
@@ -1632,7 +1633,7 @@ t['add_hour'] = function(int_时辰) --增加时辰
     if G.call('get_point',123) > 12 then
         print(G.call('get_point',123),G.call('get_newpoint',123))
         G.call('add_day',math.floor(G.call('get_point',123)/12)) 
-        G.call('set_newpoint',123, -(-G.call('get_newpoint',123)%12) ) 
+        G.call('set_newpoint',123,- ( (-G.call('get_newpoint',123))  %12)  ) 
         G.call('set_point',123,G.call('get_point',123)%12)    
     end
     print(G.call('get_point',123),G.call('get_newpoint',123))
@@ -1644,7 +1645,7 @@ t['add_day'] = function(int_天数) --增加天数
     if G.call('get_month') == 2 then 
         if G.call('get_point',122) > 28 then  
             G.call('add_month',math.floor(G.call('get_point',122)/28))   
-            G.call('set_newpoint',122,-(-G.call('get_newpoint',122)%28))  
+            G.call('set_newpoint',122,- ( (-G.call('get_newpoint',122))  %28)  ) 
             G.call('set_point',122,G.call('get_point',122)%28)                             
         end
     else
@@ -1660,7 +1661,7 @@ t['add_month'] = function(int_月份) --增加月份
     G.call('set_newpoint',121,G.call('get_newpoint',121) - int_月份)
     if G.call('get_point',121) > 12 then 
         G.call('add_year',math.floor(G.call('get_point',121)/12))  
-        G.call('set_newpoint',121,-(-G.call('get_newpoint',121)%12) )  
+        G.call('set_newpoint',121,- ( (-G.call('get_newpoint',121))  %12)  )  
         G.call('set_point',121,G.call('get_point',121)%12)                        
     end
 end 

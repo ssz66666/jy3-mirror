@@ -258,6 +258,7 @@ t['地图系统_事件响应'] = function()
 		if r == 1 then
 			G.Tween("color", 800, ui, 0)
 			G.Play(0x49010035, 1,false,100) 
+			G.call('地图系统_防修改监控')
 			G.wait_time(1200)
 			G.call('rest')
 			G.Tween("color", 800, ui, 0xffffff)
@@ -265,7 +266,6 @@ t['地图系统_事件响应'] = function()
 			G.call("goto_map",G.QueryName(0x10030001)[tostring(140)]-0x10060000)
 			local o_gpmz =  G.QueryName(0x1017000f)
 			G.call('通用_存档',G.call('get_point',143))
-			G.call('地图系统_防修改监控')
 		elseif r == 2 then
 			G.call('通用_战斗飘字')
 		elseif r == 14  then 
