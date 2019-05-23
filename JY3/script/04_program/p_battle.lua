@@ -2294,7 +2294,7 @@ t['集气'] = function()
         G.wait_time(deytime)
         if (G.call('通用_取得人物特效',0,12) or G.call('通用_取得装备特效',0,104)) and G.call('get_point',44) < G.call('get_point',217)*0.3  then  --主角的回春技能加成
             if G.call('get_point',44) > 0 then 
-                G.call('add_point',44,math.ceil(50/deytime))
+                G.call('add_point',44,10)
             end
         end     
         G.call('add_point',80,deytime) --战场时间增加
@@ -2338,12 +2338,12 @@ t['集气'] = function()
                 if  o_role_npc.生命 > 0 then 
                     local int_role = o_battle[位置[i]] 
                     if (G.call('通用_取得人物特效',int_role,12) or G.call('通用_取得装备特效',int_role,104)) and o_role_npc.生命 < o_role_npc[tostring(1)]*0.5  and  o_role_npc.生命 > 0 then --npc回春效果
-                        G.call('add_role',int_role,13,100/deytime) 
+                        G.call('add_role',int_role,13,10) 
                     end     
-                    if G.call('get_role',int_role,81) > 0 then 
-                        G.call('add_role',int_role,13,-0.05*25/deytime)  
+                    if G.call('get_role',int_role,81) > 0 then --npc中毒受伤
+                        G.call('add_role',int_role,13,-20)  
                     elseif G.call('get_role',int_role,85) > 0 then 
-                        G.call('add_role',int_role,13,-0.05*50/deytime) 
+                        G.call('add_role',int_role,13,-10) 
                     end     
                     for p = 81,89 do --npc异常状态随时间清除
                         if G.call('get_role',int_role,p )  > 0 then 
@@ -2357,7 +2357,7 @@ t['集气'] = function()
             end 
         end 
         if G.call('get_point',81) > 0 then  --中毒受伤
-            G.call('add_point',44,math.floor(-200/deytime))
+            G.call('add_point',44,-20)
         end
         if G.call('get_point',85) > 0 and G.call('get_point',48) > 0 then
             G.call('add_point',48,-1)  
@@ -2391,12 +2391,6 @@ t['集气'] = function()
 								ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/15+0.5
 							end
                         end	
-                        if o_role_tb[tostring(81)] > 0 then  --中毒受伤
-                            G.call('add_role',o_battle[位置[i] ] ,13,-200/deytime) 
-                        end
-                        if o_role_tb[tostring(85)] > 0 then
-                            G.call('add_role',o_battle[位置[i] ],13,-100/deytime)  
-                        end 
 					end 
 				    if ui.getChildByName('map').getChildByName(位置[i]).x > 150 then 
 						ui.getChildByName('map').getChildByName(位置[i]).x = 150
