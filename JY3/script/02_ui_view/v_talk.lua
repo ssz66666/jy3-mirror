@@ -23,26 +23,15 @@ tp = tc
 	tp = tc
 	tp = tp.parent
 	--end
-	tc = G.loadUI('v_empty')
+	tc = G.Quad()
 	tp.addChild(tc)
-	tc.name = '移动'
-	tc.left = 112.000
-	tc.right = 112.000
-	tc.bottom = 140.000
-	tc.top = 140.000
+	tc.name = '图片'
+	tc.left = -68.000
+	tc.right = 292.000
+	tc.bottom = 94.000
+	tc.top = 186.000
+	tc.img = 0x56160045
 	tp = tc
-		tc = G.Quad()
-		tp.addChild(tc)
-		tc.name = '图片'
-		tc.left = -180.000
-		tc.right = 180.000
-		tc.bottom = -46.000
-		tc.top = 46.000
-		tc.alpha = 150
-		tc.img = 0x56160045
-		tp = tc
-		tp = tp.parent
-		--end
 		tc = G.TextQuad()
 		tp.addChild(tc)
 		tc.name = '姓名'

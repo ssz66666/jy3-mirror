@@ -161,6 +161,35 @@ t['通用_存档'] = function(int_档案编号)
         o_files.次数 = number 
         G.call('通用_存档',5)
     end
+    -- for i = 1,4 do 
+    --     if G.call('get_point',143) == i  then
+    --         --G.call('信息_读档',5)
+    --         local o_files = G.QueryName(0x10160000 + i)
+    --         o_files.门派 = school
+    --         o_files.等级 = lv
+    --         o_files.时间 = time
+    --         o_files.难度 = diffty
+    --         o_files.通关 = clear
+    --         o_files.周目 = week
+    --         o_files.记录 = place
+    --         o_files.次数 = number
+    --         G.call('通用_存档',5)
+    --         break
+    --     end
+    -- end 
+    -- if int_档案编号 > 0 and int_档案编号 <=4 then 
+    --     t[1] = lv
+    --     t[2] = school
+    --     t[3] = diffty
+    --     t[4] = week
+    --     t[5] = clear
+    --     t[6] = time
+    --     t[7] = place
+    --     t[8] = number
+    --     local fp = io.open(pathscript, 'w')
+    --     fp:write(table.concat(t, '\n'))
+    --     fp:close()
+    -- end
 end
 t['通用_生成原始文件'] = function()
     local r = {'R1.jy3','R2.jy3','R3.jy3','R4.jy3'}
@@ -257,7 +286,7 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
-            if  G.misc().检测_1001 == nil  then
+            if  G.misc().检测_413 == nil  then
                 local role = G.DBTable('o_role')
                 for i = 1,#role do 
                     for p = 81,89 do 
@@ -287,9 +316,8 @@ t['write_hour'] = function()
 end
 t['test'] = function()
     G.call('puzzle')
-end   
-t['newtest'] = function()
-    G.call('puzzle')
+
+   --print(G.call('organ'))
 end   
 t['in_test'] = function() 
     G.misc().测试 = 1
@@ -717,10 +745,6 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         int_战斗难度 = 100    
     end
     o_battle.diffty = int_diffty + int_战斗难度 + (G.call('get_point',237)-1)*10  --战斗难度随周目增加而增加
-    if G.call('get_year') > 2 then --难度随时间增长
-        o_battle.diffty = o_battle.diffty + (G.call('get_year') - 2)*10
-    end
-    G.misc().难度 = -o_battle.diffty
     o_battle.逃跑 = int_no --是否可以逃跑
     if int_狙杀 then
         o_battle.狙杀 = int_狙杀
@@ -1571,37 +1595,32 @@ t['get_year'] = function() --取得年数
     return result 
 end 
 t['set_time'] = function(int_数值) --设置时刻
-    if int_数值 > 0 and int_数值 < 9 then 
-        G.call('set_point',124,  int_数值 )
-        G.call('set_newpoint',124,- int_数值 )  
+    if int_数值 > 0 and int_数值 < 9 then  
+        G.QueryName(0x10030001)[tostring(124)] = int_数值
         G.call('count_time') 
     end 
 end 
 t['set_hour'] = function(int_数值) --设置时辰
     if int_数值 > 0 and int_数值 < 12 then  
-        G.call('set_point',123,  int_数值 )
-        G.call('set_newpoint',123,- int_数值 ) 
+        G.QueryName(0x10030001)[tostring(123)] = int_数值
         G.call('count_time') 
     end 
 end 
 t['set_day'] = function(int_数值) --设置日期
     if int_数值 > 0 and int_数值 < 30 then  
-        G.call('set_point',122, int_数值 )
-        G.call('set_newpoint',122,- int_数值 ) 
+        G.QueryName(0x10030001)[tostring(122)] = int_数值
         G.call('count_time') 
     end 
 end 
 t['set_month'] = function(int_数值) --设置月份
     if int_数值 > 0 and int_数值 <= 12 then  
-        G.call('set_point',121, int_数值 )
-        G.call('set_newpoint',121,- int_数值 ) 
+        G.QueryName(0x10030001)[tostring(121)] = int_数值
         G.call('count_time') 
     end 
 end 
 t['set_year'] = function(int_数值) --设置年数
     if int_数值 > 0  then  
-        G.call('set_point',120, int_数值 )
-        G.call('set_newpoint',120,- int_数值 ) 
+        G.QueryName(0x10030001)[tostring(120)] = int_数值
         G.call('count_time') 
     end 
 end 
@@ -1613,58 +1632,46 @@ t['set_alltime'] = function(int_年数,int_月数,int_天数,int_时辰,int_时�
     G.call('set_year',int_年数)
 end 
 t['add_time'] = function(int_时刻) --增加时刻
-    G.call('set_point',124,G.call('get_point',124) + int_时刻 )
-    G.call('set_newpoint',124,G.call('get_newpoint',124) - int_时刻 ) 
-    if G.call('get_point',124) > 8 then 
-       G.call('add_hour',math.floor(G.call('get_point',124)/8)) 
-       G.call('set_newpoint',124,G.call('get_newpoint',124)%8) 
-       G.call('set_point',124,G.call('get_point',124)%8) 
+    G.QueryName(0x10030001)[tostring(124)] = G.QueryName(0x10030001)[tostring(124)] + int_时刻 
+    if G.QueryName(0x10030001)[tostring(124)] > 8 then 
+       G.call('add_hour',math.floor(G.QueryName(0x10030001)[tostring(124)]/8)) 
+       G.QueryName(0x10030001)[tostring(124)] = G.QueryName(0x10030001)[tostring(124)]%8 
        
     end 
     G.call('count_time')
 end
 t['add_hour'] = function(int_时辰) --增加时辰
-    print(G.call('get_point',123),G.call('get_newpoint',123),int_时辰)
-    G.call('set_point',123,G.call('get_point',123) + int_时辰 )
-    G.call('set_newpoint',123,G.call('get_newpoint',123) - int_时辰 ) 
-    if G.call('get_point',123) > 12 then
-        print(G.call('get_point',123),G.call('get_newpoint',123))
-        G.call('add_day',math.floor(G.call('get_point',123)/12)) 
-        G.call('set_newpoint',123, -(-G.call('get_newpoint',123)%12) ) 
-        G.call('set_point',123,G.call('get_point',123)%12)    
+    G.QueryName(0x10030001)[tostring(123)] = G.QueryName(0x10030001)[tostring(123)] + int_时辰   
+    if G.QueryName(0x10030001)[tostring(123)] > 12 then
+        G.call('add_day',math.floor(G.QueryName(0x10030001)[tostring(123)]/12)) 
+        G.QueryName(0x10030001)[tostring(123)] = G.QueryName(0x10030001)[tostring(123)]%12 
+         
     end
-    print(G.call('get_point',123),G.call('get_newpoint',123))
     G.call('count_time')
 end  
 t['add_day'] = function(int_天数) --增加天数
-    G.call('set_point',122,G.call('get_point',122) + int_天数)
-    G.call('set_newpoint',122,G.call('get_newpoint',122) - int_天数)
+    G.QueryName(0x10030001)[tostring(122)] = G.QueryName(0x10030001)[tostring(122)] + int_天数
     if G.call('get_month') == 2 then 
-        if G.call('get_point',122) > 28 then  
-            G.call('add_month',math.floor(G.call('get_point',122)/28))   
-            G.call('set_newpoint',122,-(-G.call('get_newpoint',122)%28))  
-            G.call('set_point',122,G.call('get_point',122)%28)                             
+        if G.QueryName(0x10030001)[tostring(122)] > 28 then  
+            G.call('add_month',math.floor(G.QueryName(0x10030001)[tostring(122)]/28))                           
+            G.QueryName(0x10030001)[tostring(122)] = G.QueryName(0x10030001)[tostring(122)]%28     
         end
     else
-        if G.call('get_point',122) > 30 then  
-            G.call('add_month',math.floor(G.call('get_point',122)/30))    
-            G.call('set_newpoint',122,-(-G.call('get_newpoint',122)%30)) 
-            G.call('set_point',122,G.call('get_point',122)%30)      
+        if G.QueryName(0x10030001)[tostring(122)] > 30 then  
+            G.call('add_month',math.floor(G.QueryName(0x10030001)[tostring(122)]/30))                           
+            G.QueryName(0x10030001)[tostring(122)] = G.QueryName(0x10030001)[tostring(122)]%30     
         end
     end
 end 
 t['add_month'] = function(int_月份) --增加月份
-    G.call('set_point',121,G.call('get_point',121) + int_月份)
-    G.call('set_newpoint',121,G.call('get_newpoint',121) - int_月份)
-    if G.call('get_point',121) > 12 then 
-        G.call('add_year',math.floor(G.call('get_point',121)/12))  
-        G.call('set_newpoint',121,-(-G.call('get_newpoint',121)%12) )  
-        G.call('set_point',121,G.call('get_point',121)%12)                        
+    G.QueryName(0x10030001)[tostring(121)] = G.QueryName(0x10030001)[tostring(121)] + int_月份
+    if G.QueryName(0x10030001)[tostring(121)] > 12 then                            
+        G.QueryName(0x10030001)[tostring(120)] = math.floor(G.QueryName(0x10030001)[tostring(121)]/12) +G.QueryName(0x10030001)[tostring(120)]
+        G.QueryName(0x10030001)[tostring(121)] = G.QueryName(0x10030001)[tostring(121)]%12  
     end
 end 
 t['add_year'] = function(int_年数) --增加月份
-    G.call('set_point',120,G.call('get_point',120) + 1) 
-    G.call('set_newpoint',120,G.call('get_nwepoint',120) - 1) 
+    G.QueryName(0x10030001)[tostring(120)] = G.QueryName(0x10030001)[tostring(120)] + 1
 end
 t['count_day'] = function() --计算总天数
     local result = G.call('get_year') * (11*30+28)+G.call('get_day')
@@ -1974,9 +1981,6 @@ t['指令_备份基础属性']=function() --
     for i = 111,114 do 
         G.call('set_newpoint',i,-G.call('get_point',i)) 
     end
-    for i = 120,124 do 
-        G.call('set_newpoint',i,-G.call('get_point',i)) 
-    end
     G.call('set_newpoint',237,-G.call('get_point',237))
     G.call('set_newpoint',76,-int_物品数量-math.random(5))
     G.call('set_newpoint',80,-int_成就-math.random(5,10))
@@ -1987,7 +1991,7 @@ t['指令_备份基础属性']=function() --
     for i = 45,47 do 
         G.call('set_newpoint',i,-G.call('get_point',i)-math.random(5)) 
     end
-    G.misc().检测_1001 = 1
+    G.misc().检测_413 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
     return G.QueryName(0x101b0001)[tostring(int_代码)]
@@ -2249,7 +2253,7 @@ t['add_mp%']=function(int_百分比)    --%生命值内力值增加
 end 
 t['can_equip']=function() --能否装备当前内功或者轻功
     local result = true
-    local o_skill = G.QueryName(G.call('get_point',191))
+    local o_skill = G.QueryName(G.QueryName(0x10030001)[tostring(191)])
     local o_body = G.QueryName(0x10030001)
     local 经脉 = {'阳维脉','阴维脉','带脉','任脉','阳跷脉','阴跷脉','冲脉','督脉','经外奇脉'}
     for i = 1,9 do 
@@ -2268,7 +2272,7 @@ t['can_equip']=function() --能否装备当前内功或者轻功
     return result
 end
 t['can_use']=function() --能否修炼当前秘籍
-    local o_item_物品 = G.QueryName(G.call('get_point',197))
+    local o_item_物品 = G.QueryName(G.QueryName(0x10030001)[tostring(192)])
     local o_body_属性 = G.QueryName(0x10030001)
     local int_内功 = 0
     if o_body_属性[tostring(197)] ~= nil  and  o_body_属性[tostring(197)] > 0  then--轻功附加装备属性

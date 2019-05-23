@@ -119,6 +119,7 @@ t['地图系统_游戏时长监控'] = function()
 end
 t['地图系统_防修改监控'] = function()
 	local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
+	print(int_成就,math.abs(G.call('get_newpoint',80)))
 	if int_成就 > math.abs(G.call('get_newpoint',80)) then 
 		G.call('通用_强退游戏') 
 	end
@@ -154,19 +155,12 @@ t['地图系统_防修改监控'] = function()
             int_物品数量 = int_物品数量 + o_item.数量 
         end
 	end
+	print(int_物品数量,math.abs(G.call('get_newpoint',76)))
 	if int_物品数量 > math.abs(G.call('get_newpoint',76)) then 
 		G.call('通用_强退游戏') 
 	end
 	for i = 111,114 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i))  then 
-			print(i,G.call('get_point',i),G.call('get_newpoint',i))
-			G.call('通用_强退游戏') 
-			break
-		end
-	end
-	for i = 120,124 do
-		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i))  then 
-			print(i,G.call('get_point',i),G.call('get_newpoint',i))
 			G.call('通用_强退游戏') 
 			break
 		end
@@ -174,7 +168,6 @@ t['地图系统_防修改监控'] = function()
 	for i = 16,35 do 
 		if i < 22 then 
 			if G.call('get_point',i) > 100 then 
-				print(i,G.call('get_point',i),G.call('get_newpoint',i))
 				G.call('通用_强退游戏')
 			end
 		end
@@ -208,7 +201,6 @@ t['地图系统_功能'] = function()
 		G.case(8, '转换装备')
 		G.case(9, '强制退出')
 		G.case(7, '内部测试')
-		G.case(10, '系统测试')
         local r = G.wait_case();
         if r == 1  then 
 			G.call('create')
@@ -218,8 +210,6 @@ t['地图系统_功能'] = function()
 			G.call('打猎动画关闭')
 		elseif r == 7  then 
 			G.call('in_test')
-		elseif r == 10  then 
-			G.call('new_test')
 		elseif r == 5  then 
 			G.call('test')
 		elseif r == 6  then 
@@ -611,7 +601,7 @@ t['地图系统_事件响应'] = function()
 			ui2.getChildByName(tostring(3)).visible = false
 			ui2.getChildByName(tostring(1)).visible = false
 			if result == 0 then
-				local FY = G.call('get_point',19)
+				local FY = G.QueryName(0x10030001)[tostring(19)]
 				local p = math.random(100)
 				if p <= 60 then  
 					if p  > 30 then 

@@ -428,7 +428,6 @@ function t:rollOut(tar)
 end  
 function t:keyDown(tar,info)
     local i_battle = 0x10150001
-    local o_battle = G.QueryName(i_battle)
     local 快捷 = {'q','w','e','r'}
     local 键值 = {81,87,69,82}
     local key = string.byte(info)
@@ -436,7 +435,6 @@ function t:keyDown(tar,info)
         for i = 1,8 do 
             if key == i + 48 then 
                 if self.按钮.getChildByName(tostring(i)).mouseEnabled == true then
-                    G.trig_event('监控')
                     if G.QueryName(0x100c0001)[tostring(i)] ~= nil then 
                         if G.call('get_point',84) > 0 then 
                             G.call('notice1','内伤无法使用武功')

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">金庸群侠传3</string>
+    <string name="ok_btn_text">确认</string>
+    <string name="cancel_btn_text">取消</string>
+    <string name="notification_error_ssl_cert_invalid">SSL证书无效，是否继续</string>
+</resources>
