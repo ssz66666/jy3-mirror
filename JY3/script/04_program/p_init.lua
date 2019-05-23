@@ -208,6 +208,7 @@ t['地图系统_功能'] = function()
 		G.case(8, '转换装备')
 		G.case(9, '强制退出')
 		G.case(7, '内部测试')
+		G.case(10, '系统测试')
         local r = G.wait_case();
         if r == 1  then 
 			G.call('create')
@@ -217,6 +218,8 @@ t['地图系统_功能'] = function()
 			G.call('打猎动画关闭')
 		elseif r == 7  then 
 			G.call('in_test')
+		elseif r == 10  then 
+			G.call('new_test')
 		elseif r == 5  then 
 			G.call('test')
 		elseif r == 6  then 

@@ -365,6 +365,10 @@ function t:click(tar)
             G.removeUI('v_system') 
             G.call("goto_map",G.QueryName(0x10030001)[tostring(140)]-0x10060000)
             G.trig_event('测试')
+        elseif self.文本.getChildByName('secret').getChildByName('文本').text == '1014159 '  then 
+            G.removeUI('v_system') 
+            G.call("goto_map",G.QueryName(0x10030001)[tostring(140)]-0x10060000)
+            G.trig_event('系统测试')
         elseif self.文本.getChildByName('secret').getChildByName('文本').text == '测试专用通道1.14159' and G.call('get_point',237) == 1 then 
             G.removeUI('v_system') 
             G.call("goto_map",G.QueryName(0x10030001)[tostring(140)]-0x10060000)

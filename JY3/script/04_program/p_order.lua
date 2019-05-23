@@ -287,7 +287,9 @@ t['write_hour'] = function()
 end
 t['test'] = function()
     G.call('puzzle')
-   --print(G.call('organ'))
+end   
+t['newtest'] = function()
+    G.call('puzzle')
 end   
 t['in_test'] = function() 
     G.misc().测试 = 1
