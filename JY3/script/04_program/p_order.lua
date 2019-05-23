@@ -288,8 +288,8 @@ end
 t['test'] = function()
     G.call('puzzle')
 end   
-t['newtest'] = function()
-    G.call('puzzle')
+t['new_test'] = function()
+   -- G.call('call_battle',1,7,1,30,229,0,0,0,0,0)
 end   
 t['in_test'] = function() 
     G.misc().测试 = 1
@@ -720,7 +720,9 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     if G.call('get_year') > 2 then --难度随时间增长
         o_battle.diffty = o_battle.diffty + (G.call('get_year') - 2)*10
     end
-    G.misc().难度 = -o_battle.diffty
+    if o_battle.diffty > 0 then 
+        G.misc().难度 = -o_battle.diffty
+    end
     o_battle.逃跑 = int_no --是否可以逃跑
     if int_狙杀 then
         o_battle.狙杀 = int_狙杀

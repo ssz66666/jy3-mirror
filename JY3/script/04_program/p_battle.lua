@@ -105,6 +105,7 @@ t['战斗系统_主角监控'] = function()
             local magic = {'技能1','技能2','技能3'}  
             local i_battle = 0x10150001
             local o_battle = G.QueryName(i_battle)
+            print(o_battle.diffty,G.misc().难度)
             if o_battle.diffty ~= math.abs(G.misc().难度) then 
                 G.call('通用_强退游戏') 
             end
