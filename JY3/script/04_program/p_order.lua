@@ -1667,7 +1667,7 @@ t['add_month'] = function(int_月份) --增加月份
 end 
 t['add_year'] = function(int_年数) --增加月份
     G.call('set_point',120,G.call('get_point',120) + 1) 
-    G.call('set_newpoint',120,G.call('get_nwepoint',120) - 1) 
+    G.call('set_newpoint',120,G.call('get_newpoint',120) - 1) 
 end
 t['count_day'] = function() --计算总天数
     local result = G.call('get_year') * (11*30+28)+G.call('get_day')
