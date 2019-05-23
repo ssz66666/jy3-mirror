@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_dialogue_system_story1 = require 'c_dialogue_system_story1'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -75,7 +75,7 @@ tp = tc
 		tc.bottom = -13.000
 		tc.top = 127.000
 		tc.mouseEnabled = true
-		tc.alpha = 120
+		tc.alpha = 150
 		tc.img = 0x56160025
 		tp = tc
 		tp = tp.parent

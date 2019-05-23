@@ -241,12 +241,12 @@ function t:click(tar)
             end    
         end
     end    
-    local o_skill_武功= G.QueryName(G.QueryName(0x10030001)[tostring(191)])
+    local o_skill_武功= G.QueryName(G.call('get_point',191))
     for i = 1,6 do 
         if tar == self.快捷键.getChildByName(tostring(i)) then 
             G.Play(0x49011003, 1,false,100) 
             self.快捷键.getChildByName(tostring(i)).c_button.img_normal = o_skill_武功.图像
-            G.QueryName(0x100c0001)[tostring(i)] = G.QueryName(0x10030001)[tostring(191)]
+            G.QueryName(0x100c0001)[tostring(i)] = G.call('get_point',191)
         end 
     end 
     if tar == self.升级 then
@@ -295,12 +295,12 @@ function t:click(tar)
         self.文本.getChildByName('伤害').text = hurt
     elseif tar == self.装备 then
         G.Play(0x49011003, 1,false,100)
-        local i_skill = G.QueryName(0x10030001)[tostring(191)]
+        local i_skill = G.call('get_point',191)
         if  i_skill ~= 0x100500bd and  i_skill ~= 0x10050097 and o_skill_武功.类别 < 8  then
             if o_skill_武功.修为等级 > 0 then 
                 if o_skill_武功.招式 == true then 
                     self.快捷键.getChildByName(tostring(7)).visible = true
-                    G.QueryName(0x100c0001)[tostring(7)] = G.QueryName(0x10030001)[tostring(191)] 
+                    G.QueryName(0x100c0001)[tostring(7)] = i_skill
                     self.快捷键.getChildByName(tostring(7)).c_button.img_normal = o_skill_武功.图像
                 else
                     G.QueryName(0x100c0001)[tostring(7)] = nil
@@ -308,20 +308,20 @@ function t:click(tar)
                     self.快捷键.getChildByName(tostring(7)).c_button.img_normal = nil
                 end    
                 if  o_skill_武功.类别 == 6 then 
-                    G.QueryName(0x10030001)[(tostring(196))] = G.QueryName(0x10030001)[tostring(191)]
+                    G.QueryName(0x10030001)[(tostring(196))] = i_skill
                 elseif  o_skill_武功.类别 == 7 then
-                    G.QueryName(0x10030001)[(tostring(197))] = G.QueryName(0x10030001)[tostring(191)]
+                    G.QueryName(0x10030001)[(tostring(197))] = i_skill
                 end 
             else
                 G.call('notice','修为等级不够装备')
             end   
         elseif o_skill_武功.类别 == 8  then 
             self.快捷键.getChildByName(tostring(8)).visible = true
-            G.QueryName(0x100c0001)[tostring(8)] = G.QueryName(0x10030001)[tostring(191)] 
+            G.QueryName(0x100c0001)[tostring(8)] = i_skill
             self.快捷键.getChildByName(tostring(8)).c_button.img_normal = o_skill_武功.图像
         elseif o_skill_武功.类别 == 9  then
             self.阵法.getChildByName('图片').getChildByName(tostring(1)).visible = true
-            G.QueryName(0x100c0001)[tostring(15)] = G.QueryName(0x10030001)[tostring(191)] 
+            G.QueryName(0x100c0001)[tostring(15)] = i_skill
             self.阵法.getChildByName('图片').getChildByName(tostring(1)).c_button.img_normal = o_skill_武功.图像 
             self.阵法.getChildByName('名称').text = G.QueryName(G.QueryName(0x100c0001)[tostring(15)]).名称
         end    

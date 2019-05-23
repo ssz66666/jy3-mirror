@@ -1,1 +1,0 @@
-python collect_objs.py assets/acg/

@@ -100,25 +100,29 @@ t['战斗系统_主角监控'] = function()
 				return
 			end 
 			ui = G.getUI('v_battle')
-			local o_battle = 0x10150001
 			local o_role = 0x10040000
 			local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
             local magic = {'技能1','技能2','技能3'}  
+            local i_battle = 0x10150001
+            local o_battle = G.QueryName(i_battle)
+            if o_battle.diffty ~= math.abs(G.misc().难度) then 
+                G.call('通用_强退游戏') 
+            end
             if ui.getChildByName('map').getChildByName(位置[1]).x < 150 then
                 G.wait1('准备结束')
             end    
-            --ui.getChildByName('map').getChildByName(位置[1]).x = 151
             local int_代码 = tonumber(ui.getChildByName('代码').getChildByName(位置[1]).text)
             if G.call('get_point',87) > 0 then --主角混乱状态
-                --ui.getChildByName('状态').text = tostring(3)
                 ui.getChildByName('map').getChildByName(位置[1]).x = 151
                 ui.getChildByName('代码').getChildByName(位置[1]).text = tostring(207)
                 ui.getChildByName('状态').text = tostring(0)
             end 
             if  tonumber(ui.getChildByName('状态').text) == 1 then 
-                if G.QueryName(0x10030001)[tostring(196)] ~= nil then --内功回血回内效果
+                if G.call('get_point',196) ~= nil then --内功回血回内效果
                     local int_队友 = 0
                     local int_天罡效果 = 0
+                    local i_skill = G.call('get_point',196)
+                    local o_skill = G.QueryName(i_skill)
                     local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
                     for i = 2,5 do 
                         if G.QueryName(0x10150001)[位置[i]] > 0 then 
@@ -130,14 +134,14 @@ t['战斗系统_主角监控'] = function()
                     if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then 
                         int_天罡效果 = int_队友
                     end 
-                    if G.QueryName(G.QueryName(0x10030001)[tostring(196)]).内功轻功效果 == 10 or G.QueryName(G.QueryName(0x10030001)[tostring(196)]).内功轻功效果 == 11 then 
-                        if G.QueryName(G.QueryName(0x10030001)[tostring(196)]).内功轻功效果 == 10 then 
-                            local int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*G.QueryName(G.QueryName(0x10030001)[tostring(196)]).修为等级*(int_天罡效果 +  G.QueryName(G.QueryName(0x10030001)[tostring(196)]).效果等级 )/500)
+                    if o_skill.内功轻功效果 == 10 or o_skill.内功轻功效果 == 11 then 
+                        if o_skill.内功轻功效果 == 10 then 
+                            local int_hp = math.floor(G.call('get_point',217)*o_skill.修为等级*(int_天罡效果 +  o_skill.效果等级 )/500)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             G.call('add_point',44,int_hp)
                         end 
-                        if G.QueryName(G.QueryName(0x10030001)[tostring(196)]).内功轻功效果 == 11 then 
-                            local int_mp = math.floor(G.QueryName(0x10030001)[tostring(218)]*G.QueryName(G.QueryName(0x10030001)[tostring(196)]).修为等级*(int_天罡效果 + G.QueryName(G.QueryName(0x10030001)[tostring(196)]).效果等级 )/500)
+                        if o_skill.内功轻功效果 == 11 then 
+                            local int_mp = math.floor(G.call('get_point',218)*o_skill.修为等级*(int_天罡效果 + o_skill.效果等级 )/500)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加内力').text = tostring(int_mp)
                             G.call('add_point',46,int_mp)
                         end 
@@ -157,14 +161,14 @@ t['战斗系统_主角监控'] = function()
             end 	
             local int_hp = 0
             local int_mp = 0
-            if G.QueryName(0x10030001)[tostring(197)] ~= nil and G.call('get_point',44) > 0 then   --内功回血回内效果
-                if G.QueryName(G.QueryName(0x10030001)[tostring(197)]).内功轻功效果 == 10 or G.QueryName(G.QueryName(0x10030001)[tostring(197)]).内功轻功效果 == 11 then 
-                    if G.QueryName(G.QueryName(0x10030001)[tostring(197)]).内功轻功效果 == 10 then 
-                        int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*G.QueryName(G.QueryName(0x10030001)[tostring(197)]).效果等级/100)
+            if G.call('get_point',197) ~= nil and G.call('get_point',44) > 0 then   --内功回血回内效果
+                if G.QueryName(G.call('get_point',197)).内功轻功效果 == 10 or G.QueryName(G.call('get_point',197)).内功轻功效果 == 11 then 
+                    if G.QueryName(G.call('get_point',197)).内功轻功效果 == 10 then 
+                        int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*G.QueryName(G.call('get_point',197)).效果等级/100)
                         G.call('add_point',44,int_hp)
                     end 
-                    if G.QueryName(G.QueryName(0x10030001)[tostring(197)]).内功轻功效果 == 11 then 
-                        int_mp = math.floor(G.QueryName(0x10030001)[tostring(218)]*G.QueryName(G.QueryName(0x10030001)[tostring(197)]).效果等级/100)
+                    if G.QueryName(G.call('get_point',197)).内功轻功效果 == 11 then 
+                        int_mp = math.floor(G.QueryName(0x10030001)[tostring(218)]*G.QueryName(G.call('get_point',197)).效果等级/100)
                         G.call('add_point',46,int_mp)
                     end 
                 end 
@@ -2294,7 +2298,7 @@ t['集气'] = function()
         G.wait_time(deytime)
         if (G.call('通用_取得人物特效',0,12) or G.call('通用_取得装备特效',0,104)) and G.call('get_point',44) < G.call('get_point',217)*0.3  then  --主角的回春技能加成
             if G.call('get_point',44) > 0 then 
-                G.call('add_point',44,math.ceil(50/deytime))
+                G.call('add_point',44,10)
             end
         end     
         G.call('add_point',80,deytime) --战场时间增加
@@ -2338,12 +2342,12 @@ t['集气'] = function()
                 if  o_role_npc.生命 > 0 then 
                     local int_role = o_battle[位置[i]] 
                     if (G.call('通用_取得人物特效',int_role,12) or G.call('通用_取得装备特效',int_role,104)) and o_role_npc.生命 < o_role_npc[tostring(1)]*0.5  and  o_role_npc.生命 > 0 then --npc回春效果
-                        G.call('add_role',int_role,13,100/deytime) 
+                        G.call('add_role',int_role,13,10) 
                     end     
-                    if G.call('get_role',int_role,81) > 0 then 
-                        G.call('add_role',int_role,13,-0.05*25/deytime)  
+                    if G.call('get_role',int_role,81) > 0 then --npc中毒受伤
+                        G.call('add_role',int_role,13,-20)  
                     elseif G.call('get_role',int_role,85) > 0 then 
-                        G.call('add_role',int_role,13,-0.05*50/deytime) 
+                        G.call('add_role',int_role,13,-10) 
                     end     
                     for p = 81,89 do --npc异常状态随时间清除
                         if G.call('get_role',int_role,p )  > 0 then 
@@ -2357,7 +2361,7 @@ t['集气'] = function()
             end 
         end 
         if G.call('get_point',81) > 0 then  --中毒受伤
-            G.call('add_point',44,math.floor(-200/deytime))
+            G.call('add_point',44,-20)
         end
         if G.call('get_point',85) > 0 and G.call('get_point',48) > 0 then
             G.call('add_point',48,-1)  
@@ -2391,12 +2395,6 @@ t['集气'] = function()
 								ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/15+0.5
 							end
                         end	
-                        if o_role_tb[tostring(81)] > 0 then  --中毒受伤
-                            G.call('add_role',o_battle[位置[i] ] ,13,-200/deytime) 
-                        end
-                        if o_role_tb[tostring(85)] > 0 then
-                            G.call('add_role',o_battle[位置[i] ],13,-100/deytime)  
-                        end 
 					end 
 				    if ui.getChildByName('map').getChildByName(位置[i]).x > 150 then 
 						ui.getChildByName('map').getChildByName(位置[i]).x = 150

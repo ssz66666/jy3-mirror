@@ -5,9 +5,10 @@
 local G = require "gf"
 local t = G.com()
 function t:init()
-    self.图片 = self.obj.getChildByName('图片')
-    self.姓名 = self.图片.getChildByName('姓名')
-    self.文字 = self.图片.getChildByName('文字')
+    self.移动 = self.obj.getChildByName('移动')
+    --self.图片 = self.移动.getChildByName('图片')
+    self.姓名 = self.移动.getChildByName('姓名')
+    self.文字 = self.移动.getChildByName('文字')
     self.文字.dlgspeed = 80
 
 end
@@ -20,8 +21,8 @@ end
 function t:update_role(name,dialogue,x,y)
     self.姓名.text = name
     self.文字.text = dialogue
-    self.图片.x = x
-    self.图片.y = y
+    self.移动.x = x
+    self.移动.y = y
 end 
 function t:click(tar)
     --[[if self.文字.dlgword == 0 then

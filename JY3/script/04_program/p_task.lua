@@ -335,7 +335,7 @@ t['门派-神龙教']=function()
     end 
 end   
 t['门派-征服']=function()
-    local int_no = G.QueryName(0x10030001)[tostring(190)]
+    local int_no = G.call('get_point',190)
     if int_no == 1 then 
         G.call('门派-全真教')
     elseif int_no == 2 then 
@@ -847,7 +847,7 @@ t['门派-全真教']=function()
                         G.call('gameover')
                     end
                 elseif int_选项 == 3 then
-                    if G.QueryName(0x10030001)[tostring(195)] == 0x100b0055 then 
+                    if G.call('get_point',195) == 0x100b0055 then 
                         G.call('all_over') 
                         G.call('dark')
                         G.call("talk",'',166,'   好狂妄的小子！就看你有没有这个本事了！',1,1)  
@@ -1160,7 +1160,7 @@ t['门派-武当派']=function()
                         G.call('gameover')
                     end
                 elseif int_选项 == 3 then 
-                    if G.QueryName(0x10030001)[tostring(195)] == 0x100b0059 then 
+                    if G.call('get_point',195) == 0x100b0059 then 
                         G.call('all_over') 
                         G.call('dark')
                         G.call("talk",'',160,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
@@ -1457,7 +1457,7 @@ t['门派-少林寺']=function()
                         G.call('gameover')
                     end
                 elseif int_选项 == 3 then 
-                    if G.QueryName(0x10030001)[tostring(195)] == 0x100b0057 then 
+                    if G.call('get_point',195) == 0x100b0057 then 
                         G.call('all_over') 
                         G.call('dark')
                         G.call("talk",'',175,'   好狂妄的小子！就看你有没有这个本事了！',1,1)  
@@ -1482,7 +1482,7 @@ t['门派-少林寺']=function()
                         else
                             G.call('gameover')
                         end 
-                    elseif G.QueryName(0x10030001)[tostring(195)] == 0x100b005a then 
+                    elseif G.call('get_point',195) == 0x100b005a then 
                         G.call('all_over') 
                         G.call('dark')
                         G.call('add_hour',3)
@@ -2043,7 +2043,7 @@ t['门派-华山派']=function()
                         G.call('gameover')
                     end
                 elseif int_选项 == 3 then 
-                    if G.QueryName(0x10030001)[tostring(193)] == 0x100b0012 then 
+                    if G.call('get_point',193) == 0x100b0012 then 
                         G.call('all_over') 
                         G.call('dark')
                         G.call("talk",'',191,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
@@ -2419,7 +2419,7 @@ t['门派-丐帮']=function()
                         G.call('gameover')
                     end
                 elseif int_选项 == 3 then
-                    if G.QueryName(0x10030001)[tostring(195)] == 0x100b004e then 
+                    if G.call('get_point',195) == 0x100b004e then 
                         G.call('all_over') 
                         G.call('dark')
                         G.call("talk",'',169,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 

@@ -1,8 +1,0 @@
-require "o_animation"
-require "o_event"
-require "o_font"
-require "o_fontstyle"
-require "o_image"
-require "o_misc"
-require "o_typedef"
-require "p_loader"

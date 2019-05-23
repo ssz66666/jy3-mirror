@@ -31,38 +31,38 @@ function t:start()
 		G.QueryName(0x100b0000 + i).图标 = 0x560e0000 + i
 	end	
     G.call('指令_存储属性')
-    if G.QueryName(0x10030001)[tostring(193)] ~= nil then 
-        self.装备图.getChildByName('武器').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(193)]).图标
+    if G.call('get_point',193) ~= nil then 
+        self.装备图.getChildByName('武器').getChildByName('图片').img = G.QueryName(G.call('get_point',193)).图标
         self.装备图.getChildByName('武器').getChildByName('黑底').visible = true
     else
         self.装备图.getChildByName('武器').getChildByName('黑底').visible = false
     end
-    if G.QueryName(0x10030001)[tostring(194)] ~= nil then  
-        self.装备图.getChildByName('内衣').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(194)]).图标
+    if G.call('get_point',194) ~= nil then  
+        self.装备图.getChildByName('内衣').getChildByName('图片').img = G.QueryName(G.call('get_point',194)).图标
         self.装备图.getChildByName('内衣').getChildByName('黑底').visible = true
     else
         self.装备图.getChildByName('内衣').getChildByName('黑底').visible = false
     end 
-    if G.QueryName(0x10030001)[tostring(195)] ~= nil then 
-        self.装备图.getChildByName('外衣').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(195)]).图标 
+    if G.call('get_point',195) ~= nil then 
+        self.装备图.getChildByName('外衣').getChildByName('图片').img = G.QueryName(G.call('get_point',195)).图标 
         self.装备图.getChildByName('外衣').getChildByName('黑底').visible = true
     else
         self.装备图.getChildByName('外衣').getChildByName('黑底').visible = false
     end 
-    if G.QueryName(0x10030001)[tostring(196)] ~= nil then 
-        self.装备图.getChildByName('内功').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(196)]).图像 
+    if G.call('get_point',196) ~= nil then 
+        self.装备图.getChildByName('内功').getChildByName('图片').img = G.QueryName(G.call('get_point',196)).图像 
         self.装备图.getChildByName('内功').getChildByName('黑底').visible = true
     else
         self.装备图.getChildByName('内功').getChildByName('黑底').visible = false
     end 
-    if G.QueryName(0x10030001)[tostring(197)] ~= nil then 
-        self.装备图.getChildByName('轻功').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(197)]).图像 
+    if G.call('get_point',197) ~= nil then 
+        self.装备图.getChildByName('轻功').getChildByName('图片').img = G.QueryName(G.call('get_point',197)).图像 
         self.装备图.getChildByName('轻功').getChildByName('黑底').visible = true
     else
         self.装备图.getChildByName('轻功').getChildByName('黑底').visible = false
     end 
-    if G.QueryName(0x10030001)[tostring(198)] ~= nil then 
-        self.装备图.getChildByName('暗器').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(198)]).图标 
+    if G.call('get_point',198) ~= nil then 
+        self.装备图.getChildByName('暗器').getChildByName('图片').img = G.QueryName(G.call('get_point',198)).图标 
         self.装备图.getChildByName('暗器').getChildByName('黑底').visible = true
     else
         self.装备图.getChildByName('暗器').getChildByName('黑底').visible = false
@@ -591,7 +591,7 @@ function t:click(tar)
            end     
         end 
     end  
-        local i_item_物品 = G.QueryName(0x10030001)[tostring(192)]    
+        local i_item_物品 = G.call('get_point',192)   
         local o_item_物品 = G.QueryName(i_item_物品)
         local 快捷 = {'q','w','e','r'}
         local o_hotkey = G.QueryName(0x100c0001)
@@ -611,7 +611,7 @@ function t:click(tar)
                 G.Play(0x49011003, 1,false,100) 
                 self.快捷.getChildByName(快捷[i]).c_button.img_normal = o_item_物品.图标
                 self.快捷.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量
-                o_hotkey[tostring(10+i)] = G.QueryName(0x10030001)[tostring(192)]
+                o_hotkey[tostring(10+i)] = G.call('get_point',192)
                 self.快捷图.getChildByName(快捷[i]).img = o_item_物品.图标
                 self.快捷图.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量 
             end
@@ -651,22 +651,22 @@ function t:click(tar)
             if o_item_物品.加修为 == nil then 
                 o_item_物品.加修为 = 0
             end
-            local o_item_物品代码 = G.QueryName(0x10030001)[tostring(192)]-0x100b0000
+            local o_item_物品代码 = G.call('get_point',192)-0x100b0000
             if o_item_物品.类别 == 1  then
-                G.QueryName(0x10030001)[tostring(193)] = G.QueryName(0x10030001)[tostring(192)] 
-                self.装备图.getChildByName('武器').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(192)]).图标 
+                G.QueryName(0x10030001)[tostring(193)] = G.call('get_point',192) 
+                self.装备图.getChildByName('武器').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标 
                 self.装备图.getChildByName('武器').getChildByName('黑底').visible = true
             elseif o_item_物品.类别 == 2  then
-                G.QueryName(0x10030001)[tostring(198)] = G.QueryName(0x10030001)[tostring(192)] 
-                self.装备图.getChildByName('暗器').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(192)]).图标  
+                G.QueryName(0x10030001)[tostring(198)] = G.call('get_point',192)
+                self.装备图.getChildByName('暗器').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标  
                 self.装备图.getChildByName('暗器').getChildByName('黑底').visible = true
             elseif o_item_物品.类别 == 3  then
-                G.QueryName(0x10030001)[tostring(194)] = G.QueryName(0x10030001)[tostring(192)]
-                self.装备图.getChildByName('内衣').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(192)]).图标
+                G.QueryName(0x10030001)[tostring(194)] = G.call('get_point',192)
+                self.装备图.getChildByName('内衣').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标
                 self.装备图.getChildByName('内衣').getChildByName('黑底').visible = true
             elseif o_item_物品.类别 == 4  then
-                G.QueryName(0x10030001)[tostring(195)] = G.QueryName(0x10030001)[tostring(192)]
-                self.装备图.getChildByName('外衣').getChildByName('图片').img = G.QueryName(G.QueryName(0x10030001)[tostring(192)]).图标
+                G.QueryName(0x10030001)[tostring(195)] = G.call('get_point',192)
+                self.装备图.getChildByName('外衣').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标
                 self.装备图.getChildByName('外衣').getChildByName('黑底').visible = true
             elseif o_item_物品.类别 == 5  then
                 if G.call('can_use') == true  then
