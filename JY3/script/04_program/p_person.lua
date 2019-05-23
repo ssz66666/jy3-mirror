@@ -705,7 +705,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                     break
                                 end  
                             end
-                        elseif int_选项 == 6 then
+                        elseif int_选项 == 5 then
                             G.call('all_over')
                             break
                         end      
