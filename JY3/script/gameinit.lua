@@ -6,7 +6,7 @@
 -- lua调试模块
 -- local breakSocketHandle,debugXpCall = require("luaide/luadebug")("localhost",7003)
 -- require("luaide/mobdebug").start()
-print(99999999999999)
+
 local c = require "gcore.c"
 local lfs = require "lfs.c"
 local G = require "gf"
