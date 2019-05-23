@@ -289,7 +289,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-   -- G.call('call_battle',1,7,1,30,229,0,0,0,0,0)
+   G.call('call_battle',1,7,1,30,229,0,0,0,0,0)
 end   
 t['in_test'] = function() 
     G.misc().测试 = 1
@@ -1619,7 +1619,7 @@ t['add_time'] = function(int_时刻) --增加时刻
     G.call('set_newpoint',124,G.call('get_newpoint',124) - int_时刻 ) 
     if G.call('get_point',124) > 8 then 
        G.call('add_hour',math.floor(G.call('get_point',124)/8)) 
-       G.call('set_newpoint',124,G.call('get_newpoint',124)%8) 
+       G.call('set_newpoint',124,-(-G.call('get_newpoint',124)%8)) 
        G.call('set_point',124,G.call('get_point',124)%8) 
        
     end 
@@ -2270,7 +2270,7 @@ t['can_equip']=function() --能否装备当前内功或者轻功
     return result
 end
 t['can_use']=function() --能否修炼当前秘籍
-    local o_item_物品 = G.QueryName(G.call('get_point',197))
+    local o_item_物品 = G.QueryName(G.call('get_point',192))
     local o_body_属性 = G.QueryName(0x10030001)
     local int_内功 = 0
     if o_body_属性[tostring(197)] ~= nil  and  o_body_属性[tostring(197)] > 0  then--轻功附加装备属性
