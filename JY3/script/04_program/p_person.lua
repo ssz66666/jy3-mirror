@@ -2140,5 +2140,6 @@ t['通用_转换装备']=function(i_equip)
         c:角色操作(0)
     else
         G.call("talk",'？？？？',390,'   【神奇宝石】数量不够无法转换神奇装备！',1,1)  
+        G.call('all_over')
     end 
 end

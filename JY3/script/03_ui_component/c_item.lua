@@ -506,7 +506,7 @@ function t:click(tar)
         self.装备图.getChildByName('外衣').getChildByName('图片').img = nil
         self.装备图.getChildByName('外衣').getChildByName('黑底').visible = false
     elseif tar == self.按钮.getChildByName('百宝箱') then 
-        G.misc().神奇装备 = nil
+        G.misc().神奇装备 = 0
         G.addUI('v_equip')
         local  ui = G.getUI('v_equip');
         local c = ui.c_equip

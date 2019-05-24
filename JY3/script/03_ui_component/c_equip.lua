@@ -16,8 +16,9 @@ function t:start()
     G.misc().equip_data = 1
     G.misc().equip_data_i = 1
     G.misc().equip_data_m = 1
-    G.misc().神奇装备 = 0
+    --G.misc().神奇装备 = 0
     G.misc().equip_队员编号 = 0
+    self.按钮.getChildByName('特殊').visible = true
     if G.misc().神奇装备 == 1 then 
         self.按钮.getChildByName('特殊').text = '分解装备'
     elseif G.misc().神奇装备 == 2 then 
