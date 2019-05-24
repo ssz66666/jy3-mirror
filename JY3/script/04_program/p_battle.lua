@@ -2546,18 +2546,6 @@ t['magic_power1'] = function(int_id,int_no)
         end       
     elseif o_skill.类别 > 5 then 
     end
-    local int_怒气 = 0 
-    if  G.call('逻辑_拥有被动',17) then 
-        int_怒气 = 5
-    else
-        int_怒气 = 2
-    end 
-    if G.call('通用_取得套装',0,4) == 2 then --套装4增加怒气效果
-        int_怒气 = int_怒气 + 2
-    elseif G.call('通用_取得套装',0,4) == 3 then --套装4怒气效果
-        int_怒气 = int_怒气 * 2
-    end
-    G.call('add_point',48,int_怒气)
     if o_skill.装备 ~= nil then  --武功对应装备加成
         if o_skill.装备  == G.call('get_point',193) then 
             result = 40 +result
@@ -2921,6 +2909,20 @@ t['magic_power1'] = function(int_id,int_no)
     end
     if hurt < 0 then 
         hurt = math.random(10,20)
+    end
+    local int_怒气 = 0 
+    if hurt > 0 then 
+        if  G.call('逻辑_拥有被动',17) then 
+            int_怒气 = math.floor(hurt/1000 + 0.5)
+        else
+            int_怒气 = math.floor(hurt/2000 + 0.5)
+        end 
+        if G.call('通用_取得套装',0,4) == 2 then --套装4增加怒气效果
+            int_怒气 = int_怒气 + 2
+        elseif G.call('通用_取得套装',0,4) == 3 then --套装4怒气效果
+            int_怒气 = int_怒气 * 2
+        end
+        G.call('add_point',48,int_怒气)
     end
     local string_字符串 = ''
     if o_skill.类别 < 6 then 

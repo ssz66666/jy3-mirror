@@ -257,7 +257,7 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
-            if  G.misc().检测_1001 == nil  then
+            if  G.misc().检测_1002 == nil  then
                 local role = G.DBTable('o_role')
                 for i = 1,#role do 
                     for p = 81,89 do 
@@ -289,7 +289,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    -- G.call('add_time',4) 
+    G.call('天书_飞狐外传') 
     -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 
@@ -765,9 +765,9 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         G.call('set_role',o_battle[位置[i] ]  ,13,G.call('get_role',o_battle[位置[i] ],1 ) )   --回复敌人的全部HP,MP
         G.call('set_role',o_battle[位置[i] ] ,14,G.call('get_role',o_battle[位置[i ] ],2 ) ) 
     end 
-    if o_battle.模式 > 3 then
+    if o_battle.模式 > 3 then --模式3我方自动满状态出战
         for i = 2,5 do
-            for p = 81,89 do   --清除敌人的全部异常
+            for p = 81,89 do   
                 G.call('set_role',o_battle[位置[i] ] ,p,0)
             end 
             G.call('set_role',o_battle[位置[i] ]  ,13,G.call('get_role',o_battle[位置[i] ],1 ) )   --回复敌人的全部HP,MP
@@ -807,11 +807,6 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     G.wait_time(500)
     G.removeUI('v_battle')
     G.Stop(1)
-    -- if int_狙杀 and int_狙杀 > 0 then
-    --     if string_事件 and string_事件 ~= '' then 
-    --         G.call('string_事件') 
-    --     end
-    -- end
     for p = 81,89 do   --战斗后清除主角除了内伤外的其他异常状态
         G.call('set_point',p,0)
     end 
@@ -838,6 +833,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
                     G.call('set_role',o_battle[位置[i] ] ,p,0)
                 end 
                 G.call('set_role',o_battle[位置[i] ] ,84,n) 
+                print(i,G.call('get_role',o_battle[位置[i] ],13 ))
                 if G.call('get_role',o_battle[位置[i] ],13 ) <= 0 then --战斗后回复0hp队友hp为1
                     G.call('set_role',o_battle[位置[i] ] ,13,1)
                 end  
@@ -1253,6 +1249,36 @@ t['set_roleskill']=function(int_id,int_no,int_number) --设置NPC技能
         else    
         -- G.call('notice1','代码错误')
         end  
+    end 
+    if int_number == 0 then 
+        if int_no == 1 then 
+            G.QueryName(0x10040000+int_id)['技能'..1] = nil 
+        elseif int_no == 2 then 
+            G.QueryName(0x10040000+int_id)['技能'..2] = nil
+        elseif int_no == 3 then 
+            G.QueryName(0x10040000+int_id)['技能'..3] = nil
+        else    
+        -- G.call('notice1','代码错误')
+        end   
+    end
+end
+t['set_friend_skill']=function(int_id,int_no,int_number,int_熟练度) --设置NPC技能
+    if int_number > 0 then 
+        if int_no == 1 then 
+            G.QueryName(0x10040000+int_id)['技能'..1] = 0x10050000 + int_number-1  
+        elseif int_no == 2 then 
+            G.QueryName(0x10040000+int_id)['技能'..2] = 0x10050000 + int_number-1 
+        elseif int_no == 3 then 
+            G.QueryName(0x10040000+int_id)['技能'..3] = 0x10050000 + int_number-1 
+        else    
+        -- G.call('notice1','代码错误')
+        end  
+        if int_熟练度 then
+            G.call('set_role',int_id,9+int_no,int_熟练度)
+        end
+        local o_skill = G.QueryName(0x10050000 + int_number-1 )
+        local o_role = G.QueryName(0x10040000+int_id)
+        G.call('notice1','【'..o_role.姓名..'】领悟'..'【'..o_skill.名称..'】')
     end 
     if int_number == 0 then 
         if int_no == 1 then 
@@ -1990,7 +2016,7 @@ t['指令_备份基础属性']=function() --
     for i = 45,47 do 
         G.call('set_newpoint',i,-G.call('get_point',i)-math.random(5)) 
     end
-    G.misc().检测_1001 = 1
+    G.misc().检测_1002 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
     return G.QueryName(0x101b0001)[tostring(int_代码)]
@@ -3508,11 +3534,16 @@ t['模式_笑梦游记']=function()
     G.removeUI('v_heaven_book')
     local str = {'飞狐外传','雪山飞狐','连城诀','天龙八部','射雕英雄传','白马啸西风','鹿鼎记','笑傲江湖','书剑恩仇录','神雕侠侣','侠客行','倚天屠龙记','碧血剑','鸳鸯刀'}
     if int_天书 > 0 then 
-        if G.call('通用_拥有印记',int_天书) then 
-            G.call('dark')
-            G.call('天书_'..str[int_天书])
+        local o_book_story = G.QueryName(0x101c0000 + int_天书)
+        if G.call('通用_拥有印记',int_天书)   then 
+            if o_book_story.完成 == 0 then 
+                G.call('天书_'..str[int_天书])
+            else
+                G.call("talk",'',38,'   你已经完成【'..str[int_天书]..'】！',2,1)
+            end
+            G.call('all_over')
         else
-            G.call("talk",'',38,'   你还没有【'..str[int_天书]..'】的印记无法发展此模式',2,1)
+            G.call("talk",'',38,'   你还没有【'..str[int_天书]..'】的印记无法发展此模式！',2,1)
             G.call('all_over')
         end
     end

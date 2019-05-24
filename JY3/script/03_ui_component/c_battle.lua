@@ -86,6 +86,11 @@ function t:start()
     self.阵法.shadowAlpha = 255
     self.说明.shadowX = 1
     self.说明.shadowAlpha = 255
+    if G.QueryName(i_battle).模式 > 3 then
+        self.主菜单.visible = false 
+    else
+        self.主菜单.visible = true
+    end
     if G.QueryName(0x100c0001)[tostring(15)] ~= nil then
         self.阵法.text = G.QueryName(G.QueryName(0x100c0001)[tostring(15)]).名称
     else
@@ -111,6 +116,7 @@ function t:start()
             self.obj.getChildByName('map').getChildByName(位置[i]).visible = true
             local p = G.QueryName(i_battle)[位置[i]]
             local int_编号 = G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).编号
+            self.obj.getChildByName('map').getChildByName(位置[i]).x = i
             if p >= 253 and p < 385  then  
                 self.obj.getChildByName('talk').getChildByName(位置[i]).getChildByName('head').img = G.QueryName(o_role +int_编号 ).头像
                 self.obj.getChildByName('map').getChildByName(位置[i]).img = G.QueryName(o_role +int_编号 ).头像
@@ -273,23 +279,17 @@ function t:update()
             self.副按钮.getChildByName(tostring(p)).visible = true
             self.副按钮.getChildByName(tostring(p)).c_button.img_normal = G.QueryName(G.QueryName(0x100c0001)[tostring(p)]).图像
             if G.misc().战斗状态 == 0 and  self.obj.getChildByName('map').getChildByName(位置[1]).x <= 150 and G.call('get_point',87) == 0 and G.call('get_point',44) > 0 and o_battle.模式 < 4  then 
-                if  (p == 8 and G.call('get_point',48) < 100 )   then
+                if (G.QueryName(G.QueryName(0x100c0001)[tostring(p)]).类别 == 5 and G.call('get_point',198) == nil) or (p == 8 and G.call('get_point',48) < 100 )   then
                     self.按钮.getChildByName(tostring(p)).alpha = 100
                     self.按钮.getChildByName(tostring(p)).mouseEnabled = false
                     self.副按钮.getChildByName(tostring(p)).alpha = 100
                     self.副按钮.getChildByName(tostring(p)).mouseEnabled = false
-                elseif  (p == 8 and G.call('get_point',48) == 100 )   then  
+                else  
                     self.按钮.getChildByName(tostring(p)).alpha = 255
                     self.按钮.getChildByName(tostring(p)).mouseEnabled = true
                     self.副按钮.getChildByName(tostring(p)).alpha = 255
                     self.副按钮.getChildByName(tostring(p)).mouseEnabled = true
-                    self.obj.getChildByName('逃跑').visible = true 
-                else
-                    self.按钮.getChildByName(tostring(p)).alpha = 255
-                    self.按钮.getChildByName(tostring(p)).mouseEnabled = true
-                    self.副按钮.getChildByName(tostring(p)).alpha = 255
-                    self.副按钮.getChildByName(tostring(p)).mouseEnabled = true
-                    self.obj.getChildByName('逃跑').visible = true  
+                    self.obj.getChildByName('逃跑').visible = true   
                 end    
             else
                 self.按钮.getChildByName(tostring(p)).alpha = 100
