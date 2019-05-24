@@ -65,13 +65,13 @@ t['天书_飞狐外传'] = function()
         G.call("talk",'',5,'   我看你们就这点伎俩，',0,0) 
         G.call("talk",'',102,'   真是找死！',1,1)
         G.call('all_over')  
+        G.call('set_team',5,0,0,0)
         G.call('call_battle',1,7,4,100,102,229,int_mo,int_mo1,int_mo1,230)
         o_battle_结果 = G.call('get_battle') 
-        if o_battle_结果 == 1 then
+        if o_battle_结果  then
             G.call("talk",'',156,'   小兄弟，我中的毒，只有【药王庄】的毒手药王才可医治，烦请去药王庄，苗某感激不尽。',1,1) 
             G.call('all_over')
             G.call('dark')
-            G.call('set_team',5,0,0,0)
             G.call('地图_进入地图','药王庄',23,67)
             G.call("talk",'',5,'   敢问毒手药王可在？',0,0) 
             G.call("talk",'',40,'   你是谁？找先师所为何事？',1,1)
@@ -83,15 +83,18 @@ t['天书_飞狐外传'] = function()
             G.call("talk",'',40,'   苗前辈，晚辈是【药王庄】毒手药王的嫡传弟子，晚辈现在苗前辈身上下施针灸，片刻后苗前辈可双复原。',1,1)
             G.call('dark')
             G.call("talk",'',156,'   【药王庄】的弟子果然神乎其技！小兄弟，你救了苗某的性命，苗某没什么可报答的。不如指点你一招武功如何，这便是我的【苗家剑法】！',1,1) 
-            G.call('set_friend_skill',5,3,47,500)
+            G.call('set_friend_skill',5,2,47,500)
             G.call("talk",'',5,'   多谢苗大侠！',0,0) 
             if G.call('get_item',143) == 0  then 
                 G.call('add_item',143,1)
             end 
             o_book_story.流程 = 2
         else
-            G.call("talk",'',102,'   凭你的本事也配来争强藏宝图？快点滚吧。',1,1)  
+            G.call("talk",'',102,'   凭你的本事来多管闲事？快点滚吧。',1,1)  
         end
+    elseif o_book_story.流程 == 2 then
+        G.call('地图_进入地图','福康安府',113,67)
+        G.call("talk",'',403,'   今日本帅举办这【天下掌门人大会】，这八只玉龙杯就是作为本次大会胜者的奖励！',1,1)  
     end
     G.call('all_over')
     G.call('add_time',2)

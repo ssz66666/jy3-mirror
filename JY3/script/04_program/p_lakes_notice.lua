@@ -2743,86 +2743,94 @@ t['聚贤庄任务_官逼民受苦']=function()
 end   
 t['聚贤庄任务_神秘商人']=function()
     G.call('dark')
-    local o = math.random(19,22)
-    G.call('地图_进入地图','？？？？',o,33)  
-    local item = {27,53,232,240,85,81,85,260,86,85,88,90,284,142,144,147,148,120}
-    local n = math.random(#item)
-    if G.call('get_point',237) > 1 then 
-        item = {27,53,62,71,77,233,242,243,91,85,81,85,260,86,85,88,91,90,91,284,91,142,144,147,148,120,129,283}
-        n = math.random(#item)
-    end    
-    local int_讲价 = G.call('get_point',36)/4
-    if G.call('通用_取得我方装备特效',411) then 
-        int_讲价 = int_讲价 + 25
-    end
-    local o_item = G.QueryName(0x100B0000+item[n]-1)
-    local num = 0
-    local p = ''
-    if o_item.类别 == 1 or o_item.类别 == 3 or o_item.类别 == 4 then
-        p = '一件'
-        num = 1
-    elseif o_item.类别 == 2 then
-        p = '一百枚'  
-        num = 100
-    elseif o_item.类别 == 5 then
-        p = '一本'  
-        num = 1
-    elseif o_item.类别 == 9 then
-        p = '十枚'  
-        num = 10
-    elseif o_item.类别 == 10 or o_item.类别 == 11 then
-        p = '一个'  
-        num = 1
-    end
-    local pice = 0
-    if o_item.类别 == 1 or o_item.类别 == 3  or o_item.类别 == 4 then
-        pice = math.floor(o_item.买价 *(100-int_讲价)/100)
-    elseif o_item.类别 == 2 then
-        pice = math.floor(o_item.买价 *(100-int_讲价)/100)*100  
-    elseif o_item.类别 == 5 then
-        pice = math.floor(o_item.买价 *(100-int_讲价)/100) 
-    elseif o_item.类别 == 9 then
-        pice = math.floor(o_item.买价 *(100-int_讲价)/100)*10
-    elseif o_item.类别 == 10 or o_item.类别 == 11 then
-        pice =  math.floor(o_item.买价 *(100-int_讲价)/100) 
-    end
-    G.call("talk",'',148,'   小号一向是货真价实，赔本赚吆喝。今天我要卖的是“【'..o_item.名称..'】'..p..'”,售价'..pice..'两银子，你要不要买啊？(个别物品只有二周目才能买到)',2,1) 
     local o_htyw = G.QueryName(0x1017000b) 
-    local int_选项 = 0
-    while int_选项 == 0 do
-        int_选项 = G.call("menu",'',0,'',0,0,{"1,花钱购买","2,武力购买","3,不是我想要的,不买"},0)
-        if int_选项 == 1 then
-            if G.call('get_money') >= pice then 
-                G.call('add_money',-pice)
-                G.call('add_item',item[n],num)
-                G.call('add_point',36,1)
-                G.call("talk",'',148,'   多谢惠顾小号，下次定会以更低廉的价格服务于老客户。',2,1)
-                G.call('add_love',148,2)
-                G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
-                o_htyw.进度列表[1].当前进度 = o_htyw.进度列表[1].当前进度 + 1
-            else
-                G.call("talk",'',148,'   阁下银两不够。小号本小利微，概不赊欠。',2,1)
-            end    
-        elseif  int_选项 == 2 then
-            G.call('all_over')
-            G.call('call_battle',1,7,1,200 - G.call('get_love',148),148,0,0,0,0,0)
-            G.call('add_love',148,-10)
-            o_battle_结果 = G.call('get_battle') 
-            if o_battle_结果  == 1 then
-                G.call('add_item',item[n],num)
-                G.call('add_point',36,-10)
-                G.call("talk",'',148,'   能靠武力从我这里买走货物，也算是正常交易的一种渠道。',2,1)
-                if G.call('get_newpoint',36) < 0 then
-                    G.call('set_newpoint',36,-math.random(5)   ) 
-                end
-                G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
-                o_htyw.进度列表[1].当前进度 = o_htyw.进度列表[1].当前进度 + 1
-            else
-                G.call("talk",'',148,'   老兄，你没买到东西，还要搭上汤药费，这次可算是蚀本了',2,1)
-            end
-        elseif  int_选项 == 3 then
-        end
-    end 
+    local o = math.random(19,22)
+    G.call('地图_进入地图','？？？？',o,33) 
+    G.call("talk",'',148,'   小号一向是货真价实，赔本赚吆喝。今天你要买什么？',2,1) 
+    G.call('通用_神秘商店')
+    G.call('add_point',36,1)
+    G.call("talk",'',148,'   多谢惠顾小号，下次定会以更低廉的价格服务于老客户。',2,1)
+    G.call('add_love',148,2)
+    G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+    o_htyw.进度列表[1].当前进度 = o_htyw.进度列表[1].当前进度 + 1
+    -- local item = {27,53,232,240,85,81,85,260,86,85,88,90,284,142,144,147,148,120}
+    -- local n = math.random(#item)
+    -- if G.call('get_point',237) > 1 then 
+    --     item = {27,53,62,71,77,233,242,243,91,85,81,85,260,86,85,88,91,90,91,284,91,142,144,147,148,120,129,283}
+    --     n = math.random(#item)
+    -- end    
+    -- local int_讲价 = G.call('get_point',36)/4
+    -- if G.call('通用_取得我方装备特效',411) then 
+    --     int_讲价 = int_讲价 + 25
+    -- end
+    -- local o_item = G.QueryName(0x100B0000+item[n]-1)
+    -- local num = 0
+    -- local p = ''
+    -- if o_item.类别 == 1 or o_item.类别 == 3 or o_item.类别 == 4 then
+    --     p = '一件'
+    --     num = 1
+    -- elseif o_item.类别 == 2 then
+    --     p = '一百枚'  
+    --     num = 100
+    -- elseif o_item.类别 == 5 then
+    --     p = '一本'  
+    --     num = 1
+    -- elseif o_item.类别 == 9 then
+    --     p = '十枚'  
+    --     num = 10
+    -- elseif o_item.类别 == 10 or o_item.类别 == 11 then
+    --     p = '一个'  
+    --     num = 1
+    -- end
+    -- local pice = 0
+    -- if o_item.类别 == 1 or o_item.类别 == 3  or o_item.类别 == 4 then
+    --     pice = math.floor(o_item.买价 *(100-int_讲价)/100)
+    -- elseif o_item.类别 == 2 then
+    --     pice = math.floor(o_item.买价 *(100-int_讲价)/100)*100  
+    -- elseif o_item.类别 == 5 then
+    --     pice = math.floor(o_item.买价 *(100-int_讲价)/100) 
+    -- elseif o_item.类别 == 9 then
+    --     pice = math.floor(o_item.买价 *(100-int_讲价)/100)*10
+    -- elseif o_item.类别 == 10 or o_item.类别 == 11 then
+    --     pice =  math.floor(o_item.买价 *(100-int_讲价)/100) 
+    -- end
+    -- G.call("talk",'',148,'   小号一向是货真价实，赔本赚吆喝。今天我要卖的是“【'..o_item.名称..'】'..p..'”,售价'..pice..'两银子，你要不要买啊？(个别物品只有二周目才能买到)',2,1) 
+    -- local o_htyw = G.QueryName(0x1017000b) 
+    -- local int_选项 = 0
+    -- while int_选项 == 0 do
+    --     int_选项 = G.call("menu",'',0,'',0,0,{"1,花钱购买","2,武力购买","3,不是我想要的,不买"},0)
+    --     if int_选项 == 1 then
+    --         if G.call('get_money') >= pice then 
+    --             G.call('add_money',-pice)
+    --             G.call('add_item',item[n],num)
+    --             G.call('add_point',36,1)
+    --             G.call("talk",'',148,'   多谢惠顾小号，下次定会以更低廉的价格服务于老客户。',2,1)
+    --             G.call('add_love',148,2)
+    --             G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+    --             o_htyw.进度列表[1].当前进度 = o_htyw.进度列表[1].当前进度 + 1
+    --         else
+    --             G.call("talk",'',148,'   阁下银两不够。小号本小利微，概不赊欠。',2,1)
+    --         end    
+    --     elseif  int_选项 == 2 then
+    --         G.call('all_over')
+    --         G.call('call_battle',1,7,1,200 - G.call('get_love',148),148,0,0,0,0,0)
+    --         G.call('add_love',148,-10)
+    --         o_battle_结果 = G.call('get_battle') 
+    --         if o_battle_结果  == 1 then
+    --             G.call('add_item',item[n],num)
+    --             G.call('add_point',36,-10)
+    --             G.call("talk",'',148,'   能靠武力从我这里买走货物，也算是正常交易的一种渠道。',2,1)
+    --             if G.call('get_newpoint',36) < 0 then
+    --                 G.call('set_newpoint',36,-math.random(5)   ) 
+    --             end
+    --             G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+    --             o_htyw.进度列表[1].当前进度 = o_htyw.进度列表[1].当前进度 + 1
+    --         else
+    --             G.call("talk",'',148,'   老兄，你没买到东西，还要搭上汤药费，这次可算是蚀本了',2,1)
+    --         end
+    --     elseif  int_选项 == 3 then
+    --     end
+    -- end 
     if o_htyw.进度列表[1].当前进度 >= 500 and o_htyw.完成 == 0 then 
         o_htyw.进度列表[1].完成 = 1
         o_htyw.完成 = 1 

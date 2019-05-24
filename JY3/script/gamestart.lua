@@ -93,6 +93,9 @@ function G.GetTextOwner(id)
 	if id == 0x101c	then
 		return 'o_book_story'
 	end
+	if id == 0x101d	then
+		return 'o_mystery_store'
+	end
 	if id == 0x1f01	then
 		return 'o_typedef'
 	end

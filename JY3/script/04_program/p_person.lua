@@ -2088,7 +2088,7 @@ t['通用_锻造']=function()
             c:角色操作(0)
             G.wait1('锻造装备结束')
             local int_宝石数量 = G.call('get_item',340)
-    G.call("talk",'？？？？',390,'   你现在拥有'..int_宝石数量..'颗【神奇宝石】，有什么需要？',1,1) 
+            G.call("talk",'？？？？',390,'   你现在拥有'..int_宝石数量..'颗【神奇宝石】，有什么需要？',1,1) 
         elseif int_选项 == 3 then 
             if G.call('get_item',340) >= 10 then
                 local int_宝石数量 = G.call('get_item',340)

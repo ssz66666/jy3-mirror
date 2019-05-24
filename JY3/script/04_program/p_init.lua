@@ -209,6 +209,7 @@ t['地图系统_功能'] = function()
 		G.case(9, '强制退出')
 		G.case(7, '内部测试')
 		G.case(10, '系统测试')
+		G.case(11, '神秘结算')
         local r = G.wait_case();
         if r == 1  then 
 			G.call('create')
@@ -224,6 +225,8 @@ t['地图系统_功能'] = function()
 			G.call('test')
 		elseif r == 6  then 
 			G.call('重生')
+		elseif r == 11  then 
+			G.call('通用_神秘结算') 
 		elseif r == 9  then 
 			G.call('通用_强退游戏') 
 		elseif r == 8  then
@@ -1774,6 +1777,16 @@ t['修改横幅字体'] = function(string_文本)
 	if ui_obj then 
 		ui_obj.getChildByName('标题').text = string_文本 or ""
 	end
+end
+cc = {};
+function cc.limitX(v, minV, maxV)
+    if v < minV then
+        return minV;
+    elseif v > maxV then
+        return maxV;
+    else
+        return v;
+    end
 end
 
 

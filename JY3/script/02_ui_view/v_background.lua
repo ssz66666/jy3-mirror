@@ -22,7 +22,7 @@ tp = tc
 	tc.anchor = 0x32006432
 	tc.sample = 0
 	tc.mask = 10
-	tc.img = 0x56000001
+	tc.img = 0x56161003
 	tp = tc
 	tp = tp.parent
 	--end
@@ -51,7 +51,7 @@ tp = tc
 	tc.anchor = 0x32003200
 	tc.sample = 0
 	tc.mask = 10
-	tc.img = 0x56000001
+	tc.img = 0x56161003
 	tp = tc
 	tp = tp.parent
 	--end
@@ -79,7 +79,7 @@ tp = tc
 	tc.anchor = 0x64323200
 	tc.sample = 0
 	tc.mask = 10
-	tc.img = 0x56000001
+	tc.img = 0x56161003
 	tp = tc
 	tp = tp.parent
 	--end
@@ -108,7 +108,7 @@ tp = tc
 	tc.anchor = 0x64326432
 	tc.sample = 0
 	tc.mask = 10
-	tc.img = 0x56000001
+	tc.img = 0x56161003
 	tp = tc
 	tp = tp.parent
 	--end

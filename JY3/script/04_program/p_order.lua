@@ -289,7 +289,8 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('天书_飞狐外传') 
+    --G.call('天书_飞狐外传') 
+    G.addUI('v_mystery_store')
     -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 
@@ -3546,5 +3547,30 @@ t['模式_笑梦游记']=function()
             G.call("talk",'',38,'   你还没有【'..str[int_天书]..'】的印记无法发展此模式！',2,1)
             G.call('all_over')
         end
+    end
+end
+t['通用_神秘商店']=function() 
+    G.addUI('v_mystery_store')
+    local ui = G.getUI('v_mystery_store')
+    local c = ui.c_mystery_store
+    G.wait1('神秘结束')
+end
+t['通用_神秘结算']=function()
+    if not G.getUI('v_mystery_store') then return end
+    local ui = G.getUI('v_mystery_store')
+    local c = ui.c_mystery_store
+    if G.call('get_point',110) > c.总价 then
+        local o_store = G.QueryName(0x101d0001)
+        G.call('add_money',-c.总价)
+        for i = 1,#o_store.物品 do 
+            if o_store.物品[i].数量 > 0 then 
+                local i_item = o_store.物品[i].物品
+                local int_item = i_item - 0x100b0000 + 1
+                G.call('add_item',int_item,o_store.物品[i].数量)
+            end
+        end
+    else
+        G.call("talk",'',148,'   你这貌似钱不够买那多，请减去部分再试试！',2,1)
+        G.call('all_over')
     end
 end

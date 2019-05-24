@@ -52,6 +52,32 @@ local t = {
 		},
 	},
 	{
+		['name']='o_mystery_store',
+		['define']={
+			[1]={
+				['name']='物品',
+				['type']='_o_mystery_item',
+			},
+		},
+	},
+	{
+		['name']='o_mystery_item',
+		['define']={
+			[1]={
+				['name']='物品',
+				['type']='i_item',
+			},
+			[2]={
+				['name']='价格',
+				['type']='int',
+			},
+			[3]={
+				['name']='数量',
+				['type']='int',
+			},
+		},
+	},
+	{
 		['name']='o_notebook',
 		['define']={
 			[1]={
