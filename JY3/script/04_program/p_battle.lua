@@ -2711,16 +2711,12 @@ t['magic_power1'] = function(int_id,int_no)
     end
     if math.random(a +15) > math.random(math.floor(b/6)+1+int_闪避) then  --命中计算     
         if hurt > 0 then 
+            local int_斗转 = 0
             for i = 1,3 do    
                 if o_role[技能[i] ] ~= nil then 
                     local o_skill_tb = G.QueryName(o_role[技能[i] ])
                     if o_role[技能[i] ] == 0x10050097 and math.random(100) > 50 then --斗转被动 
-                        hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_id))   /100 ) 
-                        if G.call('通用_取得套装',int_id,6) == 2 then
-                            hurt3 = math.floor(hurt3*1.25)
-                        elseif  G.call('通用_取得套装',int_id,6) == 3 then
-                            hurt3 = math.floor(hurt3*1.5)
-                        end
+                        int_斗转 = 1
                     end  
                     if o_skill_tb.内功轻功效果  ==  4 then --内功减伤效果计算
                        hurt = hurt * (100-o_skill_tb.效果等级/2)/100  
@@ -2728,6 +2724,14 @@ t['magic_power1'] = function(int_id,int_no)
                    
                 end 
             end 
+            if int_斗转 == 1 then 
+                hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_id))   /100 ) 
+                if G.call('通用_取得套装',int_id,6) == 2 then
+                    hurt3 = math.floor(hurt3*1.25)
+                elseif  G.call('通用_取得套装',int_id,6) == 3 then
+                    hurt3 = math.floor(hurt3*1.5)
+                end
+            end
             if math.random(100) > 80 and (G.call('通用_取得人物特效',0,22) or G.call('通用_取得装备特效',0,206))  then --朱雀被动效果
                 hurt = hurt 
             elseif  int_玉女剑阵效果 == 1 and i_skill == 0x1005003e then --玉女剑阵破防效果判定
@@ -3142,16 +3146,12 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         int_闪避 = int_闪避 + 100
     end
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避+1) then  --命中计算
+        local int_斗转 = 0
         if hurt > 0 then 
             for i = 1,3 do    
                 if o_enemy[技能[i]] ~= nil then 
                     if o_role[技能[i] ] == 0x10050097 and math.random(100) > 50 then --斗转被动 
-                        hurt3 = math.floor(hurt * (20+G.call('通用_取得装备斗转效果',int_enemy))  /100 ) 
-                        if G.call('通用_取得套装',int_id,6) == 2 then
-                            hurt3 = math.floor(hurt3*1.25)
-                        elseif  G.call('通用_取得套装',int_id,6) == 3 then
-                            hurt3 = math.floor(hurt3*1.5)
-                        end 
+                        int_斗转 = 1
                     end  
                     local o_skill_tb = G.QueryName(o_enemy[技能[i]])
                     if o_skill_tb.内功轻功效果  ==  4 then --内功减伤效果计算
@@ -3159,6 +3159,14 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     end    
                 end 
             end 
+            if int_斗转 == 1 then 
+                hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_enemy))   /100 ) 
+                if G.call('通用_取得套装',int_enemy,6) == 2 then
+                    hurt3 = math.floor(hurt3*1.25)
+                elseif  G.call('通用_取得套装',int_enemy,6) == 3 then
+                    hurt3 = math.floor(hurt3*1.5)
+                end
+            end
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))  then --朱雀被动效果
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21) then --真武效果
@@ -3569,7 +3577,7 @@ t['magic_power3'] = function(int_id,int_no)
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避 + 1) then  --命中计算
         if hurt > 0 then 
             if G.call('get_point',18) > 50 and G.call('get_magic',152) > 0 and math.random(100) <= G.call('get_point',18) - 50 then --斗转被动) 
-                hurt3 = math.floor(hurt * (20+G.call('通用_取得装备斗转效果',0)*G.call('get_magic_lv',152)/500 ) )
+                hurt3 = math.floor(hurt * (20+G.call('通用_取得装备斗转效果',0)  )   *G.call('get_magic_lv',152)/500  )
                 if G.call('通用_取得套装',0,6) == 2 then
                     hurt3 = math.floor(hurt3*1.25)
                 elseif  G.call('通用_取得套装',0,6) == 3 then
