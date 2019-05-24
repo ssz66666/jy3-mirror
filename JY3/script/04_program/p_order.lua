@@ -290,7 +290,6 @@ t['test'] = function()
 end   
 t['new_test'] = function()
     --G.call('天书_飞狐外传') 
-    G.addUI('v_mystery_store')
     -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 
