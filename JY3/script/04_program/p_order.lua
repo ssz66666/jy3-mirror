@@ -611,11 +611,11 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
             G.call('add_point',44,-hurt)
             if G.call('get_magic',166) > 0 then 
                 if G.call('通用_取得人物特效',0,15) and math.random(100) > 90 and G.call('get_point',44) < G.call('get_point',217)*0.3 then --主角复生效果
-                    G.call('set_point',44,G.call('get_point',217))                  
+                    G.call('add_point',44,G.call('get_point',217))                  
                 end  
             else  
                 if G.call('通用_取得人物特效',0,15) and math.random(100) > 95 and G.call('get_point',44) < G.call('get_point',217)*0.2 then --主角复生效果
-                    G.call('set_point',44,G.call('get_point',217))                  
+                    G.call('add_point',44,G.call('get_point',217))                  
                 end  
             end 
         end 
