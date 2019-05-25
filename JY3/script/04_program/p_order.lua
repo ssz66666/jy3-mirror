@@ -3585,6 +3585,7 @@ t['通用_神秘结算']=function()
                 G.call('add_item',int_item,o_store.物品[i].数量)
             end
         end
+        c:刷新显示(c.页数,c.当前序号)
     else
         G.call("talk",'',148,'   你这貌似钱不够买那多，请减去部分再试试！',2,1)
         G.call('all_over')
