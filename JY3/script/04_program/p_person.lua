@@ -761,36 +761,32 @@ t['聚贤庄-半瓶神仙醋']=function()
                             end
                         end
                         G.call('all_over')
-                        if  G.misc().通天塔奖励_5 == 0 then 
-                            if G.misc().通天塔时间 == nil  then 
-                                G.misc().通天塔时间 = 0  
+                        if G.misc().通天塔时间 == nil  then 
+                            G.misc().通天塔时间 = 0  
+                        end
+                        local int_min = G.misc().通天塔时间
+                        if G.misc().通天塔时间 == 0 or int_min >= 60  then
+                            G.call("talk",'',38,'    请选择无尽模式！',2,1) 
+                            local int_选项 = 0
+                            while int_选项 == 0 do
+                                int_选项 = G.call("menu",'',0,'',0,0,{"1,单人模式","2,组队模式","3,没有事情"},0)
+                                if int_选项 == 1 then 
+                                    G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
+                                    G.call('all_over')
+                                    G.call('副本_通天塔',1) 
+                                    G.misc().通天塔时间 = 1
+                                elseif int_选项 == 2 then
+                                    G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
+                                    G.call('all_over')
+                                    G.call('副本_通天塔',0) 
+                                    G.misc().通天塔时间 = 1
+                                elseif int_选项 == 3 then
+                                    G.call('all_over')
+                                end    
                             end
-                            local int_min = G.misc().通天塔时间
-                            if G.misc().通天塔时间 == 0 or int_min >= 60  then
-                                G.call("talk",'',38,'    请选择无尽模式！',2,1) 
-                                local int_选项 = 0
-                                while int_选项 == 0 do
-                                    int_选项 = G.call("menu",'',0,'',0,0,{"1,单人模式","2,组队模式","3,没有事情"},0)
-                                    if int_选项 == 1 then 
-                                        G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
-                                        G.call('all_over')
-                                        G.call('副本_通天塔',1) 
-                                        G.misc().通天塔时间 = 1
-                                    elseif int_选项 == 2 then
-                                        G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
-                                        G.call('all_over')
-                                        G.call('副本_通天塔',0) 
-                                        G.misc().通天塔时间 = 1
-                                    elseif int_选项 == 3 then
-                                        G.call('all_over')
-                                    end    
-                                end
-                             
-                            else
-                                G.call("talk",'',38,'    还需'..60-int_min..'分钟才能再次挑战',2,1) 
-                            end 
+                            
                         else
-                            G.call("talk",'',38,'    你已经完成了现阶段的无尽挑战！',2,1)
+                            G.call("talk",'',38,'    还需'..60-int_min..'分钟才能再次挑战',2,1) 
                         end   
                         G.call('all_over')
                     elseif int_选项 == 3 then
