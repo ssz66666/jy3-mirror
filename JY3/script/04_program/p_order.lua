@@ -2029,9 +2029,10 @@ t['get_point']=function(int_代码) --取得主角属性
 end      
 t['add_point']=function(int_代码,int_数量) --增加主角部分属性
     local o_body = G.QueryName(0x10030001)
+    local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
     if int_代码 == 3 then   --经验升级计算
         local int_lv_1 = G.call('get_point',4)
-        local int_升级经验 = math.floor(15 *G.call('get_point',4)* (G.call('get_point',4)+1) * (G.call('get_point',200) + 25)/100)
+        local int_升级经验 = math.floor(15 *G.call('get_point',4)* (G.call('get_point',4)+1) * (int_难度+1)/2   )
         G.call('set_point',3,G.call('get_point',3)+ int_数量) 
         G.call('set_newpoint',3,G.call('get_newpoint',3)- int_数量) 
         while true  do  --循环判断升级
