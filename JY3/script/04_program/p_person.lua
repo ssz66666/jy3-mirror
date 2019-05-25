@@ -1687,10 +1687,10 @@ t['副本_通天塔']=function(int_模式)
                 table.insert(team_final,0 )
             end    
         end  
-        local o_hotkey = G.QueryName(0x100c0001)
-        for i = 11,14 do 
-            o_hotkey[tostring(i)] = nil 
-        end  
+        -- local o_hotkey = G.QueryName(0x100c0001)
+        -- for i = 11,14 do 
+        --     o_hotkey[tostring(i)] = nil 
+        -- end  
         if int_层数判定 == 0 then
             G.call("talk",'',38,'   下面是第'..G.misc().通天塔层数..'层，强力对手在等着你！',2,1)  
         else
