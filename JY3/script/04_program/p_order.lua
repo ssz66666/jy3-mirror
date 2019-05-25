@@ -1741,6 +1741,7 @@ t['指令_重铸'] = function() --洗去经脉和内功轻功并返还修为点
         o_jm.打通数量 = 0
         o_jm.是否打通 = false
     end
+    G.QueryName(0x100c0001)[tostring(7)] = nil 
     G.QueryName(0x100c0001)[tostring(8)] = nil 
     G.QueryName(0x10030001)[tostring(196)] = nil
     G.QueryName(0x10030001)[tostring(197)] = nil 
