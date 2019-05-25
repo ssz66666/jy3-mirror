@@ -2747,12 +2747,14 @@ t['聚贤庄任务_神秘商人']=function()
     local o = math.random(19,22)
     G.call('地图_进入地图','？？？？',o,33) 
     G.call("talk",'',148,'   小号一向是货真价实，赔本赚吆喝。今天你要买什么？',2,1) 
-    G.call('通用_神秘商店')
-    G.call('add_point',36,1)
+    if G.call('通用_神秘商店') then 
+        G.call('add_point',36,1)
+        G.call('add_love',148,2)
+        G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+        o_htyw.进度列表[1].当前进度 = o_htyw.进度列表[1].当前进度 + 1
+    end
     G.call("talk",'',148,'   多谢惠顾小号，下次定会以更低廉的价格服务于老客户。',2,1)
-    G.call('add_love',148,2)
-    G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
-    o_htyw.进度列表[1].当前进度 = o_htyw.进度列表[1].当前进度 + 1
+ 
     -- local item = {27,53,232,240,85,81,85,260,86,85,88,90,284,142,144,147,148,120}
     -- local n = math.random(#item)
     -- if G.call('get_point',237) > 1 then 

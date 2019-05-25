@@ -13,7 +13,8 @@ function t:init()
     self.总页数 = 1
     self.当前序号 = 1
     self.显示数量 = 10
-    self.总价 = 0 
+    self.交易 = false
+    self.总价 = 0
 end
 function t:start()
     local o_store = G.QueryName(0x101d0001)
@@ -115,11 +116,12 @@ function t:click(tar)
         o_store.物品[int_id].数量 = cc.limitX(o_store.物品[int_id].数量, 0, 999)
     end
     if tar == self.按钮.getChildByName('结算') then
-        G.trig_event('神秘结算')
+        if self.总价 > 0 then 
+            G.trig_event('神秘结算')
+        end
     end
     self:刷新显示(self.页数,self.当前序号)
     if tar == self.按钮.getChildByName('离开') then
-        G.removeUI('v_mystery_store')
         G.trig_event('神秘结束')
     end
 end

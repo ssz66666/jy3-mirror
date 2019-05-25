@@ -3549,18 +3549,35 @@ t['模式_笑梦游记']=function()
     end
 end
 t['通用_神秘商店']=function() 
+    local result = false
     G.addUI('v_mystery_store')
     local ui = G.getUI('v_mystery_store')
     local c = ui.c_mystery_store
     G.wait1('神秘结束')
+    G.removeUI('v_mystery_store')
+    result = c.交易
+    return result
 end
 t['通用_神秘结算']=function()
     if not G.getUI('v_mystery_store') then return end
     local ui = G.getUI('v_mystery_store')
     local c = ui.c_mystery_store
-    if G.call('get_point',110) > c.总价 then
-        local o_store = G.QueryName(0x101d0001)
-        G.call('add_money',-c.总价)
+    local int_总价 = 0
+    local int_讲价 = G.call('get_point',36)/4
+    local o_store = G.QueryName(0x101d0001)
+    if G.call('通用_取得我方装备特效',411) then 
+        int_讲价 = int_讲价 + 25
+    end
+    for i = 1,#o_store.物品 do 
+        if o_store.物品[i].数量 > 0 then 
+            local int_价格 = o_store.物品[i].价格
+            int_价格 = math.floor(int_价格 *(100-int_讲价)/100)
+            int_总价 = int_总价 + int_价格* o_store.物品[i].数量
+        end
+    end
+    if G.call('get_point',110) > int_总价 then
+        c.交易 = true
+        G.call('add_money',-int_总价)
         for i = 1,#o_store.物品 do 
             if o_store.物品[i].数量 > 0 then 
                 local i_item = o_store.物品[i].物品
