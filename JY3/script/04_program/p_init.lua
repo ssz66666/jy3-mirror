@@ -122,7 +122,7 @@ t['地图系统_防修改监控'] = function()
 	if int_成就 > math.abs(G.call('get_newpoint',80)) then 
 		G.call('通用_强退游戏') 
 	end
-	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237))  then
+	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 5 )  then
 		G.call('通用_强退游戏') 
 	end
 	if G.call('get_point',237) == 1 then return end
@@ -131,6 +131,9 @@ t['地图系统_防修改监控'] = function()
 	if G.call('get_point',5) > math.abs(G.call('get_newpoint',5) - 10)  then
 		G.call('通用_强退游戏') 
 	end 
+	if G.call('get_point',4) > math.abs(G.call('get_newpoint',4))  then
+		G.call('通用_强退游戏') 
+	end
 	if G.call('get_point',110) > math.abs(G.call('get_newpoint',110))  then
 		G.call('通用_强退游戏') 
 	end
@@ -158,8 +161,8 @@ t['地图系统_防修改监控'] = function()
 		G.call('通用_强退游戏') 
 	end
 	for i = 111,114 do
-		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i))  then 
-			print(i,G.call('get_point',i),G.call('get_newpoint',i))
+		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 5)  then 
+			--print(i,G.call('get_point',i),G.call('get_newpoint',i)+5)
 			G.call('通用_强退游戏') 
 			break
 		end

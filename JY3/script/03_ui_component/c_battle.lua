@@ -137,7 +137,6 @@ function t:start()
             else
                 self.obj.getChildByName('tab').getChildByName(位置[i]).frameActionID(p )
             end  
-
         end 
     end   
     self.obj.getChildByName('select') .shadowX = 1

@@ -153,13 +153,9 @@ function t:rollOver(tar)
     local str30 = '奇门招式攻击后几率下次可立即行动'
     local str31 = '招式攻击几率造成迟缓'
     local str = {str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22,str23,str24,str25,str26,str27,str28,str29,str30,str31}
-    -- for i = 1,28 do
-    --     table.insert(str,'str'..i)
-    -- end
     for i = 1,4 do 
         if tar == self.被动.getChildByName(tostring(i)) then 
             self.被动.getChildByName('显示').visible = true
-           -- local str = str..G.call('get_point',110+i)
             self.被动.getChildByName('显示').getChildByName('文本').text = '说明:[br]'..str[G.call('get_point',110+i)]
         end
     end
@@ -170,11 +166,11 @@ function t:rollOver(tar)
             if G.call('get_point',63) < 2500 then
                 str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]初识'..'('..G.call('get_point',63)..'/2500)'
             elseif G.call('get_point',63) < 5000  and G.call('get_point',63) >= 2500 then
-                str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]意劲'..'('..G.call('get_point',63)..'/5000)'
+                str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]意境'..'('..G.call('get_point',63)..'/5000)'
             elseif G.call('get_point',63) >= 5000  and G.call('get_point',63) < 7500 then
-                str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]明劲'..'('..G.call('get_point',63)..'/7500)'
+                str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]明境'..'('..G.call('get_point',63)..'/7500)'
             elseif G.call('get_point',63) >= 7500  and G.call('get_point',63) < 10000 then
-                str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]暗劲'..'('..G.call('get_point',63)..'/10000)'
+                str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]暗境'..'('..G.call('get_point',63)..'/10000)'
             elseif G.call('get_point',63) == 10000 then 
                 str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]化境'
             end

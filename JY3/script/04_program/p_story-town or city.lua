@@ -658,7 +658,7 @@ t['城镇-苗人凤居']=function()
             if int_选项 == 1 then
                 G.call('all_over') 
                 G.call('add_time',2)
-                G.call('call_battle',1,7,3,100,102,229,int_mo,int_mo1,int_mo1,230)
+                G.call('call_battle',1,7,3,100,102,229,int_mo,int_mo+1,int_mo1,230)
                 local o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
                     G.call("talk",'',102,'   好小子，原来你也觊觎那份藏宝图。既然你武功高强，我们是没话说了，不过这苗人凤也快死了，他肯不肯拿给你就看你的造化了，哈哈哈...',1,1)  
@@ -682,7 +682,7 @@ t['城镇-苗人凤居']=function()
                     G.call('set_note','杀——号称【打遍天下无敌手】之苗人凤！')
                     G.call('all_over') 
                     G.call('add_time',2)
-                    G.call('call_battle',1,7,3,150,102,229,int_mo,int_mo1,int_mo1,230)
+                    G.call('call_battle',1,7,3,150,102,229,int_mo,int_mo+1,int_mo1,230)
                     local o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
                         G.call("talk",'',102,'   你够狠，这苗人凤身上的【闯王宝藏】看来是非你莫属了。不过咱们今天这笔账不算完，有机会再要较量一下！',1,1) 

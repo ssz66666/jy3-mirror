@@ -1437,12 +1437,12 @@ tp = tc
 		tc = G.Quad()
 		tp.addChild(tc)
 		tc.name = '对象'
-		tc.left = -71.000
-		tc.right = 71.000
-		tc.bottom = -62.500
-		tc.top = 62.500
+		tc.left = -74.500
+		tc.right = 74.500
+		tc.bottom = -74.500
+		tc.top = 74.500
 		tc.visible = false
-		tc.img = 0x59080001
+		tc.img = 0x59140001
 		tp = tc
 		tp = tp.parent
 		--end
@@ -2550,7 +2550,7 @@ tp = tc
 		--end
 		tc = G.Quad()
 		tp.addChild(tc)
-		tc.name = 'team2'
+		tc.name = 'team3'
 		tc.left = 139.000
 		tc.right = 315.000
 		tc.bottom = -97.500
@@ -2590,7 +2590,7 @@ tp = tc
 		--end
 		tc = G.Quad()
 		tp.addChild(tc)
-		tc.name = 'team3'
+		tc.name = 'team2'
 		tc.left = 47.000
 		tc.right = 223.000
 		tc.bottom = -206.500
@@ -5808,7 +5808,7 @@ tp = tc
 		--end
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
-		tc.name = 'team2'
+		tc.name = 'team3'
 		tc.left = 201.000
 		tc.right = 201.000
 		tc.bottom = -47.000
@@ -5925,7 +5925,7 @@ tp = tc
 		--end
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
-		tc.name = 'team3'
+		tc.name = 'team2'
 		tc.left = 71.000
 		tc.right = 71.000
 		tc.bottom = -110.000

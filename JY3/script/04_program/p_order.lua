@@ -59,6 +59,27 @@ t['成就_读档'] = function(int_档案编号)
         G.newinst_cache['o_achieve'] = db  
     end
 end
+t['故事_读档'] = function(int_档案编号)
+    local perms = {
+		_ENV = _ENV,
+		-- 1 = [c],
+		-- [2] = co,
+		-- [3] = co.yield,
+		-- [4] = co.resume,
+		[5] = GF,
+		-- [6] = xpcall,
+		[7] = GF.o_meta,
+		[8] = GF.new_meta
+    };
+    local path = G.GetSavePath(string.format('R%d.grp', int_档案编号));
+	if G.IsFileExist(path)  then
+		local zipbuf = G.LoadFile(path);
+		local buf = G.unzip(zipbuf);
+        local obj = eris.unpersist(perms, buf);
+        local db = obj[1]['o_book_story']
+        G.newinst_cache['o_book_story'] = db  
+    end
+end
 t['继承_读档'] = function(int_档案编号)
     local perms = {
 		_ENV = _ENV,
@@ -257,7 +278,7 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
-            if  G.misc().检测_1002 == nil  then
+            if  G.misc().检测_1003 == nil  then
                 local role = G.DBTable('o_role')
                 for i = 1,#role do 
                     for p = 81,89 do 
@@ -289,7 +310,9 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    --G.call('天书_飞狐外传') 
+    local o_book_story = G.QueryName(0x101c0002)
+    o_book_story.流程 = 3
+    G.call('天书_雪山飞狐') 
     -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 
@@ -492,6 +515,7 @@ t['重生']=function()
             end
         end
     end
+    G.trig_event('监控')
     G.call('dark')
     G.call('通用_读档',0) 
     if  int_清除成就 ~= 1 then 
@@ -509,10 +533,11 @@ t['重生']=function()
             G.call('add_equip',i_equip,1)
         end
     end
+    G.call('通用_印记状态')
     G.misc().礼包 = 礼包
     G.misc().切磋次数 = 0
     G.call('set_point',237,int_周目)
-    G.call('set_newpoint',237,-int_周目)
+    G.call('set_newpoint',237,-int_周目-5)
     G.call('set_point',143,int_存档位置) 
     G.call('mapoff')
     G.Play(0x49010038, 1,true,1) 
@@ -1309,7 +1334,18 @@ t['get_role']=function(int_id,int_编号) --取得NPC部分属性
     else
         G.call('notice1','代码错误')     
     end  
-end     
+end  
+t['get_npcskill']=function(int_id,i_skill) --NPC是否会武功
+    local result = 0
+    local o_role = G.QueryName(0x10040000+int_id)
+    for i = 1,3 do
+        if o_role['技能'..i] ==  i_skill then
+            result = 1
+            break 
+        end
+    end
+    return result
+end   
 t['get_roleskill']=function(int_id,int_no) --取得NPC技能
     if int_no == 1 then 
         return    G.QueryName(0x10040000+int_id).技能1 - 0x10050000 - 1 
@@ -1486,7 +1522,7 @@ t['leave']=function(int_编号) --离队
                 team[tostring(j)] = team[tostring(j + 1)];
             end
             team[tostring(p)] = nil;  --剔除最后的编号
-           
+            break   
         end
     end
 end  
@@ -2000,14 +2036,14 @@ t['指令_备份基础属性']=function() --
             int_物品数量 = int_物品数量 + o_item.数量 
         end
     end
-    G.call('set_newpoint',130,-G.call('get_point',130))
+    G.call('set_newpoint',4,-G.call('get_point',4)-math.random(5)) 
     for i = 111,114 do 
-        G.call('set_newpoint',i,-G.call('get_point',i)) 
+        G.call('set_newpoint',i,-G.call('get_point',i)-5) 
     end
     for i = 120,124 do 
         G.call('set_newpoint',i,-G.call('get_point',i)) 
     end
-    G.call('set_newpoint',237,-G.call('get_point',237))
+    G.call('set_newpoint',237,-G.call('get_point',237)-5)
     G.call('set_newpoint',76,-int_物品数量-math.random(5))
     G.call('set_newpoint',80,-int_成就-math.random(5,10))
     G.call('set_newpoint',3,-G.call('get_point',3)-math.random(5)) 
@@ -2017,7 +2053,7 @@ t['指令_备份基础属性']=function() --
     for i = 45,47 do 
         G.call('set_newpoint',i,-G.call('get_point',i)-math.random(5)) 
     end
-    G.misc().检测_1002 = 1
+    G.misc().检测_1003 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
     return G.QueryName(0x101b0001)[tostring(int_代码)]
@@ -2032,13 +2068,12 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
     local o_body = G.QueryName(0x10030001)
     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
     if int_代码 == 3 then   --经验升级计算
-        local int_lv_1 = G.call('get_point',4)
         local int_升级经验 = math.floor(15 *G.call('get_point',4)* (G.call('get_point',4)+1) * (int_难度+1)/2   )
         G.call('set_point',3,G.call('get_point',3)+ int_数量) 
         G.call('set_newpoint',3,G.call('get_newpoint',3)- int_数量) 
         while true  do  --循环判断升级
             if G.call('get_point',3) >= int_升级经验  and int_升级经验 > 0 and G.call('get_point',4) < 100  then 
-                G.call('set_point',4,G.call('get_point',4)+ 1) 
+                G.call('add_point',4, 1) 
                 local int_随机种子 = G.call('通用_取随机')
                 local int_point = math.floor(int_随机种子/100 * G.call('get_point',18)/20 + 0.5)+3
                 if G.call('通用_取得套装',0,2) == 3  then --套装2升级修为点+1
@@ -2055,7 +2090,13 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
                 break
             end
         end
-        local int_lv_2 = G.call('get_point',4)
+    elseif int_代码 == 4 then   --等级计算 
+        G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
+        G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
+        if G.call('get_point',4) >= 100 then
+            G.call('set_newpoint',int_代码,-100-math.random(5) )
+            G.call('set_point',int_代码,100)
+        end
     elseif int_代码 >= 80 and int_代码 <=100 then  --异常
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
         if  G.call('get_point',int_代码) <= 0 then 
@@ -2240,7 +2281,10 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
             -- if G.call('get_point',int_代码 - 85) > 100 then
             --     G.call('set_point',int_代码-85,100)
             -- end
-        end    
+        end 
+    else
+        G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
+        G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)   
     end 
     G.call('指令_存储属性')
 end
@@ -3528,6 +3572,16 @@ t['通用_拥有印记']=function(int_印记)
     end
     return result
 end
+t['通用_印记状态']=function()
+    for i = 1,14 do
+        local o_book_story = G.quarter(0x101c0000 + i)
+        if o_book_story.完美 == 1 then
+            local i_equip = 0x10180028 + i
+            local o_equip = G.QueryName(i_equip)
+            o_equip.转换次数 = 1
+        end
+    end
+end
 t['模式_笑梦游记']=function() 
     local ui = G.addUI('v_heaven_book')
     local c = ui.c_heaven_book
@@ -3540,6 +3594,7 @@ t['模式_笑梦游记']=function()
         if G.call('通用_拥有印记',int_天书)   then 
             if o_book_story.完成 == 0 then 
                 G.call('天书_'..str[int_天书])
+                G.call('通用_印记状态')
             else
                 G.call("talk",'',38,'   你已经完成【'..str[int_天书]..'】！',2,1)
             end

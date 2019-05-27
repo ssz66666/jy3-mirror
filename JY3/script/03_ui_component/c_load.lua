@@ -135,15 +135,18 @@ function t:click(tar)
                         G.misc().礼包 = int_礼包
                         if int_清除成就 ~= 1 then   
                             G.call('成就_读档',10)
+                            G.call('故事_读档',10)
                         end 
                         local int_万金 = G.QueryName(0x10170004).进度列表[1].当前进度
                         print(G.QueryName(0x10170004).进度列表[1].名称)
                         print('int_万金=',int_万金)
                         if int_万金 > 40000 then 
                             G.call('成就_读档',0)
+                            G.call('故事_读档',0)
                         end
+                        G.call('通用_印记状态')
                         G.call('set_point',237,int_周目)
-                        G.call('set_newpoint',237,-int_周目)
+                        G.call('set_newpoint',237,-int_周目-5)
                         G.call('set_point',143,i)  
                         G.QueryName(0x10030001)[tostring(237)] = int_周目
                         G.QueryName(0x10030001)[tostring(143)] = i
