@@ -99,16 +99,19 @@ function t:click(tar)
                 if n > 0  then
                     G.call('mapoff')
                     G.Play(0x49011001, 1,true,1)
-                    local int_清除成就 = G.misc().清除成就
-                    G.call('继承_读档',10)
+                    G.call('信息_读档',5)
                     local o_files = G.QueryName(0x10160000 + i)
                     local int_周目 = o_files.周目
+                    print('int_周目',int_周目)
+                    local int_清除成就 = G.misc().清除成就
                     local int_通关 = o_files.通关
-                    if o_files.通关 > 0  then 
+                    G.call('继承_读档',10)
+                    if int_通关 > 0  then 
                         int_周目 = int_周目 + 1
                         local table_继承装备 = {}
                         print(#table_继承装备)
-                        table_继承装备 =  G.call('通用_记录继承装备',1)
+                        G.call('set_point',237,int_周目)
+                        table_继承装备 =  G.call('通用_记录继承装备',int_周目 - 1,1)
                         local o_equip_usb = {}
                         local i_equip
                         if #table_继承装备 > 0 then 
@@ -124,13 +127,6 @@ function t:click(tar)
                         end
                         local int_礼包 = G.misc().礼包
                         G.call('通用_读档',0)
-                        for i = 1,#o_equip_usb do 
-                            if o_equip_usb[i] then 
-                                G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
-                                i_equip = o_equip_usb[i].name
-                                G.call('add_equip',i_equip,1)
-                            end
-                        end  
                         G.misc().出师 = nil
                         G.misc().礼包 = int_礼包
                         if int_清除成就 ~= 1 then   
@@ -140,16 +136,22 @@ function t:click(tar)
                         local int_万金 = G.QueryName(0x10170004).进度列表[1].当前进度
                         print(G.QueryName(0x10170004).进度列表[1].名称)
                         print('int_万金=',int_万金)
-                        if int_万金 > 40000 then 
-                            G.call('成就_读档',0)
-                            G.call('故事_读档',0)
-                        end
-                        G.call('通用_印记状态')
                         G.call('set_point',237,int_周目)
                         G.call('set_newpoint',237,-int_周目-5)
                         G.call('set_point',143,i)  
-                        G.QueryName(0x10030001)[tostring(237)] = int_周目
-                        G.QueryName(0x10030001)[tostring(143)] = i
+                        if int_万金 > 40000 then 
+                            G.call('成就_读档',0)
+                            G.call('故事_读档',0)
+                        else
+                            for i = 1,#o_equip_usb do 
+                                if o_equip_usb[i] then 
+                                    G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
+                                    i_equip = o_equip_usb[i].name
+                                    G.call('add_equip',i_equip,1)
+                                end
+                            end  
+                        end
+                        G.call('通用_印记状态')
                         G.misc().切磋次数 = 0
                         G.trig_event('load_over')
                         G.misc().通关 = 1

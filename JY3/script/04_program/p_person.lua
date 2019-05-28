@@ -1385,9 +1385,9 @@ t['事件_随机切磋']=function()
     G.misc().随机切磋 = 1
     if  G.misc().随机切磋次数 == nil then 
         G.misc().随机切磋次数 = 0
-        G.misc().随机切磋监控 = 0
+        G.misc().随机切磋监控 = -7
     end
-    if G.misc().随机切磋次数 ~= math.abs(G.misc().随机切磋监控) then 
+    if G.misc().随机切磋次数 ~= math.abs(G.misc().随机切磋监控 + 7) then 
         G.call('通用_强退游戏')
     end
     --lv50~ lv60 hp 低于10000大于8000
@@ -1565,13 +1565,16 @@ t['副本_通天塔']=function(int_模式)
     local battle = {}
     local int_层数判定 = 0
     local int_整数层数 = 0
-    local int_通天塔层数_1 = 0
-    local int_通天塔层数_2 = 0
+    local int_通天塔层数 = 0
+    local int_通天塔判定 = 0
     for j = 1,25 do 
        table.insert(skill_use,j )
     end 
     while true do 
-       int_通天塔层数_1 = G.misc().通天塔层数
+       if int_通天塔判定 == 0 then 
+            int_通天塔层数 = -G.misc().通天塔层数 - 7
+            int_通天塔判定 = 1
+       end
        int_层数判定 = G.misc().通天塔层数 % 5 
        int_整数层数 = math.floor(G.misc().通天塔层数/5) 
        int_boss = math.random(4)
@@ -1688,18 +1691,10 @@ t['副本_通天塔']=function(int_模式)
                 table.insert(team_final,0 )
             end    
         end  
-        -- local o_hotkey = G.QueryName(0x100c0001)
-        -- for i = 11,14 do 
-        --     o_hotkey[tostring(i)] = nil 
-        -- end  
         if int_层数判定 == 0 then
             G.call("talk",'',38,'   下面是第'..G.misc().通天塔层数..'层，强力对手在等着你！',2,1)  
         else
             G.call("talk",'',38,'   下面是第'..G.misc().通天塔层数..'层，请小心应对！',2,1) 
-        end
-        int_通天塔层数_2 = G.misc().通天塔层数
-        if int_通天塔层数_2 - int_通天塔层数_1 > 0 then 
-            G.call('通用_强退游戏')
         end
         if int_模式 == 1 then 
             G.call('call_battle',1,80,1,100 + G.misc().通天塔层数*5 ,team_final[2],team_final[1],team_final[3],team_final[4],team_final[5],team_final[6])
@@ -1714,10 +1709,6 @@ t['副本_通天塔']=function(int_模式)
                 end
             end
         end 
-        int_通天塔层数_2 = G.misc().通天塔层数
-        if int_通天塔层数_2 - int_通天塔层数_1 > 0 then 
-            G.call('通用_强退游戏')
-        end
         team_boss = {}
         team_rose = {}
         team_pese = {}
@@ -1747,6 +1738,8 @@ t['副本_通天塔']=function(int_模式)
                 G.misc().通天塔层数 = 101
                 break
             else
+                G.misc().通天塔层数 = G.misc().通天塔层数 + 1
+                int_通天塔层数 = int_通天塔层数 - 1
                 if G.misc().通天塔层数 % 10 == 0 then --每10层回复一次
                     G.call("talk",'',38,'   不错，先回复一下吧！',2,1) 
                     G.Play(0x49010035, 1,false,100)
@@ -1758,11 +1751,9 @@ t['副本_通天塔']=function(int_模式)
                         G.call('add_point',46,math.floor(G.call('get_point',218)/2))
                     end
                 end
-                G.misc().通天塔层数 = G.misc().通天塔层数 + 1
-            end
-            int_通天塔层数_2 = G.misc().通天塔层数
-            if int_通天塔层数_2 - int_通天塔层数_1 > 1 then 
-                G.call('通用_强退游戏')
+                if G.misc().通天塔层数 ~= math.abs(int_通天塔层数 + 7 ) then 
+                    G.call('通用_强退游戏') 
+                end
             end
         else
             break 

@@ -140,6 +140,10 @@ t['通用_存档'] = function(int_档案编号)
             io.close(file)
         else
             G.call('信息_读档',10)
+            for i = 1,4 do 
+                G.QueryName(0x10160000 + i).周目 = 1
+            end
+            G.call('set_point',237,1)
             G.call('通用_存档',5)
         end
     end
@@ -464,7 +468,7 @@ t['load'] = function() --读档界面
     G.wait1('load_over')
     G.removeUI('v_load') 
 end
-t['通用_记录继承装备']=function(int_重生)
+t['通用_记录继承装备']=function(int_周目,int_重生)
     local _o_继承装备 = {}
     local o_body = G.QueryName(0x10030001)
     local o_store = G.QueryName(0x10190001)
@@ -496,7 +500,7 @@ t['通用_记录继承装备']=function(int_重生)
             end
         end
     end
-    if G.call('get_point',237) > 1 then 
+    if G.call('get_point',237) > 1 and int_重生 > 0  then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
@@ -519,7 +523,7 @@ t['重生']=function()
     local 礼包 = G.misc().礼包
     local table_继承装备 = {}
     local int_清除成就 = G.misc().清除成就
-    table_继承装备 = G.call('通用_记录继承装备',0)
+    table_继承装备 = G.call('通用_记录继承装备',int_周目,0)
     local o_equip_usb = {}
     local i_equip
     if #table_继承装备 > 0 then 
@@ -543,14 +547,15 @@ t['重生']=function()
     local int_万金 = G.QueryName(0x10170004).进度列表[1].当前进度
     if int_万金 > 400000 then
         G.call('成就_读档',0)
-    end  
-    for i = 1,#o_equip_usb do 
-        if o_equip_usb[i] then 
-            G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
-            i_equip = o_equip_usb[i].name
-            G.call('add_equip',i_equip,1)
+    else
+        for i = 1,#o_equip_usb do 
+            if o_equip_usb[i] then 
+                G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
+                i_equip = o_equip_usb[i].name
+                G.call('add_equip',i_equip,1)
+            end
         end
-    end
+    end  
     G.call('通用_印记状态')
     G.misc().礼包 = 礼包
     G.misc().切磋次数 = 0
