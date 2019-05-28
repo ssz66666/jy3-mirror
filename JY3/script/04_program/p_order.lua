@@ -278,7 +278,7 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
-            if  G.misc().检测_1003 == nil  then
+            if  G.misc().检测_1004 == nil  then
                 local role = G.DBTable('o_role')
                 for i = 1,#role do 
                     for p = 81,89 do 
@@ -310,9 +310,26 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    -- local o_book_story = G.QueryName(0x101c0002)
-    -- o_book_story.流程 = 3
-    -- G.call('天书_雪山飞狐') 
+    local o_book_story = G.QueryName(0x101c0003)
+    o_book_story.流程 = 2
+        while true do 
+        local 印记 = {}
+        local int_印记数量 = 0
+        for i = 1,14 do
+            if G.call('通用_拥有印记',i) then 
+                int_印记数量 = int_印记数量 + 1
+            else
+                table.insert(印记, i)
+            end 
+        end
+        if int_印记数量 < 14 then 
+            G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记
+        else
+            break
+        end
+    end
+    G.call('天书_连城诀') 
+    G.call('通用_印记状态')
     -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 
@@ -2053,7 +2070,7 @@ t['指令_备份基础属性']=function() --
     for i = 45,47 do 
         G.call('set_newpoint',i,-G.call('get_point',i)-math.random(5)) 
     end
-    G.misc().检测_1003 = 1
+    G.misc().检测_1004 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
     return G.QueryName(0x101b0001)[tostring(int_代码)]

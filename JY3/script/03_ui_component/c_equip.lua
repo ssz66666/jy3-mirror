@@ -451,11 +451,8 @@ function t:显示装备()
                 if not o_equip.转换次数 then 
                     o_equip.转换次数 = 0
                 end
-                if o_equip.套装 == 0 then 
-                    str = str..'[br][07]转换次数:  [01]'..o_equip.转换次数
-                    -- if o_equip.类型 == 4  then
-                    --     str = str..'[br][07]拥有个数:  [01]'.. int_装备数量
-                    -- end                    
+                if o_equip.套装 == 0  and o_equip.类型 ~= 4  then 
+                    str = str..'[br][07]转换次数:  [01]'..o_equip.转换次数                  
                 end
                 self.说明.getChildByName('效果').text = str
             end

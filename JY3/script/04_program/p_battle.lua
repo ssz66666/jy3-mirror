@@ -1991,7 +1991,7 @@ t['战斗系统_事件响应'] = function()
                                             if o_skill_tb.内功轻功效果 == 6  then    --判断队友使用复活
                                                 for p = 2,5 do 
                                                     local int_role_1 = G.QueryName(i_battle)[位置[p] ]
-                                                    if int_role_1 > 0 then
+                                                    if int_role_1 > 0  then
                                                         if 	G.call('get_role',int_role_1,13) <= 0 then 
                                                             o_skill = o_role_tb[magic[n]]
                                                         end
@@ -2037,7 +2037,7 @@ t['战斗系统_事件响应'] = function()
                                                 for p = 6,11 do 
                                                     local int_role_1 = G.QueryName(i_battle)[位置[p] ]
                                                     if int_role_1 > 0 then
-                                                        if  G.call('get_role',int_role_1,13) > 0 then 
+                                                        if  G.call('get_role',int_role_1,13) <= 0 then 
                                                             o_skill = o_role_tb[magic[n]]
                                                         end
                                                     end 

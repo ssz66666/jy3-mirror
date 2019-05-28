@@ -208,18 +208,18 @@ t['地图系统_人物'] = function()
                     local item_1 = {5,32,63,188} --
                     local item_2 = {17,43,65}    --
                     local item_3 = {115,249,265} --
-                    local item_4 = {214,215,234} --
+                    local item_4 = {214,215,234,235} --
                     local item_5 = {97,118,121 }  --
                     local item = 5
                     if int_几率 <= 5890 then 
                         item = item_1[math.random(#item_1)]
                     elseif int_几率 <= 8890 and int_几率 > 5890 then
                         item = item_2[math.random(#item_2)]
-                    elseif int_几率 <= 9890 and int_几率 > 8890 then
+                    elseif int_几率 <= 9950 and int_几率 > 8890 then
                         item = item_3[math.random(#item_3)]
-                    elseif int_几率 <= 9990 and int_几率 > 9890 then 
+                    elseif int_几率 <= 9995 and int_几率 > 9950 then 
                         item = item_4[math.random(#item_4)]
-                    elseif int_几率 <= 10000 and int_几率 > 9990 then  
+                    elseif int_几率 <= 10000 and int_几率 > 9995 then  
                         item = item_5[math.random(#item_5)] 
                     end
                     local str = G.QueryName(0x100b0000 + item - 1).名称
@@ -1345,6 +1345,9 @@ t['猜数字']=function()
         if int_mo <= 5 then
             G.call('通用_抽礼物',9,0) 
             G.call("talk",'',38,'   竟然如此厉害，就给你点奖励吧！',2,1)
+            if int_mo == 1 then
+                G.call('add_item',235,1)
+            end
             G.call('all_over')
             o_szyy.进度列表[int_mo].当前进度 = o_szyy.进度列表[int_mo].当前进度 + 1
             if o_szyy.进度列表[int_mo].完成 == 0 then 
@@ -2031,6 +2034,9 @@ t['小游戏-野球拳']=function()
                     if int_连胜 >= 18 then 
                         G.call("talk",'？？？？',247,'   表现不错，给你点奖励吧！',1,1) 
                         G.call('通用_抽礼物',9,0) 
+                        if int_连胜 >= 21 then 
+                            G.call('add_item',235,1)
+                        end
                     end
                 else
                     G.call("talk",'？？？？',247,'   哈哈，还没比就怂了啊！',1,1) 

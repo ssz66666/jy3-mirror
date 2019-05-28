@@ -120,6 +120,7 @@ end
 t['地图系统_防修改监控'] = function()
 	local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
 	if int_成就 > math.abs(G.call('get_newpoint',80)) then 
+		print(int_成就,G.call('get_newpoint',80))
 		G.call('通用_强退游戏') 
 	end
 	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 5 )  then
@@ -162,7 +163,7 @@ t['地图系统_防修改监控'] = function()
 	end
 	for i = 111,114 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 5)  then 
-			--print(i,G.call('get_point',i),G.call('get_newpoint',i)+5)
+			print(i,G.call('get_point',i),G.call('get_newpoint',i)+5)
 			G.call('通用_强退游戏') 
 			break
 		end

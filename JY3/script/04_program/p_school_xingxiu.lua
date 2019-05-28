@@ -271,7 +271,7 @@ t['初入星宿-阿紫'] = function()
     end
 end
 t['初入星宿-丁春秋'] = function()
-    G.call("talk",'',116,'   '..G.call('get_fullname')..',你找我有什么事情吗？',2,1)
+    G.call("talk",'',116,'   '..G.call('get_fullname')..'你找我有什么事情吗？',2,1)
     local int_选项 = 0
 	while int_选项 == 0 do
         int_选项 = G.call("menu",'',0,'',0,0,{"1,请师父传授武功","2,【闭关】10天","3,没什么事情，顺路向师父请安而已"},0) 

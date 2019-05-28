@@ -148,6 +148,7 @@ t['天书_飞狐外传'] = function()
             G.call('leave',40)
             G.call('leave',393)
         end
+        G.call('notice1','完成【飞狐外传】梦幻剧情！')
         o_book_story.完成 = 1
     end
     G.call('all_over')
@@ -225,6 +226,7 @@ t['天书_雪山飞狐'] = function()
         G.call("talk",'',156,'   愚兄定当查个水落石出！',1,1)
         G.call("talk",'胡一刀',5,'   好想看看斐儿长大！',0,0)
         o_book_story.完成 = 1
+        G.call('notice1','完成【雪山飞狐】梦幻剧情！')
     elseif o_book_story.流程 == 3 then
         G.call('地图_进入地图','大雪山',110,67)
         local int_mo = (227-224)*6+265
@@ -242,6 +244,7 @@ t['天书_雪山飞狐'] = function()
             end 
             o_book_story.完美 = 1
             o_book_story.完成 = 1
+            G.call('notice1','完成【雪山飞狐】梦幻剧情！')
         else
             G.call("talk",'',157,'   就这点本事也敢出来丢人现眼！',1,1)
         end
@@ -284,12 +287,74 @@ t['天书_连城诀'] = function()
         G.call("talk",'',10,'   你为什么要救我啊！',0,0)
         G.call("talk",'',394,'   因为至少你知道你师妹是活着的，活着就是希望！',2,1)
         G.call("talk",'',10,'   我知道了，谢谢大哥！',0,0)
+        G.call("talk",'',394,'   看你身上衣服都破烂了，把这件衣服穿上吧，我再传你点神照经防身！',2,1)
+        if G.call('get_item',76) == 0 then
+            G.call('add_item',76,1)
+        end 
+        if G.call('get_item',265) == 0 then
+            G.call('add_item',265,1)
+        end 
+        G.call("talk",'',10,'   多谢大哥！',0,0)
+        if G.call('get_npcskill',10,0x1005008f) == 0 then 
+            G.call('set_friend_skill',10,3,144,500)
+        end
         o_book_story.流程 = 1
-    elseif o_book_story.流程 == 2 then
+    elseif o_book_story.流程 == 1 then
+        G.call('地图_进入地图','地牢',111,10)
         G.call("talk",'',394,'   窗台上的菊花都枯萎好几天了，我有不好的预感？',2,1)
         G.call("talk",'',10,'   是不是你口中念的霜华她病了或者是忘记了？',0,0)
-        G.call("talk",'',394,'   不会的，不论怎样，只要她在她会想办法换的，除非.....',2,1)
-        G.call("talk",'',395,'   你还真懂，',2,1)
+        G.call("talk",'',394,'   不会的，不论怎样，只要她在她会想办法换的，除非.....今晚我们先出去看看！',2,1)
+        G.call('dark')
+        G.call('地图_进入地图','内室',97,40)
+        G.call("talk",'',394,'   “爱女凌霜华之灵位”，这不会是真的，霜华，你果然先我而去了',2,1)
+        G.call('dark')
+        G.call("talk",'',395,'   啊，我道是谁，原来是丁大侠。小女不幸逝世，有劳吊唁，存殁同感。小女去世已五天了，大夫也说不上是什么病症，只说是郁积难消。',2,1)
+        G.call("talk",'',394,'   这可遂了你的心愿。',2,1)
+        G.call("talk",'',395,'   丁大侠，你可忒也固执了，倘若早早说了出来，小女固然不会给你害死，我和你更成了翁婿，那是何等的美事。',2,1)
+        G.call("talk",'',394,'   倘若我今日杀了你，霜华在天之灵定然恨我。凌退思，瞧在你女儿的份上，你折磨了我这七年，咱们一笔勾销。今后你再惹上我，可休怪姓丁的无情。狄兄弟，走吧。。',2,1)
+        G.call("talk",'',395,'   丁大侠，咱们落到今日的结果，你说有什么好处？',2,1)
+        G.call("talk",'',394,'   你清夜抚心自问，也有点惭愧么？你只贪图那什么‘连城诀’，宁可害死自己女儿。',2,1)
+        G.call("talk",'',395,'   丁大侠，你不忙走，还是将那剑诀说了出来，我便给解药于你，免得枉自送了性命。',2,1)
+        G.call("talk",'',394,'   你在棺木上又涂上了“金波旬花”的剧毒，你可真够恶毒的！',2,1)
+        G.call("talk",'',10,'   你这狗官，大哥我们先走！',0,0)
+        G.call("talk",'',395,'   还想走，没那容易！',2,1)
+        G.call('all_over')
+        G.call('set_team',10,0,0,0)
+        G.call('call_battle',1,111,4,150,395,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4)
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1 then
+            G.call('all_over')
+            G.call("talk",'',10,'   总算打退狗官！',0,0)
+            o_book_story.流程 = 2
+        else
+            G.call("talk",'',395,'   这点本事也想逞能！',2,1)
+        end
+    elseif o_book_story.流程 == 2 then
+        G.call('地图_进入地图','内室',97,40)
+        G.call("talk",'',10,'   大哥你怎么样，还好吧！',0,0)
+        G.call("talk",'',394,'   这次我怕是真的不行了',2,1)
+        if G.call('get_item',235) > 0 then
+            G.call("talk",'',10,'   大哥我这里有【雪参玉蟾丸】，应该可以解除这【金波旬花】之毒，赶紧服下！',0,0)
+            G.call('add_item',235,-1)
+            G.call('dark')
+            G.call("talk",'',394,'   狄兄弟，我真的好了，找个趁手的撬开棺木，也许我的神照功能够。。。。',2,1)
+            G.call("talk",'',10,'   是的大哥，你试试！',0,0)
+            G.call('dark')
+            G.call("talk",'',407,'   典哥，我真的好高兴，好高兴，我又能看到你了....',2,1)
+            G.call("talk",'',394,'   狄兄弟，这次多谢你了，也没别的教你，再教你套【无影神拳】！',2,1)
+            if G.call('get_npcskill',10,0x100500ec) == 0 then 
+                G.call('set_friend_skill',10,1,237,500)
+            end
+            G.call("talk",'',394,'   我和霜华就不再过问世事了，你自己也多加小心！',2,1)
+            o_book_story.完美 = 1
+        else
+            G.call("talk",'',10,'   大哥，你有什么心愿未了？',0,0)
+            G.call("talk",'',394,'   我只希望我死后你将我和霜华葬在一起！',2,1)
+            G.call("talk",'',10,'   我答应就是！',0,0)
+            G.call('story','就这样狄云将丁典以及凌霜华安葬了！') 
+        end 
+        o_book_story.完成 = 1
+        G.call('notice1','完成【连城诀】梦幻剧情！')
     end
     G.call('all_over')
     G.call('add_time',2)

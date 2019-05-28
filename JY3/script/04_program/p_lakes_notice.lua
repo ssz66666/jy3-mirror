@@ -2752,6 +2752,10 @@ t['聚贤庄任务_神秘商人']=function()
         G.call('add_love',148,2)
         G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
         o_htyw.进度列表[1].当前进度 = o_htyw.进度列表[1].当前进度 + 1
+        if math.random(100) == 1 then
+            G.call("talk",'',148,'   为答谢顾客，本店免费赠品附送与你1',2,1)
+            G.call('add_item',235,1)
+        end
     end
     G.call("talk",'',148,'   多谢惠顾小号，下次定会以更低廉的价格服务于老客户。',2,1)
  
