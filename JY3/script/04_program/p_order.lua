@@ -282,7 +282,7 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
-            if  G.misc().检测_1005 == nil  then
+            if  G.misc().检测_1006 == nil  then
                 local role = G.DBTable('o_role')
                 for i = 1,#role do 
                     for p = 81,89 do 
@@ -2083,7 +2083,7 @@ t['指令_备份基础属性']=function() --
     for i = 45,47 do 
         G.call('set_newpoint',i,-G.call('get_point',i)-math.random(5)) 
     end
-    G.misc().检测_1005 = 1
+    G.misc().检测_1006 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
     return G.QueryName(0x101b0001)[tostring(int_代码)]
