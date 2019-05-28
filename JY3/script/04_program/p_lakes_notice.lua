@@ -1290,7 +1290,7 @@ t['聚贤庄任务_四大淫贼']=function()
                 if o_battle_结果  == 1 then
                     G.Play(0x49010021,1,true,1) 
                     G.call("talk",'',32,'   兄弟，啥都不说了，今天你帮田某这个忙，田某认你做朋友了！我这有一套【狂风刀法】传授给你吧。',1,1) 
-                    G.call('add_point',-5)
+                    G.call('add_point',15,-5)
                     if G.call('get_magicexp',15) == 0 then
                         G.call('learnmagic',15)
                     end
@@ -1312,11 +1312,11 @@ t['聚贤庄任务_四大淫贼']=function()
                 end
             elseif int_选项 == 2  then
                 G.call('all_over')
-                G.call('call_battle',1,19,1,100,33,34,0,0,0,0)
+                G.call('call_battle',1,19,1,100,32,34,0,0,0,0)
                 o_battle_结果 = G.call('get_battle')
                 if o_battle_结果  == 1 then
                     G.Play(0x49010021,1,true,1) 
-                    G.call('add_point',-15)
+                    G.call('add_point',15,-15)
                     G.call("talk",'',33,'   白驼山少主从不拖欠人情！我教你一套【蛤蟆功】就算是咱们互不相欠了。',1,1)
                     if G.call('get_magicexp',133) == 0 then
                         G.call('learnmagic',133)
@@ -1340,11 +1340,11 @@ t['聚贤庄任务_四大淫贼']=function()
                 end
             elseif int_选项 == 3  then  
                 G.call('all_over')
-                G.call('call_battle',1,19,1,100,33,34,0,0,0,0)
+                G.call('call_battle',1,19,1,100,33,32,0,0,0,0)
                 o_battle_结果 = G.call('get_battle')
                 if o_battle_结果  == 1 then
                     G.Play(0x49010021,1,true,1) 
-                    G.call('add_point',-15)
+                    G.call('add_point',15,-15)
                     G.call("talk",'',34,'   小王不喜欠人恩惠！我教你一套【龙象般若功】就算是咱们互不相欠了。',1,1)
                     if G.call('get_magicexp',141) == 0 then
                         G.call('learnmagic',141)
