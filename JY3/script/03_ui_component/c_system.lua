@@ -200,6 +200,7 @@ function t:click(tar)
                 G.removeUI('v_system') 
                 if G.call('get_point',237) >= 2 then 
                    G.call('set_point',237,2)
+                   G.call('set_newpoint',237,-7)
                 end
                 G.trig_event('重生')
             else

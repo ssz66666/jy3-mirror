@@ -286,7 +286,10 @@ t['天书_连城诀'] = function()
         G.call("talk",'',10,'   我知道了，谢谢大哥！',0,0)
         o_book_story.流程 = 1
     elseif o_book_story.流程 == 2 then
-
+        G.call("talk",'',394,'   窗台上的菊花都枯萎好几天了，我有不好的预感？',2,1)
+        G.call("talk",'',10,'   是不是你口中念的霜华她病了或者是忘记了？',0,0)
+        G.call("talk",'',394,'   不会的，不论怎样，只要她在她会想办法换的，除非.....',2,1)
+        G.call("talk",'',395,'   你还真懂，',2,1)
     end
     G.call('all_over')
     G.call('add_time',2)

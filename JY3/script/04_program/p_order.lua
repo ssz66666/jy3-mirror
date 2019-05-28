@@ -310,9 +310,9 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    local o_book_story = G.QueryName(0x101c0002)
-    o_book_story.流程 = 3
-    G.call('天书_雪山飞狐') 
+    -- local o_book_story = G.QueryName(0x101c0002)
+    -- o_book_story.流程 = 3
+    -- G.call('天书_雪山飞狐') 
     -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 
