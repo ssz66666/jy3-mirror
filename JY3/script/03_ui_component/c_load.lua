@@ -107,9 +107,10 @@ function t:click(tar)
                     local int_通关 = o_files.通关
                     G.call('继承_读档',10)
                     if int_通关 > 0  then 
+                        local o_store = G.QueryName(0x10190001)
                         int_周目 = int_周目 + 1
+                        local int_继承个数 = #o_store.装备
                         local table_继承装备 = {}
-                        print(#table_继承装备)
                         G.call('set_point',237,int_周目)
                         table_继承装备 =  G.call('通用_记录继承装备',int_周目 - 1,1)
                         local o_equip_usb = {}
@@ -139,17 +140,19 @@ function t:click(tar)
                         G.call('set_point',237,int_周目)
                         G.call('set_newpoint',237,-int_周目-5)
                         G.call('set_point',143,i)  
-                        if int_万金 > 40000 then 
+                        if int_万金 > 40000 or int_继承个数 > 3000 then 
                             G.call('成就_读档',0)
                             G.call('故事_读档',0)
                         else
-                            for i = 1,#o_equip_usb do 
-                                if o_equip_usb[i] then 
-                                    G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
-                                    i_equip = o_equip_usb[i].name
-                                    G.call('add_equip',i_equip,1)
-                                end
-                            end  
+                            if #o_equip_usb > 0 and int_继承个数 < 3000 then 
+                                for i = 1,#o_equip_usb do 
+                                    if o_equip_usb[i] then 
+                                        G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
+                                        i_equip = o_equip_usb[i].name
+                                        G.call('add_equip',i_equip,1)
+                                    end
+                                end  
+                            end
                         end
                         G.call('通用_印记状态')
                         G.misc().切磋次数 = 0

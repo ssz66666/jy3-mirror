@@ -518,11 +518,13 @@ t['通用_记录继承装备']=function(int_周目,int_重生)
 end
 t['重生']=function() 
     local o_body = G.QueryName(0x10030001)
+    local o_store = G.QueryName(0x10190001)
     local int_周目 = G.call('get_point',237) 
     local int_存档位置 = G.call('get_point',143) 
     local 礼包 = G.misc().礼包
     local table_继承装备 = {}
     local int_清除成就 = G.misc().清除成就
+    local int_继承个数 = #o_store.装备
     table_继承装备 = G.call('通用_记录继承装备',int_周目,0)
     local o_equip_usb = {}
     local i_equip
@@ -545,14 +547,16 @@ t['重生']=function()
         G.misc().清除成就 = 0 
     end
     local int_万金 = G.QueryName(0x10170004).进度列表[1].当前进度
-    if int_万金 > 400000 then
+    if int_万金 > 400000 or int_继承个数 > 3000 then
         G.call('成就_读档',0)
     else
-        for i = 1,#o_equip_usb do 
-            if o_equip_usb[i] then 
-                G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
-                i_equip = o_equip_usb[i].name
-                G.call('add_equip',i_equip,1)
+        if #o_equip_usb > 0 and int_继承个数 < 3000 then 
+            for i = 1,#o_equip_usb do 
+                if o_equip_usb[i] then 
+                    G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
+                    i_equip = o_equip_usb[i].name
+                    G.call('add_equip',i_equip,1)
+                end
             end
         end
     end  
