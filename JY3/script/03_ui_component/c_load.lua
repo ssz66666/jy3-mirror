@@ -102,7 +102,6 @@ function t:click(tar)
                     G.call('信息_读档',5)
                     local o_files = G.QueryName(0x10160000 + i)
                     local int_周目 = o_files.周目
-                    print('int_周目',int_周目)
                     local int_清除成就 = G.misc().清除成就
                     local int_通关 = o_files.通关
                     G.call('继承_读档',10)
@@ -112,7 +111,7 @@ function t:click(tar)
                         local int_继承个数 = #o_store.装备
                         local table_继承装备 = {}
                         G.call('set_point',237,int_周目)
-                        table_继承装备 =  G.call('通用_记录继承装备',int_周目 - 1,1)
+                        table_继承装备 =  G.call('通用_记录继承装备',1)
                         local o_equip_usb = {}
                         local i_equip
                         if #table_继承装备 > 0 then 
@@ -134,15 +133,15 @@ function t:click(tar)
                             G.call('成就_读档',10)
                             G.call('故事_读档',10)
                         end 
+                        G.misc().重生 = 0
                         local int_万金 = G.QueryName(0x10170004).进度列表[1].当前进度
                         print(G.QueryName(0x10170004).进度列表[1].名称)
                         print('int_万金=',int_万金)
                         G.call('set_point',237,int_周目)
                         G.call('set_newpoint',237,-int_周目-5)
                         G.call('set_point',143,i)  
-                        if int_万金 > 40000 or int_继承个数 > 3000 then 
-                            G.call('成就_读档',0)
-                            G.call('故事_读档',0)
+                        if int_万金 > 400000 or int_继承个数 > 3000 then 
+                            G.call('notice1','该存档无法正常读取，请重新开始游戏！')
                         else
                             if #o_equip_usb > 0 and int_继承个数 < 3000 then 
                                 for i = 1,#o_equip_usb do 
@@ -153,12 +152,12 @@ function t:click(tar)
                                     end
                                 end  
                             end
+                            G.call('通用_印记状态')
+                            G.misc().切磋次数 = 0
+                            G.trig_event('load_over')
+                            G.misc().通关 = 1
+                            G.trig_event('开始结束')
                         end
-                        G.call('通用_印记状态')
-                        G.misc().切磋次数 = 0
-                        G.trig_event('load_over')
-                        G.misc().通关 = 1
-                        G.trig_event('开始结束')
                     else
                         G.call('notice1','拒绝非法操作，请正常读取')
                     end

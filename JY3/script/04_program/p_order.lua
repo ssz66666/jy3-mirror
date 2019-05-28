@@ -282,7 +282,7 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
-            if  G.misc().检测_1004 == nil  then
+            if  G.misc().检测_1005 == nil  then
                 local role = G.DBTable('o_role')
                 for i = 1,#role do 
                     for p = 81,89 do 
@@ -314,9 +314,9 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('join',36)
-    local o_book_story = G.QueryName(0x101c0004)
-    o_book_story.流程 = 1
+    -- G.call('join',36)
+    -- local o_book_story = G.QueryName(0x101c0004)
+    -- o_book_story.流程 = 1
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0
@@ -333,8 +333,8 @@ t['new_test'] = function()
     --         break
     --     end
     -- end
-    G.call('天书_天龙八部') 
-    G.call('通用_印记状态')
+    -- G.call('天书_天龙八部') 
+    -- G.call('通用_印记状态')
     -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 
@@ -468,7 +468,7 @@ t['load'] = function() --读档界面
     G.wait1('load_over')
     G.removeUI('v_load') 
 end
-t['通用_记录继承装备']=function(int_周目,int_重生)
+t['通用_记录继承装备']=function(int_重生)
     local _o_继承装备 = {}
     local o_body = G.QueryName(0x10030001)
     local o_store = G.QueryName(0x10190001)
@@ -519,13 +519,12 @@ end
 t['重生']=function() 
     local o_body = G.QueryName(0x10030001)
     local o_store = G.QueryName(0x10190001)
-    local int_周目 = G.call('get_point',237) 
     local int_存档位置 = G.call('get_point',143) 
     local 礼包 = G.misc().礼包
     local table_继承装备 = {}
     local int_清除成就 = G.misc().清除成就
     local int_继承个数 = #o_store.装备
-    table_继承装备 = G.call('通用_记录继承装备',int_周目,0)
+    table_继承装备 = G.call('通用_记录继承装备',0)
     local o_equip_usb = {}
     local i_equip
     if #table_继承装备 > 0 then 
@@ -539,18 +538,21 @@ t['重生']=function()
             end
         end
     end
-    G.trig_event('监控')
-    G.call('dark')
-    G.call('通用_读档',0) 
-    if  int_清除成就 ~= 1 then 
-        G.call('成就_读档',10)
-        G.misc().清除成就 = 0 
-    end
+    G.call('成就_读档',10)
     local int_万金 = G.QueryName(0x10170004).进度列表[1].当前进度
+    G.call('成就_读档',G.call('get_point',143))
     if int_万金 > 400000 or int_继承个数 > 3000 then
-        G.call('成就_读档',0)
+        G.call('notice1','该存档无法正常重生！')
+        G.call("goto_map",G.call('get_point',140)-0x10060000)
     else
-        if #o_equip_usb > 0 and int_继承个数 < 3000 then 
+        G.trig_event('监控')
+        G.call('dark')
+        G.call('通用_读档',0) 
+        if  int_清除成就 ~= 1 then 
+            G.call('成就_读档',10)
+            G.misc().清除成就 = 0 
+        end
+        if #o_equip_usb > 0  then 
             for i = 1,#o_equip_usb do 
                 if o_equip_usb[i] then 
                     G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
@@ -559,16 +561,17 @@ t['重生']=function()
                 end
             end
         end
-    end  
-    G.call('通用_印记状态')
-    G.misc().礼包 = 礼包
-    G.misc().切磋次数 = 0
-    G.call('set_point',237,int_周目)
-    G.call('set_newpoint',237,-int_周目-5)
-    G.call('set_point',143,int_存档位置) 
-    G.call('mapoff')
-    G.Play(0x49010038, 1,true,1) 
-    G.call('create')
+        G.misc().重生 = 1
+        G.call('通用_印记状态')
+        G.misc().礼包 = 礼包
+        G.misc().切磋次数 = 0
+        G.call('set_point',237,int_周目)
+        G.call('set_newpoint',237,-int_周目-5)
+        G.call('set_point',143,int_存档位置) 
+        G.call('mapoff')
+        G.Play(0x49010038, 1,true,1) 
+        G.call('create')    
+    end
 end
 t['call_title']=function(int_代码)  --开始菜单
     G.Stop(1)
@@ -2071,16 +2074,16 @@ t['指令_备份基础属性']=function() --
         G.call('set_newpoint',i,-G.call('get_point',i)) 
     end
     G.call('set_newpoint',237,-G.call('get_point',237)-5)
-    G.call('set_newpoint',76,-int_物品数量-math.random(5))
+    G.call('set_newpoint',76,-int_物品数量-math.random(10)-2000)
     G.call('set_newpoint',80,-int_成就-math.random(5,10))
     G.call('set_newpoint',3,-G.call('get_point',3)-math.random(5)) 
     G.call('set_newpoint',5,-G.call('get_point',5)-math.random(5)) 
     G.call('set_newpoint',77,-G.call('get_magicexp',83)-math.random(5)) 
-    G.call('set_newpoint',110,-G.call('get_point',110)-math.random(5)) 
+    G.call('set_newpoint',110,-G.call('get_point',110)-math.random(5)-2000) 
     for i = 45,47 do 
         G.call('set_newpoint',i,-G.call('get_point',i)-math.random(5)) 
     end
-    G.misc().检测_1004 = 1
+    G.misc().检测_1005 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
     return G.QueryName(0x101b0001)[tostring(int_代码)]
@@ -2319,10 +2322,10 @@ t['add_money'] = function(int_数值)--增加钱数
     G.QueryName(0x10030001)[tostring(110)] = G.QueryName(0x10030001)[tostring(110)]  + int_数值
     G.call('set_newpoint',110,G.call('get_newpoint',110)- int_数值)
     if    G.QueryName(0x10030001)[tostring(110)]  < 0 then 
-        G.call('set_newpoint',110,- math.random(5))
+        G.call('set_newpoint',110,- math.random(5)-2000)
         G.QueryName(0x10030001)[tostring(110)] = 0
     elseif G.QueryName(0x10030001)[tostring(110)]  > 999999 then
-        G.call('set_newpoint',110,- 999999 - math.random(5))
+        G.call('set_newpoint',110,- 999999 - math.random(5)-2000)
         G.QueryName(0x10030001)[tostring(110)]  = 999999 
     end 
     local n = math.abs(int_数值)

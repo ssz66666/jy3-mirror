@@ -79,6 +79,7 @@ t['初始化'] = function()
 	G.misc().密令 = ''
 	G.misc().密令年数 = 0
 	G.misc().切磋次数 = 0
+	G.misc().重生 = 0
 	G.misc().出师 = nil
 	G.misc().礼包 = nil
 	G.call('通用_存档',0)
@@ -135,7 +136,7 @@ t['地图系统_防修改监控'] = function()
 	if G.call('get_point',4) > math.abs(G.call('get_newpoint',4))  then
 		G.call('通用_强退游戏') 
 	end
-	if G.call('get_point',110) > math.abs(G.call('get_newpoint',110))  then
+	if G.call('get_point',110) > math.abs(G.call('get_newpoint',110)+2000)  then
 		G.call('通用_强退游戏') 
 	end
 	if G.call('get_point',45) > math.abs(G.call('get_newpoint',45))  then
@@ -158,7 +159,7 @@ t['地图系统_防修改监控'] = function()
             int_物品数量 = int_物品数量 + o_item.数量 
         end
 	end
-	if int_物品数量 > math.abs(G.call('get_newpoint',76)) then 
+	if int_物品数量 > math.abs(G.call('get_newpoint',76)+2000) then 
 		G.call('通用_强退游戏') 
 	end
 	for i = 111,114 do

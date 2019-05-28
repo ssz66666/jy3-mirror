@@ -2917,9 +2917,9 @@ t['magic_power1'] = function(int_id,int_no)
     local int_怒气 = 0 
     if hurt > 0 then 
         if  G.call('逻辑_拥有被动',17) then 
-            int_怒气 = math.floor(hurt/1000 + 0.5)
+            int_怒气 = math.ceil(hurt/1000 + 0.5)
         else
-            int_怒气 = math.floor(hurt/2000 + 0.5)
+            int_怒气 = math.ceil(hurt/2000 + 0.5)
         end 
         if G.call('通用_取得套装',0,4) == 2 then --套装4增加怒气效果
             int_怒气 = int_怒气 + 2
@@ -3634,9 +3634,9 @@ t['magic_power3'] = function(int_id,int_no)
             end  
             local int_怒气 = 0
             if  G.call('逻辑_拥有被动',17) then --计算怒气
-                int_怒气 = math.floor(hurt/500 + 0.5)
+                int_怒气 = math.ceil(hurt/500 + 0.5)
             else
-                int_怒气 = math.floor(hurt/1000 + 0.5)
+                int_怒气 = math.ceil(hurt/1000 + 0.5)
             end
             if G.call('通用_取得套装',0,4) == 2 then --套装4增加怒气效果
                 int_怒气 = int_怒气 + 2
