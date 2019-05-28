@@ -270,7 +270,6 @@ t['初入血刀门-血刀老祖'] = function()
     end
 end
 t['初入血刀门-狄云之连城剑法'] = function()
-    G.call('dark')
     G.call('地图_进入地图','大雪山',110,1)
     G.call('goto_map',21)
     G.call("talk",'',386,'   羞也不羞？你手中拿的若是真剑，这只手还在吗？',2,1) 

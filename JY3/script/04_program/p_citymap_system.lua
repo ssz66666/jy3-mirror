@@ -105,6 +105,7 @@ t['地图_进入地图'] = function(string_地图名称,int_map,int_music,int_�
     if  not int_地图 then
         int_地图 = 0
     end
+    G.call('dark')
     G.call('地图_进入地图UI', string_地图名称,int_map,int_地图)
     G.call('mapon')
     G.Stop(1)

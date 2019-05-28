@@ -288,7 +288,6 @@ t['聚贤庄任务_义结金兰']=function()
 end
 t['聚贤庄任务_良辰吉日']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('地图_进入地图','喜堂',47,38)
     G.call('add_day',1)
     G.misc().wife = 0
@@ -440,7 +439,6 @@ t['聚贤庄任务_良辰吉日']=function()
 end
 t['聚贤庄任务_擂鼓山棋局']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',15)
     G.call('地图_进入地图','擂鼓山',62,51)
     G.call('photo0',16)
@@ -541,7 +539,6 @@ t['聚贤庄任务_擂鼓山棋局']=function()
 end
 t['聚贤庄任务_迷途的小和尚']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','悦来客栈',3,33)
     G.call("talk",'',35,'   这位施主，小僧是少林寺子弟，因外出化缘，迷失了方向。请施主为小僧指点回少林的方向。',1,1) 
@@ -568,7 +565,6 @@ t['聚贤庄任务_迷途的小和尚']=function()
 end
 t['聚贤庄任务_腊八粥']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',15)
     G.call('地图_进入地图','侠客岛',60,35)
     G.QueryName(0x10080023).是否完成 = true 
@@ -582,14 +578,12 @@ t['聚贤庄任务_腊八粥']=function()
     G.call("talk",'',144,'   现在我要实行赏善罚恶！待我一一清算...',1,1) 
     if G.call('get_point',15) > 0 then 
         G.call("talk",'',144,'   '..G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]..'你出道以来所行之事，颇对老夫胃口。你进洞钻研武学吧，希望你日后能把武功一途用于正道！',1,1) 
-        G.call('dark')
         G.call('地图_进入地图','侠客密洞',61,10)
         G.call("talk",'',0,'   哇！这件石室这么大，石壁上全是刻印着古怪的图形。莫非这就是侠客岛的绝世武功？',0,0) 
         if G.call('get_point',18) > 50 then 
             G.call("talk",'',0,'   看来看去，头都晕了，也没看出什么。没必要在这浪费时间了，早回中原吧。',0,0)
         else
             G.call("talk",'',0,'   原来这些图形是依人体经络而画，待我把这几幅图一一看过。',0,0)
-            G.call('dark')
             G.call('地图_进入地图','侠客密洞',61,9)
             G.call("talk",'',0,'   难道我已经无意间练成了上乘武功？我现在全身发热，好似充满了无穷的力量！！！',0,0)
             G.call("talk",'',144,'   恭喜少侠，练成不世奇功——【太玄经神功】',1,1) 
@@ -604,14 +598,12 @@ t['聚贤庄任务_腊八粥']=function()
         o_battle_结果 = G.call('get_battle')
         if o_battle_结果  == 1 then 
             G.call("talk",'',144,'   看得出，你是位百年罕见的武学奇才。我不忍伤你性命，你也进洞钻研武学吧，希望你日后能把武功一途用于正道！',1,1) 
-            G.call('dark')
             G.call('地图_进入地图','侠客密洞',61,10)
             G.call("talk",'',0,'   哇！这件石室这么大，石壁上全是刻印着古怪的图形。莫非这就是侠客岛的绝世武功？',0,0) 
             if G.call('get_point',18) > 50 then 
                 G.call("talk",'',0,'   看来看去，头都晕了，也没看出什么。没必要在这浪费时间了，早回中原吧。',0,0)
             else
                 G.call("talk",'',0,'   原来这些图形是依人体经络而画，待我把这几幅图一一看过。',0,0)
-                G.call('dark')
                 G.call('地图_进入地图','侠客密洞',61,9)
                 G.call("talk",'',0,'   难道我已经无意间练成了上乘武功？我现在全身发热，好似充满了无穷的力量！！！',0,0)
                 G.call("talk",'',144,'   恭喜少侠，练成不世奇功——【太玄经神功】',1,1) 
@@ -628,7 +620,6 @@ t['聚贤庄任务_腊八粥']=function()
 end
 t['聚贤庄任务_御厨的无奈']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','野外',19,35)
     G.QueryName(0x10080022).是否完成 = true 
@@ -667,7 +658,6 @@ t['聚贤庄任务_御厨的无奈']=function()
 end
 t['聚贤庄任务_天王老子傲四方']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',53,35)
     G.QueryName(0x10080021).是否完成 = true 
@@ -719,7 +709,6 @@ t['聚贤庄任务_天王老子傲四方']=function()
 end
 t['聚贤庄任务_毒王之争']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',19,35)
     G.QueryName(0x10080020).是否完成 = true 
@@ -781,7 +770,6 @@ t['聚贤庄任务_毒王之争']=function()
 end 
 t['聚贤庄任务_昆仑冰蚕']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',21,33)
     G.QueryName(0x1008001f).是否完成 = true 
@@ -806,7 +794,6 @@ t['聚贤庄任务_昆仑冰蚕']=function()
 end
 t['聚贤庄任务_桃花岛主,贻笑江湖']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',21,33)
     G.QueryName(0x1008001e).是否完成 = true 
@@ -855,7 +842,6 @@ t['聚贤庄任务_桃花岛主,贻笑江湖']=function()
 end
 t['聚贤庄任务_全真教与桃花岛的恩怨']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',19,32)
     G.QueryName(0x1008001d).是否完成 = true 
@@ -891,7 +877,6 @@ t['聚贤庄任务_全真教与桃花岛的恩怨']=function()
 end
 t['聚贤庄任务_东郭狼子心']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',15)
     G.call('地图_进入地图','？？？？',7,33)
     G.QueryName(0x1008001c).是否完成 = true 
@@ -901,7 +886,6 @@ t['聚贤庄任务_东郭狼子心']=function()
     while int_选项 == 0 do
         int_选项 = G.call("menu",'',0,'',0,0,{'1,前去医治','2,不去医治'},0) 
         if int_选项 == 1 then
-            G.call('dark')
             G.call('地图_进入地图','昆仑派',58,33)
             G.call("talk",'',100,'   感谢小神医医治好我爱妾的剧毒。',1,1) 
             G.call("talk",'',108,'   是谁这么大胆子，敢治好那贱人身上的毒？',1,1) 
@@ -912,7 +896,6 @@ t['聚贤庄任务_东郭狼子心']=function()
             G.call('call_battle',1,19,3,100,100,108,0,0,0,0)
             G.call("talk",'',0,'   强龙不压地头蛇，这公母俩真是万般可恶。总有一日我要把这昆仑派上下铲尽灭绝！',0,0) 
             if G.call('get_point',19) >= 80 then 
-                G.call('dark')
                 G.call('地图_进入地图','昆仑仙境',59,5)
                 G.call("talk",'',0,'   咦？这有个石碑。“潇.湘.子.埋.经.处.”...这里面有什么宝贝呢？',0,0) 
                 G.call('dark')
@@ -940,7 +923,6 @@ t['聚贤庄任务_东郭狼子心']=function()
 end 
 t['聚贤庄任务_青城派的仇怨']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',3,33)
     G.QueryName(0x1008001b).是否完成 = true 
@@ -967,7 +949,6 @@ t['聚贤庄任务_青城派的仇怨']=function()
 end 
 t['聚贤庄任务_救治盲女']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',3)
     G.call('地图_进入地图','？？？？',3,33)
     G.call("talk",'',19,'   我的眼睛，我的眼睛看不见了。谁能救救我啊...',1,1) 
@@ -1016,7 +997,6 @@ t['聚贤庄任务_救治盲女']=function()
 end 
 t['聚贤庄任务_西夏招亲']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',15)
     G.call('地图_进入地图','西夏皇宫',57,33)
     G.QueryName(0x10080019).是否完成 = true 
@@ -1046,7 +1026,6 @@ t['聚贤庄任务_西夏招亲']=function()
             G.call("talk",'',0,'   她容貌如何，这也是从来没看见过。',0,0) 
             G.call("talk",'西夏公主',132,'   是...是梦郎吗？',1,1) 
             G.call("talk",'',0,'   啊！梦姑！',0,0) 
-            G.call('dark')
             G.call('地图_进入地图','西夏内室',58,33)
             G.call("talk",'西夏公主',132,'   梦郎，我便是找你不到，这才请父皇贴下榜文，邀你到来，我日日夜夜，就盼有此时此刻……',1,1) 
             G.call("talk",'',0,'   梦姑，原来你就是西夏公主！我太快活了...',0,0) 
@@ -1071,7 +1050,6 @@ t['聚贤庄任务_西夏招亲']=function()
 end 
 t['聚贤庄任务_峨眉派替天行道']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',19,33)
     G.QueryName(0x10080018).是否完成 = true 
@@ -1097,7 +1075,6 @@ t['聚贤庄任务_峨眉派替天行道']=function()
 end 
 t['聚贤庄任务_老尼姑的险境']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',5)
     G.call('地图_进入地图','？？？？',55,33)
     G.QueryName(0x10080017).是否完成 = true 
@@ -1131,7 +1108,6 @@ t['聚贤庄任务_老尼姑的险境']=function()
 end 
 t['聚贤庄任务_群寇争镖银']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',5)
     G.call('地图_进入地图','？？？？',19,33)
     G.QueryName(0x10080016).是否完成 = true 
@@ -1192,7 +1168,6 @@ t['聚贤庄任务_群寇争镖银']=function()
 end    
 t['聚贤庄任务_回族部落的圣物']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',10)
     G.call('地图_进入地图','回疆',56,32)
     G.call("talk",'',25,'   可恶的清朝士兵抢走了我们回族的圣物——《可兰经》，《可兰经》是纯洁的圣物，绝对不能落在心底肮脏的坏人手里。',1,1) 
@@ -1200,7 +1175,6 @@ t['聚贤庄任务_回族部落的圣物']=function()
     G.QueryName(0x10080015).是否完成 = true 
     o_rwdr.进度列表[21].完成 = 1
     local a = (227-224)*6+265
-    G.call('dark')
     G.call('地图_进入地图','？？？？',20,32)
     G.call('call_battle',1,20,3,100,a+4,a+3,a+4,a,a+1,a+2)
     o_battle_结果 = G.call('get_battle')
@@ -1237,7 +1211,6 @@ t['聚贤庄任务_回族部落的圣物']=function()
 end
 t['聚贤庄任务_田归农的挑战']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',55,33)
     o_battle_结果 = G.call('get_battle')
@@ -1271,7 +1244,6 @@ end
 t['聚贤庄任务_四大淫贼']=function()
     local o_rwdr = G.QueryName(0x1017000d)
     if G.QueryName(0x10080012).是否完成 == true then
-        G.call('dark')
         G.call('add_day',1)
         G.call('地图_进入地图','？？？？',19,33)
         G.QueryName(0x10080013).是否完成 = true 
@@ -1379,7 +1351,6 @@ t['聚贤庄任务_四大淫贼']=function()
 end
 t['聚贤庄任务_三件礼物']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',15)
     G.call('地图_进入地图','？？？？',55,33)
     G.call('photo0',15)
@@ -1413,7 +1384,6 @@ t['聚贤庄任务_三件礼物']=function()
                     while int_选项 == 0 do
                         int_选项 = G.call("menu",'',0,'',0,0,{'1,把【打狗棒】交还丐帮','2,自己贪下【打狗棒】'},0) 
                         if int_选项 == 1 then  
-                            G.call('dark')
                             G.call('地图_进入地图','？？？？',4,33)
                             G.call("talk",'丐帮长老',169,'   多谢少侠为鲁帮主报仇，有为我们丐帮夺回打狗棒，我们丐帮永世不忘少侠的大恩大德。',1,1) 
                             G.call('add_schoollove',6,50)
@@ -1450,7 +1420,6 @@ t['聚贤庄任务_三件礼物']=function()
 end
 t['聚贤庄任务_死守襄阳城']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',10)
     G.call('地图_进入地图','襄阳城',54,12)
     G.call('photo0',14)
@@ -1469,7 +1438,6 @@ t['聚贤庄任务_死守襄阳城']=function()
     o_battle_结果 = G.call('get_battle') 
     if o_battle_结果  == 1 then
         G.call("talk",'',81,'    你这是什么功夫？怎么可能抵得过老衲的龙象般若功，没可能，没可能的...哇——（口喷鲜血）',1,1)    
-        G.call('dark')
         G.call('地图_进入地图','？？？？',46,50)
         G.call('add_point',14,300)
         G.call('add_point',15,20)
@@ -1501,7 +1469,6 @@ t['聚贤庄任务_死守襄阳城']=function()
 end 
 t['聚贤庄任务_魔教圣姑']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',53,33)
     if G.call('get_story',19) > 0 then 
@@ -1524,7 +1491,6 @@ t['聚贤庄任务_魔教圣姑']=function()
 end 
 t['聚贤庄任务_庄家的复仇']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','庄家大院',52,33)
     if G.call('get_story',48) == 1 then 
@@ -1551,7 +1517,6 @@ t['聚贤庄任务_庄家的复仇']=function()
 end 
 t['聚贤庄任务_韦小宝性命危矣']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',5)
     G.call('地图_进入地图','？？？？',55,33)
     G.QueryName(0x1008000e).是否完成 = true 
@@ -1588,7 +1553,6 @@ t['聚贤庄任务_韦小宝性命危矣']=function()
 end
 t['聚贤庄任务_昔日皇妃']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',15)
     G.call('地图_进入地图','黑龙潭',50,33)
     G.call("talk",'',88,'   是何方鼠辈敢闯到黑龙潭来，打扰老太婆的清修？',1,1) 
@@ -1597,7 +1561,6 @@ t['聚贤庄任务_昔日皇妃']=function()
     G.call("talk",'',88,'   虽然皇上不计前嫌宠爱依旧，但是我却没脸再呆下去。等我想和周伯通远走高飞的时候，他却远远的躲开了我，我再也寻他不到...',1,1) 
     G.call("talk",'',88,'   近日我探到他在附近的百花谷居住，我不能去找她，他听到我的声音就远远溜走了。所以我希望有人能帮我使得他回心转意，回到我身边来。',1,1) 
     G.call("talk",'',0,'   "晚辈这就去试一试，看看能否说得他回心转意。',0,0) 
-    G.call('dark')
     G.call('地图_进入地图','百花谷',51,44)
     G.call("talk",'',86,'   我这百花谷好久没人来过了，我都快无聊死了。小兄弟，来来来，快陪我好好玩玩。',1,1) 
     G.call("talk",'',0,'   周前辈，晚辈到这里是有件事情想请前辈帮忙...',0,0) 
@@ -1614,7 +1577,6 @@ t['聚贤庄任务_昔日皇妃']=function()
         G.call("talk",'',86,'   先说好啊，见人可以，但是我有两个人不见。一个是瑛姑，一个是大理段皇爷。',1,1) 
         G.call("talk",'',0,'   你是心中有愧吗？你让瑛姑一个女流为你苦守了数十年，她这般思念于你。你始终不肯和她相见，于心何忍？',0,0) 
         G.call("talk",'',86,'   不要再说了。今日倘若不去见她，以后的日子别想再睡得着。小兄弟我跟你去见她...',1,1) 
-        G.call('dark')
         G.call('地图_进入地图','黑龙潭',50,33)
         G.call('add_point',15,15)
         G.call("talk",'',88,'   多谢小兄弟了了我多年的心愿。',1,1)
@@ -1630,7 +1592,6 @@ t['聚贤庄任务_昔日皇妃']=function()
         end
         if G.call('get_point',8) == 5 and G.call('get_magic',231) == 0 and  G.call('in_team',6) then 
             G.call("talk",'',86,'   小兄弟呀，我再带你去看好玩的！',1,1)
-            G.call('dark')
             G.call('地图_进入地图','百花谷',51,44)
             G.call("talk",'',86,'   小兄弟你看我这的玉蜂！',1,1)
             G.call("talk",'',6,'   老顽童，这不是我昔日养的玉蜂，竟然都跑到这里来了！',1,1)
@@ -1661,7 +1622,6 @@ t['聚贤庄任务_昔日皇妃']=function()
 end
 t['聚贤庄任务_独孤求败的宠物']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',5)
     G.call('地图_进入地图','剑冢',31,1)
     G.call('photo0',13)
@@ -1733,8 +1693,6 @@ t['聚贤庄任务_独孤求败的宠物']=function()
 end 
 t['聚贤庄任务_悲情杨过']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
-    G.call('mapoff')
     G.call('地图_进入地图','山洞',48,33)
     G.call('add_day',1)
     G.call("talk",'',7,'   啊...唔...疼死我也..."',1,1) 
@@ -1766,7 +1724,6 @@ t['聚贤庄任务_悲情杨过']=function()
 end
 t['聚贤庄任务_绝情谷婚宴']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',5)
     G.call('地图_进入地图','绝情谷',47,38) 
     G.QueryName(0x1008000a).是否完成 = true 
@@ -1782,19 +1739,16 @@ t['聚贤庄任务_绝情谷婚宴']=function()
     while int_选项 == 0 do
         int_选项 = G.call("menu",'',0,'',0,0,{'1,跟【公孙绿萼】回去找周伯通','2,留下继续观礼'},0) 
         if int_选项 == 1 then  
-            G.call('dark')
             G.call('地图_进入地图','丹房',23,33)
             G.call("talk",'',8,'   那老者功夫也真是了得。咱们紧紧跟来，还是被他跑脱了...'..G.QueryName(0x10030001)[tostring(1)]..'公子，这是我爹爹的丹房，专门炼制药物的，我送你一些丹药，日后可能还会用的上。',1,1) 
             if G.call('get_item',242) == 0 then
                 G.call('add_item',242,3)
             end  
-            G.call('dark')
             G.call('地图_进入地图','丹房',48,33)
             G.call("talk",'',8,'   啊——我怎么从不知道这丹房还藏有机关通到这里。'..G.QueryName(0x10030001)[tostring(1)]..'公子，你要小心了。',1,1) 
             G.call("talk",'',73,'   是什么人在这里鬼鬼祟祟，快给我滚出来！',1,1) 
             G.call("talk",'',8,'   娘！你...爹说您已经过世了，这究竟是怎么一回事？',1,1) 
             G.call("talk",'',73,'   这事说来话长。你们先背我出去，我自会跟那老不死当面说个清楚明白！',1,1) 
-            G.call('dark')
             G.call('地图_进入地图','绝情谷',47,35) 
             G.call("talk",'',73,'   公孙止！你还认得我吗？',1,1) 
             G.call("talk",'',158,'   萼儿，这是哪里来的疯婆子，给我轰出去，不要坏了喜堂的气氛！',1,1) 
@@ -1809,7 +1763,6 @@ t['聚贤庄任务_绝情谷婚宴']=function()
             o_battle_结果 = G.call('get_battle') 
             if o_battle_结果  == 1 then
                 G.call("talk",'',158,'   老贼婆！你请来好硬的帮手,我公孙止今日先解决了你！',1,1) 
-                G.call('dark')
                 G.call('地图_进入地图','绝情谷',47,40) 
                 G.call("talk",'',8,'   娘！爹！不要啊——',1,1) 
                 G.call("talk",'',0,'   姑娘请节哀。你的父母如此这般这般死法，倒真是再也你分不开我，我分不开你了。他们这纠缠半世的孽债也算是有了了结',0,0) 
@@ -1843,7 +1796,6 @@ t['聚贤庄任务_绝情谷婚宴']=function()
 end
 t['聚贤庄任务_放荡形骸的浪子']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',3,11) 
     G.call("talk",'',2,'   小二！小二！给我那酒来！把你们店里最好的酒都给我拿来，要是敢兑水，我把你们的店铺给拆了！',1,1) 
@@ -1888,7 +1840,6 @@ t['聚贤庄任务_放荡形骸的浪子']=function()
 end     
 t['聚贤庄任务_王语嫣的悲哀']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('地图_进入地图','？？？？',20,31) 
     G.call('add_day',10)
     G.call("talk",'',1,'   表哥，你当真要去西夏迎娶那位西夏公主吗？',1,1) 
@@ -1931,14 +1882,12 @@ t['聚贤庄任务_王语嫣的悲哀']=function()
 end 
 t['聚贤庄任务_归云庄英雄大会']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('地图_进入地图','归云庄',46,51) 
     G.call('add_day',10)
     G.call("talk",'',122,'   诸位豪杰今日齐聚【归云庄】真是给我陆某莫大的面子。受武林同道之邀陆某在敝庄举办这届【英雄大会】，意在从武林同道之中推选一位德高望重的人来做【武林盟主】，领导群雄完成抵抗异族的侵略的使命！',1,1) 
     G.call("talk",'',141,'   我们南四奇一致推举丐帮的洪七公洪老爷子做【武林盟主】！他当年领导丐帮抗击清兵，威震华北；降龙掌和打狗棒法俱都是天下无敌；为人更是嫉恶如仇侠肝义胆，他老人家最是有资格做的。',1,1) 
     G.call("talk",'',167,'   洪老爷子本来最可做得这【武林盟主】，但是他老人家游若神龙，行踪不定，而且生性逍遥自在，连这丐帮帮主之位都不愿意做下去，想必这【武林盟主】之位更是不合他老人家的性子。',1,1) 
     G.call("talk",'',119,'   那便是少林的玄慈掌门、武当的宋远桥大侠都可担此重任',1,1)  
-    G.call('dark')
     G.call('地图_进入地图','归云庄',46,35) 
     G.call("talk",'',34,'   师兄，你闻到什么臭气没有？',1,1) 
     G.call("talk",'',121,'   我没有闻到啊，师弟你是说有人在放屁？',1,1) 
@@ -1994,7 +1943,6 @@ t['聚贤庄任务_归云庄英雄大会']=function()
 end 
 t['聚贤庄任务_救治青翼蝠王']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('地图_进入地图','？？？？',43,10)  
     G.call('add_day',5)
     if G.call('get_point',195) == 0x100b0050 then 
@@ -2007,7 +1955,6 @@ t['聚贤庄任务_救治青翼蝠王']=function()
         o_battle_结果 = G.call('get_battle') 
         if o_battle_结果  == 1 then
             G.call("talk",'',0,'   这怪物虽说凶猛，但怎是我的对手！把这个拿去给青翼蝠王，想必应该可以治好他的内伤吧。',0,0)  
-            G.call('dark')
             G.call('地图_进入地图','？？？？',45,50)  
             G.call("talk",'',151,'   太妙了。又可以饱食人血了，嘿嘿...',1,1) 
             G.call("talk",'',0,'   吸血蝙蝠，看我给你拿什么好东西来了！',0,0)
@@ -2028,7 +1975,6 @@ t['聚贤庄任务_救治青翼蝠王']=function()
 end    
 t['聚贤庄任务_华山论剑']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('地图_进入地图','华山之巅',99,1)  
     G.call('add_day',10)
     local gamer1 = {2,4,5,6,7,12,15,16,18,22}
@@ -2079,7 +2025,6 @@ t['聚贤庄任务_华山论剑']=function()
 end
 t['聚贤庄任务_落花流水恶斗血刀僧']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('地图_进入地图','？？？？',42,1)  
     G.call('add_day',5)
     G.QueryName(0x10080004).是否完成 = true 
@@ -2221,7 +2166,6 @@ t['聚贤庄任务_落花流水恶斗血刀僧']=function()
 end    
 t['聚贤庄任务_唐诗选辑的秘密']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('地图_进入地图','密室',24,33)  
     G.call('add_day',1)
     G.Play(0x49010021,1,true,1) 
@@ -2246,7 +2190,6 @@ t['聚贤庄任务_唐诗选辑的秘密']=function()
 end 
 t['聚贤庄任务_闯王宝藏的秘密']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','密室',24,33)  
     if G.call('get_item',264) > 0 then 
@@ -2276,7 +2219,6 @@ t['聚贤庄任务_闯王宝藏的秘密']=function()
 end  
 t['聚贤庄任务_四十二章经的秘密']=function()
     local o_rwdr = G.QueryName(0x1017000d)
-    G.call('dark')
     G.call('add_day',1)
     G.call('地图_进入地图','密室',24,33)  
     G.Play(0x49010021,1,true,1) 
@@ -2303,7 +2245,6 @@ t['聚贤庄任务_四十二章经的秘密']=function()
     G.call('goto_map',4)    
 end    
 t['聚贤庄任务_镖车被劫']=function()
-    G.call('dark')
     local n = math.random(19,22)
     local a = (230 - 224)*6 + 265
     local b = (228 - 224)*6 + 265
@@ -2386,7 +2327,6 @@ t['聚贤庄任务_镖车被劫']=function()
 
 end    
 t['聚贤庄任务_爪下白骨']=function()
-    G.call('dark')
     local n = math.random(19,22)
     local diffty = math.random(3,13)*10
     G.call('add_day',1)
@@ -2405,7 +2345,6 @@ t['聚贤庄任务_爪下白骨']=function()
     G.call('goto_map',4) 
 end 
 t['聚贤庄任务_阮姓何辜']=function()
-    G.call('dark')
     local n = math.random(19,22)
     local diffty = math.random(3,13)*10
     G.call('add_day',1)
@@ -2424,7 +2363,6 @@ t['聚贤庄任务_阮姓何辜']=function()
     G.call('goto_map',4) 
 end 
 t['聚贤庄任务_丐帮与星宿的恶斗']=function()
-    G.call('dark')
     local n = math.random(19,22)
     local a = (240 - 224)*6 + 265
     local b = (237 - 224)*6 + 265
@@ -2509,7 +2447,6 @@ t['聚贤庄任务_丐帮与星宿的恶斗']=function()
     end 
 end 
 t['聚贤庄任务_少林与武当的恶斗']=function()
-    G.call('dark')
     local n = math.random(19,22)
     local a = 253
     local b = (239 - 224)*6 + 265
@@ -2594,7 +2531,6 @@ t['聚贤庄任务_少林与武当的恶斗']=function()
 end 
 
 t['聚贤庄任务_全真与古墓的恶斗']=function()
-    G.call('dark')
     local n = math.random(19,22)
     local a = 379
     local b = 259
@@ -2679,7 +2615,6 @@ t['聚贤庄任务_全真与古墓的恶斗']=function()
     end 
 end 
 t['聚贤庄任务_官逼民受苦']=function()
-    G.call('dark')
     local n = math.random(19,22)
     local a = (228 - 224)*6 + 265
     local b = (227 - 224)*6 + 265
@@ -2742,7 +2677,6 @@ t['聚贤庄任务_官逼民受苦']=function()
     end 
 end   
 t['聚贤庄任务_神秘商人']=function()
-    G.call('dark')
     local o_htyw = G.QueryName(0x1017000b) 
     local o = math.random(19,22)
     G.call('地图_进入地图','？？？？',o,33) 

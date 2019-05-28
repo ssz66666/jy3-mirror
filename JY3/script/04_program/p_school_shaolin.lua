@@ -493,21 +493,17 @@ t['初入少林-测试'] = function()
         end 
         local o_hotkey = G.QueryName(0x100C0001)
         o_hotkey[tostring(14)] = 0x100b00ef
-        G.call('all_over') 
-        G.call('dark') 
         G.call('地图_进入地图','木人巷',11,39) 
         G.call('add_hour',1)
         G.call('rest')
         G.call('call_battle',1,10,1,10,224,0,0,0,0,0)
         local o_battle_结果 = G.call('get_battle') --_root.War("演武场", 0, 224, 0, 0, 0, 0, 1, 0.3, 0);
-        if o_battle_结果  == 1 then
-            G.call('dark') 
+        if o_battle_结果  == 1 then 
             G.call('地图_进入地图','木人巷',11,39) 
             G.call('add_hour',1)
             G.call('call_battle',1,10,1,20,int_mo,int_mo+1,int_mo+2,0,0,0)
             local o_battle_结果 = G.call('get_battle') --_root.War("演武场", 224, 224, 224, 0, 0, 0, 1, 0.4, 0);
             if o_battle_结果  == 1 then
-                G.call('dark') 
                 G.call('地图_进入地图','木人巷',11,39) 
                 G.call('add_hour',1)
                 G.call('call_battle',1,10,1,30,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
@@ -931,20 +927,16 @@ t['初入少林-出师'] = function()
     G.call('all_over')
     G.call('goto_map',9)
     G.call("talk",'',175,'   '..G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]..'你到少林学艺已有一年之期，现在要通过【铜人阵】来检验你的学艺情况，如果你能够通过，将获得少林至宝《易筋经》！',2,1) 
-    G.call('all_over')
-    G.call('dark') 
     G.call('地图_进入地图','铜人阵',15,39) 
     G.call('add_hour',1)
     G.call('call_battle',1,10,1,60,225,0,0,0,0,0)
     local o_battle_结果 = G.call('get_battle') --_root.War("演武场", 0, 225, 0, 0, 0, 0, 1, 0.6, 0);
     if o_battle_结果  == 1 then
-        G.call('dark') 
         G.call('地图_进入地图','铜人阵',15,39) 
         G.call('add_hour',1)
         G.call('call_battle',1,10,1,80,int_mo,int_mo+1,int_mo+2,0,0,0)
         local o_battle_结果 = G.call('get_battle') --_root.War("演武场", 225, 225, 225, 0, 0, 0, 1, 0.8, 0);
-        if o_battle_结果  == 1 then
-            G.call('dark') 
+        if o_battle_结果  == 1 then 
             G.call('地图_进入地图','铜人阵',15,39) 
             G.call('add_hour',1)
             G.call('call_battle',1,10,1,80,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)

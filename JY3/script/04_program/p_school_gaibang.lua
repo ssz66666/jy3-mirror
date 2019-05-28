@@ -6,7 +6,6 @@ local L = {}
 local t = G.api
 local JY = 0
 t['初入丐帮'] = function()
-    G.call('dark')
     G.call('地图_进入地图','丐帮大厅',116,4)
     for i = 16,20 do 
         if G.call('get_point',i) > 50 then
@@ -406,7 +405,6 @@ end
 t['初入丐帮-升袋比试'] = function()
     local int_丐帮弟子 = G.misc().丐帮弟子
     G.call('all_over')
-    G.call('dark') 
     G.call('地图_进入地图','演武场',10,44) 
     G.call("talk",'',169,'   今日召开本帮每月的弟子升袋比较,现在由'..G.call('get_fullname')..'进行比试！',2,1) 
     if int_丐帮弟子 <= 2 then
@@ -444,7 +442,6 @@ t['初入丐帮-帮主不见'] = function()
     G.call('goto_map',74) 
 end
 t['初入丐帮-轩辕台'] = function()
-    G.call('dark') 
     G.call('地图_进入地图','轩辕台',118,52)
     G.call("talk",'',385,'   洪帮主是一个月前在临安与人比武，失手给人打死,至于害死帮主的是桃花岛岛主东邪黄药师和全真教的七个贼道！',2,1) 
     G.call("talk",'',172,'   眼下咱们有两件大事，第一件遵从帮主遗命，奉立本帮第十九代帮主；第二件是商量着怎生给老帮主报仇雪恨。',2,1) 
@@ -486,7 +483,6 @@ t['初入丐帮-轩辕台'] = function()
 
 end
 t['初入丐帮-出师'] = function()
-    G.call('dark') 
     G.call('地图_进入地图','丐帮大厅',116,4)
     if G.call('get_story',57) == 1 then 
         G.call("talk",'',84,'   '..G.call('get_fullname')..'日前听说本门内讧时是由你出面解决，帮众对你也很是信服，现在暂任你为本帮副帮主，这套【打狗棒法】本是非帮主不外传，不过今日破例，副帮主可以说也是帮主，今日就传与你了！',2,1)

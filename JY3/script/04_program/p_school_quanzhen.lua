@@ -9,7 +9,6 @@ local JY = 0
 --hide=false
 --private=false
 t['初入全真'] = function()
-    G.call('dark')
     G.call('地图_进入地图','全真大殿',33,44)  
     G.call("talk",'',166,'   今天起，你就是全真门下了。全真功夫为天下玄门正宗，你虽然有此福缘能入我全真学这上乘功夫，但是也只有【一年时间】。一年后，你仍是全真弟子，但是不能在山上修习武功，需得回到江湖间磨练自己!',2,1)
     G.call('set_note','拜入全真门下，一年之后再重出江湖') 
@@ -28,7 +27,6 @@ t['初入全真'] = function()
     if G.call('get_item',86) < 1 then 
         G.call('add_item',86,1)   
     end   
-    G.call('dark')
     G.call('地图_进入地图','演武场',10,44)  
     G.call("talk",'',167,'   为师在传功夫之前，想先问你几个问题。我想知道，你今天见到的那些人里，谁给你留下的印象最有好感？',2,1)
     local int_选项 = 0
@@ -276,7 +274,6 @@ t['初入全真-丘处机'] = function()
     end         
 end 
 t['初入全真-三月大比较'] = function()  
-    G.call('all_over') 
     G.call('地图_进入地图','演武场',10,44) 
     G.call("talk",'',166,'   今天召开全真教三月份的校场比武,'..G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]..'你出来，让我看看你的功夫进境怎么样了。',2,1) 
     G.call('add_hour',1)
@@ -347,7 +344,6 @@ t['初入全真-三月大比较'] = function()
 
 end   
 t['初入全真-六月大比较'] = function() 
-    G.call('all_over')  
     G.call('地图_进入地图','演武场',10,44) 
     G.call("talk",'',166,'   今天召开全真教六月份的校场比武,'..G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]..'你出来，让我看看你的功夫进境怎么样了。',2,1) 
     G.call('all_over')
@@ -380,7 +376,6 @@ t['初入全真-六月大比较'] = function()
     G.call('goto_map',23)
 end     
 t['初入全真-九月大比较'] = function() 
-    G.call('all_over')  
     G.call('地图_进入地图','演武场',10,44) 
     G.call("talk",'',166,'   今天召开全真教九月份的校场比武,'..G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]..'你出来，让我看看你的功夫进境怎么样了。',2,1) 
     G.call('all_over')
@@ -418,7 +413,6 @@ t['初入全真-九月大比较'] = function()
     G.call('goto_map',23)
 end  
 t['初入全真-出师'] = function() 
-    G.call('all_over') 
     G.call('地图_进入地图','全真大殿',33,44) 
     G.call("talk",'',166,'   '..G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]..'现在一年之期将至，无论你的功夫学成与否，你都不可再继续留在山上，是时候下山闯荡了。我教今后的兴衰荣辱可能就要寄托在你的身上了，切莫辜负我对你的期望！',2,1) 
     G.call('set_alltime',2,1,1,4,1)
