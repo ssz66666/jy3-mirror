@@ -156,9 +156,14 @@ t['天书_飞狐外传'] = function()
     G.call('goto_map',4)
 end
 t['天书_雪山飞狐'] = function()
-    G.call('地图_进入地图','塞外',42,67)
     local o_book_story = G.QueryName(0x101c0002)
+    if not G.call('in_team',5) then 
+        G.call("talk",'',38,'   本故事没有胡斐是无法进行的！',2,1)
+        G.call('all_over')
+        return
+    end 
     G.call('dark')
+    G.call('地图_进入地图','塞外',42,67)
     if o_book_story.流程 == 0 then
         G.call("talk",'',156,'   胡兄，我们这次比武点到为止！',1,1)
         G.call("talk",'胡一刀',5,'   依苗兄所言，来开始吧！',0,0)
@@ -246,3 +251,46 @@ t['天书_雪山飞狐'] = function()
     G.call('dark')
     G.call('goto_map',4)
 end
+t['天书_连城诀'] = function()
+    local o_book_story = G.QueryName(0x101c0003)
+    local int_mo = (228-224)*6+265
+    if not G.call('in_team',10) then 
+        G.call("talk",'',38,'   本故事没有狄云是无法进行的！',2,1)
+        G.call('all_over')
+        return
+    end 
+    G.call('dark')
+    if o_book_story.流程 == 0 then
+        G.call('地图_进入地图','地牢',111,10)
+        G.call("talk",'',10,'   这是哪里，我怎么会在这里？',0,0)
+        G.call("talk",'',394,'   你又是那狗官派来的吧，看你和上次那几个比怎么样？',2,1)
+        G.call('all_over')
+        G.call('set_team',10,0,0,0)
+        G.call('call_battle',1,111,4,999,394,0,0,0,0,0)
+        G.call("talk",'',394,'   这点本事应该不是那狗官派来的，你是谁？',2,1)
+        G.call("talk",'',10,'   我叫狄云，大哥你是？',0,0)
+        G.call("talk",'',394,'   丁典，你先休息吧，被打搅我练神功！',2,1)
+        G.call('dark')
+        G.call("talk",'',394,'   你看窗台上的菊花多美？',2,1)
+        G.call("talk",'',10,'   为何大哥每日盯着窗台看呢？',0,0)
+        G.call("talk",'',394,'   能看到这花我就知道霜华现在很好！',2,1)
+        G.call('dark')
+        G.call("talk0",'万 圭','臭小子，告诉你，你的师妹已经嫁给我了，你可以死心了！',126,163)
+        G.call("talk",'',10,'   你个禽兽，是不是你胁迫了我师妹！',0,0)
+        G.call("talk0",'万 圭','哈哈，你就死心吧，她是心甘情愿的！',126,163)
+        G.call("talk",'',10,'   师妹都嫁人了，我活着还有什么意思，我还不如。。。。。！',0,0)
+        G.call('dark')
+        G.call("talk",'',394,'   臭小子，你怎么那么傻，这不是我练成神照功救了你，今日你就真见阎王了！',2,1)
+        G.call("talk",'',10,'   你为什么要救我啊！',0,0)
+        G.call("talk",'',394,'   因为至少你知道你师妹是活着的，活着就是希望！',2,1)
+        G.call("talk",'',10,'   我知道了，谢谢大哥！',0,0)
+        o_book_story.流程 = 1
+    elseif o_book_story.流程 == 2 then
+
+    end
+    G.call('all_over')
+    G.call('add_time',2)
+    G.call('dark')
+    G.call('goto_map',4)
+end
+
