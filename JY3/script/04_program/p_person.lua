@@ -614,7 +614,7 @@ end
 --hide=true
 --private=false  
 t['聚贤庄-半瓶神仙醋']=function()
-    if G.call('in_team',38) == true then
+    if G.call('in_team',38) == true and G.call('get_point',237) > 1 then
         G.call("talk",'',38,'   '..G.QueryName(0x10030001)[tostring(1)]..'兄弟找我有什么事情吗？',2,1)
         local int_选项 = 0
         while int_选项 == 0 do
