@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_achieve = require 'c_achieve'
 local c_button = require 'c_button'
+local c_achieve = require 'c_achieve'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -3799,6 +3799,140 @@ tp = tc
 					tc.right = -116.000
 					tc.bottom = 105.000
 					tc.top = 155.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_empty')
+			tp.addChild(tc)
+			tc.name = '22'
+			tc.visible = false
+			tp = tc
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '人物'
+				tc.left = -30.000
+				tc.right = -30.000
+				tc.bottom = -10.000
+				tc.top = -10.000
+				tc.visible = false
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '头像'
+					tc.left = -253.000
+					tc.right = -193.000
+					tc.bottom = 85.500
+					tc.top = 156.500
+					tc.img = 0x56080001
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -247.000
+					tc.right = -27.000
+					tc.bottom = 66.000
+					tc.top = 126.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '半瓶神仙醋'
+					tc.font = 0x61280000
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -257.500
+					tc.right = -188.500
+					tc.bottom = 75.000
+					tc.top = 163.000
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -166.000
+					tc.right = -116.000
+					tc.bottom = 105.000
+					tc.top = 155.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_empty')
+			tp.addChild(tc)
+			tc.name = '23'
+			tc.visible = false
+			tp = tc
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '印记'
+				tc.left = -30.000
+				tc.right = -30.000
+				tc.bottom = -20.000
+				tc.top = -20.000
+				tc.visible = false
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '图片'
+					tc.left = -262.000
+					tc.right = -198.000
+					tc.bottom = 91.000
+					tc.top = 163.000
+					tc.img = 0x560f1001
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -275.000
+					tc.right = -55.000
+					tc.bottom = 76.000
+					tc.top = 136.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '飞狐外传'
+					tc.font = 0x61280000
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -267.000
+					tc.right = -195.000
+					tc.bottom = 93.000
+					tc.top = 173.000
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -193.000
+					tc.right = -143.000
+					tc.bottom = 117.000
+					tc.top = 167.000
 					tc.img = 0x56160073
 					tp = tc
 					tp = tp.parent

@@ -223,6 +223,8 @@ function t:click(tar)
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089007 --设定头像
                     local int_magic = {183,184,185,186,219,220,221}
                     G.call('set_magic',int_magic[math.random(#int_magic)])
+                elseif str == '天宇哥哥最帅了' then
+                    G.QueryName(0x10030001)[tostring(50)] = 2 --二次结义机会
                 elseif str == '自古红颜多离人' then
                     G.QueryName(0x10030001)[tostring(51)] = 2 --二次结婚机会
                 elseif str == '半瓶神仙醋' then

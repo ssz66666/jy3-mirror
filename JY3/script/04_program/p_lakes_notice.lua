@@ -181,35 +181,45 @@ t['聚贤庄任务_义结金兰']=function()
         G.call('dark')
         G.call('goto_map',4) 
         return   
-    end    
-    local  brother = {2,4,5,7,9,10,13,17,27,29,30,31,32,33,34,35,36,37,38}
+    end  
+    local o_team = G.QueryName(0x10110001)
+    local brother = {}
+    for i = 1,12 do
+        local i_role = o_team[tostring(i)]
+        if i_role then 
+            local o_role = G.QueryName(i_role )
+            if o_role.性别 and o_role.性别 == 1 then
+                table.insert(brother,i_role - 0x10040000)
+            end
+        end
+    end  
     local int_选项 = 0
     while int_选项 == 0 do
         int_选项 = G.call("menu",'',0,'',0,0,{'1,当然在队伍里','2,突然有事，改日再来吧！',},0) 
-        if int_选项 == 1 then
-            local p = 0 
-            local truebrother = {}
-            local str0 = {}
-            for i = 1,#brother do 
-                for n = 1,12 do 
-                    local o_team = G.QueryName(0x10110001)
-                    if o_team[tostring(n)]  == brother[i] + 0x10040000 then 
-                        local result = true       
-                        for j = 70,75 do 
-                            if brother[i] == G.QueryName(0x10030001)[tostring(j)] then 
-                                result = false  
-                            end    
-                        end                                                             
-                        if result == true  then 
-                            p = p + 1
-                            truebrother[p] = brother[i]
-                        end    
-                    end
-                end
-            end  
-            if p == 0 then 
+        if int_选项 == 1 then 
+            if #brother == 0 then 
                 G.call("talk",'',38,'   有没有搞错！把你想要结义的人一起带来见我！',1,1) 
             else
+                local p = 0 
+                local truebrother = {}
+                local str0 = {}
+                for i = 1,#brother do 
+                    for n = 1,12 do 
+                        local o_team = G.QueryName(0x10110001)
+                        if o_team[tostring(n)]  == brother[i] + 0x10040000 then 
+                            local result = true       
+                            for j = 70,75 do 
+                                if brother[i] == G.QueryName(0x10030001)[tostring(j)] then 
+                                    result = false  
+                                end    
+                            end                                                             
+                            if result == true  then 
+                                p = p + 1
+                                truebrother[p] = brother[i]
+                            end    
+                        end
+                    end
+                end 
                 G.call('all_over') 
                 for i = 1,p do 
                     local name = G.QueryName(0x10040000+truebrother[i]).姓名
@@ -300,47 +310,58 @@ t['聚贤庄任务_良辰吉日']=function()
         G.call("talk",'',0,'   被我看中，那是她的福气。你且猜猜这个女孩是谁？',0,0) 
         G.call("talk",'',38,'   她现在你的队伍里吗？',1,1) 
     end   
-    local  wife = {1,3,6,8,12,14,15,16,18,19,20,22,24,25,26,28,39,40,130,179,248,252}
-    local str = {'曼陀山庄','恒山派','古墓派','绝情谷','桃花岛','庄家大院','蒙古郡主','日月神教','峨眉派','星宿派','闯王之女','青竹帮','华山派','回部','神龙教','天鹰教','郭二小姐','药王庄','牛家村','日月神教','铃剑双侠','明教'}
+    local o_team = G.QueryName(0x10110001)
+    local wife = {}
+    for i = 1,12 do
+        local i_role = o_team[tostring(i)]
+        if i_role then 
+            local o_role = G.QueryName(i_role )
+            if o_role.性别 and o_role.性别 ~= 1 then
+                table.insert(wife,i_role - 0x10040000)
+            end
+        end
+    end
+    --local  wife = {1,3,6,8,12,14,15,16,18,19,20,22,24,25,26,28,39,40,130,179,248,252}
+    --local str = {'曼陀山庄','恒山派','古墓派','绝情谷','桃花岛','庄家大院','蒙古郡主','日月神教','峨眉派','星宿派','闯王之女','青竹帮','华山派','回部','神龙教','天鹰教','郭二小姐','药王庄','牛家村','日月神教','铃剑双侠','明教'}
     local int_选项 = 0
     while int_选项 == 0 do
         int_选项 = G.call("menu",'',0,'',0,0,{'1,当然在队伍里','2,突然觉得娶老婆很恐怖，我不娶了',},0) 
         if int_选项 == 1 then
-            local p = 0 
-            local truewife = {}
-            local str0 = {}
-            for i = 1,#wife do 
-                for n = 1,12 do 
-                    local o_team = G.QueryName(0x10110001)
-                    if o_team[tostring(n)]  == wife[i] + 0x10040000  then 
-                        local result = true 
-                        if wife[i] ~= G.QueryName(0x10030001)[tostring(13)] then      
-                            for j = 52,62 do 
-                                if wife[i] == G.QueryName(0x10030001)[tostring(j)] then 
-                                    result = false  
-                                end    
-                            end   
-                        else   
-                            result = false 
-                        end
-                        if result == true  then 
-                            p = p + 1
-                            truewife[p] = wife[i]
-                            str0[p] = str[i]
-                        end    
-                    end
-                end
-            end
             -- for i = 1,p do 
             --     print(str0[i])
             -- end    
-            if p == 0 then 
+            if #wife == 0 then 
                 G.call("talk",'',38,'   有没有搞错！把你想娶得女人一起带来见我，再给你们办理婚事。你自己单方面同意，于程序上行不通！',1,1) 
             else
+                local p = 0 
+                local truewife = {}
+                local str0 = {}
+                for i = 1,#wife do 
+                    for n = 1,12 do 
+                        local o_team = G.QueryName(0x10110001)
+                        if o_team[tostring(n)]  == wife[i] + 0x10040000  then 
+                            local result = true 
+                            if wife[i] ~= G.QueryName(0x10030001)[tostring(13)] then      
+                                for j = 52,62 do 
+                                    if wife[i] == G.QueryName(0x10030001)[tostring(j)] then 
+                                        result = false  
+                                    end    
+                                end   
+                            else   
+                                result = false 
+                            end
+                            if result == true  then 
+                                p = p + 1
+                                truewife[p] = wife[i]
+                                --str0[p] = str[i]
+                            end    
+                        end
+                    end
+                end
                 G.call('all_over') 
                 for i = 1,p do 
                     local name = G.QueryName(0x10040000+truewife[i]).姓名
-                    G.call("talk",'',38,'   是不是【'..str0[i]..'】的'..name..'?',1,1) 
+                    G.call("talk",'',38,'   是不是'..name..'?',1,1) 
                     local int_选项 = 0
                     while int_选项 == 0 do
                         int_选项 = G.call("menu",'',0,'',0,0,{'1,果然神机妙算，就是她！','2,你慢慢猜吧','3,突然觉得娶老婆很恐怖，我不娶了'},0) 

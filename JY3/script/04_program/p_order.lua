@@ -319,11 +319,11 @@ t['write_min'] = function()
 end
 t['通用_记录时间'] = function() 
     local n = os.time()
-    G.misc().time = math.floor(n/60) 
+    G.misc().记录时间 = math.floor(n/60) 
 end
 t['通用_读取时间差'] = function()    
     local time1 = math.floor(os.time()/60)
-    local time2 = G.misc().time
+    local time2 = G.misc().记录时间
     local diffmin = time1 - time2
     return diffmin
 end
@@ -335,9 +335,12 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('join',36)
-    local o_book_story = G.QueryName(0x101c0004)
-    o_book_story.流程 = 3
+    for i = 1,40 do 
+        G.call('join',i)
+    end
+    -- G.call('join',36)
+    -- local o_book_story = G.QueryName(0x101c0004)
+    -- o_book_story.流程 = 3
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0
@@ -354,8 +357,8 @@ t['new_test'] = function()
     --         break
     --     end
     -- end
-    G.call('天书_天龙八部') 
-    G.call('通用_印记状态')
+    -- G.call('天书_天龙八部') 
+    -- G.call('通用_印记状态')
     -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 
