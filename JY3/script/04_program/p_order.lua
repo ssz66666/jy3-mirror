@@ -337,7 +337,7 @@ end
 t['new_test'] = function()
     G.call('join',36)
     local o_book_story = G.QueryName(0x101c0004)
-    o_book_story.流程 = 1
+    o_book_story.流程 = 3
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0
@@ -775,7 +775,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
     o_battle.背景 = int_map  --战斗地图
     o_battle.模式 = int_mod  --战斗模式
-    local int_战斗难度
+    local int_战斗难度 = 50
     local int_难度 =  G.QueryName(0x10160000 +G.call('get_point',143)).难度
     if int_难度 == 1 then
         int_战斗难度 = 25 
