@@ -1655,7 +1655,7 @@ t['切磋'] = function()
 			local int_mo = {}
 			for i = 1,8 do 
 				if G.call('get_role',o_role_人物代码,i) < G.call('get_role',o_role_人物代码,900 + i) then 
-				    table.insert(int_mo,1)
+					table.insert(int_mo,i)
 				end
 			end
 			if #int_mo == 0 then
