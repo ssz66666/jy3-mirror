@@ -764,9 +764,9 @@ t['途径牛家村-乞丐乙']=function()
                 end 
                 local int_金钱_1 = G.call('get_point',110)
                 local int_赌本_1 = G.call('get_point',130)
-                if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) ) then 
-                    G.call('通用_强退游戏') 
-                end 
+                -- if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) ) then 
+                --     G.call('通用_强退游戏') 
+                -- end 
                 G.call('all_over')
                 G.call('turn_map')
             elseif int_选项 == 2 then 

@@ -84,9 +84,9 @@ t['初入丐帮-全冠清'] = function()
                 else
                    G.call("talk",'',173,'   不赌了，都被你赢光了！',1,1)
                 end 
-                if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) ) then 
-                    G.call('通用_强退游戏') 
-                end 
+                -- if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) ) then 
+                --     G.call('通用_强退游戏') 
+                -- end 
                 G.call('all_over')
                 G.call('turn_map')
             elseif int_选项 == 2 then 
