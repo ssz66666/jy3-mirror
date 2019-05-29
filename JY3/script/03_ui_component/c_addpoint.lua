@@ -309,6 +309,8 @@ function t:click(tar)
             self.obj.getChildByName('显示').getChildByName('名').text = '厂公'
             self.头像.img = 0x560800e2
             G.Play(0x4901000f, 1,false,100) 
+        elseif str == '天宇哥哥最帅了' then
+            G.Play(0x4901000f, 1,false,100) 
         elseif str == '自古红颜多离人' then
             G.Play(0x4901000f, 1,false,100) 
         elseif str == '半瓶神仙醋' then
