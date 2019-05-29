@@ -335,9 +335,9 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    -- G.call('join',36)
-    -- local o_book_story = G.QueryName(0x101c0004)
-    -- o_book_story.流程 = 1
+    G.call('join',36)
+    local o_book_story = G.QueryName(0x101c0004)
+    o_book_story.流程 = 1
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0
@@ -354,8 +354,8 @@ t['new_test'] = function()
     --         break
     --     end
     -- end
-    -- G.call('天书_天龙八部') 
-    -- G.call('通用_印记状态')
+    G.call('天书_天龙八部') 
+    G.call('通用_印记状态')
     -- print(G.call('get_point',124),G.call('get_newpoint',124))
 end   
 t['in_test'] = function() 

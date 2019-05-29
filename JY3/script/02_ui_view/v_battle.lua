@@ -5148,10 +5148,10 @@ tp = tc
 		tc = G.Quad()
 		tp.addChild(tc)
 		tc.name = 'all1'
-		tc.left = -191.000
-		tc.right = -91.000
-		tc.bottom = 80.000
-		tc.top = 180.000
+		tc.left = -97.000
+		tc.right = 3.000
+		tc.bottom = 66.000
+		tc.top = 166.000
 		tc.blend = 1
 		tc.img = 0x33049999
 		tp = tc

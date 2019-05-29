@@ -406,6 +406,12 @@ t['天书_天龙八部'] = function()
         G.call('地图_进入地图','少林寺内阁',134,59)
         G.call("talk",'',36,'   (噫，这小沙弥在拍什么：一-梦-如-是，好像拿了什么经书)',0,0)
         G.call("talk",'',239,'   有盗贼进入了少林寺',2,1)
+        G.call('all_over')
+        G.call('set_team',36,0,0,0)
+        G.call('call_battle',1,134,4,200,110,175,176,177,0,0,0,66) 
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1  then
+        end
     end
     G.call('all_over')
     G.call('add_time',2)
