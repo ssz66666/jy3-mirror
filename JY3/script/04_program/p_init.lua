@@ -120,6 +120,27 @@ t['地图系统_游戏时长监控'] = function()
 		end
 	end
 end
+t['地图系统_游戏加速监控'] = function()
+	G.misc().游戏时间 = 0
+	G.misc().监控时间 = -7
+	while true do 
+		G.wait_time(60000) 
+		G.misc().游戏时间 = G.misc().游戏时间 + 1
+		G.misc().监控时间 = G.misc().监控时间 - 1
+		if G.misc().游戏时间 ~= math.abs(G.misc().监控时间+7) then
+			G.call('通用_强退游戏')  
+		end
+		if G.misc().测试 == 1 then 
+			G.call('notice1','游戏时间'..G.misc().游戏时间..'时间差'..G.call('通用_读取时间差'))
+		end
+		if G.misc().游戏时间%5 == 0 then
+			if G.misc().游戏时间 - G.call('通用_读取时间差')   > 2 then
+				G.call('通用_强退游戏')
+			end 
+		end
+
+	end
+end
 t['地图系统_防修改监控'] = function()
 	local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
 	if int_成就 > math.abs(G.call('get_newpoint',80)) then 

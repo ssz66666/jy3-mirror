@@ -249,7 +249,6 @@ t['通用_读档'] = function(int_档案编号)
 		local buf = G.unzip(zipbuf);
 		local obj = eris.unpersist(perms, buf);
         load_ofile(obj);
-        G.call('write_min')
         if int_档案编号 > 0 and int_档案编号 < 5 then 
             if int_档案编号 < 4 then 
                 G.call("goto_map",G.call('get_point',140)-0x10060000)
@@ -263,6 +262,9 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().通天塔 == nil then 
                 G.misc().通天塔 = 0
             end
+            G.call('write_min')
+            G.call('通用_记录时间')
+            G.start_program('地图系统_游戏加速监控')
             G.start_program('地图系统_游戏时长监控')
         end 	
         if int_档案编号 == 0 then 
@@ -302,9 +304,28 @@ t['通用_读档'] = function(int_档案编号)
         end 
     end
 end
+t['read_diffmin'] = function() 
+    if G.misc().time == nil or G.misc().time == 0 then 
+       return  31
+    end    
+    local time1 = math.floor(os.time()/60)
+    local time2 = G.misc().time
+    local diffmin = time1 - time2
+    return diffmin
+end
 t['write_min'] = function() 
     local n = os.time()
     G.misc().time = math.floor(n/60) 
+end
+t['通用_记录时间'] = function() 
+    local n = os.time()
+    G.misc().time = math.floor(n/60) 
+end
+t['通用_读取时间差'] = function()    
+    local time1 = math.floor(os.time()/60)
+    local time2 = G.misc().time
+    local diffmin = time1 - time2
+    return diffmin
 end
 t['write_hour'] = function() 
     local n = os.time()
@@ -438,15 +459,6 @@ t['puzzle'] = function()
         G.call('notice1','很遗憾没有完成！')
     end    
 end   
-t['read_diffmin'] = function() 
-    if G.misc().time == nil or G.misc().time == 0 then 
-       return  31
-    end    
-    local time1 = math.floor(os.time()/60)
-    local time2 = G.misc().time
-    local diffmin = time1 - time2
-    return diffmin
-end
 t['gameout'] = function()  --游戏通关画面
     G.Stop(1)
     G.addUI('v_gameout')
