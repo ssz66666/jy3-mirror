@@ -267,6 +267,23 @@ t['聚贤庄任务_义结金兰']=function()
                                     end    
                                 end      
                                 G.call("talk",'',38,'   好吧，我如你们所愿。以后有福同享，有难同当，不求你们同年同月同月生，但求你们同年同月同日死！',1,1) 
+                                local int_no = G.misc().brother 
+                                local o_ybyt = G.QueryName(0x10170016)
+                                local ybyt = 0
+                                for i = 1,#o_ybyt.进度列表 do
+                                    if o_ybyt.进度列表[i].编号 == int_no then 
+                                        o_ybyt.进度列表[i].完成 = 1
+                                    end    
+                                    if o_ybyt.进度列表[i].完成 == 1 then
+                                        ybyt = ybyt + 1
+                                    end   
+                                end    
+                                if o_ybyt.完成 == 0 then 
+                                    if ybyt == #o_ybyt.进度列表 then 
+                                        o_ybyt.完成 = 1
+                                        G.call('notice1','完成成就【义薄云天】') 
+                                    end    
+                                end  
                                 local int_no = G.misc().brother                                   
                                 G.call('add_role',int_no,1,5000)
                                 G.call('add_role',int_no,2,5000)
