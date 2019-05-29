@@ -471,11 +471,11 @@ t['回答问题']=function()
         G.call('all_over')
     end
     local int_no = 0
-    if point >= 500 then
+    if point >= 500 and point < 1500 then
         int_no = 1
-    elseif point >= 1500 then 
+    elseif point >= 1500  and point < 3000 then 
         int_no = 2
-    elseif point >= 3000 then 
+    elseif point >= 3000 and point < 5000 then 
         int_no = 3
     elseif point >= 5000 then 
         int_no = 4
