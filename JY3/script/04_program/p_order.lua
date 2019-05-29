@@ -263,8 +263,8 @@ t['通用_读档'] = function(int_档案编号)
                 G.misc().通天塔 = 0
             end
             G.call('write_min')
-            G.call('通用_记录时间')
-            G.start_program('地图系统_游戏加速监控')
+            --G.call('通用_记录时间')
+            --G.start_program('地图系统_游戏加速监控')
             G.start_program('地图系统_游戏时长监控')
         end 	
         if int_档案编号 == 0 then 
