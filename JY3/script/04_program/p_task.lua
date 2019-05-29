@@ -58,8 +58,9 @@ t['门派-桃花岛']=function()
                     if G.call('get_magic',234) == 0 then
                         G.call("talk",'',83,'   既然如此就看你的造化了！',2,1)
                         G.call('all_over') 
-                        G.call('puzzle')
-                        if  G.misc().拼图结果 == 1 and 1800 - G.misc().计时器 <= 900 then
+                        --G.call('puzzle')
+                        --if  G.misc().拼图结果 == 1 and 1800 - G.misc().计时器 <= 900 then
+                        if G.call('organ') then   
                             G.call("talk",'',0,'   这【落英缤纷】果然了得！',0,0)
                             G.call('learnmagic',234)
                             G.call('set_magic_lv',234,5)
