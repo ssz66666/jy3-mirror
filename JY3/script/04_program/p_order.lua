@@ -537,6 +537,7 @@ t['重生']=function()
     local int_存档位置 = G.call('get_point',143) 
     local 礼包 = G.misc().礼包
     local table_继承装备 = {}
+    local int_周目 = G.call('get_point',237)
     local int_清除成就 = G.misc().清除成就
     local int_继承个数 = #o_store.装备
     table_继承装备 = G.call('通用_记录继承装备',0)
