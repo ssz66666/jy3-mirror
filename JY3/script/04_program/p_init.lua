@@ -1651,8 +1651,19 @@ t['切磋'] = function()
 		G.call('all_over')
 		G.call('call_battle',1,10,1,50 + G.call('get_love',o_role_人物代码),o_role_人物代码,0,0,0,0,0)
 		local o_battle_结果 = G.call('get_battle')
-        if o_battle_结果  == 1 then 
-			local num = math.random(8)
+		if o_battle_结果  == 1 then 
+			local int_mo = {}
+			for i = 1,8 do 
+				if G.call('get_role',o_role_人物代码,i) < G.call('get_role',o_role_人物代码,900 + i) then 
+				    table.insert(int_mo,1)
+				end
+			end
+			if #int_mo == 0 then
+				G.call("talk",'',o_role_人物代码,'   太痛快了，看来你的武功精进不少，也使我受益匪浅啊。下次有机会咱们再来比过。',1,1)  
+				G.call('notice1','【'..o_role_人物.姓名..'】全部属性已经达到上限！')
+				return 
+			end
+			local num = int_mo[math.random(#int_mo)]
 			local num0 = math.floor(o_role_人物[tostring(9)]/25)
 			local num1 = 0
 			if num0 > 0 then 
