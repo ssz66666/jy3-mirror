@@ -132,6 +132,9 @@ t['战斗系统_主角监控'] = function()
                             end
                         end
                     end
+                    if G.call('通用_取得内功轻功特效',0,17) then
+                        int_队友 = int_队友 + 1
+                    end
                     if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then 
                         int_天罡效果 = int_队友
                     end 
@@ -2636,6 +2639,9 @@ t['magic_power1'] = function(int_id,int_no)
             end
         end
     end
+    if G.call('通用_取得内功轻功特效',0,17) then
+        int_队友 = int_队友 + 1
+    end
     if i_magic_阵法 then 
         if G.QueryName(i_magic_阵法).附加效果 == 3 then
             int_五岳剑阵效果 = int_队友 *5
@@ -2735,7 +2741,11 @@ t['magic_power1'] = function(int_id,int_no)
             if math.random(100) > 80 and (G.call('通用_取得人物特效',0,22) or G.call('通用_取得装备特效',0,206))  then --朱雀被动效果
                 hurt = hurt 
             elseif  int_玉女剑阵效果 == 1 and i_skill == 0x1005003e then --玉女剑阵破防效果判定
-                hurt = math.floor(hurt *(1- d/400)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
+                if G.call('通用_取得内功轻功特效',0,17) then
+                    hurt = math.floor(hurt *(1- d/800)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                else
+                    hurt = math.floor(hurt *(1- d/400)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
+                end
             elseif G.call('通用_取得人物特效',0,21)  then --武当被动和真武阵判断
                 hurt = math.floor(hurt *(1- c/400)*(1- d/400*(1 - 0.2-int_真武效果/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
             else 
@@ -3498,6 +3508,9 @@ t['magic_power3'] = function(int_id,int_no)
                 int_队友 = int_队友 + 1
             end
         end
+    end
+    if G.call('通用_取得内功轻功特效',0,17) then
+        int_队友 = int_队友 + 1
     end
     if i_magic_阵法 then 
         if G.QueryName(i_magic_阵法).附加效果 == 2 then

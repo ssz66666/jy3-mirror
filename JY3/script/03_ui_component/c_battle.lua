@@ -530,6 +530,9 @@ function t:click(tar)
                 end
             end
         end
+        if G.call('通用_取得内功轻功特效',0,17) then
+            int_队友 = int_队友 + 1
+        end
         for i = 1,8 do 
             if tar == self.按钮.getChildByName(tostring(i)) or tar == self.副按钮.getChildByName(tostring(i)) then 
                 G.trig_event('监控')

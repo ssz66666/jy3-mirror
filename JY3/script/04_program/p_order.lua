@@ -3341,6 +3341,27 @@ t['通用_取得套装']=function(int_编号,int_套装号)
     end
     return int_套装数
 end  
+t['通用_取得内功轻功特效']=function(int_编号,int_效果)
+    local result = false
+    local o_body = G.QueryName(0x10030001)
+    local o_role = o_body
+    if int_编号 == 0 then
+        if (G.call('get_point',196) and G.QueryName(G.call('get_point',196) ).内功轻功效果 == int_效果)  or (G.call('get_point',197) and G.QueryName(G.call('get_point',197) ).内功轻功效果 == int_效果)  then 
+            result = true
+        end
+    else
+        o_role = G.QueryName(0x10040000 + int_编号)
+        for i = 1,3 do 
+            local i_skill = o_role['技能'..i]
+            if i_skill  and G.QueryName(i_skill).内功轻功效果 == int_效果 then 
+                result = true
+                break
+            end
+        end
+
+    end
+    return result
+end
 t['通用_卸下装备']=function(i_role,i_equip)
     local int_生命 = 0
     local int_内力 = 0
