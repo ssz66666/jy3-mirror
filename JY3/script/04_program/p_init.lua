@@ -1249,7 +1249,7 @@ t['挖矿时间条'] = function()
 		return
 	end 
 	ui2 = G.getUI('v_dig');
-	c = ui.c_dig
+	c = ui2.c_dig
 	while true do 
 		G.wait_time(100)
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5

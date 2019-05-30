@@ -360,6 +360,7 @@ t['回答问题']=function()
                 G.call('all_over') 
             end
         end
+        print(G.QueryName(0x10160000 +G.call('get_point',143)).难度)
         local 印记 = {}
         local int_印记数量 = 0
         for i = 1,14 do
