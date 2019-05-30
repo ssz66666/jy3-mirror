@@ -17,6 +17,10 @@ function t:start()
     G.misc().作弊菜单 = 0
     G.misc().开启 = 0
     G.misc().清除成就 = 0
+    if G.misc().切磋开关 == nil  then
+        G.misc().切磋开关 = 1  
+    end
+    self.设置.getChildByName('data2').text = G.misc().切磋开关
     if not G.getUI('v_title')  then
         self.按钮.getChildByName('密令').visible = true
         self.按钮.getChildByName('返回').visible = true
@@ -318,6 +322,15 @@ function t:click(tar)
     G.QueryName(0x10030001)[tostring(236)] = dt * 10
     G.SetGlobalVolume(0.2*dn )
     self.设置.getChildByName('data1').text = tostring(dn)  
+    if tar == self.设置.getChildByName('left2') or  self.设置.getChildByName('right2') then 
+        G.Play(0x49011003, 1,false,100) 
+        if G.misc().切磋开关 == 0 then 
+            G.misc().切磋开关 = 1
+        else
+            G.misc().切磋开关 = 0
+        end
+    end 
+    self.设置.getChildByName('data2').text = G.misc().切磋开关
     if tar == self.设置.getChildByName('确定') then 
         G.Play(0x49011003, 1,false,100) 
         G.QueryName(0x10030001)[tostring(236)] = dt * 25

@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_system = require 'c_system'
 local c_button = require 'c_button'
+local c_system = require 'c_system'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -494,6 +494,8 @@ tp = tc
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
 		tc.name = '设置'
+		tc.bottom = 20.000
+		tc.top = 20.000
 		tc.visible = false
 		tp = tc
 			tc = G.TextQuad()
@@ -528,15 +530,30 @@ tp = tc
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
-			tc.name = '说明'
-			tc.pivotX = 0.000
-			tc.left = -257.000
-			tc.right = 833.000
-			tc.bottom = -245.000
-			tc.top = -59.000
+			tc.name = '切磋开关'
+			tc.left = -202.000
+			tc.right = 198.000
+			tc.bottom = -89.000
+			tc.top = 11.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
-			tc.text = '[08]【说明】：[0a]战斗速度数值[03]越小越快[0a]；游戏声音数值越大音量越大，为[03]0[0a]时则为关闭音量，5为最大！'
+			tc.text = '切磋开关'
+			tc.font = 0x61400000
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '说明'
+			tc.pivotX = 0.000
+			tc.left = -270.000
+			tc.right = 820.000
+			tc.bottom = -275.000
+			tc.top = -89.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '[08]【说明】：[0a]战斗速度数值[03]越小越快[0a]；游戏声音数值越大音量越大，为[03]0[0a]时则为关闭音量，5为最大；切磋开关0关1开；'
 			tc.wrap = true
 			tc.font = 0x61300000
 			tc.align = 1
@@ -574,13 +591,28 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = 'data2'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -110.000
+			tc.top = -70.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '1'
+			tc.font = 0x61380000
+			tc.style = 10
+			tp = tc
+			tp = tp.parent
+			--end
 			tc = G.loadUI('v_button')
 			tp.addChild(tc)
 			tc.name = 'left'
-			tc.left = -117.000
-			tc.right = -103.000
-			tc.bottom = 100.000
-			tc.top = 120.000
+			tc.left = -124.000
+			tc.right = -96.000
+			tc.bottom = 90.000
+			tc.top = 130.000
 			tp = tc
 				tc = tp.getChildByName('img')
 				if tc then
@@ -590,6 +622,7 @@ tp = tc
 				tp = tp.parent
 				--end
 			com = tp.c_button
+			com['customsize'] =true
 			com['img_normal'] =1444282398.000
 			com['img_hover'] =1444282399.000
 			tp = tp.parent
@@ -597,9 +630,10 @@ tp = tc
 			tc = G.loadUI('v_button')
 			tp.addChild(tc)
 			tc.name = 'left1'
-			tc.left = -117.000
-			tc.right = -103.000
-			tc.top = 20.000
+			tc.left = -124.000
+			tc.right = -96.000
+			tc.bottom = -10.000
+			tc.top = 30.000
 			tp = tc
 				tc = tp.getChildByName('img')
 				if tc then
@@ -609,6 +643,28 @@ tp = tc
 				tp = tp.parent
 				--end
 			com = tp.c_button
+			com['customsize'] =true
+			com['img_normal'] =1444282398.000
+			com['img_hover'] =1444282399.000
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_button')
+			tp.addChild(tc)
+			tc.name = 'left2'
+			tc.left = -124.000
+			tc.right = -96.000
+			tc.bottom = -110.000
+			tc.top = -70.000
+			tp = tc
+				tc = tp.getChildByName('img')
+				if tc then
+				tc.img = 0x5616001e
+				tp = tc
+				end
+				tp = tp.parent
+				--end
+			com = tp.c_button
+			com['customsize'] =true
 			com['img_normal'] =1444282398.000
 			com['img_hover'] =1444282399.000
 			tp = tp.parent
@@ -616,10 +672,10 @@ tp = tc
 			tc = G.loadUI('v_button')
 			tp.addChild(tc)
 			tc.name = 'right'
-			tc.left = 103.000
-			tc.right = 117.000
-			tc.bottom = 100.000
-			tc.top = 120.000
+			tc.left = 96.000
+			tc.right = 124.000
+			tc.bottom = 90.000
+			tc.top = 130.000
 			tc.scaleX = -1.000
 			tp = tc
 				tc = tp.getChildByName('img')
@@ -630,6 +686,7 @@ tp = tc
 				tp = tp.parent
 				--end
 			com = tp.c_button
+			com['customsize'] =true
 			com['img_normal'] =1444282398.000
 			com['img_hover'] =1444282399.000
 			tp = tp.parent
@@ -637,9 +694,10 @@ tp = tc
 			tc = G.loadUI('v_button')
 			tp.addChild(tc)
 			tc.name = 'right1'
-			tc.left = 103.000
-			tc.right = 117.000
-			tc.top = 20.000
+			tc.left = 96.000
+			tc.right = 124.000
+			tc.bottom = -10.000
+			tc.top = 30.000
 			tc.scaleX = -1.000
 			tp = tc
 				tc = tp.getChildByName('img')
@@ -650,6 +708,29 @@ tp = tc
 				tp = tp.parent
 				--end
 			com = tp.c_button
+			com['customsize'] =true
+			com['img_normal'] =1444282398.000
+			com['img_hover'] =1444282399.000
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_button')
+			tp.addChild(tc)
+			tc.name = 'right2'
+			tc.left = 96.000
+			tc.right = 124.000
+			tc.bottom = -110.000
+			tc.top = -70.000
+			tc.scaleX = -1.000
+			tp = tc
+				tc = tp.getChildByName('img')
+				if tc then
+				tc.img = 0x5616001e
+				tp = tc
+				end
+				tp = tp.parent
+				--end
+			com = tp.c_button
+			com['customsize'] =true
 			com['img_normal'] =1444282398.000
 			com['img_hover'] =1444282399.000
 			tp = tp.parent
