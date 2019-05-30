@@ -433,20 +433,20 @@ t['dig_earthworms'] = function()
     G.removeUI('v_dig_earthworms') 
 end 
 t['拼图_计时器'] = function()
-    G.misc().计时器 =  1800
+    G.misc().计时器 =  1800.002
     while true do 
         local ui ;
         if not G.getUI('v_puzzle') then 
             return
         end 
         ui = G.getUI('v_puzzle');
-        ui.getChildByName('时间').text = string.format("%.2d:%.2d", math.floor(G.misc().计时器/60)%60 , G.misc().计时器%60) 
+        ui.getChildByName('时间').text = string.format("%.2d:%.2d", math.floor(G.misc().计时器/60)%60 , math.floor(G.misc().计时器)%60) 
         local c = ui.c_puzzle;
         G.wait_time(1000) 
         G.misc().计时器  =  G.misc().计时器 - 1  
         local s = G.misc().计时器
-        ui.getChildByName('时间').text = string.format("%.2d:%.2d" , math.floor(G.misc().计时器/60)%60 , G.misc().计时器%60) 
-        if G.misc().计时器 == 0 then
+        ui.getChildByName('时间').text = string.format("%.2d:%.2d" , math.floor(G.misc().计时器/60)%60 , math.floor(G.misc().计时器)%60) 
+        if G.misc().计时器 <= 0 then
             break 
         end
     end
