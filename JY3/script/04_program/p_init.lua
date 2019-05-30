@@ -1248,7 +1248,8 @@ t['挖矿时间条'] = function()
 	if not G.getUI('v_dig') then 
 		return
 	end 
-    ui2 = G.getUI('v_dig');
+	ui2 = G.getUI('v_dig');
+	c = ui.c_dig
 	while true do 
 		G.wait_time(100)
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
@@ -1259,6 +1260,7 @@ t['挖矿时间条'] = function()
 			ui2.getChildByName('口白').text = '   换口气再来'
 			G.wait_time(500)
 			G.trig_event('挖矿结束')
+			c.挖矿 = 1
 			break
 		end 
 	end 

@@ -2025,7 +2025,7 @@ t['小游戏-野球拳']=function()
                     end
                     G.call("talk",'？？？？',247,'   见好就收也不失为一种胜利！',1,1) 
                     G.call('add_magicexp',83,math.floor(10*2^(int_连胜-11)) ) 
-                    if int_连胜 >= 18 then 
+                    if int_连胜 >= 17 then 
                         G.call("talk",'？？？？',247,'   表现不错，给你点奖励吧！',1,1) 
                         G.call('通用_抽礼物',9,0) 
                         if int_连胜 >= 21 then 
