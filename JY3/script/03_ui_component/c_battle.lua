@@ -530,7 +530,7 @@ function t:click(tar)
                 end
             end
         end
-        if G.call('通用_取得内功轻功特效',0,17) then
+        if G.call('通用_取得内功轻功特效',0,18) then
             int_队友 = int_队友 + 1
         end
         for i = 1,8 do 
