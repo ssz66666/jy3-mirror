@@ -1166,6 +1166,9 @@ t['goto_map']=function(int_地图代码) --跳转地图
     G.call('mapon')
     if G.QueryName(0x10030001)[tostring(140)] ~= 0x10060001 then 
         if G.call('read_diffmin') >= 20 then--自动记录存档 
+            if G.misc().切磋开关 == nil  then
+                G.misc().切磋开关 = 1  
+            end
             if G.misc().出师 and  G.call('get_point',4) >= 50 and G.call('get_point',237) > 1 and G.misc().切磋开关 == 1 then
                 G.trig_event('事件_随机切磋')
             end
