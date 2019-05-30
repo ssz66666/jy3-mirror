@@ -431,6 +431,7 @@ t['地图系统_事件响应'] = function()
 			ui.getChildByName('击打值').text = tostring(p)
 			if p > h then 
 				ui.getChildByName('耐久').text = '0'
+				c.挖矿值 = 0
 			else
 				c.挖矿值 = c.挖矿值 + p
 				ui.getChildByName('耐久').text = h - p
@@ -578,6 +579,7 @@ t['地图系统_事件响应'] = function()
 			ui3.getChildByName('伐木值').text = tostring(p)
 			if p > h then 
 				ui3.getChildByName('耐久').text = '0'
+				c.伐木值 = 0
 			else
 				c.伐木值 = c.伐木值 + p
 				ui3.getChildByName('耐久').text = h - p
@@ -1249,7 +1251,7 @@ t['挖矿时间条'] = function()
 		return
 	end 
 	ui2 = G.getUI('v_dig');
-	c = ui2.c_dig
+	local c = ui2.c_dig
 	while true do 
 		G.wait_time(100)
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5

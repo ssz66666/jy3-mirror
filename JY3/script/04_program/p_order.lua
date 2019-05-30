@@ -125,7 +125,6 @@ t['通用_存档'] = function(int_档案编号)
     local time =  os.date()
     local lv = G.call('get_point',4)
     local diffty = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-    print('diffty123',int_档案编号,diffty)
     local week = G.call('get_point',237)
     local clear = G.call('get_point',238)
     local place = G.call('get_point',140) - 0x10060000
@@ -197,7 +196,6 @@ t['通用_存档'] = function(int_档案编号)
             o_files.记录 = place
             o_files.次数 = number  
         end 
-        print('难度',o_files.难度)
         G.call('通用_存档',5)
     end
 end
@@ -351,7 +349,7 @@ end
 t['new_test'] = function()
     G.call('join',36)
     local o_book_story = G.QueryName(0x101c0004)
-    o_book_story.流程 = 3
+    o_book_story.流程 = 6
     G.call('天书_天龙八部') 
     G.call('通用_印记状态')
     -- while true do 

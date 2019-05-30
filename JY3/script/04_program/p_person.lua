@@ -235,8 +235,10 @@ t['地图系统_人物'] = function()
                 end
             end    
             local o_zzqy = G.QueryName(0x10170014)
-            o_zzqy.进度列表[1].当前进度 = o_zzqy.进度列表[1].当前进度 + G.misc().蚯蚓数量
-            G.call('set_newpoint',80,G.call('get_newpoint',80)- G.misc().蚯蚓数量  )
+            if o_zzqy.进度列表[1].当前进度 < 20000 then 
+                o_zzqy.进度列表[1].当前进度 = o_zzqy.进度列表[1].当前进度 + G.misc().蚯蚓数量
+                G.call('set_newpoint',80,G.call('get_newpoint',80)- G.misc().蚯蚓数量  )
+            end
             if o_zzqy.进度列表[1].当前进度 >= 10000 then 
                 o_zzqy.进度列表[1].当前进度 = 10000
                 o_zzqy.进度列表[1].完成 = 1
