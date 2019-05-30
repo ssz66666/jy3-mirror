@@ -125,6 +125,7 @@ t['通用_存档'] = function(int_档案编号)
     local time =  os.date()
     local lv = G.call('get_point',4)
     local diffty = G.QueryName(0x10160000 +G.call('get_point',143)).难度
+    print('diffty123',int_档案编号,diffty)
     local week = G.call('get_point',237)
     local clear = G.call('get_point',238)
     local place = G.call('get_point',140) - 0x10060000
@@ -133,7 +134,7 @@ t['通用_存档'] = function(int_档案编号)
     local buf = eris.persist(perms, obj);
     local zipbuf = G.zip(buf);
     local path = G.GetSavePath('R4.grp');
-    if int_档案编号 < 5  then
+    if int_档案编号 < 5 and  int_档案编号 > 0 then
         local path = GF.GetSavePath('R5.grp')
         local file,err=io.open(path)--打开文件
         if file then--如果有这个文件
@@ -174,6 +175,7 @@ t['通用_存档'] = function(int_档案编号)
         G.WriteFile(path, zipbuf);
     end
     if int_档案编号 > 0 and int_档案编号 <=4 then 
+        local int_存档位置 = G.call('get_point',143)
         G.call('信息_读档',5)
         local o_files = G.QueryName(0x10160000 + int_档案编号)
         o_files.门派 = school
@@ -184,6 +186,18 @@ t['通用_存档'] = function(int_档案编号)
         o_files.周目 = week
         o_files.记录 = place
         o_files.次数 = number 
+        if int_档案编号 == 4 then
+            local o_files = G.QueryName(0x10160000 + int_存档位置)
+            o_files.门派 = school
+            o_files.等级 = lv
+            o_files.时间 = time
+            o_files.难度 = diffty
+            o_files.通关 = clear
+            o_files.周目 = week
+            o_files.记录 = place
+            o_files.次数 = number  
+        end 
+        print('难度',o_files.难度)
         G.call('通用_存档',5)
     end
 end
