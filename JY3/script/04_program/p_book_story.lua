@@ -646,3 +646,14 @@ t['天书_天龙八部'] = function()
     G.call('dark')
     G.call('goto_map',4)
 end
+t['天书_射雕英雄传'] = function()
+    local o_book_story = G.QueryName(0x101c0005)
+    if not G.call('in_team',37) then 
+        G.call("talk",'',38,'   本故事没有郭靖是无法进行的！',2,1)
+        G.call('all_over')
+        return
+    end 
+    if o_book_story.流程 == 0 then
+        
+    end
+end

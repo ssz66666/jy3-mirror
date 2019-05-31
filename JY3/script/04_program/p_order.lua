@@ -336,7 +336,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('事件_随机切磋')
+    G.call('call_battle',1,10,3,1,390,0,0,0,0,0)
     G.call('join',36)
     local o_book_story = G.QueryName(0x101c0004)
     o_book_story.流程 = 6
@@ -421,6 +421,9 @@ t['dig_earthworms'] = function()
     G.wait1('dig_earthworms_over')
     G.remove_program('抓蚯蚓_计时器',1)  
     G.removeUI('v_dig_earthworms') 
+    if G.misc().挖宝次数 ~= math.abs(G.misc().挖宝监听) or G.misc().蚯蚓数量 ~= math.abs(G.misc().蚯蚓监听) then 
+        G.trig_event('强制退出')
+    end
 end 
 t['拼图_计时器'] = function()
     G.misc().计时器 =  1800.002
