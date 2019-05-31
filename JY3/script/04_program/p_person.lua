@@ -2017,7 +2017,7 @@ t['小游戏-野球拳']=function()
             if int_猜拳结果 == 9 then
                 if  int_连胜-10 > 0 then 
                     local o_yqwd = G.QueryName(0x10170015)
-                    if o_yqwd.进度列表[1].当前进度 < 20000
+                    if o_yqwd.进度列表[1].当前进度 < 20000 then 
                         G.call('set_newpoint',80,G.call('get_newpoint',80)- (int_连胜-10)   )
                         o_yqwd.进度列表[1].当前进度 = o_yqwd.进度列表[1].当前进度 + int_连胜-10
                     end
