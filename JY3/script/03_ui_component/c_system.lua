@@ -322,7 +322,7 @@ function t:click(tar)
     G.QueryName(0x10030001)[tostring(236)] = dt * 10
     G.SetGlobalVolume(0.2*dn )
     self.设置.getChildByName('data1').text = tostring(dn)  
-    if tar == self.设置.getChildByName('left2') or  self.设置.getChildByName('right2') then 
+    if tar == self.设置.getChildByName('left2') or  tar == self.设置.getChildByName('right2') then 
         G.Play(0x49011003, 1,false,100) 
         if G.misc().切磋开关 == 0 then 
             G.misc().切磋开关 = 1
