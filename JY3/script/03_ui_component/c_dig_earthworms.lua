@@ -81,8 +81,5 @@ function t:click(tar)
         G.trig_event('dig_earthworms_over')
     end
     self.obj.getChildByName('数量').text = '蚯蚓数量[br][01]   '..G.misc().蚯蚓数量
-    if G.misc().挖宝次数 ~= math.abs(G.misc().挖宝监听) or G.misc().蚯蚓数量 ~= math.abs(G.misc().蚯蚓监听) then 
-        G.trig_event('强制退出')
-    end
 end
 return t
