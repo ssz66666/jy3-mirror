@@ -371,7 +371,9 @@ function t:click(tar)
                 end    
             end   
             if  result == true then 
-                G.call('learnmagic',134)
+                if G.call('get_magicexp',134) == 0 then  
+                    G.call('learnmagic',134)
+                end
             else
                 G.call('notice1','必须先完成一个【数字疑云】成就')
             end 
