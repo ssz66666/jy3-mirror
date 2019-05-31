@@ -2146,7 +2146,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
                 if G.call('通用_取得套装',0,2) == 3  then --套装2升级修为点+1
                     int_point = int_point + 1
                 end
-                if G.call('通用_取得人物特效'0,16) and G.call('get_point',4)%2 == 0  then 
+                if G.call('通用_取得人物特效',0,16) and G.call('get_point',4)%2 == 0  then 
                     int_point = int_point + 1
                 end
                 G.call('add_point',5,int_point  ) 
