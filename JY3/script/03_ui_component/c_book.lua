@@ -169,8 +169,14 @@ function t:详细显示()
         end    
         self.属性.getChildByName('属性上限').text = str
         self.属性.getChildByName('姓名').text = o_role_人物.姓名
-        self.属性.getChildByName('生命').text = tostring(o_role_人物.生命)..'/'..tostring(o_role_人物[tostring(1)])
-        self.属性.getChildByName('内力').text = tostring(o_role_人物.内力)..'/'..tostring(o_role_人物[tostring(2)])
+        if o_role_人物.生命 > 50000 then 
+            self.属性.getChildByName('生命').text = '?????/?????'
+            self.属性.getChildByName('内力').text = '?????/?????'
+        else
+            self.属性.getChildByName('生命').text = tostring(o_role_人物.生命)..'/'..tostring(o_role_人物[tostring(1)])
+            self.属性.getChildByName('内力').text = tostring(o_role_人物.内力)..'/'..tostring(o_role_人物[tostring(2)])
+        end
+   
         self.属性.getChildByName('拆招').text = tostring(o_role_人物[tostring(3)]) 
         self.属性.getChildByName('闪躲').text = tostring(o_role_人物[tostring(5)]) 
         self.属性.getChildByName('搏击').text = tostring(o_role_人物[tostring(4)]) 
