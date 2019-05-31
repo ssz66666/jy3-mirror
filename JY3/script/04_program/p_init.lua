@@ -186,10 +186,10 @@ t['地图系统_防修改监控'] = function()
 		print('北冥',G.call('get_point',63),G.call('get_newpoint',63))
 		G.call('通用_强退游戏') 
 	end
-	if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) + 10)  then
-		print('本金',G.call('get_point',130),G.call('get_newpoint',130))
-		G.call('通用_强退游戏') 
-	end
+	-- if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) + 10)  then
+	-- 	print('本金',G.call('get_point',130),G.call('get_newpoint',130))
+	-- 	G.call('通用_强退游戏') 
+	-- end
 	if G.call('get_magicexp',83) ~= math.abs(G.call('get_newpoint',77) + 10) then 
 		print('野球拳',G.call('get_magicexp',83),G.call('get_newpoint',77))
 		G.call('通用_强退游戏') 
