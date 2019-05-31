@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_battle = require 'c_battle'
 local c_button = require 'c_button'
+local c_battle = require 'c_battle'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -1442,7 +1442,7 @@ tp = tc
 		tc.bottom = -74.500
 		tc.top = 74.500
 		tc.visible = false
-		tc.img = 0x59140001
+		tc.img = 0x591a0001
 		tp = tc
 		tp = tp.parent
 		--end

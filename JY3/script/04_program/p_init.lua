@@ -1704,58 +1704,58 @@ t['切磋'] = function()
 					table.insert(int_mo,i)
 				end
 			end
-			if #int_mo == 0 then
+			if #int_mo > 0 then 
+				local num = int_mo[math.random(#int_mo)]
+				local num0 = math.floor(o_role_人物[tostring(9)]/25)
+				local num1 = 0
+				if num0 > 0 then 
+					num1 = math.random(num0)
+				else
+					num1 = 1
+				end 
+				if num1 > 1 then
+					local int_属性 =  math.random(250,500) 
+					if num == 1 then
+						G.call('add_role',o_role_人物代码,1, int_属性 )
+						if G.call('get_role',o_role_人物代码,1) >= G.call('get_role',o_role_人物代码,901) then 
+							G.call('notice1','【'..o_role_人物.姓名..'】生命已经达到上限！')
+						else
+							G.call('notice1','【'..o_role_人物.姓名..'】生命增长'..int_属性)
+						end
+					elseif num == 2 then 
+						G.call('add_role',o_role_人物代码,2,int_属性  )
+						if G.call('get_role',o_role_人物代码,2) >= G.call('get_role',o_role_人物代码,902) then 
+							G.call('notice1','【'..o_role_人物.姓名..'】内力已经达到上限！')
+						else
+							G.call('notice1','【'..o_role_人物.姓名..'】内力增长'..int_属性)
+						end
+					elseif num == 3 then 
+						G.call('add_role',o_role_人物代码,3,num1-1) 
+					elseif num == 4 then 
+						G.call('add_role',o_role_人物代码,4,num1-1)	
+					elseif num == 5 then 
+						G.call('add_role',o_role_人物代码,5,num1-1)
+					elseif num == 6 then 
+						G.call('add_role',o_role_人物代码,6,num1-1)
+					elseif num == 7 then 
+						G.call('add_role',o_role_人物代码,7,num1-1)
+					elseif num == 8 then 
+						G.call('add_role',o_role_人物代码,8,num1-1)	
+					end 
+					if num > 2  and (num1-1) > 0 then
+						local str = {'生命','内力','拆招','搏击','闪躲','内功','攻击','轻身'} 
+						if G.call('get_role',o_role_人物代码,num) >= G.call('get_role',o_role_人物代码,900 + num) then 
+							G.call('notice1','【'..o_role_人物.姓名..'】'..str[num]..'已经达到上限！')
+						else
+							G.call('notice1','【'..o_role_人物.姓名..'】'..str[num]..'增长'..(num1-1))
+						end
+					end
+				end	
+				G.call("talk",'',o_role_人物代码,'   太痛快了，看来你的武功精进不少，也使我受益匪浅啊。下次有机会咱们再来比过。',1,1) 
+			else
 				G.call("talk",'',o_role_人物代码,'   太痛快了，看来你的武功精进不少，也使我受益匪浅啊。下次有机会咱们再来比过。',1,1)  
 				G.call('notice1','【'..o_role_人物.姓名..'】全部属性已经达到上限！')
-				return 
 			end
-			local num = int_mo[math.random(#int_mo)]
-			local num0 = math.floor(o_role_人物[tostring(9)]/25)
-			local num1 = 0
-			if num0 > 0 then 
-			    num1 = math.random(num0)
-			else
-				num1 = 1
-			end 
-			if num1 > 1 then
-				local int_属性 =  math.random(250,500) 
-				if num == 1 then
-					G.call('add_role',o_role_人物代码,1, int_属性 )
-					if G.call('get_role',o_role_人物代码,1) >= G.call('get_role',o_role_人物代码,901) then 
-						G.call('notice1','【'..o_role_人物.姓名..'】生命已经达到上限！')
-					else
-						G.call('notice1','【'..o_role_人物.姓名..'】生命增长'..int_属性)
-					end
-				elseif num == 2 then 
-					G.call('add_role',o_role_人物代码,2,int_属性  )
-					if G.call('get_role',o_role_人物代码,2) >= G.call('get_role',o_role_人物代码,902) then 
-						G.call('notice1','【'..o_role_人物.姓名..'】内力已经达到上限！')
-					else
-						G.call('notice1','【'..o_role_人物.姓名..'】内力增长'..int_属性)
-					end
-				elseif num == 3 then 
-					G.call('add_role',o_role_人物代码,3,num1-1) 
-				elseif num == 4 then 
-					G.call('add_role',o_role_人物代码,4,num1-1)	
-				elseif num == 5 then 
-					G.call('add_role',o_role_人物代码,5,num1-1)
-				elseif num == 6 then 
-					G.call('add_role',o_role_人物代码,6,num1-1)
-				elseif num == 7 then 
-					G.call('add_role',o_role_人物代码,7,num1-1)
-				elseif num == 8 then 
-					G.call('add_role',o_role_人物代码,8,num1-1)	
-				end 
-				if num > 2  and (num1-1) > 0 then
-					local str = {'生命','内力','拆招','搏击','闪躲','内功','攻击','轻身'} 
-					if G.call('get_role',o_role_人物代码,num) >= G.call('get_role',o_role_人物代码,900 + num) then 
-						G.call('notice1','【'..o_role_人物.姓名..'】'..str[num]..'已经达到上限！')
-					else
-						G.call('notice1','【'..o_role_人物.姓名..'】'..str[num]..'增长'..(num1-1))
-					end
-				end
-			end	
-			G.call("talk",'',o_role_人物代码,'   太痛快了，看来你的武功精进不少，也使我受益匪浅啊。下次有机会咱们再来比过。',1,1)  
 		else	
 			G.call("talk",'',o_role_人物代码,'   【'..G.QueryName(0x10030001)[tostring(1)]..'】兄需得努力啊，看来最近你的功夫没有什么提高',1,1)  
 		end 

@@ -3,7 +3,7 @@
 # 遍历指定文件夹里的所有文件, 提取出文件名中的数字, 加上numberOffset后, 转成16进制的唯一id
 import os, re;
 path = 'E:\\JY3\\project\\JY3\\image\\skill\\new\\images\\';
-numberOffset = 8;
+numberOffset = 6;
 
 os.chdir(path);
 for fileName in os.listdir(path):
