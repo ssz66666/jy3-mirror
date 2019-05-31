@@ -169,7 +169,7 @@ function t:详细显示()
         end    
         self.属性.getChildByName('属性上限').text = str
         self.属性.getChildByName('姓名').text = o_role_人物.姓名
-        if o_role_人物.生命 > 50000 and not o_role_人物[tostring(901)] then 
+        if  not o_role_人物[tostring(901)] then 
             self.属性.getChildByName('生命').text = '?????/?????'
             self.属性.getChildByName('内力').text = '?????/?????'
         else
@@ -184,12 +184,6 @@ function t:详细显示()
                 self.属性.getChildByName(属性[i]).text = o_role_人物[tostring(i+2)]
             end 
         end
-        -- self.属性.getChildByName('拆招').text = tostring(o_role_人物[tostring(3)]) 
-        -- self.属性.getChildByName('闪躲').text = tostring(o_role_人物[tostring(5)]) 
-        -- self.属性.getChildByName('搏击').text = tostring(o_role_人物[tostring(4)]) 
-        -- self.属性.getChildByName('内功').text = tostring(o_role_人物[tostring(6)]) 
-        -- self.属性.getChildByName('攻击').text = tostring(o_role_人物[tostring(7)]) 
-        -- self.属性.getChildByName('速度').text = tostring(o_role_人物[tostring(8)]) 
         self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
         local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气'}
         for i = 1,4 do 
