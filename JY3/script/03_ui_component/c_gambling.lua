@@ -86,7 +86,7 @@ function t:click(tar)
         local zzs = tonumber(self.obj.getChildByName(tostring(i)).getChildByName('注数').text )
         local zs = tonumber(self.obj.getChildByName('显示').getChildByName(p[i]).text )
         if tar ==  self.下注.getChildByName(p[i]) and G.misc().下注 == 0 then
-            if G.call('get_point',130) >= 5 then  
+            if G.call('get_point',130) >= 5 and zzs*5 < G.call('get_point',130) then  
                 if  G.call('get_money') < 5 then 
                     G.call('notice','您的钱不够下注')
                 else
