@@ -83,6 +83,9 @@ function t:start()
             self.称号list[(y - 1) * 3 + x] = ui_sub
         end
     end
+    if G.misc().被动开关 == nil then
+        G.misc().被动开关 = 1  
+    end
     self:刷新属性()
 end
 function t:刷新属性()
@@ -108,7 +111,18 @@ function t:刷新属性()
     for i = 1,16 do
         self.基础属性1.getChildByName('基础属性').getChildByName(tostring(i)).text = G.QueryName(0x10030001)[tostring(i + 200)]
     end
-
+    for i = 1,4 do
+        if G.misc().被动开关 == 1   then 
+            self.被动.getChildByName(tostring(i)).style = 10
+        else
+            self.被动.getChildByName(tostring(i)).style = 9
+        end
+    end 
+    if G.misc().被动开关 == 1   then 
+        self.门派被动.getChildByName('技能').style = 10
+    else
+        self.门派被动.getChildByName('技能').style = 9
+    end
 
 end   
 function t:rollOver(tar)
@@ -190,8 +204,7 @@ function t:rollOut(tar)
     end
     for i = 1,4 do 
         if tar == self.被动.getChildByName(tostring(i)) then 
-            self.被动.getChildByName('显示').visible = false
-          
+            self.被动.getChildByName('显示').visible = false  
         end
     end 
     if tar == self.门派被动.getChildByName('技能') then 
@@ -203,15 +216,30 @@ function t:rclick(tar)
     G.removeUI('v_nature')
 end
 function t:click(tar)
-   for i = 1,3 do   --角色菜单三个按钮切换
-   if tar == self.按钮.getChildByName(tostring(i)) then
+    for i = 1,3 do   --角色菜单三个按钮切换
+        if tar == self.按钮.getChildByName(tostring(i)) then
             G.Play(0x49011003, 1,false,100) 
             for n = 1,3 do
                 self.显示.getChildByName(tostring(n)).visible = false
             end    
             self.显示.getChildByName(tostring(i)).visible = true 
+         end   
+    end
+    for i = 1,4 do 
+        if tar == self.被动.getChildByName(tostring(i)) then 
+            if G.misc().被动开关 == 0 then
+                G.misc().被动开关 = 1
+            else
+                G.misc().被动开关 = 0
+            end 
         end
-        
+    end 
+    if tar == self.门派被动.getChildByName('技能') then 
+        if G.misc().被动开关 == 0 then
+            G.misc().被动开关 = 1
+        else
+            G.misc().被动开关 = 0
+        end 
     end
     if tar == self.按钮.getChildByName(tostring(4)) or tar == self.obj.getChildByName('关闭菜单') then --关闭角色菜单
         G.Play(0x49011003, 1,false,100) 
@@ -247,6 +275,7 @@ function t:click(tar)
             self.显示.getChildByName('结束图片').visible = true
             self.列表.visible = false
         end 
-    end     
+    end  
+    self:刷新属性()   
 end     
 return t

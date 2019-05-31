@@ -3253,6 +3253,9 @@ t['通用_取得人物特效']=function(int_编号,int_特效号)
             break
         end
     end
+    if G.misc().被动开关 == 0 and int_编号 == 0 then 
+        result = false
+    end
     return result
 end
 t['通用_取得装备减伤效果']=function(int_编号)

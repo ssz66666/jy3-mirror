@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
-local c_nature = require 'c_nature'
 local c_jm = require 'c_jm'
+local c_nature = require 'c_nature'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
