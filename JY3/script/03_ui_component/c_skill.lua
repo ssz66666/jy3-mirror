@@ -64,6 +64,11 @@ function t:update()
     self.obj.c_skill:更新菜单()  
 end   
 function t:更新菜单()
+    if G.getUI('v_battle') then
+        self.升级.mouseEnabled = false
+    else 
+        self.升级.mouseEnabled = true
+    end
     if  G.misc().skill_to > 0 then 
         local item = G.misc()['item_'..(G.misc().skill_to-1)]
         for i = 1,30 do 

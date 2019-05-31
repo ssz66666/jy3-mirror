@@ -22,11 +22,17 @@ function t:init()
     self.通脉 = self.obj.getChildByName('按钮').getChildByName('tab1')
 end
 function t:start()
-    --G.call('指令_存储属性')
     self:刷新显示()
     --self:update()
  end
 function t:刷新显示()
+    if G.getUI('v_battle') then
+        self.通脉.visible = false
+        self.经脉.visible = false
+    else 
+        self.通脉.visible = true 
+        self.经脉.visible = true 
+    end
     self.修为点.text = G.QueryName(0x10030001)[tostring(5)]
     local  jmdtsl = 0
     local jmzl = 0
