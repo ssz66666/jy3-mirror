@@ -1964,9 +1964,11 @@ t['指令_存储属性'] = function() --计算主角最终属性
     end
     if G.call('get_point',44) > G.call('get_point',217) then 
         G.call('set_point',44,G.call('get_point',217)) 
+        G.call('set_newpoint',44,-G.call('get_point',217)-10) 
     end
     if G.call('get_point',46) > G.call('get_point',218) then 
         G.call('set_point',46,G.call('get_point',218)) 
+        G.call('set_newpoint',46,-G.call('get_point',218)-10) 
     end
     if  G.call('get_point',218) <= 0 then 
         G.call('set_point',218,1) 

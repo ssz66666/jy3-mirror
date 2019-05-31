@@ -28,9 +28,9 @@ function t:start()
 function t:刷新显示()
     if G.getUI('v_battle') then
         self.通脉.visible = false
-        self.经脉.visible = false
+        self.经脉.mouseEnabled = false
     else 
-        self.通脉.visible = true 
+        self.通脉.mouseEnabled = true
         self.经脉.visible = true 
     end
     self.修为点.text = G.QueryName(0x10030001)[tostring(5)]
