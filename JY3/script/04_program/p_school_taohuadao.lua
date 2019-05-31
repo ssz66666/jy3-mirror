@@ -352,7 +352,7 @@ t['初入桃花岛-桃花阵'] = function()
                 G.call('dark')  
                 G.misc().桃花大阵 = 1
                 local int_拼图时间 = G.misc().计时器
-                local str = string.format("%.2d:%.2d:%.2d", math.floor(G.misc().计时器/3600) , math.floor(G.misc().计时器/60)%60 , G.misc().计时器%60) 
+                local str = string.format("%.2d:%.2d:%.2d", math.floor(G.misc().计时器/3600) , math.floor(G.misc().计时器/60)%60 , math.flooe(G.misc().计时器)%60) 
                 G.call('set_note','完成拼图,用时'..str)
                 G.call("talk",'',0,'   这桃花大阵也不过尔尔！',0,0)
                 G.call('add_hour',1)

@@ -1391,6 +1391,7 @@ t['事件_随机切磋']=function()
         G.misc().随机切磋监控 = -7
     end
     if G.misc().随机切磋次数 ~= math.abs(G.misc().随机切磋监控 + 7) then 
+        G.misc().随机切磋 = 0
         G.call('通用_强退游戏')
     end
     --lv50~ lv60 hp 低于10000大于8000
@@ -1759,6 +1760,7 @@ t['副本_通天塔']=function(int_模式)
                     end
                 end
                 if G.misc().通天塔层数 ~= math.abs(int_通天塔层数 + 7 ) then 
+                    G.misc().通天塔 = 0 
                     G.call('通用_强退游戏') 
                 end
             end
