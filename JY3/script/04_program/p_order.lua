@@ -337,10 +337,10 @@ t['test'] = function()
 end   
 t['new_test'] = function()
     G.call('call_battle',1,10,3,1,390,0,0,0,0,0)
-    G.call('join',36)
-    local o_book_story = G.QueryName(0x101c0004)
+    G.call('join',37)
+    local o_book_story = G.QueryName(0x101c0005)
     o_book_story.流程 = 6
-    G.call('天书_天龙八部') 
+    G.call('天书_射雕英雄传') 
     G.call('通用_印记状态')
     -- while true do 
     --     local 印记 = {}
