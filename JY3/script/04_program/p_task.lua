@@ -13,8 +13,8 @@ t['门派-桃花岛']=function()
     local o_tsbd = G.QueryName(0x1017000c)
     G.call('地图_进入地图','桃花岛',94,3,0)
     if G.call('get_story',59) == 1 then 
-        if G.call('get_point',174) ~= G.call('get_year') *12 + G.call('get_month') then 
-            G.call('set_point',174, G.call('get_year') *12 + G.call('get_month') )
+        if G.call('get_point',183) ~= G.call('get_year') *12 + G.call('get_month') then 
+            G.call('set_point',183, G.call('get_year') *12 + G.call('get_month') )
             local money = math.random(500)
             G.call('add_money',money)
             G.call("talk",'',83,'   启禀【太上岛主】，这是本月给您的“孝敬”，一共'..tostring(money)..'两银子，请您收好。',2,1) 
@@ -384,8 +384,8 @@ t['门派-血刀门']=function()
     if G.call('get_story',54) == 1 then 
         G.call('dark')
         G.call('goto_map',43)
-        if G.call('get_point',163) ~= G.call('get_year') *12 + G.call('get_month') then 
-            G.call('set_point',163, G.call('get_year') *12 + G.call('get_month') )
+        if G.call('get_point',184) ~= G.call('get_year') *12 + G.call('get_month') then 
+            G.call('set_point',184, G.call('get_year') *12 + G.call('get_month') )
             local money = math.random(500)
             G.call('add_money',money)
             G.call("talk",'',143,'   启禀【太上掌门】，这是本月给您的“孝敬”，一共'..tostring(money)..'两银子，请您收好。',2,1) 
