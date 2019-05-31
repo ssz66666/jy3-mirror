@@ -336,6 +336,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
+    G.call('事件_随机切磋')
     G.call('join',36)
     local o_book_story = G.QueryName(0x101c0004)
     o_book_story.流程 = 6

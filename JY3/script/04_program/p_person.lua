@@ -1411,19 +1411,20 @@ t['事件_随机切磋']=function()
         o_role = G.QueryName(i_role)
         local int_hp = G.call('get_role',i,1)
         if int_hp > 0 and (not G.call('get_role',i,901) or  (G.call('get_role',i,901) == 0) )    then --判断为非队友
-            if int_hp >= 8000 and int_hp < 10000 then 
+            if int_hp >= 10000 and int_hp < 15000 then 
                 table.insert(boos_1 ,i )
-            elseif int_hp >= 10000 and int_hp < 15000 then 
-                table.insert(boos_2 ,i )
             elseif int_hp >= 15000 and int_hp < 20000 then 
+                table.insert(boos_2 ,i )
+            elseif int_hp >= 20000 and int_hp < 25000 then 
                 table.insert(boos_3 ,i )
-            elseif int_hp >= 20000 and int_hp < 26000 then 
+            elseif int_hp >= 25000 and int_hp < 35000 then 
                 table.insert(boos_4 ,i )
-            elseif int_hp >= 26000 then 
+            elseif int_hp >= 35000 then 
                 table.insert(boos_5 ,i )
             end
         end
     end
+    print(#boos_5)
     local boss_final = {}
     local int_lv = G.call('get_point',4)
     if int_lv >= 50 and int_lv <= 60 then 
