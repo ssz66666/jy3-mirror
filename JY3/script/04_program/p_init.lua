@@ -146,36 +146,52 @@ t['地图系统_游戏加速监控'] = function()
 	end
 end
 t['地图系统_防修改监控'] = function()
+	G.call('通用_重置检测')
 	local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
-	if int_成就 > math.abs(G.call('get_newpoint',80)) then 
-		print(int_成就,G.call('get_newpoint',80))
+	print('成就',int_成就,G.call('get_newpoint',80))
+	print('周目',G.call('get_point',237),G.call('get_newpoint',237))
+	if int_成就 ~= math.abs(G.call('get_newpoint',80)+2000) then 
 		G.call('通用_强退游戏') 
 	end
-	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 5 )  then
+	if G.QueryName(0x10170001).进度列表[1].当前进度 < 0  or G.call('get_point',130) < 0 then  --庄家本金 < 0
+		G.call('通用_强退游戏') 
+	end
+	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 10 )  then
 		G.call('通用_强退游戏') 
 	end
 	if G.call('get_point',237) == 1 then return end
 	local o_body = G.QueryName(0x10030001)
 	local o_newbody = G.QueryName(0x101b0001)
-	if G.call('get_point',5) > math.abs(G.call('get_newpoint',5) - 10)  then
+	if G.call('get_point',5) ~= math.abs(G.call('get_newpoint',5) + 10)  then
+		print('修为点',G.call('get_point',5),G.call('get_newpoint',5))
 		G.call('通用_强退游戏') 
 	end 
-	if G.call('get_point',4) > math.abs(G.call('get_newpoint',4))  then
+	if G.call('get_point',4) ~= math.abs(G.call('get_newpoint',4)+10)  then
+		print('等级',G.call('get_point',4),G.call('get_newpoint',4))
 		G.call('通用_强退游戏') 
 	end
-	if G.call('get_point',110) > math.abs(G.call('get_newpoint',110)+2000)  then
+	if G.call('get_point',110) ~= math.abs(G.call('get_newpoint',110)+2000)  then
+		print('金钱',G.call('get_point',110),G.call('get_newpoint',110))
 		G.call('通用_强退游戏') 
 	end
-	if G.call('get_point',45) > math.abs(G.call('get_newpoint',45))  then
+	if G.call('get_point',45) ~= math.abs(G.call('get_newpoint',45) + 10)  then
+		print('HP',G.call('get_point',45),G.call('get_newpoint',45))
 		G.call('通用_强退游戏') 
 	end 
-	if G.call('get_point',47) > math.abs(G.call('get_newpoint',47))  then
+	if G.call('get_point',47) ~= math.abs(G.call('get_newpoint',47) + 10)  then
+		print('MP',G.call('get_point',47),G.call('get_newpoint',47))
 		G.call('通用_强退游戏') 
 	end
-	if G.call('get_point',63) > math.abs(G.call('get_newpoint',63))  then
+	if G.call('get_point',63) ~= math.abs(G.call('get_newpoint',63) + 10)  then
+		print('北冥',G.call('get_point',63),G.call('get_newpoint',63))
 		G.call('通用_强退游戏') 
 	end
-	if G.call('get_magicexp',83) > math.abs(G.call('get_newpoint',77)) then 
+	if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) + 10)  then
+		print('本金',G.call('get_point',130),G.call('get_newpoint',130))
+		G.call('通用_强退游戏') 
+	end
+	if G.call('get_magicexp',83) ~= math.abs(G.call('get_newpoint',77) + 10) then 
+		print('野球拳',G.call('get_magicexp',83),G.call('get_newpoint',77))
 		G.call('通用_强退游戏') 
 	end
 	local int_物品数量 = 0
@@ -186,12 +202,13 @@ t['地图系统_防修改监控'] = function()
             int_物品数量 = int_物品数量 + o_item.数量 
         end
 	end
-	if int_物品数量 > math.abs(G.call('get_newpoint',76)+2000) then 
+	if int_物品数量 ~= math.abs(G.call('get_newpoint',76)+2000) then 
+		print('物品数量',int_物品数量,G.call('get_newpoint',76))
 		G.call('通用_强退游戏') 
 	end
 	for i = 111,114 do
-		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 5)  then 
-			print(i,G.call('get_point',i),G.call('get_newpoint',i)+5)
+		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 10)  then 
+			print(i,G.call('get_point',i),G.call('get_newpoint',i)+10)
 			G.call('通用_强退游戏') 
 			break
 		end
@@ -210,7 +227,7 @@ t['地图系统_防修改监控'] = function()
 				G.call('通用_强退游戏')
 			end
 		end
-		if G.call('get_point',i) > math.abs(G.call('get_newpoint',i))  then
+		if G.call('get_point',i) ~=  math.abs(G.call('get_newpoint',i) + 10)  then
 			print(i,G.call('get_point',i),G.call('get_newpoint',i))
 			G.call('通用_强退游戏') 
 			break

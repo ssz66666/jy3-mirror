@@ -73,9 +73,12 @@ function t:start()
     --0x33070002 友方
     --0x33060001  敌人
     --以下为备份记录主角怒气、生命、内力
-    G.call('set_newpoint',48,-G.call('get_point',48)-math.random(5))
-    G.call('set_newpoint',44,-G.call('get_point',44)-math.random(5))
-    G.call('set_newpoint',46,-G.call('get_point',46)-math.random(5))
+    G.call('set_newpoint',48,-G.call('get_point',48)-10)
+    G.call('set_newpoint',44,-G.call('get_point',44)-10)
+    G.call('set_newpoint',46,-G.call('get_point',46)-10)
+    -- print('怒气值',G.call('get_point',48),G.call('get_newpoint',48))
+    -- print('HP',G.call('get_point',44),G.call('get_newpoint',44))
+    -- print('MP',G.call('get_point',46),G.call('get_newpoint',46))
     G.call('set_point',80,0) --时序
     G.misc().自动 = 1
     G.misc().战斗状态 = 0
@@ -479,7 +482,7 @@ function t:keyDown(tar,info)
                     end
                     if i == 8 then --发动绝招后怒气清0
                         G.call('set_point',48,0) 
-                        G.call('set_newpoint',48,-math.random(5))
+                        G.call('set_newpoint',48,-10)
                     end     
                 end 
             end             
@@ -566,7 +569,7 @@ function t:click(tar)
                 end 
                 if i == 8 then --发动绝招后怒气清0
                     G.call('set_point',48,0) 
-                    G.call('set_newpoint',48,-math.random(5))
+                    G.call('set_newpoint',48,-10)
                 end   
             end 
         end   

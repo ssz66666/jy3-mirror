@@ -277,7 +277,7 @@ t['通用_读档'] = function(int_档案编号)
             G.call('write_min')
             --G.call('通用_记录时间')
             --G.start_program('地图系统_游戏加速监控')
-            G.start_program('地图系统_游戏时长监控')
+            
         end 	
         if int_档案编号 == 0 then 
            G.trig_event('创建角色')
@@ -296,23 +296,12 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
-            if  G.misc().检测_1006 == nil  then
-                local role = G.DBTable('o_role')
-                for i = 1,#role do 
-                    for p = 81,89 do 
-                        if not G.call('get_role',i,p) then 
-                            G.call('set_role',i,p,0)
-                            G.call('set_role',i,p+10,0)
-                        end    
-                    end 
-                end
-                G.call('指令_备份基础属性')
-            end
             G.call('通用_存档',int_档案编号)
             local o_achieve = G.QueryName(0x1017000e)
             if #o_achieve.进度列表 < 9 then 
                 G.call('通用_强退游戏') 
             end
+            G.start_program('地图系统_游戏时长监控')
         end 
     end
 end
@@ -1746,16 +1735,13 @@ t['add_time'] = function(int_时刻) --增加时刻
     G.call('count_time')
 end
 t['add_hour'] = function(int_时辰) --增加时辰
-    print(G.call('get_point',123),G.call('get_newpoint',123),int_时辰)
     G.call('set_point',123,G.call('get_point',123) + int_时辰 )
     G.call('set_newpoint',123,G.call('get_newpoint',123) - int_时辰 ) 
     if G.call('get_point',123) > 12 then
-        print(G.call('get_point',123),G.call('get_newpoint',123))
         G.call('add_day',math.floor(G.call('get_point',123)/12)) 
         G.call('set_newpoint',123,- ( (-G.call('get_newpoint',123))  %12)  ) 
         G.call('set_point',123,G.call('get_point',123)%12)    
     end
-    print(G.call('get_point',123),G.call('get_newpoint',123))
     G.call('count_time')
 end  
 t['add_day'] = function(int_天数) --增加天数
@@ -2080,9 +2066,23 @@ t['set_point']=function(int_代码,int_数量) --设置主角部分属性
         o_body[tostring(int_代码)] =  int_数量
     end    
 end
+t['通用_重置检测']=function() --
+    if  G.misc().检测_1008 == nil  then
+        local role = G.DBTable('o_role')
+        for i = 1,#role do 
+            for p = 81,89 do 
+                if not G.call('get_role',i,p) then 
+                    G.call('set_role',i,p,0)
+                    G.call('set_role',i,p+10,0)
+                end    
+            end 
+        end
+        G.call('指令_备份基础属性')
+    end
+end
 t['指令_备份基础属性']=function() --
     for i = 16,37 do
-        G.call('set_newpoint',i,-G.call('get_point',i)-math.random(5)) 
+        G.call('set_newpoint',i,-G.call('get_point',i)-10) 
     end
     local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
     local int_物品数量 = 0
@@ -2093,24 +2093,26 @@ t['指令_备份基础属性']=function() --
             int_物品数量 = int_物品数量 + o_item.数量 
         end
     end
-    G.call('set_newpoint',4,-G.call('get_point',4)-math.random(5)) 
+    G.call('set_newpoint',4,-G.call('get_point',4)-10) 
     for i = 111,114 do 
-        G.call('set_newpoint',i,-G.call('get_point',i)-5) 
+        G.call('set_newpoint',i,-G.call('get_point',i)-10) 
     end
     for i = 120,124 do 
         G.call('set_newpoint',i,-G.call('get_point',i)) 
     end
-    G.call('set_newpoint',237,-G.call('get_point',237)-5)
-    G.call('set_newpoint',76,-int_物品数量-math.random(10)-2000)
-    G.call('set_newpoint',80,-int_成就-math.random(5,10))
-    G.call('set_newpoint',3,-G.call('get_point',3)-math.random(5)) 
-    G.call('set_newpoint',5,-G.call('get_point',5)-math.random(5)) 
-    G.call('set_newpoint',77,-G.call('get_magicexp',83)-math.random(5)) 
-    G.call('set_newpoint',110,-G.call('get_point',110)-math.random(5)-2000) 
+    G.call('set_newpoint',130,-G.call('get_point',130)-10)
+    G.call('set_newpoint',237,-G.call('get_point',237)-10)
+    G.call('set_newpoint',76,-int_物品数量-2000)
+    G.call('set_newpoint',80,-int_成就-2000)
+    G.call('set_newpoint',3,-G.call('get_point',3)-10) 
+    G.call('set_newpoint',5,-G.call('get_point',5)-10) 
+    G.call('set_newpoint',63,-G.call('get_point',63)-10) 
+    G.call('set_newpoint',77,-G.call('get_magicexp',83)-10) 
+    G.call('set_newpoint',110,-G.call('get_point',110)-2000) 
     for i = 45,47 do 
-        G.call('set_newpoint',i,-G.call('get_point',i)-math.random(5)) 
+        G.call('set_newpoint',i,-G.call('get_point',i)-10) 
     end
-    G.misc().检测_1006 = 1
+    G.misc().检测_1008 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
     return G.QueryName(0x101b0001)[tostring(int_代码)]
@@ -2151,7 +2153,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
         if G.call('get_point',4) >= 100 then
-            G.call('set_newpoint',int_代码,-100-math.random(5) )
+            G.call('set_newpoint',int_代码,-100-10 )
             G.call('set_point',int_代码,100)
         end
     elseif int_代码 >= 80 and int_代码 <=100 then  --异常
@@ -2163,11 +2165,11 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
         if  G.call('get_point',int_代码) > 100 then 
-            G.call('set_newpoint',int_代码,-100-math.random(5) )
+            G.call('set_newpoint',int_代码,-100-10 )
             G.call('set_point',int_代码,100)
         end  
         if  G.call('get_point',int_代码) < 0 then 
-            G.call('set_newpoint',int_代码,-math.random(5))
+            G.call('set_newpoint',int_代码,-10)
             G.call('set_point',int_代码,0)
          
         end  
@@ -2176,11 +2178,11 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
         if  G.call('get_point',int_代码) > 10000 then 
             G.call('set_point',int_代码,10000)
-            G.call('set_newpoint',int_代码,-10000-math.random(5)) 
+            G.call('set_newpoint',int_代码,-10000-10) 
         end  
         if  G.call('get_point',int_代码) < 0 then 
             G.call('set_point',int_代码,0)
-            G.call('set_newpoint',int_代码,-math.random(5))
+            G.call('set_newpoint',int_代码,-10)
         end  
     elseif int_代码 == 64 then --存档次数
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
@@ -2189,7 +2191,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
         if   G.call('get_point',int_代码) < 0 then
             G.call('set_point',int_代码,0)
-            G.call('set_newpoint',int_代码,-math.random(5))
+            G.call('set_newpoint',int_代码,-10)
         end  
     elseif int_代码 == 11 then  --门派经验
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
@@ -2266,12 +2268,12 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
         if  G.call('get_point',int_代码) > 50000 then 
-            G.call('set_newpoint',int_代码,-50000-math.random(5))
+            G.call('set_newpoint',int_代码,-50000-10)
             G.call('set_point',int_代码,50000)
         end      
         if  G.call('get_point',int_代码) < 0 then 
             G.call('set_point',int_代码,0)
-            G.call('set_newpoint',int_代码,-math.random(5))
+            G.call('set_newpoint',int_代码,-10)
         end  
     elseif int_代码 >= 201 and  int_代码 <= 218  then  --MAX生命值内力值
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
@@ -2284,10 +2286,10 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
         if  G.call('get_point',44) > G.call('get_point',217) then 
             G.call('set_point',44,G.call('get_point',217))
-            G.call('set_newpoint',int_代码,-G.call('get_point',217)- math.random(5))
+            G.call('set_newpoint',int_代码,-G.call('get_point',217)- 10)
         end   
         if  G.call('get_point',44) < 0 then 
-            G.call('set_newpoint',int_代码, -math.random(5))
+            G.call('set_newpoint',int_代码, -10)
             G.call('set_point',44,0)
         end    
     elseif  int_代码 == 46  then  --当前生命值内力值
@@ -2296,17 +2298,17 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)  
         if  G.call('get_point',46) > G.call('get_point',218) then 
             G.call('set_point',46,G.call('get_point',218))
-            G.call('set_newpoint',int_代码,-G.call('get_point',218)- math.random(5))
+            G.call('set_newpoint',int_代码,-G.call('get_point',218)- 10)
         end 
         if  G.call('get_point',46) < 0 then
-            G.call('set_newpoint',int_代码, -math.random(5)) 
+            G.call('set_newpoint',int_代码, -11) 
             G.call('set_point',46,1)
         end 
     elseif (int_代码 >= 16 and int_代码 <= 37) then   -- 基础属性的增加
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
         if  G.call('get_point',int_代码) < 0 then 
-            G.call('set_newpoint',int_代码,-math.random(5))
+            G.call('set_newpoint',int_代码,-10)
             G.call('set_point',int_代码,0)
         end 
         local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
@@ -2321,7 +2323,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
             end
         end
         if G.call('get_point',int_代码)  > int_点数   then 
-            G.call('set_newpoint',int_代码,-int_点数-math.random(5))
+            G.call('set_newpoint',int_代码,-int_点数-10)
             G.call('set_point',int_代码,int_点数)
         end 
     elseif (int_代码 >= 101 and int_代码 <= 106) then   --力道等经验的增加
@@ -2349,10 +2351,10 @@ t['add_money'] = function(int_数值)--增加钱数
     G.QueryName(0x10030001)[tostring(110)] = G.QueryName(0x10030001)[tostring(110)]  + int_数值
     G.call('set_newpoint',110,G.call('get_newpoint',110)- int_数值)
     if    G.QueryName(0x10030001)[tostring(110)]  < 0 then 
-        G.call('set_newpoint',110,- math.random(5)-2000)
+        G.call('set_newpoint',110,-2000)
         G.QueryName(0x10030001)[tostring(110)] = 0
     elseif G.QueryName(0x10030001)[tostring(110)]  > 999999 then
-        G.call('set_newpoint',110,- 999999 - math.random(5)-2000)
+        G.call('set_newpoint',110,- 999999 -2000)
         G.QueryName(0x10030001)[tostring(110)]  = 999999 
     end 
     local n = math.abs(int_数值)

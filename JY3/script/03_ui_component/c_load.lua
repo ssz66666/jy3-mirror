@@ -15,7 +15,6 @@ function t:start()
     for i = 1,4 do
         local o_files = G.QueryName(0x10160000 + i)
         local t = {}
-        print('等级',o_files.等级)
         t[2] = o_files.门派 
         t[1] = o_files.等级 
         t[6] = o_files.时间 

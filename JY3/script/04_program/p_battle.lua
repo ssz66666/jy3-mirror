@@ -18,13 +18,13 @@ t['战斗系统_胜负监控'] = function()
     local result = 0
     while true do 
         G.wait_time(10)
-        if G.call('get_point',48) > math.abs(G.call('get_newpoint',48) - math.random(20)) then
+        if G.call('get_point',48) ~= math.abs(G.call('get_newpoint',48) + 10 ) then
             G.call('通用_强退游戏') 
         end
-        if G.call('get_point',44) > math.abs(G.call('get_newpoint',44) - math.random(100))  then
+        if G.call('get_point',44) ~= math.abs(G.call('get_newpoint',44) + 10 )  then
             G.call('通用_强退游戏') 
         end
-        if G.call('get_point',46) > math.abs(G.call('get_newpoint',46) - math.random(100))  then
+        if G.call('get_point',46) ~= math.abs(G.call('get_newpoint',46) + 10 )  then
            G.call('通用_强退游戏') 
         end
         if G.call('get_result') == 1   then  
@@ -105,7 +105,7 @@ t['战斗系统_主角监控'] = function()
             local magic = {'技能1','技能2','技能3'}  
             local i_battle = 0x10150001
             local o_battle = G.QueryName(i_battle)
-            print(o_battle.diffty,G.misc().难度)
+            print('战斗难度',o_battle.diffty,G.misc().难度)
             if o_battle.diffty ~= math.abs(G.misc().难度) then 
                 G.call('通用_强退游戏') 
             end
