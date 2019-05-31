@@ -188,6 +188,7 @@ function t:rollOver(tar)
             elseif G.call('get_point',63) == 10000 then 
                 str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]化境'
             end
+            self.门派被动.getChildByName('显示').getChildByName('文本').text = str_字符串
         else
             self.门派被动.getChildByName('显示').getChildByName('文本').text = '说明:[br]'..str[G.call('get_point',115)]
         end
