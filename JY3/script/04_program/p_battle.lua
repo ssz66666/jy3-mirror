@@ -18,6 +18,12 @@ t['战斗系统_胜负监控'] = function()
     local result = 0
     while true do 
         G.wait_time(10)
+        for i = 2,11 do
+            if o_battle [位置[i] ] ~= G.misc().队伍记录[i-1] then
+                print(o_battle [位置[i] ],G.misc().队伍记录[i-1]) 
+                G.call('通用_强退游戏') 
+            end
+        end 
         if G.call('get_point',48) ~= math.abs(G.call('get_newpoint',48) + 10 ) then
             G.call('通用_强退游戏') 
         end

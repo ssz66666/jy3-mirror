@@ -843,6 +843,13 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
             G.call('set_role',o_battle[位置[i] ] ,14,G.call('get_role',o_battle[位置[i ] ],2 ) ) 
         end 
     end
+    G.misc().队伍记录 = {}
+    for i = 2,5 do
+        table.insert(G.misc().队伍记录,o_battle['team'..i])
+    end
+    for i = 1,6 do
+        table.insert(G.misc().队伍记录,int[i]) 
+    end
     G.misc().战斗结果 = 0
     G.call('line_off')
     G.addUI('v_battle')
