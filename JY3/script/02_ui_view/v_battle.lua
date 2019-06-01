@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_battle = require 'c_battle'
 local c_button = require 'c_button'
+local c_battle = require 'c_battle'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -3365,1643 +3365,6 @@ tp = tc
 	--end
 	tc = G.loadUI('v_empty')
 	tp.addChild(tc)
-	tc.name = 'flash1'
-	tc.visible = false
-	tp = tc
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'team1'
-		tc.left = 55.000
-		tc.right = 197.000
-		tc.bottom = -156.500
-		tc.top = -31.500
-		tc.visible = false
-		tc.blend = 1
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.blend = 1
-			tc.img = 0x33070001
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = 56.000
-			tc.right = 136.000
-			tc.bottom = -109.500
-			tc.top = -102.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = 51.000
-			tc.right = 101.000
-			tc.bottom = -25.000
-			tc.top = 25.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -16.000
-				tc.right = 16.000
-				tc.bottom = -17.000
-				tc.top = 17.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -16.000
-				tc.right = 16.000
-				tc.bottom = -17.000
-				tc.top = 17.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -16.000
-				tc.right = 16.000
-				tc.bottom = -17.000
-				tc.top = 17.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -20.000
-				tc.right = 20.000
-				tc.bottom = -22.500
-				tc.top = 22.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = 64.000
-			tc.right = 80.000
-			tc.bottom = -64.000
-			tc.top = -20.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856096769.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'team2'
-		tc.left = 124.000
-		tc.right = 250.000
-		tc.bottom = -121.000
-		tc.top = 5.000
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33070002
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -34.000
-			tc.right = 46.000
-			tc.bottom = -56.500
-			tc.top = -49.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856096770.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'team3'
-		tc.left = -1.000
-		tc.right = 125.000
-		tc.bottom = -190.000
-		tc.top = -64.000
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33070002
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -20.000
-			tc.right = 60.000
-			tc.bottom = -58.500
-			tc.top = -51.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856096770.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'team4'
-		tc.left = 195.000
-		tc.right = 321.000
-		tc.bottom = -66.000
-		tc.top = 60.000
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33070002
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -34.000
-			tc.right = 46.000
-			tc.bottom = -56.500
-			tc.top = -49.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856096770.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'team5'
-		tc.left = -76.000
-		tc.right = 50.000
-		tc.bottom = -233.000
-		tc.top = -107.000
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33070002
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -34.000
-			tc.right = 46.000
-			tc.bottom = -65.500
-			tc.top = -58.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856096770.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'enemy1'
-		tc.left = -201.500
-		tc.right = -88.500
-		tc.bottom = 20.000
-		tc.top = 112.000
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33060003
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -32.000
-			tc.right = 48.000
-			tc.bottom = -63.500
-			tc.top = -56.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856031235.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'enemy2'
-		tc.left = -225.000
-		tc.right = -99.000
-		tc.bottom = -129.500
-		tc.top = -34.500
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33060004
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -34.000
-			tc.right = 46.000
-			tc.bottom = -63.500
-			tc.top = -56.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856031236.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'enemy3'
-		tc.left = -50.000
-		tc.right = 80.000
-		tc.bottom = -21.000
-		tc.top = 131.000
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33060005
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -30.000
-			tc.right = 59.600
-			tc.bottom = -63.500
-			tc.top = -56.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856031237.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'enemy4'
-		tc.left = -298.500
-		tc.right = -183.500
-		tc.bottom = -65.500
-		tc.top = 51.500
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33060006
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -31.000
-			tc.right = 49.000
-			tc.bottom = -63.500
-			tc.top = -56.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856031238.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'enemy5'
-		tc.left = -136.000
-		tc.right = 20.000
-		tc.bottom = 35.500
-		tc.top = 202.500
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33060007
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -34.000
-			tc.right = 46.000
-			tc.bottom = -63.500
-			tc.top = -56.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856031239.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'enemy6'
-		tc.left = -153.000
-		tc.right = 3.000
-		tc.bottom = -71.500
-		tc.top = 57.500
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.img = 0x33060001
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -34.000
-			tc.right = 46.000
-			tc.bottom = -63.500
-			tc.top = -56.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856031233.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'all1'
-		tc.left = -228.000
-		tc.right = -72.000
-		tc.bottom = 5.500
-		tc.top = 134.500
-		tc.visible = false
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.blend = 1
-			tc.img = 0x33060001
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -34.000
-			tc.right = 46.000
-			tc.bottom = -63.500
-			tc.top = -56.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856031233.000
-		tp = tp.parent
-		--end
-		tc = G.loadUI('v_button')
-		tp.addChild(tc)
-		tc.name = 'all2'
-		tc.left = 32.000
-		tc.right = 188.000
-		tc.bottom = -104.500
-		tc.top = 24.500
-		tc.visible = false
-		tc.blend = 1
-		tp = tc
-			tc = tp.getChildByName('img')
-			if tc then
-			tc.blend = 1
-			tc.img = 0x33060001
-			tp = tc
-			end
-			tp = tp.parent
-			--end
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = 'hp'
-			tc.pivotX = 0.000
-			tc.left = -34.000
-			tc.right = 46.000
-			tc.bottom = -63.500
-			tc.top = -56.500
-			tc.visible = false
-			tc.img = 0x560a0015
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_empty')
-			tp.addChild(tc)
-			tc.name = 'yc'
-			tc.left = -12.000
-			tc.right = -12.000
-			tc.bottom = 5.000
-			tc.top = 5.000
-			tc.visible = false
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y1'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010015
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y2'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010014
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y3'
-				tc.left = -4.000
-				tc.right = 28.000
-				tc.bottom = 48.000
-				tc.top = 82.000
-				tc.visible = false
-				tc.img = 0x33010013
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = 'y4'
-				tc.left = -8.000
-				tc.right = 32.000
-				tc.bottom = 42.500
-				tc.top = 87.500
-				tc.visible = false
-				tc.img = 0x56160052
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.loadUI('v_button')
-			tp.addChild(tc)
-			tc.name = 'flash'
-			tc.left = -8.000
-			tc.right = 8.000
-			tc.bottom = 6.000
-			tc.top = 50.000
-			tc.visible = false
-			tp = tc
-				tc = tp.getChildByName('img')
-				if tc then
-				tc.img = 0x33010020
-				tp = tc
-				end
-				tp = tp.parent
-				--end
-			com = tp.c_button
-			com['img_normal'] =855703584.000
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = 'over'
-			tc.left = -60.000
-			tc.right = 140.000
-			tc.bottom = 652.000
-			tc.top = 752.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61200041
-			tp = tc
-			tp = tp.parent
-			--end
-		com = tp.c_button
-		com['img_normal'] =856031233.000
-		tp = tp.parent
-		--end
-	tp = tp.parent
-	--end
-	tc = G.loadUI('v_empty')
-	tp.addChild(tc)
 	tc.name = 'flash'
 	tp = tc
 		tc = G.Quad()
@@ -5530,6 +3893,506 @@ tp = tc
 		--end
 	tp = tp.parent
 	--end
+	tc = G.loadUI('v_empty')
+	tp.addChild(tc)
+	tc.name = '透明按钮'
+	tp = tc
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'team2'
+		tc.left = 28.000
+		tc.right = 88.000
+		tc.bottom = -175.000
+		tc.top = -75.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'team3'
+		tc.left = 155.000
+		tc.right = 215.000
+		tc.bottom = -107.000
+		tc.top = -7.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'team4'
+		tc.left = 229.000
+		tc.right = 289.000
+		tc.bottom = -58.000
+		tc.top = 42.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'team5'
+		tc.left = -49.000
+		tc.right = 11.000
+		tc.bottom = -221.000
+		tc.top = -121.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'enemy1'
+		tc.left = -192.000
+		tc.right = -132.000
+		tc.bottom = 9.000
+		tc.top = 109.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'enemy2'
+		tc.left = -181.000
+		tc.right = -121.000
+		tc.bottom = -114.000
+		tc.top = -14.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'enemy3'
+		tc.left = 15.000
+		tc.right = 75.000
+		tc.bottom = 9.000
+		tc.top = 109.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'enemy4'
+		tc.left = -276.000
+		tc.right = -216.000
+		tc.bottom = -50.000
+		tc.top = 50.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'enemy5'
+		tc.left = -75.000
+		tc.right = -15.000
+		tc.bottom = 53.000
+		tc.top = 153.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'enemy6'
+		tc.left = -82.000
+		tc.right = -22.000
+		tc.bottom = -51.000
+		tc.top = 49.000
+		tc.mouseEnabled = true
+		--tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = '属性'
+		tc.left = -413.500
+		tc.right = -214.500
+		tc.bottom = -197.000
+		tc.top = 139.000
+		tc.visible = false
+		tc.alpha = 200
+		tc.img = 0x56160024
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '头像'
+			tc.left = -97.000
+			tc.right = -57.000
+			tc.bottom = 119.000
+			tc.top = 165.000
+			tc.img = 0x56080001
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '姓名'
+			tc.left = -58.000
+			tc.right = 122.000
+			tc.bottom = 80.000
+			tc.top = 120.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '半瓶神仙醋'
+			tc.font = 0x61220000
+			tc.align = 1
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -60.000
+			tc.right = 120.000
+			tc.bottom = 64.000
+			tc.top = 94.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '99999/99999'
+			tc.font = 0x611e0000
+			tc.align = 1
+			tc.style = 11
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '内力'
+			tc.left = -60.000
+			tc.right = 120.000
+			tc.bottom = 45.000
+			tc.top = 75.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '99999/99999'
+			tc.font = 0x611e0000
+			tc.align = 1
+			tc.style = 10
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '攻击'
+			tc.left = -60.000
+			tc.right = 120.000
+			tc.bottom = 22.000
+			tc.top = 62.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '99'
+			tc.font = 0x61240000
+			tc.align = 1
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '内功'
+			tc.left = -60.000
+			tc.right = 120.000
+			tc.bottom = 3.000
+			tc.top = 43.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '99'
+			tc.font = 0x61240000
+			tc.align = 1
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '搏击'
+			tc.left = -60.000
+			tc.right = 120.000
+			tc.bottom = -16.000
+			tc.top = 24.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '99'
+			tc.font = 0x61240000
+			tc.align = 1
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '拆招'
+			tc.left = -60.000
+			tc.right = 120.000
+			tc.bottom = -35.000
+			tc.top = 5.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '99'
+			tc.font = 0x61240000
+			tc.align = 1
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '闪躲'
+			tc.left = -60.000
+			tc.right = 120.000
+			tc.bottom = -54.000
+			tc.top = -14.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '99'
+			tc.font = 0x61240000
+			tc.align = 1
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '速度'
+			tc.left = -60.000
+			tc.right = 120.000
+			tc.bottom = -73.000
+			tc.top = -33.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '99'
+			tc.font = 0x61240000
+			tc.align = 1
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '好感度'
+			tc.left = -40.000
+			tc.right = 140.000
+			tc.bottom = -92.000
+			tc.top = -52.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '100'
+			tc.font = 0x61240000
+			tc.align = 1
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '武功一'
+			tc.pivotX = 0.000
+			tc.left = -63.000
+			tc.right = 177.000
+			tc.bottom = -121.000
+			tc.top = -91.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x611e0000
+			tc.align = 1
+			tc.style = 10
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '武功二'
+			tc.pivotX = 0.000
+			tc.left = -63.000
+			tc.right = 177.000
+			tc.bottom = -137.000
+			tc.top = -107.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x611e0000
+			tc.align = 1
+			tc.style = 10
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '武功三'
+			tc.pivotX = 0.000
+			tc.left = -63.000
+			tc.right = 177.000
+			tc.bottom = -153.000
+			tc.top = -123.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x611e0000
+			tc.align = 1
+			tc.style = 10
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_button')
+			tp.addChild(tc)
+			tc.name = '结束'
+			tc.left = 57.000
+			tc.right = 87.000
+			tc.bottom = 125.000
+			tc.top = 155.000
+			tp = tc
+				tc = tp.getChildByName('img')
+				if tc then
+				tc.img = 0x560a001d
+				tp = tc
+				end
+				tp = tp.parent
+				--end
+			com = tp.c_button
+			com['customsize'] =true
+			com['img_normal'] =1443495965.000
+			com['img_hover'] =1443495965.000
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = 'c1'
+			tc.left = -7.000
+			tc.right = 93.000
+			tc.bottom = 22.000
+			tc.top = 62.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '被动:'
+			tc.font = 0x61240000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_empty')
+			tp.addChild(tc)
+			tc.name = '被动'
+			tp = tc
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '1'
+				tc.left = -12.000
+				tc.right = 88.000
+				tc.top = 40.000
+				tc.mouseEnabled = true
+				tc.visible = false
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '破绽'
+				tc.font = 0x61240000
+				tc.style = 10
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '2'
+				tc.left = -12.000
+				tc.right = 88.000
+				tc.bottom = -22.000
+				tc.top = 18.000
+				tc.mouseEnabled = true
+				tc.visible = false
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.font = 0x61240000
+				tc.style = 10
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '3'
+				tc.left = -12.000
+				tc.right = 88.000
+				tc.bottom = -44.000
+				tc.top = -4.000
+				tc.mouseEnabled = true
+				tc.visible = false
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.font = 0x61240000
+				tc.style = 10
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '4'
+				tc.left = -12.000
+				tc.right = 88.000
+				tc.bottom = -66.000
+				tc.top = -26.000
+				tc.mouseEnabled = true
+				tc.visible = false
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '2222'
+				tc.font = 0x61240000
+				tc.style = 10
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '显示'
+				tc.visible = false
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -187.500
+					tc.right = -88.500
+					tc.bottom = -152.500
+					tc.top = -9.500
+					tc.img = 0x56160044
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '文本'
+					tc.left = -232.000
+					tc.right = -42.000
+					tc.bottom = -220.000
+					tc.top = 56.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '123'
+					tc.wrap = true
+					tc.font = 0x61240000
+					tc.align = 1
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+	tp = tp.parent
+	--end
 	tc = G.loadUI('v_button')
 	tp.addChild(tc)
 	tc.name = '逃跑'
@@ -5556,6 +4419,7 @@ tp = tc
 	tc.right = 85.000
 	tc.bottom = 28.000
 	tc.top = 108.000
+	tc.visible = false
 	tc.rotation = 45.000
 	tc.alpha = 100
 	tp = tc
@@ -5581,6 +4445,7 @@ tp = tc
 	tc.right = -5.000
 	tc.bottom = -32.000
 	tc.top = 48.000
+	tc.visible = false
 	tc.rotation = 45.000
 	tc.alpha = 100
 	tp = tc
@@ -5606,6 +4471,7 @@ tp = tc
 	tc.right = -95.000
 	tc.bottom = -102.000
 	tc.top = -22.000
+	tc.visible = false
 	tc.rotation = 45.000
 	tc.alpha = 100
 	tp = tc
@@ -5631,6 +4497,7 @@ tp = tc
 	tc.right = 65.000
 	tc.bottom = -58.000
 	tc.top = 22.000
+	tc.visible = false
 	tc.rotation = -225.000
 	tc.alpha = 100
 	tp = tc
@@ -5657,6 +4524,7 @@ tp = tc
 	tc.right = -30.000
 	tc.bottom = -2.000
 	tc.top = 78.000
+	tc.visible = false
 	tc.rotation = -225.000
 	tc.alpha = 100
 	tp = tc

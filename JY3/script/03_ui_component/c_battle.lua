@@ -20,10 +20,13 @@ function t:init()
     self.tl = self.主菜单.getChildByName('状态').getChildByName('tl')
     self.体力 = self.主菜单.getChildByName('状态').getChildByName('体力')
     self.按钮  = self.obj.getChildByName('按钮')
+    self.透明按钮  = self.obj.getChildByName('透明按钮')
     self.说明  = self.obj.getChildByName('战斗说明')
     self.层数  = self.obj.getChildByName('层数')
     self.阵法  = self.obj.getChildByName('阵法')
     self.副按钮  = self.obj.getChildByName('按钮1')
+    self.属性 = self.透明按钮.getChildByName('属性')
+    self.被动 = self.属性.getChildByName('被动')
 end
 function t:刷新记事本()
     local str = ''
@@ -194,11 +197,13 @@ function t:刷新显示()
     end 
     for i = 2,11 do   --显示存活的NPC
         if G.QueryName(i_battle)[位置[i]] > 0 then
-            if G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0  then 
+            if G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0  then
+               self.透明按钮.getChildByName(位置[i]).visible = true 
                self.obj.getChildByName('tab').getChildByName(位置[i]).visible = true
                self.obj.getChildByName('map').getChildByName(位置[i]).visible = true
                self.obj.getChildByName('tab').getChildByName(位置[i]).getChildByName('hp').width = 80*G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命/G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] )[tostring(1)]
-            else  
+            else
+                self.透明按钮.getChildByName(位置[i]).visible = true  
                 self.obj.getChildByName('talk').getChildByName(位置[i]).visible = false    
                 self.obj.getChildByName('tab').getChildByName(位置[i]).visible = false
                 self.obj.getChildByName('map').getChildByName(位置[i]).visible = false
@@ -319,73 +324,154 @@ function t:update()
 end  
 function t:rollOver(tar)
     local i_battle = 0x10150001
-    local int_代码 = tonumber(self.obj.getChildByName('代码').getChildByName(位置[1]).text)
-    local int_n = 0 
-    if G.QueryName(i_battle)[位置[6]] > 0 then
-        if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[6] ]).生命 > 0 then 
-           int_n = int_n + 1
-        end
-    elseif G.QueryName(i_battle)[位置[9]] > 0 then
-        if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[9] ]).生命 > 0 then 
-            int_n = int_n + 1	
-        end
-    elseif G.QueryName(i_battle)[位置[10]] > 0 then
-        if	G.QueryName(o_role + G.QueryName(i_battle)[位置[10] ]).生命 > 0 then 
-            int_n = int_n + 1
-        end
-    end 		
-    local int_m = 0 
-    if G.QueryName(i_battle)[位置[7]] > 0 then
-        if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[7] ]).生命 > 0 then 
-            int_m = int_m + 1
-        end
-    elseif G.QueryName(i_battle)[位置[8]] > 0 then
-        if	G.QueryName(o_role + G.QueryName(i_battle)[位置[8] ]).生命 > 0 then 
-            int_m = int_m + 1	
-        end
-    elseif G.QueryName(i_battle)[位置[11]] > 0 then
-        if	G.QueryName(o_role + G.QueryName(i_battle)[位置[11] ]).生命 > 0 then 
-           int_m = int_m + 1
-        end   
-    end 
-    local int_a = 0 
-    if G.QueryName(i_battle)[位置[6]] > 0 then
-        if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[6] ]).生命 > 0 then 
-            int_a = int_a + 1
-        end
-    elseif G.QueryName(i_battle)[位置[11]] > 0 then
-        if	G.QueryName(o_role + G.QueryName(i_battle)[位置[11] ]).生命 > 0 then 
-            int_a = int_a + 1
-        end
-    end 		
-    local int_b = 0 
-    if G.QueryName(i_battle)[位置[7]] > 0 then
-        if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[7] ]).生命 > 0 then 
-            int_b = int_b + 1
-        end
-    elseif G.QueryName(i_battle)[位置[9]] > 0 then
-        if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[9] ]).生命 > 0 then 
-            int_b = int_b + 1
-        end
-    end 
-    local int_c = 0 
-    if G.QueryName(i_battle)[位置[8]] > 0 then
-        if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[8] ]).生命 > 0 then 
-            int_c = int_c + 1
-        end
-    elseif G.QueryName(i_battle)[位置[10]] > 0 then
-        if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[10] ]).生命 > 0 then 
-             int_c = int_c + 1
-        end
-    end 
-    local int_d = 0
-    if  int_a == 0  then 
-        int_d = int_d  + 1
-    elseif  int_b == 0  then   
-        int_d = int_d  + 1
-    elseif  int_c == 0  then   
-        int_d = int_d  + 1
-    end 
+    local o_battle = G.QueryName(0x10150001)
+    for i = 2,11 do
+        if tar == self.透明按钮.getChildByName(位置[i]) then 
+            self.透明按钮.getChildByName('属性').visible = true
+            local int_队员编号 = o_battle[位置[i]]
+            local o_role_人物 = G.QueryName(0x10040000+int_队员编号)
+            print(o_role_人物)
+            if o_role_人物 ~= nil then 
+                if o_role_人物.头像 then 
+                     self.属性.getChildByName('头像').img = o_role_人物.头像
+                end 
+                self.属性.getChildByName('姓名').text = o_role_人物.姓名
+                if i > 5 then 
+                    self.属性.getChildByName('生命').text = '?????/?????'
+                    self.属性.getChildByName('内力').text = '?????/?????'
+                else
+                    self.属性.getChildByName('生命').text = tostring(o_role_人物.生命)..'/'..(o_role_人物[tostring(1)] )
+                    self.属性.getChildByName('内力').text = tostring(o_role_人物.内力)..'/'..(o_role_人物[tostring(2)] )
+                end
+                self.属性.getChildByName('拆招').text = G.call('get_role',int_队员编号,3)
+                self.属性.getChildByName('闪躲').text = G.call('get_role',int_队员编号,5)
+                self.属性.getChildByName('搏击').text = G.call('get_role',int_队员编号,4)
+                self.属性.getChildByName('内功').text = G.call('get_role',int_队员编号,6)
+                self.属性.getChildByName('攻击').text = tostring(o_role_人物[tostring(7)]) 
+                self.属性.getChildByName('速度').text = G.call('get_role',int_队员编号,8)
+                self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
+                local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气'}
+                for i = 1,4 do 
+                    if o_role_人物[tostring(110+i)] ~= nil then 
+                        self.被动.getChildByName(tostring(i)).visible = true
+                        self.被动.getChildByName(tostring(i)).text = magic[o_role_人物[tostring(110+i)]]
+                    else
+                        self.被动.getChildByName(tostring(i)).visible = false
+                    end     
+                end 
+                local 武功 = {'武功一','武功二','武功三'} 
+                for i = 1,3 do
+                    if o_role_人物['技能'..i] ~= nil then 
+                        local data = G.QueryName(o_role_人物['技能'..i]).满级熟练度/450
+                        local o_skill_武功当前熟练度 = tonumber(o_role_人物[tostring(10)]) 
+                        local o_skill_武功等级 = 0
+                        if o_skill_武功当前熟练度 > 0 then 
+                                o_skill_武功等级 = 1
+                        end     
+                        if  o_skill_武功当前熟练度 > 10*data then
+                            o_skill_武功等级 = 2
+                        end 
+                        if  o_skill_武功当前熟练度 > 30*data then
+                            o_skill_武功等级 = 3
+                        end     
+                        if  o_skill_武功当前熟练度 > 60*data then
+                            o_skill_武功等级 = 4
+                        end 
+                        if  o_skill_武功当前熟练度 > 100*data then
+                            o_skill_武功等级 = 5
+                        end 
+                        if  o_skill_武功当前熟练度 > 150*data then
+                            o_skill_武功等级 = 6
+                        end 
+                        if  o_skill_武功当前熟练度 > 210*data then
+                            o_skill_武功等级 = 7
+                        end 
+                        if  o_skill_武功当前熟练度 > 280*data then
+                            o_skill_武功等级 = 8
+                        end 
+                        if  o_skill_武功当前熟练度 > 360*data then
+                            o_skill_武功等级 = 9
+                        end 
+                        if  o_skill_武功当前熟练度 > 450*data then
+                            o_skill_武功等级 = 10
+                        end 
+                        self.属性.getChildByName(武功[i]).text = G.QueryName(o_role_人物.技能1).名称..tostring(o_skill_武功等级)..'级'
+                    else
+                        self.属性.getChildByName(武功[i]).text = ''
+            
+                    end  
+
+                end   
+            end
+        end 
+    end
+    -- local int_代码 = tonumber(self.obj.getChildByName('代码').getChildByName(位置[1]).text)
+    -- local int_n = 0 
+    -- if G.QueryName(i_battle)[位置[6]] > 0 then
+    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[6] ]).生命 > 0 then 
+    --        int_n = int_n + 1
+    --     end
+    -- elseif G.QueryName(i_battle)[位置[9]] > 0 then
+    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[9] ]).生命 > 0 then 
+    --         int_n = int_n + 1	
+    --     end
+    -- elseif G.QueryName(i_battle)[位置[10]] > 0 then
+    --     if	G.QueryName(o_role + G.QueryName(i_battle)[位置[10] ]).生命 > 0 then 
+    --         int_n = int_n + 1
+    --     end
+    -- end 		
+    -- local int_m = 0 
+    -- if G.QueryName(i_battle)[位置[7]] > 0 then
+    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[7] ]).生命 > 0 then 
+    --         int_m = int_m + 1
+    --     end
+    -- elseif G.QueryName(i_battle)[位置[8]] > 0 then
+    --     if	G.QueryName(o_role + G.QueryName(i_battle)[位置[8] ]).生命 > 0 then 
+    --         int_m = int_m + 1	
+    --     end
+    -- elseif G.QueryName(i_battle)[位置[11]] > 0 then
+    --     if	G.QueryName(o_role + G.QueryName(i_battle)[位置[11] ]).生命 > 0 then 
+    --        int_m = int_m + 1
+    --     end   
+    -- end 
+    -- local int_a = 0 
+    -- if G.QueryName(i_battle)[位置[6]] > 0 then
+    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[6] ]).生命 > 0 then 
+    --         int_a = int_a + 1
+    --     end
+    -- elseif G.QueryName(i_battle)[位置[11]] > 0 then
+    --     if	G.QueryName(o_role + G.QueryName(i_battle)[位置[11] ]).生命 > 0 then 
+    --         int_a = int_a + 1
+    --     end
+    -- end 		
+    -- local int_b = 0 
+    -- if G.QueryName(i_battle)[位置[7]] > 0 then
+    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[7] ]).生命 > 0 then 
+    --         int_b = int_b + 1
+    --     end
+    -- elseif G.QueryName(i_battle)[位置[9]] > 0 then
+    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[9] ]).生命 > 0 then 
+    --         int_b = int_b + 1
+    --     end
+    -- end 
+    -- local int_c = 0 
+    -- if G.QueryName(i_battle)[位置[8]] > 0 then
+    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[8] ]).生命 > 0 then 
+    --         int_c = int_c + 1
+    --     end
+    -- elseif G.QueryName(i_battle)[位置[10]] > 0 then
+    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[10] ]).生命 > 0 then 
+    --          int_c = int_c + 1
+    --     end
+    -- end 
+    -- local int_d = 0
+    -- if  int_a == 0  then 
+    --     int_d = int_d  + 1
+    -- elseif  int_b == 0  then   
+    --     int_d = int_d  + 1
+    -- elseif  int_c == 0  then   
+    --     int_d = int_d  + 1
+    -- end 
     -- if self.obj.getChildByName('map').getChildByName(位置[1]).x == 150 and self.obj.getChildByName('状态').text == tostring(1) then 
     --     if  G.QueryName(0x10050000+int_代码).范围 == 2 and tonumber(self.obj.getChildByName('num').text) > 1  then 
     --         for i = 6,11 do 
@@ -416,6 +502,13 @@ function t:rollOver(tar)
     -- end             
 end 
 function t:rollOut(tar)
+    local i_battle = 0x10150001
+    local o_battle = G.QueryName(0x10150001)
+    for i = 2,11 do
+        if tar == self.透明按钮.getChildByName(位置[i]) then 
+            self.透明按钮.getChildByName('属性').visible = false
+        end 
+    end
     local int_代码 = tonumber(self.obj.getChildByName('代码').getChildByName(位置[1]).text)
     -- if self.obj.getChildByName('map').getChildByName(位置[1]).x == 150 and self.obj.getChildByName('状态').text == tostring(1) then 
     --     if  G.QueryName(0x10050000+int_代码).范围 == 2  then 
