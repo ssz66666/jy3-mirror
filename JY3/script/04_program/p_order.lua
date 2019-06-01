@@ -847,6 +847,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
             G.call('set_role',o_battle[位置[i] ] ,14,G.call('get_role',o_battle[位置[i ] ],2 ) ) 
         end 
     end
+    G.misc().队伍记录 = {}
     local 队伍记录 = {}
     G.deepcopy(G.misc().队伍记录,队伍记录)
     for i = 2,5 do
