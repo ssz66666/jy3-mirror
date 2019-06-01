@@ -203,7 +203,7 @@ function t:刷新显示()
                self.obj.getChildByName('map').getChildByName(位置[i]).visible = true
                self.obj.getChildByName('tab').getChildByName(位置[i]).getChildByName('hp').width = 80*G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命/G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] )[tostring(1)]
             else
-                self.透明按钮.getChildByName(位置[i]).visible = true  
+                self.透明按钮.getChildByName(位置[i]).visible = false  
                 self.obj.getChildByName('talk').getChildByName(位置[i]).visible = false    
                 self.obj.getChildByName('tab').getChildByName(位置[i]).visible = false
                 self.obj.getChildByName('map').getChildByName(位置[i]).visible = false
