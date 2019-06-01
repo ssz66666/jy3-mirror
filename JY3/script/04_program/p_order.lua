@@ -848,7 +848,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         end 
     end
     local 队伍记录 = {}
-    G.deepcopy( G.misc().队伍记录,队伍记录)
+    G.deepcopy(G.misc().队伍记录,队伍记录)
     for i = 2,5 do
         table.insert(G.misc().队伍记录,o_battle['team'..i])
     end
