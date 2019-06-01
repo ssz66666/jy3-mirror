@@ -336,11 +336,11 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    --G.call('join',37)
-    -- local o_book_story = G.QueryName(0x101c0006)
-    -- o_book_story.流程 = 4
-    -- G.call('天书_白马啸西风') 
-    -- G.call('通用_印记状态')
+    G.call('join',13)
+    local o_book_story = G.QueryName(0x101c0007)
+    o_book_story.流程 = 1
+    G.call('天书_鹿鼎记') 
+    G.call('通用_印记状态')
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0
@@ -847,7 +847,8 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
             G.call('set_role',o_battle[位置[i] ] ,14,G.call('get_role',o_battle[位置[i ] ],2 ) ) 
         end 
     end
-    G.misc().队伍记录 = {}
+    local 队伍记录 = {}
+    G.deepcopy( G.misc().队伍记录,队伍记录)
     for i = 2,5 do
         table.insert(G.misc().队伍记录,o_battle['team'..i])
     end

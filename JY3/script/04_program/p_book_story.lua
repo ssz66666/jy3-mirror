@@ -911,6 +911,40 @@ t['天书_鹿鼎记'] = function()
         G.call('all_over')
         return
     end 
+    local int_mo = (227-224)*6+265
     if o_book_story.流程 == 0 then
+        G.call('地图_进入地图','丽春院',130,61)
+        G.call("talk",'',13,'   凉风有信，秋月无边，亏我思娇的情绪好比度--日--如--年--[br]噫，外头好像又有人在打架，看看去......',0,0)
+        G.call('地图_进入地图','丽春院门口',159,61)
+        G.call("talk",'',49,'   这位小哥，有没地方让我躲一躲？',2,1)
+        G.call("talk",'',13,'   你跟我说话吗？',0,0)
+        G.call("talk",'',49,'   不跟你说话跟谁说话？',2,1)
+        G.call("talk",'',13,'   大哥，带你躲可以，有银子给吗？',0,0)
+        G.call("talk",'',49,'   啰里啰嗦，不好官兵来了？',2,1)
+        G.call('all_over')
+        G.call('set_team',13,0,0,0)
+        G.call('call_battle',1,159,4,100,int_mo+5,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4)
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1 then
+            G.call("talk",'',13,'   跟我来，他们被我的绝技【撒石灰】看不到了！',0,0)
+            G.call('地图_进入地图','厢房',272,61)
+            G.call("talk",'',13,'   你受伤了，先在这里养伤吧！',0,0)
+            G.call("talk",'',49,'   以后有机会带你去京城里玩玩！',2,1)
+            o_book_story.流程 = 1
+        else
+            G.call("talk",'',227,'   没本事还想学别人充好汉，回家去吧！',2,1)
+        end
+    elseif o_book_story.流程 == 1 then
+        G.call('地图_进入地图','御膳房司',273,33)
+        G.call("talk",'',126,'   小桂子最近跟小皇帝玩的怎么样？',2,1)
+        G.call("talk",'',13,'   小皇帝也就让我找了几个小太监一起陪他玩！',0,0)
+        G.call("talk",'',126,'   (看来小皇帝等不及了)[br]咳...咳...咳...我交代你的事情可别忘记了！',2,1)
+        G.call('dark')
+        G.call("talk",'',227,'   桂公公，皇帝正找你有事？',2,1)
+        G.call("talk",'',13,'   知道了，马上就来，又不是敢着去投胎！',0,0)
     end
+    G.call('all_over')
+    G.call('add_time',2)
+    G.call('dark')
+    G.call('goto_map',4)
 end
