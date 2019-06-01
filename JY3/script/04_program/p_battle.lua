@@ -869,7 +869,7 @@ t['战斗系统_事件响应'] = function()
                                     end
                                 end
                                 local n = tonumber(ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text)
-                                print(o_role_tb.姓名,o_skill.名称,G.QueryName(o_role + G.QueryName(o_battle)[位置[n] ]).姓名,G.QueryName(o_role + G.QueryName(o_battle)[位置[n] ]).生命 )
+                                --print(o_role_tb.姓名,o_skill.名称,G.QueryName(o_role + G.QueryName(o_battle)[位置[n] ]).姓名,G.QueryName(o_role + G.QueryName(o_battle)[位置[n] ]).生命 )
                                 if o_skill.范围 == 2 then
                                     int_动画位置  = n
                                 elseif o_skill.范围 == 3 then
