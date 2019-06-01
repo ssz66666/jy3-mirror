@@ -664,7 +664,7 @@ t['天书_射雕英雄传'] = function()
         G.call("talk",'',82,'   臭小子，又碰到你了，看你这次往哪里逃！',2,1)
         G.call('all_over')
         G.call('set_team',37,0,0,0)
-        G.call('call_battle',1,263,4,999,395,0,0,0,0,0,0,63)
+        G.call('call_battle',1,263,4,999,82,0,0,0,0,0,0,63)
         G.call("talk",'',12,'   靖哥哥，你受伤了，我们走！',2,1)
         G.call('地图_进入地图','牛家村密室',265,63)
         G.call("talk",'',12,'   靖哥哥，你怎么样？',2,1)
@@ -704,6 +704,47 @@ t['天书_射雕英雄传'] = function()
         G.call("talk",'',12,'   确然无疑。完颜洪烈那贼子推算武穆遗书藏在宫中翠寒堂衅，可见石匣虽得，遗书却无影踪，看来这四行字是遗书所在的重大关键……铁掌……中……峰……',2,1)
         G.call("talk",'',12,'   爹爹，那我和靖哥哥先去铁掌峰看看！',2,1)
         o_book_story.流程 = 1
-    elseif o_book_story.流程 == 1 then    
+    elseif o_book_story.流程 == 1 then  
+        G.call('地图_进入地图','铁掌帮',65,63) 
+        G.call("talk",'',37,'   这就是铁掌帮了....',0,0)
+        G.call('dark')
+        G.call("talk",'',87,'   二位为何私闯我铁掌帮？',2,1)
+        G.call("talk",'',12,'   原来又是你这个骗子，上次骗得我爹爹与全真七子互斗，今天要你好看！',2,1)
+        if G.call('get_point',8) == 6 then 
+            G.call("talk",'',37,'   蓉儿我看这位不像先前遇到的那位，我们不可大意!',0,0)
+            G.call("talk",'',12,'   靖哥哥那我们一起教训他！',2,1)
+            G.call('all_over')
+            G.call('set_team',37,12,0,0)
+            G.call('call_battle',1,65,4,150,87,0,0,0,0,0,0,63)
+        else
+            G.call("talk",'',12,'   靖哥哥看我怎么教训他！',2,1)
+            G.call('all_over')
+            G.call('set_team',12,0,0,0)
+            G.call('call_battle',1,65,4,150,87,0,0,0,0,0,0,63)
+        end
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1  then
+            G.call("talk",'',37,'   不好，此人太厉害，我们快走！',0,0)
+            o_book_story.流程 = 2
+        else
+            G.call("talk",'',37,'   蓉儿你受伤了，我们快走！',0,0)
+            o_book_story.流程 = 3
+        end
+    elseif o_book_story.流程 == 2 then  
+        G.call('地图_进入地图','铁掌山密洞',131,63)
+        G.call("talk",'',37,'   这是哪里？',0,0)
+        G.call("talk",'',12,'   好像就是铁掌山中峰所在，我们找找看！',2,1)
+        G.call('dark')
+        G.call('add_item',104,1)
+        G.call("talk",'',37,'   好像这就是【武穆遗书】，我们走！',0,0)
+        G.call('地图_进入地图','山路',26,63)
+        G.call("talk",'',82,'   臭小子，拿了书就想走，连同九阴真经一起交了吧！',2,1)
+        G.call("talk",'',87,'   我铁掌帮岂是想进就进，想出就出？',2,1)
+    elseif o_book_story.流程 == 3 then 
+
     end
+    G.call('all_over')
+    G.call('add_time',2)
+    G.call('dark')
+    G.call('goto_map',4)
 end

@@ -336,13 +336,11 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-   
-    -- G.call('call_battle',1,10,3,1,390,0,0,0,0,0)
-    -- G.call('join',37)
-    -- local o_book_story = G.QueryName(0x101c0005)
-    -- o_book_story.流程 = 6
-    -- G.call('天书_射雕英雄传') 
-    -- G.call('通用_印记状态')
+    G.call('join',37)
+    local o_book_story = G.QueryName(0x101c0005)
+    o_book_story.流程 = 1
+    G.call('天书_射雕英雄传') 
+    G.call('通用_印记状态')
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0
@@ -672,12 +670,6 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     ui_显示.visible = true
     ui_显示.y = 0
     G.Tween('y',500, ui_显示, 80)
-    if int_范围 == 5 then 
-        G.wait_time(1000)
-    else
-        G.wait_time(500)
-    end
-    ui_显示.visible = false 
     local   hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
     if ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible == true then 
         if G.QueryName(0x10150001).模式 < 4 then 
@@ -708,6 +700,12 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
             end
         end 		
     end 
+    if int_范围 == 5 then 
+        G.wait_time(1000)
+    else
+        G.wait_time(500)
+    end
+    ui_显示.visible = false 
     for p = 1,11 do
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').visible = false
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('闪避').visible = false
