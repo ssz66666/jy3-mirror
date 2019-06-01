@@ -235,7 +235,7 @@ function t:click(tar)
             if G.misc().achieve_data_i == 1 then 
                 if i == 1 then 
                     local BJ = G.call('get_point',130)
-                    self.说明.getChildByName('进度').text = '本金'..tostring(BJ)
+                    self.说明.getChildByName('进度').text = '本金'..tostring(math.floor(BJ))
                 elseif i >= 2 then 
                     local dqjd = 0
                     local zjd = 0
@@ -247,7 +247,7 @@ function t:click(tar)
                         end  
                         zjd = zjd + o_achieve.进度列表[n].总进度  
                     end 
-                    self.说明.getChildByName('进度').text = tostring(dqjd)..'/'..tostring(zjd)  
+                    self.说明.getChildByName('进度').text = tostring(math.floor(dqjd))..'/'..tostring(zjd)  
                 end   
                 if i == 3 or i == 6 or i == 18  or (i >= 12 and i <= 16) then
                     self.说明.getChildByName('详细').visible = true 
