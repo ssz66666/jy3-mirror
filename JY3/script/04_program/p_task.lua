@@ -1719,7 +1719,7 @@ t['藏经阁寻宝']=function()
         o_xbdr.进度列表[1].当前进度 =  o_xbdr.进度列表[1].当前进度 + 1
         G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
         if b == 1 then 
-            if G.call('get_point',135) == 1 and G.call('get_point',137) == 1 then 
+            if G.call('get_point',135) == 1 and G.call('get_point',134) == 1 then 
                 G.call("talk",'',0,'   "哇！原来这就是少林至宝《易筋经》！多亏我懂得梵文，不然可就当一般经书给扔掉了',0,0) 
                 if G.call('get_item',94) == 0 then 
                     G.call('add_item',94,1)
@@ -1728,7 +1728,7 @@ t['藏经阁寻宝']=function()
                 G.call("talk",'',0,'   "这是什么稀奇古怪的文字？！忙活一晚上翻来翻去就见到这些古怪的经文，可惜对我却是百无一用。',0,0) 
             end
         elseif b == 4 then 
-            if G.call('get_point',135) == 1 and G.call('get_point',138) == 1 then 
+            if G.call('get_point',135) == 1 and G.call('get_point',136) == 1 then 
                 G.call("talk",'',0,'   ""嘿！竟然有人把绝世神功《九阳真经》记载在《楞伽经》每段文字的夹缝内！多亏我懂得梵文，与神功失之交臂了。',0,0) 
                 if G.call('get_item',97) == 0 then 
                     G.call('add_item',97,1)
