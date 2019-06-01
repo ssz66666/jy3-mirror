@@ -2488,9 +2488,9 @@ t['use_item']=function(int_物品,int_数量) --使用物品
     for i = 1,22 do 
         add[i] = 0
     end 
-    if i_item == 0x100b00df and G.call('get_item',224) > 10 then --大还丹超过10颗使用时直接变成1颗
-        G.call('add_item',224,-G.call('get_item',224)+1)
-    end
+    -- if i_item == 0x100b00df and G.call('get_item',224) > 10 then --大还丹超过10颗使用时直接变成1颗
+    --     G.call('add_item',224,-G.call('get_item',224)+1)
+    -- end
     add[1] = o_item_物品.加拳掌
     add[2] = o_item_物品.加弹指
     add[3] = o_item_物品.加御剑
