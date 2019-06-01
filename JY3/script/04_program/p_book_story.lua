@@ -735,16 +735,182 @@ t['天书_射雕英雄传'] = function()
         G.call("talk",'',37,'   这是哪里？',0,0)
         G.call("talk",'',12,'   好像就是铁掌山中峰所在，我们找找看！',2,1)
         G.call('dark')
-        G.call('add_item',104,1)
         G.call("talk",'',37,'   好像这就是【武穆遗书】，我们走！',0,0)
         G.call('地图_进入地图','山路',26,63)
         G.call("talk",'',82,'   臭小子，拿了书就想走，连同九阴真经一起交了吧！',2,1)
-        G.call("talk",'',87,'   我铁掌帮岂是想进就进，想出就出？',2,1)
+        G.call("talk",'',87,'   我铁掌帮岂是你们想进就进，想出就出？',2,1)
+        G.call("talk",'',385,'   还想跟小王作对，去死吧！',2,1)
+        G.call('all_over')
+        G.call('set_team',37,12,0,0)
+        G.call('call_battle',1,22,4,200,87,385,82,0,0,0,0,63)
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1  then
+            G.call('add_item',104,1)
+            G.call("talk",'',37,'   蓉儿拿到书了，我们走！',0,0)
+            o_book_story.完成 = 1
+            o_book_story.完美 = 1
+        else
+            G.call("talk",'',385,'   这点本事就想拿【武穆遗书】！',2,1)
+        end
     elseif o_book_story.流程 == 3 then 
-
+        G.call('地图_进入地图','铁掌山密洞',131,63)
+        G.call("talk",'',37,'   这是哪里？',0,0)
+        G.call("talk",'',12,'   好像就是铁掌山中峰所在，我们找找看！',2,1)
+        G.call('dark')
+        G.call("talk",'',37,'   好像这就是【武穆遗书】，我们走！',0,0)
+        G.call('地图_进入地图','山路',26,63)
+        G.call("talk",'',82,'   臭小子，拿了书就想走，连同九阴真经一起交了吧！',2,1)
+        G.call("talk",'',87,'   我铁掌帮岂是你们想进就进，想出就出？',2,1)
+        G.call("talk",'',385,'   还想跟小王作对，去死吧！',2,1)
+        G.call('all_over')
+        G.call('set_team',37,0,0,0)
+        G.call('call_battle',1,22,4,200,87,385,82,0,0,0,0,63)
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1  then
+            G.call('add_item',104,1)
+            G.call("talk",'',37,'   蓉儿拿到书了，我们走！',0,0)
+            o_book_story.完成 = 1
+        else
+            G.call("talk",'',385,'   这点本事就想拿【武穆遗书】！',2,1)
+        end
     end
     G.call('all_over')
     G.call('add_time',2)
     G.call('dark')
     G.call('goto_map',4)
+end
+t['天书_白马啸西风'] = function()
+    local o_book_story = G.QueryName(0x101c0006)
+    if o_book_story.流程 == 0 then
+        G.call('地图_进入地图','高昌迷宫',266,32)
+        G.call("talk",'',396,'   这就是高昌迷宫了，进去看看有什么！',0,0)
+        G.call('地图_进入地图','迷宫入口',267,32)
+        G.call("talk",'',396,'   这入口就有机关，看来这机关不解开是进不去了！',0,0)
+        if G.call('organ') then 
+            G.call("talk",'',396,'   这机关也不过如此！',0,0)
+            o_book_story.流程 = 1
+        else
+            G.call("talk",'',396,'   还是以后再来吧！',0,0)
+        end
+    elseif o_book_story.流程 == 1 then
+        G.call('地图_进入地图','迷宫二',268,32)
+        G.call("talk",'',396,'   这里竟然还设有暗号，这怎么进？！',0,0) 
+        G.call('all_over')
+        local m = {0,0,0,0}
+        local t = {0,1,2,3,4,5,6,7,8,9}
+        local len = #t
+        local r = math.random(len)
+        local int_mo = 0
+        m[1] =t[r]
+        table.remove(t, r)
+        len = #t
+        r = math.random(len)	
+        m[2] =t[r]
+        table.remove(t, r)
+        len = #t
+        r = math.random(len)	
+        m[3] =t[r]
+        table.remove(t, r)
+        len = #t
+        r = math.random(len)	
+        m[4] =t[r]
+        table.remove(t, r)
+        local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4]   
+        print(int_no)
+        local int_选项 = 0
+        while true do
+            if int_mo == 0 then 
+                int_选项 = G.call("menu",'',396,'我要不要猜猜？',1,1, {"1,开始瞎蒙吧！","2,还是离开为妙"},1)
+            else
+                int_选项 = G.call("menu",'',396,'还要不要猜猜！',1,1, {"1,继续瞎蒙吧！","2,还是离开为妙"},1)
+            end
+            if int_选项 == 1 then 
+                G.misc().猜数字 = 1
+                G.call('input')
+                G.misc().猜数字 = 0
+                int_mo = int_mo + 1
+                if G.misc().number == int_no then 
+                    G.call('all_over')
+                    break
+                else
+                    local p = G.misc().number
+                    local n = {0,0,0,0}
+                    local r = 0
+                    local e = 0
+                    n[1] =  math.floor(p/1000)
+                    n[2] =  math.floor((p - n[1] *1000)/100)
+                    n[3] =  math.floor((p - n[1] *1000 - n[2] *100)/10 )
+                    n[4] =  p - n[1] *1000 - n[2] *100 - n[3] * 10 
+                    for i = 1,4 do 
+                        if n[i] == m[i] then 
+                            r = r + 1
+                        end
+                        for t = 1,4 do 
+                            if n[i] == m[t] and i ~= t then 
+                                e = e + 1
+                            end
+                        end     
+                    end 
+                    local str = tostring(n[1])..tostring(n[2])..tostring(n[3])..tostring(n[4])
+                    G.call("talk",'',396,'   这里显示：[br]  【'..r..'】个数字位置正确，【'..e..'】个数字位置错误！',0,0)  
+                end    
+            elseif int_选项 == 2 then
+                G.call('all_over')
+                break
+            end
+        end
+        if G.misc().number == int_no then
+            G.call("talk",'',396,'   这也太简单了吧，继续走下去看看！',0,0) 
+            o_book_story.流程 = 2 
+        else
+            G.call("talk",'',396,'   回去回去，下次再来了！',0,0) 
+            o_book_story.流程 = 0
+        end
+    elseif o_book_story.流程 == 2 then
+        G.call('地图_进入地图','迷宫三',269,32) 
+        G.call("talk",'',396,'   终于到最后了，这里有幅图，看来是要拼好才能过去了！',0,0)
+        G.call('puzzle')
+        if G.misc().拼图结果 == 1 then
+            G.call('dark')  
+            local int_拼图时间 = G.misc().计时器
+            local str = string.format("%.2d:%.2d:%.2d", math.floor(G.misc().计时器/3600) , math.floor(G.misc().计时器/60)%60 , math.floor(G.misc().计时器)%60) 
+            G.call('set_note','完成高昌迷宫拼图,用时'..str)
+            if 1800 - G.misc().计时器 <= 600 then 
+                o_book_story.流程 = 3
+            else
+                o_book_story.流程 = 4
+            end
+        else
+            G.call("talk",'',396,'   回去回去，下次再来了！',0,0) 
+            o_book_story.流程 = 0
+        end 
+    elseif o_book_story.流程 == 3 then 
+        G.call('地图_进入地图','迷宫深处',270,32) 
+        o_book_story.完成 = 1
+        G.call('add_money',50000) 
+        G.call("talk",'',396,'   啊，找到宝藏了，看看都有什么！',0,0)
+        G.call('join',396)
+    elseif o_book_story.流程 == 4 then 
+        G.call('地图_进入地图','迷宫深处',270,32)
+        G.call('join',396) 
+        G.call('add_money',100000) 
+        G.call("talk",'',396,'   啊，找到宝藏了，看看都有什么！',0,0)
+        G.call('add_item',344,1) 
+        o_book_story.完成 = 1
+        o_book_story.完美 = 1
+    end
+    G.call('all_over')
+    G.call('add_time',2)
+    G.call('dark')
+    G.call('goto_map',4)
+end
+t['天书_鹿鼎记'] = function()
+    local o_book_story = G.QueryName(0x101c0007)
+    if not G.call('in_team',13) then 
+        G.call("talk",'',38,'   本故事没有韦小宝是无法进行的！',2,1)
+        G.call('all_over')
+        return
+    end 
+    if o_book_story.流程 == 0 then
+    end
 end

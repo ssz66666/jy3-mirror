@@ -336,11 +336,11 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('join',37)
-    local o_book_story = G.QueryName(0x101c0005)
-    o_book_story.流程 = 1
-    G.call('天书_射雕英雄传') 
-    G.call('通用_印记状态')
+    --G.call('join',37)
+    -- local o_book_story = G.QueryName(0x101c0006)
+    -- o_book_story.流程 = 4
+    -- G.call('天书_白马啸西风') 
+    -- G.call('通用_印记状态')
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0

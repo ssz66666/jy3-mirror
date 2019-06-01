@@ -870,7 +870,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 G.call('all_over')
                             end 
                         else
-                            local num = {19,24,65,82,124,171,169} 
+                            local num = {19,24,65,82,130,171,169} 
                             if m < 8 then 
                                 local str = G.QueryName(0x10050000 + num[m] - 1).名称
                                 if G.call('get_magic',num[m]) <= 0 then 
