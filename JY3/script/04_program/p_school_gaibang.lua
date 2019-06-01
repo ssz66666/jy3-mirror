@@ -66,7 +66,7 @@ t['初入丐帮-全冠清'] = function()
     if G.call('get_month') ~= G.call('get_point',146)  then 
         G.QueryName(0x10030001)[tostring(146)]  = G.call('get_month')
         if G.call('get_point',130)  < 1000 then 
-            G.call('set_newpoint',130,-1000 )
+            G.call('set_newpoint',130,-1000 - 10 )
 			G.call('set_point',130,1000 )
         end
     end
