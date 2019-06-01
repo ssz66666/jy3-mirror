@@ -2356,7 +2356,8 @@ t['集气'] = function()
                     end     
                     if G.call('get_role',int_role,81) > 0 then --npc中毒受伤
                         G.call('add_role',int_role,13,-20)  
-                    elseif G.call('get_role',int_role,85) > 0 then 
+                    end
+                    if G.call('get_role',int_role,85) > 0 then 
                         G.call('add_role',int_role,13,-10) 
                     end     
                     for p = 81,89 do --npc异常状态随时间清除
@@ -2477,11 +2478,11 @@ t['集气'] = function()
                                     ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/1
                                 end
                             end
-                            if o_role_tb[tostring(81)] > 0 then  --中毒受伤
-                                G.call('add_role',o_battle[位置[i] ] ,13,-5) 
-                            elseif o_role_tb[tostring(85)] > 0 then
-                                G.call('add_role',o_battle[位置[i] ] ,13,-2)  
-                            end 
+                            -- if o_role_tb[tostring(81)] > 0 then  --中毒受伤
+                            --     G.call('add_role',o_battle[位置[i] ] ,13,-5) 
+                            -- elseif o_role_tb[tostring(85)] > 0 then
+                            --     G.call('add_role',o_battle[位置[i] ] ,13,-2)  
+                            -- end 
                         end
                     end       
 				    if ui.getChildByName('map').getChildByName(位置[i]).x >= 330 then 
