@@ -659,6 +659,7 @@ t['get_battle']=function()  --取得战斗结果
 end 
 t['通用_战斗飘字']=function(int_位置,int_范围)  --
     local ui = G.getUI('v_battle')
+    local c = ui.c_battle
     local ui_显示 = ui.getChildByName('hurt')
     local ui_flash = ui.getChildByName('flash')
     local o_battle = G.QueryName(0x10150001)
@@ -714,6 +715,7 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = tostring(0)
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加内力').text = tostring(0)
     end
+    c:刷新显示()
 end 
 t['call_wood']=function() 
     --if G.misc().战斗结果 == 0 then return end 

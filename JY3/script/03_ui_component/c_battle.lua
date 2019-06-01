@@ -169,10 +169,9 @@ function t:start()
         self.obj.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减体力').shadowAlpha = 180
     end     
     self:update()
+    self:刷新显示()
 end  
-function t:update()
-    local num = 0
-    local num0 = 1  
+function t:刷新显示()
     local i_battle = 0x10150001
     local o_battle = G.QueryName(0x10150001)
     --self.obj.getChildByName('tab').getChildByName(位置[1]).getChildByName('hp').width = 80*G.QueryName(0x10030001)[tostring(44)]/G.QueryName(0x10030001)[tostring(217)]
@@ -211,22 +210,6 @@ function t:update()
             self.obj.getChildByName('map').getChildByName(位置[i]).x = 0
         end       
     end 
-    for i = 2,5 do --计算我方存活人数
-        if G.QueryName(i_battle)[位置[i]] > 0 then
-            if  G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0 then 
-                num0 = num0 + 1
-            end 
-        end     
-    end 
-    self.obj.getChildByName('num0').text = tostring(num0)
-    for i = 6,11 do --计算敌人存活人数
-        if G.QueryName(i_battle)[位置[i]] > 0 then 
-            if  G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0 then 
-                num = num + 1
-            end 
-        end     
-    end     
-    self.obj.getChildByName('num').text = tostring(num)
     local hp = math.floor(G.QueryName(0x10030001)[tostring(44)])
     local mp = math.floor(G.QueryName(0x10030001)[tostring(46)])
     local maxhp = G.QueryName(0x10030001)[tostring(217)]
@@ -254,9 +237,31 @@ function t:update()
     self.mp.text = tostring(mp)..'/'..tostring(maxmp) 
     self.tl.text = tostring(math.floor(G.QueryName(0x10030001)[tostring(48)]))..'/'..tostring(G.QueryName(0x10030001)[tostring(49)]) 
     local TL = G.QueryName(0x10030001)[tostring(48)]
-    self.体力.width = TL*111/(G.QueryName(0x10030001)[tostring(49)])   
+    self.体力.width = TL*111/(G.QueryName(0x10030001)[tostring(49)])  
+end
+function t:update()
+    local i_battle = 0x10150001
+    local o_battle = G.QueryName(0x10150001)
+    local num = 0
+    local num0 = 1  
+    for i = 2,5 do --计算我方存活人数
+        if G.QueryName(i_battle)[位置[i]] > 0 then
+            if  G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0 then 
+                num0 = num0 + 1
+            end 
+        end     
+    end 
+    self.obj.getChildByName('num0').text = tostring(num0)
+    for i = 6,11 do --计算敌人存活人数
+        if G.QueryName(i_battle)[位置[i]] > 0 then 
+            if  G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0 then 
+                num = num + 1
+            end 
+        end     
+    end     
+    self.obj.getChildByName('num').text = tostring(num)
     local 快捷 = {'q','w','e','r'}
-    local o_hotkey = G.QueryName(0x100c0001)
+    local o_hotkey = G.QueryName(0x100c0001)    
     for i = 1,4 do 
         if o_hotkey[tostring(10+i)] ~= nil and G.QueryName(o_hotkey[tostring(10+i)]).数量 > 0 then 
             self.按钮.getChildByName(快捷[i]).visible = true
