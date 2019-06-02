@@ -526,10 +526,7 @@ t['回答问题']=function()
             int_true = 0
         end
     end  
-    local int_point = 0
-    if int_true > 0 then   
-       int_point = math.floor( (point - 250*int_true*(int_true + 1 )   )      /20)
-    end
+    local int_point = math.floor( (point - 250*int_true*(int_true + 1 )   )      /20)
     if int_point > 0 then 
         G.call('add_point',5,int_point)
         G.call('set_point',76,int_point)
