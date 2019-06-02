@@ -274,7 +274,7 @@ function t:update()
             self.按钮.getChildByName(快捷[i]).c_button.img_normal = G.QueryName(o_hotkey[tostring(10+i)]).图标
             self.按钮.getChildByName(快捷[i]).getChildByName('数量').text = G.QueryName(o_hotkey[tostring(10+i)]).数量 
             if G.misc().战斗状态 == 0 and  self.obj.getChildByName('map').getChildByName(位置[1]).x <= 150  and G.call('get_point',87) == 0 and G.call('get_point',44) > 0  and o_battle.模式 < 4   then 
-                if G.misc().通天塔 == 0 and  G.misc().随机切磋 == 0 then 
+                if G.misc().用药 == 0  then 
                     self.按钮.getChildByName(快捷[i]).alpha = 255
                     self.按钮.getChildByName(快捷[i]).mouseEnabled = true
                 else

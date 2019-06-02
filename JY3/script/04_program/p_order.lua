@@ -774,7 +774,7 @@ t['记录_记事本']=function()
         ui.c_battle:刷新记事本()
     end
 end  
-t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy2,int_enemy3,int_enemy4,int_enemy5,int_enemy6,int_狙杀,int_音乐) --呼出战斗
+t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy2,int_enemy3,int_enemy4,int_enemy5,int_enemy6,int_狙杀,int_音乐,int_用药) --呼出战斗
     local enemy = {'enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
     local o_battle = G.QueryName(0x10150001)
     local int = {int_enemy1,int_enemy2,int_enemy3,int_enemy4,int_enemy5,int_enemy6}
@@ -809,7 +809,12 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
             o_battle[team[i]] = 0 
         end     
     end
-    if not int_音乐 or int_音乐 == 0 then
+    if not int_用药 or int_用药 == 0 then
+        G.misc().用药 = 0
+    else
+        G.misc().用药 = 1
+    end
+    if not int_音乐 or  int_音乐 == 0 then
         G.Play(0x49010000+math.random(25,30), 1,true,1)
     else
         G.Play(0x49010000+int_音乐, 1,true,1)
