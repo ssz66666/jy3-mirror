@@ -1499,14 +1499,18 @@ t['事件_随机切磋']=function()
         G.call("talk",'',int_role,'   【'..name..'】大侠果然功夫过人，些许薄礼就送与大侠了，有机会再来挑战！',1,1) 
         G.misc().随机切磋次数 = G.misc().随机切磋次数 + 1
         G.misc().随机切磋监控 = G.misc().随机切磋监控 - 1
-        if G.misc().随机切磋次数%100 == 0 then 
-            G.call('通用_抽礼物',9,0,0,0)
-        else
-            if G.misc().随机切磋次数%20 == 0 then
-                G.call('通用_抽礼物',1,0,0)
+        if int_role == 390 then 
+            if G.misc().随机切磋次数%100 == 0 then 
+                G.call('通用_抽礼物',9,0,0,0)
             else
-                G.call('通用_抽礼物',1,0) 
+                if G.misc().随机切磋次数%20 == 0 then
+                    G.call('通用_抽礼物',1,0,0)
+                else
+                    G.call('通用_抽礼物',1,0) 
+                end
             end
+        else
+            G.call('通用_抽礼物',9,0,0,0)
         end
     else
         G.call("talk",'',int_role,'   哈哈哈.......【'..name..'】大侠看来也不过是徒有虚名！',1,1)
