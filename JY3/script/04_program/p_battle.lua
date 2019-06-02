@@ -2631,7 +2631,7 @@ t['magic_power1'] = function(int_id,int_no)
         end 
     end  
     local a = G.call('get_point',179+29)
-    local b = G.call('get_role',int_id,8)
+    local b = G.call('get_role',int_id,5)
     local c = G.call('get_role',int_id,3)
     local d = G.call('get_role',int_id,6)
     local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
@@ -3089,8 +3089,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         G.call('notice1','【'..o_role.姓名..'】'..o_skill.名称..'升到'..tostring(o_skill_武功等级)..'级')
     end   
     local a = G.call('get_role',int_id,4)
-    local b = G.call('get_role',int_enemy,8)
-    local c = G.call('get_role',int_enemy,3)
+    local b = G.call('get_role',int_enemy,3)
+    local c = G.call('get_role',int_enemy,5)
     local d = G.call('get_role',int_enemy,6)
     --下面为被动效果计算
     if (G.call('通用_取得人物特效',int_id,13) or G.call('通用_取得装备特效',int_id,204)) and o_role.生命 < G.call('get_role',int_id,1)*0.5 then  --攻击方强力判断
@@ -3503,7 +3503,7 @@ t['magic_power3'] = function(int_id,int_no)
         G.call('notice1','【'..o_role.姓名..'】'..o_skill.名称..'升到'..tostring(o_skill_武功等级)..'级')
     end 
     local a = G.call('get_role',int_id,4)
-    local b = G.call('get_point',31+179)
+    local b = G.call('get_point',30+179)
     local c = G.call('get_point',28+179)
     local d = G.call('get_point',27+179)
     --下面为被动效果计算
