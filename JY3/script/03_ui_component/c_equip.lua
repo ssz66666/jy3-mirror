@@ -194,6 +194,13 @@ function t:显示装备()
         end
     end
     if int_数量 > 0  then
+        if G.misc().神奇装备 == 1 then 
+            self.按钮.getChildByName('特殊').text = '分解装备'
+        elseif G.misc().神奇装备 == 2 then 
+            self.按钮.getChildByName('特殊').text = '转换装备'
+        else
+            self.按钮.getChildByName('特殊').visible = false
+        end
         G.misc().equip_data_m = math.floor((int_数量 - 1)/18) + 1 
         G.misc().显示数量 = int_数量 - (G.misc().equip_data_i - 1)*18
         if G.misc().显示数量  > 18 then 
@@ -458,6 +465,7 @@ function t:显示装备()
             end
         end
     else 
+        self.按钮.getChildByName('特殊').visible = false
         G.misc().显示数量 = 0
         self.按钮.getChildByName('装备').visible = false
         self.按钮.getChildByName('闪光').visible = false

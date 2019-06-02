@@ -336,7 +336,6 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('call_battle',1,10,3,0.000000003,390,0,0,0,0,0)
     G.call('join',13)
     local o_book_story = G.QueryName(0x101c0007)
     o_book_story.流程 = 1
