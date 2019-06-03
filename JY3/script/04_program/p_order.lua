@@ -1993,6 +1993,9 @@ t['add_item']=function(int_代码,int_数量) --增加物品数量
     local i_item = 0x100b0000 + int_代码-1
     local n = math.abs(int_数量) 
     if int_代码 > 1 and int_数量 ~= 0 then  
+        if  int_数量 < 0 and  math.abs(int_数量) > G.call('get_item',int_代码) then
+            int_数量 = -G.call('get_item',int_代码) 
+        end
         if int_数量 >  0 then 
             G.call('notice1','获得【'..G.QueryName(0x100b0000 + int_代码-1).名称..'】x'..tostring(n))
         end  
@@ -2001,10 +2004,6 @@ t['add_item']=function(int_代码,int_数量) --增加物品数量
         end    
         G.call('set_newpoint',76,G.call('get_newpoint',76)-int_数量) 
         G.QueryName(0x100b0000 + int_代码-1 ).数量 = G.QueryName(0x100b0000 + int_代码-1).数量 + int_数量      
-        if G.QueryName(0x100b0000 + int_代码-1).数量 < 0 then
-            G.QueryName(0x100b0000 + int_代码-1).数量 = 0
-            --G.call('set_newpoint',76,- math.random(5))
-        end 
         if G.call('get_item',int_代码) > 999 then
             G.call('set_newpoint',76,G.call('get_newpoint',76)-999+G.call('get_item',int_代码)) 
             G.QueryName(0x100b0000 + int_代码-1).数量 = 999
