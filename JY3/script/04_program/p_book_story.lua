@@ -1090,5 +1090,7 @@ t['天书_笑傲江湖'] = function()
     end 
     local int_mo = (227-224)*6+265
     if o_book_story.流程 == 0 then
+        G.call('地图_进入地图','????',275,62)
+        G.call("talk",'',2,'   这二人琴箫合奏真乃天籁啊！',0,0)
     end
 end
