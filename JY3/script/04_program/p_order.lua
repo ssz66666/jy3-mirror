@@ -343,11 +343,12 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('join',13)
-    local o_book_story = G.QueryName(0x101c0007)
-    o_book_story.流程 = 3
-    G.call('天书_鹿鼎记') 
-    G.call('通用_印记状态')
+    G.call('add_item',273,1)
+    -- G.call('join',13)
+    -- local o_book_story = G.QueryName(0x101c0007)
+    -- o_book_story.流程 = 3
+    -- G.call('天书_鹿鼎记') 
+    -- G.call('通用_印记状态')
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0
@@ -589,7 +590,7 @@ t['重生']=function()
         G.misc().礼包 = 礼包
         G.misc().切磋次数 = 0
         G.call('set_point',237,int_周目)
-        G.call('set_newpoint',237,-int_周目-5)
+        G.call('set_newpoint',237,-int_周目-10)
         G.call('set_point',143,int_存档位置) 
         G.call('mapoff')
         G.Play(0x49010038, 1,true,1) 

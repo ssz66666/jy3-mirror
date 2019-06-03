@@ -137,7 +137,7 @@ function t:click(tar)
                         print(G.QueryName(0x10170004).进度列表[1].名称)
                         print('int_万金=',int_万金)
                         G.call('set_point',237,int_周目)
-                        G.call('set_newpoint',237,-int_周目-5)
+                        G.call('set_newpoint',237,-int_周目-10)
                         G.call('set_point',143,i)  
                         if int_万金 > 400000 or int_继承个数 > 3000 then 
                             G.call('notice1','该存档无法正常读取，请重新开始游戏！')

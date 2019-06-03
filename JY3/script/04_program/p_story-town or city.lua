@@ -336,6 +336,19 @@ t['城镇-渡口']=function()
                 G.call('dig')
                 G.call('add_time',2)
                 G.call('all_over') 
+                if G.call('get_item',273) > 1 then
+                    G.call('地图_进入地图','龙脉宝藏',104,3) 
+                    G.call("talk",'',0,'   原来龙脉宝藏在海底，这下可大发了！',0,0)
+                    G.call('add_item',273,-1)
+                    G.call('add_money',50000)
+                    G.call("talk",'',0,'   这里还有若干宝石也拿走吧！',0,0)
+                    for i = 312,317 do 
+                        for i = 312,317 do 
+                            G.call('add_item',i,10)
+                        end 
+                    end 
+                end
+                G.call('all_over') 
                 G.call('goto_map',55)
             elseif int_选项 == 4 then 
                 G.call('all_over') 
