@@ -1,7 +1,7 @@
 local G = require "gf"
 local noti = G.notify
 
-function noti.战场_效果(int_位置,int_动作编号,int_动画位置)
+function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_needmp)
     local ui ;
 	if not G.getUI('v_battle') then 
 		return
@@ -19,6 +19,7 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置)
     if o_skill.范围 == 5 or int_位置 == 1 then 
         ui.getChildByName('图标').frameActionID(1)
         ui.getChildByName('图表').visible = true
+        G.call('add_point',46,-int_needmp) 
     end
     ui.getChildByName('tab').getChildByName(位置[int_位置]).frameActionID(int_动作编号)
     ui.getChildByName('flash').getChildByName(位置[int_动画位置]).frameActionID(int_序列帧)

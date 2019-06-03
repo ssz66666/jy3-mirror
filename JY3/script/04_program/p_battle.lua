@@ -1427,14 +1427,14 @@ t['战斗系统_事件响应'] = function()
                     if needmp < 1 then
                         needmp = 1
                     end 
-                    G.call('add_point',46,-needmp) 
+                    --G.call('add_point',46,-needmp) 
                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = tostring(hurt)   
                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
                     if hurt == 0 then 
                         ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = false
                         ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('闪避').visible = true 
                     end 
-                    G.noti_call('战场_效果',1,9999,n)
+                    G.noti_call('战场_效果',1,9999,n,needmp)
                 else 
                     local deytime = G.call('get_point',236) 
                     local int_时序 = 50 * deytime 
@@ -1458,18 +1458,18 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = 9999
                                 end
                             end
-                            G.call('add_point',44,int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true
-                            G.noti_call('战场_效果',1,6001,1)
+                            --G.noti_call('战场_效果',1,6001,1)
                         elseif o_skill.内功轻功效果 == 16 then   --逍遥御风
-                            G.noti_call('战场_效果',1,6001,1)
+                            --G.noti_call('战场_效果',1,6001,1)
                             G.call('set_point',89,1)
                             G.call('set_point',99,int_时序)
                         elseif o_skill.内功轻功效果 == 99 then   --自身解毒
-                            G.noti_call('战场_效果',1,6001,1)
+                           -- G.noti_call('战场_效果',1,6001,1)
                             G.call('set_point',81,0)       
                         end 
-                        G.call('add_point',46,-needmp)  
+                        G.noti_call('战场_效果',1,6001,1,needmp)
+                        --G.call('add_point',46,-needmp)  
                     elseif  o_skill.范围 == 1  then 	
                         if o_skill.内功轻功效果 == 1 then
                             local int_hp = 0
@@ -1507,7 +1507,7 @@ t['战斗系统_事件响应'] = function()
                             end 	
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true
-                            G.noti_call('战场_效果',1,6001,13)                
+                            --G.noti_call('战场_效果',1,6001,13)                
                         elseif 	o_skill.内功轻功效果 == 6 then   --全体复活
                             local n = 0
                             local int_hp = 0
@@ -1539,9 +1539,9 @@ t['战斗系统_事件响应'] = function()
                                     end
                                 end 
                             end 
-                            G.noti_call('战场_效果',1,6001,13) 	
+                            --G.noti_call('战场_效果',1,6001,13) 	
                         elseif 	o_skill.内功轻功效果 == 99 then   --我方全体解毒         
-                            G.noti_call('战场_效果',1,6001,13)
+                            --G.noti_call('战场_效果',1,6001,13)
                             G.call('set_point',81,0)
                             for i = 2,5 do 
                                 if G.QueryName(o_battle)[位置[i] ] > 0 then
@@ -1551,7 +1551,8 @@ t['战斗系统_事件响应'] = function()
                                 end 
                             end      
                         end 
-                        G.call('add_point',46,-needmp) 
+                        G.noti_call('战场_效果',1,6001,13,needmp)
+                       -- G.call('add_point',46,-needmp) 
                     end	
                     if o_skill.范围 > 1 then 
                         local hurt = 0
@@ -1575,7 +1576,7 @@ t['战斗系统_事件响应'] = function()
                             needmp = 1
                         end  
                         --计算招式熟练度与招式升级获得的兵器值
-                        G.call('add_point',46,-needmp) 
+                        --G.call('add_point',46,-needmp) 
                         local int_技能等级 = o_skill.等级
                         local int_奇才 = 0
                         for i = 1,5 do 
@@ -1881,7 +1882,7 @@ t['战斗系统_事件响应'] = function()
                                 end 	
                             end
                         end
-                        G.noti_call('战场_效果',1,int_动作编号,int_动画位置)   
+                        G.noti_call('战场_效果',1,int_动作编号,int_动画位置,needmp)   
                     end 
                 end     		
                 ui.getChildByName('tab').getChildByName(位置[1]).getChildByName('over').text = tostring(1)

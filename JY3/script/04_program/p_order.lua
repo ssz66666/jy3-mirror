@@ -671,9 +671,10 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     ui_显示.visible = true
     ui_显示.y = 0
     G.Tween('y',500, ui_显示, 80)
-    local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text)
-    if int_hp > 0 then 
-       G.call('add_point',44,int_hp)
+    if int_范围 == 5 then 
+        G.wait_time(1000)
+    else
+        G.wait_time(500)
     end
     local   hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
     if ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible == true then 
@@ -705,10 +706,9 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
             end
         end 		
     end 
-    if int_范围 == 5 then 
-        G.wait_time(1000)
-    else
-        G.wait_time(500)
+    local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text)
+    if int_hp > 0 then 
+       G.call('add_point',44,int_hp)
     end
     ui_显示.visible = false 
     for p = 1,11 do
