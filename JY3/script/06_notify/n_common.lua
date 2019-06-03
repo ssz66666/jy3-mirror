@@ -19,7 +19,9 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
     if o_skill.范围 == 5 or int_位置 == 1 then 
         ui.getChildByName('图标').frameActionID(1)
         ui.getChildByName('图表').visible = true
-        G.call('add_point',46,-int_needmp) 
+        if int_位置 == 1 then 
+            G.call('add_point',46,-int_needmp) 
+        end
     end
     ui.getChildByName('tab').getChildByName(位置[int_位置]).frameActionID(int_动作编号)
     ui.getChildByName('flash').getChildByName(位置[int_动画位置]).frameActionID(int_序列帧)
