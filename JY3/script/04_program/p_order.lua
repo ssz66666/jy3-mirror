@@ -2158,7 +2158,7 @@ end
 t['add_point']=function(int_代码,int_数量) --增加主角部分属性
     local o_body = G.QueryName(0x10030001)
     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-    if int_数量 < 0 and math.abs(int_数量) > G.call('get_point',int_代码) then 
+    if int_数量 < 0 and math.abs(int_数量) > G.call('get_point',int_代码) and int_代码 ~= 15 then 
         int_数量 = -G.call('get_point',int_代码)
     end
     if int_代码 == 3 then   --经验升级计算
