@@ -1494,7 +1494,7 @@ t['事件_随机切磋']=function()
     end 
     local name = G.call('get_point',1)
     G.call("talk",'',int_role,'   【'..name..'】大侠，久闻大名，今日特来领教阁下高招！',1,1)
-    G.call('call_battle',1,10,1,200,int_role,0,0,0,0,0,0,0,1)
+    G.call('call_battle',1,10,1,300,int_role,0,0,0,0,0,0,0,1)
     if G.call('get_battle') == 1 then
         G.call("talk",'',int_role,'   【'..name..'】大侠果然功夫过人，些许薄礼就送与大侠了，有机会再来挑战！',1,1) 
         G.misc().随机切磋次数 = G.misc().随机切磋次数 + 1
