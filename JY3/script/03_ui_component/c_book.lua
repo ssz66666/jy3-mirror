@@ -124,8 +124,13 @@ function t:详细显示()
     self.显示翻页.getChildByName('data').text = G.misc().book_data
     if  G.misc().book == 1 then 
         local o_role_人物 = G.QueryName(0x10040000 + G.misc().book_data)
-        if o_role_人物.头像 then 
-            self.属性.getChildByName('头像').img = o_role_人物.头像
+        if o_role_人物.头像 then
+            if G.misc().book_data < 385 and G.misc().book_data >= 253 then
+                local o_role = G.QueryName(0x10040000 + o_role_人物.编号)
+                self.属性.getChildByName('头像').img = o_role.头像
+            else 
+                self.属性.getChildByName('头像').img = o_role_人物.头像
+            end
         end 
         local img_动画 = 0x33061000 + G.misc().book_data 
         if o_role_人物.生命 > 0 then 
