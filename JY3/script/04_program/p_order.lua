@@ -343,12 +343,12 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('模式_笑梦游记')
-    -- G.call('join',13)
-    -- local o_book_story = G.QueryName(0x101c0007)
-    -- o_book_story.流程 = 3
-    -- G.call('天书_鹿鼎记') 
-    -- G.call('通用_印记状态')
+    --G.call('模式_笑梦游记')
+    --G.call('join',2)
+    local o_book_story = G.QueryName(0x101c0008)
+    o_book_story.流程 = 0
+    G.call('天书_笑傲江湖') 
+    G.call('通用_印记状态')
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0
@@ -3696,7 +3696,7 @@ end
 t['通用_印记状态']=function()
     for i = 1,14 do
         local o_book_story_list = G.QueryName(0x101e0000 + i)
-        if o_book_story.完美 == 1 then
+        if o_book_story_list.完美 == 1 then
             local i_equip = 0x10180028 + i
             local o_equip = G.QueryName(i_equip)
             o_equip.转换次数 = 1
