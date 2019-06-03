@@ -1560,7 +1560,7 @@ t['藏经阁寻宝']=function()
                 if int_选项 == 1 then
                 elseif int_选项 == 2 then 
                     G.call('all_over') 
-                    G.call('call_battle',0,17,3,100,94,0,0,0,0,0)
+                    G.call('call_battle',0,17,1,100,94,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
                         G.call("talk",'',0,'   "区区一个藏经阁还想困住我吗？这少林寺看来也没什么能人了，哇哈哈哈哈',0,0)
@@ -1611,7 +1611,7 @@ t['藏经阁寻宝']=function()
                         G.call('xunbao',10)
                         G.call("talk",'蒙面侠',204,'   大胆狂徒！你把天捅个窟窿我都不管，但是胆敢欺负张小肉同学，我就不答应！',1,1) 
                         G.call('all_over') 
-                        G.call('call_battle',0,17,3,200,204,247,0,0,0,0)
+                        G.call('call_battle',0,17,1,200,204,247,0,0,0,0)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
                             G.call('xunbao',7)
@@ -1785,7 +1785,7 @@ t['藏经阁寻宝']=function()
                 G.call('xunbao',10)
                 G.call("talk",'蒙面侠',204,'   大胆狂徒！你把天捅个窟窿我都不管，但是胆敢欺负张小肉同学，我就不答应！',1,1) 
                 G.call('all_over') 
-                G.call('call_battle',0,17,3,200,204,247,0,0,0,0)
+                G.call('call_battle',0,17,1,200,204,247,0,0,0,0)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
                     G.call('xunbao',7)
