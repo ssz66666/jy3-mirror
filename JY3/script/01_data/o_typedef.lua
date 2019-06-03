@@ -52,6 +52,27 @@ local t = {
 		},
 	},
 	{
+		['name']='o_book_story_list',
+		['define']={
+			[1]={
+				['name']='编号',
+				['type']='int',
+			},
+			[2]={
+				['name']='流程',
+				['type']='int',
+			},
+			[3]={
+				['name']='完成',
+				['type']='int',
+			},
+			[4]={
+				['name']='完美',
+				['type']='int',
+			},
+		},
+	},
+	{
 		['name']='o_mystery_store',
 		['define']={
 			[1]={

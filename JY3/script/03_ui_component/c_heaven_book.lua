@@ -9,6 +9,14 @@ function t:init()
 end
 function t:start()
     self.天书 = 0
+    for i = 1,14 do
+        local o_book_story = G.QueryName(0x101c0000 + i) 
+        if o_book_story.完成 == 0 then
+            self.按钮.getChildByName('book_'..i).getChildByName('完成').img = 0x56160073
+        else
+            self.按钮.getChildByName('book_'..i).getChildByName('完成').img = 0x56160072
+        end
+    end
 end
 function t:click(tar)
     for i = 1,14 do 

@@ -76,8 +76,8 @@ t['故事_读档'] = function(int_档案编号)
 		local zipbuf = G.LoadFile(path);
 		local buf = G.unzip(zipbuf);
         local obj = eris.unpersist(perms, buf);
-        local db = obj[1]['o_book_story']
-        G.newinst_cache['o_book_story'] = db  
+        local db = obj[1]['o_book_story_list']
+        G.newinst_cache['o_book_story_list'] = db  
     end
 end
 t['继承_读档'] = function(int_档案编号)
@@ -343,7 +343,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('add_item',273,1)
+    G.call('模式_笑梦游记')
     -- G.call('join',13)
     -- local o_book_story = G.QueryName(0x101c0007)
     -- o_book_story.流程 = 3
@@ -3695,7 +3695,7 @@ t['通用_拥有印记']=function(int_印记)
 end
 t['通用_印记状态']=function()
     for i = 1,14 do
-        local o_book_story = G.QueryName(0x101c0000 + i)
+        local o_book_story_list = G.QueryName(0x101e0000 + i)
         if o_book_story.完美 == 1 then
             local i_equip = 0x10180028 + i
             local o_equip = G.QueryName(i_equip)
@@ -3715,6 +3715,10 @@ t['模式_笑梦游记']=function()
         if G.call('通用_拥有印记',int_天书)   then 
             if o_book_story.完成 == 0 then 
                 G.call('天书_'..str[int_天书])
+                local o_book_story_list = G.QueryName(0x101e0000 + int_天书)
+                if o_book_story.完美 == 1 and o_book_story_list.完美 == 0 then
+                    o_book_story_list.完美 = 1
+                end
                 G.call('通用_印记状态')
             else
                 G.call("talk",'',38,'   你已经完成【'..str[int_天书]..'】！',2,1)

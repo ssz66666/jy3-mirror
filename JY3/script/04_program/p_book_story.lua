@@ -1081,3 +1081,14 @@ t['天书_鹿鼎记'] = function()
     G.call('dark')
     G.call('goto_map',4)
 end
+t['天书_笑傲江湖'] = function()
+    local o_book_story = G.QueryName(0x101c0008)
+    if not G.call('in_team',2) then 
+        G.call("talk",'',38,'   本故事没有令狐冲是无法进行的！',2,1)
+        G.call('all_over')
+        return
+    end 
+    local int_mo = (227-224)*6+265
+    if o_book_story.流程 == 0 then
+    end
+end

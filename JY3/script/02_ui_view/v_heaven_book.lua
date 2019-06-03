@@ -62,7 +62,7 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.scaleX = 0.500
 		tc.scaleY = 0.500
-		tc.text = '请选择需要进行的天书路线'
+		tc.text = '请选择需要进行的梦幻剧情路线'
 		tc.font = 0x613c0000
 		tc.style = 5
 		tp = tc
@@ -84,6 +84,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f1001
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -96,6 +107,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f1002
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -108,6 +130,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f1003
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -120,6 +153,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f1004
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -132,6 +176,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f1005
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -144,6 +199,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f1006
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -156,6 +222,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f1007
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -168,6 +245,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f1008
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -180,6 +268,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f1009
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -192,6 +291,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f100a
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -204,6 +314,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f100b
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -216,6 +337,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f100c
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -228,6 +360,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f100d
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Quad()
@@ -240,6 +383,17 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560f100e
 		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 	tp = tp.parent
