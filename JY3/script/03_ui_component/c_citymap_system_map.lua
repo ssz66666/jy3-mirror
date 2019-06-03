@@ -89,7 +89,8 @@ function t:update()
         self.obj.getChildByName('load').visible = false
     else
         self.obj.getChildByName('load').visible = true
-    end            
+    end  
+    self.主菜单.getChildByName('状态').getChildByName('头像').img = G.QueryName(0x10030001)[tostring(119)]          
 end   
 function t:刷新地图(string_地图名称,int_map,int_地图)  
     if int_地图 == 1 then

@@ -541,6 +541,7 @@ t['回答问题']=function()
     G.call('指令_存储属性')
     G.call('rest')
     G.call('list')
+    G.misc().人物头像 = G.call('get_point',119)
     G.call('指令_备份基础属性')
     G.call('序幕_开始')
 end

@@ -14,12 +14,21 @@ function t:init()
     self.显示翻页 = self.显示.getChildByName('翻页')
     self.翻页 = self.子菜单.getChildByName('翻页')
     self.属性 = self.显示.getChildByName('人物').getChildByName('属性')
+    self.面具 = self.显示.getChildByName('人物').getChildByName('面具')
     self.被动 = self.属性.getChildByName('被动')
     self.人物_list = {}
     self.物品_list = {}
     self.武功_list = {}
 end
 function t:start()
+    if G.call('get_item',275) > 0 then
+        self.面具.visible = true 
+    else
+        self.面具.visible = false 
+    end
+    if not G.misc().人物头像 then
+        G.misc().人物头像 = G.call('get_point',119) 
+    end
     self.子菜单.getChildByName('标本').shadowX = 1
     self.子菜单.getChildByName('标本').shadowAlpha = 180
     for x = 1, 3, 1 do
@@ -457,6 +466,14 @@ function t:click(tar)
     local skill =G.DBTable('o_skill')
     local role =G.DBTable('o_role')
     local int_role = #role
+    if tar == self.面具.getChildByName('易容') then
+        G.Play(0x49011003, 1,false,100) 
+        G.call('notice1','已经易容成功')
+        G.call('set_point',119,self.属性.getChildByName('头像').img)
+    elseif tar == self.面具.getChildByName('撤销') then
+        G.call('notice1','已经做回自己')
+        G.call('set_point',119,G.misc().人物头像)
+    end
     for i = 1,#str_菜单 do
         if tar == self.主菜单.getChildByName(str_菜单[i]) then
             G.Play(0x49011003, 1,false,100) 

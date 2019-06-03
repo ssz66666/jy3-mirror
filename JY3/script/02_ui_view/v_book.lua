@@ -802,6 +802,50 @@ tp = tc
 					--end
 				tp = tp.parent
 				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '面具'
+				tp = tc
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '易容'
+					tc.pivotX = 0.000
+					tc.left = 125.000
+					tc.right = 247.000
+					tc.bottom = 150.000
+					tc.top = 210.000
+					tc.mouseEnabled = true
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.autosize = 1
+					tc.text = '易容'
+					tc.font = 0x613c0000
+					tc.align = 1
+					tc.style = 11
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '撤销'
+					tc.pivotX = 0.000
+					tc.left = 193.000
+					tc.right = 315.000
+					tc.bottom = 150.000
+					tc.top = 210.000
+					tc.mouseEnabled = true
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.autosize = 1
+					tc.text = '撤销'
+					tc.font = 0x613c0000
+					tc.align = 1
+					tc.style = 4
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
 			tp = tp.parent
 			--end
 			tc = G.loadUI('v_empty')
