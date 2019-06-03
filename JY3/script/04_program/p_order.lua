@@ -1192,6 +1192,7 @@ t['goto_map']=function(int_地图代码) --跳转地图
             if G.misc().出师 and G.misc().出师 > 0 and  G.call('get_point',4) >= 50 and G.call('get_point',237) > 1 and G.misc().切磋开关 == 1 then
                 G.trig_event('事件_随机切磋')
             end
+            G.call('set_point',119,G.misc().人物头像)
             G.call('地图系统_防修改监控')
             G.call('通用_存档',4)
             G.call('write_min')

@@ -1616,6 +1616,9 @@ t['藏经阁寻宝']=function()
                         if o_battle_结果  == 1 then
                             G.call('xunbao',7)
                             G.call("talk",'',0,'   "区区一个藏经阁还想困住我吗？这少林寺看来也没什么能人了，哇哈哈哈哈',0,0)
+                            if G.call('get_item',275) == 0 then
+                                G.call('add_item',275,1) 
+                            end
                             if math.random(100) > 90 and G.misc().大还丹 ~= 1 then 
                                 G.call('add_item',item1[5],math.random(1,5))
                                 G.misc().大还丹 = 1
@@ -1790,6 +1793,9 @@ t['藏经阁寻宝']=function()
                 if o_battle_结果  == 1 then
                     G.call('xunbao',7)
                     G.call("talk",'',0,'   "区区一个藏经阁还想困住我吗？这少林寺看来也没什么能人了，哇哈哈哈哈',0,0)
+                    if G.call('get_item',275) == 0 then
+                        G.call('add_item',275,1) 
+                    end
                     if math.random(100) > 90 and G.misc().大还丹 ~= 1 then 
                         G.call('add_item',item1[5],math.random(1,5))
                         G.misc().大还丹 = 1

@@ -471,7 +471,8 @@ function t:click(tar)
     local skill =G.DBTable('o_skill')
     local role =G.DBTable('o_role')
     local int_role = #role
-    if tar == self.面具.getChildByName('易容') then
+    if tar == self.面具.getChildByName('易容') and G.call('get_item',275) > 0 then
+        G.call('add_item',275,-1)
         G.Play(0x49011003, 1,false,100) 
         G.call('notice1','已经易容成功')
         G.call('set_point',119,self.属性.getChildByName('头像').img)
