@@ -552,6 +552,7 @@ function t:keyDown(tar,info)
     local 快捷 = {'q','w','e','r'}
     local 键值 = {81,87,69,82}
     local key = string.byte(info)
+    local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
     if G.misc().战斗状态 == 0 then  
         for i = 1,8 do 
             if key == i + 48 then 

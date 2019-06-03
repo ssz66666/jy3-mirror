@@ -262,6 +262,13 @@ t['通用_读档'] = function(int_档案编号)
 		local obj = eris.unpersist(perms, buf);
         load_ofile(obj);
         if int_档案编号 > 0 and int_档案编号 < 5 then 
+            local role = G.DBTable('o_role')
+            for i = 1,#role do 
+                for p = 81,89 do 
+                    G.QueryName(0x10040000 + i)[tostring(p)] = 0
+                    G.QueryName(0x10040000 + i)[tostring(p+10)] = 0
+                end 
+            end 
             if int_档案编号 < 4 then 
                 G.call("goto_map",G.call('get_point',140)-0x10060000)
             else
@@ -338,7 +345,7 @@ end
 t['new_test'] = function()
     G.call('join',13)
     local o_book_story = G.QueryName(0x101c0007)
-    o_book_story.流程 = 2
+    o_book_story.流程 = 3
     G.call('天书_鹿鼎记') 
     G.call('通用_印记状态')
     -- while true do 
