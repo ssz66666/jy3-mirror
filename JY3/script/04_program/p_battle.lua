@@ -719,6 +719,7 @@ t['战斗系统_事件响应'] = function()
                                     for p = 2,5 do 
                                         if G.QueryName(o_battle)[位置[p]] > 0 then
                                             if G.QueryName(o_role +G.QueryName(o_battle)[位置[p]] ).生命 > 0  then
+                                                ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
                                                 if o_role_tb.内力 >= needmp then 
                                                     int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000)
                                                 else
@@ -746,14 +747,10 @@ t['战斗系统_事件响应'] = function()
                                     else
                                         int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill_武功等级/1000*o_role_tb.内力/needmp)
                                     end 	
-                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)  
-                                    for p = 1,5 do 
-                                        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
-                                    end 
+                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp) 
+                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true 
                                     G.noti_call('战场_效果',i,int_动作编号,13)
-                                    G.call('通用_战斗飘字') 
                                     G.call('add_role',G.QueryName(o_battle)[位置[i]],14,-needmp) 
-                                    G.call('add_point',44,int_hp)	
                                 elseif 	o_skill.内功轻功效果 == 6 then   --全体复活
                                     local n = 0
                                     local int_hp = 0
@@ -1195,6 +1192,7 @@ t['战斗系统_事件响应'] = function()
                                     for p = 6,11 do 
                                         if G.QueryName(o_battle)[位置[p]] > 0 then
                                             if  G.QueryName(o_role +G.QueryName(o_battle)[位置[p]] ).生命 > 0  then
+                                                ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
                                                 if o_role_tb.内力 >= needmp then 
                                                     int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000)
                                                 else
@@ -1212,9 +1210,6 @@ t['战斗系统_事件响应'] = function()
                                             end
                                         
                                         end 
-                                    end 
-                                    for p = 6,11 do 
-                                        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
                                     end 
                                     --G.call('通用_战斗飘字')
                                     G.noti_call('战场_效果',i,int_动作编号,12) 
@@ -1240,11 +1235,11 @@ t['战斗系统_事件响应'] = function()
                                                 elseif G.call('通用_取得套装',G.QueryName(o_battle)[位置[i]],3) == 3 then
                                                     int_hp = math.floor(int_hp * 1.1)
                                                 end  
-                                                if G.call('通用_取得套装',G.QueryName(o_battle)[位置[i]],3) < 3 then
-                                                    if int_hp > 9999 then 
-                                                        int_hp = 9999
-                                                    end
-                                                end
+                                                -- if G.call('通用_取得套装',G.QueryName(o_battle)[位置[i]],3) < 3 then
+                                                --     if int_hp > 9999 then 
+                                                --         int_hp = 9999
+                                                --     end
+                                                -- end
                                                 G.QueryName(o_role +G.QueryName(o_battle)[位置[p]] ).生命 = int_hp
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = int_hp
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
@@ -1512,8 +1507,7 @@ t['战斗系统_事件响应'] = function()
                             end 	
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true
-                            G.noti_call('战场_效果',1,6001,13)
-                            G.call('add_point',44,int_hp)                  
+                            G.noti_call('战场_效果',1,6001,13)                
                         elseif 	o_skill.内功轻功效果 == 6 then   --全体复活
                             local n = 0
                             local int_hp = 0
