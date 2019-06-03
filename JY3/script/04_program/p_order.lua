@@ -2003,7 +2003,7 @@ t['add_item']=function(int_代码,int_数量) --增加物品数量
         G.QueryName(0x100b0000 + int_代码-1 ).数量 = G.QueryName(0x100b0000 + int_代码-1).数量 + int_数量      
         if G.QueryName(0x100b0000 + int_代码-1).数量 < 0 then
             G.QueryName(0x100b0000 + int_代码-1).数量 = 0
-            G.call('set_newpoint',76,- math.random(5))
+            --G.call('set_newpoint',76,- math.random(5))
         end 
         if G.call('get_item',int_代码) > 999 then
             G.call('set_newpoint',76,G.call('get_newpoint',76)-999+G.call('get_item',int_代码)) 
