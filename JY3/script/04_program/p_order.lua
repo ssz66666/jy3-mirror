@@ -1930,9 +1930,9 @@ t['指令_存储属性'] = function() --计算主角最终属性
             local o_equip = G.QueryName(i_equip) 
             for j = 6,10 do 
                 add[j] = add[j] + o_equip[属性[j-5]]
-            end
-            if o_equip[属性[j-5]] > 40 or o_equip.生命 > 5000 or o_equip.内力 > 5000 then
-                G.call('通用_强退游戏') 
+                if o_equip[属性[j-5]] > 40 or o_equip.生命 > 5000 or o_equip.内力 > 5000 then
+                    G.call('通用_强退游戏') 
+                end
             end
             add[17] = add[17] + math.floor(o_equip.生命*G.call('get_point',4)/100)
             add[18] = add[18] + math.floor(o_equip.内力*G.call('get_point',4)/100)
@@ -3500,6 +3500,11 @@ t['通用_替换装备']=function(i_role,i_equip)
         local o_equip_1 = G.QueryName(o_role[装备[o_equip_2.类型]])
         for i = 1,7 do
             int_属性[i] = o_equip_2[效果[i]] - o_equip_1[效果[i]]
+            if i < 2 and (o_equip_2[效果[i]] > 5000 or o_equip_1[效果[i]] > 5000) then 
+                G.call('通用_强退游戏') 
+            elseif i >= 2 and (o_equip_2[效果[i]] > 40 or o_equip_1[效果[i]] > 40) then 
+                G.call('通用_强退游戏') 
+            end
         end
     else
         for i = 1,7 do
