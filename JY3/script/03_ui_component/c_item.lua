@@ -358,7 +358,8 @@ function t:rollOver(tar)
                 o_equip.转换次数 = 0
             end
             if o_equip.套装 == 0  and o_equip.类型 ~= 4  then 
-                str = str..'[br][07]转换次数:  [01]'..o_equip.转换次数                  
+                str = str..'[br][07]转换次数:  [01]'..o_equip.转换次数   
+                str = str..'[br][07]装备级别:  [01]'..o_equip.级别               
             end
             self.说明.getChildByName('效果').text = str
         end
