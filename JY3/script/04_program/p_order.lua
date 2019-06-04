@@ -2540,6 +2540,7 @@ t['通用_自宫']=function()
         G.wait_time(1000)
         G.call('photo0_off')
         G.call('set_point',41,1)
+        G.misc().人物头像 = 0x560800e2
         G.QueryName(0x10030001)[tostring(119)] = 0x560800e2
         G.call('learn_magic',o_item_物品.武功-0x10050000+1) 
     end
