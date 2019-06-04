@@ -343,24 +343,12 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call("talk",'？？？？',191,'   哈哈，剑谱终于到手！',2,1)
-    G.call('地图_进入地图','？？？？',25,39)
-    G.call("talk",'？？？？',191,'   欲练神功，必须自宫.........',2,1)
-    G.call('all_over')
-    G.call('photo0',20)
-    G.wait_time(1000)
-    G.call('photo0',21)
-    G.Play(0x4902000a , 1,false,100)
-    G.wait_time(1000)
-    G.call('photo0_off')
-    G.call("talk",'？？？？',191,'   啊.........',2,1)
-    G.call('set_friend_skill',191,3,34,750)
     --G.call('模式_笑梦游记')
-    -- G.call('join',2)
-    -- local o_book_story = G.QueryName(0x101c0008)
-    -- o_book_story.流程 = 1
-    -- G.call('天书_笑傲江湖') 
-    -- G.call('通用_印记状态')
+    G.call('join',2)
+    local o_book_story = G.QueryName(0x101c0008)
+    o_book_story.流程 = 4
+    G.call('天书_笑傲江湖') 
+    G.call('通用_印记状态')
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0

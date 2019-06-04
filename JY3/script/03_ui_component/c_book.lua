@@ -207,122 +207,51 @@ function t:详细显示()
             else
                 self.被动.getChildByName(tostring(i)).visible = false
             end     
-        end     
-        if o_role_人物.技能1 ~= nil then 
-            local data = G.QueryName(o_role_人物.技能1).满级熟练度/450
-            local o_skill_武功当前熟练度 = tonumber(o_role_人物[tostring(10)]) 
-            local o_skill_武功等级 = 0
-            if o_skill_武功当前熟练度 > 0 then 
-                    o_skill_武功等级 = 1
-            end     
-            if  o_skill_武功当前熟练度 > 10*data then
-                o_skill_武功等级 = 2
+        end    
+        local 武功 = {'武功一','武功二','武功三'} 
+        for i = 1,3 do
+            if o_role_人物['技能'..i] ~= nil then 
+                local o_skill = G.QueryName(o_role_人物['技能'..i])
+                local data = G.QueryName(o_role_人物['技能'..i]).满级熟练度/450
+                local o_skill_武功当前熟练度 = tonumber(o_role_人物[tostring(10)]) 
+                local o_skill_武功等级 = 0
+                if o_skill_武功当前熟练度 > 0 then 
+                        o_skill_武功等级 = 1
+                end     
+                if  o_skill_武功当前熟练度 > 10*data then
+                    o_skill_武功等级 = 2
+                end 
+                if  o_skill_武功当前熟练度 > 30*data then
+                    o_skill_武功等级 = 3
+                end     
+                if  o_skill_武功当前熟练度 > 60*data then
+                    o_skill_武功等级 = 4
+                end 
+                if  o_skill_武功当前熟练度 > 100*data then
+                    o_skill_武功等级 = 5
+                end 
+                if  o_skill_武功当前熟练度 > 150*data then
+                    o_skill_武功等级 = 6
+                end 
+                if  o_skill_武功当前熟练度 > 210*data then
+                    o_skill_武功等级 = 7
+                end 
+                if  o_skill_武功当前熟练度 > 280*data then
+                    o_skill_武功等级 = 8
+                end 
+                if  o_skill_武功当前熟练度 > 360*data then
+                    o_skill_武功等级 = 9
+                end 
+                if  o_skill_武功当前熟练度 > 450*data then
+                    o_skill_武功等级 = 10
+                end 
+                if o_skill.类别 > 5 then
+                    o_skill_武功等级 = 5
+                end
+                self.属性.getChildByName(武功[i]).text = G.QueryName(o_role_人物['技能'..i]).名称..tostring(o_skill_武功等级)..'级'
+            else
+                self.属性.getChildByName(武功[i]).text = ''
             end 
-            if  o_skill_武功当前熟练度 > 30*data then
-                o_skill_武功等级 = 3
-            end     
-            if  o_skill_武功当前熟练度 > 60*data then
-                o_skill_武功等级 = 4
-            end 
-            if  o_skill_武功当前熟练度 > 100*data then
-                o_skill_武功等级 = 5
-            end 
-            if  o_skill_武功当前熟练度 > 150*data then
-                o_skill_武功等级 = 6
-            end 
-            if  o_skill_武功当前熟练度 > 210*data then
-                o_skill_武功等级 = 7
-            end 
-            if  o_skill_武功当前熟练度 > 280*data then
-                o_skill_武功等级 = 8
-            end 
-            if  o_skill_武功当前熟练度 > 360*data then
-                o_skill_武功等级 = 9
-            end 
-            if  o_skill_武功当前熟练度 > 450*data then
-                o_skill_武功等级 = 10
-            end 
-            self.属性.getChildByName('武功一').text = G.QueryName(o_role_人物.技能1).名称..tostring(o_skill_武功等级)..'级'
-        else
-            self.属性.getChildByName('武功一').text = ''
-
-        end  
-        if o_role_人物.技能2 ~= nil then 
-            local data = G.QueryName(o_role_人物.技能2).满级熟练度/450
-            local o_skill_武功当前熟练度 = tonumber(o_role_人物[tostring(11)]) 
-            local o_skill_武功等级 = 0
-            if o_skill_武功当前熟练度 > 0 then 
-                    o_skill_武功等级 = 1
-            end     
-            if  o_skill_武功当前熟练度 > 10*data then
-                o_skill_武功等级 = 2
-            end 
-            if  o_skill_武功当前熟练度 > 30*data then
-                o_skill_武功等级 = 3
-            end     
-            if  o_skill_武功当前熟练度 > 60*data then
-                o_skill_武功等级 = 4
-            end 
-            if  o_skill_武功当前熟练度 > 100*data then
-                o_skill_武功等级 = 5
-            end 
-            if  o_skill_武功当前熟练度 > 150*data then
-                o_skill_武功等级 = 6
-            end 
-            if  o_skill_武功当前熟练度 > 210*data then
-                o_skill_武功等级 = 7
-            end 
-            if  o_skill_武功当前熟练度 > 280*data then
-                o_skill_武功等级 = 8
-            end 
-            if  o_skill_武功当前熟练度 > 360*data then
-                o_skill_武功等级 = 9
-            end 
-            if  o_skill_武功当前熟练度 > 450*data then
-                o_skill_武功等级 = 10
-            end 
-            self.属性.getChildByName('武功二').text = G.QueryName(o_role_人物.技能2).名称..tostring(o_skill_武功等级)..'级'
-        else
-            self.属性.getChildByName('武功二').text = ''
-        end 
-        if o_role_人物.技能3 ~= nil then 
-            local data = G.QueryName(o_role_人物.技能3).满级熟练度/450
-            local o_skill_武功当前熟练度 = tonumber(o_role_人物[tostring(12)]) 
-            local o_skill_武功等级 = 0
-            if o_skill_武功当前熟练度 > 0 then 
-                    o_skill_武功等级 = 1
-            end     
-            if  o_skill_武功当前熟练度 > 10*data then
-                o_skill_武功等级 = 2
-            end 
-            if  o_skill_武功当前熟练度 > 30*data then
-                o_skill_武功等级 = 3
-            end     
-            if  o_skill_武功当前熟练度 > 60*data then
-                o_skill_武功等级 = 4
-            end 
-            if  o_skill_武功当前熟练度 > 100*data then
-                o_skill_武功等级 = 5
-            end 
-            if  o_skill_武功当前熟练度 > 150*data then
-                o_skill_武功等级 = 6
-            end 
-            if  o_skill_武功当前熟练度 > 210*data then
-                o_skill_武功等级 = 7
-            end 
-            if  o_skill_武功当前熟练度 > 280*data then
-                o_skill_武功等级 = 8
-            end 
-            if  o_skill_武功当前熟练度 > 360*data then
-                o_skill_武功等级 = 9
-            end 
-            if  o_skill_武功当前熟练度 > 450*data then
-                o_skill_武功等级 = 10
-            end 
-            self.属性.getChildByName('武功三').text = G.QueryName(o_role_人物.技能3).名称..tostring(o_skill_武功等级)..'级'
-
-        else
-            self.属性.getChildByName('武功三').text = ''
         end
     elseif  G.misc().book == 2 then
         local o_item = G.QueryName(0x100b0000 + G.misc().book_data)

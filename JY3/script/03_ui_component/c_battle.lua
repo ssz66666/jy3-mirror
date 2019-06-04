@@ -371,6 +371,7 @@ function t:rollOver(tar)
                 local 武功 = {'武功一','武功二','武功三'} 
                 for i = 1,3 do
                     if o_role_人物['技能'..i] ~= nil then 
+                        local o_skill = G.QueryName(o_role_人物['技能'..i])
                         local data = G.QueryName(o_role_人物['技能'..i]).满级熟练度/450
                         local o_skill_武功当前熟练度 = tonumber(o_role_人物[tostring(10)]) 
                         local o_skill_武功等级 = 0
@@ -404,6 +405,9 @@ function t:rollOver(tar)
                         if  o_skill_武功当前熟练度 > 450*data then
                             o_skill_武功等级 = 10
                         end 
+                        if o_skill.类别 > 5 then
+                            o_skill_武功等级 = 5
+                        end
                         self.属性.getChildByName(武功[i]).text = G.QueryName(o_role_人物['技能'..i]).名称..tostring(o_skill_武功等级)..'级'
                     else
                         self.属性.getChildByName(武功[i]).text = ''
