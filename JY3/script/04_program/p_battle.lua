@@ -2057,7 +2057,7 @@ t['战斗系统_事件响应'] = function()
                                     if  o_role_tb[magic[n] ] ~= nil then
                                         local o_skill_tb = G.QueryName(o_role_tb[magic[n] ]) 
                                         if i <= 5 and i >= 2 then  
-                                            if o_skill_tb.内功轻功效果 == 99  then --判断我方有中毒队友会解毒术的时候使用解毒术
+                                            if o_skill_tb.内功轻功效果 == 99  or o_skill_tb.内功轻功效果 == 19 then --判断我方有中毒队友会解毒术的时候使用解毒术
                                                 if G.call('get_role',int_role,81) > 0 and o_skill_tb.范围 == 0 then 
                                                     o_skill = o_role_tb[magic[n] ] 
                                                 end 
@@ -2077,7 +2077,7 @@ t['战斗系统_事件响应'] = function()
                                                     end 
                                                 end        
                                             end     
-                                            if o_skill_tb.内功轻功效果 == 1  then  --判断队友 ai使用加血
+                                            if o_skill_tb.内功轻功效果 == 1 or o_skill_tb.内功轻功效果 == 19 then  --判断队友 ai使用加血
                                                 if (G.call('get_role',int_role,13) <= G.call('get_role',int_role,1)/2) and (o_skill_tb.范围 == 0 or o_skill_tb.范围 == 1 )   then 
                                                     o_skill = o_role_tb[magic[n] ] 
                                                 end 
@@ -2109,7 +2109,7 @@ t['战斗系统_事件响应'] = function()
 
                                             end
                                         elseif i <= 11 and i >= 6 then  
-                                            if o_skill_tb.内功轻功效果 == 99  then --判断敌方有中毒队友会解毒术的时候使用解毒术
+                                            if o_skill_tb.内功轻功效果 == 99  or o_skill_tb.内功轻功效果 == 19 then --判断敌方有中毒队友会解毒术的时候使用解毒术
                                                 if G.call('get_role',int_role,81) > 0 and  o_skill_tb.范围 == 0  then 
                                                     o_skill = o_role_tb[magic[n]]
                                                 end 
@@ -2125,7 +2125,7 @@ t['战斗系统_事件响应'] = function()
                                                 end     
                                             
                                             end     
-                                            if o_skill_tb.内功轻功效果 == 1  then  --判断敌方 ai使用加血
+                                            if o_skill_tb.内功轻功效果 == 1  or o_skill_tb.内功轻功效果 == 19 then  --判断敌方 ai使用加血
                                                 if G.call('get_role',int_role,13) <= G.call('get_role',int_role,1)/2 and o_skill_tb.范围 == 0   then 
                                                     o_skill = o_role_tb[magic[n] ]
                                                 end 
