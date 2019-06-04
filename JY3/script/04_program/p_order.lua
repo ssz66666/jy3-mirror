@@ -1931,6 +1931,9 @@ t['指令_存储属性'] = function() --计算主角最终属性
             for j = 6,10 do 
                 add[j] = add[j] + o_equip[属性[j-5]]
             end
+            if o_equip[属性[j-5]] > 40 or o_equip.生命 > 5000 or o_equip.内力 > 5000 then
+                G.call('通用_强退游戏') 
+            end
             add[17] = add[17] + math.floor(o_equip.生命*G.call('get_point',4)/100)
             add[18] = add[18] + math.floor(o_equip.内力*G.call('get_point',4)/100)
         end
