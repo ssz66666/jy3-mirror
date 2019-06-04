@@ -674,16 +674,25 @@ function t:click(tar)
                         if G.QueryName(o_item_物品.武功).等级 >= 1  then
                             G.call('notice','无需重复领悟')
                         else
-                            if G.QueryName(0x10030001)[tostring(5)] >= o_item_物品.系数 then          
-                                G.call('use_item',o_item_物品代码+1,1) 
-                                G.call('add_item',o_item_物品代码+1,1)
-                                G.call('add_point',5,-o_item_物品.系数) 
-                                G.Play(0x4901000f, 1,false,100)
-                                G.call('learn_magic',o_item_物品.武功-0x10050000+1) 
-                                self.obj.getChildByName('文本').visible = false
-                                self.obj.getChildByName('闪光').visible = false
-                                self.obj.getChildByName('文本').getChildByName('内功').visible = false
-                                self.obj.getChildByName('按钮').getChildByName('指令').visible = false                         
+                            if G.QueryName(0x10030001)[tostring(5)] >= o_item_物品.系数 then 
+                                if o_item_物品.自宫 > 0  and G.call('get_point',41) == 0 and G.call('通用_取得套装',0,6) < 3 and not G.misc().太监 then 
+                                    --G.removeUI('v_item') 
+                                    G.trig_event('自宫') 
+                                    self.obj.getChildByName('文本').visible = false
+                                    self.obj.getChildByName('闪光').visible = false
+                                    self.obj.getChildByName('文本').getChildByName('内功').visible = false
+                                    self.obj.getChildByName('按钮').getChildByName('指令').visible = false 
+                                else        
+                                    G.call('use_item',o_item_物品代码+1,1) 
+                                    G.call('add_item',o_item_物品代码+1,1)
+                                    G.call('add_point',5,-o_item_物品.系数) 
+                                    G.Play(0x4901000f, 1,false,100)
+                                    G.call('learn_magic',o_item_物品.武功-0x10050000+1) 
+                                    self.obj.getChildByName('文本').visible = false
+                                    self.obj.getChildByName('闪光').visible = false
+                                    self.obj.getChildByName('文本').getChildByName('内功').visible = false
+                                    self.obj.getChildByName('按钮').getChildByName('指令').visible = false    
+                                end                     
                             else
                                 G.call('notice','修为点不够')     
                             end 

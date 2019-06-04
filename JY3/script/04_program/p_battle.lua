@@ -914,9 +914,9 @@ t['战斗系统_事件响应'] = function()
                                     int_动画位置  = n
                                 elseif o_skill.范围 == 3 then
                                     if n == 6 or n == 9 or n == 10 then 
-                                        int_动画位置 = 6
+                                        int_动画位置 = 14
                                     elseif n == 7 or n == 8 or n == 11 then
-                                        int_动画位置 = 11 
+                                        int_动画位置 = 12 
                                     end 
                                 elseif o_skill.范围 == 4 then  
                                     if n == 7 or n == 9 then 
@@ -1396,7 +1396,7 @@ t['战斗系统_事件响应'] = function()
                                 if o_skill.范围 == 2  or o_skill.范围 == 4 then
                                     int_动画位置 = n
                                 elseif 	o_skill.范围 == 3  then 
-                                    int_动画位置 = 1   
+                                    int_动画位置 = 13   
                                 elseif o_skill.范围 == 5 then
                                     int_动画位置 = 13
                                 end
@@ -1766,16 +1766,16 @@ t['战斗系统_事件响应'] = function()
                             if  tonumber(ui.getChildByName('横目标').text) == 1 then 
                                 if ui.getChildByName('tab').getChildByName(位置[6]).visible == false and ui.getChildByName('tab').getChildByName(位置[9]).visible == false and ui.getChildByName('tab').getChildByName(位置[10]).visible == false then 
                                     ui.getChildByName('横目标').text = 2
-                                    int_动画位置 = 11
+                                    int_动画位置 = 12
                                 else
-                                    int_动画位置 = 6
+                                    int_动画位置 = 14
                                 end
                             elseif tonumber(ui.getChildByName('横目标').text) == 2 then 
                                 if ui.getChildByName('tab').getChildByName(位置[7]).visible == false and ui.getChildByName('tab').getChildByName(位置[8]).visible == false and ui.getChildByName('tab').getChildByName(位置[11]).visible == false then
                                     ui.getChildByName('横目标').text = 1
-                                    int_动画位置 = 6
+                                    int_动画位置 = 14
                                 else
-                                    int_动画位置 = 11
+                                    int_动画位置 = 12
                                 end
                             end  
                         elseif  o_skill.范围 == 4  and G.misc().范围无双 == 0  then 

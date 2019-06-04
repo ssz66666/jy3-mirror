@@ -348,9 +348,10 @@ t['new_test'] = function()
     G.call("talk",'？？？？',191,'   欲练神功，必须自宫.........',2,1)
     G.call('all_over')
     G.call('photo0',20)
-    G.wait_time(2000)
+    G.wait_time(1000)
     G.call('photo0',21)
-    G.wait_time(2000)
+    G.Play(0x4902000a , 1,false,100)
+    G.wait_time(1000)
     G.call('photo0_off')
     G.call("talk",'？？？？',191,'   啊.........',2,1)
     G.call('set_friend_skill',191,3,34,750)
@@ -2490,11 +2491,11 @@ t['can_use']=function() --能否修炼当前秘籍
         result = false
     elseif o_item_物品.读书 > o_body_属性[tostring(35)] then 
         result = false
-    elseif o_item_物品.自宫 > o_body_属性[tostring(41)]   then 
-        result = false
-        if G.misc().太监 ~= nil and G.misc().太监 == 0 then 
-            result = true
-        end
+    -- elseif o_item_物品.自宫 > o_body_属性[tostring(41)]   then 
+    --     result = false
+    --     if G.misc().太监 ~= nil and G.misc().太监 == 0 then 
+    --         result = true
+    --     end
     elseif o_item_物品.阴跷脉 > o_body_属性[tostring(226)] then 
         result = false
     elseif o_item_物品.阴维脉 > o_body_属性[tostring(222)] then 
@@ -2517,7 +2518,31 @@ t['can_use']=function() --能否修炼当前秘籍
     if G.call('通用_取得套装',0,6) == 3 then --套装6效果无视条件修炼秘籍
         result = true
     end
+    -- if result == false and o_item_物品.自宫 > 0 then
+    --     result = G.call('通用_自宫') 
+    -- end
     return result
+end
+t['通用_自宫']=function() 
+    local ui = G.addUI('v_yes_or_no')
+    local c = ui.c_yes_or_no
+    c:显示('是否需要自宫？')
+    G.wait1('选择结束')
+    local int_选择 = c.选择
+    G.removeUI('v_yes_or_no')
+    if int_选择 == 1 then 
+        local i_item_物品 = G.call('get_point',192)   
+        local o_item_物品 = G.QueryName(i_item_物品)
+        G.call('photo0',20)
+        G.wait_time(1000)
+        G.call('photo0',21)
+        G.Play(0x4902000a , 1,false,100)
+        G.wait_time(1000)
+        G.call('photo0_off')
+        G.call('set_point',41,1)
+        G.QueryName(0x10030001)[tostring(119)] = 0x560800e2
+        G.call('learn_magic',o_item_物品.武功-0x10050000+1) 
+    end
 end
 t['use_item']=function(int_物品,int_数量) --使用物品
     local o_item_物品 = G.QueryName(0x100b0000+int_物品-1)

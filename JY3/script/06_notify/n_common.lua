@@ -8,7 +8,7 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
     end 
     ui = G.getUI('v_battle')
     local c = ui.c_battle
-    local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6','all1','all2'}
+    local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6','all1','all2','all3'}
     local int_代码 = tonumber(ui.getChildByName('代码').getChildByName(位置[int_位置]).text)
     local int_序列帧 = int_代码 + 1 
     local o_skill = G.QueryName(0x10050000 + int_序列帧 - 1 )
