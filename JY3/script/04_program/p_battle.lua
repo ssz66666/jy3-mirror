@@ -2996,6 +2996,10 @@ t['magic_power1'] = function(int_id,int_no)
                         G.call('set_role',int_id,97,int_时序)
                     end 
                 end 
+            elseif  o_skill.附加效果 == 10 then --斩杀效果
+                if G.call('get_role',int_id,1) <=5000 or G.call('get_role',int_id,13)  < G.call('get_role',int_id,1)/10) and math.random(100) < 30 then 
+                    hurt = G.call('get_role',int_id,13)
+                end 
             end 
             for i = 1, 4 do --判断队友携带武器和武功配合
                 if  o_role[需求道具[i]]  == 0x100b004b then 
@@ -3418,6 +3422,10 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,97,int_时序)
                     end   
                 end 
+            elseif  o_skill.附加效果 == 10 then --斩杀效果
+                if G.call('get_role',int_id,1) <=5000 or G.call('get_role',int_id,13)  < G.call('get_role',int_id,1)/10) and math.random(100) < 30 then 
+                    hurt = G.call('get_role',int_id,13)
+                end     
             end
             for i = 1, 4 do --判断队友携带武器和武功配合
                 if  o_enemy[需求道具[i]]  == 0x100b004b then 
@@ -3860,6 +3868,10 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',87,1) 
                         G.call('set_point',97,int_时序)
                     end 
+                end 
+            elseif  o_skill.附加效果 == 10 then --斩杀效果
+                if (G.call('get_point',217) <=5000 or G.call('get_point',44) < G.call('get_point',217)/10) and math.random(100) < 30 then 
+                    hurt = G.call('get_point',44)
                 end 
             end
             if G.call('get_point',194) == 0x100b004b then 

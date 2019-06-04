@@ -1162,9 +1162,13 @@ t['天书_笑傲江湖'] = function()
             G.call('photo0_off')
             G.call("talk",'？？？？',191,'   啊.........',2,1)
             G.call('set_friend_skill',191,3,34,750)
+            o_book_story.流程 = 3
         else
             G.call("talk",'？？？？',185,'   这点本事就想拿剑谱，滚吧！',2,1)
         end
+    elseif  o_book_story.流程 == 3 then
+        G.call('地图_进入地图','少林寺',135,33)
+         
     end
     G.call('all_over')
     G.call('add_time',2)
