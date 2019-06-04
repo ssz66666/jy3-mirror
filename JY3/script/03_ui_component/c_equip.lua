@@ -272,7 +272,7 @@ function t:显示装备()
                     elseif o_equip.类型 == 4 then
                         str_特效说明 =  特效说明_4[o_equip.特效 - 400]
                     end
-                    if o_equip.类型 == 4 and o_equip.转换次数 == 0 then
+                    if o_equip.类型 == 4 and o_equip.转换次数 < 2 then
                         str = str..'[br][07]特效[08]:'..str_特效说明..'[03](未实现，需完成对应梦幻剧情)'
                     else
                         str = str..'[br][07]特效[08]:'..str_特效说明

@@ -3367,7 +3367,7 @@ t['通用_取得装备特效']=function(int_编号,int_特效号)
         if o_equip.特效 == int_特效号 then
            result = true
         end
-        if o_equip.转换次数 < 2  and int_特效类型 == 4 then 
+        if o_equip.转换次数 < 2  and o_equip.类型 == 4 then 
             result = false
         end
     end
