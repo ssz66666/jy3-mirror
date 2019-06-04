@@ -3703,6 +3703,7 @@ t['magic_power3'] = function(int_id,int_no)
                 elseif  G.call('通用_取得套装',0,6) == 3 then
                     hurt3 = math.floor(hurt3*1.5)
                 end
+                print('hurt3=',hurt3)
             end 
             if G.call('get_point',196) ~= nil then   
                 local o_skill_ta = G.QueryName(G.call('get_point',196))
