@@ -2221,7 +2221,7 @@ t['战斗对话1'] = function()
                         end
                     end
                     if 	G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).生命 > 0 then 
-                        local talk = {G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白1,G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白2,G.QueryName(o_role + G.QueryName(o_battle)[位置[i] ]).战斗对白3}
+                        local talk = {G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白1,G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白2,G.QueryName(o_role + G.QueryName(i_battle)[位置[i] ]).战斗对白3}
                         ui.getChildByName('talk').getChildByName(位置[i]).getChildByName('text').text = talk[math.random(3)]
                         if math.random(100) > 70 then 
                             if  ui.getChildByName('talk').getChildByName(位置[i]).getChildByName('text').text ~= '' then 

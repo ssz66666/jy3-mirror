@@ -6619,4 +6619,173 @@ tp = tc
 		--end
 	tp = tp.parent
 	--end
+	tc = G.loadUI('v_empty')
+	tp.addChild(tc)
+	tc.name = '设置'
+	tc.visible = false
+	tp = tc
+		tc = G.loadUI('v_empty')
+		tp.addChild(tc)
+		tc.name = '显示'
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -200.000
+			tc.right = 200.000
+			tc.bottom = -87.000
+			tc.top = 163.000
+			tc.mouseEnabled = true
+			tc.alpha = 150
+			tc.img = 0x56160020
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '文字1'
+			tc.left = -127.500
+			tc.right = 113.500
+			tc.bottom = 97.000
+			tc.top = 157.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '队友攻击AI'
+			tc.font = 0x61320000
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '文字11'
+			tc.left = -211.000
+			tc.right = 197.000
+			tc.bottom = 14.000
+			tc.top = 74.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '队友自动加血阈值'
+			tc.font = 0x61320000
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '阈值'
+			tc.left = -52.500
+			tc.right = 36.500
+			tc.bottom = -26.000
+			tc.top = 34.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '50%'
+			tc.font = 0x61320000
+			tc.style = 4
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.loadUI('v_empty')
+		tp.addChild(tc)
+		tc.name = '按钮'
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '关闭'
+			tc.left = 165.500
+			tc.right = 198.500
+			tc.bottom = 127.500
+			tc.top = 158.500
+			tc.mouseEnabled = true
+			tc.img = 0x56160014
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '攻击最高'
+			tc.left = -221.000
+			tc.right = 21.000
+			tc.bottom = 60.000
+			tc.top = 120.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '攻击HP最高'
+			tc.font = 0x61300000
+			tc.style = 9
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '攻击最低'
+			tc.left = -21.000
+			tc.right = 221.000
+			tc.bottom = 60.000
+			tc.top = 120.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '攻击HP最低'
+			tc.font = 0x61300000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_button')
+			tp.addChild(tc)
+			tc.name = '加'
+			tc.left = 61.000
+			tc.right = 89.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.scaleX = -1.000
+			tp = tc
+				tc = tp.getChildByName('img')
+				if tc then
+				tc.img = 0x5616001e
+				tp = tc
+				end
+				tp = tp.parent
+				--end
+			com = tp.c_button
+			com['customsize'] =true
+			com['img_normal'] =1444282398.000
+			com['img_hover'] =1444282399.000
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_button')
+			tp.addChild(tc)
+			tc.name = '减'
+			tc.left = -108.000
+			tc.right = -80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tp = tc
+				tc = tp.getChildByName('img')
+				if tc then
+				tc.img = 0x5616001e
+				tp = tc
+				end
+				tp = tp.parent
+				--end
+			com = tp.c_button
+			com['customsize'] =true
+			com['img_normal'] =1444282398.000
+			com['img_hover'] =1444282399.000
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+	tp = tp.parent
+	--end
 tp.c_battle = setmetatable({}, c_battle)
