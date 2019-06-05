@@ -1489,7 +1489,6 @@ t['事件_随机切磋']=function()
     o_role = G.QueryName(0x10040000 + int_role)
     if int_被动 > 0 then --分配被动
         for j = 1,int_被动 do 
-            print(magic[team_skill_2[1]['被动_'..j]])
             G.call('set_role',int_role,110+j,team_skill_2[1]['被动_'..j]) 
         end   
     end 

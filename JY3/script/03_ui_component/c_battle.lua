@@ -336,7 +336,6 @@ function t:rollOver(tar)
             self.透明按钮.getChildByName('属性').visible = true
             local int_队员编号 = o_battle[位置[i]]
             local o_role_人物 = G.QueryName(0x10040000+int_队员编号)
-            print(o_role_人物)
             if o_role_人物 ~= nil then 
                 if o_role_人物.头像 then 
                      self.属性.getChildByName('头像').img = o_role_人物.头像

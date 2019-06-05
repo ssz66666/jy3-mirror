@@ -1181,5 +1181,4 @@ function GF.GetTextOwner(id)
 	if id == 0x1f09	then
 		return 'o_animation'
 	end
-	print('99999999999999999999999999999')
 end
