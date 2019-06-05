@@ -2398,9 +2398,9 @@ t['add_money'] = function(int_数值)--增加钱数
     if    G.QueryName(0x10030001)[tostring(110)]  < 0 then 
         G.call('set_newpoint',110,-2000)
         G.QueryName(0x10030001)[tostring(110)] = 0
-    elseif G.QueryName(0x10030001)[tostring(110)]  > 999999 then
-        G.call('set_newpoint',110,- 999999 -2000)
-        G.QueryName(0x10030001)[tostring(110)]  = 999999 
+    elseif G.QueryName(0x10030001)[tostring(110)]  > 99999999 then
+        G.call('set_newpoint',110,- 99999999 -2000)
+        G.QueryName(0x10030001)[tostring(110)]  = 99999999 
     end 
     local n = math.abs(int_数值)
     if int_数值 > 0 then       

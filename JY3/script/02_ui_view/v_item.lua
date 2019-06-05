@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_item = require 'c_item'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -495,7 +495,6 @@ tp = tc
 	tc.top = -174.000
 	tc.scaleX = 0.500
 	tc.scaleY = 0.500
-	tc.text = '0'
 	tc.font = 0x61280000
 	tc.style = 2
 	tp = tc

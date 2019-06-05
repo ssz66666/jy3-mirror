@@ -23,8 +23,8 @@ function t:init()
 end
 function t:start()
     self.obj.getChildByName('银两').text = tostring(G.QueryName(0x10030001)[tostring(110)])
-    if G.QueryName(0x10030001)[tostring(110)] > 999999 then
-        self.obj.getChildByName('银两').text = '999999'
+    if G.QueryName(0x10030001)[tostring(110)] > 999999999 then
+        self.obj.getChildByName('银两').text = '999999999'
     end
     local item =G.DBTable('o_item')
     for i = 1,#item do
