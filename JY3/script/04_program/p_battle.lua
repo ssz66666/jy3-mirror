@@ -2255,6 +2255,11 @@ t['战斗对话2'] = function()
 		G.wait_time(deytime*50)
 		for i = 6,11 do 
             if G.QueryName(0x10150001)[位置[i]] > 0 then
+                for j = 1,3 do
+                    if not  G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ])['战斗对白'..i] then
+                        G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ])['战斗对白'..i] = '' 
+                    end
+                end
                 if  	G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).生命 > 0 then 
                     local talk = {G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白1,G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白2,G.QueryName(o_role + G.QueryName(o_battle)[位置[i] ]).战斗对白3}
                     ui.getChildByName('talk').getChildByName(位置[i]).getChildByName('text').text = talk[math.random(3)]
