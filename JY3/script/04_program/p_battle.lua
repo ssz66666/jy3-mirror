@@ -2198,7 +2198,8 @@ t['战斗对话1'] = function()
 		return
 	end 
 	ui = G.getUI('v_battle')
-	local o_battle = 0x10150001
+    local i_battle = 0x10150001
+    local o_battle = G.QueryName(i_battle)
     local o_role = 0x10040000
     local o_body = G.QueryName(0x10030001)
     local deytime = G.call('get_point',236)
@@ -2207,11 +2208,10 @@ t['战斗对话1'] = function()
 	while true do 
         G.wait_time(deytime*50)
 		for i = 1,5 do 
-			if i == 1 then 
+			if i == 1  and o_battle.模式 < 4 then 
 				if math.random(100) > 50 then 
 					ui.getChildByName('talk').getChildByName(位置[1]).getChildByName('text').text = team1[math.random(3)]
 					ui.getChildByName('talk').getChildByName(位置[1]).visible = true
-				
 				end 
 			elseif i > 1 then
                 if G.QueryName(0x10150001)[位置[i]] > 0 then
@@ -2717,16 +2717,16 @@ t['magic_power1'] = function(int_id,int_no)
     local float = math.random(-50,50)
     if o_skill.类别 < 6  then   --拳，指，等伤害计算
         if G.call('get_point',46) >= needmp then 
-            result = result+float/10+G.call('get_point',179+magic[o_skill.类别+1])*0.6+G.call('get_point',179+29)*0.6+G.call('get_point',179+27)*0.4
+            result = result+float/10+G.call('get_point',179+magic[o_skill.类别+1])*0.8+G.call('get_point',179+29)*0.8+G.call('get_point',179+27)*0.6
         else 
-            result = result+float/10+G.call('get_point',179+magic[o_skill.类别+1])*0.6+G.call('get_point',179+29)*0.6+G.call('get_point',179+27)*0.4*G.call('get_point',46)/needmp  
+            result = result+float/10+G.call('get_point',179+magic[o_skill.类别+1])*0.8+G.call('get_point',179+29)*0.8+G.call('get_point',179+27)*0.6*G.call('get_point',46)/needmp  
         end     
     else   --内功伤害计算
-        local n = G.call('get_point',179+22) +G.call('get_point',179+23)+G.call('get_point',179+24)+G.call('get_point',179+25)+G.call('get_point',179+26)
+        local int_兵器值 = G.call('get_point',179+22) +G.call('get_point',179+23)+G.call('get_point',179+24)+G.call('get_point',179+25)+G.call('get_point',179+26)
         if G.call('get_point',46) >= needmp then
-            result = result + float + n*0.10+G.call('get_point',179+29)*0.4+G.call('get_point',29)*0.6+G.call('get_point',179+27)*0.6
+            result = result + float + int_兵器值*0.10+G.call('get_point',179+29)*0.4+G.call('get_point',29)*0.6+G.call('get_point',179+27)*0.8
         else 
-            result = result + float + n*0.10+G.call('get_point',179+29)*0.4+G.call('get_point',29)*0.6+G.call('get_point',179+27)*0.6*G.call('get_point',46)/needmp  
+            result = result + float + int_兵器值*0.10+G.call('get_point',179+29)*0.4+G.call('get_point',29)*0.6+G.call('get_point',179+27)*0.8*G.call('get_point',46)/needmp  
         end 
     end  
     local a = G.call('get_point',179+29)
@@ -2849,14 +2849,14 @@ t['magic_power1'] = function(int_id,int_no)
                 hurt = hurt 
             elseif  int_玉女剑阵效果 == 1 and i_skill == 0x1005003e then --玉女剑阵破防效果判定
                 if G.call('通用_取得内功轻功特效',0,18) then
-                    hurt = math.floor(hurt *(1- d/800)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                    hurt = math.floor(hurt *(1- d/700)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
                 else
-                    hurt = math.floor(hurt *(1- d/400)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
+                    hurt = math.floor(hurt *(1- d/350)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
                 end
             elseif G.call('通用_取得人物特效',0,21)  then --武当被动和真武阵判断
-                hurt = math.floor(hurt *(1- c/400)*(1- d/400*(1 - 0.2-int_真武效果/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                hurt = math.floor(hurt *(1- c/350)*(1- d/350*(1 - 0.2-int_真武效果/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
             else 
-                hurt = math.floor(hurt *(1- c/400)*(1- d/400)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
+                hurt = math.floor(hurt *(1- c/350)*(1- d/350)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if o_skill.类别 == 2 then --五岳剑阵效果
                 hurt = math.floor(hurt* (int_五岳剑阵效果/100 +1)  )
@@ -3178,9 +3178,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     local float = math.random(-50,50)
     if o_skill.类别 < 6 then 
         if G.call('get_role',int_id,14) >= needmp then  --伤害计算
-            result =  result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.4+G.call('get_role',int_id,7)*0.3
+            result =  result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.6+G.call('get_role',int_id,7)*0.3
         else
-            result = result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.4*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.3
+            result = result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.6*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.3
         end  
     else
         if G.call('get_role',int_id,14) >= needmp then  --伤害计算
@@ -3597,15 +3597,15 @@ t['magic_power3'] = function(int_id,int_no)
     local float = math.random(-50,50)
     if o_skill.类别 < 6 then 
         if G.call('get_role',int_id,14) >= needmp then  --伤害计算
-            result =  result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.4+G.call('get_role',int_id,7)*0.3
+            result =  result + float/10+G.call('get_role',int_id,4)*0.6 +G.call('get_role',int_id,6)*0.6+G.call('get_role',int_id,7)*0.6
         else
-            result = result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.4*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.3
+            result = result + float/10+G.call('get_role',int_id,4)*0.6 +G.call('get_role',int_id,6)*0.6*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.6
         end  
     else
         if G.call('get_role',int_id,14) >= needmp then  --伤害计算
-            result =  result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.8+G.call('get_role',int_id,7)*0.3
+            result =  result + float/10+G.call('get_role',int_id,4)*0.4 +G.call('get_role',int_id,6)*0.8+G.call('get_role',int_id,7)*0.5
         else
-            result = result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.8*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.3
+            result = result + float/10+G.call('get_role',int_id,4)*0.4 +G.call('get_role',int_id,6)*0.8*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.5
         end
     end 
     o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_no,o_skill_武功熟练度 )

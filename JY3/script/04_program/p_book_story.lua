@@ -1174,7 +1174,7 @@ t['天书_笑傲江湖'] = function()
         G.call("talk",'',191,'   我管教不善，使得正教中各位前辈，都为你这不肖少年怄气，倘若我不出手，难道让别人来负此重任？我今天如不杀了你，你就将我杀了罢。你我已无师徒之情，亮剑！',2,1) 
         G.call('all_over')
         G.call('set_team',2,0,0,0)
-        G.call('call_battle',0,80,4,250,191,0,0,0,0,0)
+        G.call('call_battle',1,80,4,250,191,0,0,0,0,0)
         o_battle_结果 = G.call('get_battle') 
         if o_battle_结果 == 1 then
             G.call("talk",'',2,'   师父，弟罪该万死。',0,0)
@@ -1225,7 +1225,7 @@ t['天书_笑傲江湖'] = function()
     G.call('dark')
     G.call('goto_map',4)
 end
-t['天书_笑傲江湖'] = function()
+t['天书_书剑恩仇录'] = function()
     local o_book_story = G.QueryName(0x101c0009)
     if not G.call('in_team',25) then 
         G.call("talk",'',38,'   本故事没有香香公主是无法进行的！',2,1)
@@ -1234,6 +1234,20 @@ t['天书_笑傲江湖'] = function()
     end 
     local int_mo = (227-224)*6+265
     if o_book_story.流程 == 0 then
-
+        G.call('地图_进入地图','回族部落',277,32)
+        G.call("talk",'',227,'   这群外族人不交出我们要的，统统抓走！',2,1)
+        G.call("talk",'',25,'   真主不会放过你们的！',0,0)
+        G.call("talk",'',397,'   还好听到消息我和青桐一起来了！',2,1)
+        G.call("talk",'',398,'   你们都没事吧，我们一起把他们赶出去！',2,1)
+        G.call('all_over')
+        G.call('set_team',25,397,0,398)
+        G.call('call_battle',1,277,4,250,int_mo,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4)
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1 then
+        end
     end
+    G.call('all_over')
+    G.call('add_time',2)
+    G.call('dark')
+    G.call('goto_map',4)
 end

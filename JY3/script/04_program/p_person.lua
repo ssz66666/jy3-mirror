@@ -248,6 +248,7 @@ t['地图系统_人物'] = function()
             end
             G.call('add_item',318,G.misc().蚯蚓数量)
             G.call('all_over')
+            G.call('turn_map')
         elseif r == 2 then
             G.call('途径牛家村-曲菲菲')
         elseif r == 3 then
