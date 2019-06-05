@@ -629,7 +629,7 @@ function t:click(tar)
         G.misc().加血阈值 = G.misc().加血阈值 - 10 
     end
     G.misc().加血阈值 = cc.limitX(G.misc().加血阈值, 10, 90)
-    self.阈值.text = G.misc().加血阈值
+    self.阈值.text = G.misc().加血阈值..'%'
     --cc.limitX(o_store.物品[int_id].数量, 0, 999)
     if tar == self.obj.getChildByName('逃跑') then
         G.trig_event('逃跑')
