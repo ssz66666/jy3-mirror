@@ -534,8 +534,19 @@ function t:keyDown(tar,info)
     local 快捷 = {'q','w','e','r'}
     local 键值 = {81,87,69,82}
     local key = string.byte(info)
-    local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
     if G.misc().战斗状态 == 0 then  
+        local int_队友 = 0
+        local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
+        for i = 2,5 do 
+            if G.QueryName(0x10150001)[位置[i]] > 0 then 
+                if G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i]] ).生命 > 0 then 
+                    int_队友 = int_队友 + 1
+                end
+            end
+        end
+        if G.call('通用_取得内功轻功特效',0,18) then
+            int_队友 = int_队友 + 1
+        end 
         for i = 1,8 do 
             if key == i + 48 then 
                 if self.按钮.getChildByName(tostring(i)).mouseEnabled == true then

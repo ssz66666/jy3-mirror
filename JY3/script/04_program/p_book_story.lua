@@ -1244,7 +1244,15 @@ t['天书_书剑恩仇录'] = function()
         G.call('call_battle',1,277,4,250,int_mo,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4)
         o_battle_结果 = G.call('get_battle') 
         if o_battle_结果 == 1 then
+            G.call('join',398)
+            G.call("talk",'',25,'   还好你没及时赶到，感谢真主！',0,0)
+            G.call('join',397)
+            o_book_story.流程 = 1
+        else
+            G.call("talk",'',227,'   就这点本事，通通抓走！',2,1)
         end
+    elseif o_book_story.流程 == 1 then
+
     end
     G.call('all_over')
     G.call('add_time',2)

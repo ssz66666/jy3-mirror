@@ -2211,7 +2211,7 @@ t['门派-丐帮']=function()
     local int_mo = (237-224)*6+237
     G.Play(0x49010030, 1,true,1) 
     if G.call('get_story',24) == 1 then 
-        G.call('地图_进入地图','丐帮',171,4,1)
+        G.call('地图_进入地图','丐帮',116,4)
         if G.call('get_point',167) ~= G.call('get_year') *12 + G.call('get_month') then 
             G.call('set_point',167, G.call('get_year') *12 + G.call('get_month') )
             local money = math.random(500)
