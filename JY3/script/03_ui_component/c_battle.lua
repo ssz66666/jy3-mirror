@@ -10,6 +10,9 @@ local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy
 local o_hotkey = G.QueryName(0x100c0001)
 function t:init()
     self.记事本 = self.obj.getChildByName('记事本')
+    self.设置 = self.obj.getChildByName('设置')
+    self.设置按钮 = self.设置.getChildByName('按钮')
+    self.阈值 = self.设置.getChildByName('显示').getChildByName('阈值')
     self.记录 = self.记事本.getChildByName('记录')
     self.主菜单 = self.obj.getChildByName('主菜单')
     self.菜单 = self.主菜单.getChildByName('菜单')
@@ -170,7 +173,9 @@ function t:start()
         self.obj.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减体力').shadowX = 1
         self.obj.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减体力').shadowY = 0 
         self.obj.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减体力').shadowAlpha = 180
-    end     
+    end   
+    G.misc().队友AI = 0
+    G.misc().加血阈值 = 50  
     self:update()
     self:刷新显示()
 end  
@@ -522,33 +527,7 @@ function t:rollOut(tar)
             self.透明按钮.getChildByName('属性').visible = false
         end 
     end
-    local int_代码 = tonumber(self.obj.getChildByName('代码').getChildByName(位置[1]).text)
-    -- if self.obj.getChildByName('map').getChildByName(位置[1]).x == 150 and self.obj.getChildByName('状态').text == tostring(1) then 
-    --     if  G.QueryName(0x10050000+int_代码).范围 == 2  then 
-    --         for i = 6,11 do 
-    --             if tar == self.obj.getChildByName('tab').getChildByName(位置[i]) then 
-    --                 G.Tween("color", 300,self.obj.getChildByName('tab').getChildByName(位置[i]) , 0xffffff)
-    --                 --self.obj.getChildByName('tab').getChildByName(位置[i]) .color = 0xffffff
-    --             end        
-    --         end 
-    --     elseif G.QueryName(0x10050000+int_代码).范围 == 3  then 
-    --         if tar ==  self.obj.getChildByName('横一') then
-    --             self.obj.getChildByName('横一').getChildByName('图片').visible = false
-    --         elseif tar ==  self.obj.getChildByName('横二') then   
-    --             self.obj.getChildByName('横二').getChildByName('图片').visible = false
-    --         end 
-    --     elseif G.QueryName(0x10050000+int_代码).范围 == 4  then   
-    --         if tar ==  self.obj.getChildByName('纵一') then
-    --             self.obj.getChildByName('纵一').getChildByName('图片').visible = false
-    --         elseif tar ==  self.obj.getChildByName('纵二') then   
-    --             self.obj.getChildByName('纵二').getChildByName('图片').visible = false
-    --         elseif tar ==  self.obj.getChildByName('纵三') then   
-    --             self.obj.getChildByName('纵三').getChildByName('图片').visible = false
-    --         end  
-    --     end      
- 
-    -- end 
-    
+    local int_代码 = tonumber(self.obj.getChildByName('代码').getChildByName(位置[1]).text)   
 end  
 function t:keyDown(tar,info)
     local i_battle = 0x10150001
@@ -624,17 +603,37 @@ function t:click(tar)
     elseif tar == self.主菜单.getChildByName('菜单').getChildByName(tostring(3)) then
         G.Play(0x49011003, 1,false,100) 
         G.addUI('v_skill')
+    elseif tar == self.主菜单.getChildByName('菜单').getChildByName(tostring(6)) then
+        G.Play(0x49011003, 1,false,100) 
+        self.设置.visible = true
+    elseif tar == self.设置按钮.getChildByName('关闭') then  
+        G.Play(0x49011003, 1,false,100) 
+        self.设置.visible = false 
     end 
+    if tar == self.设置按钮.getChildByName('攻击最高') then
+        G.misc().队友AI = 1
+    elseif tar == self.设置按钮.getChildByName('攻击最低') then
+        G.misc().队友AI = 0
+    end
+    if G.misc().队友AI == 0 then
+        self.设置按钮.getChildByName('攻击最高').style = 9
+        self.设置按钮.getChildByName('攻击最低').style = 3
+    else
+        self.设置按钮.getChildByName('攻击最高').style = 3
+        self.设置按钮.getChildByName('攻击最低').style = 9 
+    end
+    if tar == self.设置按钮.getChildByName('加') then
+        G.misc().加血阈值 = G.misc().加血阈值 + 10 
+         
+    elseif tar == self.设置按钮.getChildByName('减') then
+        G.misc().加血阈值 = G.misc().加血阈值 - 10 
+    end
+    G.misc().加血阈值 = cc.limitX(G.misc().加血阈值, 10, 90)
+    self.阈值.text = G.misc().加血阈值
+    --cc.limitX(o_store.物品[int_id].数量, 0, 999)
     if tar == self.obj.getChildByName('逃跑') then
         G.trig_event('逃跑')
-  
     end    
-    -- if tar == self.obj.getChildByName('返回')   then
-    --     self.obj.getChildByName('状态').text = tostring(0) 
-    --     --self.obj.getChildByName('select').visible = false
-    --     G.trig_event('选择目标')
-    --     G.misc().战斗状态 = 0
-    -- end 
     if G.misc().战斗状态 == 0 then  
         local int_队友 = 0
         local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
@@ -697,43 +696,6 @@ function t:click(tar)
         end 
     end
     local int_代码 = tonumber(self.obj.getChildByName('代码').getChildByName(位置[1]).text)
-    -- if G.misc().战斗状态 == 0 and  self.obj.getChildByName('map').getChildByName(位置[1]).x <= 150  and self.obj.getChildByName('状态').text == tostring(1) then 
-    --     if  G.QueryName(0x10050000+int_代码).范围 == 2  then 
-    --         for i = 6,11 do 
-    --             if tar == self.obj.getChildByName('tab').getChildByName(位置[i]) then 
-    --                 self.obj.getChildByName('单目标').text = tostring(i) 
-    --                 G.Tween("color", 300,self.obj.getChildByName('tab').getChildByName(位置[i]) , 0xffffff)
-    --                 G.trig_event('选择目标')
-    --             end        
-    --         end
-    --     elseif  G.QueryName(0x10050000+int_代码).范围 == 3  then 
-    --         if tar == self.obj.getChildByName('横一') then
-    --             self.obj.getChildByName('横目标').text = tostring(1) 
-    --             self.obj.getChildByName('横一').getChildByName('图片').visible = false
-    --             G.trig_event('选择目标')
-    --         elseif  tar == self.obj.getChildByName('横二') then  
-    --             self.obj.getChildByName('横目标').text = tostring(2)
-    --             self.obj.getChildByName('横二').getChildByName('图片').visible = false
-    --             G.trig_event('选择目标')
-    --         end 
-    --     elseif  G.QueryName(0x10050000+int_代码).范围 == 4  then    
-    --         if tar == self.obj.getChildByName('纵一') then
-    --             self.obj.getChildByName('纵目标').text = tostring(1) 
-    --             self.obj.getChildByName('纵一').getChildByName('图片').visible = false
-    --             G.trig_event('选择目标')
-    --         elseif  tar == self.obj.getChildByName('纵二') then  
-    --             self.obj.getChildByName('纵目标').text = tostring(2)
-    --             self.obj.getChildByName('纵二').getChildByName('图片').visible = false
-    --             G.trig_event('选择目标')
-    --         elseif  tar == self.obj.getChildByName('纵三') then  
-    --             self.obj.getChildByName('纵目标').text = tostring(3)
-    --             self.obj.getChildByName('纵三').getChildByName('图片').visible = false
-    --             G.trig_event('选择目标')
-    --         end 
-
-    --     end      
- 
-    -- end 
     if tar == self.obj.getChildByName('note') then
         if self.记事本.visible == false then 
             self.记事本.visible = true
@@ -751,8 +713,8 @@ function t:click(tar)
             self.obj.getChildByName('select').style = 1
             self.obj.getChildByName('select').text = '自动选择目标OFF'
         end     
-
     end
+    
 
 end        
 return t

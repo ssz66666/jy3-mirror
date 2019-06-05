@@ -889,10 +889,17 @@ t['战斗系统_事件响应'] = function()
                                         for p = 6,11 do --ai判断生命值最低敌人位置信息
                                             if G.QueryName(o_battle)[位置[p]] > 0 then
                                                 if	G.QueryName(o_role + G.QueryName(o_battle)[位置[p] ]).生命 > 0 then 
-                                                    if 	G.QueryName(o_role + G.QueryName(o_battle)[位置[p] ]).生命 -  tonumber(ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('min').text) < 0 then 
-                                                        ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring(p) 
-                                                        ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('min').text = tostring(G.QueryName(o_role + G.QueryName(o_battle)[位置[p] ]).生命 ) 
-                                                    end 
+                                                    if G.misc().队友AI == 0 then 
+                                                        if 	G.QueryName(o_role + G.QueryName(o_battle)[位置[p] ]).生命 -  tonumber(ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('min').text) < 0 then 
+                                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring(p) 
+                                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('min').text = tostring(G.QueryName(o_role + G.QueryName(o_battle)[位置[p] ]).生命 ) 
+                                                        end 
+                                                    else
+                                                        if 	G.QueryName(o_role + G.QueryName(o_battle)[位置[p] ]).生命 -  tonumber(ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('min').text) > 0 then 
+                                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring(p) 
+                                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('min').text = tostring(G.QueryName(o_role + G.QueryName(o_battle)[位置[p] ]).生命 ) 
+                                                        end 
+                                                    end
                                                 end
                                             end 	
                                         end 
@@ -2078,7 +2085,7 @@ t['战斗系统_事件响应'] = function()
                                                 end        
                                             end     
                                             if o_skill_tb.内功轻功效果 == 1 or o_skill_tb.内功轻功效果 == 19 then  --判断队友 ai使用加血
-                                                if (G.call('get_role',int_role,13) <= G.call('get_role',int_role,1)/2) and (o_skill_tb.范围 == 0 or o_skill_tb.范围 == 1 )   then 
+                                                if (G.call('get_role',int_role,13) <= G.call('get_role',int_role,1) * G.misc().加血阈值/100) and (o_skill_tb.范围 == 0 or o_skill_tb.范围 == 1 )   then 
                                                     o_skill = o_role_tb[magic[n] ] 
                                                 end 
                                                 if o_skill_tb.范围 == 1 then

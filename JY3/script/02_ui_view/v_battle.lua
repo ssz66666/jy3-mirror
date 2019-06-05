@@ -3321,6 +3321,7 @@ tp = tc
 				tc.right = 19.000
 				tc.bottom = -19.000
 				tc.top = 19.000
+				tc.visible = false
 				tc.img = 0x560a0011
 				tp = tc
 				tp = tp.parent
