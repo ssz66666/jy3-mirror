@@ -512,7 +512,6 @@ t['通用_记录继承装备']=function(int_重生)
     if i_继承装备_4 then 
         table.insert(_o_继承装备,i_继承装备_4)
     end
-    print(#o_store.装备 )
     if G.call('get_point',237) > 1 and int_重生 > 0 then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
@@ -932,7 +931,6 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
                     G.call('set_role',o_battle[位置[i] ] ,p,0)
                 end 
                 G.call('set_role',o_battle[位置[i] ] ,84,n) 
-                print(i,G.call('get_role',o_battle[位置[i] ],13 ))
                 if G.call('get_role',o_battle[位置[i] ],13 ) <= 0 then --战斗后回复0hp队友hp为1
                     G.call('set_role',o_battle[位置[i] ] ,13,1)
                 end  
