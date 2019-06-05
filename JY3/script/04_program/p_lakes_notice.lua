@@ -250,7 +250,7 @@ t['聚贤庄任务_义结金兰']=function()
                         G.call("talk",'',38,'   与【'..G.QueryName(0x10040000+G.misc().brother).姓名..'】结义吗？你可要认真考虑，机会只有一次，无论错过还是草率结义都是来不及后悔的。成为你结义兄弟，各项属性均会大涨，成为你打架斗殴时的好帮手，可要慎重考虑！',1,1) 
                         int_选项 = G.call("menu",'',0,'',0,0,{'1,我已经决定了与他义结金兰','2,突然有事，改日再来吧！'},0) 
                         if int_选项 == 1 then
-                            print('结义次数次数='..G.QueryName(0x10030001)[tostring(50)] )
+                            --print('结义次数次数='..G.QueryName(0x10030001)[tostring(50)] )
                             G.QueryName(0x10030001)[tostring(50)] = G.QueryName(0x10030001)[tostring(50)] - 1
                             if G.QueryName(0x10030001)[tostring(50)] <= 0 then 
                                 G.QueryName(0x10080027).是否完成 = true   
@@ -405,7 +405,7 @@ t['聚贤庄任务_良辰吉日']=function()
                         G.call("talk",'',38,'   【'..G.QueryName(0x10040000+G.misc().wife).姓名..'】做为你的老婆吗？你可要认真考虑，机会只有一次，无论错过还是草率结合都是来不及后悔的。成为你老婆的女人，各项属性均会大涨，成为你打架斗殴时的贤内助，可要慎重考虑！',1,1) 
                         int_选项 = G.call("menu",'',0,'',0,0,{'1,我已经决定了，此生非他不娶','2,突然觉得娶老婆很恐怖，我不娶了'},0) 
                         if int_选项 == 1 then
-                            print('结婚次数='..G.QueryName(0x10030001)[tostring(51)] )
+                            --print('结婚次数='..G.QueryName(0x10030001)[tostring(51)] )
                             G.QueryName(0x10030001)[tostring(51)] = G.QueryName(0x10030001)[tostring(51)] - 1
                             if G.QueryName(0x10030001)[tostring(51)] <= 0 then 
                                 G.QueryName(0x10080026).是否完成 = true

@@ -1278,7 +1278,7 @@ t['自创武功']=function() --
     G.call('input')
     o_skill.名称 = G.misc().自创武功名字
     G.misc().自创武功 = 0
-    print(o_skill.伤害倍数)
+    --print(o_skill.伤害倍数)
 end 
 t['猜数字']=function()
     local m = {0,0,0,0}
@@ -1301,7 +1301,7 @@ t['猜数字']=function()
     m[4] =t[r]
     table.remove(t, r)
     local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4]   
-    print(int_no)
+    --print(int_no)
     G.call("talk",'',38,'   来来来，猜数字，规则很简单，猜出4个不同数字!',2,1)
     local int_选项 = 0
     while true do
@@ -1341,7 +1341,7 @@ t['猜数字']=function()
             break
         end
     end
-    print(int_mo)
+    --print(int_mo)
     if G.misc().number == int_no then 
         local o_szyy = G.QueryName(0x10170012)
         if int_mo <= 5 then

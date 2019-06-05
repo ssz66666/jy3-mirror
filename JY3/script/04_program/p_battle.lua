@@ -20,7 +20,7 @@ t['战斗系统_胜负监控'] = function()
         G.wait_time(10)
         for i = 2,11 do
             if o_battle [位置[i] ] ~= G.misc().队伍记录[i-1] then
-                print(o_battle [位置[i] ],G.misc().队伍记录[i-1]) 
+                --print(o_battle [位置[i] ],G.misc().队伍记录[i-1]) 
                 G.call('通用_强退游戏') 
             end
         end 
@@ -111,7 +111,7 @@ t['战斗系统_主角监控'] = function()
             local magic = {'技能1','技能2','技能3'}  
             local i_battle = 0x10150001
             local o_battle = G.QueryName(i_battle)
-            print('战斗难度',o_battle.diffty,G.misc().难度)
+           -- print('战斗难度',o_battle.diffty,G.misc().难度)
             if o_battle.diffty ~= math.abs(G.misc().难度) then 
                 G.call('通用_强退游戏') 
             end
@@ -3734,7 +3734,6 @@ t['magic_power3'] = function(int_id,int_no)
                 elseif  G.call('通用_取得套装',0,6) == 3 then
                     hurt3 = math.floor(hurt3*1.5)
                 end
-                print('hurt3=',hurt3)
             end 
             if G.call('get_point',196) ~= nil then   
                 local o_skill_ta = G.QueryName(G.call('get_point',196))
