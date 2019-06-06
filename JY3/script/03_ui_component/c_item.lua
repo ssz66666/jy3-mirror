@@ -19,7 +19,12 @@ function t:init()
     self.确定 = self.快捷.getChildByName('确定')
     self.总数量 = 24
     self.展示list = {}
-    
+    self.item_sub_1 = {}
+    self.item_sub_2 = {}
+    self.data = 1
+    self.data_max = 1
+    self.data_io = 1
+    self.显示数量 = 18
 end
 function t:start()
     self.obj.getChildByName('银两').text = tostring(G.QueryName(0x10030001)[tostring(110)])
@@ -86,9 +91,9 @@ function t:start()
             self.快捷图.getChildByName(快捷[i]).getChildByName('数量').text = G.QueryName(o_hotkey[tostring(10+i)]).数量 
         end    
     end 
-    self:update()
+    self:显示刷新()
 end  
-function t:update()
+function t:显示刷新()
     local 快捷 = {'q','w','e','r'}
     local 装备 = {'头戴','手戴','脚穿','印记'}
     local o_body = G.QueryName(0x10030001)
@@ -109,39 +114,116 @@ function t:update()
         end    
     end 
     local n = 0
+    self.item_sub_1 = {}
+    self.item_sub_2 = {}
+    G.deepcopy( self.item_sub_2,self.item_sub_1)
     local item =G.DBTable('o_item')
     for i = 1,#item do
         if G.QueryName(0x100b0000+i).数量 > 0 then
-           n = n + 1
+            table.insert(self.item_sub_2, i)   
         end
     end
-    local zst = math.floor( (n-1)/18 )+1  
-    self.总页数.text = tostring(zst)
-    self.obj.getChildByName('总个数').text = tostring(n)
-    local st = tonumber(self.obj.getChildByName('页数').text)--当前页面
-    local item =G.DBTable('o_item')
+    self.data_max = math.floor( (#self.item_sub_2-1)/18 )+1  
     local num = 0
-    local 显示数量 = 0
-    for i = 1,#item do
-        local v = G.QueryName(0x100b0000+i)
-        if v.数量 > 0 then
-            num = num + 1
-            for i = 显示数量 + 1, 18, 1 do
-                self.展示list[i].visible = false
-            end
-            if num <= (st - 1) * 18 then
-            elseif num > st * 18 then
-            else
-                --显示物品
-                显示数量 = 显示数量 + 1
-                self.展示list[显示数量].visible = true
-                self.展示list[显示数量].getChildByName('图片').img = G.QueryName(0x100b0000 + i).图标
-            end    
-            if 显示数量 >= 18 then
-                return
-            end
-        end
+    self.显示数量 = 18
+    if self.data_max == self.data then
+        self.显示数量 = #self.item_sub_2 - (self.data-1)*18
     end
+    for i =1,18 do
+        self.展示list[i].visible = false
+    end
+    self.obj.getChildByName('文本').visible = false
+    self.obj.getChildByName('闪光').visible = false
+    self.obj.getChildByName('快捷').visible = false
+    self.obj.getChildByName('按钮').getChildByName('指令').visible = false
+    self.obj.getChildByName('按钮').getChildByName('快捷').visible = false
+    self.obj.getChildByName('文本').getChildByName('内功').visible = false
+    self.按钮.getChildByName('丢弃').visible = false
+    if self.显示数量 > 0 then 
+        if self.显示数量 < self.data_io then
+            self.data_io = 1 
+        end
+        for i = 1,self.显示数量 do
+            local i_item = 0x100b0000 + self.item_sub_2[(self.data-1)*18 + i]  
+            self.展示list[i].visible = true
+            self.展示list[i].getChildByName('图片').img = G.QueryName(i_item).图标
+            local o_item_物品 = G.QueryName(i_item)
+            if self.data_io == i then 
+                G.QueryName(0x10030001)[tostring(192)] = i_item --记录当前选择的物品    
+                self.按钮.getChildByName('丢弃').visible = true
+                self.obj.getChildByName('闪光').visible = true
+                self.obj.getChildByName('快捷').visible = false
+                self.obj.getChildByName('闪光').x = self.展示list[i].x + 20
+                self.obj.getChildByName('闪光').y = self.展示list[i].y
+                if o_item_物品  then 
+                    self.obj.getChildByName('文本').visible = true 
+                    if o_item_物品.名称 == '' or o_item_物品.名称 == nil then 
+                        self.obj.getChildByName('文本').getChildByName('名称').text = ''
+                    else  
+                         self.obj.getChildByName('文本').getChildByName('名称').text = o_item_物品.名称
+                    end 
+                    self.obj.getChildByName('文本').getChildByName('数量').text = tostring(o_item_物品.数量)
+                    if o_item_物品.说明 == '' or o_item_物品.说明 == nil then 
+                        self.obj.getChildByName('文本').getChildByName('说明').text = ''
+                    else  
+                         self.obj.getChildByName('文本').getChildByName('说明').text = o_item_物品.说明
+                    end
+                    self.按钮.getChildByName('指令').visible = false
+                    self.obj.getChildByName('文本').getChildByName('内功').visible = false
+                    self.按钮.getChildByName('快捷').visible = false
+                    if o_item_物品.类别 == 1 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '武器'
+                        self.按钮.getChildByName('指令').getChildByName('名称').text = '装备'
+                        self.按钮.getChildByName('指令').visible = true
+    
+                    elseif  o_item_物品.类别 == 2 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '暗器'
+                        self.按钮.getChildByName('指令').getChildByName('名称').text = '装备'
+                        self.按钮.getChildByName('指令').visible = true
+                    elseif  o_item_物品.类别 == 3 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '内衬'
+                        self.按钮.getChildByName('指令').getChildByName('名称').text = '装备'
+                        self.按钮.getChildByName('指令').visible = true
+                    elseif  o_item_物品.类别 == 4 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '外衣'
+                        self.按钮.getChildByName('指令').getChildByName('名称').text = '装备'
+                        self.按钮.getChildByName('指令').visible = true
+                    elseif  o_item_物品.类别 == 5 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '秘籍'
+                        self.按钮.getChildByName('指令').getChildByName('名称').text = '研习'
+                        self.obj.getChildByName('文本').getChildByName('内功').visible = true
+                        self.按钮.getChildByName('指令').visible = true
+                        self.obj.getChildByName('文本').getChildByName('内功').getChildByName('需点').text = tostring(o_item_物品.系数)
+                        self.obj.getChildByName('文本').getChildByName('内功').getChildByName('修为点').text = tostring(G.QueryName(0x10030001)[tostring(5)])
+                    elseif  o_item_物品.类别 == 6 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '食物'
+                        self.按钮.getChildByName('指令').getChildByName('名称').text = '食用'
+                        self.按钮.getChildByName('指令').visible = true
+                        self.按钮.getChildByName('快捷').visible = true
+                    elseif  o_item_物品.类别 == 7 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '酒'
+                        
+                    elseif  o_item_物品.类别 == 8 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '茶'
+                        
+                    elseif  o_item_物品.类别 == 9 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '药物'
+                        self.按钮.getChildByName('指令').getChildByName('名称').text = '服用'
+                        self.按钮.getChildByName('指令').visible = true
+                        self.按钮.getChildByName('快捷').visible = true
+                    elseif  o_item_物品.类别 == 10 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '杂物'
+                    elseif  o_item_物品.类别 == 11 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '毒物'
+                    elseif  o_item_物品.类别 == 12 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '食材'
+                    elseif  o_item_物品.类别 == 13 then 
+                        self.obj.getChildByName('文本').getChildByName('类别').text = '材料'
+                    end
+                end 
+            end
+        end    
+    end 
 end 
 function t:rollOver(tar)
     local 类别 = {'武器','内衣','外衣','内功','轻功','暗器','头戴','手戴','脚穿','印记'}
@@ -457,38 +539,16 @@ function t:rclick(tar)
     G.removeUI('v_item')
 end 
 function t:click(tar)
-    local st  =  tonumber(self.页数.text)
-    local zst = tonumber(self.总页数.text)
-    if zst > 1 then 
+    if self.data_max > 1 then 
         if tar == self.左  then
             G.Play(0x49011003, 1,false,100) 
-            if st > 1 then
-                st = st - 1
-            elseif st == 1  then 
-                st = zst
-            end 
-            self.obj.getChildByName('文本').visible = false
-            self.obj.getChildByName('闪光').visible = false
-            self.obj.getChildByName('快捷').visible = false
-            self.obj.getChildByName('按钮').getChildByName('指令').visible = false
-            self.obj.getChildByName('按钮').getChildByName('快捷').visible = false
-            self.obj.getChildByName('文本').getChildByName('内功').visible = false
+            self.data = self.data -1 
         elseif tar == self.右 then
             G.Play(0x49011003, 1,false,100) 
-            if st < zst then 
-                st = st + 1
-            elseif st == zst then
-                st = 1     
-            end
-            self.obj.getChildByName('文本').visible = false
-            self.obj.getChildByName('闪光').visible = false
-            self.obj.getChildByName('快捷').visible = false
-            self.按钮.getChildByName('丢弃').visible = false
-            self.obj.getChildByName('按钮').getChildByName('指令').visible = false
-            self.obj.getChildByName('按钮').getChildByName('快捷').visible = false
-            self.obj.getChildByName('文本').getChildByName('内功').visible = false
+            self.data = self.data + 1
         end
-    end     
+    end  
+    self.data = cc.limitX(self.data, 1, self.data_max)  
     if tar == self.装备图.getChildByName('武器').getChildByName('按钮')  then 
         G.QueryName(0x10030001)[tostring(193)] = nil
         self.装备图.getChildByName('武器').getChildByName('图片').img = nil
@@ -512,367 +572,269 @@ function t:click(tar)
         local c = ui.c_equip
         c:角色操作(0)
     end  
-    self.页数.text = tostring(st)
-    local n = tonumber(self.obj.getChildByName('总个数').text)
-    for i = 1,18 do 
+    self.页数.text = self.data
+    for i = 1,self.显示数量 do 
         if  tar == self.展示list[i].getChildByName('图片') then
-            self.按钮.getChildByName('丢弃').visible = true
-            self.obj.getChildByName('闪光').visible = true
-            self.obj.getChildByName('快捷').visible = false
-            self.obj.getChildByName('闪光').x = self.展示list[i].x + 20
-            self.obj.getChildByName('闪光').y = self.展示list[i].y
-            local o_item_物品 = G.QueryName(0x100b0000  + (self.展示list[i].getChildByName('图片').img - 0x560e0000) )
-            G.QueryName(0x10030001)[tostring(192)] = 0x100b0000  + (self.展示list[i].getChildByName('图片').img - 0x560e0000) --记录当前选择的物品
-            if o_item_物品  ~= nil then 
-                self.obj.getChildByName('文本').visible = true 
-                if o_item_物品.名称 == '' or o_item_物品.名称 == nil then 
-                    self.obj.getChildByName('文本').getChildByName('名称').text = ''
-                else  
-                     self.obj.getChildByName('文本').getChildByName('名称').text = o_item_物品.名称
-                end 
-                self.obj.getChildByName('文本').getChildByName('数量').text = tostring(o_item_物品.数量)
-                if o_item_物品.说明 == '' or o_item_物品.说明 == nil then 
-                    self.obj.getChildByName('文本').getChildByName('说明').text = ''
-                else  
-                     self.obj.getChildByName('文本').getChildByName('说明').text = o_item_物品.说明
-                end
-                self.按钮.getChildByName('指令').visible = false
-                self.obj.getChildByName('文本').getChildByName('内功').visible = false
-                self.按钮.getChildByName('快捷').visible = false
-                if o_item_物品.类别 == 1 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '武器'
-                    self.按钮.getChildByName('指令').getChildByName('名称').text = '装备'
-                    self.按钮.getChildByName('指令').visible = true
-
-                elseif  o_item_物品.类别 == 2 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '暗器'
-                    self.按钮.getChildByName('指令').getChildByName('名称').text = '装备'
-                    self.按钮.getChildByName('指令').visible = true
-                elseif  o_item_物品.类别 == 3 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '内衬'
-                    self.按钮.getChildByName('指令').getChildByName('名称').text = '装备'
-                    self.按钮.getChildByName('指令').visible = true
-                elseif  o_item_物品.类别 == 4 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '外衣'
-                    self.按钮.getChildByName('指令').getChildByName('名称').text = '装备'
-                    self.按钮.getChildByName('指令').visible = true
-                elseif  o_item_物品.类别 == 5 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '秘籍'
-                    self.按钮.getChildByName('指令').getChildByName('名称').text = '研习'
-                    self.obj.getChildByName('文本').getChildByName('内功').visible = true
-                    self.按钮.getChildByName('指令').visible = true
-                    self.obj.getChildByName('文本').getChildByName('内功').getChildByName('需点').text = tostring(o_item_物品.系数)
-                    self.obj.getChildByName('文本').getChildByName('内功').getChildByName('修为点').text = tostring(G.QueryName(0x10030001)[tostring(5)])
-                elseif  o_item_物品.类别 == 6 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '食物'
-                    self.按钮.getChildByName('指令').getChildByName('名称').text = '食用'
-                    self.按钮.getChildByName('指令').visible = true
-                    self.按钮.getChildByName('快捷').visible = true
-                elseif  o_item_物品.类别 == 7 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '酒'
-                    
-                elseif  o_item_物品.类别 == 8 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '茶'
-                    
-                elseif  o_item_物品.类别 == 9 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '药物'
-                    self.按钮.getChildByName('指令').getChildByName('名称').text = '服用'
-                    self.按钮.getChildByName('指令').visible = true
-                    self.按钮.getChildByName('快捷').visible = true
-                elseif  o_item_物品.类别 == 10 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '杂物'
-                elseif  o_item_物品.类别 == 11 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '毒物'
-                elseif  o_item_物品.类别 == 12 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '食材'
-                elseif  o_item_物品.类别 == 13 then 
-                    self.obj.getChildByName('文本').getChildByName('类别').text = '材料'
-                end
-           end     
+            self.data_io = i
+            local o_item_物品 = G.QueryName(0x100b0000  + self.item_sub_2[(self.data-1)*18 + i] )
         end 
     end  
-        local i_item_物品 = G.call('get_point',192)   
-        local o_item_物品 = G.QueryName(i_item_物品)
-        local 快捷 = {'q','w','e','r'}
-        local o_hotkey = G.QueryName(0x100c0001)
-        local o_body = G.QueryName(0x10030001)
-        if tar == self.按钮.getChildByName('快捷') then 
-            self.obj.getChildByName('快捷').visible = true
-            for i = 1,4 do 
-                if o_hotkey[tostring(10+i)] ~= nil then 
-                    self.快捷.getChildByName(快捷[i]).c_button.img_normal = G.QueryName(o_hotkey[tostring(10+i)]).图标
-                    self.快捷.getChildByName(快捷[i]).getChildByName('数量').text = G.QueryName(o_hotkey[tostring(10+i)]).数量 
-                end 
-            end    
+    print('self.data_io',self.data_io,self.显示数量)
+    local i_item_物品 = G.call('get_point',192)   
+    local o_item_物品 = G.QueryName(i_item_物品)
+    local 快捷 = {'q','w','e','r'}
+    local o_hotkey = G.QueryName(0x100c0001)
+    local o_body = G.QueryName(0x10030001)
+    if tar == self.按钮.getChildByName('快捷') then 
+        self.obj.getChildByName('快捷').visible = true
+        for i = 1,4 do 
+            if o_hotkey[tostring(10+i)] ~= nil then 
+                self.快捷.getChildByName(快捷[i]).c_button.img_normal = G.QueryName(o_hotkey[tostring(10+i)]).图标
+                self.快捷.getChildByName(快捷[i]).getChildByName('数量').text = G.QueryName(o_hotkey[tostring(10+i)]).数量 
+            end 
+        end    
+    end 
+
+    for i = 1,4 do 
+        if tar == self.快捷.getChildByName(快捷[i]) then 
+            G.Play(0x49011003, 1,false,100) 
+            self.快捷.getChildByName(快捷[i]).c_button.img_normal = o_item_物品.图标
+            self.快捷.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量
+            o_hotkey[tostring(10+i)] = G.call('get_point',192)
+            self.快捷图.getChildByName(快捷[i]).img = o_item_物品.图标
+            self.快捷图.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量 
+        end
+    end    
+    if tar == self.按钮.getChildByName('丢弃') then
+        local int_item = i_item_物品 - 0x100b0000 + 1
+        if  i_item_物品 == G.call('get_point',193) or i_item_物品 == G.call('get_point',194) or i_item_物品 == G.call('get_point',195) or i_item_物品 == G.call('get_point',198) then
+            if G.call('get_item',int_item) > 1 then 
+                G.call('add_item',int_item,-G.call('get_item',int_item)+1)
+            end
+        else
+            G.call('add_item',int_item,-G.call('get_item',int_item))
         end 
 
-        for i = 1,4 do 
-            if tar == self.快捷.getChildByName(快捷[i]) then 
-                G.Play(0x49011003, 1,false,100) 
-                self.快捷.getChildByName(快捷[i]).c_button.img_normal = o_item_物品.图标
-                self.快捷.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量
-                o_hotkey[tostring(10+i)] = G.call('get_point',192)
-                self.快捷图.getChildByName(快捷[i]).img = o_item_物品.图标
-                self.快捷图.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量 
-            end
+    end
+    -- 1武器2暗器3内衬4外衣5秘籍6食物7酒8茶9药物10杂物11毒物12食材13材料
+    if tar == self.按钮.getChildByName('指令') then
+        G.Play(0x49011003, 1,false,100) 
+        if o_item_物品.加生命百分比 == nil then 
+            o_item_物品.加生命百分比 = 0
         end    
-        if tar == self.按钮.getChildByName('丢弃') then
-            local int_item = i_item_物品 - 0x100b0000 + 1
-            if  i_item_物品 == G.call('get_point',193) or i_item_物品 == G.call('get_point',194) or i_item_物品 == G.call('get_point',195) or i_item_物品 == G.call('get_point',198) then
-                if G.call('get_item',int_item) > 1 then 
-                   G.call('add_item',int_item,-G.call('get_item',int_item)+1)
-                end
-            else
-                G.call('add_item',int_item,-G.call('get_item',int_item))
-                self.obj.getChildByName('文本').visible = false
-                self.obj.getChildByName('闪光').visible = false
-                self.按钮.getChildByName('丢弃').visible = false
-                self.obj.getChildByName('按钮').getChildByName('指令').visible = false
-                self.obj.getChildByName('按钮').getChildByName('快捷').visible = false
-                self.obj.getChildByName('文本').getChildByName('内功').visible = false
-            end 
- 
+        if o_item_物品.加内力百分比 == nil then 
+            o_item_物品.加内力百分比 = 0
+        end 
+        if o_item_物品.加生命max == nil then 
+            o_item_物品.加生命max = 0
+        end    
+        if o_item_物品.加内力max == nil then 
+            o_item_物品.加内力max = 0
+        end 
+        if o_item_物品.加修为 == nil then 
+            o_item_物品.加修为 = 0
         end
-       -- 1武器2暗器3内衬4外衣5秘籍6食物7酒8茶9药物10杂物11毒物12食材13材料
-        if tar == self.按钮.getChildByName('指令') then
-            G.Play(0x49011003, 1,false,100) 
-            if o_item_物品.加生命百分比 == nil then 
-                o_item_物品.加生命百分比 = 0
-            end    
-            if o_item_物品.加内力百分比 == nil then 
-                o_item_物品.加内力百分比 = 0
-            end 
-            if o_item_物品.加生命max == nil then 
-                o_item_物品.加生命max = 0
-            end    
-            if o_item_物品.加内力max == nil then 
-                o_item_物品.加内力max = 0
-            end 
-            if o_item_物品.加修为 == nil then 
-                o_item_物品.加修为 = 0
-            end
-            local o_item_物品代码 = G.call('get_point',192)-0x100b0000
-            if o_item_物品.类别 == 1  then
-                G.QueryName(0x10030001)[tostring(193)] = G.call('get_point',192) 
-                self.装备图.getChildByName('武器').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标 
-                self.装备图.getChildByName('武器').getChildByName('黑底').visible = true
-            elseif o_item_物品.类别 == 2  then
-                G.QueryName(0x10030001)[tostring(198)] = G.call('get_point',192)
-                self.装备图.getChildByName('暗器').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标  
-                self.装备图.getChildByName('暗器').getChildByName('黑底').visible = true
-            elseif o_item_物品.类别 == 3  then
-                G.QueryName(0x10030001)[tostring(194)] = G.call('get_point',192)
-                self.装备图.getChildByName('内衣').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标
-                self.装备图.getChildByName('内衣').getChildByName('黑底').visible = true
-            elseif o_item_物品.类别 == 4  then
-                G.QueryName(0x10030001)[tostring(195)] = G.call('get_point',192)
-                self.装备图.getChildByName('外衣').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标
-                self.装备图.getChildByName('外衣').getChildByName('黑底').visible = true
-            elseif o_item_物品.类别 == 5  then
-                if G.call('can_use') == true  then
-                    if  o_item_物品.武功 ~= nil then
-                        if G.QueryName(o_item_物品.武功).等级 >= 1  then
-                            G.call('notice','无需重复领悟')
-                        else
-                            if G.QueryName(0x10030001)[tostring(5)] >= o_item_物品.系数 then 
-                                if o_item_物品.自宫 > 0  and G.call('get_point',41) == 0 and G.call('通用_取得套装',0,6) < 3 and not G.misc().太监 then 
-                                    --G.removeUI('v_item') 
-                                    G.trig_event('自宫') 
-                                    self.obj.getChildByName('文本').visible = false
-                                    self.obj.getChildByName('闪光').visible = false
-                                    self.obj.getChildByName('文本').getChildByName('内功').visible = false
-                                    self.obj.getChildByName('按钮').getChildByName('指令').visible = false 
-                                else        
-                                    G.call('use_item',o_item_物品代码+1,1) 
-                                    G.call('add_item',o_item_物品代码+1,1)
-                                    G.call('add_point',5,-o_item_物品.系数) 
-                                    G.Play(0x4901000f, 1,false,100)
-                                    G.call('learn_magic',o_item_物品.武功-0x10050000+1) 
-                                    self.obj.getChildByName('文本').visible = false
-                                    self.obj.getChildByName('闪光').visible = false
-                                    self.obj.getChildByName('文本').getChildByName('内功').visible = false
-                                    self.obj.getChildByName('按钮').getChildByName('指令').visible = false    
-                                end                     
-                            else
-                                G.call('notice','修为点不够')     
-                            end 
-                        end
+        local o_item_物品代码 = G.call('get_point',192)-0x100b0000
+        if o_item_物品.类别 == 1  then
+            G.QueryName(0x10030001)[tostring(193)] = G.call('get_point',192) 
+            self.装备图.getChildByName('武器').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标 
+            self.装备图.getChildByName('武器').getChildByName('黑底').visible = true
+        elseif o_item_物品.类别 == 2  then
+            G.QueryName(0x10030001)[tostring(198)] = G.call('get_point',192)
+            self.装备图.getChildByName('暗器').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标  
+            self.装备图.getChildByName('暗器').getChildByName('黑底').visible = true
+        elseif o_item_物品.类别 == 3  then
+            G.QueryName(0x10030001)[tostring(194)] = G.call('get_point',192)
+            self.装备图.getChildByName('内衣').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标
+            self.装备图.getChildByName('内衣').getChildByName('黑底').visible = true
+        elseif o_item_物品.类别 == 4  then
+            G.QueryName(0x10030001)[tostring(195)] = G.call('get_point',192)
+            self.装备图.getChildByName('外衣').getChildByName('图片').img = G.QueryName(G.call('get_point',192)).图标
+            self.装备图.getChildByName('外衣').getChildByName('黑底').visible = true
+        elseif o_item_物品.类别 == 5  then
+            if G.call('can_use') == true  then
+                if  o_item_物品.武功 ~= nil then
+                    if G.QueryName(o_item_物品.武功).等级 >= 1  then
+                        G.call('notice','无需重复领悟')
                     else
                         if G.QueryName(0x10030001)[tostring(5)] >= o_item_物品.系数 then 
-                            G.call('notice','恭喜领悟'..o_item_物品.名称) 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('add_point',5,-o_item_物品.系数)
-                            self.obj.getChildByName('文本').visible = false
-                            self.obj.getChildByName('闪光').visible = false
-                            self.obj.getChildByName('文本').getChildByName('内功').visible = false
-                            self.obj.getChildByName('按钮').getChildByName('指令').visible = false
+                            if o_item_物品.自宫 > 0  and G.call('get_point',41) == 0 and G.call('通用_取得套装',0,6) < 3 and not G.misc().太监 then 
+                                --G.removeUI('v_item') 
+                                G.trig_event('自宫')  
+                            else        
+                                G.call('use_item',o_item_物品代码+1,1) 
+                                G.call('add_item',o_item_物品代码+1,1)
+                                G.call('add_point',5,-o_item_物品.系数) 
+                                G.Play(0x4901000f, 1,false,100)
+                                G.call('learn_magic',o_item_物品.武功-0x10050000+1)   
+                            end                     
                         else
-                            G.call('notice','修为点不够')  
-                        end     
-                    end            
+                            G.call('notice','修为点不够')     
+                        end 
+                    end
                 else
-                    G.call('notice','不够条件')
-                end      
-            elseif o_item_物品.类别 == 6  then
+                    if G.QueryName(0x10030001)[tostring(5)] >= o_item_物品.系数 then 
+                        G.call('notice','恭喜领悟'..o_item_物品.名称) 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('add_point',5,-o_item_物品.系数)
+                    else
+                        G.call('notice','修为点不够')  
+                    end     
+                end            
+            else
+                G.call('notice','不够条件')
+            end      
+        elseif o_item_物品.类别 == 6  then
+            if o_item_物品.加生命百分比 > 0  and o_item_物品.加内力百分比 == 0 then 
+                if G.QueryName(0x10030001)[tostring(44)]  ==    G.QueryName(0x10030001)[tostring(217)] then 
+                    G.call('notice','已经很饱了') 
+                else
+                    G.call('use_item',o_item_物品代码+1,1) 
+                    
+                end  
+            elseif o_item_物品.加生命百分比 == 0  and o_item_物品.加内力百分比 > 0 then
+                if G.QueryName(0x10030001)[tostring(46)]  ==    G.QueryName(0x10030001)[tostring(218)] then 
+                    G.call('notice','已经很饱了')  
+                else
+                    G.call('use_item',o_item_物品代码+1,1) 
+                end  
+            elseif o_item_物品.加生命百分比 > 0  and o_item_物品.加内力百分比 > 0 then
+                if G.QueryName(0x10030001)[tostring(46)]  == G.QueryName(0x10030001)[tostring(218)] and 
+                    G.QueryName(0x10030001)[tostring(44)]  ==    G.QueryName(0x10030001)[tostring(217)] then 
+                    G.call('notice','已经很饱了') 
+                else
+                    G.call('use_item',o_item_物品代码+1,1)                 
+                end  
+            end       
+        elseif o_item_物品.类别 == 9  then
+            local 加状态 = {'加生命max','加内力max','加修为','加内力最大值','加生命最大值'}
+            for i = 1,#加状态 do 
+                if o_item_物品[加状态[i]] == nil then 
+                    o_item_物品[加状态[i]] = 0
+                end
+            end
+            if  o_item_物品.加生命max > 0 or o_item_物品.加内力max > 0 or o_item_物品.加修为 > 0 or o_item_物品.加内力最大值 >0 or o_item_物品.加生命最大值 >0 then 
+                G.call('use_item',o_item_物品代码+1,1) 
+                if  o_item_物品.加修为 > 0  then 
+                    G.call('notice','功力大增') 
+                end     
+            else
                 if o_item_物品.加生命百分比 > 0  and o_item_物品.加内力百分比 == 0 then 
-                   if G.QueryName(0x10030001)[tostring(44)]  ==    G.QueryName(0x10030001)[tostring(217)] then 
-                      G.call('notice','已经很饱了') 
+                    if  G.QueryName(0x10030001)[tostring(44)]  ==    G.QueryName(0x10030001)[tostring(217)] then 
+                        G.call('notice','已经很健康了') 
+                    else
+                        G.call('use_item',o_item_物品代码+1,1) 
+                    end  
+                elseif o_item_物品.加生命百分比 == 0  and o_item_物品.加内力百分比 > 0 then
+                    if  G.QueryName(0x10030001)[tostring(46)]  ==    G.QueryName(0x10030001)[tostring(218)] then 
+                        G.call('notice','已经健康了') 
+                    else
+                        G.call('use_item',o_item_物品代码+1,1) 
+                    end   
+                elseif o_item_物品.加生命百分比 > 0  and o_item_物品.加内力百分比 > 0 then
+                    if  G.QueryName(0x10030001)[tostring(46)]  == G.QueryName(0x10030001)[tostring(218)] and 
+                        G.QueryName(0x10030001)[tostring(44)]  ==  G.QueryName(0x10030001)[tostring(217)] then 
+                        G.call('notice','已经健康了')      
                     else
                         G.call('use_item',o_item_物品代码+1,1) 
                         
-                    end  
-                elseif o_item_物品.加生命百分比 == 0  and o_item_物品.加内力百分比 > 0 then
-                    if G.QueryName(0x10030001)[tostring(46)]  ==    G.QueryName(0x10030001)[tostring(218)] then 
-                        G.call('notice','已经很饱了')  
-                    else
-                        G.call('use_item',o_item_物品代码+1,1) 
-                    end  
-                elseif o_item_物品.加生命百分比 > 0  and o_item_物品.加内力百分比 > 0 then
-                    if G.QueryName(0x10030001)[tostring(46)]  == G.QueryName(0x10030001)[tostring(218)] and 
-                        G.QueryName(0x10030001)[tostring(44)]  ==    G.QueryName(0x10030001)[tostring(217)] then 
-                        G.call('notice','已经很饱了') 
-                    else
-                        G.call('use_item',o_item_物品代码+1,1)                 
-                    end  
-                end 
-                self.obj.getChildByName('文本').visible = false
-                self.obj.getChildByName('闪光').visible = false
-                self.obj.getChildByName('文本').getChildByName('内功').visible = false
-                self.obj.getChildByName('按钮').getChildByName('指令').visible = false      
-            elseif o_item_物品.类别 == 9  then
-                local 加状态 = {'加生命max','加内力max','加修为','加内力最大值','加生命最大值'}
-                for i = 1,#加状态 do 
-                    if o_item_物品[加状态[i]] == nil then 
-                        o_item_物品[加状态[i]] = 0
-                    end
+                    end 
                 end
-                if  o_item_物品.加生命max > 0 or o_item_物品.加内力max > 0 or o_item_物品.加修为 > 0 or o_item_物品.加内力最大值 >0 or o_item_物品.加生命最大值 >0 then 
-                    G.call('use_item',o_item_物品代码+1,1) 
-                    if  o_item_物品.加修为 > 0  then 
-                        G.call('notice','功力大增') 
-                    end     
-                else
-                    if o_item_物品.加生命百分比 > 0  and o_item_物品.加内力百分比 == 0 then 
-                        if  G.QueryName(0x10030001)[tostring(44)]  ==    G.QueryName(0x10030001)[tostring(217)] then 
-                            G.call('notice','已经很健康了') 
-                        else
-                            G.call('use_item',o_item_物品代码+1,1) 
-                        end  
-                    elseif o_item_物品.加生命百分比 == 0  and o_item_物品.加内力百分比 > 0 then
-                        if  G.QueryName(0x10030001)[tostring(46)]  ==    G.QueryName(0x10030001)[tostring(218)] then 
-                            G.call('notice','已经健康了') 
-                        else
-                            G.call('use_item',o_item_物品代码+1,1) 
-                        end   
-                    elseif o_item_物品.加生命百分比 > 0  and o_item_物品.加内力百分比 > 0 then
-                        if  G.QueryName(0x10030001)[tostring(46)]  == G.QueryName(0x10030001)[tostring(218)] and 
-                            G.QueryName(0x10030001)[tostring(44)]  ==  G.QueryName(0x10030001)[tostring(217)] then 
-                            G.call('notice','已经健康了')      
-                        else
-                            G.call('use_item',o_item_物品代码+1,1) 
-                          
-                        end 
-                    end
-                    if  G.QueryName(0x10030001)[tostring(81)] > 0  and G.QueryName(0x10030001)[tostring(85)] == 0 and  G.QueryName(0x10030001)[tostring(84)] == 0  then 
-                        if o_item_物品.解毒 > 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','中毒已经解除')
-                        elseif  o_item_物品.解毒 == 0  and  (o_item_物品.解流血 > 0 or  o_item_物品.解内伤 > 0) then
-                            G.call('notice','吃错了吧！')
-                        end 
-                    elseif  G.QueryName(0x10030001)[tostring(81)] == 0  and G.QueryName(0x10030001)[tostring(85)] > 0 and G.QueryName(0x10030001)[tostring(84)] == 0  then 
-                        if o_item_物品.解流血 > 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','受伤已经解除')
-                        elseif  o_item_物品.流血 == 0  and  (o_item_物品.解中毒 > 0 or  o_item_物品.解内伤 > 0) then
-                            G.call('notice','吃错了吧！')
-                        end 
-                    elseif  G.QueryName(0x10030001)[tostring(81)] == 0  and G.QueryName(0x10030001)[tostring(85)] == 0 and  G.QueryName(0x10030001)[tostring(84)] > 0  then 
-                        if o_item_物品.解内伤 > 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','内伤已经解除')
-                        elseif  o_item_物品.内伤 == 0  and  (o_item_物品.解中毒 > 0 or  o_item_物品.解流血 > 0) then
-                            G.call('notice','吃错了吧！')
-                        end  
-                    elseif  G.QueryName(0x10030001)[tostring(81)] > 0  and G.QueryName(0x10030001)[tostring(85)] == 0 and G.QueryName(0x10030001)[tostring(84)] > 0  then 
-                        if o_item_物品.解内伤 > 0 and o_item_物品.解中毒 == 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','内伤已经解除')
-                        elseif o_item_物品.解中毒 > 0  and o_item_物品.解内伤 == 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','中毒已经解除')
-                        elseif o_item_物品.解中毒 > 0  and o_item_物品.解内伤 > 0  then    
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','中毒内伤已经解除')
-                        elseif  o_item_物品.解流血 > 0  and  o_item_物品.解中毒 == 0 and  o_item_物品.解内伤 == 0 then
-                            G.call('notice','吃错了吧！')
-                        end    
-                    elseif  G.QueryName(0x10030001)[tostring(81)] > 0  and G.QueryName(0x10030001)[tostring(85)] > 0 and G.QueryName(0x10030001)[tostring(84)] == 0  then 
-                        if o_item_物品.解流血 > 0 and o_item_物品.解中毒 == 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','受伤已经解除')
-                        elseif o_item_物品.解中毒 > 0  and o_item_物品.解流血 == 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','中毒已经解除')
-                        elseif o_item_物品.解中毒 > 0  and o_item_物品.解流血 > 0  then    
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','中毒受伤已经解除')
-                        elseif  o_item_物品.解流血 == 0  and  o_item_物品.解中毒 == 0 and  o_item_物品.解内伤 > 0 then
-                            G.call('notice','吃错了吧！')
-                        end 
-                    elseif G.QueryName(0x10030001)[tostring(81)] == 0  and G.QueryName(0x10030001)[tostring(85)] > 0 and G.QueryName(0x10030001)[tostring(84)] > 0  then 
-                        if o_item_物品.解流血 > 0 and o_item_物品.解内伤 == 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','受伤已经解除')
-                        elseif o_item_物品.解内伤 > 0  and o_item_物品.解流血 == 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','内伤已经解除')
-                        elseif o_item_物品.解内伤 > 0  and o_item_物品.解流血 > 0  then    
+                if  G.QueryName(0x10030001)[tostring(81)] > 0  and G.QueryName(0x10030001)[tostring(85)] == 0 and  G.QueryName(0x10030001)[tostring(84)] == 0  then 
+                    if o_item_物品.解毒 > 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','中毒已经解除')
+                    elseif  o_item_物品.解毒 == 0  and  (o_item_物品.解流血 > 0 or  o_item_物品.解内伤 > 0) then
+                        G.call('notice','吃错了吧！')
+                    end 
+                elseif  G.QueryName(0x10030001)[tostring(81)] == 0  and G.QueryName(0x10030001)[tostring(85)] > 0 and G.QueryName(0x10030001)[tostring(84)] == 0  then 
+                    if o_item_物品.解流血 > 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','受伤已经解除')
+                    elseif  o_item_物品.流血 == 0  and  (o_item_物品.解中毒 > 0 or  o_item_物品.解内伤 > 0) then
+                        G.call('notice','吃错了吧！')
+                    end 
+                elseif  G.QueryName(0x10030001)[tostring(81)] == 0  and G.QueryName(0x10030001)[tostring(85)] == 0 and  G.QueryName(0x10030001)[tostring(84)] > 0  then 
+                    if o_item_物品.解内伤 > 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','内伤已经解除')
+                    elseif  o_item_物品.内伤 == 0  and  (o_item_物品.解中毒 > 0 or  o_item_物品.解流血 > 0) then
+                        G.call('notice','吃错了吧！')
+                    end  
+                elseif  G.QueryName(0x10030001)[tostring(81)] > 0  and G.QueryName(0x10030001)[tostring(85)] == 0 and G.QueryName(0x10030001)[tostring(84)] > 0  then 
+                    if o_item_物品.解内伤 > 0 and o_item_物品.解中毒 == 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','内伤已经解除')
+                    elseif o_item_物品.解中毒 > 0  and o_item_物品.解内伤 == 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','中毒已经解除')
+                    elseif o_item_物品.解中毒 > 0  and o_item_物品.解内伤 > 0  then    
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','中毒内伤已经解除')
+                    elseif  o_item_物品.解流血 > 0  and  o_item_物品.解中毒 == 0 and  o_item_物品.解内伤 == 0 then
+                        G.call('notice','吃错了吧！')
+                    end    
+                elseif  G.QueryName(0x10030001)[tostring(81)] > 0  and G.QueryName(0x10030001)[tostring(85)] > 0 and G.QueryName(0x10030001)[tostring(84)] == 0  then 
+                    if o_item_物品.解流血 > 0 and o_item_物品.解中毒 == 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','受伤已经解除')
+                    elseif o_item_物品.解中毒 > 0  and o_item_物品.解流血 == 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','中毒已经解除')
+                    elseif o_item_物品.解中毒 > 0  and o_item_物品.解流血 > 0  then    
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','中毒受伤已经解除')
+                    elseif  o_item_物品.解流血 == 0  and  o_item_物品.解中毒 == 0 and  o_item_物品.解内伤 > 0 then
+                        G.call('notice','吃错了吧！')
+                    end 
+                elseif G.QueryName(0x10030001)[tostring(81)] == 0  and G.QueryName(0x10030001)[tostring(85)] > 0 and G.QueryName(0x10030001)[tostring(84)] > 0  then 
+                    if o_item_物品.解流血 > 0 and o_item_物品.解内伤 == 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','受伤已经解除')
+                    elseif o_item_物品.解内伤 > 0  and o_item_物品.解流血 == 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','内伤已经解除')
+                    elseif o_item_物品.解内伤 > 0  and o_item_物品.解流血 > 0  then    
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','内伤受伤已经解除')
+                    elseif  o_item_物品.解流血 > 0  and  o_item_物品.解中毒 == 0 and  o_item_物品.解内伤 == 0 then
+                        G.call('notice','吃错了吧！')
+                    end 
+                elseif  G.QueryName(0x10030001)[tostring(81)] > 0  and G.QueryName(0x10030001)[tostring(85)] > 0 and G.QueryName(0x10030001)[tostring(84)] > 0  then 
+                    if o_item_物品.解流血 > 0 and  o_item_物品.解内伤 > 0 and  o_item_物品.解中毒 > 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','内伤受伤中毒已经解除')
+                    elseif o_item_物品.解流血 > 0 and  o_item_物品.解内伤 > 0 and  o_item_物品.解中毒 == 0  then 
                             G.call('use_item',o_item_物品代码+1,1) 
                             G.call('notice','内伤受伤已经解除')
-                        elseif  o_item_物品.解流血 > 0  and  o_item_物品.解中毒 == 0 and  o_item_物品.解内伤 == 0 then
-                            G.call('notice','吃错了吧！')
-                        end 
-                    elseif  G.QueryName(0x10030001)[tostring(81)] > 0  and G.QueryName(0x10030001)[tostring(85)] > 0 and G.QueryName(0x10030001)[tostring(84)] > 0  then 
-                        if o_item_物品.解流血 > 0 and  o_item_物品.解内伤 > 0 and  o_item_物品.解中毒 > 0  then 
+                    elseif o_item_物品.解流血 > 0 and  o_item_物品.解内伤 == 0 and  o_item_物品.解中毒 > 0  then 
                             G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','内伤受伤中毒已经解除')
-                        elseif o_item_物品.解流血 > 0 and  o_item_物品.解内伤 > 0 and  o_item_物品.解中毒 == 0  then 
-                                G.call('use_item',o_item_物品代码+1,1) 
-                                G.call('notice','内伤受伤已经解除')
-                        elseif o_item_物品.解流血 > 0 and  o_item_物品.解内伤 == 0 and  o_item_物品.解中毒 > 0  then 
-                                G.call('use_item',o_item_物品代码+1,1) 
-                                G.call('notice','受伤中毒已经解除')
-                        elseif o_item_物品.解流血 == 0 and  o_item_物品.解内伤 > 0 and  o_item_物品.解中毒 > 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','内伤中毒已经解除')
-                        elseif o_item_物品.解流血 == 0 and  o_item_物品.解内伤 == 0 and  o_item_物品.解中毒 > 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','中毒已经解除')
-                        elseif o_item_物品.解流血 > 0 and  o_item_物品.解内伤 == 0 and  o_item_物品.解中毒 == 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','受伤已经解除')
-                        elseif o_item_物品.解流血 == 0 and  o_item_物品.解内伤 > 0 and  o_item_物品.解中毒 == 0  then 
-                            G.call('use_item',o_item_物品代码+1,1) 
-                            G.call('notice','内伤已经解除')        
-                        end
-                    else 
-                        G.call('notice','已经健康了')  
-                    end                     
-                end
-                self.obj.getChildByName('文本').visible = false
-                self.obj.getChildByName('闪光').visible = false
-                self.按钮.getChildByName('丢弃').visible = false
-                self.obj.getChildByName('按钮').getChildByName('快捷').visible = false
-                self.obj.getChildByName('文本').getChildByName('内功').visible = false
-                self.obj.getChildByName('按钮').getChildByName('指令').visible = false     
-            end
-            G.call('指令_存储属性')
+                            G.call('notice','受伤中毒已经解除')
+                    elseif o_item_物品.解流血 == 0 and  o_item_物品.解内伤 > 0 and  o_item_物品.解中毒 > 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','内伤中毒已经解除')
+                    elseif o_item_物品.解流血 == 0 and  o_item_物品.解内伤 == 0 and  o_item_物品.解中毒 > 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','中毒已经解除')
+                    elseif o_item_物品.解流血 > 0 and  o_item_物品.解内伤 == 0 and  o_item_物品.解中毒 == 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','受伤已经解除')
+                    elseif o_item_物品.解流血 == 0 and  o_item_物品.解内伤 > 0 and  o_item_物品.解中毒 == 0  then 
+                        G.call('use_item',o_item_物品代码+1,1) 
+                        G.call('notice','内伤已经解除')        
+                    end
+                else 
+                    G.call('notice','已经健康了')  
+                end                     
+            end    
         end
+        G.call('指令_存储属性')
+    end
     if tar == self.确定 then 
         G.Play(0x49011003, 1,false,100) 
         self.快捷.visible = false
-    end     
+    end
+    self:显示刷新()     
     if tar == self.按钮.getChildByName('结束') or tar == self.obj.getChildByName('关闭菜单')then 
         G.Play(0x49011003, 1,false,100) 
         G.removeUI('v_item')   

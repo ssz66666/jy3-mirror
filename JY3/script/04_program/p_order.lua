@@ -343,12 +343,13 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
+    G.call('add_item',341,1)
     --G.call('模式_笑梦游记')
-    G.call('join',7)
-    local o_book_story = G.QueryName(0x101c000a)
-    o_book_story.流程 = 2
-    G.call('天书_神雕侠侣') 
-    G.call('通用_印记状态')
+    -- G.call('join',7)
+    -- local o_book_story = G.QueryName(0x101c000a)
+    -- o_book_story.流程 = 2
+    -- G.call('天书_神雕侠侣') 
+    -- G.call('通用_印记状态')
     -- while true do 
     --     local 印记 = {}
     --     local int_印记数量 = 0
