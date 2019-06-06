@@ -1278,7 +1278,7 @@ t['天书_书剑恩仇录'] = function()
         G.call("talk",'',400,'   好打的口气，大家一起上！',2,1)
         G.call('all_over')
         G.call('set_team',398,397,0,0)
-        G.call('call_battle',1,277,4,250,400,157,178,int_mo+2,int_mo+3,int_mo+4)
+        G.call('call_battle',1,277,4,250,400,157,178,26,int_mo+3,int_mo+4)
         o_battle_结果 = G.call('get_battle') 
         if o_battle_结果 == 1 then
             G.call('地图_进入地图','回族内部',278,32)
@@ -1332,7 +1332,8 @@ t['天书_神雕侠侣'] = function()
         G.call("talk",'',7,'   郭伯母，你们快走！[br]法王，来见识下打狗棒法！',0,0)
         G.call('all_over')
         G.call('set_team',7,0,0,0)
-        G.call('call_battle',1,59,4,250,81,121,0,0,0,0)
+        G.call('call_battle',1,59,4,300,81,121,0,0,0,0)
+        o_battle_结果 = G.call('get_battle') 
         if o_battle_结果 == 1 then
             G.call("talk",'',121,'   师父他是大师兄！',2,1)
             G.call('add_item',342,1)
@@ -1364,16 +1365,22 @@ t['天书_神雕侠侣'] = function()
         G.call("talk",'',135,'   看你有多大能耐！',2,1)
         G.call('all_over')
         G.call('set_team',7,391,0,0)
-        G.call('call_battle',1,20,4,999,135,0,0,0,0,0)
-        G.call("talk",'',135,'   臭小子松手放开我！',2,1)
-        G.call("talk",'',7,'   程姑娘你快走，快走！',0,0)
-        G.call('set_role',135,9,70)
-        if G.call('get_role',135,9) >= 70 then
-            G.call('join',135)
-            G.call("talk",'',135,'   问世间情为何物，只教人生死相许，如果当初....！',2,1)
+        G.call('call_battle',1,20,4,500,135,0,0,0,0,0)
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1 then
+            G.call("talk",'',135,'   臭小子松手放开我！',2,1)
+            G.call("talk",'',7,'   程姑娘你快走，快走！',0,0)
+            G.call('set_role',135,9,70)
+            if G.call('get_role',135,9) >= 70 then
+                G.call('join',135)
+                G.call("talk",'',135,'   问世间情为何物，只教人生死相许，如果当初....！',2,1)
+            end
+        else
+            G.call("talk",'',135,'   今日暂且放过你们！',2,1)
         end
-        G.call("talk",'',135,'   今日暂且放过你们！',2,1)
         o_book_story.流程 = 2
+    elseif o_book_story.流程 == 2 then
+
     end
     G.call('all_over')
     G.call('add_time',2)
