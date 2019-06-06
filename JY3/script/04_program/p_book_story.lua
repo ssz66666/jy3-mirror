@@ -1288,7 +1288,7 @@ t['天书_书剑恩仇录'] = function()
         else
             G.call("talk",'',25,'   你们都快走吧，只有下辈子才能和你们再在一起了！',0,0)
             G.call("talk",'',397,'   不要喀丝丽，这个大仇来日一定要加倍奉还！',2,1)
-            G.call("talk",'',398,'   难道这是你们设计下的，故意引我们来此！',2,1)
+            G.call("leave",25)
             G.call('story','碧亦有时尽，血亦有时灭，一缕香魂无断绝！') 
             o_book_story.完成 = 1
         end
@@ -1372,7 +1372,7 @@ t['天书_神雕侠侣'] = function()
             G.call("talk",'',7,'   程姑娘你快走，快走！',0,0)
             G.call('set_role',135,9,70)
             if G.call('get_role',135,9) >= 70 then
-                G.call('join',135)
+                G.call('join',405)
                 G.call("talk",'',135,'   问世间情为何物，只教人生死相许，如果当初....！',2,1)
             end
         else
@@ -1394,10 +1394,52 @@ t['天书_神雕侠侣'] = function()
         if o_battle_结果 == 1 then
             G.call("talk",'',7,'   现在可以告诉我了吧！',0,0)
             G.call("talk",'',413,'   我的剑告诉我可以告诉你，潇湘子只让我传话"经在油中"，具体何意着实不知！',2,1)
+            G.call("talk",'',7,'   这是何意，算了不想了！',0,0)
             o_book_story.流程 = 3
         else
             G.call("talk",'',413,'   我的剑说不知道，滚吧！',2,1)
         end
+    elseif o_book_story.流程 == 3 then
+        G.call('地图_进入地图','襄阳城',54,12)
+        G.call("talk",'',7,'   看来我终究是来晚了一步，这襄阳城如今肯定是守不下去了，我看是先看看郭伯父郭伯母他们去！',0,0)
+        G.call('dark')
+        G.call("talk",'',415,'   过儿，襄阳城恐怕守不下去了！',2,1)
+        G.call("talk",'',412,'   我和你郭伯父已经立过誓言与襄阳城共存亡，只是月前用你的玄铁重剑打造的一柄【倚天剑】和【屠龙刀】还需要你交给襄儿他们！',2,1) 
+        G.call("talk",'',415,'   当初铸剑之时我和你郭伯母便将九阴真经与武穆遗书并于刀剑之内，此二物切不可落入蛮夷之手，想来也只有你能够来去自如了！',2,1)
+        G.call("talk",'',7,'   郭伯父，郭伯母尊重，小侄定不负所托！',0,0)
+        G.call('dark')
+        G.call("talk",'',81,'   我道是谁，原来是杨兄弟，这是急着往哪里走啊！',2,1)
+        G.call("talk",'',7,'   法王，你道今日我还怕你不成！',0,0)
+        G.call("talk",'',81,'   那就见识见识我的龙象波若功！',2,1)
+        G.call('all_over')
+        G.call('set_team',7,391,0,0)
+        G.call('call_battle',1,259,4,400,81,121,0,0,0,0)
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1 then
+            G.call("talk",'',81,'   法王后会有期',2,1)
+            if G.call('in_team',405) then
+                o_book_story.完美 = 1
+            end 
+            o_book_story.完成 = 1
+        else
+            G.call("talk",'',81,'   杨兄弟武功也不过如此！',2,1)
+        end
+    end
+    G.call('all_over')
+    G.call('add_time',2)
+    G.call('dark')
+    G.call('goto_map',4)
+end
+t['天书_侠客行'] = function()
+    local o_book_story = G.QueryName(0x101c000a)
+    if not G.call('in_team',402) and o_book_story.流程 > 0 then 
+        G.call("talk",'',38,'   本故事没有石破天是无法进行的！',2,1)
+        G.call('all_over')
+        return
+    end 
+    if o_book_story == 0 then
+        G.call('地图_进入地图','小镇',281,64)
+    elseif  o_book_story == 1 then
     end
     G.call('all_over')
     G.call('add_time',2)
