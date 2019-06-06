@@ -1392,6 +1392,9 @@ t['天书_神雕侠侣'] = function()
         G.call('call_battle',1,279,4,300,0,0,0,413,0,0)
         o_battle_结果 = G.call('get_battle') 
         if o_battle_结果 == 1 then
+            G.call("talk",'',7,'   现在可以告诉我了吧！',0,0)
+            G.call("talk",'',413,'   我的剑告诉我可以告诉你，潇湘子只让我传话"经在油中"，具体何意着实不知！',2,1)
+            o_book_story.流程 = 3
         else
             G.call("talk",'',413,'   我的剑说不知道，滚吧！',2,1)
         end
