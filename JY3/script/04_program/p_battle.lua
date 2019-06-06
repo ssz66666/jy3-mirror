@@ -105,7 +105,8 @@ t['战斗系统_主角监控'] = function()
 			if not G.getUI('v_battle') then 
 				return
 			end 
-			ui = G.getUI('v_battle')
+            ui = G.getUI('v_battle')
+            local ci = ui.c_battle
 			local o_role = 0x10040000
 			local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
             local magic = {'技能1','技能2','技能3'}  
@@ -183,7 +184,7 @@ t['战斗系统_主角监控'] = function()
                     end 
                 end 
             end 	
-           
+            ci:刷新显示()
         elseif r == 2 then 
 			local ui ;
 			if not G.getUI('v_battle') then 
