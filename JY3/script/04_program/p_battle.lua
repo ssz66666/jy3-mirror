@@ -2017,7 +2017,7 @@ t['战斗系统_事件响应'] = function()
                 if G.QueryName(i_battle)[位置[i] ] > 0 and G.misc().行动序号 == i  then
                     if  G.call('get_role',int_role,13) > 0  then 
                         if G.call('get_role',int_role,87) > 0 then --混乱状态默认使用普通攻击，随机选择除自己外目标
-                            ui.getChildByName('代码').getChildByName(位置[i ]).text = tostring(190)
+                            ui.getChildByName('代码').getChildByName(位置[i ]).text = tostring(207)
                         else
                             local skill = {o_role_tb.技能1,o_role_tb.技能2,o_role_tb.技能3}
                             local o_skill = skill[math.random(3)]  
