@@ -148,6 +148,7 @@ function t:显示刷新()
             self.展示list[i].visible = true
             self.展示list[i].getChildByName('图片').img = G.QueryName(i_item).图标
             local o_item_物品 = G.QueryName(i_item)
+            print(o_item_物品.名称,o_item_物品.数量)
             if self.data_io == i then 
                 G.QueryName(0x10030001)[tostring(192)] = i_item --记录当前选择的物品    
                 self.按钮.getChildByName('丢弃').visible = true
@@ -576,10 +577,8 @@ function t:click(tar)
     for i = 1,self.显示数量 do 
         if  tar == self.展示list[i].getChildByName('图片') then
             self.data_io = i
-            local o_item_物品 = G.QueryName(0x100b0000  + self.item_sub_2[(self.data-1)*18 + i] )
         end 
     end  
-    print('self.data_io',self.data_io,self.显示数量)
     local i_item_物品 = G.call('get_point',192)   
     local o_item_物品 = G.QueryName(i_item_物品)
     local 快捷 = {'q','w','e','r'}
@@ -594,7 +593,6 @@ function t:click(tar)
             end 
         end    
     end 
-
     for i = 1,4 do 
         if tar == self.快捷.getChildByName(快捷[i]) then 
             G.Play(0x49011003, 1,false,100) 
@@ -659,7 +657,6 @@ function t:click(tar)
                     else
                         if G.QueryName(0x10030001)[tostring(5)] >= o_item_物品.系数 then 
                             if o_item_物品.自宫 > 0  and G.call('get_point',41) == 0 and G.call('通用_取得套装',0,6) < 3 and not G.misc().太监 then 
-                                --G.removeUI('v_item') 
                                 G.trig_event('自宫')  
                             else        
                                 G.call('use_item',o_item_物品代码+1,1) 
