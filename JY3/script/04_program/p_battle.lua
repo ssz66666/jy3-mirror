@@ -20,7 +20,6 @@ t['战斗系统_胜负监控'] = function()
         G.wait_time(10)
         for i = 2,11 do
             if o_battle [位置[i] ] ~= G.misc().队伍记录[i-1] then
-                --print(o_battle [位置[i] ],G.misc().队伍记录[i-1]) 
                 G.call('通用_强退游戏') 
             end
         end 
@@ -62,7 +61,6 @@ t['战斗系统_胜负监控'] = function()
             ui.getChildByName('失败').visible = true
             G.Play(0x4901000d, 1,false,100) 
             ui.getChildByName('tab').getChildByName('team1').frameActionID(9002)
-            -- ui.getChildByName('tab').getChildByName('team1').c_button.img_normal = 0x33039002  --死亡动画
             G.remove_program('集气',1)
             G.remove_program('战斗对话1',1)
             G.remove_program('战斗对话2',1)
@@ -76,10 +74,7 @@ t['战斗系统_胜负监控'] = function()
             break
         end    
     end 
-
-    --if result == 1 then 
     G.trig_event('战斗结束')
-    --end
 end
 --type=
 --hide=true
@@ -112,7 +107,6 @@ t['战斗系统_主角监控'] = function()
             local magic = {'技能1','技能2','技能3'}  
             local i_battle = 0x10150001
             local o_battle = G.QueryName(i_battle)
-           -- print('战斗难度',o_battle.diffty,G.misc().难度)
             if o_battle.diffty ~= math.abs(G.misc().难度) then 
                 G.call('通用_强退游戏') 
             end
@@ -346,10 +340,6 @@ t['战斗系统_主角监控'] = function()
             ui = G.getUI('v_battle')
             if G.QueryName(0x10150001).逃跑 == 1 then
                 ui.getChildByName('map').getChildByName(位置[1]).x = 0
-                -- G.remove_program('集气',1)
-                -- G.remove_program('战斗对话1',1)
-                -- G.remove_program('战斗对话2',1)
-                -- G.remove_program('战斗系统_事件响应',1)
                 for i = 1,11 do 
                     ui.getChildByName('talk').getChildByName(位置[i]).visible = false	
                 end 
@@ -357,29 +347,11 @@ t['战斗系统_主角监控'] = function()
                 --ui.getChildByName('tab').getChildByName('team1').c_button.img_normal = 0x33039001  --逃跑动画   
                 ui.getChildByName('失败').visible = true
                 G.QueryName(0x10030001)[tostring(235)] = 2
-                -- G.remove_program('集气',1)
-                -- G.remove_program('战斗对话1',1)
-                -- G.remove_program('战斗对话2',1)
-                -- G.remove_program('异常显示',1)
-                -- G.remove_program('战斗系统_事件响应',1)
-                --ui.getChildByName('失败').visible = false
-               -- ui.getChildByName('tab').getChildByName('team1').c_button.img_normal = 0x33039099  --还原动画
-                --G.QueryName(0x10030001)[tostring(235)] = 2  --设定战斗结果为失败
                 G.misc().战斗结果 = 2
             else
-                -- G.remove_program('集气',1)
-                -- G.remove_program('战斗对话1',1)
-                -- G.remove_program('战斗对话2',1)
-                -- ui.getChildByName('tab').getChildByName('team1').c_button.img_normal = 0x33039001  --逃跑动画
                 ui.getChildByName('map').getChildByName(位置[1]).x = 0
                 ui.getChildByName('tab').getChildByName('team1').frameActionID(9003)
-                -- if G.call('get_point',44) > 0 then 
-                --     ui.getChildByName('tab').getChildByName('team1').c_button.img_normal = 0x33039099  --还原动画
-                -- end 
                 G.call('notice1','无法逃跑')
-                -- G.start_program('集气',1)
-                -- G.start_program('战斗对话1',1)
-                -- G.start_program('战斗对话2',1)
             end 
         end 
         

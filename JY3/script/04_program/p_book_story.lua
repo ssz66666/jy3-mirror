@@ -1439,6 +1439,7 @@ t['天书_侠客行'] = function()
     end 
     if o_book_story == 0 then
         G.call('地图_进入地图','小镇',281,64)
+        
     elseif  o_book_story == 1 then
     end
     G.call('all_over')
