@@ -1751,8 +1751,6 @@ t['副本_通天塔']=function(int_模式)
                 G.misc().通天塔层数 = 101
                 break
             else
-                G.misc().通天塔层数 = G.misc().通天塔层数 + 1
-                int_通天塔层数 = int_通天塔层数 - 1
                 if G.misc().通天塔层数 % 10 == 0 then --每10层回复一次
                     G.call("talk",'',38,'   不错，先回复一下吧！',2,1) 
                     G.Play(0x49010035, 1,false,100)
@@ -1764,6 +1762,8 @@ t['副本_通天塔']=function(int_模式)
                         G.call('add_point',46,math.floor(G.call('get_point',218)/2))
                     end
                 end
+                G.misc().通天塔层数 = G.misc().通天塔层数 + 1
+                int_通天塔层数 = int_通天塔层数 - 1
                 if G.misc().通天塔层数 ~= math.abs(int_通天塔层数 + 7 ) then 
                     G.misc().通天塔 = 0 
                     G.call('通用_强退游戏') 
