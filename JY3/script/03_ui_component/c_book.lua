@@ -320,7 +320,7 @@ function t:详细显示()
         end
         self.武功.getChildByName('图片').img = o_skill.图像
         self.武功.getChildByName('名称').text = '名称：[01] '..o_skill.名称
-        local str = {'指法','拳法','剑法','刀法','棍法','暗器','内功','轻功','绝招','阵法'}
+        local str = {'指法','拳法','剑法','刀法','奇门','暗器','内功','轻功','绝招','阵法'}
         self.武功.getChildByName('类别').text = '类别：[01] '..str[o_skill.类别+1]
         if  i_skill == 0x100500bd or  i_skill == 0x10050097 then
             self.武功.getChildByName('类别').text = '类别：[01]被动技能'

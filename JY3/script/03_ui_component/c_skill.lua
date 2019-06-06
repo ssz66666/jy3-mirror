@@ -205,7 +205,7 @@ function t:click(tar)
                     self.文本.getChildByName('类别').text = '刀法'
                     self.子菜单.getChildByName('快捷').visible = true
                 elseif   o_skill_武功.类别 == 4 then   
-                    self.文本.getChildByName('类别').text = '棍法'
+                    self.文本.getChildByName('类别').text = '奇门'
                     self.子菜单.getChildByName('快捷').visible = true
                 elseif   o_skill_武功.类别 == 5 then   
                     self.文本.getChildByName('类别').text = '暗器'

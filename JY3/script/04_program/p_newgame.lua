@@ -117,7 +117,7 @@ t['回答问题']=function()
     local o_body= G.QueryName(0x10030001)
     while int_选项 == 0 do
         int_选项 = G.call("menu",'',0,'五：你觉得自己在哪类武功上会有天赋？',1,1,
-        {"1,拳掌","2,指法","3,剑法","4,刀法","5,棍法","6,暗器"},1)
+        {"1,拳掌","2,指法","3,剑法","4,刀法","5,奇门","6,暗器"},1)
         if int_选项 == 1 then
             G.call('add_point',22,math.random(15,25)) 
             o_hotkey[tostring(1)]= 0x10050053
