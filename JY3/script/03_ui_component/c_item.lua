@@ -134,7 +134,7 @@ function t:显示刷新()
     end
     self.obj.getChildByName('文本').visible = false
     self.obj.getChildByName('闪光').visible = false
-    self.obj.getChildByName('快捷').visible = false
+    --self.obj.getChildByName('快捷').visible = false
     self.obj.getChildByName('按钮').getChildByName('指令').visible = false
     self.obj.getChildByName('按钮').getChildByName('快捷').visible = false
     self.obj.getChildByName('文本').getChildByName('内功').visible = false
@@ -153,7 +153,6 @@ function t:显示刷新()
                 G.QueryName(0x10030001)[tostring(192)] = i_item --记录当前选择的物品    
                 self.按钮.getChildByName('丢弃').visible = true
                 self.obj.getChildByName('闪光').visible = true
-                self.obj.getChildByName('快捷').visible = false
                 self.obj.getChildByName('闪光').x = self.展示list[i].x + 20
                 self.obj.getChildByName('闪光').y = self.展示list[i].y
                 if o_item_物品  then 
@@ -577,32 +576,14 @@ function t:click(tar)
     for i = 1,self.显示数量 do 
         if  tar == self.展示list[i].getChildByName('图片') then
             self.data_io = i
+            self.obj.getChildByName('快捷').visible = false
         end 
     end  
     local i_item_物品 = G.call('get_point',192)   
     local o_item_物品 = G.QueryName(i_item_物品)
     local 快捷 = {'q','w','e','r'}
     local o_hotkey = G.QueryName(0x100c0001)
-    local o_body = G.QueryName(0x10030001)
-    if tar == self.按钮.getChildByName('快捷') then 
-        self.obj.getChildByName('快捷').visible = true
-        for i = 1,4 do 
-            if o_hotkey[tostring(10+i)] ~= nil then 
-                self.快捷.getChildByName(快捷[i]).c_button.img_normal = G.QueryName(o_hotkey[tostring(10+i)]).图标
-                self.快捷.getChildByName(快捷[i]).getChildByName('数量').text = G.QueryName(o_hotkey[tostring(10+i)]).数量 
-            end 
-        end    
-    end 
-    for i = 1,4 do 
-        if tar == self.快捷.getChildByName(快捷[i]) then 
-            G.Play(0x49011003, 1,false,100) 
-            self.快捷.getChildByName(快捷[i]).c_button.img_normal = o_item_物品.图标
-            self.快捷.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量
-            o_hotkey[tostring(10+i)] = G.call('get_point',192)
-            self.快捷图.getChildByName(快捷[i]).img = o_item_物品.图标
-            self.快捷图.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量 
-        end
-    end    
+    local o_body = G.QueryName(0x10030001)   
     if tar == self.按钮.getChildByName('丢弃') then
         local int_item = i_item_物品 - 0x100b0000 + 1
         if  i_item_物品 == G.call('get_point',193) or i_item_物品 == G.call('get_point',194) or i_item_物品 == G.call('get_point',195) or i_item_物品 == G.call('get_point',198) then
@@ -827,11 +808,30 @@ function t:click(tar)
         end
         G.call('指令_存储属性')
     end
+    self:显示刷新()   
     if tar == self.确定 then 
         G.Play(0x49011003, 1,false,100) 
         self.快捷.visible = false
-    end
-    self:显示刷新()     
+    end 
+    if tar == self.按钮.getChildByName('快捷') then 
+        self.obj.getChildByName('快捷').visible = true
+        for i = 1,4 do 
+            if o_hotkey[tostring(10+i)] ~= nil then 
+                self.快捷.getChildByName(快捷[i]).c_button.img_normal = G.QueryName(o_hotkey[tostring(10+i)]).图标
+                self.快捷.getChildByName(快捷[i]).getChildByName('数量').text = G.QueryName(o_hotkey[tostring(10+i)]).数量 
+            end 
+        end    
+    end 
+    for i = 1,4 do 
+        if tar == self.快捷.getChildByName(快捷[i]) then 
+            G.Play(0x49011003, 1,false,100) 
+            self.快捷.getChildByName(快捷[i]).c_button.img_normal = o_item_物品.图标
+            self.快捷.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量
+            o_hotkey[tostring(10+i)] = G.call('get_point',192)
+            self.快捷图.getChildByName(快捷[i]).img = o_item_物品.图标
+            self.快捷图.getChildByName(快捷[i]).getChildByName('数量').text = o_item_物品.数量 
+        end
+    end  
     if tar == self.按钮.getChildByName('结束') or tar == self.obj.getChildByName('关闭菜单')then 
         G.Play(0x49011003, 1,false,100) 
         G.removeUI('v_item')   
