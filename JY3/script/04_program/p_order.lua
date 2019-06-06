@@ -346,7 +346,7 @@ t['new_test'] = function()
     --G.call('模式_笑梦游记')
     G.call('join',7)
     local o_book_story = G.QueryName(0x101c000a)
-    o_book_story.流程 = 1
+    o_book_story.流程 = 2
     G.call('天书_神雕侠侣') 
     G.call('通用_印记状态')
     -- while true do 

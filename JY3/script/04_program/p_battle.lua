@@ -2422,9 +2422,9 @@ t['集气'] = function()
                 end    
 			end 		
         end
-        local boss_生命 = G.QueryName(o_role + o_battle[位置[6]] ).生命
-        local boss_姓名 =  G.QueryName(o_role + o_battle[位置[6]] ).姓名
-        ui.getChildByName('boss').text = '[08]'..boss_姓名..'[0a]'..boss_生命
+        -- local boss_生命 = G.QueryName(o_role + o_battle[位置[6]] ).生命
+        -- local boss_姓名 =  G.QueryName(o_role + o_battle[位置[6]] ).姓名
+        -- ui.getChildByName('boss').text = '[08]'..boss_姓名..'[0a]'..boss_生命
         G.wait_time(deytime)
         if (G.call('通用_取得人物特效',0,12) or G.call('通用_取得装备特效',0,104)) and G.call('get_point',44) < G.call('get_point',217)*0.3  then  --主角的回春技能加成
             if G.call('get_point',44) > 0 then 

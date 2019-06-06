@@ -1411,7 +1411,7 @@ t['事件_随机切磋']=function()
         local i_role = 0x10040000 + i
         o_role = G.QueryName(i_role)
         local int_hp = G.call('get_role',i,1)
-        if int_hp > 0 and (not G.call('get_role',i,901) or  (G.call('get_role',i,901) == 0) )    then --判断为非队友
+        if int_hp > 0 and (not G.call('get_role',i,901) or  (G.call('get_role',i,901) == 0) or (G.call('get_role',i,901) == 0) > 30000 )    then --判断为非队友
             if int_hp >= 10000 and int_hp < 15000 then 
                 table.insert(boos_1 ,i )
             elseif int_hp >= 15000 and int_hp < 20000 then 

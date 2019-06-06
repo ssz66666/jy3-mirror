@@ -462,7 +462,7 @@ t['天书_天龙八部'] = function()
             G.call("talk",'',118,'   没本事就不要逞强！',2,1) 
         end
     elseif  o_book_story.流程 == 3 then
-        G.call('地图_进入地图','雁门关',259,59)
+        G.call('地图_进入地图','雁门关',280,59)
         G.call("talk",'',36,'   我不是汉人，我不是汉人！我是契丹胡虏，我是契丹胡虏！',0,0)
         G.call("talk",'',134,'   乔大爷，你再打下去，这座山峰也要给你击倒了。',2,1) 
         G.call("talk",'',36,'   阿朱，你身子大好了？',0,0)
@@ -1380,7 +1380,21 @@ t['天书_神雕侠侣'] = function()
         end
         o_book_story.流程 = 2
     elseif o_book_story.流程 == 2 then
-
+        G.call('地图_进入地图','昆仑山',279,65)
+        G.QueryName(0x10040007).头像 = 0x56089008
+        G.call("talk",'',413,'   阁下是谁？何故造访我昆仑山？',2,1)
+        G.call("talk",'',7,'   终南山后，活死人墓...',0,0)
+        G.call("talk",'',413,'   原来是古墓派，何故造访我昆仑山？',2,1)
+        G.call("talk",'',7,'   日前听闻阁下为潇湘子代传过一句话，故特来问问其中缘由！',0,0)
+        G.call("talk",'',413,'   哈哈哈，那就先问问我的剑吧！',2,1)
+        G.call('all_over')
+        G.call('set_team',7,0,0,0)
+        G.call('call_battle',1,279,4,300,0,0,0,413,0,0)
+        o_battle_结果 = G.call('get_battle') 
+        if o_battle_结果 == 1 then
+        else
+            G.call("talk",'',413,'   我的剑说不知道，滚吧！',2,1)
+        end
     end
     G.call('all_over')
     G.call('add_time',2)
