@@ -2038,7 +2038,7 @@ t['小游戏-野球拳']=function()
                         G.call("talk",'？？？？',247,'   表现不错，给你点奖励吧！',1,1) 
                         G.call('通用_抽礼物',9,0) 
                         if int_连胜 >= 21 then 
-                            G.call('add_item',235,1)
+                            G.call('add_item',341,1)
                         end
                     end
                 else
