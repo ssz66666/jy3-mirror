@@ -343,7 +343,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('add_item',341,1)
+    G.call('call_battle',1,279,3,300,413,0,0,0,0,0)
     --G.call('模式_笑梦游记')
     -- G.call('join',7)
     -- local o_book_story = G.QueryName(0x101c000a)

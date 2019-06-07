@@ -555,9 +555,7 @@ t['战斗系统_事件响应'] = function()
 			local o_battle = 0x10150001
 			local o_role = 0x10040000
 			local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
-			local magic = {'技能1','技能2','技能3'}
-            G.remove_program('集气',1)
-            --G.misc().战斗状态 = 1 
+			local magic = {'技能1','技能2','技能3'} 
             local person = {}   
 			local num = tonumber(ui.getChildByName('num').text)
             local num0 = tonumber(ui.getChildByName('num0').text)
@@ -566,10 +564,7 @@ t['战斗系统_事件响应'] = function()
             local int_动作编号
             local int_动画位置
             local int_序列帧
-            --G.call('通用_战斗动画屏蔽')
-            if c.我方存活 == 0 or c.敌方存活 == 0 then
-                return
-            end
+            G.remove_program('集气',1)
 			for i = 2,5 do   --队友战斗逻辑
                 if G.QueryName(o_battle)[位置[i]] > 0 and G.QueryName(o_battle)[位置[i]] ~= nil  then 
                     if G.QueryName(o_role + G.QueryName(o_battle)[位置[i] ]).生命 > 0 and ui.getChildByName('map').getChildByName(位置[i]).x >= 330 then
@@ -2338,7 +2333,8 @@ t['集气'] = function()
 	if not G.getUI('v_battle') then 
 		return
 	end 
-	ui = G.getUI('v_battle')
+    ui = G.getUI('v_battle')
+    local c = ui.c_battle
 	local o_battle = G.QueryName(0x10150001)
     local o_role = 0x10040000
     local o_body = G.QueryName(0x10030001)
@@ -2483,7 +2479,6 @@ t['集气'] = function()
 							if G.call('get_point',86) > 0 and G.call('get_point',83) == 0  then  --判断寒冰状态
 								ui.getChildByName('map').getChildByName(位置[1]).x = ui.getChildByName('map').getChildByName(位置[1]).x +(speed[1])/27+0.5
                             elseif G.call('get_point',83) > 0 then  --晕眩状态
-                                G.call('set_point',48,0)
                                 ui.getChildByName('map').getChildByName(位置[1]).x = ui.getChildByName('map').getChildByName(位置[1]).x +(speed[1])/60+0.5
                             else                                                                        --
                                 ui.getChildByName('map').getChildByName(位置[1]).x = ui.getChildByName('map').getChildByName(位置[1]).x +(speed[1])/15+0.5
@@ -2495,8 +2490,10 @@ t['集气'] = function()
                         local o_role_tb = G.QueryName(0x10040000 +o_battle[位置[i] ] )
                         if o_role_tb[tostring(82)] > 0 then   --判断麻痹状态
                         else    
-							if o_role_tb[tostring(86)] > 0 then  --判断寒冰状态
-								ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/27+0.5
+							if o_role_tb[tostring(86)] > 0  and o_role_tb[tostring(83)] == 0 then  --判断寒冰状态
+                                ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/27+0.5
+                            elseif o_role_tb[tostring(83)] > 0 then  --晕眩状态
+                                ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/60+0.5
                             else
 								ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/15+0.5
 							end
@@ -2567,8 +2564,10 @@ t['集气'] = function()
                             end
                             if o_role_tb[tostring(82)] > 0 then   --判断麻痹状态
                             else    
-                                if o_role_tb[tostring(86)] > 0 then  --判断寒冰状态
+                                if o_role_tb[tostring(86)] > 0 and o_role_tb[tostring(83)] == 0 then  --判断寒冰状态
                                     ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/2
+                                elseif o_role_tb[tostring(83)] > 0 then  --晕眩状态
+                                    ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/3
                                 else
                                     ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/1
                                 end
@@ -2580,13 +2579,15 @@ t['集气'] = function()
                             -- end 
                         end
                     end       
-				    if ui.getChildByName('map').getChildByName(位置[i]).x >= 330 then 
-                       ui.getChildByName('map').getChildByName(位置[i]).x = 330
-                       if i > 1 then 
-                            G.trig_event('出手')
-                       else
-                            G.trig_event('出手')
-                       end
+                    if ui.getChildByName('map').getChildByName(位置[i]).x >= 330 then 
+                        if c.我方存活 > 0 and  c.敌方存活 > 0 then
+                            ui.getChildByName('map').getChildByName(位置[i]).x = 330
+                            if i > 1 then 
+                                G.trig_event('出手')
+                            else
+                                G.trig_event('出手')
+                            end
+                        end
 				   end 
 			   end
 			
