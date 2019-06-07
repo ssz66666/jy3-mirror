@@ -30,6 +30,8 @@ function t:init()
     self.副按钮  = self.obj.getChildByName('按钮1')
     self.属性 = self.透明按钮.getChildByName('属性')
     self.被动 = self.属性.getChildByName('被动')
+    self.敌人存活 = 6
+    self.我方存活 = 5
 end
 function t:刷新记事本()
     local str = ''
@@ -254,7 +256,7 @@ function t:update()
     local i_battle = 0x10150001
     local o_battle = G.QueryName(0x10150001)
     local num = 0
-    local num0 = 1  
+    local num0 = 0  
     for i = 2,5 do --计算我方存活人数
         if G.QueryName(i_battle)[位置[i]] > 0 then
             if  G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0 then 
@@ -262,6 +264,9 @@ function t:update()
             end 
         end     
     end 
+    if G.call('get_point',44) > 0 then
+        num0 = num0 + 1
+    end
     self.obj.getChildByName('num0').text = tostring(num0)
     for i = 6,11 do --计算敌人存活人数
         if G.QueryName(i_battle)[位置[i]] > 0 then 
@@ -269,7 +274,9 @@ function t:update()
                 num = num + 1
             end 
         end     
-    end     
+    end  
+    self.我方存活 = num0
+    self.敌方存活 = num  
     self.obj.getChildByName('num').text = tostring(num)
     local 快捷 = {'q','w','e','r'}
     local o_hotkey = G.QueryName(0x100c0001)    

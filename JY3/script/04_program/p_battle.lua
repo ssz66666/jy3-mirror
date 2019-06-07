@@ -366,7 +366,6 @@ t['战斗系统_事件响应'] = function()
 		return
 	end 
     ui = G.getUI('v_citymap_system_map');
-	local c = ui.c_citymap_system_map;
 	while true do
 		G.case(1, '准备')
 		G.case(2, '出手')
@@ -551,7 +550,8 @@ t['战斗系统_事件响应'] = function()
 			if not G.getUI('v_battle') then 
 				return
 			end 
-			ui = G.getUI('v_battle')
+            ui = G.getUI('v_battle')
+            local c = ui.c_battle
 			local o_battle = 0x10150001
 			local o_role = 0x10040000
 			local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
@@ -567,6 +567,9 @@ t['战斗系统_事件响应'] = function()
             local int_动画位置
             local int_序列帧
             --G.call('通用_战斗动画屏蔽')
+            if c.我方存活 == 0 or c.敌方存活 == 0 then
+                return
+            end
 			for i = 2,5 do   --队友战斗逻辑
                 if G.QueryName(o_battle)[位置[i]] > 0 and G.QueryName(o_battle)[位置[i]] ~= nil  then 
                     if G.QueryName(o_role + G.QueryName(o_battle)[位置[i] ]).生命 > 0 and ui.getChildByName('map').getChildByName(位置[i]).x >= 330 then

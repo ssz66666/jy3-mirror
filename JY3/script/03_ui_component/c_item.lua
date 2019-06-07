@@ -139,7 +139,7 @@ function t:显示刷新()
     self.obj.getChildByName('按钮').getChildByName('快捷').visible = false
     self.obj.getChildByName('文本').getChildByName('内功').visible = false
     self.按钮.getChildByName('丢弃').visible = false
-    if self.显示数量 > 0 then 
+    if self.显示数量 > 0  and #self.item_sub_2 > 0 then 
         if self.显示数量 < self.data_io then
             self.data_io = 1 
         end
