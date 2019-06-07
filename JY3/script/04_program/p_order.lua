@@ -3147,21 +3147,40 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
     o_equip_物品.转换次数 = o_equip_物品.转换次数 + 1
     if o_equip_物品.品质 >= 5 and o_equip_物品.级别 >= 5 then --传家品质的高级别装备附加特效
         local int_宝物随机 = G.call('通用_取宝物随机')
-        if o_equip_物品.类型 == 1 then
-            o_equip_物品.特效 = 100 + math.ceil(int_宝物随机*6/100)
-        elseif o_equip_物品.类型 == 2 then
-            o_equip_物品.特效 = 200 + math.ceil(int_宝物随机*7/100)
-        elseif o_equip_物品.类型 == 3 then
-            o_equip_物品.特效 = 300 + math.ceil(int_宝物随机*4/100)
+        if int_随机类型 == 1 then 
+            if o_equip_物品.类型 == 1 then
+                o_equip_物品.特效 = 100 + math.ceil(int_宝物随机*6/100)
+            elseif o_equip_物品.类型 == 2 then
+                o_equip_物品.特效 = 200 + math.ceil(int_宝物随机*7/100)
+            elseif o_equip_物品.类型 == 3 then
+                o_equip_物品.特效 = 300 + math.ceil(int_宝物随机*4/100)
+            end
+            if o_equip_物品.特效 == 101 then
+                o_equip_物品.生命 = 5000 + math.floor(int_宝物随机*5000/100)
+            elseif o_equip_物品.特效 == 102 then
+                o_equip_物品.内力 = 5000 + math.floor(int_宝物随机*5000/100)
+            elseif o_equip_物品.特效 == 103 then
+                o_equip_物品.生命 = 2500 + math.floor(int_宝物随机*2500/100)
+                o_equip_物品.内力 = 2500 + math.floor(int_宝物随机*2500/100)
+            end
+        else
+            if o_equip_物品.类型 == 1 then
+                o_equip_物品.特效 = 100 + math.random(6)
+            elseif o_equip_物品.类型 == 2 then
+                o_equip_物品.特效 = 200 + math.random(7)
+            elseif o_equip_物品.类型 == 3 then
+                o_equip_物品.特效 = 300 + math.random(4)
+            end 
+            if o_equip_物品.特效 == 101 then
+                o_equip_物品.生命 = math.random(5000,10000)
+            elseif o_equip_物品.特效 == 102 then
+                o_equip_物品.内力 = math.random(5000,10000)
+            elseif o_equip_物品.特效 == 103 then
+                o_equip_物品.生命 = math.random(2500,5000)
+                o_equip_物品.内力 = math.random(2500,5000)
+            end
         end
-        if o_equip_物品.特效 == 101 then
-            o_equip_物品.生命 = math.random(5000,10000)
-        elseif o_equip_物品.特效 == 102 then
-            o_equip_物品.内力 = math.random(5000,10000)
-        elseif o_equip_物品.特效 == 103 then
-            o_equip_物品.生命 = math.random(2500,5000)
-            o_equip_物品.内力 = math.random(2500,5000)
-        end
+
     end
     if result == false then
         for i = 1,#str do 
