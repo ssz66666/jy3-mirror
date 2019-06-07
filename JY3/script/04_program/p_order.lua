@@ -2348,7 +2348,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
             G.call('set_newpoint',int_代码,-G.call('get_point',218)- 10)
         end 
         if  G.call('get_point',46) < 0 then
-            G.call('set_newpoint',int_代码, -11) 
+            G.call('set_newpoint',int_代码, -10) 
             G.call('set_point',46,1)
         end 
     elseif (int_代码 >= 16 and int_代码 <= 37) then   -- 基础属性的增加
