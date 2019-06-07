@@ -774,12 +774,14 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 if int_选项 == 1 then 
                                     G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
                                     G.call('all_over')
+                                    G.call('通用_存档',G.call('get_point',143))
                                     G.call('副本_通天塔',1) 
                                     G.misc().通天塔时间 = 1
                                     G.misc().通天塔监控 = -8
                                 elseif int_选项 == 2 then
                                     G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
                                     G.call('all_over')
+                                    G.call('通用_存档',G.call('get_point',143))
                                     G.call('副本_通天塔',0) 
                                     G.misc().通天塔时间 = 1
                                     G.misc().通天塔监控 = -8
@@ -2025,7 +2027,7 @@ t['小游戏-野球拳']=function()
                         G.call('set_newpoint',80,G.call('get_newpoint',80)- (int_连胜-10)   )
                         o_yqwd.进度列表[1].当前进度 = o_yqwd.进度列表[1].当前进度 + int_连胜-10
                     end
-                    if o_yqwd.进度列表[1].当前进度 >= 10000  then 
+                    if o_yqwd.进度列表[1].当前进度 >= 10000 and o_yqwd.进度列表[1].完成 == 0 then 
                         o_yqwd.进度列表[1].完成 = 1
                         if o_yqwd.完成 == 0 then 
                            o_yqwd.完成 = 1
