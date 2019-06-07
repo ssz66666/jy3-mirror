@@ -3615,7 +3615,12 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
         int_几率 = math.random(100)
     end
     if int_类型 > 3 then
-        int_类型 = math.random(3) 
+        if int_随机类型 == 1 then 
+            local int_随机数 = G.call('通用_取宝物随机')
+            int_类型 = math.ceil(int_随机数*3/100)
+        else
+            int_类型 = math.random(3) 
+        end
     end
     if int_类型 == 1 then
         if int_级别 == 1 then 
