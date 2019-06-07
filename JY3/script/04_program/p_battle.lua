@@ -2572,16 +2572,11 @@ t['集气'] = function()
                                     ui.getChildByName('map').getChildByName(位置[i]).x = ui.getChildByName('map').getChildByName(位置[i]).x +(speed[i])/1
                                 end
                             end
-                            -- if o_role_tb[tostring(81)] > 0 then  --中毒受伤
-                            --     G.call('add_role',o_battle[位置[i] ] ,13,-5) 
-                            -- elseif o_role_tb[tostring(85)] > 0 then
-                            --     G.call('add_role',o_battle[位置[i] ] ,13,-2)  
-                            -- end 
                         end
                     end       
                     if ui.getChildByName('map').getChildByName(位置[i]).x >= 330 then 
+                        ui.getChildByName('map').getChildByName(位置[i]).x = 330
                         if c.我方存活 > 0 and  c.敌方存活 > 0 then
-                            ui.getChildByName('map').getChildByName(位置[i]).x = 330
                             if i > 1 then 
                                 G.trig_event('出手')
                             else
