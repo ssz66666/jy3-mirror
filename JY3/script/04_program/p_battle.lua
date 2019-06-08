@@ -203,6 +203,7 @@ t['战斗系统_主角监控'] = function()
                     break
                 end 
                 ui = G.getUI('v_battle')
+                local c = ui.c_battle
                 local o_battle = 0x10150001
                 local o_role = 0x10040001
                 local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
@@ -882,7 +883,9 @@ t['战斗系统_事件响应'] = function()
                                                 end
                                             end
                                         end
-                                        ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring( person[math.random(#person)])  
+                                        if #person > 0 then 
+                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring( person[math.random(#person)]) 
+                                        end 
                                         person = {}  
                                     end
                                 end
@@ -1340,7 +1343,9 @@ t['战斗系统_事件响应'] = function()
                                                 end
                                             end
                                         end
-                                        ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring( person[math.random(#person)])  
+                                        if #person > 0 then 
+                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring( person[math.random(#person)]) 
+                                        end 
                                         person = {}  
                                     end
                                 end 
