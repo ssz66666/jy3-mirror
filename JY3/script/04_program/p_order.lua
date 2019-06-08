@@ -727,7 +727,9 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = tostring(0)
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加内力').text = tostring(0)
     end
-    c:刷新显示()
+    if c.我方存活 > 0 and  c.敌方存活 > 0 then
+       c:刷新显示()
+    end
 end 
 t['call_wood']=function() 
     --if G.misc().战斗结果 == 0 then return end 

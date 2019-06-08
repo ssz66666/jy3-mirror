@@ -1088,6 +1088,7 @@ t['战斗系统_事件响应'] = function()
                                     end 
 
                                 end 
+                                print(o_role_tb.姓名,int_动画位置)
                                 G.noti_call('战场_效果',i,int_动作编号,int_动画位置)
                             end
                         end 
