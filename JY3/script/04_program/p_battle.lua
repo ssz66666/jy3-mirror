@@ -885,6 +885,8 @@ t['战斗系统_事件响应'] = function()
                                         end
                                         if #person > 0 then 
                                             ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring( person[math.random(#person)]) 
+                                        else
+                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = 6
                                         end 
                                         person = {}  
                                     end
@@ -1344,7 +1346,9 @@ t['战斗系统_事件响应'] = function()
                                             end
                                         end
                                         if #person > 0 then 
-                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring( person[math.random(#person)]) 
+                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = tostring( person[math.random(#person)])
+                                        else
+                                            ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text = 1 
                                         end 
                                         person = {}  
                                     end
