@@ -339,10 +339,10 @@ function t:rollOver(tar)
     local i_battle = 0x10150001
     local o_battle = G.QueryName(0x10150001)
     for i = 2,11 do
-        if tar == self.透明按钮.getChildByName(位置[i]) then 
+        local int_队员编号 = o_battle[位置[i]]
+        local o_role_人物 = G.QueryName(0x10040000+int_队员编号)
+        if tar == self.透明按钮.getChildByName(位置[i]) and o_role_人物.生命 > 0 then 
             self.透明按钮.getChildByName('属性').visible = true
-            local int_队员编号 = o_battle[位置[i]]
-            local o_role_人物 = G.QueryName(0x10040000+int_队员编号)
             if o_role_人物 ~= nil then 
                 if o_role_人物.头像 then 
                      self.属性.getChildByName('头像').img = o_role_人物.头像
