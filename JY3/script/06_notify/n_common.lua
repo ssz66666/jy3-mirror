@@ -13,6 +13,7 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
     local int_序列帧 = int_代码 + 1 
     local o_skill = G.QueryName(0x10050000 + int_序列帧 - 1 )
     local int_范围 = o_skill.范围
+    if not int_动画位置 or int_动画位置 == nil or int_动画位置 < 1 then return end
     if  0x49020001+int_序列帧 - 1 ~= nil then 
         G.Play(0x49020001+int_序列帧 - 1 , 1,false,100)
     end 

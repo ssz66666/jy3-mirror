@@ -2582,6 +2582,8 @@ t['集气'] = function()
                             else
                                 G.trig_event('出手')
                             end
+                        else
+                            break
                         end
 				   end 
 			   end
