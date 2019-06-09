@@ -2769,7 +2769,7 @@ t['magic_power1'] = function(int_id,int_no)
         end
     end
     if G.call('get_point',44) < G.call('get_point',217)*0.5 and  (G.call('通用_取得人物特效',0,13) or G.call('通用_取得装备特效',0,204))   then --主角强力判断
-        result = result + 30    
+        result = result + 50    
     end  
     if G.call('通用_取得人物特效',int_id,9)  then --受击者见切效果
         local jq_randow = math.random(100)
