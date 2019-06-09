@@ -1695,8 +1695,8 @@ t['story']=function(string_提示) --叙事
     G.wait1('叙事结束')
     G.removeUI('v_story')
 end
-t['通用_强退游戏'] = function() 
-    G.call('notice','正当游戏，拒绝不良操作')
+t['通用_强退游戏'] = function(int_类型) 
+    G.call('notice','正当游戏，拒绝不良操作【'..int_类型..'】')
     G.wait_time(200)
     os.exit(); 
 end 

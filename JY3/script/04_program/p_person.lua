@@ -1395,7 +1395,7 @@ t['事件_随机切磋']=function()
     end
     if G.misc().随机切磋次数 ~= math.abs(G.misc().随机切磋监控 + 7) then 
         G.misc().随机切磋 = 0
-        G.call('通用_强退游戏')
+        G.call('通用_强退游戏',401)
     end
     --lv50~ lv60 hp 低于10000大于8000
     local boos_1 = {}
@@ -1768,7 +1768,7 @@ t['副本_通天塔']=function(int_模式)
                 int_通天塔层数 = int_通天塔层数 - 1
                 if G.misc().通天塔层数 ~= math.abs(int_通天塔层数 + 7 ) then 
                     G.misc().通天塔 = 0 
-                    G.call('通用_强退游戏') 
+                    G.call('通用_强退游戏',402) 
                 end
             end
         else
@@ -2104,7 +2104,7 @@ t['通用_锻造']=function()
                 G.call('dark')
                 G.wait_time(500)
                 if int_宝石数量 == G.call('get_item',340) then
-                    G.call('通用_强退游戏') 
+                    G.call('通用_强退游戏',403) 
                 end
                 G.call('通用_抽礼物',9,1)
                 G.wait_time(500)
@@ -2133,7 +2133,7 @@ t['通用_转换装备']=function(i_equip)
         G.call('dark')
         G.wait_time(500)
         if int_宝石数量 == G.call('get_item',340) then
-            G.call('通用_强退游戏') 
+            G.call('通用_强退游戏',404) 
         end
         G.call('功能_物品转换',i_equip,1)
         G.call('通用_存档',G.call('get_point',143)) 

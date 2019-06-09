@@ -20,17 +20,17 @@ t['战斗系统_胜负监控'] = function()
         G.wait_time(10)
         for i = 2,11 do
             if o_battle [位置[i] ] ~= G.misc().队伍记录[i-1] then
-                G.call('通用_强退游戏') 
+                G.call('通用_强退游戏',101) 
             end
         end 
         if G.call('get_point',48) ~= math.abs(G.call('get_newpoint',48) + 10 ) then
-            G.call('通用_强退游戏') 
+            G.call('通用_强退游戏',102) 
         end
         if G.call('get_point',44) ~= math.abs(G.call('get_newpoint',44) + 10 )  then
-            G.call('通用_强退游戏') 
+            G.call('通用_强退游戏',103) 
         end
         if G.call('get_point',46) ~= math.abs(G.call('get_newpoint',46) + 10 )  then
-           G.call('通用_强退游戏') 
+           G.call('通用_强退游戏',104) 
         end
         if G.call('get_result') == 1   then  
             for i = 1,11 do 
@@ -108,7 +108,7 @@ t['战斗系统_主角监控'] = function()
             local i_battle = 0x10150001
             local o_battle = G.QueryName(i_battle)
             if o_battle.diffty ~= math.abs(G.misc().难度) then 
-                G.call('通用_强退游戏') 
+                G.call('通用_强退游戏',105) 
             end
             if ui.getChildByName('map').getChildByName(位置[1]).x < 150 then
                 G.wait1('准备结束')
@@ -837,7 +837,8 @@ t['战斗系统_事件响应'] = function()
                                 local needmp = math.floor(o_skill.消耗内力 * (lv /2)*(lv /2)*0.65)
                                 if needmp < 1 then
                                     needmp = 1
-                                end  
+                                end 
+                                print(o_role_tb.姓名,'剩余人物',num) 
                                 G.call('add_role',G.QueryName(o_battle)[位置[i]],14,-needmp) 
                                 if num == 1 then --只有一个敌人直接取敌人位置数据
                                     for p = 6,11 do 
