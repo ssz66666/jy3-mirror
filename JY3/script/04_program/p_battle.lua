@@ -1382,6 +1382,9 @@ t['战斗系统_事件响应'] = function()
                                 G.call('add_role',G.QueryName(o_battle)[位置[i]],14,-needmp) 
                                 ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text = tostring(hurt)
                                 local n = tonumber(ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text)
+                                if n < 1 then
+                                    n = 1 
+                                end
                                 if o_skill.范围 == 2  or o_skill.范围 == 4 then
                                     int_动画位置 = n
                                 elseif 	o_skill.范围 == 3  then 
@@ -3080,7 +3083,7 @@ end
 --hide=true
 --private=false
 t['magic_power2'] = function(int_id,int_enemy,int_no)
-    if  int_id == nil or int_enemy == nil or int_no == nil then 
+    if  int_id == nil or int_enemy == nil or int_no == nil or int_enemy < 1 or int_id < 1 then 
         return 0 
     end 
     local o_skill = G.QueryName(0x10050000 + int_no)
