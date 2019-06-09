@@ -2798,11 +2798,11 @@ t['magic_power1'] = function(int_id,int_no)
     end     
     if def_role == 0 then --受击方为敌方
         if  G.call('通用_取得敌方队伍特效',2)  then --敌方慈悲效果
-            result = result - 200
+            result = result -150
         end    
     else --受击方为我方
         if  G.call('通用_取得我方队伍特效',2)  then  --我方慈悲效果 
-            result = result - 200
+            result = result - 150
         end 
     end 
     if  G.call('通用_取得我方队伍特效',1) or G.call('通用_取得我方装备特效',202) then --我方破绽效果
@@ -3241,11 +3241,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     end    
     if def_role == 0 then --受击方为敌方
         if  G.call('通用_取得敌方队伍特效',2) then --敌方慈悲效果
-            result = result - 200
+            result = result - 150
         end    
     else --受击方为我方
         if  G.call('通用_取得我方队伍特效',2) then --我方慈悲效果 
-            result = result - 200
+            result = result - 150
         end 
     end  
     if math.random(100) > 80 and  (G.call('通用_取得人物特效',int_id,7) or G.call('通用_取得装备特效',int_id,203) or G.call('通用_取得装备特效',int_id,410) )  then --攻击方暴击效果
@@ -3682,7 +3682,7 @@ t['magic_power3'] = function(int_id,int_no)
         end 
     end
     if  G.call('通用_取得我方队伍特效',2) then 
-        result = result  - 200 - int_慈悲效果*10
+        result = result  - 150 - int_慈悲效果*10
     end    
     hurt = hurt * result/100
     local int_闪避 = 0
