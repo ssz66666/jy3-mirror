@@ -1497,6 +1497,12 @@ t['事件_随机切磋']=function()
     local name = G.call('get_point',1)
     G.call("talk",'',int_role,'   【'..name..'】大侠，久闻大名，今日特来领教阁下高招！',1,1)
     G.call('call_battle',1,10,1,300,int_role,0,0,0,0,0,0,0,1)
+    if int_被动 > 0 then --还原被动
+        for j = 1,int_被动 do 
+            G.call('set_role',int_role,110+j,team_skill_1[1]['被动_'..j]) 
+        end   
+    end 
+    G.misc().随机切磋 = 0
     if G.call('get_battle') == 1 then
         G.call("talk",'',int_role,'   【'..name..'】大侠果然功夫过人，些许薄礼就送与大侠了，有机会再来挑战！',1,1) 
         G.misc().随机切磋次数 = G.misc().随机切磋次数 + 1
@@ -1518,12 +1524,6 @@ t['事件_随机切磋']=function()
         G.call("talk",'',int_role,'   哈哈哈.......【'..name..'】大侠看来也不过是徒有虚名！',1,1)
     end
     G.call('all_over')
-    if int_被动 > 0 then --还原被动
-        for j = 1,int_被动 do 
-            G.call('set_role',int_role,110+j,team_skill_1[1]['被动_'..j]) 
-        end   
-    end 
-    G.misc().随机切磋 = 0
 end     
 t['副本_通天塔']=function(int_模式)
     if G.misc().通天塔时间 == 0 or G.misc().通天塔时间 ~= math.abs(G.misc().通天塔监控 + 7) then 
