@@ -2347,11 +2347,11 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)  
         if  G.call('get_point',46) > G.call('get_point',218) then 
             G.call('set_point',46,G.call('get_point',218))
-            G.call('set_newpoint',int_代码,-G.call('get_point',218)- 10)
+            G.call('set_newpoint',46,-G.call('get_point',218)- 10)
         end 
         if  G.call('get_point',46) < 0 then
-            G.call('set_newpoint',int_代码, -10) 
             G.call('set_point',46,0)
+            G.call('set_newpoint',46, -10) 
         end 
     elseif (int_代码 >= 16 and int_代码 <= 37) then   -- 基础属性的增加
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
@@ -3732,6 +3732,9 @@ t['count_inversion']=function(_table_数组) --逆序数计算
     return inversions
 end
 t['通用_取得青龙附加效果']=function(int_编号,i_skill) 
+    if int_编号 < 0 or not i_skill or i_skill == nil  then 
+        return false
+    end
     local 装备 = {'头戴','手戴','脚穿','印记'}
     local o_body = G.QueryName(0x10030001)
     local o_role = o_body
