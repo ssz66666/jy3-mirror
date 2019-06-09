@@ -2857,14 +2857,14 @@ t['magic_power1'] = function(int_id,int_no)
                 hurt = hurt 
             elseif  int_玉女剑阵效果 == 1 and i_skill == 0x1005003e then --玉女剑阵破防效果判定
                 if G.call('通用_取得内功轻功特效',0,18) then
-                    hurt = math.floor(hurt *(1- d/700)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                    hurt = math.floor(hurt *(1- d/500)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
                 else
-                    hurt = math.floor(hurt *(1- d/350)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
+                    hurt = math.floor(hurt *(1- d/500)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
                 end
             elseif G.call('通用_取得人物特效',0,21)  then --武当被动和真武阵判断
-                hurt = math.floor(hurt *(1- c/350)*(1- d/350*(1 - 0.2-int_真武效果/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                hurt = math.floor(hurt *(1- c/300)*(1- d/500*(1 - 0.2-int_真武效果/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
             else 
-                hurt = math.floor(hurt *(1- c/350)*(1- d/350)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
+                hurt = math.floor(hurt *(1- c/300)*(1- d/500)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if o_skill.类别 == 2 then --五岳剑阵效果
                 hurt = math.floor(hurt* (int_五岳剑阵效果/100 +1)  )
@@ -3301,9 +3301,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))  then --朱雀被动效果
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21) then --真武效果
-                hurt = math.floor(hurt *(1- c/400)*(1- d/400*0.8)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/100 )  ) 
+                hurt = math.floor(hurt *(1- c/300)*(1- d/500*0.8)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/100 )  ) 
             else
-                hurt = math.floor(hurt *(1- c/400)*(1- d/400)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/100 ) )  --按敌人的拆招和内功免伤进行计算伤害
+                hurt = math.floor(hurt *(1- c/300)*(1- d/500)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/100 ) )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if G.call('通用_取得套装',int_id,3) == 2 then --套装3和套装4强伤和减伤效果
                 hurt = math.floor(hurt *1.1)
@@ -3732,9 +3732,9 @@ t['magic_power3'] = function(int_id,int_no)
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))   then --朱雀被动效果
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21)then
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/100 )   )
+                hurt = math.floor(hurt *(1- c/300)*(1- d/500*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/100 )   )
             else
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',0)/100 )   )  --按主角的拆招和内功免伤计算
+                hurt = math.floor(hurt *(1- c/300)*(1- d/500)*(1 - G.call('通用_取得装备减伤效果',0)/100 )   )  --按主角的拆招和内功免伤计算
             end
             if G.call('get_point',194) ~= nil then  --按主角装备的防具再次计算伤害
                 local o_item = G.QueryName(G.call('get_point',194))
