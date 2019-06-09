@@ -2611,7 +2611,7 @@ end
 --private=false
 t['magic_power1'] = function(int_id,int_no)
     --0指1掌2剑3刀4棍5暗器6内7轻8其他
-    if  int_id == nil or int_no == nil then 
+    if  int_id == nil or int_no == nil or int_id == 0 then 
         return 0 
     end 
     local i_skill = 0x10050000 + int_no
@@ -2666,12 +2666,12 @@ t['magic_power1'] = function(int_id,int_no)
     end
     if o_skill.装备 ~= nil then  --武功对应装备加成
         if o_skill.装备  == G.call('get_point',193) then 
-            result = 40 +result
+            result = 100 +result
         end 
     end 
     if o_skill.内功 ~= nil then   --内功配合加成
         if o_skill.内功 == G.call('get_point',196) then 
-            result = result + G.QueryName(o_skill.内功).修为等级*8
+            result = result + G.QueryName(o_skill.内功).修为等级*20
         end 
     end 
     ---1加血，--2杀内，--3吸内（加上限），4减伤，5闪避，6复活，
@@ -2701,7 +2701,7 @@ t['magic_power1'] = function(int_id,int_no)
     end  
     if G.call('get_point',18) <= 50 and G.call('get_magic',190) > 0 then --左右被动
         local int_左右 = 0
-        int_左右 =  G.call('get_magic_lv',190)*(100-G.call('get_point',18) )/5 + G.call('通用_取得装备左右效果',0)
+        int_左右 =  G.call('get_magic_lv',190)*2*(100-G.call('get_point',18) )/5 + G.call('通用_取得装备左右效果',0)
         if G.call('通用_取得套装',0,6) == 2 then
             int_左右 = int_左右*1.25
         elseif  G.call('通用_取得套装',0,6) == 3 then
@@ -2725,16 +2725,16 @@ t['magic_power1'] = function(int_id,int_no)
     local float = math.random(-50,50)
     if o_skill.类别 < 6  then   --拳，指，等伤害计算
         if G.call('get_point',46) >= needmp then 
-            result = result+float/10+G.call('get_point',179+magic[o_skill.类别+1])*0.8+G.call('get_point',179+29)*0.8+G.call('get_point',179+27)*0.6
+            result = result+float/10+G.call('get_point',179+magic[o_skill.类别+1])+G.call('get_point',179+29)*0.8+G.call('get_point',179+27)*0.8
         else 
-            result = result+float/10+G.call('get_point',179+magic[o_skill.类别+1])*0.8+G.call('get_point',179+29)*0.8+G.call('get_point',179+27)*0.6*G.call('get_point',46)/needmp  
+            result = result+float/10+G.call('get_point',179+magic[o_skill.类别+1])+G.call('get_point',179+29)*0.8+G.call('get_point',179+27)*0.8*G.call('get_point',46)/needmp  
         end     
     else   --内功伤害计算
-        local int_兵器值 = G.call('get_point',179+22) +G.call('get_point',179+23)+G.call('get_point',179+24)+G.call('get_point',179+25)+G.call('get_point',179+26)
+        local int_兵器值 = G.call('get_point',179+22) +G.call('get_point',179+23)+G.call('get_point',179+24)+G.call('get_point',179+25)+G.call('get_point',179+26)+G.call('get_point',179+34)
         if G.call('get_point',46) >= needmp then
-            result = result + float + int_兵器值*0.10+G.call('get_point',179+29)*0.4+G.call('get_point',29)*0.6+G.call('get_point',179+27)*0.8
+            result = result + float + int_兵器值*0.10+G.call('get_point',29)*0.6+G.call('get_point',179+27)*1.2
         else 
-            result = result + float + int_兵器值*0.10+G.call('get_point',179+29)*0.4+G.call('get_point',29)*0.6+G.call('get_point',179+27)*0.8*G.call('get_point',46)/needmp  
+            result = result + float + int_兵器值*0.10+G.call('get_point',29)*0.6+G.call('get_point',179+27)*1.2*G.call('get_point',46)/needmp  
         end 
     end  
     local a = G.call('get_point',179+29)
@@ -2776,14 +2776,14 @@ t['magic_power1'] = function(int_id,int_no)
         if jq_randow > 90 then 
             hurt = 0
         elseif jq_randow > 80 then 
-            result = result - 50 
+            result = result - 100 
         end 
     end
     if G.call('get_role',int_id,13) < G.call('get_role',int_id,1)*0.2 and  (G.call('通用_取得人物特效',int_id,11) or G.call('通用_取得装备特效',0,105)  )  then --判断受击者强体效果
         result = result - 50
     end   
     if math.random(100) > 80 and (G.call('通用_取得人物特效',0,7) or G.call('通用_取得装备特效',0,203) or G.call('通用_取得装备特效',0,410) )   then --暴击效果
-        result = result + 50
+        result = result + 100
         if G.call('通用_取得套装',0,4) == 2 then 
             result = result + 50
         elseif G.call('通用_取得套装',0,4) == 3 then 
@@ -2798,11 +2798,11 @@ t['magic_power1'] = function(int_id,int_no)
     end     
     if def_role == 0 then --受击方为敌方
         if  G.call('通用_取得敌方队伍特效',2)  then --敌方慈悲效果
-            result = result - 50
+            result = result - 200
         end    
     else --受击方为我方
         if  G.call('通用_取得我方队伍特效',2)  then  --我方慈悲效果 
-            result = result - 50
+            result = result - 200
         end 
     end 
     if  G.call('通用_取得我方队伍特效',1) or G.call('通用_取得我方装备特效',202) then --我方破绽效果
@@ -3128,7 +3128,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         for i = 1, 4 do --判断队友携带武器和武功配合
             if   o_skill.装备 == o_role[需求道具[i]] then 
                 if o_role['拥有'..i] > 0 then 
-                    result = result + 40
+                    result = result + 100
                 end 
             end 
         end    
@@ -3142,7 +3142,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         for i = 1,3 do
             if o_role['技能'..i] ~= nil then 
                 if o_skill.内功  ==  o_role['技能'..i] then 
-                    result = result + 40
+                    result = result + 100
                 end 
             end 
         end  
@@ -3166,7 +3166,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end 
             end 
             if o_role['技能'..i] == 0x100500bd  then --左右被动
-                local int_左右 = 100 + G.call('通用_取得装备左右效果',int_id)
+                local int_左右 = 150 + G.call('通用_取得装备左右效果',int_id)
                 if G.call('通用_取得套装',int_id,6) == 2 then
                     int_左右 = int_左右*1.25
                 elseif  G.call('通用_取得套装',int_id,6) == 3 then
@@ -3186,15 +3186,15 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     local float = math.random(-50,50)
     if o_skill.类别 < 6 then 
         if G.call('get_role',int_id,14) >= needmp then  --伤害计算
-            result =  result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.6+G.call('get_role',int_id,7)*0.3
+            result =  result + float/10+G.call('get_role',int_id,4)*0.6 +G.call('get_role',int_id,6)*0.8+G.call('get_role',int_id,7)*0.5
         else
-            result = result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.6*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.3
+            result = result + float/10+G.call('get_role',int_id,4)*0.6 +G.call('get_role',int_id,6)*0.8*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.5
         end  
     else
         if G.call('get_role',int_id,14) >= needmp then  --伤害计算
-            result =  result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.8+G.call('get_role',int_id,7)*0.3
+            result =  result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*1.2+G.call('get_role',int_id,7)*0.5
         else
-            result = result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*0.8*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.3
+            result = result + float/10+G.call('get_role',int_id,4)*0.3 +G.call('get_role',int_id,6)*1.2*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.5
         end  
     end  
     o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_no,o_skill_武功熟练度 )
@@ -3207,14 +3207,14 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     local d = G.call('get_role',int_enemy,6)
     --下面为被动效果计算
     if (G.call('通用_取得人物特效',int_id,13) or G.call('通用_取得装备特效',int_id,204)) and o_role.生命 < G.call('get_role',int_id,1)*0.5 then  --攻击方强力判断
-        result = result + 30    
+        result = result + 50    
     end 
     if G.call('通用_取得人物特效',int_enemy,9)  then --受击者见切效果
         local jq_randow = math.random(100)
         if jq_randow > 90 then 
             hurt = 0  
         elseif jq_randow > 80 then 
-            result = result - 50
+            result = result - 100
         end 
     end 
     if G.call('get_role',int_enemy,13)< G.call('get_role',int_enemy,1)*0.2 and (G.call('通用_取得人物特效',int_enemy,11) or G.call('通用_取得装备特效',int_enemy,105) )  then  --受击方强体判断
@@ -3241,15 +3241,15 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     end    
     if def_role == 0 then --受击方为敌方
         if  G.call('通用_取得敌方队伍特效',2) then --敌方慈悲效果
-            result = result - 50
+            result = result - 200
         end    
     else --受击方为我方
         if  G.call('通用_取得我方队伍特效',2) then --我方慈悲效果 
-            result = result - 50
+            result = result - 200
         end 
     end  
     if math.random(100) > 80 and  (G.call('通用_取得人物特效',int_id,7) or G.call('通用_取得装备特效',int_id,203) or G.call('通用_取得装备特效',int_id,410) )  then --攻击方暴击效果
-        result = result + 50
+        result = result + 100
         if G.call('通用_取得套装',int_id,4) == 2 then 
             result = result + 50
         elseif G.call('通用_取得套装',int_id,4) == 3 then 
@@ -3501,7 +3501,7 @@ end
 --hide=true
 --private=false
 t['magic_power3'] = function(int_id,int_no)
-    if  int_id == nil or int_no == nil then 
+    if  int_id == nil or int_no == nil or int_id == 0 then 
         return 0 
     end 
     local o_skill = G.QueryName(0x10050000 + int_no)
@@ -3546,7 +3546,7 @@ t['magic_power3'] = function(int_id,int_no)
         for i = 1, 4 do --判断队友携带武器和武功配合
             if   o_skill.装备 == o_role[需求道具[i]] then 
                 if o_role['拥有'..i] > 0 then 
-                    result = result + 20
+                    result = result + 100
                 end 
             end 
         end    
@@ -3560,7 +3560,7 @@ t['magic_power3'] = function(int_id,int_no)
         for i = 1,3 do
             if o_role['技能'..i] ~= nil then 
                 if o_skill.内功  ==  o_role['技能'..i] then 
-                    result = result + 20
+                    result = result + 100
                 end 
             end 
         end  
@@ -3585,7 +3585,7 @@ t['magic_power3'] = function(int_id,int_no)
         
             end 
             if o_role['技能'..i] == 0x100500bd  then --左右被动
-                local int_左右 = 100 + G.call('通用_取得装备左右效果',int_id)
+                local int_左右 = 150 + G.call('通用_取得装备左右效果',int_id)
                 if G.call('通用_取得套装',int_id,6) == 2 then
                     int_左右 = int_左右*1.25
                 elseif  G.call('通用_取得套装',int_id,6) == 3 then
@@ -3605,15 +3605,15 @@ t['magic_power3'] = function(int_id,int_no)
     local float = math.random(-50,50)
     if o_skill.类别 < 6 then 
         if G.call('get_role',int_id,14) >= needmp then  --伤害计算
-            result =  result + float/10+G.call('get_role',int_id,4)*0.6 +G.call('get_role',int_id,6)*0.6+G.call('get_role',int_id,7)*0.6
+            result =  result + float/10+G.call('get_role',int_id,4)*0.6 +G.call('get_role',int_id,6)*0.8+G.call('get_role',int_id,7)*0.6
         else
-            result = result + float/10+G.call('get_role',int_id,4)*0.6 +G.call('get_role',int_id,6)*0.6*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.6
+            result = result + float/10+G.call('get_role',int_id,4)*0.6 +G.call('get_role',int_id,6)*0.8*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.6
         end  
     else
         if G.call('get_role',int_id,14) >= needmp then  --伤害计算
-            result =  result + float/10+G.call('get_role',int_id,4)*0.4 +G.call('get_role',int_id,6)*0.8+G.call('get_role',int_id,7)*0.5
+            result =  result + float/10+G.call('get_role',int_id,4)*0.4 +G.call('get_role',int_id,6)*1.2+G.call('get_role',int_id,7)*0.5
         else
-            result = result + float/10+G.call('get_role',int_id,4)*0.4 +G.call('get_role',int_id,6)*0.8*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.5
+            result = result + float/10+G.call('get_role',int_id,4)*0.4 +G.call('get_role',int_id,6)*1.2*G.call('get_role',int_id,14)/needmp +G.call('get_role',int_id,7)*0.5
         end
     end 
     o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_no,o_skill_武功熟练度 )
@@ -3648,7 +3648,7 @@ t['magic_power3'] = function(int_id,int_no)
         if jq_randow > 90  then 
             hurt = 0
         elseif  jq_randow > 80  then
-            result = result  - 50
+            result = result  - 100
         end 
     end
     if G.call('get_point',44)  < G.call('get_point',217) *0.2 and  (G.call('通用_取得人物特效',0,11) or G.call('通用_取得装备特效',0,105)) then  --主角强体判断
@@ -3674,7 +3674,7 @@ t['magic_power3'] = function(int_id,int_no)
         end 
     end  
     if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,7) or G.call('通用_取得装备特效',int_id,203) or G.call('通用_取得装备特效',int_id,410) )   then ----攻击方暴击效果
-        result = result + 50
+        result = result + 100
         if G.call('通用_取得套装',int_id,4) == 2 then 
             result = result + 50
         elseif G.call('通用_取得套装',int_id,4) == 3 then 
@@ -3682,9 +3682,9 @@ t['magic_power3'] = function(int_id,int_no)
         end 
     end
     if  G.call('通用_取得我方队伍特效',2) then 
-        result = result  - 50 - int_慈悲效果*10
+        result = result  - 200 - int_慈悲效果*10
     end    
-    hurt = hurt * result/120
+    hurt = hurt * result/100
     local int_闪避 = 0
     if G.call('get_point',196) ~= nil then   --主角内功闪避
         local o_skill_ta = G.QueryName(G.call('get_point',196))
