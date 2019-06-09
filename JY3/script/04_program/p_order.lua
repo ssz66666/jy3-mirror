@@ -875,9 +875,6 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     for i = 1,6 do
         table.insert(G.misc().队伍记录,int[i]) 
     end
-    for i =1,10 do 
-        print(i,G.misc().队伍记录[i])
-    end
     G.misc().战斗结果 = 0
     G.call('line_off')
     G.addUI('v_battle')

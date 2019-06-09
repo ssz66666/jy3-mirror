@@ -150,38 +150,38 @@ t['地图系统_防修改监控'] = function()
 	local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
 	if int_成就 ~= math.abs(G.call('get_newpoint',80)+2000) then 
 		print('成就',int_成就,G.call('get_newpoint',80))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',201) 
 	end
 	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 10 )  then
 		print('周目',G.call('get_point',237),G.call('get_newpoint',237))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',202) 
 	end
 	if G.call('get_point',237) == 1 then return end
 	local o_body = G.QueryName(0x10030001)
 	local o_newbody = G.QueryName(0x101b0001)
 	if G.call('get_point',5) ~= math.abs(G.call('get_newpoint',5) + 10)  then
 		print('修为点',G.call('get_point',5),G.call('get_newpoint',5))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',203) 
 	end 
 	if G.call('get_point',4) ~= math.abs(G.call('get_newpoint',4)+10)  then
 		print('等级',G.call('get_point',4),G.call('get_newpoint',4))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',204) 
 	end
 	if G.call('get_point',110) ~= math.abs(G.call('get_newpoint',110)+2000)  then
 		print('金钱',G.call('get_point',110),G.call('get_newpoint',110))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',205) 
 	end
 	if G.call('get_point',45) ~= math.abs(G.call('get_newpoint',45) + 10)  then
 		print('HP',G.call('get_point',45),G.call('get_newpoint',45))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',206) 
 	end 
 	if G.call('get_point',47) ~= math.abs(G.call('get_newpoint',47) + 10)  then
 		print('MP',G.call('get_point',47),G.call('get_newpoint',47))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',207) 
 	end
 	if G.call('get_point',63) ~= math.abs(G.call('get_newpoint',63) + 10)  then
 		print('北冥',G.call('get_point',63),G.call('get_newpoint',63))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',208) 
 	end
 	-- if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) + 10)  then
 	-- 	print('本金',G.call('get_point',130),G.call('get_newpoint',130))
@@ -189,7 +189,7 @@ t['地图系统_防修改监控'] = function()
 	-- end
 	if G.call('get_magicexp',83) ~= math.abs(G.call('get_newpoint',77) + 10) then 
 		print('野球拳',G.call('get_magicexp',83),G.call('get_newpoint',77))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',209) 
 	end
 	local int_物品数量 = 0
 	local item = G.DBTable('o_item')
@@ -201,19 +201,19 @@ t['地图系统_防修改监控'] = function()
 	end
 	if int_物品数量 ~= math.abs(G.call('get_newpoint',76)+2000) then 
 		print('物品数量',int_物品数量,G.call('get_newpoint',76))
-		G.call('通用_强退游戏') 
+		G.call('通用_强退游戏',210) 
 	end
 	for i = 111,114 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 10)  then 
 			print(i,G.call('get_point',i),G.call('get_newpoint',i)+10)
-			G.call('通用_强退游戏') 
+			G.call('通用_强退游戏',211) 
 			break
 		end
 	end
 	for i = 120,124 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i))  then 
 			print(i,G.call('get_point',i),G.call('get_newpoint',i))
-			G.call('通用_强退游戏') 
+			G.call('通用_强退游戏',212) 
 			break
 		end
 	end
@@ -221,12 +221,12 @@ t['地图系统_防修改监控'] = function()
 		if i < 22 then 
 			if G.call('get_point',i) > 100 then 
 				print(i,G.call('get_point',i),G.call('get_newpoint',i))
-				G.call('通用_强退游戏')
+				G.call('通用_强退游戏',213)
 			end
 		end
 		if G.call('get_point',i) ~=  math.abs(G.call('get_newpoint',i) + 10)  then
 			print(i,G.call('get_point',i),G.call('get_newpoint',i))
-			G.call('通用_强退游戏') 
+			G.call('通用_强退游戏',214) 
 			break
 		end
 	end
@@ -237,7 +237,7 @@ t['地图系统_防修改监控'] = function()
 			local o_role_人物 = G.QueryName( i_team)
 			for i = 1,8 do 
 				if o_role_人物[tostring(900 + i)] and o_role_人物[tostring(i)] > o_role_人物[tostring(900 + i)] then 
-					G.call('通用_强退游戏')
+					G.call('通用_强退游戏',215)
 				end
 			end
 		end
@@ -453,7 +453,7 @@ t['地图系统_事件响应'] = function()
 				c.挖矿值 = c.挖矿值 + p
 				ui.getChildByName('耐久').text = h - p
 				if tonumber(ui.getChildByName('耐久').text) ~= math.abs(c.挖矿值) then
-					G.call('通用_强退游戏') 
+					G.call('通用_强退游戏',301) 
 				end
 			end 
 			ui.getChildByName('击打值').visible = true
@@ -602,7 +602,7 @@ t['地图系统_事件响应'] = function()
 				ui3.getChildByName('耐久').text = h - p
 				print(ui3.getChildByName('耐久').text,c.伐木值)
 				if tonumber(ui3.getChildByName('耐久').text) ~= math.abs(c.伐木值) then
-					G.call('通用_强退游戏') 
+					G.call('通用_强退游戏',302) 
 				end
 			end 
 			if t - 10 > 0 then 
