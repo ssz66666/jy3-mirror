@@ -3550,7 +3550,7 @@ t['通用_替换装备']=function(i_role,i_equip)
             int_属性[i] = o_equip_2[效果[i]] - o_equip_1[效果[i]]
             if i < 2 and (o_equip_2[效果[i]] > 5000 or o_equip_1[效果[i]] > 5000) then 
                 G.call('通用_强退游戏') 
-            elseif i >= 2 and (o_equip_2[效果[i]] > 40 or o_equip_1[效果[i]] > 40) then 
+            elseif i >= 2 and (o_equip_2[效果[i]] > 45 or o_equip_1[效果[i]] > 45) then 
                 G.call('通用_强退游戏') 
             end
         end
