@@ -257,7 +257,7 @@ function t:click(tar)
                     local dqjd = 0
                     local zjd = 0
                     for n = 1,#o_achieve.进度列表 do 
-                        if (i == 1) and  o_achieve.进度列表[n].完成 == 1 then 
+                        if (i == 1 or i == 4) and  o_achieve.进度列表[n].完成 == 1 then 
                             dqjd = dqjd + o_achieve.进度列表[n].总进度        
                         else
                             dqjd = dqjd + o_achieve.进度列表[n].当前进度       
@@ -509,15 +509,19 @@ function t:click(tar)
             self.list_23[i].getChildByName('名称').text = o_achieve.进度列表[i].名称
             self.list_23[i].getChildByName('图片').img = 0x560f1000+i
             --self.list_23[i].visible = true
+            local o_book_story = G.QueryName(0x101c0000 + i)
             if o_achieve.进度列表[i].完成 == 0 then 
                 self.list_23[i].getChildByName('完成').img = 0x56160073
                 self.list_23[i].getChildByName('名称').style = 10
-                self.list_23[i].getChildByName('闪光').visible = false
             else
                 self.list_23[i].getChildByName('完成').img = 0x56160072
                 self.list_23[i].getChildByName('名称').style = 5
+            end 
+            if  o_book_story.完美 == 1 then
                 self.list_23[i].getChildByName('闪光').visible = true
-            end    
+            else
+                self.list_23[i].getChildByName('闪光').visible = false
+            end  
         end 
     end 
     self.obj.c_achieve:更新()

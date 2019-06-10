@@ -346,7 +346,7 @@ t['new_test'] = function()
     --G.call('模式_笑梦游记')
    -- G.call('join',402)
     local o_book_story = G.QueryName(0x101c000b)
-    o_book_story.流程 = 0
+    o_book_story.流程 = 4
     G.call('天书_侠客行') 
     G.call('通用_印记状态')
     -- while true do 
@@ -3780,12 +3780,17 @@ t['模式_笑梦游记']=function()
     local str = {'飞狐外传','雪山飞狐','连城诀','天龙八部','射雕英雄传','白马啸西风','鹿鼎记','笑傲江湖','书剑恩仇录','神雕侠侣','侠客行','倚天屠龙记','碧血剑','鸳鸯刀'}
     if int_天书 > 0 then 
         local o_book_story = G.QueryName(0x101c0000 + int_天书)
+        local o_achieve_xmyj = G.QueryName(0x10170017).进度列表[int_天书]
         if G.call('通用_拥有印记',int_天书)   then 
             if o_book_story.完成 == 0 then 
                 G.call('天书_'..str[int_天书])
                 local o_book_story_list = G.QueryName(0x101e0000 + int_天书)
                 if o_book_story.完美 == 1 and o_book_story_list.完美 == 0 then
                     o_book_story_list.完美 = 1
+                end
+                if o_book_story.完成 == 1 and o_achieve_xmyj.完成 == 0 then
+                    o_achieve_xmyj.完成 = 1
+                    G.call('notice1','完成成就【'..str[int_天书]..'】！')
                 end
                 G.call('通用_印记状态')
             else
@@ -3795,6 +3800,18 @@ t['模式_笑梦游记']=function()
         else
             G.call("talk",'',38,'   你还没有【'..str[int_天书]..'】的印记无法发展此模式！',2,1)
             G.call('all_over')
+        end
+        if G.QueryName(0x10170017).完成 == 0 then
+            local int_完成数 = 0
+            for i  = 1,#o_achieve_xmyj do 
+                if o_achieve_xmyj.完成 == 1 then
+                    int_完成数 = int_完成数 + 1 
+                end
+            end
+            if int_完成数 == 15 then
+                G.QueryName(0x10170017).完成 = 1
+                G.call('notice1','完成成就【笑梦游记】！') 
+            end 
         end
     end
 end
