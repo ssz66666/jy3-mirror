@@ -148,7 +148,6 @@ function t:显示刷新()
             self.展示list[i].visible = true
             self.展示list[i].getChildByName('图片').img = G.QueryName(i_item).图标
             local o_item_物品 = G.QueryName(i_item)
-            print(o_item_物品.名称,o_item_物品.数量)
             if self.data_io == i then 
                 G.QueryName(0x10030001)[tostring(192)] = i_item --记录当前选择的物品    
                 self.按钮.getChildByName('丢弃').visible = true

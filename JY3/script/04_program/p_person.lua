@@ -1427,7 +1427,6 @@ t['事件_随机切磋']=function()
             end
         end
     end
-    print(#boos_1,#boos_2,#boos_3,#boos_4,#boos_5)
     local boss_final = {}
     local int_lv = G.call('get_point',4)
     if int_lv >= 50 and int_lv <= 60 then 
