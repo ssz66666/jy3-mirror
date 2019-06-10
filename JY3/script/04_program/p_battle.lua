@@ -2385,9 +2385,9 @@ t['集气'] = function()
                         if int_难度 == 1 then 
                             int_speed = int_speed 
                         elseif  int_难度 == 2 then    
-                            int_speed = int_speed * 1.1
-                        elseif  int_难度 == 2 then    
                             int_speed = int_speed * 1.2
+                        elseif  int_难度 == 3 then    
+                            int_speed = int_speed * 1.5
                         end
                     end
                     speed[i] = speed[i] + int_speed   --NPC速度
