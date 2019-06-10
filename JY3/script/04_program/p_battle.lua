@@ -2379,13 +2379,15 @@ t['集气'] = function()
                 if  G.QueryName(o_role + o_battle[位置[i]] ).生命 > 0  then
                     local int_role = o_battle[位置[i]] 
                     local o_role_npc = G.QueryName(o_role + o_battle[位置[i]] )
-                    local int_speed = o_role_npc[tostring(8)]*2 
+                    local int_speed = o_role_npc[tostring(8)] 
                     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
                     if i >= 6 then 
                         if int_难度 == 1 then 
-                            int_speed = int_speed * 0.5
+                            int_speed = int_speed 
                         elseif  int_难度 == 2 then    
-                            int_speed = int_speed * 0.8
+                            int_speed = int_speed * 1.1
+                        elseif  int_难度 == 2 then    
+                            int_speed = int_speed * 1.2
                         end
                     end
                     speed[i] = speed[i] + int_speed   --NPC速度
