@@ -355,7 +355,7 @@ function t:click(tar)
             end
         end   
         if G.misc().作弊 == 6  then
-            if  n == nil or n < 1 or (n > 40 and n ~= 252 and n ~= 406 and n ~= 179 and n ~= 391 and n ~= 248  and n ~= 385 and  n ~= 393 and n ~= 396 and n ~= 398 and n ~= 402 and n ~= 405) then
+            if  n == nil or n < 1 or (n > 40 and n ~= 252 and n ~= 406 and n ~= 179 and n ~= 391 and n ~= 248  and n ~= 385 and  n ~= 393 and n ~= 396 and n ~= 397 and n ~= 398 and n ~= 402 and n ~= 405 and n ~= 409 and n ~= 410 ) then
                 G.call('notice1','请输入数字(1~40)')
             else  
                 local o_role = G.QueryName(0x10040000 + n) 
