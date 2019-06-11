@@ -344,8 +344,13 @@ function t:rollOver(tar)
         if tar == self.透明按钮.getChildByName(位置[i]) and o_role_人物.生命 > 0 then 
             self.透明按钮.getChildByName('属性').visible = true
             if o_role_人物 ~= nil then 
-                if o_role_人物.头像 then 
-                     self.属性.getChildByName('头像').img = o_role_人物.头像
+                if o_role_人物.头像 then
+                    if int_队员编号 < 385 and int_队员编号 >= 253 then
+                        local o_role = G.QueryName(0x10040000 + o_role_人物.编号)
+                        self.属性.getChildByName('头像').img = o_role.头像
+                    else 
+                        self.属性.getChildByName('头像').img = o_role_人物.头像
+                    end
                 end 
                 self.属性.getChildByName('姓名').text = o_role_人物.姓名
                 if i > 5 then 
@@ -363,12 +368,6 @@ function t:rollOver(tar)
                         self.属性.getChildByName(属性[i]).text = o_role_人物[tostring(i+2)]
                     end 
                 end
-                -- self.属性.getChildByName('拆招').text = G.call('get_role',int_队员编号,3)
-                -- self.属性.getChildByName('闪躲').text = G.call('get_role',int_队员编号,5)
-                -- self.属性.getChildByName('搏击').text = G.call('get_role',int_队员编号,4)
-                -- self.属性.getChildByName('内功').text = G.call('get_role',int_队员编号,6)
-                -- self.属性.getChildByName('攻击').text = tostring(o_role_人物[tostring(7)]) 
-                -- self.属性.getChildByName('速度').text = G.call('get_role',int_队员编号,8)
                 self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
                 local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气'}
                 for i = 1,4 do 
@@ -427,102 +426,7 @@ function t:rollOver(tar)
                 self.属性.getChildByName('武功').text = str  
             end
         end 
-    end
-    -- local int_代码 = tonumber(self.obj.getChildByName('代码').getChildByName(位置[1]).text)
-    -- local int_n = 0 
-    -- if G.QueryName(i_battle)[位置[6]] > 0 then
-    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[6] ]).生命 > 0 then 
-    --        int_n = int_n + 1
-    --     end
-    -- elseif G.QueryName(i_battle)[位置[9]] > 0 then
-    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[9] ]).生命 > 0 then 
-    --         int_n = int_n + 1	
-    --     end
-    -- elseif G.QueryName(i_battle)[位置[10]] > 0 then
-    --     if	G.QueryName(o_role + G.QueryName(i_battle)[位置[10] ]).生命 > 0 then 
-    --         int_n = int_n + 1
-    --     end
-    -- end 		
-    -- local int_m = 0 
-    -- if G.QueryName(i_battle)[位置[7]] > 0 then
-    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[7] ]).生命 > 0 then 
-    --         int_m = int_m + 1
-    --     end
-    -- elseif G.QueryName(i_battle)[位置[8]] > 0 then
-    --     if	G.QueryName(o_role + G.QueryName(i_battle)[位置[8] ]).生命 > 0 then 
-    --         int_m = int_m + 1	
-    --     end
-    -- elseif G.QueryName(i_battle)[位置[11]] > 0 then
-    --     if	G.QueryName(o_role + G.QueryName(i_battle)[位置[11] ]).生命 > 0 then 
-    --        int_m = int_m + 1
-    --     end   
-    -- end 
-    -- local int_a = 0 
-    -- if G.QueryName(i_battle)[位置[6]] > 0 then
-    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[6] ]).生命 > 0 then 
-    --         int_a = int_a + 1
-    --     end
-    -- elseif G.QueryName(i_battle)[位置[11]] > 0 then
-    --     if	G.QueryName(o_role + G.QueryName(i_battle)[位置[11] ]).生命 > 0 then 
-    --         int_a = int_a + 1
-    --     end
-    -- end 		
-    -- local int_b = 0 
-    -- if G.QueryName(i_battle)[位置[7]] > 0 then
-    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[7] ]).生命 > 0 then 
-    --         int_b = int_b + 1
-    --     end
-    -- elseif G.QueryName(i_battle)[位置[9]] > 0 then
-    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[9] ]).生命 > 0 then 
-    --         int_b = int_b + 1
-    --     end
-    -- end 
-    -- local int_c = 0 
-    -- if G.QueryName(i_battle)[位置[8]] > 0 then
-    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[8] ]).生命 > 0 then 
-    --         int_c = int_c + 1
-    --     end
-    -- elseif G.QueryName(i_battle)[位置[10]] > 0 then
-    --     if 	G.QueryName(o_role + G.QueryName(i_battle)[位置[10] ]).生命 > 0 then 
-    --          int_c = int_c + 1
-    --     end
-    -- end 
-    -- local int_d = 0
-    -- if  int_a == 0  then 
-    --     int_d = int_d  + 1
-    -- elseif  int_b == 0  then   
-    --     int_d = int_d  + 1
-    -- elseif  int_c == 0  then   
-    --     int_d = int_d  + 1
-    -- end 
-    -- if self.obj.getChildByName('map').getChildByName(位置[1]).x == 150 and self.obj.getChildByName('状态').text == tostring(1) then 
-    --     if  G.QueryName(0x10050000+int_代码).范围 == 2 and tonumber(self.obj.getChildByName('num').text) > 1  then 
-    --         for i = 6,11 do 
-    --             if tar == self.obj.getChildByName('tab').getChildByName(位置[i]) then 
-    --                 G.Tween("color", 300,self.obj.getChildByName('tab').getChildByName(位置[i]) , 0x713e21)
-    --             end        
-    --         end 
-    --     elseif G.QueryName(0x10050000+int_代码).范围 == 3 then 
-    --         if int_m ~= 0 and  int_n ~= 0 then 
-    --             if tar ==  self.obj.getChildByName('横一') then
-    --                 self.obj.getChildByName('横一').getChildByName('图片').visible = true
-    --             elseif tar ==  self.obj.getChildByName('横二') then   
-    --                 self.obj.getChildByName('横二').getChildByName('图片').visible = true
-    --             end  
-    --         end     
-    --     elseif G.QueryName(0x10050000+int_代码).范围 == 4  then 
-    --         if int_d < 2 then   
-    --             if tar ==  self.obj.getChildByName('纵一') then
-    --                 self.obj.getChildByName('纵一').getChildByName('图片').visible = true
-    --             elseif tar ==  self.obj.getChildByName('纵二') then   
-    --                 self.obj.getChildByName('纵二').getChildByName('图片').visible = true
-    --             elseif tar ==  self.obj.getChildByName('纵三') then   
-    --                 self.obj.getChildByName('纵三').getChildByName('图片').visible = true
-    --             end 
-    --         end 
-    --     end      
- 
-    -- end             
+    end            
 end 
 function t:rollOut(tar)
     local i_battle = 0x10150001

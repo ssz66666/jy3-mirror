@@ -3791,11 +3791,13 @@ t['通用_取得青龙附加效果']=function(int_编号,i_skill)
 end
 t['通用_拥有印记']=function(int_印记) 
     local o_store = G.QueryName(0x10190001)
-    local i_equip = 0x10180028 + int_印记
+    local 印记名称 = {'飞','雪','连','天','射','白','鹿','笑','书','神','侠','倚','碧','鸳'}
     local result = false
     if #o_store.装备 > 0 then 
-        for i = 1,#o_store.装备 do 
-            if o_store.装备[i].代码 ==  i_equip then 
+        for i = 1,#o_store.装备 do
+            local i_equip = o_store.装备[i].代码
+            local o_equip = G.QueryName(i_equip)
+            if o_equip.名称 == 印记名称[int_印记]   then 
                 result = true
             end
         end
