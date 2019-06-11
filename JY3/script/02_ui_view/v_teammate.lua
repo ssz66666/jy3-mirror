@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_teammate = require 'c_teammate'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -650,10 +650,30 @@ tp = tc
 		tc.right = 177.000
 		tc.bottom = -121.000
 		tc.top = -91.000
+		tc.visible = false
 		tc.scaleX = 0.500
 		tc.scaleY = 0.500
 		tc.font = 0x611e0000
 		tc.align = 1
+		tc.style = 10
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = '武功'
+		tc.pivotX = 0.000
+		tc.pivotY = 1.000
+		tc.left = -62.000
+		tc.right = -36.000
+		tc.bottom = -186.000
+		tc.top = -98.000
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.autosize = 3
+		tc.font = 0x61190000
+		tc.align = 1
+		tc.lineSpace = -4
 		tc.style = 10
 		tp = tc
 		tp = tp.parent
@@ -666,6 +686,7 @@ tp = tc
 		tc.right = 177.000
 		tc.bottom = -137.000
 		tc.top = -107.000
+		tc.visible = false
 		tc.scaleX = 0.500
 		tc.scaleY = 0.500
 		tc.font = 0x611e0000
@@ -682,6 +703,7 @@ tp = tc
 		tc.right = 177.000
 		tc.bottom = -153.000
 		tc.top = -123.000
+		tc.visible = false
 		tc.scaleX = 0.500
 		tc.scaleY = 0.500
 		tc.font = 0x611e0000

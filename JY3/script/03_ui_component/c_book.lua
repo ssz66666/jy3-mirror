@@ -209,11 +209,12 @@ function t:详细显示()
             end     
         end    
         local 武功 = {'武功一','武功二','武功三'} 
-        for i = 1,3 do
+        local str = ''
+        for i = 1,4 do
             if o_role_人物['技能'..i] ~= nil then 
                 local o_skill = G.QueryName(o_role_人物['技能'..i])
                 local data = G.QueryName(o_role_人物['技能'..i]).满级熟练度/450
-                local o_skill_武功当前熟练度 = tonumber(o_role_人物[tostring(10)]) 
+                local o_skill_武功当前熟练度 = tonumber(o_role_人物[tostring(9+i)]) 
                 local o_skill_武功等级 = 0
                 if o_skill_武功当前熟练度 > 0 then 
                         o_skill_武功等级 = 1
@@ -248,11 +249,12 @@ function t:详细显示()
                 if o_skill.类别 > 5 then
                     o_skill_武功等级 = 5
                 end
-                self.属性.getChildByName(武功[i]).text = G.QueryName(o_role_人物['技能'..i]).名称..tostring(o_skill_武功等级)..'级'
+                str = str..G.QueryName(o_role_人物['技能'..i]).名称..' '..tostring(o_skill_武功等级)..'级[br]'
             else
-                self.属性.getChildByName(武功[i]).text = ''
+                str = str..''
             end 
         end
+        self.属性.getChildByName('武功').text = str
     elseif  G.misc().book == 2 then
         local o_item = G.QueryName(0x100b0000 + G.misc().book_data)
         self.物品.getChildByName('图片').img = o_item.图标

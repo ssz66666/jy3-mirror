@@ -344,10 +344,10 @@ t['test'] = function()
 end   
 t['new_test'] = function()
     --G.call('模式_笑梦游记')
-   -- G.call('join',402)
-    local o_book_story = G.QueryName(0x101c000b)
-    o_book_story.流程 = 4
-    G.call('天书_侠客行') 
+    G.call('join',4)
+    local o_book_story = G.QueryName(0x101c000c)
+    o_book_story.流程 = 1
+    G.call('天书_倚天屠龙记') 
     G.call('通用_印记状态')
     -- while true do 
     --     local 印记 = {}
@@ -703,13 +703,13 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
             if  G.QueryName(i_role + o_battle[位置[p]] ).生命 > 0  then
                 if  ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').visible == true then 
                     hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').text)
-                    G.call('add_role',o_battle[位置[p]] ,13,-hurt)
+                    G.call('add_role',o_battle[位置[p]] ,15,-hurt)
                     if  G.call('通用_取得人物特效',o_battle[位置[p]],15) and math.random(100) > 95 and G.call('get_role',o_battle[位置[p]],13) < G.call('get_role',o_battle[位置[p]],1) *0.2 then --npc复生效果
-                        G.call('set_role',o_battle[位置[p]],13,G.call('get_role',o_battle[位置[p]],1))
+                        G.call('set_role',o_battle[位置[p]],15,G.call('get_role',o_battle[位置[p]],1))
                     end                  
                 end 
                 local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text)
-                G.call('add_role',o_battle[位置[p]],13,int_hp)
+                G.call('add_role',o_battle[位置[p]],15,int_hp)
             end
         end 		
     end 
@@ -732,7 +732,7 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
 end 
 t['call_wood']=function() 
     --if G.misc().战斗结果 == 0 then return end 
-    G.call('set_role',223,13,9989999)
+    G.call('set_role',223,15,9989999)
     G.call('set_role',223,1,9989999)
     local o_body = G.QueryName(0x1003001)
     local int_hp = G.call('get_point',44) 
@@ -752,7 +752,7 @@ t['call_wood']=function()
     for i = 3,8 do
         G.call('set_role',223,i,100)
     end
-    G.call('set_role',223,13,40000)
+    G.call('set_role',223,15,40000)
     G.call('set_role',223,1,40000)
     G.call('set_roleskill',223,1,167)
     G.call('set_roleskill',223,2,145)
@@ -853,7 +853,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         for p = 81,89 do   --清除敌人的全部异常
             G.call('set_role',o_battle[位置[i] ] ,p,0)
         end 
-        G.call('set_role',o_battle[位置[i] ]  ,13,G.call('get_role',o_battle[位置[i] ],1 ) )   --回复敌人的全部HP,MP
+        G.call('set_role',o_battle[位置[i] ]  ,15,G.call('get_role',o_battle[位置[i] ],1 ) )   --回复敌人的全部HP,MP
         G.call('set_role',o_battle[位置[i] ] ,14,G.call('get_role',o_battle[位置[i ] ],2 ) ) 
     end 
     if o_battle.模式 > 3 then --模式3我方自动满状态出战
@@ -861,7 +861,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
             for p = 81,89 do   
                 G.call('set_role',o_battle[位置[i] ] ,p,0)
             end 
-            G.call('set_role',o_battle[位置[i] ]  ,13,G.call('get_role',o_battle[位置[i] ],1 ) )   --回复敌人的全部HP,MP
+            G.call('set_role',o_battle[位置[i] ]  ,15,G.call('get_role',o_battle[位置[i] ],1 ) )   --回复敌人的全部HP,MP
             G.call('set_role',o_battle[位置[i] ] ,14,G.call('get_role',o_battle[位置[i ] ],2 ) ) 
         end 
     end
@@ -922,7 +922,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         for p = 81,89 do   --清除敌人的全部异常
             G.call('set_role',o_battle[位置[i] ] ,p,0)
         end 
-        G.call('set_role',o_battle[位置[i] ]  ,13,1 )   --回复敌人hp为1 
+        G.call('set_role',o_battle[位置[i] ]  ,15,1 )   --回复敌人hp为1 
     end 
     for i = 2,11 do   --清除队友的异常
         if o_battle[位置[i] ] > 0 then 
@@ -933,8 +933,8 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
                     G.call('set_role',o_battle[位置[i] ] ,p,0)
                 end 
                 G.call('set_role',o_battle[位置[i] ] ,84,n) 
-                if G.call('get_role',o_battle[位置[i] ],13 ) <= 0 then --战斗后回复0hp队友hp为1
-                    G.call('set_role',o_battle[位置[i] ] ,13,1)
+                if G.call('get_role',o_battle[位置[i] ],15 ) <= 0 then --战斗后回复0hp队友hp为1
+                    G.call('set_role',o_battle[位置[i] ] ,15,1)
                 end  
             end 
         end       
@@ -971,9 +971,9 @@ t['get_result']=function()
     end 
     if  G.call('get_point',44) <= 0 then 
         result = 2
-    elseif o_battle.狙杀 > 0 and o_battle.狙杀 < 6 and G.call('get_role',o_battle[位置[o_battle.狙杀]],13) == 0 then 
+    elseif o_battle.狙杀 > 0 and o_battle.狙杀 < 6 and G.call('get_role',o_battle[位置[o_battle.狙杀]],15) == 0 then 
         result = 2
-    elseif o_battle.狙杀 >= 6 and  G.call('get_role',o_battle[位置[o_battle.狙杀]],13) == 0 then 
+    elseif o_battle.狙杀 >= 6 and  G.call('get_role',o_battle[位置[o_battle.狙杀]],15) == 0 then 
         result = 1
     end  
     return result
@@ -1325,10 +1325,10 @@ t['photo0_off']=function() --关闭事件图片
 end
 t['set_role']=function(int_id,int_编号,int_number) --设置NPC部分属性
     if int_id <= 0 then return end 
-    if int_编号 > 0 and int_编号 < 15 then 
-        if int_编号 < 13 then 
+    if int_编号 > 0 and int_编号 <= 15 then 
+        if int_编号 < 14 then 
             G.QueryName(0x10040000+int_id)[tostring(int_编号)] = int_number
-        elseif int_编号 == 13  then  
+        elseif int_编号 == 15  then  
             G.QueryName(0x10040000+int_id).生命 = int_number   
         elseif int_编号 == 14  then  
             G.QueryName(0x10040000+int_id).内力 = int_number 
@@ -1346,64 +1346,44 @@ t['set_death']=function(int_no)--设置NPC死亡信息
 end    
 t['set_roleskill']=function(int_id,int_no,int_number) --设置NPC技能
     if int_number > 0 then 
-        if int_no == 1 then 
-            G.QueryName(0x10040000+int_id)['技能'..1] = 0x10050000 + int_number-1  
-        elseif int_no == 2 then 
-            G.QueryName(0x10040000+int_id)['技能'..2] = 0x10050000 + int_number-1 
-        elseif int_no == 3 then 
-            G.QueryName(0x10040000+int_id)['技能'..3] = 0x10050000 + int_number-1 
-        else    
-        -- G.call('notice1','代码错误')
-        end  
+        if int_no < 5 then 
+            G.QueryName(0x10040000+int_id)['技能'..int_no] = 0x10050000 + int_number-1 
+        end
     end 
     if int_number == 0 then 
-        if int_no == 1 then 
-            G.QueryName(0x10040000+int_id)['技能'..1] = nil 
-        elseif int_no == 2 then 
-            G.QueryName(0x10040000+int_id)['技能'..2] = nil
-        elseif int_no == 3 then 
-            G.QueryName(0x10040000+int_id)['技能'..3] = nil
-        else    
-        -- G.call('notice1','代码错误')
-        end   
+        if int_no < 5 then 
+            G.QueryName(0x10040000+int_id)['技能'..int_no] = nil 
+        end 
     end
 end
 t['set_friend_skill']=function(int_id,int_no,int_number,int_熟练度) --设置NPC技能
+    print(int_熟练度)
     if int_number > 0 then 
-        if int_no == 1 then 
-            G.QueryName(0x10040000+int_id)['技能'..1] = 0x10050000 + int_number-1  
-        elseif int_no == 2 then 
-            G.QueryName(0x10040000+int_id)['技能'..2] = 0x10050000 + int_number-1 
-        elseif int_no == 3 then 
-            G.QueryName(0x10040000+int_id)['技能'..3] = 0x10050000 + int_number-1 
-        else    
-        -- G.call('notice1','代码错误')
-        end  
-        if int_熟练度 then
-            G.call('set_role',int_id,9+int_no,int_熟练度)
+        if int_no < 5 then 
+            if int_no < 5 then 
+                G.QueryName(0x10040000+int_id)['技能'..int_no] = 0x10050000 + int_number-1 
+            end
+            if int_熟练度 then
+                G.call('set_role',int_id,9+int_no,int_熟练度)
+            end
+            local o_skill = G.QueryName(0x10050000 + int_number-1 )
+            local o_role = G.QueryName(0x10040000+int_id)
+            G.call('notice1','【'..o_role.姓名..'】领悟'..'【'..o_skill.名称..'】')
         end
-        local o_skill = G.QueryName(0x10050000 + int_number-1 )
-        local o_role = G.QueryName(0x10040000+int_id)
-        G.call('notice1','【'..o_role.姓名..'】领悟'..'【'..o_skill.名称..'】')
+  
     end 
     if int_number == 0 then 
-        if int_no == 1 then 
-            G.QueryName(0x10040000+int_id)['技能'..1] = nil 
-        elseif int_no == 2 then 
-            G.QueryName(0x10040000+int_id)['技能'..2] = nil
-        elseif int_no == 3 then 
-            G.QueryName(0x10040000+int_id)['技能'..3] = nil
-        else    
-        -- G.call('notice1','代码错误')
-        end   
+        if int_no < 5 then 
+            G.QueryName(0x10040000+int_id)['技能'..int_no] = nil 
+        end  
     end
 end
 t['get_role']=function(int_id,int_编号) --取得NPC部分属性
     if int_id <= 0 then return end
-    if int_编号 > 0 and int_编号 < 15 then 
-        if int_编号 < 13 then   
+    if int_编号 > 0 and int_编号 < 16 then 
+        if int_编号 < 14 then   
             return   G.QueryName(0x10040000+int_id)[tostring(int_编号)] 
-        elseif int_编号 == 13  then  
+        elseif int_编号 == 15  then  
             return    G.QueryName(0x10040000+int_id).生命   
         elseif int_编号 == 14  then  
             return   G.QueryName(0x10040000+int_id).内力
@@ -1419,7 +1399,7 @@ end
 t['get_npcskill']=function(int_id,i_skill) --NPC是否会武功
     local result = 0
     local o_role = G.QueryName(0x10040000+int_id)
-    for i = 1,3 do
+    for i = 1,4 do
         if o_role['技能'..i] ==  i_skill then
             result = 1
             break 
@@ -1433,6 +1413,8 @@ t['get_roleskill']=function(int_id,int_no) --取得NPC技能
     elseif int_no == 2 then 
         return    G.QueryName(0x10040000+int_id).技能2 - 0x10050000 - 1 
     elseif int_no == 3 then 
+        return    G.QueryName(0x10040000+int_id).技能3 - 0x10050000 - 1 
+    elseif int_no == 4 then 
         return    G.QueryName(0x10040000+int_id).技能3 - 0x10050000 - 1 
     else
         --G.call('notice1','代码错误')
@@ -1636,7 +1618,7 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
     if o_role_人物 == nil then 
         G.call('notice','人物编号错误')
     else    
-        if int_属性 > 0 and int_属性 <= 12 then 
+        if int_属性 > 0 and int_属性 <= 13 then 
             o_role_人物[tostring(int_属性)] =  o_role_人物[tostring(int_属性)] + int_数量
             if int_编号 == 223 or 390  then 
             else
@@ -1665,7 +1647,7 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
             end 
         elseif int_属性 >= 901 and int_属性 <= 908  then
             o_role_人物[tostring(int_属性)] =  o_role_人物[tostring(int_属性)] + int_数量     
-        elseif int_属性 == 13 then 
+        elseif int_属性 == 15 then 
             o_role_人物.生命 = o_role_人物.生命 + int_数量
             if o_role_人物.生命 > o_role_人物[tostring(1)] then 
                 o_role_人物.生命 = o_role_人物[tostring(1)]  
@@ -3523,10 +3505,10 @@ t['通用_卸下装备']=function(i_role,i_equip)
     G.call('add_role',int_队员编号,1,int_生命)
     G.call('add_role',int_队员编号,2,int_内力)
     G.call('add_role',int_队员编号,8,int_属性[7])
-    G.call('add_role',int_队员编号,13,int_生命)
+    G.call('add_role',int_队员编号,15,int_生命)
     G.call('add_role',int_队员编号,14,int_内力)
-    if G.call('get_role',int_队员编号,13) < 0 then 
-        G.call('set_role',int_队员编号,13,1)
+    if G.call('get_role',int_队员编号,15) < 0 then 
+        G.call('set_role',int_队员编号,15,1)
     end
 end
 t['通用_替换装备']=function(i_role,i_equip)
@@ -3601,7 +3583,7 @@ t['通用_替换装备']=function(i_role,i_equip)
     G.call('add_role',int_队员编号,1,int_生命)
     G.call('add_role',int_队员编号,2,int_内力)
     G.call('add_role',int_队员编号,8,int_属性[7])
-    G.call('add_role',int_队员编号,13,int_生命)
+    G.call('add_role',int_队员编号,15,int_生命)
     G.call('add_role',int_队员编号,14,int_内力)
 end
 t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_品质级别)

@@ -628,7 +628,7 @@ t['城镇-林家老宅']=function()
             G.call("talk",'',0,'   好不容易到手的宝贝，竟然被那混蛋抢去了，真是可恶！',0,0) 
             --设置岳不群飞升
             G.call('add_role',191,1,2500)
-            G.call('add_role',191,13,G.call('get_role',191,1))
+            G.call('add_role',191,15,G.call('get_role',191,1))
             G.call('add_role',191,2,2500)
             G.call('add_role',191,14,G.call('get_role',191,2))
             G.call('add_role',191,4,20)

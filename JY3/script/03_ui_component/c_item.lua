@@ -16,6 +16,11 @@ function t:init()
     self.快捷 = self.obj.getChildByName('快捷')
     self.显示 = self.obj.getChildByName('显示')
     self.说明 = self.obj.getChildByName('说明')
+    self.队伍 = self.obj.getChildByName('队伍')
+    self.属性 = self.队伍.getChildByName('属性')
+    self.被动 = self.属性.getChildByName('被动')
+    self.队友按钮 = self.队伍.getChildByName('按钮')
+    self.队友 = self.队伍.getChildByName('队友')
     self.确定 = self.快捷.getChildByName('确定')
     self.总数量 = 24
     self.展示list = {}
@@ -25,6 +30,8 @@ function t:init()
     self.data_max = 1
     self.data_io = 1
     self.显示数量 = 18
+    self.队友人数 = 0
+    self.队友编号 = 0
 end
 function t:start()
     self.obj.getChildByName('银两').text = tostring(G.QueryName(0x10030001)[tostring(110)])
@@ -34,7 +41,21 @@ function t:start()
     local item =G.DBTable('o_item')
     for i = 1,#item do
 		G.QueryName(0x100b0000 + i).图标 = 0x560e0000 + i
-	end	
+    end	
+    local o_teammate_队友 = G.QueryName(0x10110001)
+    for i  = 1,12 do 
+        if o_teammate_队友[tostring(i)] ~= nil then
+            self.队友人数 = self.队友人数 + 1
+            self.队友.getChildByName(tostring(i)).visible = true
+            self.队友按钮.getChildByName(tostring(i)).visible = true
+            local int_队友 =  o_teammate_队友[tostring(i)] - 0x10040000
+            self.队友.getChildByName(tostring(i)).frameActionID(int_队友 )
+        else
+            self.队友.getChildByName(tostring(i)).visible = false
+            self.队友按钮.getChildByName(tostring(i)).visible = false
+            self.队友.getChildByName(tostring(i)).frameActionID(0 )
+        end 
+    end 
     G.call('指令_存储属性')
     if G.call('get_point',193) ~= nil then 
         self.装备图.getChildByName('武器').getChildByName('图片').img = G.QueryName(G.call('get_point',193)).图标
@@ -93,6 +114,99 @@ function t:start()
     end 
     self:显示刷新()
 end  
+function t:队友属性()
+    if self.队友编号 == 0 then  
+        self.属性.visible = false 
+        return 
+    end 
+    self.属性.visible = true
+    local o_teammate_队友 = G.QueryName(0x10110001)
+    if o_teammate_队友[tostring(self.队友编号)] == nil then return end 
+    local int_队员编号 = o_teammate_队友[tostring(self.队友编号)] - 0x10040000
+    self.属性.x = 0
+    self.属性.y = 0
+    if  self.队友编号 >=3 and self.队友编号 <=10 and self.队友编号 ~= 6  then 
+        self.属性.x = 190
+        self.属性.y = 0
+    elseif self.队友编号 == 6  then
+        self.属性.x = 220
+    elseif self.队友编号 > 10 then 
+        self.属性.x = -50
+        self.属性.y = 0
+    end 
+    local o_role_人物 = G.QueryName(o_teammate_队友[tostring(self.队友编号)])
+    if o_role_人物 ~= nil then 
+        if o_role_人物.头像 then 
+             self.属性.getChildByName('头像').img = o_role_人物.头像
+        end 
+        self.属性.getChildByName('姓名').text = o_role_人物.姓名
+        self.属性.getChildByName('生命').text = tostring(o_role_人物.生命)..'/'..(o_role_人物[tostring(1)] )
+        self.属性.getChildByName('内力').text = tostring(o_role_人物.内力)..'/'..(o_role_人物[tostring(2)] )
+        self.属性.getChildByName('拆招').text = G.call('get_role',int_队员编号,3)
+        self.属性.getChildByName('闪躲').text = G.call('get_role',int_队员编号,5)
+        self.属性.getChildByName('搏击').text = G.call('get_role',int_队员编号,4)
+        self.属性.getChildByName('内功').text = G.call('get_role',int_队员编号,6)
+        self.属性.getChildByName('攻击').text = tostring(o_role_人物[tostring(7)]) 
+        self.属性.getChildByName('速度').text = G.call('get_role',int_队员编号,8)
+        self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
+        local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气'}
+        for i = 1,4 do 
+            if o_role_人物[tostring(110+i)] ~= nil then 
+                self.被动.getChildByName(tostring(i)).visible = true
+                self.被动.getChildByName(tostring(i)).text = magic[o_role_人物[tostring(110+i)]]
+            else
+                self.被动.getChildByName(tostring(i)).visible = false
+            end     
+        end     
+        local 武功 = {'武功一','武功二','武功三','武功四'} 
+        local str = ''
+        for i = 1,4 do
+            if o_role_人物['技能'..i] ~= nil then 
+                local o_skill = G.QueryName(o_role_人物['技能'..i])
+                local data = G.QueryName(o_role_人物['技能'..i]).满级熟练度/450
+                local o_skill_武功当前熟练度 = tonumber(o_role_人物[tostring(9+i)]) 
+                local o_skill_武功等级 = 0
+                if o_skill_武功当前熟练度 > 0 then 
+                        o_skill_武功等级 = 1
+                end     
+                if  o_skill_武功当前熟练度 > 10*data then
+                    o_skill_武功等级 = 2
+                end 
+                if  o_skill_武功当前熟练度 > 30*data then
+                    o_skill_武功等级 = 3
+                end     
+                if  o_skill_武功当前熟练度 > 60*data then
+                    o_skill_武功等级 = 4
+                end 
+                if  o_skill_武功当前熟练度 > 100*data then
+                    o_skill_武功等级 = 5
+                end 
+                if  o_skill_武功当前熟练度 > 150*data then
+                    o_skill_武功等级 = 6
+                end 
+                if  o_skill_武功当前熟练度 > 210*data then
+                    o_skill_武功等级 = 7
+                end 
+                if  o_skill_武功当前熟练度 > 280*data then
+                    o_skill_武功等级 = 8
+                end 
+                if  o_skill_武功当前熟练度 > 360*data then
+                    o_skill_武功等级 = 9
+                end 
+                if  o_skill_武功当前熟练度 > 450*data then
+                    o_skill_武功等级 = 10
+                end 
+                if o_skill.类别 > 5 then
+                    o_skill_武功等级 = 5
+                end
+                str = str..G.QueryName(o_role_人物['技能'..i]).名称..' '..tostring(o_skill_武功等级)..'级[br]'
+            else
+                str = str..''
+            end 
+        end
+        self.属性.getChildByName('武功').text = str
+    end 
+end
 function t:显示刷新()
     local 快捷 = {'q','w','e','r'}
     local 装备 = {'头戴','手戴','脚穿','印记'}
@@ -137,6 +251,7 @@ function t:显示刷新()
     --self.obj.getChildByName('快捷').visible = false
     self.obj.getChildByName('按钮').getChildByName('指令').visible = false
     self.obj.getChildByName('按钮').getChildByName('快捷').visible = false
+    self.obj.getChildByName('按钮').getChildByName('传研').visible = false
     self.obj.getChildByName('文本').getChildByName('内功').visible = false
     self.按钮.getChildByName('丢弃').visible = false
     if self.显示数量 > 0  and #self.item_sub_2 > 0 then 
@@ -194,6 +309,9 @@ function t:显示刷新()
                         self.按钮.getChildByName('指令').visible = true
                         self.obj.getChildByName('文本').getChildByName('内功').getChildByName('需点').text = tostring(o_item_物品.系数)
                         self.obj.getChildByName('文本').getChildByName('内功').getChildByName('修为点').text = tostring(G.QueryName(0x10030001)[tostring(5)])
+                        if o_item_物品.武功 and G.misc().测试 == 1 then
+                            self.obj.getChildByName('按钮').getChildByName('传研').visible = true
+                        end
                     elseif  o_item_物品.类别 == 6 then 
                         self.obj.getChildByName('文本').getChildByName('类别').text = '食物'
                         self.按钮.getChildByName('指令').getChildByName('名称').text = '食用'
@@ -807,7 +925,55 @@ function t:click(tar)
         end
         G.call('指令_存储属性')
     end
-    self:显示刷新()   
+    local i_item = G.call('get_point',192)
+    local int_物品代码 = G.call('get_point',192)-0x100b0000
+    local o_item = G.QueryName(i_item)
+    if tar == self.队伍.getChildByName('离开') or tar == self.队伍.getChildByName('关闭菜单') then
+        G.Play(0x49011003, 1,false,100) 
+        self.队伍.getChildByName('副按钮').visible = false
+        self.队伍.visible = false 
+    end
+    if tar == self.队伍.getChildByName('副按钮').getChildByName('是') then 
+        local int_武功代码 = o_item.武功 - 0x10050000
+        local o_teammate_队友 = G.QueryName(0x10110001)
+        local int_队员编号 = o_teammate_队友[tostring(self.队友编号)] - 0x10040000
+        G.call('add_item',int_物品代码+1,-1 )
+        G.call('set_friend_skill',int_队员编号,4,int_武功代码+1,1) 
+        self.队伍.getChildByName('副按钮').visible = false
+        self.队伍.visible = false 
+    end
+    self:显示刷新() 
+    local str = ''  
+    if tar == self.按钮.getChildByName('传研') then
+        --self:显示队伍()
+        G.Play(0x49011003, 1,false,100) 
+        self.队伍.visible = true 
+        if self.队友人数 > 0 then
+            str = '要将【[03]'..o_item.名称..'[08]】传研给谁？'
+        else
+            str = '无队友可传研'
+        end
+    end
+    if tar == self.队伍.getChildByName('副按钮').getChildByName('否') then 
+        str = '要将【[03]'..o_item.名称..'[08]】传研给谁？'
+        self.队伍.getChildByName('副按钮').visible = false
+    end
+    for i = 1,12 do
+        if tar == self.队友按钮.getChildByName(tostring(i)) then
+            self.队友编号 = i
+            self:队友属性()
+            local o_teammate_队友 = G.QueryName(0x10110001)
+            local o_role_人物 = G.QueryName(o_teammate_队友[tostring(self.队友编号)])
+            if o_role_人物['技能'..4] == nil then 
+                self.队伍.getChildByName('副按钮').visible = true
+                str = '要将【[03]'..o_item.名称..'[08]】传研给【[03]'..o_role_人物.姓名..'[08]】吗?'
+            else
+                self.队伍.getChildByName('副按钮').visible = false
+                str = '【[03]'..o_role_人物.姓名..'[08]】已经传研过！'
+            end
+        end 
+    end
+    self.队伍.getChildByName('输入框').getChildByName('文本').text = str
     if tar == self.确定 then 
         G.Play(0x49011003, 1,false,100) 
         self.快捷.visible = false
@@ -833,7 +999,7 @@ function t:click(tar)
     end  
     if tar == self.按钮.getChildByName('结束') or tar == self.obj.getChildByName('关闭菜单')then 
         G.Play(0x49011003, 1,false,100) 
-        G.removeUI('v_item')   
+        G.removeUI('v_item') 
     end     
 end 
 return t

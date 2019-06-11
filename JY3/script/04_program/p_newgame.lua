@@ -284,12 +284,14 @@ t['回答问题']=function()
             G.call('all_over')
         elseif  int_选项 == 3 then
             G.call('add_love',135,20)
+            G.call('add_love',405,20)
             G.call('all_over')
         elseif  int_选项 == 4 then
             G.call('add_love',19,20)
             G.call('all_over')               
         elseif  int_选项 == 5 then 
             G.call('add_love',61,20)
+            G.call('add_love',406,20)
             G.call('all_over') 
         elseif  int_选项 == 6 then 
             G.call('add_love',180,20) 

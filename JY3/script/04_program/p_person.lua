@@ -827,7 +827,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                     o_role.拥有 = 0
                     G.call('set_role',223,1,4000)
                     G.call('set_role',223,2,4000)
-                    G.call('set_role',223,13,4000)
+                    G.call('set_role',223,15,4000)
                     G.call('set_role',223,14,4000)
                     G.call('set_role',223,10,500)
                     G.call('set_role',223,11,500)
@@ -1106,7 +1106,7 @@ t['聚贤庄-华山之巅']=function()
                                     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
                                     G.call('set_role',223,1,30000 + int_难度*10000  ) --设置HPmax
                                     G.call('set_role',223,2,1000000)--设置MPmax
-                                    G.call('set_role',223,13,30000 + int_难度*10000)--设置HP
+                                    G.call('set_role',223,15,30000 + int_难度*10000)--设置HP
                                     G.call('set_role',223,14,1000000)--设置MP
                                     G.call('set_role',223,10,750)--设置武功等级
                                     G.call('set_role',223,11,750)--设置武功等级
@@ -1197,7 +1197,7 @@ t['聚贤庄-华山之巅']=function()
                                 local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
                                 G.call('set_role',223,1,30000 + int_难度*10000  ) --设置HPmax
                                 G.call('set_role',223,2,1000000)--设置MPmax
-                                G.call('set_role',223,13,30000 + int_难度*10000)--设置HP
+                                G.call('set_role',223,15,30000 + int_难度*10000)--设置HP
                                 G.call('set_role',223,14,1000000)--设置MP
                                 G.call('set_role',223,10,750)--设置武功等级
                                 G.call('set_role',223,11,750)--设置武功等级

@@ -556,7 +556,7 @@ t['战斗系统_事件响应'] = function()
 			local o_battle = 0x10150001
 			local o_role = 0x10040000
 			local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
-			local magic = {'技能1','技能2','技能3'} 
+			local magic = {'技能1','技能2','技能3','技能4'} 
             local person = {}   
 			local num = tonumber(ui.getChildByName('num').text)
             local num0 = tonumber(ui.getChildByName('num0').text)
@@ -615,10 +615,10 @@ t['战斗系统_事件响应'] = function()
                             local o_role_人物  = G.QueryName(0x10040000 + int_id)
                             local o_skill = G.QueryName(0x10050000 + int_代码)
                             local int_p = 1
-                            for i = 1,3 do
+                            for i = 1,4 do
                                 --if o_role['技能'..i] == 0x10050000 + int_代码 then 
                                 if o_role_人物 ['技能'..i] == 0x10050000 + int_代码 then     
-                                int_p = i
+                                    int_p = i
                                 end 
                             end
                             local o_skill_武功熟练度 = o_role_人物 [tostring(int_p +9)]
@@ -641,7 +641,7 @@ t['战斗系统_事件响应'] = function()
                             G.noti_call('战场_效果',i,int_动作编号,n)    	
                         else    
                             if o_skill.范围 == 0 or o_skill.范围 == 1 then
-                                for n = 1,3 do
+                                for n = 1,4 do
                                     if  o_role_tb[magic[n]] == 0x10050000+int_代码  then 
                                         local o_skill_武功熟练度 =o_role_tb[tostring(n+9)]
                                         o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_代码,o_skill_武功熟练度 )
@@ -822,10 +822,10 @@ t['战斗系统_事件响应'] = function()
                                 local o_role_人物  = G.QueryName(0x10040000 + int_id)
                                 local o_skill = G.QueryName(0x10050000 + int_代码)
                                 local int_p = 1
-                                for i = 1,3 do
+                                for i = 1,4 do
                                     --if o_role['技能'..i] == 0x10050000 + int_代码 then 
                                     if o_role_人物 ['技能'..i] == 0x10050000 + int_代码 then     
-                                    int_p = i
+                                        int_p = i
                                     end 
                                 end
                                 local o_skill_武功熟练度 = o_role_人物 [tostring(int_p +9)]
@@ -1149,7 +1149,7 @@ t['战斗系统_事件响应'] = function()
                             local o_role_人物  = G.QueryName(0x10040000 + int_id)
                             local o_skill = G.QueryName(0x10050000 + int_代码)
                             local int_p = 1
-                            for i = 1,3 do
+                            for i = 1,4 do
                                 --if o_role['技能'..i] == 0x10050000 + int_代码 then 
                                 if o_role_人物 ['技能'..i] == 0x10050000 + int_代码 then     
                                     int_p = i
@@ -1175,7 +1175,7 @@ t['战斗系统_事件响应'] = function()
                             G.noti_call('战场_效果',i,int_动作编号,n)
                         else    
                             if o_skill.范围 == 0 or o_skill.范围 == 1 then
-                                for n = 1,3 do
+                                for n = 1,4 do
                                     if  o_role_tb[magic[n]] == 0x10050000+int_代码  then 
                                         local o_skill_武功熟练度 =o_role_tb[tostring(n+9)]
                                         o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_代码,o_skill_武功熟练度 )
@@ -1364,7 +1364,7 @@ t['战斗系统_事件响应'] = function()
                                 local o_role_人物  = G.QueryName(0x10040000 + int_id)
                                 local o_skill = G.QueryName(0x10050000 + int_代码)
                                 local int_p = 1
-                                for i = 1,3 do
+                                for i = 1,4 do
                                     if o_role_人物 ['技能'..i] == 0x10050000 + int_代码 then     
                                         int_p = i
                                     end 
@@ -2027,21 +2027,20 @@ t['战斗系统_事件响应'] = function()
                 local int_role = o_battle[位置[i]]
                 local o_role_tb = G.QueryName(o_role + G.QueryName(i_battle)[位置[i] ] )
                 if G.QueryName(i_battle)[位置[i] ] > 0 and G.misc().行动序号 == i  then
-                    if  G.call('get_role',int_role,13) > 0  then 
+                    if  G.call('get_role',int_role,15) > 0  then 
                         if G.call('get_role',int_role,87) > 0 then --混乱状态默认使用普通攻击，随机选择除自己外目标
                             ui.getChildByName('代码').getChildByName(位置[i ]).text = tostring(207)
                         else
-                            local skill = {o_role_tb.技能1,o_role_tb.技能2,o_role_tb.技能3}
-                            local o_skill = skill[math.random(3)]  
+                            local o_skill = o_role_tb['技能'..math.random(4)]  
                             while true do   --npc随机使用一个攻击招式
                                 if o_skill ~= nil then 
                                     if 	(G.QueryName( o_skill).类别 > 5 and G.QueryName( o_skill).招式 == false) or  (G.QueryName( o_skill).类别 > 5 and G.QueryName( o_skill).招式 == true  and  (G.QueryName( o_skill).范围 ==0 or  G.QueryName( o_skill).范围 ==1) )   then 
-                                        o_skill = skill[math.random(3)] 
+                                        o_skill = o_role_tb['技能'..math.random(4)] 
                                     else
                                         break
                                     end	
                                 else
-                                    o_skill = skill[math.random(3)] 
+                                    o_skill = o_role_tb['技能'..math.random(4)]  
                                 end
                             end 
                             if o_role_tb.内力 > 0 then 
@@ -2061,7 +2060,7 @@ t['战斗系统_事件响应'] = function()
                                                 for p = 2,5 do 
                                                     local int_role_1 = G.QueryName(i_battle)[位置[p] ]
                                                     if int_role_1 > 0 then
-                                                        if G.call('get_role',int_role_1,13) and   G.call('get_role',int_role_1,81) > 0 then 
+                                                        if G.call('get_role',int_role_1,15) > 0 and   G.call('get_role',int_role_1,81) > 0 then 
                                                             if o_skill_tb.范围 == 1 then 
                                                                 o_skill = o_role_tb[magic[n] ] 
                                                             end   
@@ -2070,7 +2069,7 @@ t['战斗系统_事件响应'] = function()
                                                 end        
                                             end     
                                             if o_skill_tb.内功轻功效果 == 1 or o_skill_tb.内功轻功效果 == 19 then  --判断队友 ai使用加血
-                                                if (G.call('get_role',int_role,13) <= G.call('get_role',int_role,1) * G.misc().加血阈值/100) and (o_skill_tb.范围 == 0 or o_skill_tb.范围 == 1 )   then 
+                                                if (G.call('get_role',int_role,15) <= G.call('get_role',int_role,1) * G.misc().加血阈值/100) and (o_skill_tb.范围 == 0 or o_skill_tb.范围 == 1 )   then 
                                                     o_skill = o_role_tb[magic[n] ] 
                                                 end 
                                                 if o_skill_tb.范围 == 1 then
@@ -2080,8 +2079,8 @@ t['战斗系统_事件响应'] = function()
                                                     for p = 2,5 do 
                                                         local int_role_1 = G.QueryName(i_battle)[位置[p] ]
                                                         if int_role_1 > 0 then
-                                                            if 	G.call('get_role',int_role_1,13) > 0 then 
-                                                                if G.call('get_role',int_role_1,13) < G.call('get_role',int_role_1,1)/2 then 
+                                                            if 	G.call('get_role',int_role_1,15) > 0 then 
+                                                                if G.call('get_role',int_role_1,15) < G.call('get_role',int_role_1,1)/2 then 
                                                                     o_skill =o_role_tb[magic[n] ]
                                                                 end     
                                                             end
@@ -2093,7 +2092,7 @@ t['战斗系统_事件响应'] = function()
                                                 for p = 2,5 do 
                                                     local int_role_1 = G.QueryName(i_battle)[位置[p] ]
                                                     if int_role_1 > 0  then
-                                                        if 	G.call('get_role',int_role_1,13) <= 0 then 
+                                                        if 	G.call('get_role',int_role_1,15) <= 0 then 
                                                             o_skill = o_role_tb[magic[n]]
                                                         end
                                                     end 
@@ -2108,7 +2107,7 @@ t['战斗系统_事件响应'] = function()
                                                 for p = 6,11 do 
                                                     local int_role_1 = G.QueryName(i_battle)[位置[p] ]
                                                     if int_role_1 > 0 then
-                                                        if  G.call('get_role',int_role_1,13) > 0 and G.call('get_role',int_role_1,81) > 0 then 
+                                                        if  G.call('get_role',int_role_1,15) > 0 and G.call('get_role',int_role_1,81) > 0 then 
                                                             if o_skill_tb.范围 == 1 then
                                                                 o_skill = o_role_tb[magic[n]]
                                                             end    
@@ -2118,15 +2117,15 @@ t['战斗系统_事件响应'] = function()
                                             
                                             end     
                                             if o_skill_tb.内功轻功效果 == 1  or o_skill_tb.内功轻功效果 == 19 then  --判断敌方 ai使用加血
-                                                if G.call('get_role',int_role,13) <= G.call('get_role',int_role,1)/2 and o_skill_tb.范围 == 0   then 
+                                                if G.call('get_role',int_role,15) <= G.call('get_role',int_role,1)/2 and o_skill_tb.范围 == 0   then 
                                                     o_skill = o_role_tb[magic[n] ]
                                                 end 
                                                 if o_skill_tb.范围 == 1 then
                                                     for p = 6,11 do 
                                                         local int_role_1 = G.QueryName(i_battle)[位置[p] ]
                                                         if int_role_1 > 0 then
-                                                            if  G.call('get_role',int_role_1,13) > 0 then 
-                                                                if G.call('get_role',int_role_1,13) <= G.call('get_role',int_role_1,1)/2 then 
+                                                            if  G.call('get_role',int_role_1,15) > 0 then 
+                                                                if G.call('get_role',int_role_1,15) <= G.call('get_role',int_role_1,1)/2 then 
                                                                     o_skill = o_role_tb[magic[n] ]   
                                                                 end     
                                                             end
@@ -2138,7 +2137,7 @@ t['战斗系统_事件响应'] = function()
                                                 for p = 6,11 do 
                                                     local int_role_1 = G.QueryName(i_battle)[位置[p] ]
                                                     if int_role_1 > 0 then
-                                                        if  G.call('get_role',int_role_1,13) <= 0 then 
+                                                        if  G.call('get_role',int_role_1,15) <= 0 then 
                                                             o_skill = o_role_tb[magic[n]]
                                                         end
                                                     end 
@@ -2153,7 +2152,7 @@ t['战斗系统_事件响应'] = function()
                         local int_hp = 0
                         local int_mp = 0
                         if ui.getChildByName('map').getChildByName(位置[i]).x == 150 then
-                            for n = 1,3 do --判断NPC的内功回血回内效果
+                            for n = 1,4 do --判断NPC的内功回血回内效果
                                 local o_skill_tb = G.QueryName(o_role_tb[magic[n]])
                                 if  o_role_tb[magic[n]] ~= nil then 
                                     if o_skill_tb.内功轻功效果 == 10 then 
@@ -2163,7 +2162,7 @@ t['战斗系统_事件响应'] = function()
                                     end 
                                 end 		
                             end
-                            G.call('add_role',13,int_hp)
+                            G.call('add_role',15,int_hp)
                             G.call('add_role',14,int_mp)
                             if G.call('get_role',int_role,84) > 0 then 
                                 ui.getChildByName('map').getChildByName(位置[i]).x = 0 --npc内伤状态无法使用武功 
@@ -2459,13 +2458,13 @@ t['集气'] = function()
                 if  o_role_npc.生命 > 0 then 
                     local int_role = o_battle[位置[i]] 
                     if (G.call('通用_取得人物特效',int_role,12) or G.call('通用_取得装备特效',int_role,104)) and o_role_npc.生命 < o_role_npc[tostring(1)]*0.5  and  o_role_npc.生命 > 0 then --npc回春效果
-                        G.call('add_role',int_role,13,10) 
+                        G.call('add_role',int_role,15,10) 
                     end     
                     if G.call('get_role',int_role,81) > 0 then --npc中毒受伤
-                        G.call('add_role',int_role,13,-20)  
+                        G.call('add_role',int_role,15,-20)  
                     end
                     if G.call('get_role',int_role,85) > 0 then 
-                        G.call('add_role',int_role,13,-10) 
+                        G.call('add_role',int_role,15,-10) 
                     end     
                     for p = 81,89 do --npc异常状态随时间清除
                         if G.call('get_role',int_role,p )  > 0 then 
@@ -2781,7 +2780,7 @@ t['magic_power1'] = function(int_id,int_no)
             result = result - 100 
         end 
     end
-    if G.call('get_role',int_id,13) < G.call('get_role',int_id,1)*0.2 and  (G.call('通用_取得人物特效',int_id,11) or G.call('通用_取得装备特效',0,105)  )  then --判断受击者强体效果
+    if G.call('get_role',int_id,15) < G.call('get_role',int_id,1)*0.2 and  (G.call('通用_取得人物特效',int_id,11) or G.call('通用_取得装备特效',0,105)  )  then --判断受击者强体效果
         result = result - 50
     end   
     if math.random(100) > 80 and (G.call('通用_取得人物特效',0,7) or G.call('通用_取得装备特效',0,203) or G.call('通用_取得装备特效',0,410) )   then --暴击效果
@@ -3007,8 +3006,8 @@ t['magic_power1'] = function(int_id,int_no)
                     end 
                 end 
             elseif  o_skill.附加效果 == 10 then --斩杀效果
-                if ( G.call('get_role',int_id,1) <=5000 or G.call('get_role',int_id,13)  < G.call('get_role',int_id,1)/10)  and math.random(100) < 30 then 
-                    hurt = G.call('get_role',int_id,13)
+                if ( G.call('get_role',int_id,1) <=5000 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)/10)  and math.random(100) < 30 then 
+                    hurt = G.call('get_role',int_id,15)
                     G.call('add_point',44,maht.floor(G.call('get_point',44)/2) 
                 )
                 end 
@@ -3219,7 +3218,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             result = result - 100
         end 
     end 
-    if G.call('get_role',int_enemy,13)< G.call('get_role',int_enemy,1)*0.2 and (G.call('通用_取得人物特效',int_enemy,11) or G.call('通用_取得装备特效',int_enemy,105) )  then  --受击方强体判断
+    if G.call('get_role',int_enemy,15)< G.call('get_role',int_enemy,1)*0.2 and (G.call('通用_取得人物特效',int_enemy,11) or G.call('通用_取得装备特效',int_enemy,105) )  then  --受击方强体判断
         result = result - 50
     end 
     local att_role = 0
@@ -3331,9 +3330,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 G.call('add_role',int_id,14,1500)
                 G.call('add_role',int_enemy,14,-1500)
             end 
-            G.call('add_role',int_id,13,hurt4)
+            G.call('add_role',int_id,15,hurt4)
             G.call('add_role',int_id,2,hurt0)
-            G.call('add_role',int_id,13,-hurt3)
+            G.call('add_role',int_id,15,-hurt3)
             G.call('add_role',int_id,14,hurt1)
             G.call('add_role',int_enemy,14,-hurt0)
             G.call('add_role',int_enemy,14,-hurt1)
@@ -3435,9 +3434,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     end   
                 end 
             elseif  o_skill.附加效果 == 10 then --斩杀效果
-                if (G.call('get_role',int_id,1) <=5000 or G.call('get_role',int_id,13)  < G.call('get_role',int_id,1)/10) and math.random(100) < 30 then 
-                    hurt = G.call('get_role',int_id,13)
-                    G.call('set_role',int_id,13,maht.floor(G.call('get_role',13)/2) )
+                if (G.call('get_role',int_id,1) <=5000 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)/10) and math.random(100) < 30 then 
+                    hurt = G.call('get_role',int_id,15)
+                    G.call('set_role',int_id,15,maht.floor(G.call('get_role',15)/2) )
                 end     
             end
             for i = 1, 4 do --判断队友携带武器和武功配合
@@ -3656,7 +3655,7 @@ t['magic_power3'] = function(int_id,int_no)
     if G.call('get_point',44)  < G.call('get_point',217) *0.2 and  (G.call('通用_取得人物特效',0,11) or G.call('通用_取得装备特效',0,105)) then  --主角强体判断
         result = result  - 50
     end 
-    if G.call('get_role',int_id,12) < G.call('get_role',int_id,1)*0.5 and (G.call('通用_取得人物特效',int_id,13) or G.call('通用_取得装备特效',int_id,204) )  then  --攻击方强力判断
+    if G.call('get_role',int_id,15) < G.call('get_role',int_id,1)*0.5 and (G.call('通用_取得人物特效',int_id,13) or G.call('通用_取得装备特效',int_id,204) )  then  --攻击方强力判断
         result = result  + 50
     end 
     local att_role = 0
@@ -3749,9 +3748,9 @@ t['magic_power3'] = function(int_id,int_no)
                 G.call('add_role',int_id,14,1500)
                 G.call('add_point',46,-1500)
             end 
-            G.call('add_role',int_id,13,hurt4)    
+            G.call('add_role',int_id,15,hurt4)    
             G.call('add_role',int_id,2,hurt0)
-            G.call('add_role',int_id,13,-hurt3)
+            G.call('add_role',int_id,15,-hurt3)
             G.call('add_role',int_id,14,hurt1)
             G.call('add_point',46,-hurt1)
             G.call('add_point',46,-hurt0)
@@ -3884,7 +3883,7 @@ t['magic_power3'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 10 then --斩杀效果
                 if (G.call('get_point',217) <=5000 or G.call('get_point',44) < G.call('get_point',217)/10) and math.random(100) < 30 then 
                     hurt = G.call('get_point',44)
-                    G.call('set_role',int_id,13,maht.floor(G.call('get_role',13)/2) )
+                    G.call('set_role',int_id,15,maht.floor(G.call('get_role',15)/2) )
                 end 
             end
             if G.call('get_point',194) == 0x100b004b then 

@@ -167,7 +167,7 @@ function t:角色操作(int_队员编号)
             end 
         end
         self.显示.getChildByName('属性4').text = str
-        str = o_role.姓名..'[br]'..G.call('get_role',int_队员编号,13)..'/'..(G.call('get_role',int_队员编号,1) )..'[br]'..G.call('get_role',int_队员编号,14)..'/'..(G.call('get_role',int_队员编号,2))
+        str = o_role.姓名..'[br]'..G.call('get_role',int_队员编号,15)..'/'..(G.call('get_role',int_队员编号,1) )..'[br]'..G.call('get_role',int_队员编号,14)..'/'..(G.call('get_role',int_队员编号,2))
         self.显示.getChildByName('属性1').text = str 
         str = (G.call('get_role',int_队员编号,3))..'[br]'..(G.call('get_role',int_队员编号,4))..'[br]'..(G.call('get_role',int_队员编号,5))
         self.显示.getChildByName('属性2').text = str 
