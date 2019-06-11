@@ -926,7 +926,10 @@ function t:click(tar)
         G.call('指令_存储属性')
     end
     local i_item = G.call('get_point',192)
-    local int_物品代码 = G.call('get_point',192)-0x100b0000
+    local int_物品代码 
+    if i_item then 
+        int_物品代码= G.call('get_point',192)-0x100b0000
+    end
     local o_item = G.QueryName(i_item)
     if tar == self.队伍.getChildByName('离开') or tar == self.队伍.getChildByName('关闭菜单') then
         G.Play(0x49011003, 1,false,100) 
