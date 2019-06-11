@@ -2158,12 +2158,8 @@ t['战斗系统_事件响应'] = function()
                         local int_mp = 0
                         if ui.getChildByName('map').getChildByName(位置[i]).x == 150 then
                             --判断NPC的内功回血回内效果
-                            if G.call('通用_取得NPC内功效果',o_battle[位置[i] ],10) > 0 then
-                                int_hp = math.floor(o_role_tb[tostring(1)]*o_skill_tb.效果等级/100)
-                            end
-                            if G.call('通用_取得NPC内功效果',o_battle[位置[i] ],11) > 0 then
-                                int_mp = math.floor(o_role_tb[tostring(2)]*o_skill_tb.效果等级/100)
-                            end
+                            int_hp = math.floor(o_role_tb[tostring(1)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],10)/100)
+                            int_mp = math.floor(o_role_tb[tostring(2)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],11)/100)
                             G.call('add_role',15,int_hp)
                             G.call('add_role',14,int_mp)
                             if G.call('get_role',int_role,84) > 0 then 
