@@ -34,6 +34,9 @@ function t:init()
     self.队友编号 = 0
 end
 function t:start()
+    if not G.misc().梦幻测试 then 
+       G.misc().梦幻测试 = 0
+    end
     self.obj.getChildByName('银两').text = tostring(G.QueryName(0x10030001)[tostring(110)])
     if G.QueryName(0x10030001)[tostring(110)] > 999999999 then
         self.obj.getChildByName('银两').text = '999999999'
@@ -309,7 +312,7 @@ function t:显示刷新()
                         self.按钮.getChildByName('指令').visible = true
                         self.obj.getChildByName('文本').getChildByName('内功').getChildByName('需点').text = tostring(o_item_物品.系数)
                         self.obj.getChildByName('文本').getChildByName('内功').getChildByName('修为点').text = tostring(G.QueryName(0x10030001)[tostring(5)])
-                        if o_item_物品.武功 and G.misc().测试 == 1 then
+                        if o_item_物品.武功 and G.misc().梦幻测试 == 1 then
                             self.obj.getChildByName('按钮').getChildByName('传研').visible = true
                         end
                     elseif  o_item_物品.类别 == 6 then 
