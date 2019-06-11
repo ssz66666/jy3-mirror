@@ -1612,6 +1612,11 @@ t['天书_倚天屠龙记'] = function()
         G.call('all_over')
         return
     end 
+    if o_book_story.流程 == 1 then
+        G.call("talk",'',38,'   未完待续！',2,1)
+        G.call('all_over')
+        return
+    end
     if o_book_story.流程 == 0 then
         G.call('地图_进入地图','万安寺',121,57)
         G.call("talk",'',4,'   师太快点跳下来，再不跳就来不及了！',0,0)
@@ -1696,7 +1701,7 @@ t['天书_倚天屠龙记'] = function()
         G.call("talk",'',4,'   赵姑娘你没事吧？',0,0)
         G.call("talk",'',15,'   没事，只是这几人武功怪异，真不好对付!',2,1)
         G.call("talk",'',252,'   公子我刚刚熟记了圣火令上的文字，现在我说给你听！',2,1)
-        
+
 
     end
     G.call('all_over')
