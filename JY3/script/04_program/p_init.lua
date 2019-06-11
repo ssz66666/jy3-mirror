@@ -256,7 +256,8 @@ t['地图系统_功能'] = function()
 		G.case(7, '内部测试')
 		G.case(10, '系统测试')
 		G.case(11, '神秘结算')
-		G.case(12, '自宫')
+		G.case(12, '主角自宫')
+		G.case(13, '队友自宫')
         local r = G.wait_case();
         if r == 1  then 
 			G.call('create')
@@ -275,7 +276,9 @@ t['地图系统_功能'] = function()
 		elseif r == 11  then 
 			G.call('通用_神秘结算') 
 		elseif r == 12  then 
-			G.call('通用_自宫') 
+			G.call('通用_自宫_1') 
+		elseif r == 13  then 
+			G.call('通用_自宫_2') 
 		elseif r == 9  then 
 			G.call('通用_强退游戏') 
 		elseif r == 8  then

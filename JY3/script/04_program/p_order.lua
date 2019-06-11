@@ -2499,7 +2499,7 @@ t['can_use']=function() --能否修炼当前秘籍
     -- end
     return result
 end
-t['通用_自宫']=function() 
+t['通用_自宫_1']=function() 
     local ui = G.addUI('v_yes_or_no')
     local c = ui.c_yes_or_no
     c:显示('是否需要自宫？')
@@ -2519,6 +2519,42 @@ t['通用_自宫']=function()
         G.misc().人物头像 = 0x560800e2
         G.QueryName(0x10030001)[tostring(119)] = 0x560800e2
         G.call('learn_magic',o_item_物品.武功-0x10050000+1) 
+    end
+end
+t['通用_自宫_2']=function() 
+    local ui_1 = G.getUI('v_item')
+    local c_1 = ui_1.c_item 
+    local i_item = G.call('get_point',192)
+    local int_物品代码 
+    if i_item then 
+        int_物品代码= G.call('get_point',192)-0x100b0000
+    end
+    local o_item = G.QueryName(i_item)
+    local int_武功代码 = o_item.武功 - 0x10050000
+    local o_teammate_队友 = G.QueryName(0x10110001)
+    local o_role_人物 = G.QueryName(o_teammate_队友[tostring(c_1.队友编号)])
+    local int_队员编号 = o_teammate_队友[tostring(c_1.队友编号)] - 0x10040000
+    local ui = G.addUI('v_yes_or_no')
+    local c = ui.c_yes_or_no
+    c_1.队伍.getChildByName('输入框').visible = false 
+    c_1.队伍.getChildByName('副按钮').visible = false
+    c:显示('[08]需要将【[03]'..o_role_人物.姓名..'[08]】阉割吗？')
+    G.wait1('选择结束')
+    local int_选择 = c.选择
+    G.removeUI('v_yes_or_no')
+    if int_选择 == 1 then
+        G.call('add_item',int_物品代码+1,-1 )
+        G.call('photo0',20)
+        G.wait_time(1000)
+        G.call('photo0',21)
+        G.Play(0x4902000a , 1,false,100)
+        G.wait_time(1000)
+        G.call('photo0_off')
+        G.call('set_friend_skill',int_队员编号,4,int_武功代码+1,1) 
+        o_role_人物.性别 = 0
+        c_1.队伍.visible = false
+    else
+        --c_1.队伍.getChildByName('输入框').visible = true
     end
 end
 t['use_item']=function(int_物品,int_数量) --使用物品
@@ -3319,6 +3355,26 @@ t['通用_取得敌方装备特效']=function(int_特效号)
     end
     return result
 end
+t['通用_取得NPC内功效果']=function(int_编号,int_效果)
+    local o_body = G.QueryName(0x10030001)
+    local o_role = o_body
+    local result = 0 
+    if int_编号 > 0 then
+        o_role = G.QueryName(0x10040000 + int_编号)
+    else
+        return 0
+    end
+    for i = 1,4 do
+        if o_role['技能'..i] then 
+            local o_skill = G.QueryName(o_role['技能'..i])
+            if o_skill.内功轻功效果 ==  int_效果 then 
+                result = o_skill.效果等级
+                break
+            end
+        end
+    end
+    return result
+end
 t['通用_取得人物特效']=function(int_编号,int_特效号)
     local o_body = G.QueryName(0x10030001)
     local o_battle = G.QueryName(0x10150001)
@@ -3437,7 +3493,7 @@ t['通用_取得内功轻功特效']=function(int_编号,int_效果)
         end
     else
         o_role = G.QueryName(0x10040000 + int_编号)
-        for i = 1,3 do 
+        for i = 1,4 do 
             local i_skill = o_role['技能'..i]
             if i_skill  and G.QueryName(i_skill).内功轻功效果 == int_效果 then 
                 result = true

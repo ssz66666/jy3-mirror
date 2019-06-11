@@ -309,7 +309,7 @@ function t:显示刷新()
                         self.按钮.getChildByName('指令').visible = true
                         self.obj.getChildByName('文本').getChildByName('内功').getChildByName('需点').text = tostring(o_item_物品.系数)
                         self.obj.getChildByName('文本').getChildByName('内功').getChildByName('修为点').text = tostring(G.QueryName(0x10030001)[tostring(5)])
-                        if o_item_物品.武功 and G.misc().测试 == 1 then
+                        if o_item_物品.武功  then
                             self.obj.getChildByName('按钮').getChildByName('传研').visible = true
                         end
                     elseif  o_item_物品.类别 == 6 then 
@@ -755,7 +755,7 @@ function t:click(tar)
                     else
                         if G.QueryName(0x10030001)[tostring(5)] >= o_item_物品.系数 then 
                             if o_item_物品.自宫 > 0  and G.call('get_point',41) == 0 and G.call('通用_取得套装',0,6) < 3 and not G.misc().太监 then 
-                                G.trig_event('自宫')  
+                                G.trig_event('主角自宫')  
                             else        
                                 G.call('use_item',o_item_物品代码+1,1) 
                                 G.call('add_item',o_item_物品代码+1,1)
@@ -940,10 +940,15 @@ function t:click(tar)
         local int_武功代码 = o_item.武功 - 0x10050000
         local o_teammate_队友 = G.QueryName(0x10110001)
         local int_队员编号 = o_teammate_队友[tostring(self.队友编号)] - 0x10040000
-        G.call('add_item',int_物品代码+1,-1 )
-        G.call('set_friend_skill',int_队员编号,4,int_武功代码+1,1) 
-        self.队伍.getChildByName('副按钮').visible = false
-        self.队伍.visible = false 
+        local o_role_人物 = G.QueryName(o_teammate_队友[tostring(self.队友编号)])
+        if o_item.自宫 > 0  and o_role_人物.性别 == 1 then
+            G.trig_event('队友自宫')
+        else
+            G.call('add_item',int_物品代码+1,-1 )
+            G.call('set_friend_skill',int_队员编号,4,int_武功代码+1,1) 
+            self.队伍.getChildByName('副按钮').visible = false
+            self.队伍.visible = false 
+        end
     end
     self:显示刷新() 
     local str = ''  
@@ -969,6 +974,7 @@ function t:click(tar)
             local o_role_人物 = G.QueryName(o_teammate_队友[tostring(self.队友编号)])
             if o_role_人物['技能'..4] == nil then 
                 self.队伍.getChildByName('副按钮').visible = true
+                self.队伍.getChildByName('输入框').visible = true
                 str = '要将【[03]'..o_item.名称..'[08]】传研给【[03]'..o_role_人物.姓名..'[08]】吗?'
             else
                 self.队伍.getChildByName('副按钮').visible = false
