@@ -751,7 +751,7 @@ t['途径牛家村-肉贩']=function()
 end 
 t['途径牛家村-乞丐乙']=function() 
     local BJ = G.call('get_point',130)
-    if BJ >= 50 then 
+    if BJ > 50 then 
         G.call("talk",'乞丐乙',173,'   这位小哥有没有兴趣跟着赌几把？咱赌小的，一注五两，说不定你还能发笔小财呢。',1,1)
         local int_选项 = 0
         while int_选项 == 0 do
