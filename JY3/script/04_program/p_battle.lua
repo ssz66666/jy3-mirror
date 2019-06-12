@@ -1339,6 +1339,7 @@ t['战斗系统_事件响应'] = function()
                                             end 	
                                         end 
                                     else
+                                        person = {}
                                         if o_battle.模式 < 4 then 
                                             table.insert(person,1 )
                                         end
