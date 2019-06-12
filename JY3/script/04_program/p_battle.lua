@@ -3385,7 +3385,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end 
             elseif  o_skill.附加效果 == 10 then --斩杀效果
                 if math.random(100) < 30 and (G.call('get_role',int_id,1) <=5000 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)/10)   then 
-                    hurt = G.call('get_role',int_id,15)
+                    hurt = G.call('get_role',int_enemy,15)
                     G.call('set_role',int_id,15,maht.floor(G.call('get_role',15)/2) )
                 end     
             end
