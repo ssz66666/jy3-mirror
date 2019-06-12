@@ -237,7 +237,7 @@ t['地图系统_防修改监控'] = function()
 			local o_role_人物 = G.QueryName( i_team)
 			for i = 1,8 do 
 				if o_role_人物[tostring(900 + i)] and o_role_人物[tostring(i)] > o_role_人物[tostring(900 + i)] then 
-					o_role_人物[tostring(900 + i)] and o_role_人物[tostring(i)] = o_role_人物[tostring(900 + i)]
+					o_role_人物[tostring(i)] = o_role_人物[tostring(900 + i)]
 				end
 			end
 		end
