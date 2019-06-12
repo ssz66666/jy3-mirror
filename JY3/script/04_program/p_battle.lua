@@ -2203,22 +2203,24 @@ t['战斗对话1'] = function()
 					ui.getChildByName('talk').getChildByName(位置[1]).visible = true
 				end 
 			elseif i > 1 then
-                if G.QueryName(0x10150001)[位置[i]] > 0 then
+                local int_role = G.QueryName(0x10150001)[位置[i]]
+                local o_role = G.QueryName(0x10040000 + int_role)
+                if int_role > 0 then
                     for j = 1,3 do
-                        if not  G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ])['战斗对白'..i] then
-                            G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ])['战斗对白'..i] = '' 
+                        if not  o_role['战斗对白'..i] or o_role['战斗对白'..i] == nil then
+                            o_role['战斗对白'..i] = '' 
                         end
                     end
-                    if 	G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).生命 > 0 then 
-                        local talk = {G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白1,G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白2,G.QueryName(o_role + G.QueryName(i_battle)[位置[i] ]).战斗对白3}
+                    if  o_role.生命 > 0 then 
+                        local talk = {o_role['战斗对白'..1],o_role['战斗对白'..2],o_role['战斗对白'..3]}
                         ui.getChildByName('talk').getChildByName(位置[i]).getChildByName('text').text = talk[math.random(3)]
-                        if math.random(100) > 70 then 
+                        if math.random(100) > 70 then
                             if  ui.getChildByName('talk').getChildByName(位置[i]).getChildByName('text').text ~= '' then 
                                 ui.getChildByName('talk').getChildByName(位置[i]).visible = true	
-                            end   
+                            end
                         end 	
                     end
-				end 
+                end 
 			end 		
 		end
 		G.wait_time(1500)
@@ -2244,15 +2246,17 @@ t['战斗对话2'] = function()
 	local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
     while true do 
 		G.wait_time(deytime*50)
-		for i = 6,11 do 
-            if G.QueryName(0x10150001)[位置[i]] > 0 then
+        for i = 6,11 do 
+            local int_role = G.QueryName(0x10150001)[位置[i]]
+            local o_role = G.QueryName(0x10040000 + int_role)
+            if int_role > 0 then
                 for j = 1,3 do
-                    if not  G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ])['战斗对白'..i] then
-                        G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ])['战斗对白'..i] = '' 
+                    if not  o_role['战斗对白'..i] or o_role['战斗对白'..i] == nil then
+                        o_role['战斗对白'..i] = '' 
                     end
                 end
-                if  	G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).生命 > 0 then 
-                    local talk = {G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白1,G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).战斗对白2,G.QueryName(o_role + o_battle[位置[i] ]).战斗对白3}
+                if  o_role.生命 > 0 then 
+                    local talk = {o_role['战斗对白'..1],o_role['战斗对白'..2],o_role['战斗对白'..3]}
                     ui.getChildByName('talk').getChildByName(位置[i]).getChildByName('text').text = talk[math.random(3)]
                     if math.random(100) > 70 then
                         if  ui.getChildByName('talk').getChildByName(位置[i]).getChildByName('text').text ~= '' then 
@@ -2832,14 +2836,14 @@ t['magic_power1'] = function(int_id,int_no)
                 hurt = hurt 
             elseif  int_玉女剑阵效果 == 1 and i_skill == 0x1005003e then --玉女剑阵破防效果判定
                 if G.call('通用_取得内功轻功特效',0,18) then
-                    hurt = math.floor(hurt *(1- d/500)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                    hurt = math.floor(hurt *(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
                 else
-                    hurt = math.floor(hurt *(1- d/500)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
+                    hurt = math.floor(hurt *(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
                 end
             elseif G.call('通用_取得人物特效',0,21)  then --武当被动和真武阵判断
-                hurt = math.floor(hurt *(1- c/300)*(1- d/500*(1 - 0.2-int_真武效果/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.2-int_真武效果/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
             else 
-                hurt = math.floor(hurt *(1- c/300)*(1- d/500)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
+                hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if o_skill.类别 == 2 then --五岳剑阵效果
                 hurt = math.floor(hurt* (int_五岳剑阵效果/100 +1)  )
@@ -3245,13 +3249,13 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     hurt3 = math.floor(hurt3*1.5)
                 end
             end
-            hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 
+            hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))  then --朱雀被动效果
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21) then --真武效果
-                hurt = math.floor(hurt *(1- c/300)*(1- d/500*0.8)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/100 )  ) 
+                hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/100 )  ) 
             else
-                hurt = math.floor(hurt *(1- c/300)*(1- d/500)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/100 ) )  --按敌人的拆招和内功免伤进行计算伤害
+                hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/100 ) )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if G.call('通用_取得套装',int_id,3) == 2 then --套装3和套装4强伤和减伤效果
                 hurt = math.floor(hurt *1.1)
@@ -3672,9 +3676,9 @@ t['magic_power3'] = function(int_id,int_no)
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))   then --朱雀被动效果
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21)then
-                hurt = math.floor(hurt *(1- c/300)*(1- d/500*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/100 )   )
+                hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/100 )   )
             else
-                hurt = math.floor(hurt *(1- c/300)*(1- d/500)*(1 - G.call('通用_取得装备减伤效果',0)/100 )   )  --按主角的拆招和内功免伤计算
+                hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',0)/100 )   )  --按主角的拆招和内功免伤计算
             end
             if G.call('get_point',194) ~= nil then  --按主角装备的防具再次计算伤害
                 local o_item = G.QueryName(G.call('get_point',194))
