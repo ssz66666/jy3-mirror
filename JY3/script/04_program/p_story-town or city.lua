@@ -337,7 +337,7 @@ t['城镇-渡口']=function()
                 G.call('dig')
                 G.call('add_time',2)
                 G.call('all_over') 
-                if G.call('get_item',273) > 1 then
+                if G.call('get_item',273) > 0 then
                     G.call('地图_进入地图','龙脉宝藏',104,3) 
                     G.call("talk",'',0,'   原来龙脉宝藏在海底，这下可大发了！',0,0)
                     G.call('add_item',273,-1)
