@@ -3275,7 +3275,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                hurt = math.random(10)
             end   
             if G.call('通用_取得人物特效',int_id,19) then  --舔血效果计算
-                hurt4 = math.floor(hurt*0.1) 
+                hurt4 = math.floor(hurt*0.2) 
             end  
             if G.call('通用_取得人物特效',int_id,20)  and math.random(100) < 50 then
                 G.call('add_role',int_id,14,1500)
@@ -3685,7 +3685,7 @@ t['magic_power3'] = function(int_id,int_no)
                 hurt = hurt*(1-(o_item.系数-100)/2/100)
             end 
             if G.call('通用_取得人物特效',int_id,19) then  --舔血效果计算
-                hurt4 = math.floor(hurt*0.1) 
+                hurt4 = math.floor(hurt*0.2) 
             end   
             if G.call('通用_取得人物特效',int_id,20) and math.random(100) < 50 then
                 G.call('add_role',int_id,14,1500)
