@@ -257,7 +257,7 @@ function t:click(tar)
                     local dqjd = 0
                     local zjd = 0
                     for n = 1,#o_achieve.进度列表 do 
-                        if (i == 1 or i == 4) and  o_achieve.进度列表[n].完成 == 1 then 
+                        if (i == 1 or i == 4 or i == 5) and  o_achieve.进度列表[n].完成 == 1 then 
                             dqjd = dqjd + o_achieve.进度列表[n].总进度        
                         else
                             dqjd = dqjd + o_achieve.进度列表[n].当前进度       
