@@ -261,6 +261,7 @@ t['通用_读档'] = function(int_档案编号)
 		local buf = G.unzip(zipbuf);
 		local obj = eris.unpersist(perms, buf);
         load_ofile(obj);
+        math.randomseed(tostring(os.time()):reverse():sub(1, 6)) --随机种子
         if int_档案编号 > 0 and int_档案编号 < 5 then 
             local role = G.DBTable('o_role')
             for i = 1,#role do 
@@ -289,7 +290,6 @@ t['通用_读档'] = function(int_档案编号)
         if int_档案编号 == 0 then 
            G.trig_event('创建角色')
         end 
-        math.randomseed(tostring(os.time()):reverse():sub(1, 6)) --随机种子
         G.call('指令_存储属性')
         G.misc().新游戏 = 1
         if int_档案编号 > 0 and int_档案编号 <= 4 then
