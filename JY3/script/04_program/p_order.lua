@@ -1267,8 +1267,8 @@ t['xunbao']=function(int_代码) --显示藏金阁游戏单独背景地图
     ui.getChildByName('背景').img = 0x560b1000 + int_代码  
 end
 t['rest']=function()
-    G.QueryName(0x10030001)[tostring(44)] = G.QueryName(0x10030001)[tostring(217)]
-    G.QueryName(0x10030001)[tostring(46)] = G.QueryName(0x10030001)[tostring(218)]
+    G.call('add_point',44,math.floor(G.call('get_point',217)))
+    G.call('add_point',46,math.floor(G.call('get_point',218)))
 end
 t['xunbao_off']=function() --关闭藏金阁游戏单独背景地图
     G.removeUI('v_xunbao')
