@@ -40,7 +40,7 @@ t['初始化'] = function()
 	G.QueryName(0x1006002e).城市列表[4].位置.y = 250
 	local role = G.DBTable('o_role')
 	for i = 1,#role do 
-		for p = 81,89 do 
+		for p = 81,90 do 
 			G.QueryName(0x10040000 + i)[tostring(p)] = 0
 			G.QueryName(0x10040000 + i)[tostring(p+10)] = 0
 		end 

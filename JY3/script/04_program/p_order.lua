@@ -265,7 +265,7 @@ t['通用_读档'] = function(int_档案编号)
         if int_档案编号 > 0 and int_档案编号 < 5 then 
             local role = G.DBTable('o_role')
             for i = 1,#role do 
-                for p = 81,89 do 
+                for p = 81,90 do 
                     G.QueryName(0x10040000 + i)[tostring(p)] = 0
                     G.QueryName(0x10040000 + i)[tostring(p+10)] = 0
                 end 
@@ -853,7 +853,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     elseif o_battle.模式 == 5 then   --队友上阵，主角看戏
     end 
     for i = 6,11 do
-        for p = 81,89 do   --清除敌人的全部异常
+        for p = 81,90 do   --清除敌人的全部异常
             G.call('set_role',o_battle[位置[i] ] ,p,0)
         end 
         G.call('set_role',o_battle[位置[i] ]  ,15,G.call('get_role',o_battle[位置[i] ],1 ) )   --回复敌人的全部HP,MP
@@ -861,7 +861,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     end 
     if o_battle.模式 > 3 then --模式3我方自动满状态出战
         for i = 2,5 do
-            for p = 81,89 do   
+            for p = 81,90 do   
                 G.call('set_role',o_battle[位置[i] ] ,p,0)
             end 
             G.call('set_role',o_battle[位置[i] ]  ,15,G.call('get_role',o_battle[位置[i] ],1 ) )   --回复敌人的全部HP,MP
@@ -913,7 +913,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     G.wait_time(500)
     G.removeUI('v_battle')
     G.Stop(1)
-    for p = 81,89 do   --战斗后清除主角除了内伤外的其他异常状态
+    for p = 81,90 do   --战斗后清除主角除了内伤外的其他异常状态
         G.call('set_point',p,0)
     end 
     local t = G.call('get_point',84 )
@@ -925,7 +925,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     end 
     local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
     for i = 6,11 do 
-        for p = 81,89 do   --清除敌人的全部异常
+        for p = 81,90 do   --清除敌人的全部异常
             G.call('set_role',o_battle[位置[i] ] ,p,0)
         end 
         G.call('set_role',o_battle[位置[i] ]  ,15,1 )   --回复敌人hp为1 
@@ -935,7 +935,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
            local n = G.call('get_role',o_battle[位置[i] ],84 )
             local o_role = G.QueryName( 0x10040000 + o_battle[位置[i] ])
             if i >= 2 and i <=5 then 
-                for p = 81,89 do   --战斗后清除队友除了内伤外的其他异常状态
+                for p = 81,90 do   --战斗后清除队友除了内伤外的其他异常状态
                     G.call('set_role',o_battle[位置[i] ] ,p,0)
                 end 
                 G.call('set_role',o_battle[位置[i] ] ,84,n) 
@@ -2100,7 +2100,7 @@ t['通用_重置检测']=function() --
     if  G.misc().检测_1008 == nil  then
         local role = G.DBTable('o_role')
         for i = 1,#role do 
-            for p = 81,89 do 
+            for p = 81,90 do 
                 if not G.call('get_role',i,p) then 
                     G.call('set_role',i,p,0)
                     G.call('set_role',i,p+10,0)

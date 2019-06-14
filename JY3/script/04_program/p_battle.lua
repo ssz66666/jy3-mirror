@@ -750,7 +750,7 @@ t['战斗系统_事件响应'] = function()
                                                         int_hp = 9999
                                                     end
                                                 end  
-                                                for j = 81,89 do 
+                                                for j = 81,90 do 
                                                     G.call('ser_role',o_battle[位置[p]],j,0)
                                                     G.call('ser_role',o_battle[位置[p]],j+10,0)
                                                 end 
@@ -1264,7 +1264,7 @@ t['战斗系统_事件响应'] = function()
                                                 elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then
                                                     int_hp = math.floor(int_hp * 1.1)
                                                 end  
-                                                for j = 81,89 do 
+                                                for j = 81,90 do 
                                                     G.call('ser_role',o_battle[位置[p]],j,0)
                                                     G.call('ser_role',o_battle[位置[p]],j+10,0)
                                                 end 
@@ -1596,7 +1596,7 @@ t['战斗系统_事件响应'] = function()
                                                 int_hp = 9999
                                             end
                                         end
-                                        for j = 81,89 do 
+                                        for j = 81,90 do 
                                             G.call('ser_role',o_battle[位置[i]],j,0)
                                             G.call('ser_role',o_battle[位置[i]],j+10,0)
                                         end 
@@ -2425,7 +2425,7 @@ t['集气'] = function()
         local s = G.call('get_point',80)
         local s3 = string.format("%.2d:%.2d:%.2d", math.floor(s/60000) , math.floor(s/1000)%60 , s%1000)
         ui.getChildByName('时间').text = s3  
-        for i = 81,89 do --主角部分异常状态以及逍遥鱼粉效果随时间清除
+        for i = 81,90 do --主角部分异常状态以及逍遥御风效果随时间清除
             if G.call('get_point',i) > 0 then 
                 G.call('add_point',i+10,-deytime)
             end 
@@ -2434,9 +2434,9 @@ t['集气'] = function()
             end
         end  
         --异常状态显示 
-        local str_异常 = {'中毒','麻痹','晕眩','内伤','受伤','减速','混乱','致盲','御风'}
+        local str_异常 = {'中毒','麻痹','晕眩','内伤','受伤','减速','混乱','致盲','御风','剧毒'}
         local result = false
-        for i = 81,89 do --
+        for i = 81,90 do --
             if G.call('get_point',i) > 0 then 
                 result = true
                 break
@@ -2445,7 +2445,7 @@ t['集气'] = function()
         if result == true then 
             ui.getChildByName('异常').visible = true
             local string_字符串 = ''
-            for i = 81,89 do --
+            for i = 81,90 do --
                 if G.call('get_point',i) > 0 then
                     local int_异常时间=  G.call('get_point',i+10)
                     string_字符串 = string_字符串..'[08]'..str_异常[i-80]..' [01]'..int_异常时间..'[br]'
@@ -2467,10 +2467,13 @@ t['集气'] = function()
                     if G.call('get_role',int_role,81) > 0 then --npc中毒受伤
                         G.call('add_role',int_role,15,-20)  
                     end
+                    if G.call('get_role',int_role,90) > 0 then --npc剧毒受伤
+                        G.call('add_role',int_role,15,-30)  
+                    end
                     if G.call('get_role',int_role,85) > 0 then 
                         G.call('add_role',int_role,15,-10) 
                     end     
-                    for p = 81,89 do --npc异常状态随时间清除
+                    for p = 81,90 do --npc异常状态随时间清除
                         if G.call('get_role',int_role,p )  > 0 then 
                             G.call('add_role',int_role,p+10,-deytime)
                         end
@@ -2481,8 +2484,11 @@ t['集气'] = function()
                 end    
             end 
         end 
-        if G.call('get_point',81) > 0 then  --中毒受伤
+        if G.call('get_point',81) > 0 then  --中毒剧毒受伤
             G.call('add_point',44,-20)
+        end
+        if G.call('get_point',90) > 0 then  
+            G.call('add_point',44,-30)
         end
         if G.call('get_point',85) > 0 and G.call('get_point',48) > 0 then
             G.call('add_point',48,-1)  
@@ -2915,6 +2921,19 @@ t['magic_power1'] = function(int_id,int_no)
                         end
                     end  
                 end  
+            elseif o_skill.附加效果 == 11 then         --武功附加状态赋予
+                    if G.call('通用_取得人物特效',0,18)  then
+                        seed = math.max(1,math.floor(seed/2))
+                    end  
+                    if math.random(seed) < 5 + math.floor(G.call('get_point',179+32)/10) then   --剧毒
+                        if G.call('get_role',int_id,90) == 0 then 
+                            G.call('set_role',int_id,90,1)
+                            o_role [tostring(100)] = int_时序
+                            if G.call('通用_取得人物特效',0,18)  then
+                                o_role [tostring(100)] = int_时序 * 2
+                            end
+                        end  
+                    end
             elseif  o_skill.附加效果 == 2 then  --麻痹
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+32)/10)   then 
                     if G.call('get_role',int_id,82) == 0 then 
@@ -3315,6 +3334,19 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,91,int_时序*2)
                     end  
                 end  
+            elseif o_skill.附加效果 == 11 then 
+                if G.call('通用_取得人物特效',int_id,18) then --阴毒效果
+                    seed = math.max(1,math.floor(seed/2))
+                end  
+                if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10) then 
+                    if G.call('get_role',int_enemy,90) == 0 then 
+                        G.call('set_role',int_enemy,90,1)
+                        G.call('set_role',int_enemy,100,int_时序)
+                    end 
+                    if G.call('通用_取得人物特效',int_id,18) then 
+                        G.call('set_role',int_enemy,100,int_时序*2)
+                    end  
+                end 
             elseif  o_skill.附加效果 == 2 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10) then 
                     if G.call('get_role',int_enemy,82) == 0 then 
@@ -3753,7 +3785,20 @@ t['magic_power3'] = function(int_id,int_no)
                     if G.call('通用_取得人物特效',int_id,18) then 
                         G.call('set_point',91,int_时序*2)
                     end  
+                end
+            elseif o_skill.附加效果 == 11 then   
+                if G.call('通用_取得人物特效',int_id,18) then  --阴毒效果
+                    seed = math.max(1,math.floor(seed/2))
                 end  
+                if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
+                    if G.call('get_point',90) == 0 then 
+                        G.call('set_point',90,1) 
+                        G.call('set_point',100,int_时序)
+                    end 
+                    if G.call('通用_取得人物特效',int_id,18) then 
+                        G.call('set_point',100,int_时序*2)
+                    end  
+                end
             elseif  o_skill.附加效果 == 2 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',82) == 0 then 

@@ -355,7 +355,7 @@ function t:详细显示()
         else
             self.武功.getChildByName('配合内功').text = '配合内功：[01]无'
         end
-        str = {'无','中毒','麻痹','晕眩','内伤','受伤','迟缓','中毒受伤','致盲','混乱','即死'}
+        str = {'无','中毒','麻痹','晕眩','内伤','受伤','迟缓','中毒受伤','致盲','混乱','即死','剧毒'}
         if o_skill.类别 < 6 or o_skill.招式  then 
             self.武功.getChildByName('攻击效果').text = '攻击效果：[01]'..str[o_skill.附加效果+1]
         else

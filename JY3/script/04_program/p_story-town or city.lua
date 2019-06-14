@@ -823,7 +823,7 @@ t['城镇-蝴蝶谷']=function()
                     if o_team ~= nil then 
                         G.QueryName(o_team).内力 = G.QueryName(o_team)[tostring(2)]
                         G.QueryName(o_team).生命 = G.QueryName(o_team)[tostring(1)]
-                        for n = 81,89 do 
+                        for n = 81,90 do 
                             G.QueryName(o_team)[tostring(n)] = 0
                         end
                     end 
