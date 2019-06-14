@@ -2837,7 +2837,7 @@ t['magic_power1'] = function(int_id,int_no)
                 hurt = hurt 
             elseif  int_玉女剑阵效果 == 1 and i_skill == 0x1005003e then --玉女剑阵破防效果判定
                 if G.call('通用_取得内功轻功特效',0,18) then
-                    hurt = math.floor(hurt *(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                    hurt = math.floor(hurt *(1- d/1200)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
                 else
                     hurt = math.floor(hurt *(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
                 end
