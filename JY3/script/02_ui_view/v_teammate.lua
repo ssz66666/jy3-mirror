@@ -817,6 +817,23 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '5'
+			tc.left = -12.000
+			tc.right = 88.000
+			tc.bottom = -88.000
+			tc.top = -48.000
+			tc.mouseEnabled = true
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '2222'
+			tc.font = 0x61240000
+			tc.style = 10
+			tp = tc
+			tp = tp.parent
+			--end
 			tc = G.loadUI('v_empty')
 			tp.addChild(tc)
 			tc.name = '显示'

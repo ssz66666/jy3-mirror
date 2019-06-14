@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_book = require 'c_book'
 local c_button = require 'c_button'
+local c_book = require 'c_book'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -563,8 +563,8 @@ tp = tc
 					tc.pivotX = 0.000
 					tc.pivotY = 1.000
 					tc.left = -81.000
-					tc.right = -44.000
-					tc.bottom = -253.000
+					tc.right = -81.000
+					tc.bottom = -143.000
 					tc.top = -127.000
 					tc.scaleX = 0.500
 					tc.scaleY = 0.500
@@ -689,6 +689,23 @@ tp = tc
 						tc.right = 95.000
 						tc.bottom = -65.000
 						tc.top = -25.000
+						tc.mouseEnabled = true
+						tc.visible = false
+						tc.scaleX = 0.500
+						tc.scaleY = 0.500
+						tc.text = '破绽'
+						tc.font = 0x61240000
+						tc.style = 10
+						tp = tc
+						tp = tp.parent
+						--end
+						tc = G.TextQuad()
+						tp.addChild(tc)
+						tc.name = '5'
+						tc.left = -5.000
+						tc.right = 95.000
+						tc.bottom = -90.000
+						tc.top = -50.000
 						tc.mouseEnabled = true
 						tc.visible = false
 						tc.scaleX = 0.500

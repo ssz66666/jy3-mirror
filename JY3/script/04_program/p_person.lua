@@ -1456,18 +1456,13 @@ t['事件_随机切磋']=function()
     for j = 1,25 do 
         table.insert(skill,j )
     end 
-    local team_skill_1 = {}
-    local team_skill_2 = {}
+    local team_skill = {0,0,0,0,0}
+    -- local team_skill_2 = {0,0,0,0,0}
     local skill_mod = {0,0,0,0,0} 
     local o_role = G.QueryName(0x10040000+int_role)
-    table.insert(team_skill_1,{          --记录敌人被动
-        被动_1 = G.call('get_role',int_role,111),
-        被动_2 = G.call('get_role',int_role,112),
-        被动_3 = G.call('get_role',int_role,113),
-        被动_4 = G.call('get_role',int_role,114),
-        被动_5 = G.call('get_role',int_role,115),
-    }
-    )
+    for i = 1,5 do
+        team_skill[i] = G.call('get_role',int_role,110+i)  
+    end
     local len = #skill
     local r = math.random(len) 
     skill_mod[1] = skill[r]
@@ -1488,20 +1483,12 @@ t['事件_随机切磋']=function()
     r = math.random(len) 
     skill_mod[5] = skill[r]
     table.remove(skill, r)
-    table.insert(team_skill_2,{  --随机出4个被动
-        被动_1 = skill_mod[1],
-        被动_2 = skill_mod[2],
-        被动_3 = skill_mod[3],
-        被动_4 = skill_mod[4],
-        被动_5 = skill_mod[5],
-        }
-    ) 
     local int_被动 = math.random(5)
     local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','霸王','真意','昊天','朱雀','玄武','青龙','白虎'}
     o_role = G.QueryName(0x10040000 + int_role)
     if int_被动 > 0 then --分配被动
         for j = 1,int_被动 do 
-            G.call('set_role',int_role,110+j,team_skill_2[1]['被动_'..j]) 
+            G.call('set_role',int_role,110+j,skill_mod[j]) 
         end   
     end 
     local name = G.call('get_point',1)
@@ -1509,7 +1496,7 @@ t['事件_随机切磋']=function()
     G.call('call_battle',1,10,1,300,int_role,0,0,0,0,0,0,0,1)
     if int_被动 > 0 then --还原被动
         for j = 1,int_被动 do 
-            G.call('set_role',int_role,110+j,team_skill_1[1]['被动_'..j]) 
+            G.call('set_role',int_role,110+j,team_skill[j]) 
         end   
     end 
     G.misc().随机切磋 = 0

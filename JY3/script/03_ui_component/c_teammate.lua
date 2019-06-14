@@ -75,7 +75,7 @@ function t:rollOver(tar)
     local str31 = '招式攻击几率造成迟缓'
     local str = {str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22,str23,str24,str25,str26,str27,str28,str29,str30,str31}
     local o_role_人物 = G.QueryName(G.QueryName(0x10030001)[tostring(189)])
-    for i = 1,4 do 
+    for i = 1,5 do 
         if tar == self.被动.getChildByName(tostring(i)) then 
             self.被动.getChildByName('显示').visible = true
             --local str = 'str'..o_role_人物[tostring(110+i)]
@@ -214,8 +214,8 @@ function t:显示更新(int_队友序号)
         self.属性.getChildByName('速度').text = G.call('get_role',int_队员编号,8)
         self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
         local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气'}
-        for i = 1,4 do 
-            if o_role_人物[tostring(110+i)] ~= nil then 
+        for i = 1,5 do 
+            if o_role_人物[tostring(110+i)]  and o_role_人物[tostring(110+i)] > 0 then 
                 self.被动.getChildByName(tostring(i)).visible = true
                 self.被动.getChildByName(tostring(i)).text = magic[o_role_人物[tostring(110+i)]]
             else
