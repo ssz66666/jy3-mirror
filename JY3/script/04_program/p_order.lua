@@ -371,22 +371,6 @@ t['new_test'] = function()
     end
 end   
 t['in_test'] = function() 
-    while true do 
-        local 印记 = {}
-        local int_印记数量 = 0
-        for i = 1,14 do
-            if G.call('通用_拥有印记',i) then 
-                int_印记数量 = int_印记数量 + 1
-            else
-                table.insert(印记, i)
-            end 
-        end
-        if int_印记数量 < 14 then 
-            G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记
-        else
-            break
-        end
-    end
     G.misc().测试 = 1
 end 
 t['input'] = function() 

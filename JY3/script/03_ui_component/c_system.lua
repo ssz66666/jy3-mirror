@@ -394,6 +394,22 @@ function t:click(tar)
             G.removeUI('v_system') 
             G.call("goto_map",G.QueryName(0x10030001)[tostring(140)]-0x10060000)
             G.call('notice1','开启梦幻专用测试通道')
+            while true do 
+                local 印记 = {}
+                local int_印记数量 = 0
+                for i = 1,14 do
+                    if G.call('通用_拥有印记',i) then 
+                        int_印记数量 = int_印记数量 + 1
+                    else
+                        table.insert(印记, i)
+                    end 
+                end
+                if int_印记数量 < 14 then 
+                    G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记
+                else
+                    break
+                end
+            end
             G.misc().梦幻测试 = 1
         elseif self.文本.getChildByName('secret').getChildByName('文本').text == '端午节快乐'  then
             if G.call('get_point',237) > 1 then 
