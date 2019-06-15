@@ -2169,8 +2169,8 @@ t['战斗系统_事件响应'] = function()
                                 ui.getChildByName('map').getChildByName(位置[i]).x = 151 
                                 if G.call('通用_取得人物特效',o_battle[位置[i] ],3) and  math.random(100) > 70 then 
                                     ui.getChildByName('map').getChildByName(位置[i]).x = 330 
-                                end
-                                G.trig_event('出手')       
+                                    G.trig_event('出手') 
+                                end      
                             end 		
                         end 
                     end	
