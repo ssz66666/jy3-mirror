@@ -691,7 +691,7 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     if ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible == true then 
         if G.QueryName(0x10150001).模式 < 4 then 
             G.call('add_point',44,-hurt)
-            if G.call('get_magic',166) > 0 then 
+            if G.call('get_point',8) ==  4 then --判断复生效果，全真复生低于30%血10%几率触发，其他门派低于20%血5%几率触发 
                 if G.call('通用_取得人物特效',0,15) and math.random(100) > 90 and G.call('get_point',44) < G.call('get_point',217)*0.3 then --主角复生效果
                     G.call('add_point',44,G.call('get_point',217))                  
                 end  
