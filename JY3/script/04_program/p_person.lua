@@ -1336,7 +1336,7 @@ t['猜数字']=function()
                 n[2] =  math.floor((p - n[1] *1000)/100)
                 n[3] =  math.floor((p - n[1] *1000 - n[2] *100)/10 )
                 n[4] =  p - n[1] *1000 - n[2] *100 - n[3] * 10 
-                for i = 1,4 do 
+                for i = 1,4 do --计算猜中数字位置正确和位置错误的个数
                     if n[i] == m[i] then 
                         r = r + 1
                     end
@@ -1347,7 +1347,8 @@ t['猜数字']=function()
                     end     
                 end 
                 local str = tostring(n[1])..tostring(n[2])..tostring(n[3])..tostring(n[4])
-                G.call("talk",'',38,'   第'..int_mo..'次你猜的是【'..str..'】[br]  【'..r..'】个数字位置正确，【'..e..'】个数字位置错误！',2,1)   
+                G.call("talk",'',38,'   [02]第【[05]'..int_mo..'[02]】次你猜的是【[03]'..str..'[02]】[br] 【[03]'..e..'[02]】阴【[06]'..r..'[02]】阳',2,1)  
+                --G.call("talk",'',38,'   第'..int_mo..'次你猜的是【'..str..'】[br]  【'..r..'】个数字位置正确，【'..e..'】个数字位置错误！',2,1)   
             end    
         elseif int_选项 == 2 then
             G.call('all_over')
