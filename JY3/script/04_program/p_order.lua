@@ -344,32 +344,49 @@ t['test'] = function()
 end   
 t['new_test'] = function()
     --G.call('模式_笑梦游记')
-    G.call('all_over')
-    G.call('set_team',36,0,0,0)
-    G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
+    --G.call('set_point',115,3)
+    -- G.call('all_over')
+    -- G.call('set_team',36,0,0,0)
+    -- G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
     -- G.call('join',4)
     -- local o_book_story = G.QueryName(0x101c000c)
     -- o_book_story.流程 = 1
     -- G.call('天书_倚天屠龙记') 
     -- G.call('通用_印记状态')
-    -- while true do 
-    --     local 印记 = {}
-    --     local int_印记数量 = 0
-    --     for i = 1,14 do
-    --         if G.call('通用_拥有印记',i) then 
-    --             int_印记数量 = int_印记数量 + 1
-    --         else
-    --             table.insert(印记, i)
-    --         end 
-    --     end
-    --     if int_印记数量 < 14 then 
-    --         G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记
-    --     else
-    --         break
-    --     end
-    -- end
+    while true do 
+        local 印记 = {}
+        local int_印记数量 = 0
+        for i = 1,14 do
+            if G.call('通用_拥有印记',i) then 
+                int_印记数量 = int_印记数量 + 1
+            else
+                table.insert(印记, i)
+            end 
+        end
+        if int_印记数量 < 14 then 
+            G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记
+        else
+            break
+        end
+    end
 end   
 t['in_test'] = function() 
+    while true do 
+        local 印记 = {}
+        local int_印记数量 = 0
+        for i = 1,14 do
+            if G.call('通用_拥有印记',i) then 
+                int_印记数量 = int_印记数量 + 1
+            else
+                table.insert(印记, i)
+            end 
+        end
+        if int_印记数量 < 14 then 
+            G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记
+        else
+            break
+        end
+    end
     G.misc().测试 = 1
 end 
 t['input'] = function() 
