@@ -1451,7 +1451,7 @@ t['事件_随机切磋']=function()
     elseif int_lv >= 91 and int_lv <= 100 then 
         boss_final = boos_5
     end
-    local int_role = boss_final[math.random(#boss_final)]
+    local int_role = boss_final[math.ceil(G.call('通用_取宝物随机')*#boss_final/100)]
     local skill = {}
     for j = 1,25 do 
         table.insert(skill,j )
@@ -1464,23 +1464,23 @@ t['事件_随机切磋']=function()
         team_skill[i] = G.call('get_role',int_role,110+i)  
     end
     local len = #skill
-    local r = math.random(len) 
+    local r = math.ceil(G.call('通用_取宝物随机')*len/100) 
     skill_mod[1] = skill[r]
     table.remove(skill, r)
     len = #skill
-    r = math.random(len) 
+    r = math.ceil(G.call('通用_取宝物随机')*len/100)
     skill_mod[2] = skill[r]
     table.remove(skill, r)
     len = #skill
-    r = math.random(len) 
+    r = math.ceil(G.call('通用_取宝物随机')*len/100)
     skill_mod[3] = skill[r]
     table.remove(skill, r)
     len = #skill
-    r = math.random(len) 
+    r = math.ceil(G.call('通用_取宝物随机')*len/100)
     skill_mod[4] = skill[r]
     table.remove(skill, r)
     len = #skill
-    r = math.random(len) 
+    r = math.ceil(G.call('通用_取宝物随机')*len/100)
     skill_mod[5] = skill[r]
     table.remove(skill, r)
     local int_被动 = math.random(5)
