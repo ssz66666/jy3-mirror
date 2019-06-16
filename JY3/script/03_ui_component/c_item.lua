@@ -944,8 +944,8 @@ function t:click(tar)
         local o_teammate_队友 = G.QueryName(0x10110001)
         local int_队员编号 = o_teammate_队友[tostring(self.队友编号)] - 0x10040000
         local o_role_人物 = G.QueryName(o_teammate_队友[tostring(self.队友编号)])
-        if o_item.自宫 > 0  and o_role_人物.性别 == 1 then
-            G.trig_event('队友自宫')
+        if o_item.自宫 > 0  and o_role_人物.性别 == 1 and int_队员编号 ~= 38 then
+            G.trig_event('队友自宫')  
         else
             G.call('add_item',int_物品代码+1,-1 )
             G.call('set_friend_skill',int_队员编号,4,int_武功代码+1,1) 
