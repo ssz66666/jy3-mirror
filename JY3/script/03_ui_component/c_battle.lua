@@ -175,9 +175,13 @@ function t:start()
         self.obj.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减体力').shadowX = 1
         self.obj.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减体力').shadowY = 0 
         self.obj.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减体力').shadowAlpha = 180
-    end   
-    G.misc().队友AI = 0
-    G.misc().加血阈值 = 50  
+    end  
+    if not  G.misc().队友AI then 
+        G.misc().队友AI = 0
+    end
+    if not G.misc().加血阈值 then 
+        G.misc().加血阈值 = 50  
+    end
     self:update()
     self:刷新显示()
 end  
