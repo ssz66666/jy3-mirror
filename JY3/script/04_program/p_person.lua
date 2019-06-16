@@ -1507,16 +1507,16 @@ t['事件_随机切磋']=function()
         G.misc().随机切磋监控 = G.misc().随机切磋监控 - 1
         if int_role == 390 then
             if G.call('通用_取宝物随机') > 50 then  
-                G.call('通用_抽礼物',9,0,1,1,1)
+                G.call('通用_抽礼物',9,1,1,1,1)
             else
-                G.call('通用_抽礼物',9,0,1,1)
+                G.call('通用_抽礼物',9,1,1,1)
             end
         else
             if G.misc().随机切磋次数%100 == 0 then 
                 if G.call('通用_取宝物随机') > 50 then 
-                    G.call('通用_抽礼物',9,0,1,1,1)
+                    G.call('通用_抽礼物',9,1,1,1,1)
                 else
-                    G.call('通用_抽礼物',9,0,1,1)
+                    G.call('通用_抽礼物',9,1,1,1)
                 end
                 
             else
