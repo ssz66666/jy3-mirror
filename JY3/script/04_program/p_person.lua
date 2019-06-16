@@ -1884,7 +1884,7 @@ t['副本_通天塔']=function(int_模式)
             G.call('add_item',341,1)
             G.call("talk",'',38,'   恭喜突破100层，这是给你的奖励！',2,1) 
             G.call('add_item',340,50)
-            G.call('通用_抽礼物',9,0,1,2,1)
+            G.call('通用_抽礼物',9,1,1,2,1)
             if int_难度 == 1 then
                 if o_wjtz.进度列表[5].完成 == 0 then
                     o_wjtz.进度列表[5].完成 = 1
@@ -1933,7 +1933,7 @@ t['副本_通天塔']=function(int_模式)
         elseif  G.misc().通天塔层数 > 100 and G.misc().通天塔单人奖励_4 == 0 then
             G.misc().通天塔单人奖励_4 = 1
             G.call('add_item',341,1)
-            G.call('通用_抽礼物',9,0,2,2,1)
+            G.call('通用_抽礼物',9,1,2,2,1)
             G.call("talk",'',38,'   恭喜突破100层，这是给你的奖励！',2,1) 
             G.call('add_item',238,10)
             G.call('add_item',340,200)
