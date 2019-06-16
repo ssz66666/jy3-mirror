@@ -1505,14 +1505,27 @@ t['事件_随机切磋']=function()
         G.call("talk",'',int_role,'   【'..name..'】大侠果然功夫过人，些许薄礼就送与大侠了，有机会再来挑战！',1,1) 
         G.misc().随机切磋次数 = G.misc().随机切磋次数 + 1
         G.misc().随机切磋监控 = G.misc().随机切磋监控 - 1
-        if int_role == 390 then 
-            G.call('通用_抽礼物',9,0,0,0)
+        if int_role == 390 then
+            if G.call('通用_取宝物随机') > 50 then  
+                G.call('通用_抽礼物',9,0,1,1,1)
+            else
+                G.call('通用_抽礼物',9,0,1,1)
+            end
         else
             if G.misc().随机切磋次数%100 == 0 then 
-                G.call('通用_抽礼物',9,0,0,0)
+                if G.call('通用_取宝物随机') > 50 then 
+                    G.call('通用_抽礼物',9,0,1,1,1)
+                else
+                    G.call('通用_抽礼物',9,0,1,1)
+                end
+                
             else
                 if G.misc().随机切磋次数%20 == 0 then
-                    G.call('通用_抽礼物',1,0,0)
+                    if G.call('通用_取宝物随机') > 50 then 
+                        G.call('通用_抽礼物',1,0,1,0,1)
+                    else
+                        G.call('通用_抽礼物',1,0,1) 
+                    end
                 else
                     G.call('通用_抽礼物',1,0) 
                 end
@@ -1748,6 +1761,11 @@ t['副本_通天塔']=function(int_模式)
                 end   
             end
             if G.misc().通天塔层数 >= 100 then 
+                if int_模式 == 0 then 
+                    G.call('通用_抽礼物',3,0,1,0,1) 
+                else
+                    G.call('通用_抽礼物',2,0,1,0,1) 
+                end
                 G.misc().通天塔层数 = 101
                 break
             else
@@ -1866,7 +1884,7 @@ t['副本_通天塔']=function(int_模式)
             G.call('add_item',341,1)
             G.call("talk",'',38,'   恭喜突破100层，这是给你的奖励！',2,1) 
             G.call('add_item',340,50)
-            G.call('通用_抽礼物',9,0,0,0)
+            G.call('通用_抽礼物',9,0,1,2,1)
             if int_难度 == 1 then
                 if o_wjtz.进度列表[5].完成 == 0 then
                     o_wjtz.进度列表[5].完成 = 1
@@ -1915,7 +1933,7 @@ t['副本_通天塔']=function(int_模式)
         elseif  G.misc().通天塔层数 > 100 and G.misc().通天塔单人奖励_4 == 0 then
             G.misc().通天塔单人奖励_4 = 1
             G.call('add_item',341,1)
-            G.call('通用_抽礼物',9,0,0,1)
+            G.call('通用_抽礼物',9,0,2,2,1)
             G.call("talk",'',38,'   恭喜突破100层，这是给你的奖励！',2,1) 
             G.call('add_item',238,10)
             G.call('add_item',340,200)
