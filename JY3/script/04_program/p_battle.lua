@@ -758,10 +758,10 @@ t['战斗系统_事件响应'] = function()
                                             end
                                         end 
                                     end
-                                    -- for j = 81,90 do 
-                                    --     G.call('ser_point',j,0)
-                                    --     G.call('ser_point',j+10,0)
-                                    -- end
+                                    for j = 81,90 do 
+                                        G.call('ser_point',j,0)
+                                        G.call('ser_point',j+10,0)
+                                    end
                                     if o_role_tb.内力 >= needmp then  
                                         int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill_武功等级/1000)
                                     else
