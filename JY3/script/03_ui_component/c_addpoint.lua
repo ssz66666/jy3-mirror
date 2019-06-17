@@ -223,7 +223,7 @@ function t:click(tar)
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089007 --设定头像
                     local int_magic = {183,184,185,186,219,220,221}
                     G.call('set_magic',int_magic[math.random(#int_magic)])
-                elseif str == '天宇哥哥最帅了' then
+                elseif str == '天宇妹妹最靓了' then
                     G.QueryName(0x10030001)[tostring(50)] = 2 --二次结义机会
                 elseif str == '自古红颜多离人' then
                     G.QueryName(0x10030001)[tostring(51)] = 2 --二次结婚机会
@@ -309,7 +309,7 @@ function t:click(tar)
             self.obj.getChildByName('显示').getChildByName('名').text = '厂公'
             self.头像.img = 0x560800e2
             G.Play(0x4901000f, 1,false,100) 
-        elseif str == '天宇哥哥最帅了' then
+        elseif str == '天宇妹妹最靓了' then
             G.Play(0x4901000f, 1,false,100) 
         elseif str == '自古红颜多离人' then
             G.Play(0x4901000f, 1,false,100) 
