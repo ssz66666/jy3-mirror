@@ -776,8 +776,10 @@ t['聚贤庄-半瓶神仙醋']=function()
                             G.misc().通天塔时间 = 1
                             G.misc().通天塔监控 = -8 
                         end
-                        local int_min = G.misc().通天塔时间
-                        if G.misc().通天塔时间 == 0 or int_min >= 60  then
+                        --local int_min = G.misc().通天塔时间
+                        local int_min = G.call('通用_读取时间差')
+                        --if G.misc().通天塔时间 == 0 or int_min >= 60  then    
+                        if int_min   >= 60 then   
                             G.call("talk",'',38,'    请选择无尽模式！',2,1) 
                             local int_选项 = 0
                             while int_选项 == 0 do
@@ -787,14 +789,16 @@ t['聚贤庄-半瓶神仙醋']=function()
                                     G.call('all_over')
                                     G.call('通用_存档',G.call('get_point',143))
                                     G.call('副本_通天塔',1) 
-                                    G.misc().通天塔时间 = 1
+                                    G.call('通用_记录时间')
+                                    --G.misc().通天塔时间 = 1
                                     G.misc().通天塔监控 = -8
                                 elseif int_选项 == 2 then
                                     G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
                                     G.call('all_over')
                                     G.call('通用_存档',G.call('get_point',143))
                                     G.call('副本_通天塔',0) 
-                                    G.misc().通天塔时间 = 1
+                                    G.call('通用_记录时间')
+                                    --G.misc().通天塔时间 = 1
                                     G.misc().通天塔监控 = -8
                                 elseif int_选项 == 3 then
                                     G.call('all_over')
