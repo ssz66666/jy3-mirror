@@ -1762,9 +1762,9 @@ t['副本_通天塔']=function(int_模式)
             end
             if G.misc().通天塔层数 >= 100 then 
                 if int_模式 == 0 then 
-                    G.call('通用_抽礼物',3,0,1,0,1) 
-                else
                     G.call('通用_抽礼物',2,0,1,0,1) 
+                else
+                    G.call('通用_抽礼物',3,0,1,0,1) 
                 end
                 G.misc().通天塔层数 = 101
                 break
