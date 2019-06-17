@@ -1534,6 +1534,11 @@ t['事件_随机切磋']=function()
     else
         G.call("talk",'',int_role,'   哈哈哈.......【'..name..'】大侠看来也不过是徒有虚名！',1,1)
     end
+    if int_被动 > 0 then --还原被动
+        for j = 1,int_被动 do 
+            G.call('set_role',int_role,110+j,team_skill[j]) 
+        end   
+    end 
     G.call('all_over')
 end     
 t['副本_通天塔']=function(int_模式)
