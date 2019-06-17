@@ -1285,6 +1285,11 @@ t['buyresult']=function() --买物品结算
     local int_商店代码 = G.QueryName(0x10030001)[tostring(232)]
     local int_讲价 = G.call('get_point',36)/4
     local o_shop = G.QueryName(0x10130000+int_商店代码)
+    if G.call('通用_取得我方装备特效',411) then 
+        int_讲价 = int_讲价 + 25
+    end
+    int_物品总价 =  math.floor(int_物品总价*(100 -int_讲价 )/100)
+    if G.call('get_money') < int_物品总价 then return end
     for i = 1,8 do 
         if o_shop[数量[i]] ~= nil then
             if  o_shop[数量[i]] > 0 then 
@@ -1293,10 +1298,6 @@ t['buyresult']=function() --买物品结算
             end
         end 
     end 
-    if G.call('通用_取得我方装备特效',411) then 
-        int_讲价 = int_讲价 + 25
-    end
-    int_物品总价 =  math.floor(int_物品总价*(100 -int_讲价 )/100)
     G.call('add_money',-int_物品总价)    
 end
 t['sellresult']=function() --卖物品结算
@@ -1306,6 +1307,12 @@ t['sellresult']=function() --卖物品结算
     local int_商店代码 = G.QueryName(0x10030001)[tostring(232)]
     local int_讲价 = G.call('get_point',36)/2
     local o_shop = G.QueryName(0x10130000+int_商店代码)
+
+    if G.call('通用_取得我方装备特效',411) then 
+        int_讲价 = int_讲价 + 50
+    end
+    int_物品总价 =  math.floor(int_物品总价*(100 + int_讲价  )/100)
+    G.call('add_money',int_物品总价)   
     for i = 1,8 do   
         if o_shop[数量[i]] ~= nil then
             if  o_shop[数量[i]] > 0 then 
@@ -1313,12 +1320,7 @@ t['sellresult']=function() --卖物品结算
                 G.call('add_item',int_物品代码+1,-o_shop[数量[i]])
             end
         end 
-    end 
-    if G.call('通用_取得我方装备特效',411) then 
-        int_讲价 = int_讲价 + 50
-    end
-    int_物品总价 =  math.floor(int_物品总价*(100 + int_讲价  )/100)
-    G.call('add_money',int_物品总价)    
+    end  
 end
 t['photo0']=function(int_代码) --显示事件图片
     G.addUI('v_photo0')
