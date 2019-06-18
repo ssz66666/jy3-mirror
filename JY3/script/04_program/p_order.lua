@@ -693,11 +693,10 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
                     G.call('add_role',o_battle[位置[p]] ,15,-hurt)
                     if  G.call('通用_取得人物特效',o_battle[位置[p]],15) and math.random(100) > 95 and G.call('get_role',o_battle[位置[p]],15) < G.call('get_role',o_battle[位置[p]],1) *0.2 then --npc复生效果
                         G.call('set_role',o_battle[位置[p]],15,G.call('get_role',o_battle[位置[p]],1))
-                    end   
-                    local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text)
-                    G.call('add_role',o_battle[位置[p]],15,int_hp)               
+                    end           
                 end 
-                
+                local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text)
+                G.call('add_role',o_battle[位置[p]],15,int_hp)  
             end
         end 		
     end 
