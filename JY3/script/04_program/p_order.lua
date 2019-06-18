@@ -669,16 +669,6 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     if o_battle.模式 >= 4  then
         ui_显示.getChildByName('team1').visible = false 
     end
-    ui_显示.visible = true
-    ui_显示.y = 0
-    ui_特效.y = 0
-    G.Tween('y',500, ui_显示, 80)
-    G.Tween('y',500, ui_特效, 80)
-    if int_范围 == 5 then 
-        G.wait_time(1000)
-    else
-        G.wait_time(500)
-    end
     local   hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('生命').text)
     if ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible == true then 
         print('hurt',hurt,ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
@@ -714,6 +704,16 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text)
     if int_hp > 0 then 
        G.call('add_point',44,int_hp)
+    end
+    ui_显示.visible = true
+    ui_显示.y = 0
+    ui_特效.y = 0
+    G.Tween('y',500, ui_显示, 80)
+    G.Tween('y',500, ui_特效, 80)
+    if int_范围 == 5 then 
+        G.wait_time(1000)
+    else
+        G.wait_time(500)
     end
     ui_显示.visible = false 
     ui_特效.getChildByName('enemy').getChildByName('一').text = ''
