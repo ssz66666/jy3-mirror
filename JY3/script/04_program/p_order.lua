@@ -348,6 +348,9 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
+    for i = 1,100 do
+        G.call('通用_抽礼物',9,1,2,2,1)
+    end
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
     -- G.call('all_over')
@@ -358,22 +361,6 @@ t['new_test'] = function()
     -- o_book_story.流程 = 1
     -- G.call('天书_倚天屠龙记') 
     -- G.call('通用_印记状态')
-    while true do 
-        local 印记 = {}
-        local int_印记数量 = 0
-        for i = 1,14 do
-            if G.call('通用_拥有印记',i) then 
-                int_印记数量 = int_印记数量 + 1
-            else
-                table.insert(印记, i)
-            end 
-        end
-        if int_印记数量 < 14 then 
-            G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记
-        else
-            break
-        end
-    end
 end   
 t['in_test'] = function() 
     G.misc().测试 = 1
@@ -942,9 +929,6 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         for p = 81,90 do   --清除敌人的全部异常
             G.call('set_role',o_battle[位置[i] ] ,p,0)
         end 
-        if G.call('get_role',o_battle[位置[i] ],15) <= 0 then 
-            G.call('set_role',o_battle[位置[i] ]  ,15,1 )   --回复敌人hp为1 
-        end
     end 
     for i = 2,11 do   --清除队友的异常
         if o_battle[位置[i] ] > 0 then 
@@ -959,6 +943,9 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
                     G.call('set_role',o_battle[位置[i] ] ,15,1)
                 end  
             end 
+            if G.call('get_role',o_battle[位置[i] ],15) <= 0 then 
+                G.call('set_role',o_battle[位置[i] ]  ,15,1 )   --回复敌人hp为1 
+            end
         end       
     end  
     G.removeUI('v_skill')
