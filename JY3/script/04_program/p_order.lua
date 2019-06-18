@@ -3473,7 +3473,6 @@ t['通用_取得装备特效']=function(int_编号,int_特效号)
     end
     if o_role[装备[int_特效类型]]  then 
         local o_equip = G.QueryName(o_role[装备[int_特效类型]])
-        print(o_equip.特效)
         if o_equip.特效 == int_特效号 then
            result = true
         end

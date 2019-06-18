@@ -2591,12 +2591,12 @@ t['magic_power1'] = function(int_id,int_no)
     local hurt2 = 0  --杀内力
     local hurt3 = 0  --反伤
     local hurt4 = 0  --吸血      
-    if G.call('get_point',196) ~= nil  then 
+    if G.call('get_point',196)   then 
         if G.QueryName(G.call('get_point',196)).内功轻功效果 == 7 then --专属内功强化效果，比如九阴,小无
             if string_字符串_1 == '' then 
-                string_字符串_1 = string_字符串_1..G.QueryName(G.call('get_point',196)).名称..'强化'
+                string_字符串_1 = string_字符串_1..'内功强化'
             else
-                string_字符串_1 = string_字符串_1..'.'..G.QueryName(G.call('get_point',196)).名称..'强化'
+                string_字符串_1 = string_字符串_1..'.'..'内功强化'
             end
             result = result + G.QueryName(G.call('get_point',196)).效果等级 *G.QueryName(G.call('get_point',196)).修为等级/5    
         else
