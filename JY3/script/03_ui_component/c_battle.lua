@@ -362,8 +362,8 @@ function t:rollOver(tar)
                     self.属性.getChildByName('生命').text = '?????/?????'
                     self.属性.getChildByName('内力').text = '?????/?????'
                 else
-                    self.属性.getChildByName('生命').text = tostring(o_role_人物.生命)..'/'..(o_role_人物[tostring(1)] )
-                    self.属性.getChildByName('内力').text = tostring(o_role_人物.内力)..'/'..(o_role_人物[tostring(2)] )
+                    self.属性.getChildByName('生命').text = math.floor(o_role_人物.生命)..'/'..(o_role_人物[tostring(1)] )
+                    self.属性.getChildByName('内力').text = math.floor(o_role_人物.内力)..'/'..(o_role_人物[tostring(2)] )
                 end
                 local 属性 = {'拆招','搏击','闪躲','内功','攻击','速度'}
                 for i = 1,6 do
