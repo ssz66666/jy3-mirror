@@ -2956,7 +2956,7 @@ t['magic_power1'] = function(int_id,int_no)
                         end  
                     end
             elseif  o_skill.附加效果 == 2 then  --麻痹
-                if math.random(seed) < 5 + math.floor(G.call('get_point',179+32)/10)   then 
+                if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10)   then 
                     if G.call('get_role',int_id,82) == 0 then 
                         if string_字符串_4 == '' then 
                             string_字符串_4 = string_字符串_4..'点穴'
