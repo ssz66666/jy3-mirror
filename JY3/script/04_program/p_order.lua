@@ -348,9 +348,6 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    for i = 1,100 do
-        G.call('通用_抽礼物',9,1,2,2,1)
-    end
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
     -- G.call('all_over')
@@ -684,8 +681,7 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     end
     local   hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('生命').text)
     if ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible == true then 
-        print('99999999999999999')
-        print(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
+        print('hurt',hurt,ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
         if G.QueryName(0x10150001).模式 < 4 then 
             G.call('add_point',44,-hurt)
             if G.call('get_point',8) ==  4 then --判断复生效果，全真复生低于30%血10%几率触发，其他门派低于20%血5%几率触发 
@@ -720,15 +716,19 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
        G.call('add_point',44,int_hp)
     end
     ui_显示.visible = false 
-    ui_特效.getChildByName('team').visible = false
-    ui_特效.getChildByName('enemy').visible = false
+    ui_特效.getChildByName('enemy').getChildByName('一').text = ''
+    ui_特效.getChildByName('enemy').getChildByName('二').text = ''
+    ui_特效.getChildByName('team').getChildByName('一').text = ''
+    ui_特效.getChildByName('team').getChildByName('二').text = ''
     for p = 1,11 do
+        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('一').text = ''
+        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('二').text = ''
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').visible = false
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('闪避').visible = false
-        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').text = tostring(0) 
+        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').text = 0 
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = false
-        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = tostring(0)
-        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加内力').text = tostring(0)
+        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = 0
+        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加内力').text = 0
     end
     if c.我方存活 > 0 and  c.敌方存活 > 0 then
        c:刷新显示()
@@ -3473,6 +3473,7 @@ t['通用_取得装备特效']=function(int_编号,int_特效号)
     end
     if o_role[装备[int_特效类型]]  then 
         local o_equip = G.QueryName(o_role[装备[int_特效类型]])
+        print(o_equip.特效)
         if o_equip.特效 == int_特效号 then
            result = true
         end

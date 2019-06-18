@@ -640,14 +640,16 @@ t['战斗系统_事件响应'] = function()
                             local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
                             G.call('add_role',o_battle[位置[i]],14,-needmp) 
                             ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('生命').text = hurt
-                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = 攻击效果[1]
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('一').text = 攻击效果[4]
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('二').text = 攻击效果[5]
                             ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
                             if hurt == 0 then 
-                                ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = string_字符串_1 
+                                ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = '' 
                                 ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('闪避').visible = true 
                             end
-                            ui.getChildByName('特效').getChildByName('team').visible = true
-                            ui.getChildByName('特效').getChildByName('team').text = string_字符串_2
+                            ui.getChildByName('特效').getChildByName('team').getChildByName('一').text = 攻击效果[2]
+                            ui.getChildByName('特效').getChildByName('team').getChildByName('二').text = 攻击效果[3]
                             G.noti_call('战场_效果',i,int_动作编号,n)    	
                         else    
                             if o_skill.范围 == 0 or o_skill.范围 == 1 then
@@ -1014,16 +1016,17 @@ t['战斗系统_事件响应'] = function()
                                         local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
                                         hurt = 攻击效果[1]
                                         ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('生命').text = 攻击效果[1]
-                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
-                                        print(ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text)
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = 攻击效果[1]
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('一').text = 攻击效果[4]
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('二').text = 攻击效果[5]
                                         if hurt == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = string_字符串_1
+                                            ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = ''
                                             ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('闪避').visible = true 
                                         end 
-                                        ui.getChildByName('特效').getChildByName('team').text = string_字符串_2
+                                        ui.getChildByName('特效').getChildByName('team').getChildByName('一').text = 攻击效果[2]
+                                        ui.getChildByName('特效').getChildByName('team').getChildByName('二').text = 攻击效果[3]
                                     end 
                                 end
-                                ui.getChildByName('特效').getChildByName('team').visible = true
                                 G.noti_call('战场_效果',i,int_动作编号,int_动画位置)
                             end
                         end 
@@ -1099,15 +1102,17 @@ t['战斗系统_事件响应'] = function()
                             local string_字符串_1 = '[05]'..攻击效果[4]..'[br][07]'..攻击效果[5]
                             local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
                             G.call('add_role',o_battle[位置[i]],14,-needmp) 
-                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('生命').text = hurt
-                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('生命').text = 攻击效果[1]
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = 攻击效果[1]
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('一').text = 攻击效果[4]
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('二').text = 攻击效果[5]
                             ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
                             if hurt == 0 then 
-                                ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = string_字符串_1 
+                                ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = ''
                                 ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('闪避').visible = true 
                             end
-                            ui.getChildByName('特效').getChildByName('enemy').visible = true
-                            ui.getChildByName('特效').getChildByName('enemy').text = string_字符串_2
+                            ui.getChildByName('特效').getChildByName('enemy').getChildByName('一').text = 攻击效果[2]
+                            ui.getChildByName('特效').getChildByName('enemy').getChildByName('二').text = 攻击效果[3]
                             G.noti_call('战场_效果',i,int_动作编号,n)
                         else    
                             if o_skill.范围 == 0 or o_skill.范围 == 1 then
@@ -1349,13 +1354,15 @@ t['战斗系统_事件响应'] = function()
                                     local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
                                     hurt = 攻击效果[1]
                                     ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('生命').text = 攻击效果[1]
-                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
-                                    print(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
+                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text = 攻击效果[1]
+                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('一').text = 攻击效果[4]
+                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('二').text = 攻击效果[5]
                                     if hurt == 0 then 
-                                        ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text = string_字符串_1
+                                        ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text = ''
                                         ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('闪避').visible = true 
                                     end 
-                                    ui.getChildByName('特效').getChildByName('enemy').text = string_字符串_2
+                                    ui.getChildByName('特效').getChildByName('enemy').getChildByName('一').text = 攻击效果[2]
+                                    ui.getChildByName('特效').getChildByName('enemy').getChildByName('二').text = 攻击效果[3]
                                 end
                                 for j = 2,5 do
                                     if ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').visible == true  then 
@@ -1364,16 +1371,17 @@ t['战斗系统_事件响应'] = function()
                                         local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
                                         hurt = 攻击效果[1]
                                         ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('生命').text = 攻击效果[1]
-                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
-                                        print(ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text)
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = 攻击效果[1]
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('一').text = 攻击效果[4]
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('二').text = 攻击效果[5]
                                         if hurt == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = string_字符串_1
+                                            ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = ''
                                             ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('闪避').visible = true 
                                         end 
-                                        ui.getChildByName('特效').getChildByName('enemy').text = string_字符串_2
+                                        ui.getChildByName('特效').getChildByName('enemy').getChildByName('一').text = 攻击效果[2]
+                                        ui.getChildByName('特效').getChildByName('enemy').getChildByName('二').text = 攻击效果[3]
                                     end 
                                 end
-                                ui.getChildByName('特效').getChildByName('enemy').visible = true
                                 G.noti_call('战场_效果',i,int_动作编号,int_动画位置) 
                             end 
                         end
@@ -1439,16 +1447,17 @@ t['战斗系统_事件响应'] = function()
                     end 
                     local string_字符串_1 = '[05]'..攻击效果[4]..'[br][07]'..攻击效果[5]
                     local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
-                    ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1 
                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('生命').text = 攻击效果[1]
+                    ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = 攻击效果[1]
+                    ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('一').text = 攻击效果[4]
+                    ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('二').text = 攻击效果[5]
                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
                     if hurt == 0 then 
-                        ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = string_字符串_1
-                        --ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = false
+                        ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = ''
                         ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('闪避').visible = true 
                     end
-                    ui.getChildByName('特效').getChildByName('team').visible = true
-                    ui.getChildByName('特效').getChildByName('team').text = string_字符串_2
+                    ui.getChildByName('特效').getChildByName('team').getChildByName('一').text = 攻击效果[2]
+                    ui.getChildByName('特效').getChildByName('team').getChildByName('二').text = 攻击效果[3]
                     G.noti_call('战场_效果',1,9999,n,needmp)
                 else 
                     local deytime = G.call('get_point',236) 
@@ -1850,16 +1859,17 @@ t['战斗系统_事件响应'] = function()
                                 local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
                                 hurt = 攻击效果[1]
                                 ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('生命').text = 攻击效果[1]
-                                ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
-                                print(ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text)
+                                ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = 攻击效果[1]
+                                ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('一').text = 攻击效果[4]
+                                ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('二').text = 攻击效果[5]
                                 if hurt == 0 then 
-                                    ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = string_字符串_1
+                                    ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = ''
                                     ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('闪避').visible = true 
                                 end 
-                                ui.getChildByName('特效').getChildByName('team').text = string_字符串_2
+                                ui.getChildByName('特效').getChildByName('team').getChildByName('一').text = 攻击效果[2]
+                                ui.getChildByName('特效').getChildByName('team').getChildByName('二').text = 攻击效果[3]
                             end 
                         end
-                        ui.getChildByName('特效').getChildByName('team').visible = true
                         G.noti_call('战场_效果',1,int_动作编号,int_动画位置,needmp)   
                     end 
                 end     		
@@ -2890,6 +2900,11 @@ t['magic_power1'] = function(int_id,int_no)
             G.call('add_role',int_id,14,-hurt2)
             local seed = 100
             if G.call('通用_取得人物特效',0,10) or G.call('通用_取得装备特效',0,205) then
+                if string_字符串_2 == '' then 
+                    string_字符串_2 = string_字符串_2..'万毒'
+                else
+                    string_字符串_2 = string_字符串_2..'.'..'万毒'
+                end
                 seed = math.floor(seed *0.8)
             end
             if G.call('通用_取得人物特效',int_id,6) == 1 then --受击方冰心效果
@@ -3204,7 +3219,6 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     if o_skill.内功  then   --判断攻击方携带技能中的内功配合
         for i = 1,4 do
             if o_role['技能'..i]  then 
-                print(i,o_skill.内功,o_role['技能'..i])
                 if o_skill.内功  ==  o_role['技能'..i] then 
                     int_配合 = 1
                     break
@@ -3213,7 +3227,6 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         end  
     end  
     if int_配合 == 1 then
-        print('int_配合')
         local str = G.QueryName(o_skill.内功).名称 
         if string_字符串_1 == '' then 
             string_字符串_1 = string_字符串_1..str

@@ -4712,6 +4712,36 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.left = -42.000
+			tc.right = 42.000
+			tc.bottom = -40.000
+			tc.top = 0.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.left = -52.500
+			tc.right = 52.500
+			tc.bottom = -60.000
+			tc.top = -20.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.loadUI('v_empty')
@@ -4843,6 +4873,34 @@ tp = tc
 			tc.scaleY = 0.500
 			tc.font = 0x61300000
 			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
 			tp = tc
 			tp = tp.parent
 			--end
@@ -4981,6 +5039,34 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.loadUI('v_empty')
@@ -5113,6 +5199,34 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.loadUI('v_empty')
@@ -5227,6 +5341,34 @@ tp = tc
 			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5365,6 +5507,34 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.loadUI('v_empty')
@@ -5494,6 +5664,34 @@ tp = tc
 			tc.scaleY = 0.500
 			tc.font = 0x61300000
 			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5629,6 +5827,34 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.loadUI('v_empty')
@@ -5758,6 +5984,34 @@ tp = tc
 			tc.scaleY = 0.500
 			tc.font = 0x61300000
 			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5893,6 +6147,34 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.loadUI('v_empty')
@@ -6022,6 +6304,36 @@ tp = tc
 			tc.scaleY = 0.500
 			tc.font = 0x61300000
 			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一'
+			tc.left = -10.500
+			tc.right = 10.500
+			tc.bottom = -40.000
+			tc.top = 0.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '二'
+			tc.left = -10.500
+			tc.right = 10.500
+			tc.bottom = -60.000
+			tc.top = -20.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
 			tp = tc
 			tp = tp.parent
 			--end
@@ -6500,92 +6812,76 @@ tp = tc
 	tc = G.loadUI('v_empty')
 	tp.addChild(tc)
 	tc.name = '特效'
+	tc.left = 20.000
+	tc.right = 20.000
 	tp = tc
-		tc = G.TextQuad()
+		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
 		tc.name = 'team'
-		tc.left = 35.500
-		tc.right = 98.500
-		tc.bottom = -68.000
-		tc.top = -28.000
-		tc.visible = false
-		tc.scaleX = 0.500
-		tc.scaleY = 0.500
-		tc.autosize = 3
-		tc.text = '000'
-		tc.font = 0x61280000
-		tc.style = 3
 		tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
-			tc.name = 'min'
-			tc.left = 87.000
-			tc.right = 167.000
-			tc.bottom = -90.000
-			tc.top = -70.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61180000
-			tc.style = 3
+			tc.name = '一'
+			tc.left = 50.000
+			tc.right = 50.000
+			tc.bottom = -38.000
+			tc.top = -22.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
 			tp = tc
 			tp = tp.parent
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
-			tc.name = 'id'
-			tc.left = 87.000
-			tc.right = 167.000
-			tc.bottom = -90.000
-			tc.top = -70.000
-			tc.visible = false
-			tc.text = '6'
-			tc.font = 0x61180000
-			tc.style = 3
+			tc.name = '二'
+			tc.left = 50.000
+			tc.right = 50.000
+			tc.bottom = -58.000
+			tc.top = -42.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
 			tp = tc
 			tp = tp.parent
 			--end
 		tp = tp.parent
 		--end
-		tc = G.TextQuad()
+		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
 		tc.name = 'enemy'
-		tc.left = -273.000
-		tc.right = -189.000
-		tc.bottom = 45.000
-		tc.top = 85.000
-		tc.visible = false
-		tc.scaleX = 0.500
-		tc.scaleY = 0.500
-		tc.autosize = 3
-		tc.text = '0000'
-		tc.font = 0x61280000
-		tc.style = 3
 		tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
-			tc.name = 'min'
-			tc.left = 87.000
-			tc.right = 167.000
-			tc.bottom = -90.000
-			tc.top = -70.000
-			tc.visible = false
-			tc.text = '0'
-			tc.font = 0x61180000
-			tc.style = 3
+			tc.name = '一'
+			tc.left = -200.000
+			tc.right = -200.000
+			tc.bottom = 82.000
+			tc.top = 98.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 5
 			tp = tc
 			tp = tp.parent
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
-			tc.name = 'id'
-			tc.left = 87.000
-			tc.right = 167.000
-			tc.bottom = -90.000
-			tc.top = -70.000
-			tc.visible = false
-			tc.text = '1'
-			tc.font = 0x61180000
-			tc.style = 3
+			tc.name = '二'
+			tc.left = -200.000
+			tc.right = -200.000
+			tc.bottom = 62.000
+			tc.top = 78.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.font = 0x61280000
+			tc.style = 7
 			tp = tc
 			tp = tp.parent
 			--end
