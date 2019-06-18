@@ -1072,6 +1072,7 @@ t['战斗系统_事件响应'] = function()
                             local int_id = o_battle[位置[i]]
                             local int_enemy = o_battle[位置[n]]
                             local int_代码 = 207
+                            local 攻击效果 = {}
                             if n == 1 then 
                                 攻击效果 = G.call('magic_power3',int_id,int_代码)
                             else
