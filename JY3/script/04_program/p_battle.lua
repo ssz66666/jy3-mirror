@@ -2936,26 +2936,28 @@ t['magic_power1'] = function(int_id,int_no)
                             o_role [tostring(91)] = int_时序 * 2
                         end
                     end  
+                end
+            end  
+            if o_skill.附加效果 == 11 then         --武功附加状态赋予
+                if G.call('通用_取得人物特效',0,18)  then
+                    seed = math.max(1,math.floor(seed/2))
                 end  
-            elseif o_skill.附加效果 == 11 then         --武功附加状态赋予
-                    if G.call('通用_取得人物特效',0,18)  then
-                        seed = math.max(1,math.floor(seed/2))
+                if math.random(seed) < 5 + math.floor(G.call('get_point',179+32)/10) then   --剧毒
+                    if G.call('get_role',int_id,90) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'剧毒'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'剧毒'
+                        end 
+                        G.call('set_role',int_id,90,1)
+                        o_role [tostring(100)] = int_时序
+                        if G.call('通用_取得人物特效',0,18)  then
+                            o_role [tostring(100)] = int_时序 * 2
+                        end
                     end  
-                    if math.random(seed) < 5 + math.floor(G.call('get_point',179+32)/10) then   --剧毒
-                        if G.call('get_role',int_id,90) == 0 then 
-                            if string_字符串_4 == '' then 
-                                string_字符串_4 = string_字符串_4..'剧毒'
-                            else
-                                string_字符串_4 = string_字符串_4..'.'..'剧毒'
-                            end 
-                            G.call('set_role',int_id,90,1)
-                            o_role [tostring(100)] = int_时序
-                            if G.call('通用_取得人物特效',0,18)  then
-                                o_role [tostring(100)] = int_时序 * 2
-                            end
-                        end  
-                    end
-            elseif  o_skill.附加效果 == 2 then  --麻痹
+                end
+            end
+            if  o_skill.附加效果 == 2 then  --麻痹
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10)   then 
                     if G.call('get_role',int_id,82) == 0 then 
                         if string_字符串_4 == '' then 
@@ -2966,8 +2968,9 @@ t['magic_power1'] = function(int_id,int_no)
                         G.call('set_role',int_id,82,1)
                         o_role [tostring(92)] = int_时序
                     end 
-                end     
-            elseif  o_skill.附加效果 == 3 or G.call('通用_取得套装',0,5) == 3 then  --晕眩
+                end   
+            end  
+            if  o_skill.附加效果 == 3 or G.call('通用_取得套装',0,5) == 3 then  --晕眩
                 if G.call('通用_取得套装',0,5) >= 2 then 
                     seed = seed * 2
                 end
@@ -2982,7 +2985,8 @@ t['magic_power1'] = function(int_id,int_no)
                         o_role [tostring(93)] = int_时序
                     end 
                 end 
-            elseif  o_skill.附加效果 == 4 then  --内伤
+            end
+            if  o_skill.附加效果 == 4 then  --内伤
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10) then 
                     if G.call('get_role',int_id,84) == 0 then 
                         if string_字符串_4 == '' then 
@@ -2994,7 +2998,8 @@ t['magic_power1'] = function(int_id,int_no)
                         G.call('set_role',int_id,94,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 5 then  --受伤
+            end
+            if  o_skill.附加效果 == 5 then  --受伤
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+29)/10) then 
                     if G.call('get_role',int_id,85) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3006,7 +3011,8 @@ t['magic_power1'] = function(int_id,int_no)
                         G.call('set_role',int_id,95,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',0,31) or G.call('通用_取得装备特效',0,408) then  --减速
+            end
+            if  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',0,31) or G.call('通用_取得装备特效',0,408) then  --减速
                 if math.random(seed) < 15 then 
                     if G.call('get_role',int_id,86) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3018,7 +3024,8 @@ t['magic_power1'] = function(int_id,int_no)
                         G.call('set_role',int_id,96,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 7 then --中毒+受伤
+            end
+            if  o_skill.附加效果 == 7 then --中毒+受伤
                 if G.call('通用_取得人物特效',0,18)  then
                     seed = seed/2
                 end    
@@ -3040,7 +3047,8 @@ t['magic_power1'] = function(int_id,int_no)
                         G.call('set_role',int_id,91,int_时序*2)
                     end
                 end 
-            elseif  o_skill.附加效果 == 8 then --致盲
+            end
+            if  o_skill.附加效果 == 8 then --致盲
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10) then 
                     if G.call('get_role',int_id,88) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3052,7 +3060,8 @@ t['magic_power1'] = function(int_id,int_no)
                         G.call('set_role',int_id,98,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 9 or G.call('通用_取得人物特效',0,23) or G.call('通用_取得装备特效',0,207) then --混乱（玄武判断）
+            end
+            if  o_skill.附加效果 == 9 or G.call('通用_取得人物特效',0,23) or G.call('通用_取得装备特效',0,207) then --混乱（玄武判断）
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10) then 
                     if G.call('get_role',int_id,87) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3064,7 +3073,8 @@ t['magic_power1'] = function(int_id,int_no)
                         G.call('set_role',int_id,97,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 10 then --斩杀效果
+            end
+            if  o_skill.附加效果 == 10 then --斩杀效果
                 if math.random(100) < 30 and ( G.call('get_role',int_id,1) <=5000 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)/10) then 
                     if string_字符串_4 == '' then 
                         string_字符串_4 = string_字符串_4..'斩杀'
@@ -3532,7 +3542,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,91,int_时序*2)
                     end  
                 end  
-            elseif o_skill.附加效果 == 11 then 
+            end
+            if o_skill.附加效果 == 11 then 
                 if G.call('通用_取得人物特效',int_id,18) then --阴毒效果
                     seed = math.max(1,math.floor(seed/2))
                 end  
@@ -3550,7 +3561,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,100,int_时序*2)
                     end  
                 end 
-            elseif  o_skill.附加效果 == 2 then
+            end
+            if  o_skill.附加效果 == 2 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10) then 
                     if G.call('get_role',int_enemy,82) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3561,8 +3573,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,82,1)
                         G.call('set_role',int_enemy,92,int_时序)
                     end   
-                end     
-            elseif  o_skill.附加效果 == 3 or G.call('通用_取得套装',int_id,5) == 3 then
+                end   
+            end  
+            if  o_skill.附加效果 == 3 or G.call('通用_取得套装',int_id,5) == 3 then
                 if G.call('通用_取得套装',int_id,5) >= 2 then 
                     seed = seed * 2
                 end
@@ -3577,7 +3590,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,93,int_时序)
                     end   
                 end 
-            elseif  o_skill.附加效果 == 4 then
+            end
+            if  o_skill.附加效果 == 4 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,84) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3589,7 +3603,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,94,int_时序)
                     end   
                 end 
-            elseif  o_skill.附加效果 == 5 then
+            end
+            if  o_skill.附加效果 == 5 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,85) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3601,7 +3616,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,95,int_时序)
                     end   
                 end 
-            elseif  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,31) or G.call('通用_取得装备特效',int_id,408) then  --减速
+            end
+            if  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,31) or G.call('通用_取得装备特效',int_id,408) then  --减速
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,86) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3613,7 +3629,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,96,int_时序)
                     end   
                 end 
-            elseif  o_skill.附加效果 == 7 then
+            end
+            if  o_skill.附加效果 == 7 then
                 if G.call('通用_取得人物特效',int_id,18) then 
                     seed = seed/2
                 end  
@@ -3635,7 +3652,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         end    
                     end   
                 end 
-            elseif  o_skill.附加效果 == 8 then
+            end
+            if  o_skill.附加效果 == 8 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,88) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3647,7 +3665,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,98,int_时序)
                     end   
                 end 
-            elseif  o_skill.附加效果 == 9 or G.call('通用_取得人物特效',int_id,23) or G.call('通用_取得装备特效',int_id,207) then --混乱（玄武判断）
+            end
+            if  o_skill.附加效果 == 9 or G.call('通用_取得人物特效',int_id,23) or G.call('通用_取得装备特效',int_id,207) then --混乱（玄武判断）
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,87) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3658,8 +3677,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,87,1)
                         G.call('set_role',int_enemy,97,int_时序)
                     end   
-                end 
-            elseif  o_skill.附加效果 == 10 then --斩杀效果
+                end
+            end 
+            if  o_skill.附加效果 == 10 then --斩杀效果
                 if math.random(100) < 30 and (G.call('get_role',int_enemy,1) <=5000 or G.call('get_role',int_enemy,15)  < G.call('get_role',int_enemy,1)/10)   then 
                     if string_字符串_4 == '' then 
                         string_字符串_4 = string_字符串_4..'斩杀'
@@ -4158,7 +4178,8 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',91,int_时序*2)
                     end  
                 end
-            elseif o_skill.附加效果 == 11 then   
+            end
+            if o_skill.附加效果 == 11 then   
                 if G.call('通用_取得人物特效',int_id,18) then  --阴毒效果
                     seed = math.max(1,math.floor(seed/2))
                 end  
@@ -4176,7 +4197,8 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',100,int_时序*2)
                     end  
                 end
-            elseif  o_skill.附加效果 == 2 then
+            end
+            if  o_skill.附加效果 == 2 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',82) == 0 then 
                         if string_字符串_4 == '' then 
@@ -4187,8 +4209,9 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',82,1) 
                         G.call('set_point',92,int_时序)
                     end 
-                end     
-            elseif  o_skill.附加效果 == 3 or G.call('通用_取得套装',int_id,5) == 3 then
+                end
+            end     
+            if  o_skill.附加效果 == 3 or G.call('通用_取得套装',int_id,5) == 3 then
                 if G.call('通用_取得套装',int_id,5) >= 2 then 
                     seed = seed * 2
                 end
@@ -4203,7 +4226,8 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',93,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 4 then
+            end
+            if  o_skill.附加效果 == 4 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',84) == 0 then 
                         if string_字符串_4 == '' then 
@@ -4215,7 +4239,8 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',94,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 5 then
+            end
+            if  o_skill.附加效果 == 5 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then  
                     if G.call('get_point',85) == 0 then 
                         if string_字符串_4 == '' then 
@@ -4227,7 +4252,8 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',95,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,31) or G.call('通用_取得装备特效',int_id,408) then  --减速
+            end
+            if  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,31) or G.call('通用_取得装备特效',int_id,408) then  --减速
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',86) == 0 then
                         if string_字符串_4 == '' then 
@@ -4239,7 +4265,8 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',96,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 7 then
+            end
+            if  o_skill.附加效果 == 7 then
                 if G.call('通用_取得人物特效',int_id,18) then 
                     seed = seed/2
                 end 
@@ -4261,7 +4288,8 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',91,int_时序*2)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 8 then
+            end
+            if  o_skill.附加效果 == 8 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',88) == 0 then 
                         if string_字符串_4 == '' then 
@@ -4273,7 +4301,8 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',98,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 9 then
+            end
+            if  o_skill.附加效果 == 9 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',87) == 0 then 
                         if string_字符串_4 == '' then 
@@ -4285,7 +4314,8 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',97,int_时序)
                     end 
                 end 
-            elseif  o_skill.附加效果 == 10 then --斩杀效果
+            end
+            if  o_skill.附加效果 == 10 then --斩杀效果
                 if math.random(100) < 30 and (G.call('get_point',217) <=5000 or G.call('get_point',44) < G.call('get_point',217)/10)   then 
                     if string_字符串_4 == '' then 
                         string_字符串_4 = string_字符串_4..'斩杀'
