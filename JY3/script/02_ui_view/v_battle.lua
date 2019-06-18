@@ -5372,6 +5372,21 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.loadUI('v_empty')
