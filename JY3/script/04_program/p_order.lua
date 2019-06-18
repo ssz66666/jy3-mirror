@@ -327,11 +327,12 @@ t['write_min'] = function()
 end
 t['通用_记录时间'] = function() 
     local n = os.time()
-    G.misc().通天塔时间 = math.floor(n/60) 
+    G.misc().通天塔进行时间 = math.floor(n/60)
+    G.misc().通天塔监控 = G.misc().通天塔进行时间 - 7 
 end
 t['通用_读取时间差'] = function()    
     local time1 = math.floor(os.time()/60)
-    local time2 = G.misc().通天塔时间
+    local time2 = G.misc().通天塔进行时间
     local diffmin = time1 - time2
     return diffmin
 end

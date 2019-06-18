@@ -772,13 +772,13 @@ t['聚贤庄-半瓶神仙醋']=function()
                             end
                         end
                         G.call('all_over')
-                        if G.misc().通天塔时间 == nil  then 
-                            G.misc().通天塔时间 = 1
+                        if G.misc().通天塔进行时间 == nil  then 
+                            G.misc().通天塔进行时间 = 1
                             G.misc().通天塔监控 = -8 
                         end
-                        --local int_min = G.misc().通天塔时间
+                        --local int_min = G.misc().通天塔进行时间
                         local int_min = G.call('通用_读取时间差')
-                        --if G.misc().通天塔时间 == 0 or int_min >= 60  then    
+                        --if G.misc().通天塔进行时间 == 0 or int_min >= 60  then    
                         if int_min   >= 60 then   
                             G.call("talk",'',38,'    请选择无尽模式！',2,1) 
                             local int_选项 = 0
@@ -790,7 +790,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                     G.call('通用_存档',G.call('get_point',143))
                                     G.call('副本_通天塔',1) 
                                     G.call('通用_记录时间')
-                                    --G.misc().通天塔时间 = 1
+                                    --G.misc().通天塔进行时间 = 1
                                     G.misc().通天塔监控 = -8
                                 elseif int_选项 == 2 then
                                     G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
@@ -798,7 +798,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                     G.call('通用_存档',G.call('get_point',143))
                                     G.call('副本_通天塔',0) 
                                     G.call('通用_记录时间')
-                                    --G.misc().通天塔时间 = 1
+                                    --G.misc().通天塔进行时间 = 1
                                     G.misc().通天塔监控 = -8
                                 elseif int_选项 == 3 then
                                     G.call('all_over')
@@ -1546,10 +1546,10 @@ t['事件_随机切磋']=function()
     G.call('all_over')
 end     
 t['副本_通天塔']=function(int_模式)
-    -- if G.misc().通天塔时间 == 0 or G.misc().通天塔时间 ~= math.abs(G.misc().通天塔监控 + 7) then 
-    --     G.call("talk",'',38,'    现在还无法进行通天塔挑战！',2,1)  
-    --     return
-    -- end
+    if G.misc().通天塔进行时间 == 0 or G.misc().通天塔进行时间 ~= math.abs(G.misc().通天塔监控 + 7) then 
+        G.call("talk",'',38,'    现在还无法进行通天塔挑战！',2,1)  
+        return
+    end
     --1-19 层
     local person_1 = {46,47,48,203,221,222,224,225} --非人队
     --20-39 层

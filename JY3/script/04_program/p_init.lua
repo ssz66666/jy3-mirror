@@ -108,18 +108,18 @@ t['地图系统_提示'] = function()
 	end
 end	
 t['地图系统_游戏时长监控'] = function()
-	if G.misc().通天塔时间 == nil then 
-		G.misc().通天塔时间 = 1
+	if G.misc().通天塔进行时间 == nil then 
+		G.misc().通天塔进行时间 = 1
 		G.misc().通天塔监控 = -8
 	end
 	while true do 
 		G.wait_time(60000)
-		if G.misc().通天塔时间 == nil then 
-			G.misc().通天塔时间 = 1
+		if G.misc().通天塔进行时间 == nil then 
+			G.misc().通天塔进行时间 = 1
 			G.misc().通天塔监控 = -8
 		end
-		if G.misc().通天塔时间 > 0 then 
-			G.misc().通天塔时间 = G.misc().通天塔时间 + 1
+		if G.misc().通天塔进行时间 > 0 then 
+			G.misc().通天塔进行时间 = G.misc().通天塔进行时间 + 1
 			G.misc().通天塔监控 = G.misc().通天塔监控 - 1
 		end
 	end
