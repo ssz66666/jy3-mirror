@@ -30,6 +30,7 @@ function t:init()
     self.副按钮  = self.obj.getChildByName('按钮1')
     self.属性 = self.透明按钮.getChildByName('属性')
     self.被动 = self.属性.getChildByName('被动')
+    self.特效  = self.obj.getChildByName('特效')
     self.敌人存活 = 6
     self.我方存活 = 5
 end

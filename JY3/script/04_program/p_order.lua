@@ -327,12 +327,16 @@ t['write_min'] = function()
 end
 t['通用_记录时间'] = function() 
     local n = os.time()
-    G.misc().通天塔进行时间 = math.floor(n/60)
-    G.misc().通天塔监控 = G.misc().通天塔进行时间 - 7 
+    G.misc().通天塔记录时间 = math.floor(n/60)
 end
 t['通用_读取时间差'] = function()    
     local time1 = math.floor(os.time()/60)
-    local time2 = G.misc().通天塔进行时间
+    local time2 = 0
+    if not G.misc().通天塔记录时间 then 
+        time1 = time2 + 100
+    else
+        time2 = G.misc().通天塔记录时间 
+    end
     local diffmin = time1 - time2
     return diffmin
 end
@@ -673,6 +677,7 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     local ui = G.getUI('v_battle')
     local c = ui.c_battle
     local ui_显示 = ui.getChildByName('hurt')
+    local ui_特效 = ui.getChildByName('特效')
     local ui_flash = ui.getChildByName('flash')
     local o_battle = G.QueryName(0x10150001)
     local i_role = 0x10040000
@@ -682,14 +687,18 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     end
     ui_显示.visible = true
     ui_显示.y = 0
+    ui_特效.y = 0
     G.Tween('y',500, ui_显示, 80)
+    G.Tween('y',500, ui_特效, 80)
     if int_范围 == 5 then 
         G.wait_time(1000)
     else
         G.wait_time(500)
     end
-    local   hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
+    local   hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('生命').text)
     if ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible == true then 
+        print('99999999999999999')
+        print(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
         if G.QueryName(0x10150001).模式 < 4 then 
             G.call('add_point',44,-hurt)
             if G.call('get_point',8) ==  4 then --判断复生效果，全真复生低于30%血10%几率触发，其他门派低于20%血5%几率触发 
@@ -707,14 +716,15 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
         if o_battle[位置[p]] > 0 then
             if  G.QueryName(i_role + o_battle[位置[p]] ).生命 > 0  then
                 if  ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').visible == true then 
-                    hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').text)
+                    hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('生命').text)
                     G.call('add_role',o_battle[位置[p]] ,15,-hurt)
                     if  G.call('通用_取得人物特效',o_battle[位置[p]],15) and math.random(100) > 95 and G.call('get_role',o_battle[位置[p]],15) < G.call('get_role',o_battle[位置[p]],1) *0.2 then --npc复生效果
                         G.call('set_role',o_battle[位置[p]],15,G.call('get_role',o_battle[位置[p]],1))
-                    end                  
+                    end   
+                    local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text)
+                    G.call('add_role',o_battle[位置[p]],15,int_hp)               
                 end 
-                local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text)
-                G.call('add_role',o_battle[位置[p]],15,int_hp)
+                
             end
         end 		
     end 
@@ -723,6 +733,8 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
        G.call('add_point',44,int_hp)
     end
     ui_显示.visible = false 
+    ui_特效.getChildByName('team').visible = false
+    ui_特效.getChildByName('enemy').visible = false
     for p = 1,11 do
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').visible = false
         ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('闪避').visible = false
@@ -930,7 +942,9 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         for p = 81,90 do   --清除敌人的全部异常
             G.call('set_role',o_battle[位置[i] ] ,p,0)
         end 
-        G.call('set_role',o_battle[位置[i] ]  ,15,1 )   --回复敌人hp为1 
+        if G.call('get_role',o_battle[位置[i] ],15) <= 0 then 
+            G.call('set_role',o_battle[位置[i] ]  ,15,1 )   --回复敌人hp为1 
+        end
     end 
     for i = 2,11 do   --清除队友的异常
         if o_battle[位置[i] ] > 0 then 

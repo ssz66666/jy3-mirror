@@ -609,11 +609,13 @@ t['战斗系统_事件响应'] = function()
                             local int_id = o_battle[位置[i]]
                             local int_enemy = o_battle[位置[n]]
                             local int_代码 = 207
+                            local 攻击效果 = {}
                             if n == 1 then 
-                                hurt = G.call('magic_power3',int_id,int_代码)
+                                攻击效果 = G.call('magic_power3',int_id,int_代码)
                             else
-                                hurt = G.call('magic_power2',int_id,int_enemy,int_代码)
+                                攻击效果 = G.call('magic_power2',int_id,int_enemy,int_代码)
                             end  
+                            hurt = 攻击效果[1]
                             --内力消耗
                             local o_role_人物  = G.QueryName(0x10040000 + int_id)
                             local o_skill = G.QueryName(0x10050000 + int_代码)
@@ -634,13 +636,18 @@ t['战斗系统_事件响应'] = function()
                             if needmp < 1 then
                                 needmp = 1
                             end  
+                            local string_字符串_1 = '[05]'..攻击效果[4]..'[br][07]'..攻击效果[5]
+                            local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
                             G.call('add_role',o_battle[位置[i]],14,-needmp) 
-                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = tostring(hurt)   
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('生命').text = hurt
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
                             ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
                             if hurt == 0 then 
-                                ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = false
+                                ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = string_字符串_1 
                                 ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('闪避').visible = true 
-                            end 
+                            end
+                            ui.getChildByName('特效').getChildByName('team').visible = true
+                            ui.getChildByName('特效').getChildByName('team').text = string_字符串_2
                             G.noti_call('战场_效果',i,int_动作编号,n)    	
                         else    
                             if o_skill.范围 == 0 or o_skill.范围 == 1 then
@@ -919,87 +926,38 @@ t['战斗系统_事件响应'] = function()
                                     int_动画位置 = 12
                                 end
                                 if o_skill.范围 == 2 then
-                                    hurt = G.call('magic_power2',int_id,o_battle[位置[n] ],int_代码)
-                                    ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = tostring(hurt)
-                                    hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text)
                                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
-                                    if hurt == 0 then 
-                                        ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = false
-                                        ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('闪避').visible = true 
-                                    end 
                                 elseif o_skill.范围 == 3 then
                                     if n == 6 or n == 9 or n == 10 then 
                                         if o_battle[位置[6]] > 0 then
                                             if G.QueryName(o_role +o_battle[位置[6]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[6] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end
                                         if o_battle[位置[9]] > 0 then
                                             if G.QueryName(o_role +o_battle[位置[9]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[9] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end
                                         if o_battle[位置[10]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[10]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[10] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end 
                                     elseif n == 7 or n == 8 or n == 11 then 	
                                         if o_battle[位置[7]] > 0 then
                                             if G.QueryName(o_role +o_battle[位置[7]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[7] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').text)
-                                                ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('闪避').visible = true 
-                                                end 
+                                                ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').visible = true 
                                             end
                                         end
                                         if o_battle[位置[8]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[8]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[8] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end
                                         if o_battle[位置[11]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[11]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[11] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end 
                                     end 
@@ -1007,76 +965,34 @@ t['战斗系统_事件响应'] = function()
                                     if n == 7 or n == 9 then 
                                         if o_battle[位置[7]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[7]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[7] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end
                                         if o_battle[位置[9]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[9]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[9] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end 
                                     elseif n == 6  or n == 11 then 	
                                         if o_battle[位置[6]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[6]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[6] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end
                                         if o_battle[位置[11]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[11]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[11] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end 	
                                     elseif  n == 8 or n == 10 then 
                                         if o_battle[位置[8]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[8]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[8] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end
                                         if o_battle[位置[10]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[10]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[10] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
 
                                         end
@@ -1086,20 +1002,28 @@ t['战斗系统_事件响应'] = function()
                                     for p = 6,11 do 
                                         if o_battle[位置[p]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[p]] ).生命 > 0  then
-                                                hurt = G.call('magic_power2',int_id,o_battle[位置[p] ],int_代码)
-                                                ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').text = tostring(hurt)
-                                                hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').text)
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').visible = true
-                                                if hurt == 0 then 
-                                                    ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').visible = false
-                                                    ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('闪避').visible = true 
-                                                end 
                                             end
                                         end 	
                                     end 
-
                                 end 
-                                print(o_role_tb.姓名,int_动画位置)
+                                for j = 6,11 do
+                                    if ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').visible == true  then
+                                        local 攻击效果 = G.call('magic_power2',o_battle[位置[i] ],o_battle[位置[j] ],int_代码)
+                                        local string_字符串_1 = '[05]'..攻击效果[4]..'[br][07]'..攻击效果[5]
+                                        local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
+                                        hurt = 攻击效果[1]
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('生命').text = 攻击效果[1]
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
+                                        print(ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text)
+                                        if hurt == 0 then 
+                                            ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = string_字符串_1
+                                            ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('闪避').visible = true 
+                                        end 
+                                        ui.getChildByName('特效').getChildByName('team').text = string_字符串_2
+                                    end 
+                                end
+                                ui.getChildByName('特效').getChildByName('team').visible = true
                                 G.noti_call('战场_效果',i,int_动作编号,int_动画位置)
                             end
                         end 
@@ -1146,10 +1070,11 @@ t['战斗系统_事件响应'] = function()
                             local int_enemy = o_battle[位置[n]]
                             local int_代码 = 207
                             if n == 1 then 
-                                hurt = G.call('magic_power3',int_id,int_代码)
+                                攻击效果 = G.call('magic_power3',int_id,int_代码)
                             else
-                                hurt = G.call('magic_power2',int_id,int_enemy,int_代码)
+                                攻击效果 = G.call('magic_power2',int_id,int_enemy,int_代码)
                             end  
+                            hurt = 攻击效果[1]
                             --内力消耗
                             local o_role_人物  = G.QueryName(0x10040000 + int_id)
                             local o_skill = G.QueryName(0x10050000 + int_代码)
@@ -1171,12 +1096,18 @@ t['战斗系统_事件响应'] = function()
                                 needmp = 1
                             end  
                             G.call('add_role',o_battle[位置[i]],14,-needmp) 
-                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = tostring(hurt)  
+                            local string_字符串_1 = '[05]'..攻击效果[4]..'[br][07]'..攻击效果[5]
+                            local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
+                            G.call('add_role',o_battle[位置[i]],14,-needmp) 
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('生命').text = hurt
+                            ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
                             ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
                             if hurt == 0 then 
-                                ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = false
+                                ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = string_字符串_1 
                                 ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('闪避').visible = true 
-                            end 
+                            end
+                            ui.getChildByName('特效').getChildByName('enemy').visible = true
+                            ui.getChildByName('特效').getChildByName('enemy').text = string_字符串_2
                             G.noti_call('战场_效果',i,int_动作编号,n)
                         else    
                             if o_skill.范围 == 0 or o_skill.范围 == 1 then
@@ -1399,45 +1330,50 @@ t['战斗系统_事件响应'] = function()
                                     int_动画位置 = 13
                                 end
                                 if o_skill.范围 == 2  or o_skill.范围 == 4 then
-                                    if n == 1 then 
-                                        hurt = G.call('magic_power3',int_id,int_代码)
-                                    else
-                                        hurt = G.call('magic_power2',int_id,o_battle[位置[n]],int_代码)
-                                    end
-                                    ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = tostring(hurt)
-                                    hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text)
                                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
-                                    if hurt == 0 then 
-                                        ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = false
-                                        ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('闪避').visible = true 
-                                    end
                                 elseif 	o_skill.范围 == 3  or o_skill.范围 == 5 then
-                                    for p = 1,5 do 
-                                        if p == 1 then 
-                                            hurt = G.call('magic_power3',int_id,int_代码)
-                                            ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text = hurt
-                                            ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible = true
-                                            if hurt == 0 then 
-                                                ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible = false
-                                                ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('闪避').visible = true 
-                                            end 
-                                        end 
+                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible = true
+                                    for p = 2,5 do 
                                         if p > 1 then    
                                             if o_battle[位置[p]] > 0 then
                                                 if  G.QueryName(o_role +o_battle[位置[p]] ).生命 > 0  then
-                                                    hurt = G.call('magic_power2',int_id,o_battle[位置[p]],int_代码)
-                                                    ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').text = tostring(hurt)
-                                                    hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').text)
                                                     ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').visible = true
-                                                    if hurt == 0 then 
-                                                        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('减生命').visible = false
-                                                        ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('闪避').visible = true 
-                                                    end 
                                                 end
                                             end 	
                                         end    
                                     end 
                                 end	
+                                if ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible == true then 
+                                    local 攻击效果 = G.call('magic_power3',o_battle[位置[i]],int_代码)
+                                    local string_字符串_1 = '[05]'..攻击效果[4]..'[br][07]'..攻击效果[5]
+                                    local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
+                                    hurt = 攻击效果[1]
+                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('生命').text = 攻击效果[1]
+                                    ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
+                                    print(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
+                                    if hurt == 0 then 
+                                        ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text = string_字符串_1
+                                        ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('闪避').visible = true 
+                                    end 
+                                    ui.getChildByName('特效').getChildByName('enemy').text = string_字符串_2
+                                end
+                                for j = 2,5 do
+                                    if ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').visible == true  then 
+                                        local 攻击效果 = G.call('magic_power2',o_battle[位置[i] ],o_battle[位置[j] ],int_代码)
+                                        local string_字符串_1 = '[05]'..攻击效果[4]..'[br][07]'..攻击效果[5]
+                                        local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
+                                        hurt = 攻击效果[1]
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('生命').text = 攻击效果[1]
+                                        ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
+                                        print(ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text)
+                                        if hurt == 0 then 
+                                            ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = string_字符串_1
+                                            ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('闪避').visible = true 
+                                        end 
+                                        ui.getChildByName('特效').getChildByName('enemy').text = string_字符串_2
+                                    end 
+                                end
+                                ui.getChildByName('特效').getChildByName('enemy').visible = true
                                 G.noti_call('战场_效果',i,int_动作编号,int_动画位置) 
                             end 
                         end
@@ -1465,6 +1401,7 @@ t['战斗系统_事件响应'] = function()
                 if G.call('get_point',87) > 0 then --混乱状态用普通攻击
                     o_skill = G.QueryName(0x10050000+207)
                 end 
+                local object = {}
                 if  o_skill == G.QueryName(0x10050000+207) then --只有普通攻击才为混乱状态
                     ui.getChildByName('图表').getChildByName('文字').text = o_skill.名称
                     local n = math.random(2,11) 
@@ -1478,7 +1415,8 @@ t['战斗系统_事件响应'] = function()
                     local hurt = 0
                     local int_id = o_battle[位置[n]]
                     local int_代码 = 207
-                    hurt = G.call('magic_power1',int_id,int_代码)
+                    local 攻击效果 = G.call('magic_power1',int_id,int_代码)
+                    hurt = 攻击效果[1]
                     --内力消耗
                     local o_body = G.QueryName(0x10030001)
                     local o_skill = G.QueryName(0x10050000 + int_代码)
@@ -1499,12 +1437,18 @@ t['战斗系统_事件响应'] = function()
                     if needmp < 1 then
                         needmp = 1
                     end 
-                    ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = tostring(hurt)   
+                    local string_字符串_1 = '[05]'..攻击效果[4]..'[br][07]'..攻击效果[5]
+                    local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
+                    ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1 
+                    ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('生命').text = 攻击效果[1]
                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
                     if hurt == 0 then 
-                        ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = false
+                        ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').text = string_字符串_1
+                        --ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = false
                         ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('闪避').visible = true 
-                    end 
+                    end
+                    ui.getChildByName('特效').getChildByName('team').visible = true
+                    ui.getChildByName('特效').getChildByName('team').text = string_字符串_2
                     G.noti_call('战场_效果',1,9999,n,needmp)
                 else 
                     local deytime = G.call('get_point',236) 
@@ -1820,171 +1764,102 @@ t['战斗系统_事件响应'] = function()
                         end
                         if  o_skill.范围 == 2  and G.misc().范围无双 == 0  then  
                             local int_t = tonumber(ui.getChildByName('单目标').text) 
-                            hurt = G.call('magic_power1',o_battle[位置[int_t] ],int_代码)
-                            ui.getChildByName('hurt').getChildByName(位置[int_t]).getChildByName('减生命').text = tostring(hurt)
-                            ui.getChildByName('hurt').getChildByName(位置[int_t]).getChildByName('减生命').visible = true
-                            if hurt == 0 then 
-                                ui.getChildByName('hurt').getChildByName(位置[int_t]).getChildByName('减生命').visible = false
-                                ui.getChildByName('hurt').getChildByName(位置[int_t]).getChildByName('闪避').visible = true 
-                            end 	      
+                            ui.getChildByName('hurt').getChildByName(位置[int_t]).getChildByName('减生命').visible = true      
                         elseif  o_skill.范围 == 3  and G.misc().范围无双 == 0  then  
                             if  tonumber(ui.getChildByName('横目标').text) == 1 then  
                                 if o_battle[位置[6]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[6]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[6] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 
                                 if o_battle[位置[9]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[9]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[9] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('闪避').visible = true 
-                                        end
                                     end
                                 end 
                                 if o_battle[位置[10]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[10]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[10] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 
                             elseif tonumber(ui.getChildByName('横目标').text) == 2 then 
                                 if o_battle[位置[7]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[7]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[7] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 
                                 if o_battle[位置[8]] > 0 then
                                     if G.QueryName(o_role + o_battle[位置[8]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[8] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 
                                 if o_battle[位置[11]] > 0 then
                                     if G.QueryName(o_role + o_battle[位置[11]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[11] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 
                             end 	
-                    
                         elseif  o_skill.范围 == 5  or G.misc().范围无双 == 1  then 
                             for i = 6,11 do
                                 if o_battle[位置[i]] > 0 then
                                     if  	G.QueryName(o_role + o_battle[位置[i] ]).生命 > 0 then 
-                                        hurt = G.call('magic_power1',o_battle[位置[i] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('闪避').visible = true 
-                                        end 	
                                     end
                                 end 
                             end 	
-                            
                         elseif  o_skill.范围 == 4  and G.misc().范围无双 == 0  then 
                             if  tonumber(ui.getChildByName('纵目标').text) == 1 then 
                                 if o_battle[位置[7]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[7]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[7] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[7]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 
                                 if o_battle[位置[9]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[9]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[9] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[9]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 
                             elseif tonumber(ui.getChildByName('纵目标').text) == 2 then 
                                 if o_battle[位置[6]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[6]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[6] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').text = tostring(hurt)
-                                        ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('闪避').visible = true 
-                                        end 
+                                        ui.getChildByName('hurt').getChildByName(位置[6]).getChildByName('减生命').visible = true 
                                     end
                                 end 
                                 if o_battle[位置[11]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[11]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[11] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[11]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 
                             elseif tonumber(ui.getChildByName('纵目标').text) == 3 then 
                                 if o_battle[位置[8]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[8]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[8] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[8]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 
                                 if o_battle[位置[10]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[10]] ).生命 > 0  then
-                                        hurt = G.call('magic_power1',o_battle[位置[10] ],int_代码)
-                                        ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').text = tostring(hurt)
                                         ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').visible = true
-                                        if tonumber(ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').text) == 0 then 
-                                            ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('减生命').visible = false
-                                            ui.getChildByName('hurt').getChildByName(位置[10]).getChildByName('闪避').visible = true 
-                                        end 
                                     end
                                 end 	
                             end
                         end
+                        for j = 6,11 do
+                            if ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').visible == true  then 
+                                local 攻击效果 = G.call('magic_power1',o_battle[位置[j] ],int_代码)
+                                local string_字符串_1 = '[05]'..攻击效果[4]..'[br][07]'..攻击效果[5]
+                                local string_字符串_2 = '[05]'..攻击效果[2]..'[br][07]'..攻击效果[3]
+                                hurt = 攻击效果[1]
+                                ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('生命').text = 攻击效果[1]
+                                ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = 攻击效果[1]..'[br]'..string_字符串_1
+                                print(ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text)
+                                if hurt == 0 then 
+                                    ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('减生命').text = string_字符串_1
+                                    ui.getChildByName('hurt').getChildByName(位置[j]).getChildByName('闪避').visible = true 
+                                end 
+                                ui.getChildByName('特效').getChildByName('team').text = string_字符串_2
+                            end 
+                        end
+                        ui.getChildByName('特效').getChildByName('team').visible = true
                         G.noti_call('战场_效果',1,int_动作编号,int_动画位置,needmp)   
                     end 
                 end     		
@@ -2016,7 +1891,6 @@ t['战斗系统_事件响应'] = function()
 				    if  ui.getChildByName('tab').getChildByName(位置[i]).getChildByName('over').text == tostring(1) then  
 						ui.getChildByName('tab').getChildByName(位置[i]).getChildByName('over').text = tostring(0)
                     end 
-                
 			    end 
             end 
 		elseif r == 1 then
@@ -2618,8 +2492,12 @@ end
 --private=false
 t['magic_power1'] = function(int_id,int_no)
     --0指1掌2剑3刀4棍5暗器6内7轻8其他
+    local string_字符串_1 = ''
+    local string_字符串_2 = ''
+    local string_字符串_3 = ''
+    local string_字符串_4 = ''
     if  int_id == nil or int_no == nil or int_id == 0 then 
-        return 0 
+        return {0,string_字符串_1,string_字符串_2,string_字符串_3,string_字符串_4} 
     end 
     local i_skill = 0x10050000 + int_no
     local o_role = G.QueryName(0x10040000 + int_id)
@@ -2664,7 +2542,9 @@ t['magic_power1'] = function(int_id,int_no)
     
     elseif o_skill.类别 == 5 and G.call('get_point',198) ~= nil then   --暗器伤害与暗器消耗
         local item = G.call('get_point',198) - 0x100b0000 + 1
-        if item == nil then return end
+        if item == nil then 
+            return {0,string_字符串_1,string_字符串_2,string_字符串_3,string_字符串_4} 
+        end
         hurt = hurt*(G.QueryName(G.call('get_point',198)).系数 + 50 )/100
         if G.call('get_point',193) == 0x100b0047 then 
             hurt = hurt*1.2
@@ -2672,12 +2552,24 @@ t['magic_power1'] = function(int_id,int_no)
     elseif o_skill.类别 > 5 then 
     end
     if o_skill.装备 ~= nil then  --武功对应装备加成
-        if o_skill.装备  == G.call('get_point',193) then 
+        if o_skill.装备  == G.call('get_point',193) then
+            local str = G.QueryName(o_skill.装备).名称 
+            if string_字符串_1 == '' then 
+                string_字符串_1 = string_字符串_1..str
+            else
+                string_字符串_1 = string_字符串_1..'.'..str
+            end
             result = 100 +result
         end 
     end 
     if o_skill.内功 ~= nil then   --内功配合加成
         if o_skill.内功 == G.call('get_point',196) then 
+            local str = G.QueryName(o_skill.内功).名称 
+            if string_字符串_1 == '' then 
+                string_字符串_1 = string_字符串_1..str
+            else
+                string_字符串_1 = string_字符串_1..'.'..str
+            end
             result = result + G.QueryName(o_skill.内功).修为等级*20
         end 
     end 
@@ -2691,20 +2583,38 @@ t['magic_power1'] = function(int_id,int_no)
     local hurt4 = 0  --吸血      
     if G.call('get_point',196) ~= nil  then 
         if G.QueryName(G.call('get_point',196)).内功轻功效果 == 7 then --专属内功强化效果，比如九阴,小无
-            result = result + G.QueryName(G.call('get_point',196)).效果等级 *G.QueryName(G.call('get_point',196)).修为等级/5
-        elseif  G.QueryName(G.call('get_point',196)).内功轻功效果 == 3 then  --吸收内力上限内功
+            if string_字符串_1 == '' then 
+                string_字符串_1 = string_字符串_1..G.QueryName(G.call('get_point',196)).名称..'强化'
+            else
+                string_字符串_1 = string_字符串_1..'.'..G.QueryName(G.call('get_point',196)).名称..'强化'
+            end
+            result = result + G.QueryName(G.call('get_point',196)).效果等级 *G.QueryName(G.call('get_point',196)).修为等级/5    
+        else
             if math.random(100) < 30 then 
-                hurt0 = math.floor(G.QueryName(G.call('get_point',196)).效果等级 *G.QueryName(G.call('get_point',196)).修为等级/5  )
-            end  
-        elseif  G.QueryName(G.call('get_point',196)).内功轻功效果 == 12 then  --吸收内力内功
-            if math.random(100) < 30 then 
-                hurt1 = math.floor(G.QueryName(G.call('get_point',196)).效果等级 *G.QueryName(G.call('get_point',196)).修为等级/5 )
-            end  
-        elseif  G.QueryName(G.call('get_point',196)).内功轻功效果 == 2 then  --杀内力内功
-            if math.random(100) < 30 then 
-                hurt2 = math.floor(G.QueryName(G.call('get_point',196)).效果等级 *G.QueryName(G.call('get_point',196)).修为等级/5 )
+                if  G.QueryName(G.call('get_point',196)).内功轻功效果 == 3 then  --吸收内力上限内功
+                    if string_字符串_3 == '' then 
+                        string_字符串_3 = string_字符串_3..'北冥'
+                    else
+                        string_字符串_3 = string_字符串_3..'.'..'北冥'
+                    end
+                    hurt0 = math.floor(G.QueryName(G.call('get_point',196)).效果等级 *G.QueryName(G.call('get_point',196)).修为等级/5  )
+                elseif  G.QueryName(G.call('get_point',196)).内功轻功效果 == 12 then  --吸收内力内功
+                    if string_字符串_3 == '' then 
+                        string_字符串_3 = string_字符串_3..'吸星'
+                    else
+                        string_字符串_3 = string_字符串_3..'.'..'吸星'
+                    end
+                    hurt1 = math.floor(G.QueryName(G.call('get_point',196)).效果等级 *G.QueryName(G.call('get_point',196)).修为等级/5 )
+                elseif  G.QueryName(G.call('get_point',196)).内功轻功效果 == 2 then  --杀内力内功
+                    if string_字符串_3 == '' then 
+                        string_字符串_3 = string_字符串_3..'化工'
+                    else
+                        string_字符串_3 = string_字符串_3..'.'..'化工'
+                    end
+                    hurt2 = math.floor(G.QueryName(G.call('get_point',196)).效果等级 *G.QueryName(G.call('get_point',196)).修为等级/5 )
+                end     
             end 
-        end      
+        end
     end  
     if G.call('get_point',18) <= 50 and G.call('get_magic',190) > 0 then --左右被动
         local int_左右 = 0
@@ -2713,6 +2623,11 @@ t['magic_power1'] = function(int_id,int_no)
             int_左右 = int_左右*1.25
         elseif  G.call('通用_取得套装',0,6) == 3 then
             int_左右 = int_左右*1.5
+        end
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..'左右互搏'
+        else
+            string_字符串_1 = string_字符串_1..'.'..'左右互搏'
         end
         result = result + int_左右
     end   
@@ -2776,25 +2691,50 @@ t['magic_power1'] = function(int_id,int_no)
         end
     end
     if G.call('get_point',44) < G.call('get_point',217)*0.5 and  (G.call('通用_取得人物特效',0,13) or G.call('通用_取得装备特效',0,204))   then --主角强力判断
-        result = result + 50    
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..'强力'
+        else
+            string_字符串_1 = string_字符串_1..'.'..'强力'
+        end
+        result = result + 100    
     end  
     if G.call('通用_取得人物特效',int_id,9)  then --受击者见切效果
         local jq_randow = math.random(100)
         if jq_randow > 90 then 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'见切闪躲'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'见切闪躲'
+            end
             hurt = 0
         elseif jq_randow > 80 then 
-            result = result - 100 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'见切免伤'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'见切免伤'
+            end
+            result = result - 150 
         end 
     end
     if G.call('get_role',int_id,15) < G.call('get_role',int_id,1)*0.2 and  (G.call('通用_取得人物特效',int_id,11) or G.call('通用_取得装备特效',0,105)  )  then --判断受击者强体效果
-        result = result - 50
+        if string_字符串_3 == '' then 
+            string_字符串_3 = string_字符串_3..'强体'
+        else
+            string_字符串_3 = string_字符串_3..'.'..'强体'
+        end
+        result = result - 100
     end   
     if math.random(100) > 80 and (G.call('通用_取得人物特效',0,7) or G.call('通用_取得装备特效',0,203) or G.call('通用_取得装备特效',0,410) )   then --暴击效果
-        result = result + 100
+        if string_字符串_3 == '' then 
+            string_字符串_3 = string_字符串_3..'暴击'
+        else
+            string_字符串_3 = string_字符串_3..'.'..'暴击'
+        end
+        result = result + 150
         if G.call('通用_取得套装',0,4) == 2 then 
             result = result + 50
         elseif G.call('通用_取得套装',0,4) == 3 then 
-            result = result + 100
+            result = result + 150
         end 
     end
     local def_role = 0
@@ -2805,15 +2745,30 @@ t['magic_power1'] = function(int_id,int_no)
     end     
     if def_role == 0 then --受击方为敌方
         if  G.call('通用_取得敌方队伍特效',2)  then --敌方慈悲效果
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'慈悲'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'慈悲'
+            end
             result = result -150
         end    
     else --受击方为我方
         if  G.call('通用_取得我方队伍特效',2)  then  --我方慈悲效果 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'慈悲'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'慈悲'
+            end
             result = result - 150
         end 
     end 
     if  G.call('通用_取得我方队伍特效',1) or G.call('通用_取得我方装备特效',202) then --我方破绽效果
-        result = result + 50
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..'破绽'
+        else
+            string_字符串_1 = string_字符串_1..'.'..'破绽'
+        end
+        result = result + 100
     end  
     hurt = hurt * result/100   
         ---1加血，--2杀内，--3吸内（加上限），--4减伤，--5闪避，--6复活，
@@ -2823,16 +2778,34 @@ t['magic_power1'] = function(int_id,int_no)
     local int_闪避 = 0
     int_闪避 = int_闪避 + G.call('通用_取得NPC内功效果',int_id,5) 
     if G.call('get_point',88) > 0 and math.random(100) < 15 then  --致盲后
-        int_闪避 = int_闪避 + 150
+        if string_字符串_2 == '' then 
+            string_字符串_2 = string_字符串_2..'盲目'
+        else
+            string_字符串_2 = string_字符串_2..'.'..'盲目'
+        end
+        int_闪避 = int_闪避 + 200
     end 
     if G.call('通用_取得套装',int_id,1) == 2 then --套装1闪避效果
         int_闪避 = int_闪避 + 30
     elseif  G.call('通用_取得套装',int_id,1) == 3 then
         int_闪避 = int_闪避 + 50
     end
+    if G.call('get_role',int_id,89) > 0  then --逍遥御风闪避效果
+        if string_字符串_4 == '' then 
+            string_字符串_4 = string_字符串_4..'御风'
+        else
+            string_字符串_4 = string_字符串_4..'.'..'御风'
+        end
+        int_闪避 = int_闪避 + 100
+    end
     if math.random(a +15) > math.random(math.floor(b/6)+1+int_闪避) then  --命中计算     
         if hurt > 0 then 
             if math.random(100) > 50 and G.call('get_npcskill',int_id,0x10050097) > 0 then   --斗转被动 
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'斗转星移'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'斗转星移'
+                end
                 hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_id))   /100 ) 
                 if G.call('通用_取得套装',int_id,6) == 2 then
                     hurt3 = math.floor(hurt3*1.25)
@@ -2844,12 +2817,22 @@ t['magic_power1'] = function(int_id,int_no)
             if math.random(100) > 80 and (G.call('通用_取得人物特效',0,22) or G.call('通用_取得装备特效',0,206))  then --朱雀被动效果
                 hurt = hurt 
             elseif  int_玉女剑阵效果 == 1 and i_skill == 0x1005003e then --玉女剑阵破防效果判定
+                if string_字符串_2 == '' then 
+                    string_字符串_2 = string_字符串_2..'玉女破防'
+                else
+                    string_字符串_2 = string_字符串_2..'.'..'玉女破防'
+                end
                 if G.call('通用_取得内功轻功特效',0,18) then
                     hurt = math.floor(hurt *(1- d/1200)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
                 else
                     hurt = math.floor(hurt *(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
                 end
             elseif G.call('通用_取得人物特效',0,21)  then --武当被动和真武阵判断
+                if string_字符串_2 == '' then 
+                    string_字符串_2 = string_字符串_2..'真武破防'
+                else
+                    string_字符串_2 = string_字符串_2..'.'..'真武破防'
+                end
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.2-int_真武效果/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
             else 
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
@@ -2871,12 +2854,22 @@ t['magic_power1'] = function(int_id,int_no)
                 hurt = math.random(10)
             end  
             if (int_no == 205 or int_no == 206 or int_no == 21 or int_no == 235 ) and G.call('通用_取得人物特效',0,19)     then --舔血效果计算
+                if string_字符串_2 == '' then 
+                    string_字符串_2 = string_字符串_2..'舔血'
+                else
+                    string_字符串_2 = string_字符串_2..'.'..'舔血'
+                end
                 hurt4 = math.floor(hurt*0.10*(100 - G.call('get_point',15)       )/100    ) 
             end 
             if i_skill == 0x10050083 and G.call('get_point',115) == 20 and G.misc().木桩 == 0 then --北冥真气吸蓝判定
                 G.call('add_point',63,hurt0) 
             end 
             if G.call('get_point',115) == 20   then --北冥真气效果
+                if string_字符串_2 == '' then 
+                    string_字符串_2 = string_字符串_2..'北冥真气'
+                else
+                    string_字符串_2 = string_字符串_2..'.'..'北冥真气'
+                end
                 if G.call('get_point',63) < 2500  and math.random(100) < 20  then
                     G.call('add_point',46,150)
                 elseif G.call('get_point',63) < 5000  and G.call('get_point',63) >= 2500 and math.random(100) < 30  then
@@ -2915,7 +2908,12 @@ t['magic_power1'] = function(int_id,int_no)
                     seed = math.max(1,math.floor(seed/2))
                 end  
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+32)/10) then   --中毒
-                    if G.call('get_role',int_id,81) == 0 then 
+                    if G.call('get_role',int_id,81) == 0 then
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'中毒'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'中毒'
+                        end 
                         G.call('set_role',int_id,81,1)
                         o_role [tostring(91)] = int_时序
                         if G.call('通用_取得人物特效',0,18)  then
@@ -2929,6 +2927,11 @@ t['magic_power1'] = function(int_id,int_no)
                     end  
                     if math.random(seed) < 5 + math.floor(G.call('get_point',179+32)/10) then   --剧毒
                         if G.call('get_role',int_id,90) == 0 then 
+                            if string_字符串_4 == '' then 
+                                string_字符串_4 = string_字符串_4..'剧毒'
+                            else
+                                string_字符串_4 = string_字符串_4..'.'..'剧毒'
+                            end 
                             G.call('set_role',int_id,90,1)
                             o_role [tostring(100)] = int_时序
                             if G.call('通用_取得人物特效',0,18)  then
@@ -2939,6 +2942,11 @@ t['magic_power1'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 2 then  --麻痹
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+32)/10)   then 
                     if G.call('get_role',int_id,82) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'点穴'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'点穴'
+                        end 
                         G.call('set_role',int_id,82,1)
                         o_role [tostring(92)] = int_时序
                     end 
@@ -2949,6 +2957,11 @@ t['magic_power1'] = function(int_id,int_no)
                 end
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10) then 
                     if G.call('get_role',int_id,83) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'晕眩'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'晕眩'
+                        end 
                         G.call('set_role',int_id,83,1)
                         o_role [tostring(93)] = int_时序
                     end 
@@ -2956,6 +2969,11 @@ t['magic_power1'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 4 then  --内伤
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10) then 
                     if G.call('get_role',int_id,84) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'内伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'内伤'
+                        end 
                         G.call('set_role',int_id,84,1)
                         G.call('set_role',int_id,94,int_时序)
                     end 
@@ -2963,6 +2981,11 @@ t['magic_power1'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 5 then  --受伤
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+29)/10) then 
                     if G.call('get_role',int_id,85) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'受伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'受伤'
+                        end 
                         G.call('set_role',int_id,85,1)
                         G.call('set_role',int_id,95,int_时序)
                     end 
@@ -2970,6 +2993,11 @@ t['magic_power1'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',0,31) or G.call('通用_取得装备特效',0,408) then  --减速
                 if math.random(seed) < 15 then 
                     if G.call('get_role',int_id,86) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'迟缓'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'迟缓'
+                        end 
                         G.call('set_role',int_id,86,1)
                         G.call('set_role',int_id,96,int_时序)
                     end 
@@ -2979,6 +3007,11 @@ t['magic_power1'] = function(int_id,int_no)
                     seed = seed/2
                 end    
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+29)/20)+ math.floor(G.call('get_point',179+32)/20) then 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'重伤'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'重伤'
+                    end 
                     if G.call('get_role',int_id,81) == 0 then 
                         G.call('set_role',int_id,81,1)
                         G.call('set_role',int_id,91,int_时序)
@@ -2994,6 +3027,11 @@ t['magic_power1'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 8 then --致盲
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10) then 
                     if G.call('get_role',int_id,88) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'致盲'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'致盲'
+                        end 
                         G.call('set_role',int_id,88,1)
                         G.call('set_role',int_id,98,int_时序)
                     end 
@@ -3001,12 +3039,22 @@ t['magic_power1'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 9 or G.call('通用_取得人物特效',0,23) or G.call('通用_取得装备特效',0,207) then --混乱（玄武判断）
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10) then 
                     if G.call('get_role',int_id,87) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'混乱'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'混乱'
+                        end 
                         G.call('set_role',int_id,87,1)
                         G.call('set_role',int_id,97,int_时序)
                     end 
                 end 
             elseif  o_skill.附加效果 == 10 then --斩杀效果
                 if math.random(100) < 30 and ( G.call('get_role',int_id,1) <=5000 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)/10) then 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'斩杀'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'斩杀'
+                    end 
                     hurt = G.call('get_role',int_id,15)
                     G.call('add_point',44,math.floor(G.call('get_point',44)/2))
                 end 
@@ -3075,14 +3123,19 @@ t['magic_power1'] = function(int_id,int_no)
     local int_记事 = #o_notebook.记事本
     o_notebook.记事本[int_记事+1] = {}
     o_notebook.记事本[int_记事+1].记事 = string_字符串
-    return hurt
+    return {hurt,string_字符串_1,string_字符串_2,string_字符串_3,string_字符串_4} 
+    --return hurt
 end
 --type=
 --hide=true
 --private=false
 t['magic_power2'] = function(int_id,int_enemy,int_no)
+    local string_字符串_1 = ''
+    local string_字符串_2 = ''
+    local string_字符串_3 = ''
+    local string_字符串_4 = ''
     if  int_id == nil or int_enemy == nil or int_no == nil or int_enemy < 1 or int_id < 1 then 
-        return 0 
+        return {0,string_字符串_1,string_字符串_2,string_字符串_3,string_字符串_4} 
     end 
     local o_skill = G.QueryName(0x10050000 + int_no)
     local o_role = G.QueryName(0x10040000 + int_id)
@@ -3121,44 +3174,90 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         end     
     else   
         hurt = lv  * o_skill.伤害倍数/10
-    end     
+    end 
     if o_skill.装备 ~= nil then  --武功对应装备加成
+        local int_武器 = 0
         for i = 1, 4 do --判断队友携带武器和武功配合
             if   o_skill.装备 == o_role[需求道具[i]] then 
                 if o_role['拥有'..i] > 0 then 
-                    result = result + 100
+                    int_武器 = 1
+                    break
                 end 
             end 
-        end    
-    end 
+        end   
+        if int_武器 == 1 then
+            local str = G.QueryName(o_skill.装备).名称 
+            if string_字符串_1 == '' then 
+                string_字符串_1 = string_字符串_1..str
+            else
+                string_字符串_1 = string_字符串_1..'.'..str
+            end
+            result = result + 100
+        end 
+    end     
     local hurt0 = 0
     local hurt1 = 0 
     local hurt2 = 0   
     local hurt3 = 0 
     local hurt4 = 0 
     local int_配合 = 0
-    if o_skill.内功 ~= nil then   --判断攻击方携带技能中的内功配合
+    if o_skill.内功  then   --判断攻击方携带技能中的内功配合
         for i = 1,4 do
-            if o_role['技能'..i] ~= nil then 
+            if o_role['技能'..i]  then 
+                print(i,o_skill.内功,o_role['技能'..i])
                 if o_skill.内功  ==  o_role['技能'..i] then 
                     int_配合 = 1
+                    break
                 end 
             end 
         end  
     end  
     if int_配合 == 1 then
+        print('int_配合')
+        local str = G.QueryName(o_skill.内功).名称 
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..str
+        else
+            string_字符串_1 = string_字符串_1..'.'..str
+        end
         result = result + 100
     end
     --判断攻击方携带内功中的附加效果
-    result = result + G.call('通用_取得NPC内功效果',int_id,7)*lv/10 
-    if math.random(100) < 30   then
-        hurt0 = math.floor(G.call('通用_取得NPC内功效果',int_id,3)*lv/10)
+    local int_强化 = G.call('通用_取得NPC内功效果',int_id,7)
+    if int_强化 > 0 then 
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..'内功强化'
+        else
+            string_字符串_1 = string_字符串_1..'.'..'内功强化'
+        end
+        result = result + int_强化 
     end
-    if math.random(100) < 30   then
-        hurt1 = math.floor(G.call('通用_取得NPC内功效果',int_id,12)*lv/10)
-    end
-    if math.random(100) < 30   then
-        hurt2 = math.floor(G.call('通用_取得NPC内功效果',int_id,2)*lv/10)
+    if math.random(100) < 30  then
+        local int_北冥 = G.call('通用_取得NPC内功效果',int_id,3)
+        local int_吸星 = G.call('通用_取得NPC内功效果',int_id,12)
+        local int_化工 = G.call('通用_取得NPC内功效果',int_id,2)
+        if int_北冥 > 0  then 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'北冥'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'北冥'
+            end
+            hurt0 = math.floor(int_北冥)
+        elseif int_吸星 > 0 then 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'吸星'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'吸星'
+            end
+            hurt0 = math.floor(int_吸星)
+        elseif int_化工 > 0 then 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'化工'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'化工'
+            end
+            hurt0 = math.floor(int_化工)
+        end
     end
     if G.call('get_npcskill',int_id,0x100500bd) > 0 then   --左右被动
         local int_左右 = 150 + G.call('通用_取得装备左右效果',int_id)
@@ -3166,6 +3265,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             int_左右 = int_左右*1.25
         elseif  G.call('通用_取得套装',int_id,6) == 3 then
             int_左右 = int_左右*1.5
+        end
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..'左右互搏'
+        else
+            string_字符串_1 = string_字符串_1..'.'..'左右互搏'
         end
         result = result + int_左右
     end    
@@ -3200,18 +3304,38 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     local d = G.call('get_role',int_enemy,6)
     --下面为被动效果计算
     if (G.call('通用_取得人物特效',int_id,13) or G.call('通用_取得装备特效',int_id,204)) and o_role.生命 < G.call('get_role',int_id,1)*0.5 then  --攻击方强力判断
-        result = result + 50    
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..'强力'
+        else
+            string_字符串_1 = string_字符串_1..'.'..'强力'
+        end
+        result = result + 100    
     end 
     if G.call('通用_取得人物特效',int_enemy,9)  then --受击者见切效果
         local jq_randow = math.random(100)
         if jq_randow > 90 then 
             hurt = 0  
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'见切闪躲'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'见切闪躲'
+            end
         elseif jq_randow > 80 then 
-            result = result - 100
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'见切免伤'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'见切免伤'
+            end
+            result = result - 150
         end 
     end 
     if G.call('get_role',int_enemy,15)< G.call('get_role',int_enemy,1)*0.2 and (G.call('通用_取得人物特效',int_enemy,11) or G.call('通用_取得装备特效',int_enemy,105) )  then  --受击方强体判断
-        result = result - 50
+        if string_字符串_3 == '' then 
+            string_字符串_3 = string_字符串_3..'强体'
+        else
+            string_字符串_3 = string_字符串_3..'.'..'强体'
+        end
+        result = result - 100
     end 
     local att_role = 0
     local def_role = 0
@@ -3225,45 +3349,88 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     end  
     if att_role == 0 then --攻击方为敌方
         if  G.call('通用_取得敌方队伍特效',1) or G.call('通用_取得敌方装备特效',202) then  --敌方破绽效果
-            result = result + 50
+            if string_字符串_1 == '' then 
+                string_字符串_1 = string_字符串_1..'破绽'
+            else
+                string_字符串_1 = string_字符串_1..'.'..'破绽'
+            end
+            result = result + 100
         end    
     else --攻击方为我方
         if  G.call('通用_取得我方队伍特效',1) or G.call('通用_取得我方装备特效',202) then --我方破绽效果
-            result = result + 50
+            if string_字符串_1 == '' then 
+                string_字符串_1 = string_字符串_1..'破绽'
+            else
+                string_字符串_1 = string_字符串_1..'.'..'破绽'
+            end
+            result = result + 100
         end 
     end    
     if def_role == 0 then --受击方为敌方
         if  G.call('通用_取得敌方队伍特效',2) then --敌方慈悲效果
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'慈悲'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'慈悲'
+            end
             result = result - 150
         end    
     else --受击方为我方
         if  G.call('通用_取得我方队伍特效',2) then --我方慈悲效果 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'慈悲'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'慈悲'
+            end
             result = result - 150
         end 
     end  
     if math.random(100) > 80 and  (G.call('通用_取得人物特效',int_id,7) or G.call('通用_取得装备特效',int_id,203) or G.call('通用_取得装备特效',int_id,410) )  then --攻击方暴击效果
-        result = result + 100
+        if string_字符串_3 == '' then 
+            string_字符串_3 = string_字符串_3..'暴击'
+        else
+            string_字符串_3 = string_字符串_3..'.'..'暴击'
+        end
+        result = result + 150
         if G.call('通用_取得套装',int_id,4) == 2 then 
             result = result + 50
         elseif G.call('通用_取得套装',int_id,4) == 3 then 
-            result = result + 100
+            result = result + 150
         end 
     end
     hurt = hurt * result/100
     local int_闪避 = 0
     int_闪避 = int_闪避 + G.call('通用_取得NPC内功效果',int_enemy,5) --内功闪避效果计算
     if G.call('get_role',int_id,88) > 0 and math.random(100) < 15 then  --致盲
+        if string_字符串_2 == '' then 
+            string_字符串_2 = string_字符串_2..'盲目'
+        else
+            string_字符串_2 = string_字符串_2..'.'..'盲目'
+        end
         int_闪避 = int_闪避 + 200
     end
-    if G.call('通用_取得套装',int_id,1) == 2 then --套装1闪避效果
-        int_闪避 = int_闪避 + 50
-    elseif  G.call('通用_取得套装',int_id,1) == 3 then
+    if G.call('get_role',int_id,89) > 0  then --逍遥御风闪避效果
+        if string_字符串_4 == '' then 
+            string_字符串_4 = string_字符串_4..'御风'
+        else
+            string_字符串_4 = string_字符串_4..'.'..'御风'
+        end
         int_闪避 = int_闪避 + 100
+    end
+    if G.call('通用_取得套装',int_enemy,1) == 2 then --套装1闪避效果
+        int_闪避 = int_闪避 + 30
+    elseif  G.call('通用_取得套装',int_enemy,1) == 3 then
+        int_闪避 = int_闪避 + 50
     end
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避+1) then  --命中计算
         if hurt > 0 then 
             if math.random(100) > 50 and G.call('get_npcskill',int_enemy,0x10050097) > 0 then   --斗转被动 
                 hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_enemy))   /100 ) 
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'斗转星移'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'斗转星移'
+                end
                 if G.call('通用_取得套装',int_enemy,6) == 2 then
                     hurt3 = math.floor(hurt3*1.25)
                 elseif  G.call('通用_取得套装',int_enemy,6) == 3 then
@@ -3296,6 +3463,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                hurt = math.random(10)
             end   
             if G.call('通用_取得人物特效',int_id,19) then  --舔血效果计算
+                if string_字符串_2 == '' then 
+                    string_字符串_2 = string_字符串_2..'舔血'
+                else
+                    string_字符串_2 = string_字符串_2..'.'..'舔血'
+                end
                 hurt4 = math.floor(hurt*0.2) 
             end  
             if G.call('通用_取得人物特效',int_id,20)  and math.random(100) < 50 then
@@ -3311,6 +3483,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             G.call('add_role',int_enemy,14,-hurt2)
             local seed = 100
             if (G.call('通用_取得人物特效',int_id,10) or G.call('通用_取得装备特效',int_id,205)) then --攻击方万毒效果
+                if string_字符串_2 == '' then 
+                    string_字符串_2 = string_字符串_2..'万毒'
+                else
+                    string_字符串_2 = string_字符串_2..'.'..'万毒'
+                end
                 seed = math.max(1,math.floor(seed/2))
             end
             if G.call('通用_取得人物特效',int_enemy,6) then --受击方冰心效果
@@ -3328,7 +3505,12 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     seed = math.max(1,math.floor(seed/2))
                 end  
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10) then 
-                    if G.call('get_role',int_enemy,81) == 0 then 
+                    if G.call('get_role',int_enemy,81) == 0 then
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'中毒'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'中毒'
+                        end  
                         G.call('set_role',int_enemy,81,1)
                         G.call('set_role',int_enemy,91,int_时序)
                     end 
@@ -3342,6 +3524,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end  
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10) then 
                     if G.call('get_role',int_enemy,90) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'剧毒'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'剧毒'
+                        end 
                         G.call('set_role',int_enemy,90,1)
                         G.call('set_role',int_enemy,100,int_时序)
                     end 
@@ -3352,6 +3539,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             elseif  o_skill.附加效果 == 2 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10) then 
                     if G.call('get_role',int_enemy,82) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'点穴'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'点穴'
+                        end 
                         G.call('set_role',int_enemy,82,1)
                         G.call('set_role',int_enemy,92,int_时序)
                     end   
@@ -3362,6 +3554,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,83) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'晕眩'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'晕眩'
+                        end 
                         G.call('set_role',int_enemy,83,1)
                         G.call('set_role',int_enemy,93,int_时序)
                     end   
@@ -3369,6 +3566,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             elseif  o_skill.附加效果 == 4 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,84) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'内伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'内伤'
+                        end 
                         G.call('set_role',int_enemy,84,1)
                         G.call('set_role',int_enemy,94,int_时序)
                     end   
@@ -3376,6 +3578,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             elseif  o_skill.附加效果 == 5 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,85) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'受伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'受伤'
+                        end 
                         G.call('set_role',int_enemy,85,1)
                         G.call('set_role',int_enemy,95,int_时序)
                     end   
@@ -3383,6 +3590,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             elseif  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,31) or G.call('通用_取得装备特效',int_id,408) then  --减速
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,86) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'迟缓'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'迟缓'
+                        end 
                         G.call('set_role',int_enemy,86,1)
                         G.call('set_role',int_enemy,96,int_时序)
                     end   
@@ -3393,6 +3605,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end  
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,81) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'重伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'重伤'
+                        end 
                         G.call('set_role',int_enemy,81,1)
                         G.call('set_role',int_enemy,91,int_时序)
                         if G.call('get_role',int_enemy,85) == 0 then 
@@ -3407,6 +3624,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             elseif  o_skill.附加效果 == 8 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,88) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'致盲'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'致盲'
+                        end 
                         G.call('set_role',int_enemy,88,1)
                         G.call('set_role',int_enemy,98,int_时序)
                     end   
@@ -3414,12 +3636,22 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             elseif  o_skill.附加效果 == 9 or G.call('通用_取得人物特效',int_id,23) or G.call('通用_取得装备特效',int_id,207) then --混乱（玄武判断）
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,87) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'混乱'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'混乱'
+                        end 
                         G.call('set_role',int_enemy,87,1)
                         G.call('set_role',int_enemy,97,int_时序)
                     end   
                 end 
             elseif  o_skill.附加效果 == 10 then --斩杀效果
                 if math.random(100) < 30 and (G.call('get_role',int_enemy,1) <=5000 or G.call('get_role',int_enemy,15)  < G.call('get_role',int_enemy,1)/10)   then 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'斩杀'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'斩杀'
+                    end 
                     hurt = G.call('get_role',int_enemy,15)
                     G.call('set_role',int_id,15,math.floor(G.call('get_role',int_id,15)/2) )
                 end     
@@ -3479,14 +3711,19 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     local int_记事 = #o_notebook.记事本
     o_notebook.记事本[int_记事+1] = {}
     o_notebook.记事本[int_记事+1].记事 = string_字符串 
-    return hurt
+    return {hurt,string_字符串_1,string_字符串_2,string_字符串_3,string_字符串_4} 
+    --return hurt
 end
 --type=
 --hide=true
 --private=false
 t['magic_power3'] = function(int_id,int_no)
+    local string_字符串_1 = ''
+    local string_字符串_2 = ''
+    local string_字符串_3 = ''
+    local string_字符串_4 = ''
     if  int_id == nil or int_no == nil or int_id == 0 then 
-        return 0 
+        return {0,string_字符串_1,string_字符串_2,string_字符串_3,string_字符串_4} 
     end 
     local o_skill = G.QueryName(0x10050000 + int_no)
     local o_role = G.QueryName(0x10040000 + int_id)
@@ -3527,13 +3764,24 @@ t['magic_power3'] = function(int_id,int_no)
         hurt = lv * o_skill.伤害倍数/10
     end 
     if o_skill.装备 ~= nil then  --武功对应装备加成
+        local int_武器 = 0
         for i = 1, 4 do --判断队友携带武器和武功配合
             if   o_skill.装备 == o_role[需求道具[i]] then 
                 if o_role['拥有'..i] > 0 then 
-                    result = result + 100
+                    int_武器 = 1
+                    break
                 end 
             end 
-        end    
+        end   
+        if int_武器 == 1 then
+            local str = G.QueryName(o_skill.装备).名称 
+            if string_字符串_1 == '' then 
+                string_字符串_1 = string_字符串_1..str
+            else
+                string_字符串_1 = string_字符串_1..'.'..str
+            end
+            result = result + 100
+        end 
     end 
     local hurt0 = 0
     local hurt1 = 0 
@@ -3551,18 +3799,50 @@ t['magic_power3'] = function(int_id,int_no)
         end  
     end  
     if int_配合 == 1 then
+        local str = G.QueryName(o_skill.内功).名称 
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..str
+        else
+            string_字符串_1 = string_字符串_1..'.'..str
+        end
         result = result + 100
     end
     --判断攻击方携带内功中的附加效果
-    result = result + G.call('通用_取得NPC内功效果',int_id,7)*lv/10 
-    if math.random(100) < 30   then
-        hurt0 = math.floor(G.call('通用_取得NPC内功效果',int_id,3)*lv/10)
-    end
-    if math.random(100) < 30    then
-        hurt1 = math.floor(G.call('通用_取得NPC内功效果',int_id,12)*lv/10)
+    local int_强化 = G.call('通用_取得NPC内功效果',int_id,7)
+    if int_强化 > 0 then 
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..'内功强化'
+        else
+            string_字符串_1 = string_字符串_1..'.'..'内功强化'
+        end
+        result = result + int_强化 
     end
     if math.random(100) < 30  then
-        hurt2 = math.floor(G.call('通用_取得NPC内功效果',int_id,2)*lv/10)
+        local int_北冥 = G.call('通用_取得NPC内功效果',int_id,3)
+        local int_吸星 = G.call('通用_取得NPC内功效果',int_id,12)
+        local int_化工 = G.call('通用_取得NPC内功效果',int_id,2)
+        if int_北冥 > 0  then 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'北冥'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'北冥'
+            end
+            hurt0 = math.floor(int_北冥)
+        elseif int_吸星 > 0 then 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'吸星'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'吸星'
+            end
+            hurt0 = math.floor(int_吸星)
+        elseif int_化工 > 0 then 
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'化工'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'化工'
+            end
+            hurt0 = math.floor(int_化工)
+        end
     end
     if G.call('get_npcskill',int_id,0x100500bd) > 0 then   --左右被动
         local int_左右 = 150 + G.call('通用_取得装备左右效果',int_id)
@@ -3570,6 +3850,11 @@ t['magic_power3'] = function(int_id,int_no)
             int_左右 = int_左右*1.25
         elseif  G.call('通用_取得套装',int_id,6) == 3 then
             int_左右 = int_左右*1.5
+        end
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..'左右互搏'
+        else
+            string_字符串_1 = string_字符串_1..'.'..'左右互搏'
         end
         result = result + int_左右
     end 
@@ -3625,15 +3910,36 @@ t['magic_power3'] = function(int_id,int_no)
         local jq_randow = math.random(100)
         if jq_randow > 90  then 
             hurt = 0
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'见切闪躲'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'见切闪躲'
+            end
         elseif  jq_randow > 80  then
+            if string_字符串_3 == '' then 
+                string_字符串_3 = string_字符串_3..'见切免伤'
+            else
+                string_字符串_3 = string_字符串_3..'.'..'见切免伤'
+            end
             result = result  - 100
         end 
     end
     if G.call('get_point',44)  < G.call('get_point',217) *0.2 and  (G.call('通用_取得人物特效',0,11) or G.call('通用_取得装备特效',0,105)) then  --主角强体判断
-        result = result  - 50
+        if string_字符串_3 == '' then 
+            string_字符串_3 = string_字符串_3..'强体'
+        else
+            string_字符串_3 = string_字符串_3..'.'..'强体'
+        end
+  
+        result = result  - 100
     end 
     if G.call('get_role',int_id,15) < G.call('get_role',int_id,1)*0.5 and (G.call('通用_取得人物特效',int_id,13) or G.call('通用_取得装备特效',int_id,204) )  then  --攻击方强力判断
-        result = result  + 50
+        if string_字符串_1 == '' then 
+            string_字符串_1 = string_字符串_1..'强力'
+        else
+            string_字符串_1 = string_字符串_1..'.'..'强力'
+        end
+        result = result  + 100
     end 
     local att_role = 0
     for i = 2,5 do  
@@ -3644,22 +3950,42 @@ t['magic_power3'] = function(int_id,int_no)
     end  
     if att_role == 0 then --攻击方为敌方
         if  G.call('通用_取得敌方队伍特效',1) or G.call('通用_取得敌方装备特效',202) then  --敌方破绽效果
-            result = result  + 50
+            if string_字符串_1 == '' then 
+                string_字符串_1 = string_字符串_1..'破绽'
+            else
+                string_字符串_1 = string_字符串_1..'.'..'破绽'
+            end
+            result = result  + 100
         end    
     else --攻击方为我方
         if  G.call('通用_取得我方队伍特效',1) or G.call('通用_取得我方装备特效',202) then--我方破绽效果
-            result = result  + 50
+            if string_字符串_1 == '' then 
+                string_字符串_1 = string_字符串_1..'破绽'
+            else
+                string_字符串_1 = string_字符串_1..'.'..'破绽'
+            end
+            result = result  + 100
         end 
     end  
     if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,7) or G.call('通用_取得装备特效',int_id,203) or G.call('通用_取得装备特效',int_id,410) )   then ----攻击方暴击效果
-        result = result + 100
+        if string_字符串_3 == '' then 
+            string_字符串_3 = string_字符串_3..'暴击'
+        else
+            string_字符串_3 = string_字符串_3..'.'..'暴击'
+        end
+        result = result + 150
         if G.call('通用_取得套装',int_id,4) == 2 then 
             result = result + 50
         elseif G.call('通用_取得套装',int_id,4) == 3 then 
-            result = result + 100
+            result = result + 150
         end 
     end
-    if  G.call('通用_取得我方队伍特效',2) then 
+    if  G.call('通用_取得我方队伍特效',2) then
+        if string_字符串_3 == '' then 
+            string_字符串_3 = string_字符串_3..'慈悲'
+        else
+            string_字符串_3 = string_字符串_3..'.'..'慈悲'
+        end 
         result = result  - 150 - int_慈悲效果*10
     end    
     hurt = hurt * result/100
@@ -3681,9 +4007,19 @@ t['magic_power3'] = function(int_id,int_no)
         end
     end 
     if G.call('get_role',int_id,88) > 0 and math.random(100) < 15 then  --致盲后二次判断命中
-        int_闪避 = int_闪避 + 150
+        if string_字符串_2 == '' then 
+            string_字符串_2 = string_字符串_2..'盲目'
+        else
+            string_字符串_2 = string_字符串_2..'.'..'盲目'
+        end
+        int_闪避 = int_闪避 + 200
     end 
-    if G.call('get_point',89) > 1 then --逍遥御风闪避效果
+    if G.call('get_point',89) > 0 then --逍遥御风闪避效果
+        if string_字符串_4 == '' then 
+            string_字符串_4 = string_字符串_4..'御风'
+        else
+            string_字符串_4 = string_字符串_4..'.'..'御风'
+        end
         int_闪避 = int_闪避 + 100
     end
     if G.call('通用_取得套装',0,1) == 2 then --套装1闪避效果
@@ -3694,6 +4030,11 @@ t['magic_power3'] = function(int_id,int_no)
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避 + 1) then  --命中计算
         if hurt > 0 then 
             if G.call('get_point',18) > 50 and G.call('get_magic',152) > 0 and math.random(100) <= G.call('get_point',18) - 50 then --斗转被动) 
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'斗转星移'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'斗转星移'
+                end
                 hurt3 = math.floor(hurt * (20+G.call('通用_取得装备斗转效果',0)  )   *G.call('get_magic_lv',152)/500  )
                 if G.call('通用_取得套装',0,6) == 2 then
                     hurt3 = math.floor(hurt3*1.25)
@@ -3719,6 +4060,11 @@ t['magic_power3'] = function(int_id,int_no)
                 hurt = hurt*(1-(o_item.系数-100)/2/100)
             end 
             if G.call('通用_取得人物特效',int_id,19) then  --舔血效果计算
+                if string_字符串_2 == '' then 
+                    string_字符串_2 = string_字符串_2..'舔血'
+                else
+                    string_字符串_2 = string_字符串_2..'.'..'舔血'
+                end
                 hurt4 = math.floor(hurt*0.2) 
             end   
             if G.call('通用_取得人物特效',int_id,20) and math.random(100) < 50 then
@@ -3763,6 +4109,11 @@ t['magic_power3'] = function(int_id,int_no)
             G.call('add_point',48,int_怒气 )
             local seed = 100
             if (G.call('通用_取得人物特效',int_id,10) or G.call('通用_取得装备特效',int_id,205))  then --攻击方万毒效果
+                if string_字符串_2 == '' then 
+                    string_字符串_2 = string_字符串_2..'万毒'
+                else
+                    string_字符串_2 = string_字符串_2..'.'..'万毒'
+                end
                 seed = math.max(1,math.floor(seed/2))
             end
             if G.call('通用_取得人物特效',0,6) then --受击方冰心效果
@@ -3781,6 +4132,11 @@ t['magic_power3'] = function(int_id,int_no)
                 end  
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',81) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'中毒'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'中毒'
+                        end
                         G.call('set_point',81,1) 
                         G.call('set_point',91,int_时序)
                     end 
@@ -3794,6 +4150,11 @@ t['magic_power3'] = function(int_id,int_no)
                 end  
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',90) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'剧毒'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'剧毒'
+                        end
                         G.call('set_point',90,1) 
                         G.call('set_point',100,int_时序)
                     end 
@@ -3804,6 +4165,11 @@ t['magic_power3'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 2 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',82) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'点穴'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'点穴'
+                        end 
                         G.call('set_point',82,1) 
                         G.call('set_point',92,int_时序)
                     end 
@@ -3814,6 +4180,11 @@ t['magic_power3'] = function(int_id,int_no)
                 end
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',83) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'晕眩'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'晕眩'
+                        end 
                         G.call('set_point',83,1) 
                         G.call('set_point',93,int_时序)
                     end 
@@ -3821,6 +4192,11 @@ t['magic_power3'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 4 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',84) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'内伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'内伤'
+                        end 
                         G.call('set_point',84,1) 
                         G.call('set_point',94,int_时序)
                     end 
@@ -3828,13 +4204,23 @@ t['magic_power3'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 5 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then  
                     if G.call('get_point',85) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'受伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'受伤'
+                        end 
                         G.call('set_point',85,1) 
                         G.call('set_point',95,int_时序)
                     end 
                 end 
             elseif  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,31) or G.call('通用_取得装备特效',int_id,408) then  --减速
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
-                    if G.call('get_point',86) == 0 then 
+                    if G.call('get_point',86) == 0 then
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'迟缓'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'迟缓'
+                        end  
                         G.call('set_point',86,1) 
                         G.call('set_point',96,int_时序)
                     end 
@@ -3844,6 +4230,11 @@ t['magic_power3'] = function(int_id,int_no)
                     seed = seed/2
                 end 
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'重伤'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'重伤'
+                    end 
                     if G.call('get_point',81) == 0 then 
                         G.call('set_point',81,1) 
                         G.call('set_point',91,int_时序)
@@ -3859,6 +4250,11 @@ t['magic_power3'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 8 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',88) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'致盲'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'致盲'
+                        end 
                         G.call('set_point',88,1) 
                         G.call('set_point',98,int_时序)
                     end 
@@ -3866,12 +4262,22 @@ t['magic_power3'] = function(int_id,int_no)
             elseif  o_skill.附加效果 == 9 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',87) == 0 then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'混乱'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'混乱'
+                        end 
                         G.call('set_point',87,1) 
                         G.call('set_point',97,int_时序)
                     end 
                 end 
             elseif  o_skill.附加效果 == 10 then --斩杀效果
                 if math.random(100) < 30 and (G.call('get_point',217) <=5000 or G.call('get_point',44) < G.call('get_point',217)/10)   then 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'斩杀'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'斩杀'
+                    end 
                     hurt = G.call('get_point',44)
                     G.call('set_role',int_id,15,math.floor(G.call('get_role',int_id,15)/2) )
                 end 
@@ -3931,6 +4337,7 @@ t['magic_power3'] = function(int_id,int_no)
     local int_记事 = #o_notebook.记事本
     o_notebook.记事本[int_记事+1] = {}
     o_notebook.记事本[int_记事+1].记事 = string_字符串
-    return hurt
+    return {hurt,string_字符串_1,string_字符串_2,string_字符串_3,string_字符串_4} 
+   -- return hurt
 
 end

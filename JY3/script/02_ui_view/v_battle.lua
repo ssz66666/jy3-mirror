@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_battle = require 'c_battle'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -4607,6 +4607,23 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '减生命'
+			tc.left = -12.500
+			tc.right = 12.500
+			tc.bottom = -24.000
+			tc.top = 24.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.text = '0'
+			tc.font = 0x61300000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
 			tc.left = -80.000
 			tc.right = 80.000
 			tc.bottom = -20.000
@@ -4688,8 +4705,8 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
 			tp = tc
@@ -4724,13 +4741,15 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '减生命'
-			tc.left = -80.000
-			tc.right = 80.000
-			tc.bottom = -20.000
-			tc.top = 20.000
+			tc.left = -12.500
+			tc.right = 12.500
+			tc.bottom = -24.000
+			tc.top = 24.000
 			tc.visible = false
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.text = '0'
 			tc.font = 0x61300000
 			tc.style = 3
 			tp = tc
@@ -4805,10 +4824,25 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
@@ -4841,13 +4875,16 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '减生命'
-			tc.left = -80.000
-			tc.right = 80.000
-			tc.bottom = -20.000
-			tc.top = 20.000
+			tc.left = -12.500
+			tc.right = 12.500
+			tc.bottom = -24.000
+			tc.top = 24.000
 			tc.visible = false
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.text = '0'
+			tc.wrap = true
 			tc.font = 0x61300000
 			tc.style = 3
 			tp = tc
@@ -4922,10 +4959,25 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
@@ -4958,13 +5010,13 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '减生命'
-			tc.left = -80.000
-			tc.right = 80.000
-			tc.bottom = -20.000
-			tc.top = 20.000
+			tc.right = 0.000
+			tc.bottom = -8.000
+			tc.top = 8.000
 			tc.visible = false
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
+			tc.autosize = 3
 			tc.font = 0x61300000
 			tc.style = 3
 			tp = tc
@@ -5039,10 +5091,25 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5075,13 +5142,13 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '减生命'
-			tc.left = -80.000
-			tc.right = 80.000
-			tc.bottom = -20.000
-			tc.top = 20.000
+			tc.right = 0.000
+			tc.bottom = -8.000
+			tc.top = 8.000
 			tc.visible = false
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
+			tc.autosize = 3
 			tc.font = 0x61300000
 			tc.style = 3
 			tp = tc
@@ -5156,8 +5223,8 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
 			tp = tc
@@ -5192,13 +5259,16 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '减生命'
-			tc.left = -80.000
-			tc.right = 80.000
-			tc.bottom = -20.000
-			tc.top = 20.000
+			tc.left = -12.500
+			tc.right = 12.500
+			tc.bottom = -24.000
+			tc.top = 24.000
 			tc.visible = false
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
+			tc.autosize = 3
+			tc.text = '0'
+			tc.wrap = true
 			tc.font = 0x61300000
 			tc.style = 3
 			tp = tc
@@ -5273,10 +5343,25 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 16.500
+			tc.top = 43.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5390,10 +5475,25 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5507,10 +5607,25 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5624,10 +5739,25 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5741,10 +5871,25 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5858,10 +6003,25 @@ tp = tc
 			tc.name = '闪避'
 			tc.left = -34.000
 			tc.right = 28.000
-			tc.bottom = -9.500
-			tc.top = 17.500
+			tc.bottom = 26.500
+			tc.top = 53.500
 			tc.visible = false
 			tc.img = 0x56160070
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '生命'
+			tc.left = -80.000
+			tc.right = 80.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.font = 0x61300000
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
@@ -5917,7 +6077,7 @@ tp = tc
 		--end
 		tc = G.TextQuad()
 		tp.addChild(tc)
-		tc.name = 'team2'
+		tc.name = 'team3'
 		tc.left = 159.000
 		tc.right = 239.000
 		tc.bottom = -70.000
@@ -5959,7 +6119,7 @@ tp = tc
 		--end
 		tc = G.TextQuad()
 		tp.addChild(tc)
-		tc.name = 'team3'
+		tc.name = 'team2'
 		tc.left = 31.000
 		tc.right = 111.000
 		tc.bottom = -120.000
@@ -6303,6 +6463,102 @@ tp = tc
 		tc.visible = false
 		tc.text = '0'
 		tc.font = 0x61180000
+		tc.style = 3
+		tp = tc
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = 'min'
+			tc.left = 87.000
+			tc.right = 167.000
+			tc.bottom = -90.000
+			tc.top = -70.000
+			tc.visible = false
+			tc.text = '0'
+			tc.font = 0x61180000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = 'id'
+			tc.left = 87.000
+			tc.right = 167.000
+			tc.bottom = -90.000
+			tc.top = -70.000
+			tc.visible = false
+			tc.text = '1'
+			tc.font = 0x61180000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+	tp = tp.parent
+	--end
+	tc = G.loadUI('v_empty')
+	tp.addChild(tc)
+	tc.name = '特效'
+	tp = tc
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = 'team'
+		tc.left = 35.500
+		tc.right = 98.500
+		tc.bottom = -68.000
+		tc.top = -28.000
+		tc.visible = false
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.autosize = 3
+		tc.text = '000'
+		tc.font = 0x61280000
+		tc.style = 3
+		tp = tc
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = 'min'
+			tc.left = 87.000
+			tc.right = 167.000
+			tc.bottom = -90.000
+			tc.top = -70.000
+			tc.visible = false
+			tc.text = '0'
+			tc.font = 0x61180000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = 'id'
+			tc.left = 87.000
+			tc.right = 167.000
+			tc.bottom = -90.000
+			tc.top = -70.000
+			tc.visible = false
+			tc.text = '6'
+			tc.font = 0x61180000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = 'enemy'
+		tc.left = -273.000
+		tc.right = -189.000
+		tc.bottom = 45.000
+		tc.top = 85.000
+		tc.visible = false
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.autosize = 3
+		tc.text = '0000'
+		tc.font = 0x61280000
 		tc.style = 3
 		tp = tc
 			tc = G.TextQuad()
