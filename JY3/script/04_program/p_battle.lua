@@ -2826,6 +2826,11 @@ t['magic_power1'] = function(int_id,int_no)
             end
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
             if math.random(100) > 80 and (G.call('通用_取得人物特效',0,22) or G.call('通用_取得装备特效',0,206))  then --朱雀被动效果
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'朱雀'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'朱雀'
+                end
                 hurt = hurt 
             elseif  int_玉女剑阵效果 == 1 and i_skill == 0x1005003e then --玉女剑阵破防效果判定
                 if string_字符串_2 == '' then 
@@ -3463,6 +3468,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             end
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))  then --朱雀被动效果
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'朱雀'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'朱雀'
+                end
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21) then --真武效果
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/100 )  ) 
@@ -4083,6 +4093,11 @@ t['magic_power3'] = function(int_id,int_no)
                 end 
             end  
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))   then --朱雀被动效果
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'朱雀'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'朱雀'
+                end
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21)then
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/100 )   )
