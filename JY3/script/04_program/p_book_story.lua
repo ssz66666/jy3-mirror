@@ -116,7 +116,7 @@ t['天书_飞狐外传'] = function()
         end
     elseif o_book_story.流程 == 3 then
         G.call('地图_进入地图','药王庄',23,67)
-        if G.call('get_point',18) == 100 then
+        if G.call('get_point',32) == 100 then
             G.call("talk",'',40,'   幸好袁姑娘只是受了内伤，休息几天应该没事，胡大哥虽中的是碧蚕毒蛊、鹤顶红、孔雀胆三种剧毒，但我有解救之法。',1,1)
             G.call("talk",'',5,'   程姑娘可是要替我吸毒？',0,0)
             G.call("talk",'',40,'   胡大哥你怎么猜到？',1,1)
