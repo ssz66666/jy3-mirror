@@ -3188,7 +3188,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     local o_skill_武功熟练度 = G.call('get_role',int_id,p+9)
     local  o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_no,o_skill_武功熟练度 )  
     local lv = o_skill_武功等级 
-    if o_skill.类别 == 6 then
+    if o_skill.类别 >= 6   then
         lv = 10
     end  
     if int_no == 190 or int_no == 207 then 
@@ -3324,7 +3324,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         end  
     end  
     o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_no,o_skill_武功熟练度 )
-    if o_skill_武功等级 - lv > 0 then 
+    if o_skill_武功等级 - lv > 0 and o_skill.类别 < 6 then 
         G.call('notice1','【'..o_role.姓名..'】'..o_skill.名称..'升到'..tostring(o_skill_武功等级)..'级')
     end   
     local a = G.call('get_role',int_id,4)
@@ -3788,7 +3788,7 @@ t['magic_power3'] = function(int_id,int_no)
     local o_skill_武功熟练度 = G.call('get_role',int_id,p+9)
     local  o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_no,o_skill_武功熟练度 )
     local lv = o_skill_武功等级 
-    if o_skill.类别 == 6 then
+    if o_skill.类别 >= 6 then
         lv = 10
     end  
     if int_no == 190 or int_no == 207 then 
@@ -3924,7 +3924,7 @@ t['magic_power3'] = function(int_id,int_no)
         end
     end 
     o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_no,o_skill_武功熟练度 )
-    if (o_skill_武功等级 - lv) > 0 then 
+    if (o_skill_武功等级 - lv) > 0 and o_skill.类别 < 6 then 
         G.call('notice1','【'..o_role.姓名..'】'..o_skill.名称..'升到'..tostring(o_skill_武功等级)..'级')
     end 
     local a = G.call('get_role',int_id,4)
