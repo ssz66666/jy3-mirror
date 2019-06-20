@@ -1982,14 +1982,14 @@ t['战斗系统_事件响应'] = function()
                                                     i_skill = o_role_tb[magic[n] ] 
                                                 end 
                                                 if o_skill_tb.范围 == 1 then
-                                                    if G.call('get_point',44) < G.call('get_point',217)* G.misc().加血阈值/100) then 
+                                                    if G.call('get_point',44) < G.call('get_point',217)* G.misc().加血阈值/100 then 
                                                         i_skill = o_role_tb[magic[n] ] 
                                                     end 
                                                     for p = 2,5 do 
                                                         local int_role_1 = G.QueryName(i_battle)[位置[p] ]
                                                         if int_role_1 > 0 then
                                                             if 	G.call('get_role',int_role_1,15) > 0 then 
-                                                                if G.call('get_role',int_role_1,15) <= G.call('get_role',int_role_1,1) * G.misc().加血阈值/100) then 
+                                                                if G.call('get_role',int_role_1,15) <= G.call('get_role',int_role_1,1) * G.misc().加血阈值/100 then 
                                                                     i_skill =o_role_tb[magic[n] ]
                                                                 end     
                                                             end
