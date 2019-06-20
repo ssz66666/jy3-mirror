@@ -1463,6 +1463,22 @@ t['战斗系统_事件响应'] = function()
                 else 
                     local deytime = G.call('get_point',236) 
                     local int_时序 = 50 * deytime 
+                    local int_队友 = 0
+                    local int_逍遥御仙效果 = 0
+                    local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
+                    for i = 2,5 do 
+                        if G.QueryName(0x10150001)[位置[i]] > 0 then 
+                            if G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i]] ).生命 > 0 then 
+                                int_队友 = int_队友 + 1
+                            end
+                        end
+                    end
+                    if G.call('通用_取得内功轻功特效',0,18) then
+                        int_队友 = int_队友 + 1
+                    end
+                    if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then 
+                        int_逍遥御仙效果 = int_队友
+                    end 
                     if  o_skill.范围 == 0  then 
                         if o_skill.内功轻功效果 == 1 then
                             if G.call('get_point',46) >= needmp then 
@@ -1486,7 +1502,7 @@ t['战斗系统_事件响应'] = function()
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true
                         elseif o_skill.内功轻功效果 == 16 then   --逍遥御风
                             G.call('set_point',89,1)
-                            G.call('set_point',99,int_时序)
+                            G.call('set_point',99,int_时序 + int_逍遥御仙效果*50)
                         elseif o_skill.内功轻功效果 == 99 then   --自身解毒
                             G.call('set_point',81,0)       
                         end 
@@ -2299,9 +2315,6 @@ t['集气'] = function()
                 end    
 			end 		
         end
-        -- local boss_生命 = G.QueryName(o_role + o_battle[位置[6]] ).生命
-        -- local boss_姓名 =  G.QueryName(o_role + o_battle[位置[6]] ).姓名
-        -- ui.getChildByName('boss').text = '[08]'..boss_姓名..'[0a]'..boss_生命
         G.wait_time(deytime)
         if (G.call('通用_取得人物特效',0,12) or G.call('通用_取得装备特效',0,104)) and G.call('get_point',44) < G.call('get_point',217)*0.3  then  --主角的回春技能加成
             if G.call('get_point',44) > 0 then 
@@ -2680,6 +2693,8 @@ t['magic_power1'] = function(int_id,int_no)
     local int_玉女剑阵效果 = 0
     local int_五行八卦效果 = 0
     local int_真武效果 = 0
+    local int_舔血效果 = 0
+    local int_毒仙阵效果 = 0
     for i = 2,5 do 
         if G.QueryName(0x10150001)[位置[i]] > 0 then 
             if G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i]] ).生命 > 0 then 
@@ -2692,13 +2707,17 @@ t['magic_power1'] = function(int_id,int_no)
     end
     if i_magic_阵法 then 
         if G.QueryName(i_magic_阵法).附加效果 == 3 then
-            int_五岳剑阵效果 = int_队友 *5
+            int_五岳剑阵效果 = int_队友 
         elseif (int_队友 > 1 or (G.call('get_point',18) <= 50 and G.call('get_magic',190) > 0)  ) and G.QueryName(i_magic_阵法).附加效果 == 5 then 
             int_玉女剑阵效果 = 1
         elseif G.QueryName(i_magic_阵法).附加效果 == 8 then 
-            int_五行八卦效果 = int_队友 *10
+            int_五行八卦效果 = int_队友 
         elseif G.QueryName(i_magic_阵法).附加效果 == 1 then 
-            int_真武效果 = int_队友*5
+            int_真武效果 = int_队友
+        elseif G.QueryName(i_magic_阵法).附加效果 == 7 then 
+            int_舔血效果 = int_队友
+        elseif G.QueryName(i_magic_阵法).附加效果 == 10 then 
+            int_毒仙阵效果 = int_队友
         end
     end
     if G.call('get_point',44) < G.call('get_point',217)*0.5 and  (G.call('通用_取得人物特效',0,13) or G.call('通用_取得装备特效',0,204))   then --主角强力判断
@@ -2849,12 +2868,12 @@ t['magic_power1'] = function(int_id,int_no)
                 else
                     string_字符串_2 = string_字符串_2..'.'..'真武破防'
                 end
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.2-int_真武效果/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.2-int_真武效果*5/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
             else 
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if o_skill.类别 == 2 then --五岳剑阵效果
-                hurt = math.floor(hurt* (int_五岳剑阵效果/100 +1)  )
+                hurt = math.floor(hurt* (int_五岳剑阵效果*5/100 +1)  )
             end
             if G.call('通用_取得套装',0,3) == 2 then --套装3和套装4强伤和减伤效果
                 hurt = math.floor(hurt *1.1)
@@ -2875,7 +2894,7 @@ t['magic_power1'] = function(int_id,int_no)
                 else
                     string_字符串_2 = string_字符串_2..'.'..'舔血'
                 end
-                hurt4 = math.floor(hurt*0.30*(100 - G.call('get_point',15)       )/100    ) 
+                hurt4 = math.floor(hurt*(0.25 + int_舔血效果*5/100)*(100 - G.call('get_point',15)       )/100    ) 
             end 
             if i_skill == 0x10050083 and G.call('get_point',115) == 20 and G.misc().木桩 == 0 then --北冥真气吸蓝判定
                 G.call('add_point',63,hurt0) 
@@ -2916,7 +2935,7 @@ t['magic_power1'] = function(int_id,int_no)
             if G.call('通用_取得人物特效',int_id,6) == 1 then --受击方冰心效果
                 seed = seed * 2
             end 
-            seed = math.floor(seed * (100-int_五行八卦效果)/100) --五行八卦阵效果  
+            seed = math.floor(seed * (100-int_五行八卦效果*10)/100) --五行八卦阵效果  
             if G.call('通用_取得套装',int_id,4) == 2 then
                 seed = math.max(1,math.floor(seed/2))
             elseif G.call('通用_取得套装',int_id,4) == 3 then
@@ -2930,15 +2949,28 @@ t['magic_power1'] = function(int_id,int_no)
                 end  
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+32)/10) then   --中毒
                     if G.call('get_role',int_id,81) == 0 then
-                        if string_字符串_4 == '' then 
-                            string_字符串_4 = string_字符串_4..'中毒'
+                        if int_毒仙阵效果 >= 4 then 
+                            if string_字符串_4 == '' then 
+                                string_字符串_4 = string_字符串_4..'剧毒'
+                            else
+                                string_字符串_4 = string_字符串_4..'.'..'剧毒'
+                            end 
+                            G.call('set_role',int_id,90,1)
+                            o_role [tostring(100)] = int_时序 + int_毒仙阵效果*50
+                            if G.call('通用_取得人物特效',0,18)  then
+                                o_role [tostring(100)] = int_时序 * 2 + int_毒仙阵效果*50
+                            end
                         else
-                            string_字符串_4 = string_字符串_4..'.'..'中毒'
-                        end 
-                        G.call('set_role',int_id,81,1)
-                        o_role [tostring(91)] = int_时序
-                        if G.call('通用_取得人物特效',0,18)  then
-                            o_role [tostring(91)] = int_时序 * 2
+                            if string_字符串_4 == '' then 
+                                string_字符串_4 = string_字符串_4..'中毒'
+                            else
+                                string_字符串_4 = string_字符串_4..'.'..'中毒'
+                            end 
+                            G.call('set_role',int_id,81,1)
+                            o_role [tostring(91)] = int_时序+ int_毒仙阵效果*50 
+                            if G.call('通用_取得人物特效',0,18)  then
+                                o_role [tostring(91)] = int_时序 * 2+ int_毒仙阵效果*50
+                            end
                         end
                     end  
                 end
@@ -2955,9 +2987,9 @@ t['magic_power1'] = function(int_id,int_no)
                             string_字符串_4 = string_字符串_4..'.'..'剧毒'
                         end 
                         G.call('set_role',int_id,90,1)
-                        o_role [tostring(100)] = int_时序
+                        o_role [tostring(100)] = int_时序 + int_毒仙阵效果*50
                         if G.call('通用_取得人物特效',0,18)  then
-                            o_role [tostring(100)] = int_时序 * 2
+                            o_role [tostring(100)] = int_时序 * 2 + int_毒仙阵效果*50
                         end
                     end  
                 end

@@ -403,7 +403,7 @@ t['门派-血刀门']=function()
             G.call("talk",'',143,'   '..G.call('get_fullname')..'你回来啦，有什么事情吗？。',2,1) 
             local int_选项 = 0 
             while int_选项 == 0 do
-                int_选项 = G.call("menu",'',0,'',0,0,{"1,和掌门切磋武功【单挑】","2,参悟【血洗天下】","3,兑换【修为点】","4,我要【征服】这个门派","5,没有事情"},0) 
+                int_选项 = G.call("menu",'',0,'',0,0,{"1,和掌门切磋武功【单挑】","2,参悟【血洗天下】","3,参悟【万灵血阵】","4,兑换【修为点】","5,我要【征服】这个门派","6,没有事情"},0) 
                 if int_选项 == 1 then
                     G.call('all_over') 
                     G.call('add_time',2)
@@ -449,7 +449,29 @@ t['门派-血刀门']=function()
                     end
                     G.call('all_over') 
                     G.call('goto_map',1)
-                elseif int_选项 == 3 then 
+                elseif int_选项 == 3 then
+                    G.call('all_over') 
+                    if G.call('get_magic',246) == 0 then 
+                        G.call("talk",'',143,'   既然如此，那就要过了本阵才行。',2,1) 
+                        G.call("talk",'',0,'   求之不得',0,0)
+                        G.call('all_over') 
+                        G.call('add_time',2)
+                        G.call('call_battle',1,19,3,200,143,0,0,0,0,0)
+                        o_battle_结果 = G.call('get_battle') 
+                        if o_battle_结果  == 1 then
+                            G.call("talk",'',0,'   这阵法也难不到我！',0,0)
+                            if G.call('get_magic',246) == 0 then 
+                                G.call('learnmagic',246)
+                            end 
+                        else
+                            G.call("talk",'',143,'   看来你还是无法领悟此阵法的精妙之处！',2,1) 
+                        end
+                    else
+                        G.call("talk",'',143,'   你不是已经领悟了【万灵血阵】吗？',2,1) 
+                    end
+                    G.call('all_over') 
+                    G.call('goto_map',1)
+                elseif int_选项 == 4 then 
                     G.call('all_over') 
                     G.call("talk",'',143,'   你现在有【'..tostring(G.call('get_point',5))..'点】修为值，每次转化消耗两点修为值。你想转化成什么属性？',2,1) 
                     local int_选项 = 0 
@@ -508,7 +530,7 @@ t['门派-血刀门']=function()
                         end
                         
                     end
-                elseif int_选项 == 4 then
+                elseif int_选项 == 5 then
                     G.call("talk",'',143,'   你难道是其他门派派来的奸细？想要【征服】我的门派就看你有没有本事了！',1,1) 
                     G.call('all_over') 
                     G.call('add_time',2)
@@ -531,7 +553,7 @@ t['门派-血刀门']=function()
                     else
                         G.call('gameover')
                     end 
-                elseif int_选项 == 5 then 
+                elseif int_选项 == 6 then 
                     G.call('all_over') 
                     G.call('goto_map',1)
                 end 
@@ -2518,7 +2540,7 @@ t['门派-星宿派']=function()
             G.call("talk",'',116,'   '..G.call('get_fullname')..'你回来啦，有什么事情吗？。',2,1) 
             local int_选项 = 0 
             while int_选项 == 0 do
-                int_选项 = G.call("menu",'',0,'',0,0,{"1,和掌门切磋武功【单挑】","2,兑换【修为点】","3,参悟【极乐逍遥】","4,我要【征服】这个门派","5,没有事情"},0) 
+                int_选项 = G.call("menu",'',0,'',0,0,{"1,和掌门切磋武功【单挑】","2,兑换【修为点】","3,参悟【极乐逍遥】","4,参悟【逍遥毒仙阵】","5,我要【征服】这个门派","6,没有事情"},0) 
                 if int_选项 == 1 then
                     G.call('all_over') 
                     G.call('add_time',2)
@@ -2539,12 +2561,34 @@ t['门派-星宿派']=function()
                     end
                     G.call('all_over') 
                     G.call('goto_map',1)
+                elseif int_选项 == 4 then
+                    G.call('all_over') 
+                    if G.call('get_magic',247) == 0 then 
+                        G.call("talk",'',116,'   既然如此，那就要过了本阵才行。',2,1) 
+                        G.call("talk",'',0,'   求之不得',0,0)
+                        G.call('all_over') 
+                        G.call('add_time',2)
+                        G.call('call_battle',1,19,3,200,116,41,387,388,389,0)
+                        o_battle_结果 = G.call('get_battle') 
+                        if o_battle_结果  == 1 then
+                            G.call("talk",'',0,'   这阵法也难不到我！',0,0)
+                            if G.call('get_magic',247) == 0 then 
+                                G.call('learnmagic',247)
+                            end 
+                        else
+                            G.call("talk",'',116,'   看来你还是无法领悟此阵法的精妙之处！',2,1) 
+                        end
+                    else
+                        G.call("talk",'',116,'   你不是已经领悟了【逍遥毒仙阵】吗？',2,1) 
+                    end
+                    G.call('all_over') 
+                    G.call('goto_map',1)
                 elseif int_选项 == 3 then
                     G.call('all_over') 
                     if G.call('get_magic',232) == 0 then 
-                        G.call("talk",'',116,'   要参悟【极乐逍遥】，每次就得准备五毒各99个！',2,1)
-                        if G.call('get_item',286) >= 99 and G.call('get_item',291) >= 99 and G.call('get_item',292) >= 99
-                        and G.call('get_item',293) >= 99  and G.call('get_item',294) >= 99 then 
+                        G.call("talk",'',116,'   要参悟【极乐逍遥】，需得准备五毒各49个！',2,1)
+                        if G.call('get_item',286) >= 49 and G.call('get_item',291) >= 49 and G.call('get_item',292) >= 49
+                        and G.call('get_item',293) >= 49  and G.call('get_item',294) >= 49 then 
                             G.call("talk",'',116,'   好孩子，竟然弄齐了五毒，为了考验你的能力，看你是否能够有这个实力这门绝学，接下来就是你的试炼！',2,1)
                             G.call('add_time',2)
                             G.call('call_battle',1,19,1,200,116,41,387,388,389,0)
@@ -2557,6 +2601,11 @@ t['门派-星宿派']=function()
                             else
                                 G.call("talk",'',116,'   实力不够，看来你是没有这个资格',2,1) 
                             end
+                            G.call('add_item',286,-49)
+                            G.call('add_item',291,-49)
+                            G.call('add_item',292,-49)
+                            G.call('add_item',293,-49)
+                            G.call('add_item',294,-49)
                         else
                             G.call("talk",'',116,'   等你弄齐了五毒再来吧！',2,1)
                         end
@@ -2624,7 +2673,7 @@ t['门派-星宿派']=function()
                         end
                         
                     end
-                elseif int_选项 == 4 then
+                elseif int_选项 == 5 then
                     G.call("talk",'',116,'   你难道是其他门派派来的奸细？想要【征服】我的门派就看你有没有本事了！',1,1) 
                     G.call('all_over') 
                     G.call('add_time',2)
@@ -2646,7 +2695,7 @@ t['门派-星宿派']=function()
                     else
                         G.call('gameover')
                     end 
-                elseif int_选项 == 5 then 
+                elseif int_选项 == 6 then 
                     G.call('all_over') 
                     G.call('goto_map',1)
                 end 

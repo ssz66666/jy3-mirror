@@ -539,6 +539,7 @@ t['聚贤庄任务_擂鼓山棋局']=function()
                 G.call('set_magicexp',236,999)
             end
             G.call("talk",'',0,'   师父安息吧，弟子一定不负所托。',0,0) 
+            G.call('learnmagic',248)
             G.call('出师-增加被动')
             G.call('dark')
             G.call('photo0',16) 
