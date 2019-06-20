@@ -194,7 +194,7 @@ function t:start()
     if not G.misc().加血阈值 then 
         G.misc().加血阈值 = 50  
     end
-    self:update()
+    self:战场显示()
     self:刷新显示()
 end  
 function t:刷新显示()
@@ -274,7 +274,7 @@ function t:刷新显示()
     local TL = G.call('get_point',48)
     self.体力.width = TL*111/G.call('get_point',49) 
 end
-function t:update()
+function t:战场显示()
     local i_battle = 0x10150001
     local i_role = 0x10040000
     local o_battle = G.QueryName(i_battle)

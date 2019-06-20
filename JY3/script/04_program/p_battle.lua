@@ -15,6 +15,7 @@ t['战斗系统_胜负监控'] = function()
     ui = G.getUI('v_battle');
     local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
     local o_battle = G.QueryName(0x10150001)
+    local c = ui.c_battle
     local result = 0
     while true do 
         G.wait_time(10)
@@ -32,6 +33,7 @@ t['战斗系统_胜负监控'] = function()
         if G.call('get_point',46) ~= math.abs(G.call('get_newpoint',46) + 10 )  then
            G.call('通用_强退游戏',104) 
         end
+        c:战场显示()
         if G.call('get_result') == 1   then  
             for i = 1,11 do 
                 ui.getChildByName('talk').getChildByName(位置[i]).visible = false	
