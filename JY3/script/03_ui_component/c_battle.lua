@@ -273,7 +273,7 @@ function t:刷新显示()
     self.mp.text = mp..'/'..maxmp 
     self.tl.text = math.floor(G.call('get_point',48))..'/'..G.call('get_point',49)
     local TL = G.call('get_point',48)
-    self.体力.width = TL*111/G.call('get_point',48) 
+    self.体力.width = TL*111/G.call('get_point',49) 
 end
 function t:update()
     local i_battle = 0x10150001
