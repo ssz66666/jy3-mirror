@@ -189,6 +189,7 @@ function t:click(tar)
                     if G.QueryName(0x100c0001)[tostring(15)] == nil then 
                         self.阵法.getChildByName('名称').text = ''
                     else
+                        self.阵法.getChildByName('图片').getChildByName(tostring(1)).c_button.img_normal = G.QueryName(G.QueryName(0x100c0001)[tostring(15)]).图像 
                         self.阵法.getChildByName('名称').text = G.QueryName(G.QueryName(0x100c0001)[tostring(15)]).名称
                     end
                 end     

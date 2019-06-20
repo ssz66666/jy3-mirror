@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_battle = require 'c_battle'
 local c_button = require 'c_button'
+local c_battle = require 'c_battle'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -1619,10 +1619,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -80.000
 			tc.right = 0.000
-			tc.bottom = -112.500
-			tc.top = -105.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -80.000
+			tc.right = 0.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -1713,10 +1726,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -80.000
 			tc.right = 0.000
-			tc.bottom = -112.500
-			tc.top = -105.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -80.000
+			tc.right = 0.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -1807,10 +1833,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -80.000
 			tc.right = 0.000
-			tc.bottom = -112.500
-			tc.top = -105.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -80.000
+			tc.right = 0.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -1901,10 +1940,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -80.000
 			tc.right = 0.000
-			tc.bottom = -112.500
-			tc.top = -105.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -80.000
+			tc.right = 0.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -1996,10 +2048,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -55.000
 			tc.right = 25.000
-			tc.bottom = -100.500
-			tc.top = -93.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -55.000
+			tc.right = 25.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -2091,10 +2156,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -55.000
 			tc.right = 25.000
-			tc.bottom = -100.500
-			tc.top = -93.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -55.000
+			tc.right = 25.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -2186,10 +2264,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -55.000
 			tc.right = 25.000
-			tc.bottom = -100.500
-			tc.top = -93.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -55.000
+			tc.right = 25.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -2281,10 +2372,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -55.000
 			tc.right = 25.000
-			tc.bottom = -100.500
-			tc.top = -93.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -55.000
+			tc.right = 25.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -2376,10 +2480,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -55.000
 			tc.right = 25.000
-			tc.bottom = -100.500
-			tc.top = -93.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -55.000
+			tc.right = 25.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -2471,10 +2588,23 @@ tp = tc
 			tc.pivotX = 0.000
 			tc.left = -55.000
 			tc.right = 25.000
-			tc.bottom = -100.500
-			tc.top = -93.500
+			tc.bottom = -103.500
+			tc.top = -96.500
 			tc.alpha = 150
 			tc.img = 0x560a0015
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = 'mp'
+			tc.pivotX = 0.000
+			tc.left = -55.000
+			tc.right = 25.000
+			tc.bottom = -113.500
+			tc.top = -106.500
+			tc.alpha = 150
+			tc.img = 0x560a0016
 			tp = tc
 			tp = tp.parent
 			--end
@@ -4715,10 +4845,9 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '一'
-			tc.left = -42.000
-			tc.right = 42.000
-			tc.bottom = -40.000
-			tc.top = 0.000
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 3
@@ -4730,10 +4859,9 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '二'
-			tc.left = -52.500
-			tc.right = 52.500
-			tc.bottom = -60.000
-			tc.top = -20.000
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 3
@@ -6325,10 +6453,9 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '一'
-			tc.left = -10.500
-			tc.right = 10.500
-			tc.bottom = -40.000
-			tc.top = 0.000
+			tc.right = 0.000
+			tc.bottom = -28.000
+			tc.top = -12.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 3
@@ -6340,10 +6467,9 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '二'
-			tc.left = -10.500
-			tc.right = 10.500
-			tc.bottom = -60.000
-			tc.top = -20.000
+			tc.right = 0.000
+			tc.bottom = -48.000
+			tc.top = -32.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 3
