@@ -5,7 +5,8 @@
 local G = require "gf"
 local t = G.com()
 local i_battle = 0x10150001
-local o_role = 0x10040000
+local i_role = 0x10040000
+local o_battle = G.QueryName(i_battle)
 local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
 local o_hotkey = G.QueryName(0x100c0001)
 function t:init()
@@ -98,7 +99,7 @@ function t:start()
     self.阵法.shadowAlpha = 255
     self.说明.shadowX = 1
     self.说明.shadowAlpha = 255
-    if G.QueryName(i_battle).模式 > 3 then
+    if o_battle.模式 > 3 then
         self.主菜单.visible = false 
     else
         self.主菜单.visible = true
@@ -120,30 +121,30 @@ function t:start()
     else
         self.说明.visible = false
     end 
-    self.obj.getChildByName('背景').img = G.QueryName(0x10150001).背景 + 0x56050000
+    self.obj.getChildByName('背景').img = o_battle.背景 + 0x56050000
     self.obj.getChildByName('主菜单').getChildByName('状态').getChildByName('头像').img = G.call('get_point',119)
     for i = 2,11 do 
-        if G.QueryName(0x10150001)[位置[i]] > 0 then  
+        if o_battle[位置[i]] > 0 then  
             self.obj.getChildByName('tab').getChildByName(位置[i]).visible = true
             self.obj.getChildByName('map').getChildByName(位置[i]).visible = true
-            local p = G.QueryName(i_battle)[位置[i]]
-            local int_编号 = G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).编号
+            local p = o_battle[位置[i]]
+            local int_编号 = G.QueryName(i_role +o_battle[位置[i]] ).编号
             self.obj.getChildByName('map').getChildByName(位置[i]).x = i
             if p >= 253 and p < 385  then  
-                self.obj.getChildByName('talk').getChildByName(位置[i]).getChildByName('head').img = G.QueryName(o_role +int_编号 ).头像
-                self.obj.getChildByName('map').getChildByName(位置[i]).img = G.QueryName(o_role +int_编号 ).头像
+                self.obj.getChildByName('talk').getChildByName(位置[i]).getChildByName('head').img = G.QueryName(i_role +int_编号 ).头像
+                self.obj.getChildByName('map').getChildByName(位置[i]).img = G.QueryName(i_role +int_编号 ).头像
             else
-                self.obj.getChildByName('talk').getChildByName(位置[i]).getChildByName('head').img = G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).头像
-                self.obj.getChildByName('map').getChildByName(位置[i]).img = G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).头像
+                self.obj.getChildByName('talk').getChildByName(位置[i]).getChildByName('head').img = G.QueryName(i_role +o_battle[位置[i]] ).头像
+                self.obj.getChildByName('map').getChildByName(位置[i]).img = G.QueryName(i_role +o_battle[位置[i]] ).头像
             end 
         end     
     end 
     self.obj.getChildByName('talk').getChildByName(位置[1]).getChildByName('head').img = G.QueryName(0x10030001)[tostring(119)] 
     self.obj.getChildByName('map').getChildByName(位置[1]).img = G.QueryName(0x10030001)[tostring(119)] 
     for i = 2,11 do 
-        if G.QueryName(i_battle)[位置[i]] > 0 then 
-            local p = G.QueryName(i_battle)[位置[i]]
-            local int_编号 = G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).编号
+        if o_battle[位置[i]] > 0 then 
+            local p = o_battle[位置[i]]
+            local int_编号 = G.QueryName(i_role +o_battle[位置[i]] ).编号
             if p >= 253 and p < 385  then  
                 self.obj.getChildByName('tab').getChildByName(位置[i]).frameActionID(int_编号)
             else
@@ -220,13 +221,18 @@ function t:刷新显示()
         self.obj.getChildByName('map').getChildByName(位置[1]).x = 0
     end 
     for i = 2,11 do   --显示存活的NPC
-        if G.QueryName(i_battle)[位置[i]] > 0 then
-            if G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0  then
+        if o_battle[位置[i]] > 0 then
+            local o_role = G.QueryName(i_role +o_battle[位置[i]] )
+            if o_role.生命 > 0  then
                self.透明按钮.getChildByName(位置[i]).mouseEnabled = true
                self.obj.getChildByName('tab').getChildByName(位置[i]).visible = true
                self.obj.getChildByName('map').getChildByName(位置[i]).visible = true
-               self.obj.getChildByName('tab').getChildByName(位置[i]).getChildByName('hp').width = 80*G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命/G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] )[tostring(1)]
-               self.obj.getChildByName('tab').getChildByName(位置[i]).getChildByName('mp').width = 80*G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).内力/G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] )[tostring(2)]
+               local int_生命max = math.max(o_role[tostring(1)],0.00001)
+               local int_内力max = math.max(o_role[tostring(2)],0.00001)
+               local int_生命 = math.max(0,o_role.生命)
+               local int_内力 = math.max(0,o_role.内力)
+               self.obj.getChildByName('tab').getChildByName(位置[i]).getChildByName('hp').width = 80*int_生命/int_生命max
+               self.obj.getChildByName('tab').getChildByName(位置[i]).getChildByName('mp').width = 80*int_内力/int_内力max
             else
                 self.透明按钮.getChildByName(位置[i]).mouseEnabled = false 
                 self.obj.getChildByName('talk').getChildByName(位置[i]).visible = false    
@@ -276,8 +282,8 @@ function t:update()
     local num = 0
     local num0 = 0  
     for i = 2,5 do --计算我方存活人数
-        if G.QueryName(i_battle)[位置[i]] > 0 then
-            if  G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0 then 
+        if o_battle[位置[i]] > 0 then
+            if  G.QueryName(i_role +o_battle[位置[i]] ).生命 > 0 then 
                 num0 = num0 + 1
             end 
         end     
@@ -287,8 +293,8 @@ function t:update()
     end
     self.obj.getChildByName('num0').text = tostring(num0)
     for i = 6,11 do --计算敌人存活人数
-        if G.QueryName(i_battle)[位置[i]] > 0 then 
-            if  G.QueryName(o_role +G.QueryName(i_battle)[位置[i]] ).生命 > 0 then 
+        if o_battle[位置[i]] > 0 then 
+            if  G.QueryName(i_role +o_battle[位置[i]] ).生命 > 0 then 
                 num = num + 1
             end 
         end     
@@ -358,13 +364,13 @@ function t:rollOver(tar)
     local o_battle = G.QueryName(0x10150001)
     for i = 2,11 do
         local int_队员编号 = o_battle[位置[i]]
-        local o_role_人物 = G.QueryName(0x10040000+int_队员编号)
+        local o_role_人物 = G.QueryName(i_role+int_队员编号)
         if tar == self.透明按钮.getChildByName(位置[i]) and o_role_人物.生命 > 0 then 
             self.透明按钮.getChildByName('属性').visible = true
             if o_role_人物 ~= nil then 
                 if o_role_人物.头像 then
                     if int_队员编号 < 385 and int_队员编号 >= 253 then
-                        local o_role = G.QueryName(0x10040000 + o_role_人物.编号)
+                        local o_role = G.QueryName(i_role + o_role_人物.编号)
                         self.属性.getChildByName('头像').img = o_role.头像
                     else 
                         self.属性.getChildByName('头像').img = o_role_人物.头像
@@ -458,7 +464,7 @@ function t:rollOut(tar)
 end  
 function t:keyDown(tar,info)
     local i_battle = 0x10150001
-    local o_battle = G.QueryName(i_battle)
+    local o_battle = o_battle
     local 快捷 = {'q','w','e','r'}
     local 键值 = {81,87,69,82}
     local key = string.byte(info)
@@ -466,8 +472,8 @@ function t:keyDown(tar,info)
         local int_队友 = 0
         local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
         for i = 2,5 do 
-            if G.QueryName(0x10150001)[位置[i]] > 0 then 
-                if G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i]] ).生命 > 0 then 
+            if o_battle[位置[i]] > 0 then 
+                if G.QueryName(i_role + o_battle[位置[i]] ).生命 > 0 then 
                     int_队友 = int_队友 + 1
                 end
             end
@@ -576,8 +582,8 @@ function t:click(tar)
         local int_队友 = 0
         local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
         for i = 2,5 do 
-            if G.QueryName(0x10150001)[位置[i]] > 0 then 
-                if G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i]] ).生命 > 0 then 
+            if o_battle[位置[i]] > 0 then 
+                if G.QueryName(i_role + o_battle[位置[i]] ).生命 > 0 then 
                     int_队友 = int_队友 + 1
                 end
             end
