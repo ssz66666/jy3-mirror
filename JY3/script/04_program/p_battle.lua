@@ -2318,7 +2318,7 @@ t['集气'] = function()
         G.wait_time(deytime)
         if (G.call('通用_取得人物特效',0,12) or G.call('通用_取得装备特效',0,104)) and G.call('get_point',44) < G.call('get_point',217)*0.3  then  --主角的回春技能加成
             if G.call('get_point',44) > 0 then 
-                G.call('add_point',44,10)
+                G.call('add_point',44,20)
             end
         end     
         G.call('add_point',80,deytime) --战场时间增加
@@ -2362,7 +2362,7 @@ t['集气'] = function()
                 if  o_role_npc.生命 > 0 then 
                     local int_role = o_battle[位置[i]] 
                     if (G.call('通用_取得人物特效',int_role,12) or G.call('通用_取得装备特效',int_role,104)) and o_role_npc.生命 < o_role_npc[tostring(1)]*0.5  and  o_role_npc.生命 > 0 then --npc回春效果
-                        G.call('add_role',int_role,15,10) 
+                        G.call('add_role',int_role,15,20) 
                     end     
                     if G.call('get_role',int_role,81) > 0 then --npc中毒受伤
                         G.call('add_role',int_role,15,-20)  
