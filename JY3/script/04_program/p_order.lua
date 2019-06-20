@@ -353,10 +353,10 @@ t['new_test'] = function()
     -- G.call('all_over')
     -- G.call('set_team',36,0,0,0)
     -- G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
-    G.call('join',4)
-    local o_book_story = G.QueryName(0x101c000c)
-    o_book_story.流程 = 1
-    G.call('天书_倚天屠龙记') 
+    --G.call('join',4)
+    local o_book_story = G.QueryName(0x101c000d)
+    o_book_story.流程 = 0
+    G.call('天书_碧血剑') 
     G.call('通用_印记状态')
 end   
 t['in_test'] = function() 

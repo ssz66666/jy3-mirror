@@ -1765,3 +1765,30 @@ t['天书_倚天屠龙记'] = function()
     G.call('dark')
     G.call('goto_map',4)
 end
+t['天书_碧血剑'] = function()
+    local o_book_story = G.QueryName(0x101c000d)
+    if not G.call('in_team',27) then 
+        G.call("talk",'',38,'   本故事没有袁承志是无法进行的！',2,1)
+        G.call('all_over')
+        return
+    end 
+    if o_book_story.流程 == 0 then
+        G.call('地图_进入地图','皇宫',263,33)
+        G.call("talk",'',21,'   父王，我们真的不能逃出去吗？',2,1)
+        G.call("talk",'',71,'   九儿，闯贼马上就要打进来了，【天子守国门，君王守社稷】，父王也是逼不得已，但愿你下辈子不要在生在帝王家！',2,1)
+        G.call('dark')
+        G.call("talk",'',71,'   谁在那里？',2,1)
+        G.call("talk",'',27,'   九公主，是我！',0,0)
+        G.call("talk",'',71,'   原来是袁将军之子，也罢，也罢，当初要不是......算了，你要报仇就来吧！',2,1)
+        G.call("talk",'',27,'   这不是父帅想看的，今日我只想带走九公主。',0,0)
+        G.call("talk",'',71,'   九儿，你走吧！',2,1)
+        G.call("talk",'',21,'   父王！！！',2,1)
+        G.call("talk",'',71,'   快带九儿离开！',2,1)
+        G.call("talk",'',27,'   九公主，我们快走！',0,0)
+        o_book_story.流程 = 1
+    end
+    G.call('all_over')
+    G.call('add_time',2)
+    G.call('dark')
+    G.call('goto_map',4)
+end

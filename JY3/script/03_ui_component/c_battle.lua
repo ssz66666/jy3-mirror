@@ -4,9 +4,6 @@
 
 local G = require "gf"
 local t = G.com()
-local i_battle = 0x10150001
-local i_role = 0x10040000
-local o_battle = G.QueryName(i_battle)
 local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
 local o_hotkey = G.QueryName(0x100c0001)
 function t:init()
@@ -75,6 +72,8 @@ function t:onFrameEnd(tar, id)
 end
 function t:start()
     local i_battle = 0x10150001
+    local i_role = 0x10040000
+    local o_battle = G.QueryName(i_battle)
     --G.call('指令_存储属性')
     --G.call('set_point',48,100)
     G.call('逻辑整理-武功等级')
@@ -201,7 +200,8 @@ function t:start()
 end  
 function t:刷新显示()
     local i_battle = 0x10150001
-    local o_battle = G.QueryName(0x10150001)
+    local i_role = 0x10040000
+    local o_battle = G.QueryName(i_battle)
     if o_battle.模式 < 4  then 
         if G.call('get_point',44) > 0 then 
             self.obj.getChildByName('tab').getChildByName(位置[1]).visible = true
@@ -277,7 +277,8 @@ function t:刷新显示()
 end
 function t:update()
     local i_battle = 0x10150001
-    local o_battle = G.QueryName(0x10150001)
+    local i_role = 0x10040000
+    local o_battle = G.QueryName(i_battle)
     local num = 0
     local num0 = 0  
     for i = 2,5 do --计算我方存活人数
@@ -360,7 +361,8 @@ function t:update()
 end  
 function t:rollOver(tar)
     local i_battle = 0x10150001
-    local o_battle = G.QueryName(0x10150001)
+    local i_role = 0x10040000
+    local o_battle = G.QueryName(i_battle)
     for i = 2,11 do
         local int_队员编号 = o_battle[位置[i]]
         local o_role_人物 = G.QueryName(i_role+int_队员编号)
@@ -453,7 +455,8 @@ function t:rollOver(tar)
 end 
 function t:rollOut(tar)
     local i_battle = 0x10150001
-    local o_battle = G.QueryName(0x10150001)
+    local i_role = 0x10040000
+    local o_battle = G.QueryName(i_battle)
     for i = 2,11 do
         if tar == self.透明按钮.getChildByName(位置[i]) then 
             self.透明按钮.getChildByName('属性').visible = false
