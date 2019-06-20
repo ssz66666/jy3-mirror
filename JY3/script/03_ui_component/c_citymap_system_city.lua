@@ -72,9 +72,10 @@ function t:rollOver(tar)
     if tar == self.按钮 then 
         for i, v in pairs(lock) do
             if v.显示名称 == nil then 
-               if v.名称 == self.名称.text then 
-                    self.obj.getChildByName('闪名').style = 1
-                end 
+                local ui = self.obj.getChildByName('闪名')
+                if ui then 
+                    ui.style = 1
+                end
             end 
         end 
     end         
@@ -85,7 +86,10 @@ function t:rollOut(tar)
         for i, v in pairs(lock) do
             if v.显示名称 == nil then 
                if v.名称 == self.名称.text then 
-                    self.obj.getChildByName('闪名').style = 4
+                    local ui = self.obj.getChildByName('闪名')
+                    if ui then 
+                        ui.style = 4
+                    end
                 end 
             end 
         end 
