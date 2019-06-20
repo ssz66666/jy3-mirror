@@ -465,7 +465,8 @@ function t:rollOut(tar)
 end  
 function t:keyDown(tar,info)
     local i_battle = 0x10150001
-    local o_battle = o_battle
+    local i_role = 0x10040000
+    local o_battle = G.QueryName(i_battle)
     local 快捷 = {'q','w','e','r'}
     local 键值 = {81,87,69,82}
     local key = string.byte(info)
