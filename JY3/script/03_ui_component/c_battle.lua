@@ -202,7 +202,6 @@ end
 function t:刷新显示()
     local i_battle = 0x10150001
     local o_battle = G.QueryName(0x10150001)
-    --self.obj.getChildByName('tab').getChildByName(位置[1]).getChildByName('hp').width = 80*G.QueryName(0x10030001)[tostring(44)]/G.QueryName(0x10030001)[tostring(217)]
     if o_battle.模式 < 4  then 
         if G.call('get_point',44) > 0 then 
             self.obj.getChildByName('tab').getChildByName(位置[1]).visible = true
@@ -270,11 +269,11 @@ function t:刷新显示()
     else
         self.蓝条.width = 111
     end 
-    self.hp.text = tostring(hp)..'/'..tostring(maxhp) 
-    self.mp.text = tostring(mp)..'/'..tostring(maxmp) 
-    self.tl.text = tostring(math.floor(G.QueryName(0x10030001)[tostring(48)]))..'/'..tostring(G.QueryName(0x10030001)[tostring(49)]) 
-    local TL = G.QueryName(0x10030001)[tostring(48)]
-    self.体力.width = TL*111/(G.QueryName(0x10030001)[tostring(49)])  
+    self.hp.text = hp..'/'..maxhp
+    self.mp.text = mp..'/'..maxmp 
+    self.tl.text = math.floor(G.call('get_point',48))..'/'..G.call('get_point',49)
+    local TL = G.call('get_point',48)
+    self.体力.width = TL*111/G.call('get_point',48) 
 end
 function t:update()
     local i_battle = 0x10150001
