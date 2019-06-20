@@ -133,7 +133,7 @@ t['战斗系统_主角监控'] = function()
                             end
                         end
                     end
-                    if G.call('通用_取得内功轻功特效',0,18) then
+                    if G.call('get_magic',241) > 0 then
                         int_队友 = int_队友 + 1
                     end
                     if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then 
@@ -1473,7 +1473,7 @@ t['战斗系统_事件响应'] = function()
                             end
                         end
                     end
-                    if G.call('通用_取得内功轻功特效',0,18) then
+                    if G.call('get_magic',241) > 0 then
                         int_队友 = int_队友 + 1
                     end
                     if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then 
@@ -2702,7 +2702,7 @@ t['magic_power1'] = function(int_id,int_no)
             end
         end
     end
-    if G.call('通用_取得内功轻功特效',0,18) then
+    if G.call('get_magic',241) > 0 then
         int_队友 = int_队友 + 1
     end
     if i_magic_阵法 then 
@@ -2857,7 +2857,7 @@ t['magic_power1'] = function(int_id,int_no)
                 else
                     string_字符串_2 = string_字符串_2..'.'..'玉女破防'
                 end
-                if G.call('通用_取得内功轻功特效',0,18) then
+                if G.call('get_magic',241) > 0 then
                     hurt = math.floor(hurt *(1- d/1200)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
                 else
                     hurt = math.floor(hurt *(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
@@ -3447,7 +3447,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end
             end
         end
-        if G.call('通用_取得内功轻功特效',0,18) then
+        if G.call('get_magic',241) > 0 then
             int_队友 = int_队友 + 1
         end
         if i_magic_阵法 then 
@@ -3992,7 +3992,7 @@ t['magic_power3'] = function(int_id,int_no)
             end
         end
     end
-    if G.call('通用_取得内功轻功特效',0,18) then
+    if G.call('get_magic',241) > 0 then
         int_队友 = int_队友 + 1
     end
     if i_magic_阵法 then 

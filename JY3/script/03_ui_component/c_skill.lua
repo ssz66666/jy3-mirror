@@ -212,7 +212,7 @@ function t:click(tar)
                     self.子菜单.getChildByName('快捷').visible = true 
                 elseif   o_skill_武功.类别 == 6 then   
                     self.文本.getChildByName('类别').text = '内功'
-                    if  i_skill == 0x100500bd or  i_skill == 0x10050097 then
+                    if  i_skill == 0x100500bd or i_skill == 0x10050097 or i_skill == 0x100500f0 then
                         self.文本.getChildByName('类别').text = '被动技能'
                     end
                     self.文本.getChildByName('等级').text = o_skill_武功.修为等级
@@ -301,7 +301,7 @@ function t:click(tar)
     elseif tar == self.装备 then
         G.Play(0x49011003, 1,false,100)
         local i_skill = G.call('get_point',191)
-        if  i_skill ~= 0x100500bd and  i_skill ~= 0x10050097 and o_skill_武功.类别 < 8  then
+        if  i_skill ~= 0x100500bd and  i_skill ~= 0x10050097 and  i_skill ~= 0x100500f0 and o_skill_武功.类别 < 8  then
             if o_skill_武功.修为等级 > 0 then 
                 if o_skill_武功.招式 == true then 
                     self.快捷键.getChildByName(tostring(7)).visible = true

@@ -324,7 +324,7 @@ function t:详细显示()
         self.武功.getChildByName('名称').text = '名称：[01] '..o_skill.名称
         local str = {'指法','拳法','剑法','刀法','奇门','暗器','内功','轻功','绝招','阵法'}
         self.武功.getChildByName('类别').text = '类别：[01] '..str[o_skill.类别+1]
-        if  i_skill == 0x100500bd or  i_skill == 0x10050097 then
+        if  i_skill == 0x100500bd or  i_skill == 0x10050097 or  i_skill == 0x100500f0 then
             self.武功.getChildByName('类别').text = '类别：[01]被动技能'
         end
         str = {'自身','全体','单体','横排','纵列','群体'}
@@ -389,6 +389,9 @@ function t:详细显示()
                 end
             end
         end 
+        if  i_skill == 0x100500bd or  i_skill == 0x10050097 or  i_skill == 0x100500f0 then
+            str_字符串 = '[0a]说明: [01]'..o_skill.说明一 
+        end
         if str_字符串 ~= '' then 
             self.武功.getChildByName('附加效果').text = str_字符串
         else
