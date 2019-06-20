@@ -5,7 +5,6 @@
 local G = require "gf"
 local t = G.com()
 local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
-local o_hotkey = G.QueryName(0x100c0001)
 function t:init()
     self.记事本 = self.obj.getChildByName('记事本')
     self.设置 = self.obj.getChildByName('设置')
