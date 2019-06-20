@@ -542,6 +542,8 @@ function t:keyDown(tar,info)
 end    
 function t:click(tar)
     local i_battle = 0x10150001
+    local i_role = 0x10040000
+    local o_battle = G.QueryName(i_battle)
     local 快捷 = {'q','w','e','r'}
     if tar == self.主菜单.getChildByName('菜单').getChildByName(tostring(1)) then
         G.Play(0x49011003, 1,false,100) 
