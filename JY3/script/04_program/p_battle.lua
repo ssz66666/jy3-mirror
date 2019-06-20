@@ -3405,13 +3405,31 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             result = result - 150
         end    
     else --受击方为我方
+        local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
+        local int_队友 = 0
+        local int_慈悲效果 = 0
+        for i = 2,5 do 
+            if G.QueryName(0x10150001)[位置[i]] > 0 then 
+                if G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i]] ).生命 > 0 then 
+                    int_队友 = int_队友 + 1
+                end
+            end
+        end
+        if G.call('通用_取得内功轻功特效',0,18) then
+            int_队友 = int_队友 + 1
+        end
+        if i_magic_阵法 then 
+            if G.QueryName(i_magic_阵法).附加效果 == 2 then
+                int_慈悲效果 = int_队友
+            end
+        end
         if  G.call('通用_取得我方队伍特效',2) then --我方慈悲效果 
             if string_字符串_3 == '' then 
                 string_字符串_3 = string_字符串_3..'慈悲'
             else
                 string_字符串_3 = string_字符串_3..'.'..'慈悲'
             end
-            result = result - 150
+            result = result - 150 - int_慈悲效果*25
         end 
     end  
     if math.random(100) > 80 and  (G.call('通用_取得人物特效',int_id,7) or G.call('通用_取得装备特效',int_id,203) or G.call('通用_取得装备特效',int_id,410) )  then --攻击方暴击效果
@@ -4030,7 +4048,7 @@ t['magic_power3'] = function(int_id,int_no)
         else
             string_字符串_3 = string_字符串_3..'.'..'慈悲'
         end 
-        result = result  - 150 - int_慈悲效果*10
+        result = result  - 150 - int_慈悲效果*25
     end    
     hurt = hurt * result/100
     local int_闪避 = 0
