@@ -770,7 +770,7 @@ t['get_drop']=function()  --取得战斗掉落
     for i = 1,6 do 
         if o_battle[enemy[i]] > 0 then 
             local o_role = G.QueryName(0x10040000+o_battle[enemy[i]])
-            if o_role .死亡掉落道具 ~= nil and o_role .拥有 > 0 then 
+            if o_role .死亡掉落道具  and o_role .拥有 and o_role .拥有 > 0 then 
                 local item = o_role .死亡掉落道具 - 0x100b0000+1
                 G.call('add_item',item,1)
                 local name = G.QueryName(o_role.死亡掉落道具).名称
