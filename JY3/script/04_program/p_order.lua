@@ -3127,16 +3127,25 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
     local o_equip_物品 = G.QueryName(i_equip_装备)
     local str = {'生命','内力','拆招','搏击','闪躲','内功','轻身','减伤','左右','斗转'}
     local str_品质 = {'普通的','華麗的','璀璨的','五彩的','傳家的'}				
-    local int_几率 = 1
+    local int_几率 = math.random(10000)
     if int_随机类型 == 1 then 
-        int_几率 = G.call('通用_取大随机')
-    else
-        int_几率 = math.random(10000)
+        int_几率 = G.call('通用_取大随机') 
     end
     if int_品质级别 and int_品质级别 == 1 then 
         int_几率 = math.random(9400,10000)
     elseif int_品质级别 and int_品质级别 == 2 then 
         int_几率 = math.random(9900,10000)
+    else
+        local int_寻宝 = 0
+        if G.call('通用_取得套装',0,2) == 2 then
+            int_寻宝 = 50
+        elseif G.call('通用_取得套装',0,2) == 3 then 
+            int_寻宝 = 100
+        end
+        if G.call('get_point',115) == 16 then
+            int_寻宝 = 100 
+        end
+        int_几率 = int_几率 + int_寻宝
     end
     if o_equip_物品.品质转换 and o_equip_物品.品质转换 == 1 then
         int_递增属性 = 1 
@@ -3155,7 +3164,7 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
         o_equip_物品.品质 = 3
     elseif int_几率 <= 9990 and int_几率 > 9890 then --0.01
         o_equip_物品.品质 = 4
-    elseif int_几率 <= 10000 and int_几率 > 9990 then --0.001  
+    elseif  int_几率 > 9990 then --0.001  
         o_equip_物品.品质 = 5
     end
 	if o_equip_物品.套装 > 0 then 
@@ -3672,6 +3681,17 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
         int_几率 = math.random(9400,10000)
     elseif int_通关级别 and int_通关级别 == 2 then 
         int_几率 = math.random(9900,10000)
+    else
+        local int_寻宝 = 0
+        if G.call('通用_取得套装',0,2) == 2 then
+            int_寻宝 = 50
+        elseif G.call('通用_取得套装',0,2) == 3 then 
+            int_寻宝 = 100
+        end
+        if G.call('get_point',115) == 16 then
+            int_寻宝 = 100 
+        end
+        int_几率 = int_几率 + int_寻宝
     end
     if int_几率 <= 5390 then --0.539 
         int_级别 = 1
@@ -3683,7 +3703,7 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
         int_级别 = 4
     elseif int_几率 <= 9990 and int_几率 > 9890 then  --0.01
         int_级别 = 5
-    elseif int_几率 <= 10000 and int_几率 > 9990 then  --0.001
+    elseif  int_几率 > 9990 then  --0.001
         int_级别 = 6
     end
     if int_随机类型 == 1 then 
