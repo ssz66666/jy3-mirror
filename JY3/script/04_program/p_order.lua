@@ -354,9 +354,9 @@ t['new_test'] = function()
     -- G.call('set_team',36,0,0,0)
     -- G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
     --G.call('join',4)
-    local o_book_story = G.QueryName(0x101c000d)
+    local o_book_story = G.QueryName(0x101c000e)
     o_book_story.流程 = 0
-    G.call('天书_碧血剑') 
+    G.call('天书_鸳鸯刀') 
     G.call('通用_印记状态')
 end   
 t['in_test'] = function() 
@@ -810,8 +810,16 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     if G.call('get_year') > 2 then --难度随时间增长
         o_battle.diffty = o_battle.diffty + (G.call('get_year') - 2)*10
     end
+    if o_battle.模式 == 4 then
+        o_battle.diffty = int_diffty   
+    end
+    if o_battle.模式 == 5 then
+        o_battle.diffty = 0   
+    end
     if o_battle.diffty > 0 then 
         G.misc().难度 = -o_battle.diffty
+    else
+        G.misc().难度 = 0
     end
     o_battle.逃跑 = int_no --是否可以逃跑
     if int_狙杀 then
@@ -837,7 +845,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     end
     if o_battle.模式 ==  1 then  --单挑战斗
        G.call('set_team',0,0,0,0)
-    elseif o_battle.模式 == 3 or o_battle.模式 == 5 then   --群殴
+    elseif o_battle.模式 == 3  then   --群殴
         local o_teammate_队友 = G.QueryName(0x10110001)
         local int_no = 0
         for i  = 1,12 do 

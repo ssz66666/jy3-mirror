@@ -3211,6 +3211,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     if  int_id == nil or int_enemy == nil or int_no == nil or int_enemy < 1 or int_id < 1 then 
         return {0,string_字符串_1,string_字符串_2,string_字符串_3,string_字符串_4} 
     end 
+    local i_battle = 0x10150001
+    local o_battle = G.QueryName(i_battle)
     local o_skill = G.QueryName(0x10050000 + int_no)
     local o_role = G.QueryName(0x10040000 + int_id)
     local o_enemy = G.QueryName(0x10040000 + int_enemy)
@@ -3549,11 +3551,13 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             elseif  G.call('通用_取得套装',int_enemy,4) == 3 then
                 hurt = math.floor(hurt *0.8)
             end
-            if att_role == 0 then --根据难度和攻击方计算最终伤害
-                hurt = math.floor(hurt*o_battle.diffty/200) 
-            else   
-                hurt = math.floor(hurt*200/o_battle.diffty) 
-            end    
+            if o_battle.模式 ~= 5 then
+                if att_role == 0  then --根据难度和攻击方计算最终伤害
+                    hurt = math.floor(hurt*o_battle.diffty/200) 
+                else   
+                    hurt = math.floor(hurt*200/o_battle.diffty) 
+                end    
+            end
             if hurt < 10 then 
                hurt = math.random(10)
             end   
@@ -3569,6 +3573,14 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 G.call('add_role',int_id,14,1500)
                 G.call('add_role',int_enemy,14,-1500)
             end 
+            if o_battle.模式 == 5 then
+                hurt = 0
+                hurt0 = 0
+                hurt1 = 0
+                hurt2 = 0
+                hurt3 = 0
+                hurt4 = 0
+            end
             G.call('add_role',int_id,15,hurt4)
             G.call('add_role',int_id,2,hurt0)
             G.call('add_role',int_id,15,-hurt3)

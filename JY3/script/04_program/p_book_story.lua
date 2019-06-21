@@ -1876,6 +1876,11 @@ t['天书_鸳鸯刀'] = function()
         G.call('all_over')
         return
     end 
+    if o_book_story.流程 == 0 then
+        G.call('all_over')
+        G.call('set_team',409,0,0,0)
+        G.call('call_battle',1,284,5,0,410,0,0,0,0,0)
+    end
     G.call('all_over')
     G.call('add_time',2)
     G.call('dark')
