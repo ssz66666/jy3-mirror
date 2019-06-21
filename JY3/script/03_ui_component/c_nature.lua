@@ -134,7 +134,7 @@ function t:rollOver(tar)
             tar.style  = 1
         end
     end
-    local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气','圣火'}
+    local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气','绝杀'}
     local str1 = '增加全队伤害基值'
     local str2 = '降低全队被攻击伤害基值'
     local str3 = '使用武功30%不用读条直接出手'
@@ -166,7 +166,8 @@ function t:rollOver(tar)
     local str29 = '刀法招式攻击后几率下次可立即行动'
     local str30 = '奇门招式攻击后几率下次可立即行动'
     local str31 = '招式攻击几率造成迟缓'
-    local str = {str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22,str23,str24,str25,str26,str27,str28,str29,str30,str31}
+    local str32 = '附加5%比例伤害'
+    local str = {str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22,str23,str24,str25,str26,str27,str28,str29,str30,str31,str32}
     for i = 1,4 do 
         if tar == self.被动.getChildByName(tostring(i)) then 
             self.被动.getChildByName('显示').visible = true

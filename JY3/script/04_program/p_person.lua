@@ -1450,9 +1450,11 @@ t['事件_随机切磋']=function()
     end
     local int_role = boss_final[math.ceil(G.call('通用_取宝物随机')*#boss_final/100)]
     local skill = {}
-    for j = 1,25 do 
+    for j = 1,24 do 
         table.insert(skill,j )
     end 
+    table.insert(skill,31 )
+    table.insert(skill,32 )
     local team_skill = {0,0,0,0,0}
     -- local team_skill_2 = {0,0,0,0,0}
     local skill_mod = {0,0,0,0,0} 
@@ -1586,9 +1588,11 @@ t['副本_通天塔']=function(int_模式)
     local int_整数层数 = 0
     local int_通天塔层数 = 0
     local int_通天塔判定 = 0
-    for j = 1,25 do 
-       table.insert(skill_use,j )
+    for j = 1,24 do 
+        table.insert(skill,j )
     end 
+    table.insert(skill,31 )
+    table.insert(skill,32 )
     while true do 
        if int_通天塔判定 == 0 then 
             int_通天塔层数 = -G.misc().通天塔层数 - 7

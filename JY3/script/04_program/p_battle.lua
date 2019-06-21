@@ -3124,6 +3124,14 @@ t['magic_power1'] = function(int_id,int_no)
                     G.call('add_point',44,math.floor(G.call('get_point',44)/2))
                 end 
             end 
+            if  math.random(100) < 50 and (o_skill.附加效果 == 11   or G.call('通用_取得人物特效',0,32)) then --绝杀效果
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'绝杀'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'绝杀'
+                end 
+                hurt = hurt + G.call('get_role',int_id,15)*0.05 
+            end
             for i = 1, 4 do --判断队友携带武器和武功配合
                 if  o_role[需求道具[i]]  == 0x100b004b then 
                     if o_role['拥有'..i] > 0 then 
@@ -3146,7 +3154,8 @@ t['magic_power1'] = function(int_id,int_no)
             if G.call('通用_取得NPC内功效果',int_id,15) > 0 then 
                 G.call('set_role',int_id,84,0)
             end  
-        end 
+        end
+        hurt = math.floor(hurt) 
     else
         hurt = 0
     end  
@@ -3752,6 +3761,14 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     G.call('set_role',int_id,15,math.floor(G.call('get_role',int_id,15)/2) )
                 end     
             end
+            if math.random(100) < 50 and ( o_skill.附加效果 == 11   or G.call('通用_取得人物特效',int_enemy,32) ) then --绝杀效果
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'绝杀'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'绝杀'
+                end 
+                hurt = hurt + G.call('get_role',int_enemy,15)*0.05 
+            end
             for i = 1, 4 do --判断队友携带武器和武功配合
                 if  o_enemy[需求道具[i]]  == 0x100b004b then 
                     if o_enemy['拥有'..i] > 0 then 
@@ -3774,7 +3791,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             if G.call('通用_取得NPC内功效果',int_enemy,15) > 0 then 
                 G.call('set_role',int_enemy,84,0)
             end 
-        end     
+        end  
+        hurt = math.floor(hurt)   
     else
         hurt = 0    
     end  
@@ -4392,6 +4410,14 @@ t['magic_power3'] = function(int_id,int_no)
                     hurt = G.call('get_point',44)
                     G.call('set_role',int_id,15,math.floor(G.call('get_role',int_id,15)/2) )
                 end 
+            end
+            if  math.random(100) < 50 and (o_skill.附加效果 == 11   or G.call('通用_取得人物特效',int_id,32)) then --绝杀效果
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'绝杀'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'绝杀'
+                end 
+                hurt = hurt + G.call('get_point',44)*0.05 
             end
             if G.call('get_point',194) == 0x100b004b then 
                 G.call('set_point',84,0)
