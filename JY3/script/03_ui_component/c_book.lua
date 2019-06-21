@@ -392,6 +392,16 @@ function t:详细显示()
         if  i_skill == 0x100500bd or  i_skill == 0x10050097 or  i_skill == 0x100500f0 then
             str_字符串 = '[0a]说明: [01]'..o_skill.说明一 
         end
+        local 经脉 = {'阳维脉','阴维脉','带脉','任脉','阳跷脉','阴跷脉','冲脉','督脉','经外奇脉'}
+        local str_需求 = ''
+        for i = 1,9 do
+            if o_skill[经脉[i]] then
+                str_需求 = str_需求..经脉[i]..' ' 
+            end 
+        end 
+        if str_需求 ~= '' then
+            str_字符串 = str_字符串..'[br][0a]需求：[01]'..str_需求 
+        end
         if str_字符串 ~= '' then 
             self.武功.getChildByName('附加效果').text = str_字符串
         else
