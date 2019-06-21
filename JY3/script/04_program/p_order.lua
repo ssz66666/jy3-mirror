@@ -354,10 +354,10 @@ t['new_test'] = function()
     -- G.call('set_team',36,0,0,0)
     -- G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
     --G.call('join',4)
-    local o_book_story = G.QueryName(0x101c000e)
-    o_book_story.流程 = 0
-    G.call('天书_鸳鸯刀') 
-    G.call('通用_印记状态')
+    -- local o_book_story = G.QueryName(0x101c000e)
+    -- o_book_story.流程 = 0
+    -- G.call('天书_鸳鸯刀') 
+    -- G.call('通用_印记状态')
 end   
 t['in_test'] = function() 
     G.misc().测试 = 1
