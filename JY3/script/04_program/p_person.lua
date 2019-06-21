@@ -2048,8 +2048,9 @@ t['小游戏-野球拳']=function()
                            G.call('notice1','恭喜完成成就【野球无敌】')
                         end
                     end
+                    local int_经验 = 10 + math.floor(G.call('get_point',18)/10)
                     G.call("talk",'？？？？',247,'   见好就收也不失为一种胜利！',1,1) 
-                    G.call('add_magicexp',83,math.floor(10*2^(int_连胜-11)) ) 
+                    G.call('add_magicexp',83,math.floor(int_经验*2^(int_连胜-11)) ) 
                     if int_连胜 >= 17 then 
                         G.call("talk",'？？？？',247,'   表现不错，给你点奖励吧！',1,1) 
                         G.call('通用_抽礼物',9,0) 
