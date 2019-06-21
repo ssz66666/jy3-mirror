@@ -1588,11 +1588,11 @@ t['副本_通天塔']=function(int_模式)
     local int_整数层数 = 0
     local int_通天塔层数 = 0
     local int_通天塔判定 = 0
-    for j = 1,24 do 
-        table.insert(skill,j )
+    for j = 1,25 do 
+       table.insert(skill_use,j )
     end 
-    table.insert(skill,31 )
-    table.insert(skill,32 )
+    table.insert(skill_use,31 )
+    table.insert(skill_use,32 )
     while true do 
        if int_通天塔判定 == 0 then 
             int_通天塔层数 = -G.misc().通天塔层数 - 7
