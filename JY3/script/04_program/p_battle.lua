@@ -3124,7 +3124,7 @@ t['magic_power1'] = function(int_id,int_no)
                     G.call('add_point',44,math.floor(G.call('get_point',44)/2))
                 end 
             end 
-            if  (math.random(100) < 50 or G.call('get_magic',190) > 0) and (o_skill.附加效果 == 11   or G.call('通用_取得人物特效',0,32)) then --绝杀效果
+            if  (math.random(100) < 50 or G.call('get_magic',190) > 0) and (o_skill.附加效果 == 12   or G.call('通用_取得人物特效',0,32)) then --绝杀效果
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'绝杀'
                 else
@@ -3810,7 +3810,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     if hurt < 0 then 
         hurt = math.random(10,20)
     end
-    if  (math.random(100) < 50 or G.call('get_npcskill',int_id,0x100500bd) > 0) and  ( o_skill.附加效果 == 11   or G.call('通用_取得人物特效',int_enemy,32) ) and hurt > 0 then --绝杀效果
+    if  (math.random(100) < 50 or G.call('get_npcskill',int_id,0x100500bd) > 0) and  ( o_skill.附加效果 == 12   or G.call('通用_取得人物特效',int_enemy,32) ) and hurt > 0 then --绝杀效果
         if string_字符串_4 == '' then 
             string_字符串_4 = string_字符串_4..'绝杀'
         else
@@ -4423,7 +4423,7 @@ t['magic_power3'] = function(int_id,int_no)
                     G.call('set_role',int_id,15,math.floor(G.call('get_role',int_id,15)/2) )
                 end 
             end
-            if  (math.random(100) < 50 or G.call('get_npcskill',int_id,0x100500bd) > 0) and (o_skill.附加效果 == 11   or G.call('通用_取得人物特效',int_id,32)) then --绝杀效果
+            if  (math.random(100) < 50 or G.call('get_npcskill',int_id,0x100500bd) > 0) and (o_skill.附加效果 == 12   or G.call('通用_取得人物特效',int_id,32)) then --绝杀效果
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'绝杀'
                 else
