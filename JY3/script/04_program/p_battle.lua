@@ -4452,7 +4452,8 @@ t['magic_power3'] = function(int_id,int_no)
                     end  
                 end 
             end  
-        end 
+        end
+        hurt = math.floor(hurt) 
     else
         hurt = 0  
     end 

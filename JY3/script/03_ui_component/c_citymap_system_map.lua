@@ -60,8 +60,8 @@ function t:update()
     else
         self.标签.getChildByName('侠义').text  = '[03]'..int_侠义 
     end
-    local hp = G.QueryName(0x10030001)[tostring(44)]
-    local mp = G.QueryName(0x10030001)[tostring(46)]
+    local hp = math.floor(G.call('get_point',44))
+    local mp = math.floor(G.call('get_point',46))
     local maxhp = G.QueryName(0x10030001)[tostring(217)]
     local maxmp = G.QueryName(0x10030001)[tostring(218)]
     -- 控制主菜单血条蓝条的显示长度
