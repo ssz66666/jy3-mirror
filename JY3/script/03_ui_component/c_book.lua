@@ -154,7 +154,7 @@ function t:详细显示()
             self.属性.getChildByName('动作1').frameActionID(0)
             self.属性.getChildByName('动作').frameActionID(0)
         end
-        if o_role_人物.死亡掉落道具 and o_role_人物.拥有 > 0 then
+        if o_role_人物.死亡掉落道具 and o_role_人物.拥有 and  o_role_人物.拥有 > 0 then
             self.属性.getChildByName('掉落物').text = '掉落物：[br][01]'..G.QueryName(o_role_人物.死亡掉落道具).名称
         else 
             self.属性.getChildByName('掉落物').text = '掉落物：[br][01]无'
