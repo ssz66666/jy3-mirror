@@ -1379,8 +1379,7 @@ t['天书_神雕侠侣'] = function()
         if o_battle_结果 == 1 then
             G.call("talk",'',135,'   臭小子松手放开我！',2,1)
             G.call("talk",'',7,'   程姑娘你快走，快走！',0,0)
-            G.call('set_role',135,9,70)
-            if G.call('get_role',135,9) >= 70 then
+            if G.call('get_role',405,9) >= 70 then
                 G.call('join',405)
                 G.call("talk",'',135,'   问世间情为何物，只教人生死相许，如果当初....！',2,1)
             end
@@ -1621,7 +1620,7 @@ t['天书_倚天屠龙记'] = function()
         G.call("talk",'',4,'   师太快点跳下来，再不跳就来不及了！',0,0)
         G.call('all_over')
         G.call("talk",'',18,'   师父我们还是先行下去再说吧！',2,1)
-        if G.call('get_point',61,9) >= 70 then 
+        if G.call('get_point',406,9) >= 70 then 
             G.call("talk",'',61,'   芷若，峨眉在为师手上没有发扬光大，现在只能靠你了，今日过后，峨眉就全靠你了！',2,1)
             G.call("talk",'',18,'   弟子恐会辜负师父！',2,1)
             G.call("talk",'',61,'   此次下去为师当会隐退，你只要记住为师的话，我峨眉光大指日可待！',2,1)          
