@@ -1216,6 +1216,7 @@ t['goto_map']=function(int_地图代码) --跳转地图
             G.call('通用_存档',4)
             G.call('write_min')
             G.call('notice1','自动记录完成')
+            G.call('通用_存档',4)
         end  
     end 
 end
