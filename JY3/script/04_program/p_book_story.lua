@@ -1278,7 +1278,7 @@ t['天书_书剑恩仇录'] = function()
         else
             G.call("talk",'',400,'   这点本事就想救人？！',2,1)
         end
-    elseif o_book_story.流程 == 3 then
+    elseif o_book_story.流程 == 2 then
         G.call('地图_进入地图','六和塔',121,33)
         G.call("talk",'',403,'   你们来得比我想象中的还是慢了点！',2,1)
         G.call("talk",'',397,'   难道这是你们设计下的，故意引我们来此！',2,1)
