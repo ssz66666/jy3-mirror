@@ -1061,7 +1061,7 @@ t['战斗系统_事件响应'] = function()
                             local n = math.random(1,11) 
                             while true do 
                                 if ui.getChildByName('tab').getChildByName(位置[n]).visible == false or n == i then 
-                                    if o_battle.模式 >= 4 then 
+                                    if o_battle.模式 >= 4 and o_battle.模式 ~= 99 then 
                                         n = math.random(2,11)
                                     else
                                         n = math.random(1,11)
@@ -2886,7 +2886,9 @@ t['magic_power1'] = function(int_id,int_no)
             elseif  G.call('通用_取得套装',int_id,4) == 3 then
                 hurt = math.floor(hurt *0.8)
             end
-            hurt = math.floor(hurt*200/o_battle.diffty) --根据难度和战斗敌人强度计算伤害
+            if o_battle.模式 ~= 99 then
+                hurt = math.floor(hurt*200/o_battle.diffty) --根据难度和战斗敌人强度计算伤害
+            end
             if hurt < 10 then 
                 hurt = math.random(10)
             end  
@@ -2918,6 +2920,14 @@ t['magic_power1'] = function(int_id,int_no)
                 elseif G.call('get_point',63) == 10000 and math.random(100) < 60  then
                     G.call('add_point',46,1500)
                 end
+            end
+            if o_battle.模式 == 99 then
+                hurt = -10
+                hurt0 = 0
+                hurt1 = 0
+                hurt2 = 0
+                hurt3 = 0
+                hurt4 = 0
             end
             G.call('add_point',44,-hurt3)
             G.call('add_point',47,hurt0)
@@ -4230,15 +4240,17 @@ t['magic_power3'] = function(int_id,int_no)
                 hurt = math.floor(hurt *0.9)
             elseif  G.call('通用_取得套装',0,4) == 3 then
                 hurt = math.floor(hurt *0.8)
+            end 
+            if o_battle.模式 ~= 99 then
+                if att_role == 0 then --根据难度和攻击方计算最终伤害
+                    hurt = math.floor(hurt*o_battle.diffty/200) 
+                else   
+                    hurt = math.floor(hurt*200/o_battle.diffty) 
+                end  
+                if hurt < 10 then 
+                    hurt = math.random(10)
+                end 
             end
-            if att_role == 0 then --根据难度和攻击方计算最终伤害
-                hurt = math.floor(hurt*o_battle.diffty/200) 
-            else   
-                hurt = math.floor(hurt*200/o_battle.diffty) 
-            end  
-            if hurt < 10 then 
-                hurt = math.random(10)
-            end  
             local int_怒气 = 0
             if  G.call('逻辑_拥有被动',17) then --计算怒气
                 int_怒气 = math.ceil(hurt/500 + 0.5)

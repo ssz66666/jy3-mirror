@@ -1870,15 +1870,59 @@ t['天书_鸳鸯刀'] = function()
         G.call('all_over')
         return
     end 
-    if not G.call('in_team',409) and o_book_story.流程 > 0 then 
-        G.call("talk",'',38,'   本故事没有萧中慧是无法进行的！',2,1)
-        G.call('all_over')
-        return
-    end 
     if o_book_story.流程 == 0 then
-        G.call('all_over')
-        G.call('set_team',409,0,0,0)
-        G.call('call_battle',1,284,5,0,410,0,0,0,0,0)
+        G.call('地图_进入地图','????',150,64)
+        G.call("talk",'',409,'   小兄弟，你说我夫妻二人这场比试谁能获胜？',2,1)
+        local int_选项 = 0
+        while int_选项 == 0 do
+            int_选项 = G.call("menu",nil,0,'',0,0,{"1,当然是尊夫","2,当然是你了",""},0,2) 
+            if int_选项 == 1 then 
+                G.call("talk",'',409,'   小兄弟，那你是瞧不起我了，且看看我们二人比试！',2,1)
+                G.call('all_over')
+            elseif int_选项 == 2 then
+                G.call("talk",'',410,'   小兄弟，那你是瞧不起我了，且看看我们二人比试！',2,1)
+                G.call('all_over')
+            elseif int_选项 == 3 then
+                G.call('all_over')
+            end
+        end
+        if int_选项 < 3 then
+            G.call('all_over')
+            G.call('set_team',409,0,0,0)
+            G.call('call_battle',1,150,5,0,410,0,0,0,0,0,0,64) 
+            o_battle_结果 = G.call('get_battle') 
+            if o_battle_结果 == 1 then
+                if int_选项 == 2 then 
+                    G.call("talk",'',409,'   小兄弟果然独具慧眼，我便一路砍看小兄弟到底有何过人之处！',2,1) 
+                    G.call('join',409)
+                    o_book_story.完成 = 1
+                else
+                    G.call("talk",'',409,'   小兄弟你为何看不起我...',2,1)  
+                end
+            else
+                if int_选项 == 1 then 
+                    G.call("talk",'',410,'   小兄弟果然独具慧眼，我便一路砍看小兄弟到底有何过人之处！',2,1) 
+                    G.call('join',410)
+                    o_book_story.完成 = 1
+                else
+                    G.call("talk",'',410,'   小兄弟你为何看不起我...',2,1)  
+                end
+            end
+        else
+            G.call("talk",'',0,'   我觉得还是我更厉害！',0,0)
+            G.call("talk",'',409,'   那就看我们夫妻二人的夫妻刀法吧！',2,1)
+            G.call('all_over')
+            G.call('call_battle',1,150,99,0,409,410,0,0,0,0,0,64) 
+            o_battle_结果 = G.call('get_battle') 
+            if o_battle_结果 == 1 then 
+                G.call("talk",'',409,'   看来小兄弟武功的确不错，这本夫妻刀法就留给小兄弟了！',2,1)
+                G.call('add_item',346,1)
+                o_book_story.完美 = 1
+                o_book_story.完成 = 1
+            else
+                G.call("talk",'',409,'   小兄弟武功也不过如此！',2,1)
+            end
+        end   
     end
     G.call('all_over')
     G.call('add_time',2)

@@ -299,10 +299,10 @@ t['new_test'] = function()
     -- G.call('set_team',36,0,0,0)
     -- G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
     --G.call('join',4)
-    -- local o_book_story = G.QueryName(0x101c000e)
-    -- o_book_story.流程 = 0
-    -- G.call('天书_鸳鸯刀') 
-    -- G.call('通用_印记状态')
+    local o_book_story = G.QueryName(0x101c000e)
+    o_book_story.流程 = 0
+    G.call('天书_鸳鸯刀') 
+    G.call('通用_印记状态')
 end   
 t['in_test'] = function() 
     G.misc().测试 = 1
@@ -608,13 +608,13 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     local o_battle = G.QueryName(0x10150001)
     local i_role = 0x10040000
     local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6','all1','all2'}
-    if o_battle.模式 >= 4  then
+    if o_battle.模式 >= 4 and o_battle.模式 ~= 99  then
         ui_显示.getChildByName('team1').visible = false 
     end
     local   hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('生命').text)
     if ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible == true then 
         print('hurt',hurt,ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
-        if G.QueryName(0x10150001).模式 < 4 then 
+        if G.QueryName(0x10150001).模式 < 4 or  o_battle.模式 == 99 then 
             G.call('add_point',44,-hurt)
             if G.call('get_point',8) ==  4 then --判断复生效果，全真复生低于30%血10%几率触发，其他门派低于20%血5%几率触发 
                 if G.call('通用_取得人物特效',0,15) and math.random(100) > 90 and G.call('get_point',44) < G.call('get_point',217)*0.3 then --主角复生效果
@@ -745,7 +745,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     if o_battle.模式 == 4 then
         o_battle.diffty = int_diffty   
     end
-    if o_battle.模式 == 5 then
+    if o_battle.模式 == 5 or o_battle.模式 == 99 then
         o_battle.diffty = 0   
     end
     if o_battle.diffty > 0 then 
@@ -912,7 +912,7 @@ t['get_result']=function()
     if int_no == 0 then 
         result = 1
     end 
-    if int_mo == 0 and o_battle.模式 >= 4 then 
+    if int_mo == 0 and (o_battle.模式 >= 4 and o_battle.模式 ~= 99)  then 
         result = 2
     end 
     if  G.call('get_point',44) <= 0 then 
@@ -1458,12 +1458,12 @@ t['talk'] = function(string_名字,int_编号,string_对话,int_位置,int_当�
         G.call("对话系统_显示对话大",string_名字,int_编号,string_对话,int_位置)
     end 
 end 
-t['menu'] = function(string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_当前UI)  --同上，用于对选框UI的切换
+t['menu'] = function(string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_当前UI,int_选择项)  --同上，用于对选框UI的切换
     if  int_当前UI == 0 or nil then 
-        return G.call("对话系统_显示对话选择上",string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项)
+        return G.call("对话系统_显示对话选择上",string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_选择项)
     end     
     if int_当前UI > 0 then        
-        return G.call("对话系统_显示对话选择下",string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项)
+        return G.call("对话系统_显示对话选择下",string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_选择项)
     end
 end 
 t['join']=function(int_编号) --加入队友

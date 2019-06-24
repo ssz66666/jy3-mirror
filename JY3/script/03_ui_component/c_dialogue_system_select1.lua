@@ -19,13 +19,13 @@ function t:start()
     self.选项原型.getChildByName('text').shadowX = 1
     self.选项原型.getChildByName('text').shadowAlpha = 120
 end
-function t:setData(mod,_select)
+function t:setData(mod,_select,int_选择项)
     self.obj.visible = true
     self.obj.parent.addChild(self.obj)
-    self:update_select(mod,_select)
+    self:update_select(mod,_select,int_选择项)
 end
 
-function t:update_select(mod,_select)
+function t:update_select(mod,_select,int_选择项)
     local ui_select
     self.选项.removeAllChildren()
     self.obj.getChildByName('位置').text = tostring(mod)
@@ -88,6 +88,10 @@ function t:update_select(mod,_select)
     end
     self.obj.getChildByName('number').text = #_select
     local n = tonumber( self.obj.getChildByName('number').text)
+    if int_选择项 then
+        n = int_选择项 
+    end 
+    print(int_选择项)
     if n > 1 then 
         for i = 1,n do 
             self.选择.getChildByName(tostring(i)).visible = true
