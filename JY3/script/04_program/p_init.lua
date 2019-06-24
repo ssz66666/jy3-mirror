@@ -58,20 +58,6 @@ t['初始化'] = function()
             end
         end
 	end		
-	--G.call('通用_生成原始文件')
-	-- --下面为测试代码
-	-- for i = 1,335 do  --全物品
-	-- 	G.call('add_item',i+1,1)
-	-- end	
-	-- G.call('add_point',5,500)--修为点
-	-- G.call('add_money',9999)  --金钱
-	-- for i = 1,201 do --全技能
-	-- 	G.QueryName(0x10050000 + i).当前熟练度 = 1
-		
-	-- 	--G.QueryName(0x10050000 + i).修为等级 = 1
-	-- end
-
-	--测试属性
 	G.misc().code = 0
 	G.call('goto_map',1)
 	G.misc().木桩 = 0
@@ -83,7 +69,6 @@ t['初始化'] = function()
 	G.misc().出师 = nil
 	G.misc().礼包 = nil
 	G.call('通用_存档',0)
-	--G.call('成就_读档',10)
 	G.start_program("地图系统_初始化地图系统")
 	G.start_program('地图系统_事件响应')
 	G.start_program('地图系统_人物')
@@ -91,8 +76,7 @@ t['初始化'] = function()
 	G.start_program('地图系统_功能')
 	G.start_program('地图系统_提示')
 	G.call('mapoff') 
-    G.call('call_title')      --开始游戏界面
-	--G.addUI('v_system')   
+    G.call('call_title')      --开始游戏界面  
 end
 t['地图系统_提示'] = function()
 	while true do

@@ -1290,25 +1290,27 @@ t['自创武功']=function() --
     --print(o_skill.伤害倍数)
 end 
 t['猜数字']=function()
+    local int_mo = 0
     local m = {0,0,0,0}
     local t = {0,1,2,3,4,5,6,7,8,9}
-    local len = #t
-    local r = math.random(len)
-    local int_mo = 0
-    m[1] =t[r]
-    table.remove(t, r)
-    len = #t
-    r = math.random(len)	
-    m[2] =t[r]
-    table.remove(t, r)
-    len = #t
-    r = math.random(len)	
-    m[3] =t[r]
-    table.remove(t, r)
-    len = #t
-    r = math.random(len)	
-    m[4] =t[r]
-    table.remove(t, r)
+    for i = 1,4 do 
+        local len = #t
+        local r = math.random(len)
+        m[i] =t[r]
+        table.remove(t, r)
+    end
+    -- len = #t
+    -- r = math.random(len)	
+    -- m[2] =t[r]
+    -- table.remove(t, r)
+    -- len = #t
+    -- r = math.random(len)	
+    -- m[3] =t[r]
+    -- table.remove(t, r)
+    -- len = #t
+    -- r = math.random(len)	
+    -- m[4] =t[r]
+    -- table.remove(t, r)
     local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4]   
     --print(int_no)
     G.call("talk",'',38,'   来来来，猜数字，规则很简单，猜出4个不同数字!',2,1)
@@ -1461,29 +1463,19 @@ t['事件_随机切磋']=function()
     local skill_mod = {0,0,0,0,0} 
     local o_role = G.QueryName(0x10040000+int_role)
     for i = 1,5 do
-        team_skill[i] = G.call('get_role',int_role,110+i)  
+        local int_记录被动 = G.call('get_role',int_role,110+i) 
+        if int_记录被动 == nil then
+            int_记录被动 = 0 
+        end
+        team_skill[i] = int_记录被动  
     end
-    local len = #skill
-    local r = math.ceil(G.call('通用_取宝物随机')*len/100) 
-    skill_mod[1] = skill[r]
-    table.remove(skill, r)
-    len = #skill
-    r = math.ceil(G.call('通用_取宝物随机')*len/100)
-    skill_mod[2] = skill[r]
-    table.remove(skill, r)
-    len = #skill
-    r = math.ceil(G.call('通用_取宝物随机')*len/100)
-    skill_mod[3] = skill[r]
-    table.remove(skill, r)
-    len = #skill
-    r = math.ceil(G.call('通用_取宝物随机')*len/100)
-    skill_mod[4] = skill[r]
-    table.remove(skill, r)
-    len = #skill
-    r = math.ceil(G.call('通用_取宝物随机')*len/100)
-    skill_mod[5] = skill[r]
-    table.remove(skill, r)
     local int_被动 = math.random(5)
+    for i = 1,int_被动 do 
+        local len = #skill
+        local r = math.ceil(G.call('通用_取宝物随机')*len/100) 
+        skill_mod[i] = skill[r]
+        table.remove(skill, r)
+    end
     local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','霸王','真意','昊天','朱雀','玄武','青龙','白虎'}
     o_role = G.QueryName(0x10040000 + int_role)
     if int_被动 > 0 then --分配被动
@@ -1630,30 +1622,12 @@ t['副本_通天塔']=function(int_模式)
                 end
             end 
             --随机出6个数字决定最后普通层6个敌人
-            local len = #team_rose
-            local r = math.random(len)
-            table.insert(team_pese,team_rose[r] )
-            table.remove(team_rose, r)
-            len = #team_rose
-            r = math.random(len) 
-            table.insert(team_pese,team_rose[r] )
-            table.remove(team_rose, r)
-            len = #team_rose
-            r = math.random(len) 
-            table.insert(team_pese,team_rose[r] )
-            table.remove(team_rose, r)
-            len = #team_rose
-            r = math.random(len) 
-            table.insert(team_pese,team_rose[r] )
-            table.remove(team_rose, r)
-            len = #team_rose
-            r = math.random(len) 
-            table.insert(team_pese,team_rose[r] )
-            table.remove(team_rose, r)
-            len = #team_rose
-            r = math.random(len) 
-            table.insert(team_pese,team_rose[r] )
-            table.remove(team_rose, r)
+            for i = 1,6 do 
+                local len = #team_rose
+                local r = math.random(len)
+                table.insert(team_pese,team_rose[r] )
+                table.remove(team_rose, r)
+            end
         end 
         if int_层数判定 == 0 then
             team_final = team_boss
@@ -1670,28 +1644,15 @@ t['副本_通天塔']=function(int_模式)
             }
         )       
         end 
+        local int_被动 = math.max(1, math.floor((G.misc().通天塔层数-1)/10) - 4)
         for i = 1,#team_final do --记录敌人的随机被动
             G.deepcopy(skill_use,skill)
-            local len = #skill
-            local r = math.random(len) 
-            skill_mod[1] = skill[r]
-            table.remove(skill, r)
-            len = #skill
-            r = math.random(len) 
-            skill_mod[2] = skill[r]
-            table.remove(skill, r)
-            len = #skill
-            r = math.random(len) 
-            skill_mod[3] = skill[r]
-            table.remove(skill, r)
-            len = #skill
-            r = math.random(len) 
-            skill_mod[4] = skill[r]
-            table.remove(skill, r)
-            len = #skill
-            r = math.random(len) 
-            skill_mod[5] = skill[r]
-            table.remove(skill, r)
+            for j = 1,int_被动 do 
+                local len = #skill
+                local r = math.random(len) 
+                skill_mod[j] = skill[r]
+                table.remove(skill, r)
+            end
             table.insert(team_skill_2,{
                 被动_1 = skill_mod[1],
                 被动_2 = skill_mod[2],
@@ -1701,7 +1662,6 @@ t['副本_通天塔']=function(int_模式)
                 }
             )
         end
-        local int_被动 = math.floor((G.misc().通天塔层数-1)/10) - 4
         if int_被动 > 0 and  int_模式 == 0 then 
             for i = 1,#team_final do --分配敌人被动
                 for j = 1,int_被动 do 
@@ -1729,6 +1689,9 @@ t['副本_通天塔']=function(int_模式)
         for i = 1,#team_final do --还原敌人被动
             if team_final[i] > 0 then 
                 for j = 1,5 do 
+                    if team_skill_1[i]['被动_'..j] == nil then
+                        team_skill_1[i]['被动_'..j] = 0 
+                    end
                     G.call('set_role',team_final[i],110+j,team_skill_1[i]['被动_'..j]) 
                 end
             end

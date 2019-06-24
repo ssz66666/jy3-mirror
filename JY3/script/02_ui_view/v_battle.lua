@@ -3582,7 +3582,6 @@ tp = tc
 		tc.right = 141.000
 		tc.bottom = 78.000
 		tc.top = 178.000
-		tc.blend = 1
 		tc.img = 0x33049999
 		tp = tc
 		tp = tp.parent

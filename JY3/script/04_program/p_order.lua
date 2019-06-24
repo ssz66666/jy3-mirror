@@ -9,12 +9,10 @@ local GF = require "gfbase"
 --hide=false
 --private=false
 t['通关_存档'] = function()
-    --G.call('地图系统_防修改监控')
     G.wait_time(200)
     G.QueryName(0x10030001)[tostring(238)] = 1 --设置通关标志
     G.call('通用_存档',G.call('get_point',143))--保存通关存档
-    G.call('通用_存档',10)
-    
+    G.call('通用_存档',10) 
 end
 t['信息_读档'] = function(int_档案编号)
     local perms = {
@@ -109,15 +107,6 @@ t['通用_存档'] = function(int_档案编号)
 		[GF.o_meta] = 7,
 		[GF.new_meta] = 8
     };
-    -- local r = {'R1.jy3','R2.jy3','R3.jy3','R4.jy3'}
-    -- local pathscript = G.GetSavePath(r[1])
-    -- local t 
-    -- if int_档案编号 > 0 and int_档案编号 <=4 then 
-    --     pathscript = G.GetSavePath(r[int_档案编号])
-    --     local str = G.LoadFile(pathscript)
-    --     t = G.split(str, '\n')
-    --     G.call('add_point',64,1)
-    -- end
     if int_档案编号 > 0 and int_档案编号 <=4 then 
         G.call('add_point',64,1)
     end
@@ -147,7 +136,6 @@ t['通用_存档'] = function(int_档案编号)
             G.call('通用_存档',5)
         end
     end
-    --local path0 = G.GetSavePath('R6.grp');
     if int_档案编号 == 0 then 
         path = G.GetSavePath('R0.grp');
         G.WriteFile(path, zipbuf);
@@ -199,46 +187,6 @@ t['通用_存档'] = function(int_档案编号)
         G.call('通用_存档',5)
     end
 end
-t['通用_生成原始文件'] = function()
-    local r = {'R1.jy3','R2.jy3','R3.jy3','R4.jy3'}
-    local p = {'R1.lua','R2.lua','R3.lua','R4.lua'}
-	local n = {'R1','R2','R3','R4'}
-    for i = 1,4 do  --	
-        local path = GF.GetSavePath(p[i])
-        local file,err=io.open(path)--打开文件
-        if file then--如果有这个文件
-            io.close(file)--先关闭
-            local pathx=GF.GetSavePath(r[i])
-            local file_new,err=io.open(pathx)--打开文件
-            if  file_new then 
-                io.close(file_new)--先关闭
-                os.remove(pathx)--删除旧文件	  
-            end
-            os.rename(path, pathx)--把旧存档复制一份并改为新的文件
-            os.remove(path)--删除旧文件	
-        end
-    end 
-    for i = 1,4 do  --创建初始存档记录文件
-		local str = {}
-		local path = GF.GetSavePath(r[i])
-        local path0 = GF.GetScriptPath('week.'..n[i])
-        local file,err=io.open(path)
-		--local file = G.LoadFile(path)
-		if file then
-	
-        else
-            local file = G.LoadFile(path0)
-			local str = G.split(file, '\n')
-			local fp = io.open(path, 'w')
-			fp:write(table.concat(str, '\n'))
-            fp:close()
-	    end		
-	end 
-
-
-
-
-end
 --type=通用指令
 --hide=false
 --private=false
@@ -282,10 +230,7 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().通天塔 == nil then 
                 G.misc().通天塔 = 0
             end
-            G.call('write_min')
-            --G.call('通用_记录时间')
-            --G.start_program('地图系统_游戏加速监控')
-            
+            G.call('write_min')          
         end 	
         if int_档案编号 == 0 then 
            G.trig_event('创建角色')
@@ -421,9 +366,6 @@ t['dig_earthworms'] = function()
     G.wait1('dig_earthworms_over')
     G.remove_program('抓蚯蚓_计时器',1)  
     G.removeUI('v_dig_earthworms') 
-    -- if G.misc().挖宝次数 ~= math.abs(G.misc().挖宝监听) or G.misc().蚯蚓数量 ~= math.abs(G.misc().蚯蚓监听) then 
-    --     G.trig_event('强制退出')
-    -- end
 end 
 t['拼图_计时器'] = function()
     G.misc().计时器 =  1800.002
