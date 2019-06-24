@@ -557,8 +557,10 @@ function t:click(tar)
             elseif  G.misc().序号 > 31 then 
                 if  n == nil or n <= 0  or n > 33 then 
                     G.call('notice1','请输入(1~33)整数数字') 
-                else 
-                    G.QueryName(0x10030001)[tostring(G.misc().序号-31+110)] = n   
+                else  
+                    G.call('set_point',G.misc().序号-31+110,n) 
+                    G.call('set_newpoint',G.misc().序号-31+110,-10-n) 
+                    
                     self.obj.getChildByName('secret').getChildByName('文本').text = ''
                     self.obj.getChildByName('secret').visible = false 
                 end   

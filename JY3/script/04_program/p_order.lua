@@ -2738,6 +2738,7 @@ t['出师-增加被动']=function()
         G.call('set_point',115,18)
         G.call('notice1','领悟【'..magic[18]..'】')
     end 
+    G.call('set_newpoint',115,-10-G.call('get_point',115)) 
 end 
 t['逻辑读取-武功等级']=function(int_代码) --
     local o_skill = G.QueryName(0x10050000+int_代码)
