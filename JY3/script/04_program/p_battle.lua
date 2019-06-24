@@ -3182,15 +3182,15 @@ t['magic_power1'] = function(int_id,int_no)
     local string_字符串 = ''
     if o_skill.类别 < 6 then 
         if hurt == 0 then
-            string_字符串 =  '【'..G.call('get_point',6)..'】使出'..o_skill.等级..'级【'..o_skill.名称..'】被【'..o_role.姓名..'】闪避'
+            string_字符串 =  '[0a]【[07]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.等级..'[0a]级【[07]'..o_skill.名称..'[0a]】被【[07]'..o_role.姓名..'】[03]闪避'
         else
-            string_字符串 = '【'..G.call('get_point',6)..'】使出'..o_skill.等级..'级【'..o_skill.名称..'】对【'..o_role.姓名..'】造成'..tostring(hurt)..'伤害'
+            string_字符串 = '[0a]【[07]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.等级..'[0a]级【[07]'..o_skill.名称..'[0a]】对【[07]'..o_role.姓名..'】造成[03]'..tostring(hurt)..'[0a]伤害'
         end  
     else
         if hurt == 0 then
-            string_字符串 = '【'..G.call('get_point',6)..'】使出'..o_skill.修为等级..'级【'..o_skill.名称..'】被【'..o_role.姓名..'】闪避'
+            string_字符串 =  '[0a]【[07]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.修为等级..'[0a]级【[07]'..o_skill.名称..'[0a]】被【[07]'..o_role.姓名..'】[03]闪避'
         else
-            string_字符串 = '【'..G.call('get_point',6)..'】使出'..o_skill.修为等级..'级【'..o_skill.名称..'】对【'..o_role.姓名..'】造成'..tostring(hurt)..'伤害'
+            string_字符串 = '[0a]【[07]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.修为等级..'[0a]级【[07]'..o_skill.名称..'[0a]】对【[07]'..o_role.姓名..'】造成[03]'..tostring(hurt)..'[0a]伤害'
         end  
     end
     local o_notebook = G.QueryName(0x101a0001)

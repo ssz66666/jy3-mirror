@@ -105,7 +105,7 @@ function t:刷新属性()
     if hp < maxhp/10 then
         str_hp = '[03]'..hp
     else
-        str_hp = '[01]'..hp
+        str_hp = '[02]'..hp
     end
     if mp < maxmp/10 then
         str_mp = '[07]'..mp
