@@ -3182,15 +3182,15 @@ t['magic_power1'] = function(int_id,int_no)
     local string_字符串 = ''
     if o_skill.类别 < 6 then 
         if hurt == 0 then
-            string_字符串 =  '[0a]【[07]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.等级..'[0a]级【[07]'..o_skill.名称..'[0a]】被【[07]'..o_role.姓名..'】[03]闪避'
+            string_字符串 =  '[0a]【[08]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.等级..'[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..o_role.姓名..'[0a]】[03]闪避'
         else
-            string_字符串 = '[0a]【[07]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.等级..'[0a]级【[07]'..o_skill.名称..'[0a]】对【[07]'..o_role.姓名..'】造成[03]'..tostring(hurt)..'[0a]伤害'
+            string_字符串 = '[0a]【[08]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.等级..'[0a]级【[07]'..o_skill.名称..'[0a]】对【[08]'..o_role.姓名..'[0a]】造成[03]'..tostring(hurt)..'[0a]伤害'
         end  
     else
         if hurt == 0 then
-            string_字符串 =  '[0a]【[07]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.修为等级..'[0a]级【[07]'..o_skill.名称..'[0a]】被【[07]'..o_role.姓名..'】[03]闪避'
+            string_字符串 =  '[0a]【[08]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.修为等级..'[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..o_role.姓名..'[0a]】[03]闪避'
         else
-            string_字符串 = '[0a]【[07]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.修为等级..'[0a]级【[07]'..o_skill.名称..'[0a]】对【[07]'..o_role.姓名..'】造成[03]'..tostring(hurt)..'[0a]伤害'
+            string_字符串 = '[0a]【[08]'..G.call('get_point',6)..'[0a]】使出[01]'..o_skill.修为等级..'[0a]级【[07]'..o_skill.名称..'[0a]】对【[08]'..o_role.姓名..'[0a]】造成[03]'..tostring(hurt)..'[0a]伤害'
         end  
     end
     local o_notebook = G.QueryName(0x101a0001)
@@ -3822,15 +3822,28 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     local string_字符串 = ''
     if o_skill.类别 < 6 then 
         if hurt == 0 then
-            string_字符串 ='【'..o_role.姓名..'】使出'..o_skill_武功等级..'级【'..o_skill.名称..'】被【'..o_enemy.姓名..'】闪避'
+            string_字符串 ='[0a]【[08]'..o_role.姓名..'[0a]】使出[01]'..o_skill_武功等级..'[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..o_enemy.姓名..'[0a]】[03]闪避'
         else
             string_字符串 ='【'..o_role.姓名..'】使出'..o_skill_武功等级..'级【'..o_skill.名称..'】对【'..o_enemy.姓名..'】造成'..tostring(hurt)..'伤害'
         end  
     else
         if hurt == 0 then
-            string_字符串 ='【'..o_role.姓名..'】使出5级【'..o_skill.名称..'】被【'..o_enemy.姓名..'】闪避'
+            string_字符串 ='[0a]【[08]'..o_role.姓名..'[0a]】使出[01]5[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..o_enemy.姓名..'[0a]】[03]闪避'
         else
-            string_字符串 ='【'..o_role.姓名..'】使出5级【'..o_skill.名称..'】对【'..o_enemy.姓名..'】造成'..tostring(hurt)..'伤害'
+            string_字符串 ='【'..o_role.姓名..'[0a]】使出[01]5[0a]级【[07]'..o_skill.名称..'】对【'..o_enemy.姓名..'】造成'..tostring(hurt)..'伤害'
+        end  
+    end 
+    if o_skill.类别 < 6 then 
+        if hurt == 0 then
+            string_字符串 ='[0a]【[08]'..o_role.姓名..'[0a]】使出[01]'..o_skill_武功等级..'[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..o_enemy.姓名..'[0a]】[03]闪避'
+        else
+            string_字符串 ='【'..o_role.姓名..'[0a]】使出[01]'..o_skill_武功等级..'[0a]级【[07]'..o_skill.名称..'[0a]】对【[08]'..o_enemy.姓名..'[0a]】造成[03]'..tostring(hurt)..'[0a]伤害'
+        end  
+    else
+        if hurt == 0 then
+            string_字符串 ='[0a]【[08]'..o_role.姓名..'[0a]】使出[01]5[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..o_enemy.姓名..'[0a]】[03]闪避'
+        else
+            string_字符串 ='[0a]【[08]'..o_role.姓名..'[0a]】使出[01]5[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..o_enemy.姓名..'[0a]】造成[03]'..tostring(hurt)..'[0a]伤害'
         end  
     end 
     local o_notebook = G.QueryName(0x101a0001)
@@ -4472,17 +4485,17 @@ t['magic_power3'] = function(int_id,int_no)
     local string_字符串 = ''
     if o_skill.类别 < 6 then 
         if hurt == 0 then
-            string_字符串 = '【'..o_role.姓名..'】使出'..o_skill_武功等级..'级【'..o_skill.名称..'】被【'..G.call('get_point',6)..'】闪避'
+            string_字符串 ='[0a]【[08]'..o_role.姓名..'[0a]】使出[01]'..o_skill_武功等级..'[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..G.call('get_point',6)..'[0a]】[03]闪避'
         else
-            string_字符串 = '【'..o_role.姓名..'】使出'..o_skill_武功等级..'级【'..o_skill.名称..'】对【'..G.call('get_point',6)..'】造成'..tostring(hurt)..'伤害'
-        end    
+            string_字符串 ='【'..o_role.姓名..'[0a]】使出[01]'..o_skill_武功等级..'[0a]级【[07]'..o_skill.名称..'[0a]】对【[08]'..G.call('get_point',6)..'[0a]】造成[03]'..tostring(hurt)..'[0a]伤害'
+        end  
     else
         if hurt == 0 then
-            string_字符串 = '【'..o_role.姓名..'】使出5级【'..o_skill.名称..'】被【'..G.call('get_point',6)..'】闪避'
+            string_字符串 ='[0a]【[08]'..o_role.姓名..'[0a]】使出[01]5[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..G.call('get_point',6)..'[0a]】[03]闪避'
         else
-            string_字符串 = '【'..o_role.姓名..'】使出5级【'..o_skill.名称..'】对【'..G.call('get_point',6)..'】造成'..tostring(hurt)..'伤害'
-        end
-    end
+            string_字符串 ='[0a]【[08]'..o_role.姓名..'[0a]】使出[01]5[0a]级【[07]'..o_skill.名称..'[0a]】被【[08]'..G.call('get_point',6)..'[0a]】造成[03]'..tostring(hurt)..'[0a]伤害'
+        end  
+    end 
     local o_notebook = G.QueryName(0x101a0001)
     local int_记事 = #o_notebook.记事本
     o_notebook.记事本[int_记事+1] = {}
