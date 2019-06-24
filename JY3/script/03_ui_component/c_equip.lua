@@ -184,7 +184,7 @@ function t:显示装备()
     self.按钮.getChildByName('data').text = G.misc().equip_data_i
     local 装备组 = {}
     G.misc().equip = {}
-    G.deepcopy( G.misc().equip,装备组)
+    --G.deepcopy( G.misc().equip,装备组)
     if #o_store.装备 > 0 then 
         for i = 1,#o_store.装备 do 
             if o_store.装备[i].数量 > 0 then 
@@ -230,6 +230,7 @@ function t:显示装备()
             self.装备_list[i].visible = true
             local i_equip = G.misc().equip[(G.misc().equip_data_i - 1)*18 + i ]
             local o_equip = G.QueryName( i_equip      ) 
+            print(i,i_equip)
             self.装备_list[i].getChildByName('图片').img =  o_equip.图片
             if o_equip.套装 > 0 then
                 self.装备_list[i].getChildByName('品质').img = 0x560f2008
@@ -261,7 +262,7 @@ function t:显示装备()
                     local 特效说明_1 = {'附加额外生命上限','附加额外内力上限','附加额外生命内力上限','附加被动【回春】','附加被动【强体】','附加被动【白虎】'}
                     local 特效说明_2 = {'附加被动【妙手】','附加被动【破绽】','附加被动【暴击】','附加被动【强力】','附加被动【万毒】','附加被动【朱雀】','附加被动【玄武】'}
                     local 特效说明_3 = {'附加被动【激励】','附加被动【强行】','附加被动【急速】','附加被动【青龙】'}
-                    local 特效说明_4 = {'附加被动【指心】','附加被动【拳劲】','附加被动【剑意】','附加被动【刀魂】','附加被动【奇门】','附加被动【暗日】','附加被动【激励】','附加被动【寒气】','附加被动【强行】','附加被动【暴击】','附加额外生命内力与被动【口才】'}
+                    local 特效说明_4 = {'附加被动【指心】','附加被动【拳劲】','附加被动【剑意】','附加被动【刀魂】','附加被动【奇门】','附加被动【暗日】','附加被动【激励】','附加被动【寒气】','附加被动【强行】','附加被动【暴击】','附加额外生命内力与被动【口才】','附加额外生命内力与被动【剑神】'}
                     local str_特效说明 = ''
                     if o_equip.类型 == 1 then
                         str_特效说明 =  特效说明_1[o_equip.特效 - 100]

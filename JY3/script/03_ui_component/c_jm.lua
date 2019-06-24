@@ -148,6 +148,6 @@ function t:click(tar)
     local ui = G.getUI('v_nature')
     local c = ui.c_nature
     c:刷新属性()
-   -- self:刷新显示()
+    self:刷新显示()
 end    
 return t

@@ -375,6 +375,8 @@ t['回答问题']=function()
         end
         if int_印记数量 < 14 and G.misc().重生 == 0 then 
             G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记
+        elseif int_印记数量 == 14 and G.misc().重生 == 0 then 
+            G.call('add_equip',0x10180028 + 15,1)
         end
        
     end 

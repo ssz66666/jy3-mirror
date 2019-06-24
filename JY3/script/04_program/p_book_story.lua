@@ -1929,3 +1929,5 @@ t['天书_鸳鸯刀'] = function()
     G.call('dark')
     G.call('goto_map',4)
 end
+t['天书_越女剑'] = function()
+end
