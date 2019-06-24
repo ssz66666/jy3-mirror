@@ -910,15 +910,19 @@ t['战斗系统_事件响应'] = function()
                                 end
                                 local n = tonumber(ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text)
                                 --print(o_role_tb.姓名,o_skill.名称,G.QueryName(o_role + o_battle[位置[n] ]).姓名,G.QueryName(o_role + o_battle[位置[n] ]).生命 )
-                                if o_skill.范围 == 2 then
+                                local int_剑神无双 = 0 
+                                if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',o_battle[位置[i]],412)  or G.call('通用_取得人物特效',o_battle[位置[i]],33)) then
+                                    int_剑神无双 = 1
+                                end 
+                                if o_skill.范围 == 2 and int_剑神无双 == 0  then
                                     int_动画位置  = n
-                                elseif o_skill.范围 == 3 then
+                                elseif o_skill.范围 == 3 and int_剑神无双 == 0  then
                                     if n == 6 or n == 9 or n == 10 then 
                                         int_动画位置 = 14
                                     elseif n == 7 or n == 8 or n == 11 then
                                         int_动画位置 = 12 
                                     end 
-                                elseif o_skill.范围 == 4 then  
+                                elseif o_skill.范围 == 4 and int_剑神无双 == 0  then 
                                     if n == 7 or n == 9 then 
                                         int_动画位置 = 7
                                     elseif n == 6  or n == 11 then 	
@@ -926,12 +930,12 @@ t['战斗系统_事件响应'] = function()
                                     elseif  n == 8 or n == 10 then 
                                         int_动画位置 = 11
                                     end 
-                                elseif o_skill.范围 == 5 then
+                                elseif o_skill.范围 == 5 or int_剑神无双 == 1  then
                                     int_动画位置 = 12
                                 end
-                                if o_skill.范围 == 2 then
+                                if o_skill.范围 == 2 and int_剑神无双 == 0  then 
                                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
-                                elseif o_skill.范围 == 3 then
+                                elseif o_skill.范围 == 3 and int_剑神无双 == 0  then 
                                     if n == 6 or n == 9 or n == 10 then 
                                         if o_battle[位置[6]] > 0 then
                                             if G.QueryName(o_role +o_battle[位置[6]] ).生命 > 0  then
@@ -965,7 +969,7 @@ t['战斗系统_事件响应'] = function()
                                             end
                                         end 
                                     end 
-                                elseif o_skill.范围 == 4 then	
+                                elseif o_skill.范围 == 4 and int_剑神无双 == 0  then 	
                                     if n == 7 or n == 9 then 
                                         if o_battle[位置[7]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[7]] ).生命 > 0  then
@@ -1002,7 +1006,7 @@ t['战斗系统_事件响应'] = function()
                                         end
 
                                     end 
-                                elseif o_skill.范围 == 5 then
+                                elseif o_skill.范围 == 5 or int_剑神无双 == 1 then 
                                     for p = 6,11 do 
                                         if o_battle[位置[p]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[p]] ).生命 > 0  then
@@ -1330,12 +1334,14 @@ t['战斗系统_事件响应'] = function()
                                 if n < 1 then
                                     n = 1 
                                 end
-                                if o_skill.范围 == 2  or o_skill.范围 == 4 then
+                                local int_剑神无双 = 0 
+                                if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',o_battle[位置[i]],412)  or G.call('通用_取得人物特效',o_battle[位置[i]],33)) then
+                                    int_剑神无双 = 1
+                                end 
+                                if (o_skill.范围 == 2  or o_skill.范围 == 4) and int_剑神无双 == 0  then
                                     int_动画位置 = n
-                                elseif 	o_skill.范围 == 3  then 
+                                elseif 	o_skill.范围 == 3 or  o_skill.范围 == 5 or int_剑神无双 == 1   then
                                     int_动画位置 = 13   
-                                elseif o_skill.范围 == 5 then
-                                    int_动画位置 = 13
                                 end
                                 if o_skill.范围 == 2  or o_skill.范围 == 4 then
                                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
@@ -1695,7 +1701,11 @@ t['战斗系统_事件响应'] = function()
                         elseif o_skill.类别 >= 6 then
                             int_动作编号 = 6000 + math.random(2)
                         end
-                        if  o_skill.范围 == 2 and G.misc().范围无双 == 0  then
+                        local int_剑神无双 = 0 
+                        if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,33)) then
+                            int_剑神无双 = 1
+                        end 
+                        if  o_skill.范围 == 2 and G.misc().范围无双 == 0 and int_剑神无双 == 0 then
                             local int_t = tonumber(ui.getChildByName('单目标').text) 
                             if num == 1 then --只有一个敌人直接取敌人位置数据
                                 for p = 6,11 do 
@@ -1733,7 +1743,7 @@ t['战斗系统_事件响应'] = function()
                             end 
                             int_序列帧 = int_代码+1
                             int_动画位置 = int_t
-                        elseif  o_skill.范围 == 3  and G.misc().范围无双 == 0  then 
+                        elseif  o_skill.范围 == 3  and G.misc().范围无双 == 0  and int_剑神无双 == 0 then
                             if  tonumber(ui.getChildByName('横目标').text) == 1 then 
                                 if ui.getChildByName('tab').getChildByName(位置[6]).visible == false and ui.getChildByName('tab').getChildByName(位置[9]).visible == false and ui.getChildByName('tab').getChildByName(位置[10]).visible == false then 
                                     ui.getChildByName('横目标').text = 2
@@ -1749,7 +1759,7 @@ t['战斗系统_事件响应'] = function()
                                     int_动画位置 = 12
                                 end
                             end  
-                        elseif  o_skill.范围 == 4  and G.misc().范围无双 == 0  then 
+                        elseif  o_skill.范围 == 4  and G.misc().范围无双 == 0  and int_剑神无双 == 0 then 
                             if  tonumber(ui.getChildByName('纵目标').text) == 1 then 
                                 if ui.getChildByName('tab').getChildByName(位置[7]).visible == false and ui.getChildByName('tab').getChildByName(位置[9]).visible == false then
                                     if ui.getChildByName('tab').getChildByName(位置[6]).visible == false and ui.getChildByName('tab').getChildByName(位置[11]).visible == false then
@@ -1787,13 +1797,13 @@ t['战斗系统_事件响应'] = function()
                                     int_动画位置 = 8 
                                 end
                             end
-                        elseif o_skill.范围 == 5 or  G.misc().范围无双 == 1  then
+                        elseif o_skill.范围 == 5 or  G.misc().范围无双 == 1 or int_剑神无双 == 1 then
                             int_动画位置 = 12
                         end
-                        if  o_skill.范围 == 2  and G.misc().范围无双 == 0  then  
+                        if  o_skill.范围 == 2  and G.misc().范围无双 == 0  and int_剑神无双 == 0 then  
                             local int_t = tonumber(ui.getChildByName('单目标').text) 
                             ui.getChildByName('hurt').getChildByName(位置[int_t]).getChildByName('减生命').visible = true      
-                        elseif  o_skill.范围 == 3  and G.misc().范围无双 == 0  then  
+                        elseif  o_skill.范围 == 3  and G.misc().范围无双 == 0  and int_剑神无双 == 0 then 
                             if  tonumber(ui.getChildByName('横目标').text) == 1 then  
                                 if o_battle[位置[6]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[6]] ).生命 > 0  then
@@ -1827,7 +1837,7 @@ t['战斗系统_事件响应'] = function()
                                     end
                                 end 
                             end 	
-                        elseif  o_skill.范围 == 5  or G.misc().范围无双 == 1  then 
+                        elseif  o_skill.范围 == 5  or G.misc().范围无双 == 1  or int_剑神无双 == 1 then  
                             for i = 6,11 do
                                 if o_battle[位置[i]] > 0 then
                                     if  	G.QueryName(o_role + o_battle[位置[i] ]).生命 > 0 then 
@@ -1835,7 +1845,7 @@ t['战斗系统_事件响应'] = function()
                                     end
                                 end 
                             end 	
-                        elseif  o_skill.范围 == 4  and G.misc().范围无双 == 0  then 
+                        elseif  o_skill.范围 == 4  and G.misc().范围无双 == 0  and int_剑神无双 == 0 then 
                             if  tonumber(ui.getChildByName('纵目标').text) == 1 then 
                                 if o_battle[位置[7]] > 0 then
                                     if  G.QueryName(o_role + o_battle[位置[7]] ).生命 > 0  then
@@ -3131,9 +3141,24 @@ t['magic_power1'] = function(int_id,int_no)
                         string_字符串_4 = string_字符串_4..'.'..'斩杀'
                     end 
                     hurt = G.call('get_role',int_id,15)
-                    G.call('add_point',44,math.floor(G.call('get_point',44)/2))
+                    G.call('add_point',44,math.floor(G.call('get_point',44)/10))
                 end 
             end 
+            if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,33)) then  --剑神无双效果
+                if  ( G.call('get_role',int_id,1) <=6000 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)/10) then 
+                    if string_字符串_1 == '' then 
+                        string_字符串_1 = string_字符串_1..'剑神无双'
+                    else
+                        string_字符串_1 = string_字符串_1..'.'..'剑神无双'
+                    end 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'剑神斩杀'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'剑神斩杀'
+                    end 
+                    hurt = G.call('get_role',int_id,15)
+                end  
+            end
             if  (math.random(100) < 50 or (G.call('get_magic',190) > 0 and G.call('get_point',18) <= 50   )) and (o_skill.附加效果 == 12   or G.call('通用_取得人物特效',0,32)) then --绝杀效果
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'绝杀'
@@ -3782,6 +3807,21 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     hurt = G.call('get_role',int_enemy,15)
                     G.call('set_role',int_id,15,math.floor(G.call('get_role',int_id,15)/2) )
                 end     
+            end
+            if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
+                if  ( G.call('get_role',int_enemy,1) <=6000 or G.call('get_role',int_enemy,15)  < G.call('get_role',int_enemy,1)/10) then 
+                    if string_字符串_1 == '' then 
+                        string_字符串_1 = string_字符串_1..'剑神无双'
+                    else
+                        string_字符串_1 = string_字符串_1..'.'..'剑神无双'
+                    end 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'剑神斩杀'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'剑神斩杀'
+                    end 
+                    hurt = G.call('get_role',int_enemy,15)
+                end  
             end
             for i = 1, 4 do --判断队友携带武器和武功配合
                 if  o_enemy[需求道具[i]]  == 0x100b004b then 
@@ -4447,6 +4487,21 @@ t['magic_power3'] = function(int_id,int_no)
                     hurt = G.call('get_point',44)
                     G.call('set_role',int_id,15,math.floor(G.call('get_role',int_id,15)/2) )
                 end 
+            end
+            if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
+                if  ( G.call('get_point',217) <=6000 or G.call('get_point',44)  < G.call('get_point',217)/10) then 
+                    if string_字符串_1 == '' then 
+                        string_字符串_1 = string_字符串_1..'剑神无双'
+                    else
+                        string_字符串_1 = string_字符串_1..'.'..'剑神无双'
+                    end 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'剑神斩杀'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'剑神斩杀'
+                    end 
+                    hurt = G.call('get_point',44)
+                end  
             end
             if  (math.random(100) < 50 or G.call('get_npcskill',int_id,0x100500bd) > 0) and (o_skill.附加效果 == 12   or G.call('通用_取得人物特效',int_id,32)) then --绝杀效果
                 if string_字符串_4 == '' then 

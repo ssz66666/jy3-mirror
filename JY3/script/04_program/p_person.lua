@@ -1459,6 +1459,7 @@ t['事件_随机切磋']=function()
     end 
     table.insert(skill,31 )
     table.insert(skill,32 )
+    table.insert(skill,33 )
     local team_skill = {0,0,0,0,0}
     -- local team_skill_2 = {0,0,0,0,0}
     local skill_mod = {0,0,0,0,0} 
@@ -1587,6 +1588,7 @@ t['副本_通天塔']=function(int_模式)
     end 
     table.insert(skill_use,31 )
     table.insert(skill_use,32 )
+    table.insert(skill_use,33 )
     while true do 
        if int_通天塔判定 == 0 then 
             int_通天塔层数 = -G.misc().通天塔层数 - 7

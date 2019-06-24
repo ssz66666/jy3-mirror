@@ -366,19 +366,24 @@ t['回答问题']=function()
         --print(G.QueryName(0x10160000 +G.call('get_point',143)).难度,G.QueryName(0x10160000 +4).难度)
         local 印记 = {}
         local int_印记数量 = 0
+        local int_完美 = 0
+        local o_achieve_xmyj = G.QueryName(0x10170017)
         for i = 1,14 do
             if G.call('通用_拥有印记',i) then 
                 int_印记数量 = int_印记数量 + 1
             else
                 table.insert(印记, i)
             end 
+            if o_achieve_xmyj.进度列表[i].完美 == 1 then 
+                int_完美 = int_完美 + 1
+            end
         end
-        if int_印记数量 < 14 and G.misc().重生 == 0 then 
-            G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记
-        elseif int_印记数量 == 14 and G.misc().重生 == 0 then 
+        if int_完美 == 14 then 
             G.call('add_equip',0x10180028 + 15,1)
         end
-       
+        if int_印记数量 < 14 and G.misc().重生 == 0 then 
+            G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记   
+        end
     end 
     --根据难度进行超过上限属性调节
     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度

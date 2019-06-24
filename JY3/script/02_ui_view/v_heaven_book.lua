@@ -396,6 +396,30 @@ tp = tc
 			--end
 		tp = tp.parent
 		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'book_15'
+		tc.left = 10.000
+		tc.right = 90.000
+		tc.bottom = -244.000
+		tc.top = -156.000
+		tc.mouseEnabled = true
+		tc.visible = false
+		tc.img = 0x560f100e
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '完成'
+			tc.left = 35.000
+			tc.right = 85.000
+			tc.bottom = -35.000
+			tc.top = 15.000
+			tc.img = 0x56160073
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
 	tp = tp.parent
 	--end
 	tc = G.Quad()

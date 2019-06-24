@@ -229,7 +229,7 @@ function t:click(tar)
             G.misc().序号 = i
             self.obj.getChildByName('secret').visible = true
             if i > 31 then 
-                self.obj.getChildByName('secret').getChildByName('说明').text = '说明：输入被动技能代码，代码为(1~21)数字，输入完成按确定'
+                self.obj.getChildByName('secret').getChildByName('说明').text = '说明：输入被动技能代码，代码为(1~33)数字，输入完成按确定'
             elseif i == 31 then 
                 self.obj.getChildByName('secret').getChildByName('说明').text = '说明：输入大于0的整数按确定'
             else
@@ -555,8 +555,8 @@ function t:click(tar)
                 self.obj.getChildByName('secret').getChildByName('文本').text = ''
                 self.obj.getChildByName('secret').visible = false 
             elseif  G.misc().序号 > 31 then 
-                if  n == nil or n <= 0  or n > 21 then 
-                    G.call('notice1','请输入(1~21)整数数字') 
+                if  n == nil or n <= 0  or n > 33 then 
+                    G.call('notice1','请输入(1~33)整数数字') 
                 else 
                     G.QueryName(0x10030001)[tostring(G.misc().序号-31+110)] = n   
                     self.obj.getChildByName('secret').getChildByName('文本').text = ''
