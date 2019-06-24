@@ -213,6 +213,19 @@ function t:显示更新(int_队友序号)
         self.属性.getChildByName('内功').text = G.call('get_role',int_队员编号,6)
         self.属性.getChildByName('攻击').text = tostring(o_role_人物[tostring(7)]) 
         self.属性.getChildByName('速度').text = G.call('get_role',int_队员编号,8)
+        local str = {'拆招','搏击','闪躲','内功','攻击','速度'}
+        for i = 1,#str do
+            if  G.call('get_role',int_队员编号,2+i) == G.call('get_role',int_队员编号,902+i) then 
+                self.属性.getChildByName(str[i]).style = 3
+            else
+                self.属性.getChildByName(str[i]).style = 10
+            end
+        end
+        if G.call('get_role',int_队员编号,9) == 100 then 
+            self.属性.getChildByName('好感度').style = 3
+        else
+            self.属性.getChildByName('好感度').style = 10
+        end
         self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
         local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气','绝杀'}
         for i = 1,5 do 
