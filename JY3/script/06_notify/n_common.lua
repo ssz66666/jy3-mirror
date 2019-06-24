@@ -29,5 +29,6 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
     ui.getChildByName('图表').getChildByName('文字').text = o_skill.名称
     --G.trig_event('战斗飘字')
     G.call('通用_战斗飘字',int_位置,int_范围)
+    c:刷新记事本()
     ui.getChildByName('图表').visible = false
 end

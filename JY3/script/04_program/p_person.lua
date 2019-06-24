@@ -2081,12 +2081,9 @@ t['通用_锻造']=function()
                 G.call("talk",'？？？？',390,'   见证神奇的时刻到了，闭上眼睛！',1,1)
                 G.call('dark')
                 G.wait_time(500)
-                if int_宝石数量 == G.call('get_item',340) then
-                    G.call('通用_强退游戏',403) 
-                end
                 G.call('通用_抽礼物',9,1)
                 G.wait_time(500)
-                G.call('通用_存档',G.call('get_point',143)) 
+                G.call('地图系统_防修改监控') 
                 local int_宝石数量 = G.call('get_item',340)
                 G.call("talk",'？？？？',390,'   你现在拥有'..int_宝石数量..'颗【神奇宝石】，有什么需要？',1,1) 
             else
@@ -2105,16 +2102,12 @@ t['通用_转换装备']=function(i_equip)
     local o_equip = G.QueryName(i_equip)
     G.call("talk",'？？？？',390,'   需要【神奇宝石】'..(o_equip.转换次数*5)..'个,转换装备只会改变当前装备的品质！',1,1)  
     if G.call('get_item',340) >= o_equip.转换次数*5 then
-        local int_宝石数量 = G.call('get_item',340)
         G.call('add_item',340,-o_equip.转换次数*5)
         G.call("talk",'？？？？',390,'   见证神奇的时刻到了，闭上眼睛！',1,1)
         G.call('dark')
         G.wait_time(500)
-        if int_宝石数量 == G.call('get_item',340) then
-            G.call('通用_强退游戏',404) 
-        end
         G.call('功能_物品转换',i_equip,1)
-        G.call('通用_存档',G.call('get_point',143)) 
+        G.call('地图系统_防修改监控') 
         local ui 
         if not G.getUI('v_equip') then 
             return

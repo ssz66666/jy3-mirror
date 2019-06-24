@@ -721,17 +721,7 @@ t['get_drop']=function()  --取得战斗掉落
             end     
         end     
     end     
-end  
-t['记录_记事本']=function()
-    local ui
-   -- if not G.getUI('v_notebook') then return end
-    ui =  G.getUI('v_battle')
-    local c = ui.c_battle
-    while true do
-        G.wait_time(1000)
-        ui.c_battle:刷新记事本()
-    end
-end  
+end   
 t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy2,int_enemy3,int_enemy4,int_enemy5,int_enemy6,int_狙杀,int_音乐,int_用药) --呼出战斗
     local enemy = {'enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
     local o_battle = G.QueryName(0x10150001)
@@ -834,7 +824,6 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     G.call('line_off')
     G.addUI('v_battle')
     G.start_program('集气')
-    G.start_program('记录_记事本')
     G.start_program('战斗对话1')
     G.start_program('战斗对话2')
     G.start_program('异常显示')
@@ -843,7 +832,6 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     G.start_program('战斗系统_胜负监控')
     G.wait1('战斗结束')
     G.remove_program('集气',1)
-    G.remove_program('记录_记事本',1)
     G.remove_program('战斗对话1',1)
     G.remove_program('战斗对话2',1)
     G.remove_program('异常显示',1)
@@ -1179,7 +1167,7 @@ t['mapon']=function() --开启主地图UI显示
     local int_music = G.QueryName(G.QueryName(0x10030001)[tostring(140)]).音乐
     local music
     G.Stop(1)
-    if int_music ~= nil then 
+    if int_music  then 
         if int_music > 0 and int_music < 99 then 
             music = 0x49010000 + int_music
         elseif int_music == 0 then 
@@ -1187,10 +1175,8 @@ t['mapon']=function() --开启主地图UI显示
         elseif int_music == 99 then 
             music = 0x49010000 + math.random(17,21)    
         end 
-    end     
-    if music ~= nil  then 
         G.Play(music, 1,false,1)
-    end      
+    end          
 end
 t['mapoff']=function() --关闭主地图UI显示
     local ui = G.getUI('v_citymap_system_map');
