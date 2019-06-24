@@ -2066,7 +2066,7 @@ t['指令_备份基础属性']=function() --
         end
     end
     G.call('set_newpoint',4,-G.call('get_point',4)-10) 
-    for i = 111,114 do 
+    for i = 111,115 do 
         G.call('set_newpoint',i,-G.call('get_point',i)-10) 
     end
     for i = 120,124 do 
