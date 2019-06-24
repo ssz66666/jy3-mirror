@@ -1068,6 +1068,7 @@ t['聚贤庄-华山之巅']=function()
         G.call('goto_map',4)
         G.call('all_over')
     else
+        G.call('goto_map',17)
         if G.call('get_point',15) > 0 then 
             G.call("talk",'',82,'   姓'..str1..'的小子，这几年你的出现可把我们这群邪魔外道给害苦了。今日我们大家要一鼓作气把你碎尸万段，以消昔日之恨！',2,1)
             G.call("talk",'',104,'   我们四大恶人先来会会这小子！',2,1)
