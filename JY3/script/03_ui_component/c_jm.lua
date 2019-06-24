@@ -49,7 +49,11 @@ function t:刷新显示()
             self.经脉.getChildByName(tostring(i)).getChildByName(tostring(n)).state = 'd'
             self.经脉.getChildByName(tostring(i)).getChildByName(tostring(n)).mouseEnabled = false
         end 
-
+        if G.QueryName(o_jm+i).是否打通 then
+            self.按钮.getChildByName(tostring(i)).getChildByName('打通').visible = true
+        else
+            self.按钮.getChildByName(tostring(i)).getChildByName('打通').visible = false
+        end
     end     
 end 
 function t:rollOver(tar)
@@ -144,6 +148,6 @@ function t:click(tar)
     local ui = G.getUI('v_nature')
     local c = ui.c_nature
     c:刷新属性()
-    self:刷新显示()
+   -- self:刷新显示()
 end    
 return t

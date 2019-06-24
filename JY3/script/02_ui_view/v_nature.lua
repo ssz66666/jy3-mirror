@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
+local c_button = require 'c_button'
 local c_jm = require 'c_jm'
 local c_nature = require 'c_nature'
-local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -107,208 +107,240 @@ tp = tc
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '1'
-				tc.left = -95.000
-				tc.right = -55.000
+				tc.left = -115.000
+				tc.right = -35.000
 				tc.bottom = -18.000
 				tc.top = 2.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '2'
-				tc.left = 2.000
-				tc.right = 42.000
+				tc.left = -18.000
+				tc.right = 62.000
 				tc.bottom = -18.000
 				tc.top = 2.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '3'
-				tc.left = -95.000
-				tc.right = -55.000
+				tc.left = -115.000
+				tc.right = -35.000
 				tc.bottom = -37.000
 				tc.top = -17.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '4'
-				tc.left = 2.000
-				tc.right = 42.000
+				tc.left = -18.000
+				tc.right = 62.000
 				tc.bottom = -37.000
 				tc.top = -17.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '5'
-				tc.left = -95.000
-				tc.right = -55.000
+				tc.left = -115.000
+				tc.right = -35.000
 				tc.bottom = -56.000
 				tc.top = -36.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '6'
-				tc.left = 2.000
-				tc.right = 42.000
+				tc.left = -18.000
+				tc.right = 62.000
 				tc.bottom = -56.000
 				tc.top = -36.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '7'
-				tc.left = -95.000
-				tc.right = -55.000
+				tc.left = -115.000
+				tc.right = -35.000
 				tc.bottom = -73.000
 				tc.top = -53.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '8'
-				tc.left = 2.000
-				tc.right = 42.000
+				tc.left = -18.000
+				tc.right = 62.000
 				tc.bottom = -73.000
 				tc.top = -53.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '9'
-				tc.left = -95.000
-				tc.right = -55.000
+				tc.left = -115.000
+				tc.right = -35.000
 				tc.bottom = -90.000
 				tc.top = -70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '10'
-				tc.left = 2.000
-				tc.right = 42.000
+				tc.left = -18.000
+				tc.right = 62.000
 				tc.bottom = -90.000
 				tc.top = -70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '11'
-				tc.left = -95.000
-				tc.right = -55.000
+				tc.left = -115.000
+				tc.right = -35.000
 				tc.bottom = -108.000
 				tc.top = -88.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '12'
-				tc.left = 2.000
-				tc.right = 42.000
+				tc.left = -18.000
+				tc.right = 62.000
 				tc.bottom = -108.000
 				tc.top = -88.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '13'
-				tc.left = -95.000
-				tc.right = -55.000
+				tc.left = -115.000
+				tc.right = -35.000
 				tc.bottom = -126.000
 				tc.top = -106.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '14'
-				tc.left = 2.000
-				tc.right = 42.000
+				tc.left = -18.000
+				tc.right = 62.000
 				tc.bottom = -126.000
 				tc.top = -106.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '15'
-				tc.left = -95.000
-				tc.right = -55.000
+				tc.left = -115.000
+				tc.right = -35.000
 				tc.bottom = -142.000
 				tc.top = -122.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '16'
-				tc.left = 2.000
-				tc.right = 42.000
+				tc.left = -18.000
+				tc.right = 62.000
 				tc.bottom = -142.000
 				tc.top = -122.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610f0000
-				tc.style = 2
+				tc.font = 0x611e0000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
@@ -586,162 +618,174 @@ tp = tc
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '1'
-				tc.left = -50.500
-				tc.right = -25.500
-				tc.bottom = -109.500
-				tc.top = -94.500
+				tc.left = -63.000
+				tc.right = -13.000
+				tc.bottom = -107.500
+				tc.top = -92.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.align = 3
-				tc.style = 2
+				tc.font = 0x61180000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '2'
-				tc.left = 30.500
-				tc.right = 55.500
-				tc.bottom = -109.500
-				tc.top = -94.500
+				tc.left = 18.000
+				tc.right = 68.000
+				tc.bottom = -107.500
+				tc.top = -92.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.align = 3
-				tc.style = 2
+				tc.font = 0x61180000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '3'
-				tc.left = -50.500
-				tc.right = -25.500
-				tc.bottom = -124.500
-				tc.top = -109.500
+				tc.left = -63.000
+				tc.right = -13.000
+				tc.bottom = -122.500
+				tc.top = -107.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.align = 3
-				tc.style = 2
+				tc.font = 0x61180000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '4'
-				tc.left = 30.500
-				tc.right = 55.500
-				tc.bottom = -124.500
-				tc.top = -109.500
+				tc.left = 18.000
+				tc.right = 68.000
+				tc.bottom = -122.500
+				tc.top = -107.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.align = 3
-				tc.style = 2
+				tc.font = 0x61180000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '5'
-				tc.left = -50.500
-				tc.right = -25.500
-				tc.bottom = -139.500
-				tc.top = -124.500
+				tc.left = -63.000
+				tc.right = -13.000
+				tc.bottom = -137.500
+				tc.top = -122.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.align = 3
-				tc.style = 2
+				tc.font = 0x61180000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '6'
-				tc.left = 30.500
-				tc.right = 55.500
-				tc.bottom = -139.500
-				tc.top = -124.500
+				tc.left = 18.000
+				tc.right = 68.000
+				tc.bottom = -137.500
+				tc.top = -122.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.align = 3
-				tc.style = 2
+				tc.font = 0x61180000
+				tc.style = 10
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '7'
-				tc.left = -26.500
-				tc.right = -1.500
+				tc.left = -39.000
+				tc.right = 11.000
 				tc.bottom = -107.500
 				tc.top = -92.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.style = 2
+				tc.font = 0x61180000
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '8'
-				tc.left = 54.500
-				tc.right = 79.500
+				tc.left = 42.000
+				tc.right = 92.000
 				tc.bottom = -107.500
 				tc.top = -92.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.style = 2
+				tc.font = 0x61180000
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '10'
-				tc.left = -26.500
-				tc.right = -1.500
+				tc.left = -39.000
+				tc.right = 11.000
 				tc.bottom = -122.500
 				tc.top = -107.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.style = 2
+				tc.font = 0x61180000
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '11'
-				tc.left = 54.500
-				tc.right = 79.500
+				tc.left = 42.000
+				tc.right = 92.000
 				tc.bottom = -122.500
 				tc.top = -107.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.style = 2
+				tc.font = 0x61180000
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '9'
-				tc.left = -26.500
-				tc.right = -1.500
+				tc.left = -39.000
+				tc.right = 11.000
 				tc.bottom = -137.500
 				tc.top = -122.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.style = 2
+				tc.font = 0x61180000
 				tp = tc
 				tp = tp.parent
 				--end
 				tc = G.TextQuad()
 				tp.addChild(tc)
 				tc.name = '12'
-				tc.left = 54.500
-				tc.right = 79.500
+				tc.left = 42.000
+				tc.right = 92.000
 				tc.bottom = -137.500
 				tc.top = -122.500
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
 				tc.text = '0'
-				tc.font = 0x610c0000
-				tc.style = 2
+				tc.font = 0x61180000
 				tp = tc
 				tp = tp.parent
 				--end
@@ -1723,6 +1767,17 @@ tp = tc
 						--end
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '打通'
+					tc.left = -20.000
+					tc.right = 20.000
+					tc.bottom = -12.500
+					tc.top = 12.500
+					tc.img = 0x33010029
+					tp = tc
+					tp = tp.parent
+					--end
 				com = tp.c_button
 				com['btn_class'] =0.000
 				com['customsize'] =true
@@ -1762,6 +1817,17 @@ tp = tc
 						tp = tc
 						tp = tp.parent
 						--end
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '打通'
+					tc.left = -20.000
+					tc.right = 20.000
+					tc.bottom = -12.500
+					tc.top = 12.500
+					tc.img = 0x33010029
+					tp = tc
 					tp = tp.parent
 					--end
 				com = tp.c_button
@@ -1804,6 +1870,17 @@ tp = tc
 						--end
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '打通'
+					tc.left = -20.000
+					tc.right = 20.000
+					tc.bottom = -12.500
+					tc.top = 12.500
+					tc.img = 0x33010029
+					tp = tc
+					tp = tp.parent
+					--end
 				com = tp.c_button
 				com['customsize'] =true
 				com['img_hover'] =1443495957.000
@@ -1840,6 +1917,17 @@ tp = tc
 						tp = tc
 						tp = tp.parent
 						--end
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '打通'
+					tc.left = -20.000
+					tc.right = 20.000
+					tc.bottom = -12.500
+					tc.top = 12.500
+					tc.img = 0x33010029
+					tp = tc
 					tp = tp.parent
 					--end
 				com = tp.c_button
@@ -1880,6 +1968,17 @@ tp = tc
 						--end
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '打通'
+					tc.left = -20.000
+					tc.right = 20.000
+					tc.bottom = -12.500
+					tc.top = 12.500
+					tc.img = 0x33010029
+					tp = tc
+					tp = tp.parent
+					--end
 				com = tp.c_button
 				com['customsize'] =true
 				com['img_hover'] =1443495957.000
@@ -1916,6 +2015,17 @@ tp = tc
 						tp = tc
 						tp = tp.parent
 						--end
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '打通'
+					tc.left = -20.000
+					tc.right = 20.000
+					tc.bottom = -12.500
+					tc.top = 12.500
+					tc.img = 0x33010029
+					tp = tc
 					tp = tp.parent
 					--end
 				com = tp.c_button
@@ -1956,6 +2066,17 @@ tp = tc
 						--end
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '打通'
+					tc.left = -20.000
+					tc.right = 20.000
+					tc.bottom = -12.500
+					tc.top = 12.500
+					tc.img = 0x33010029
+					tp = tc
+					tp = tp.parent
+					--end
 				com = tp.c_button
 				com['customsize'] =true
 				com['img_hover'] =1443495957.000
@@ -1994,6 +2115,17 @@ tp = tc
 						--end
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '打通'
+					tc.left = -20.000
+					tc.right = 20.000
+					tc.bottom = -12.500
+					tc.top = 12.500
+					tc.img = 0x33010029
+					tp = tc
+					tp = tp.parent
+					--end
 				com = tp.c_button
 				com['customsize'] =true
 				com['img_hover'] =1443495957.000
@@ -2030,6 +2162,17 @@ tp = tc
 						tp = tc
 						tp = tp.parent
 						--end
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '打通'
+					tc.left = -20.000
+					tc.right = 20.000
+					tc.bottom = -24.000
+					tc.top = 24.000
+					tc.img = 0x33010029
+					tp = tc
 					tp = tp.parent
 					--end
 				com = tp.c_button

@@ -51,6 +51,11 @@ function t:start()
     self.基础属性2.getChildByName('名望').text = G.QueryName(0x10030001)[tostring(14)]
     self.基础属性2.getChildByName('侠义').text = G.QueryName(0x10030001)[tostring(15)]
     for i = 1,6 do 
+        if G.call('get_point',15+i) >= 100 then 
+            self.基础属性2.getChildByName('基础属性').getChildByName(tostring(i)).style = 3
+        else
+            self.基础属性2.getChildByName('基础属性').getChildByName(tostring(i)).style = 10
+        end
         self.基础属性2.getChildByName('基础属性').getChildByName(tostring(i)).text =
         G.QueryName(0x10030001)[tostring(i + 15)]
     end
@@ -93,8 +98,32 @@ function t:刷新属性()
     local mp = G.QueryName(0x10030001)[tostring(46)]
     local maxhp = G.QueryName(0x10030001)[tostring(217)]
     local maxmp = G.QueryName(0x10030001)[tostring(218)]
-    self.基础属性1.getChildByName('生命值').text = tostring(hp)..'/'..tostring(maxhp) 
-    self.基础属性1.getChildByName('内力值').text = tostring(mp)..'/'..tostring(maxmp) 
+    local str_hp = ''
+    local str_mp = ''
+    local str_maxhp = ''
+    local str_maxmp = ''
+    if hp < maxhp/10 then
+        str_hp = '[03]'..hp
+    else
+        str_hp = '[06]'..hp
+    end
+    if mp < maxmp/10 then
+        str_mp = '[07]'..mp
+    else
+        str_mp = '[0a]'..mp
+    end
+    if G.call('get_point',45) >= 50000 then
+        str_maxhp = '[08]'..maxhp
+    else 
+        str_maxhp = '[0a]'..maxhp
+    end
+    if G.call('get_point',47) >= 50000 then
+        str_maxmp = '[08]'..maxmp
+    else
+        str_maxmp = '[07]'..maxmp
+    end
+    self.基础属性1.getChildByName('生命值').text = str_hp..'[01]/'..str_maxhp 
+    self.基础属性1.getChildByName('内力值').text = str_mp..'[01]/'..str_maxmp 
     self.基础属性1.getChildByName('等级').text = G.QueryName(0x10030001)[tostring(4)]..' 级' 
     if G.call('get_point',4) < 100 then
         self.基础属性1.getChildByName('当前经验').text = G.QueryName(0x10030001)[tostring(3)]..'/'
@@ -109,6 +138,20 @@ function t:刷新属性()
     end     
     self.基础属性1.getChildByName('修为点').text = G.QueryName(0x10030001)[tostring(5)] 
     for i = 1,16 do
+        local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
+        local int_点数 = 100
+        if int_难度 == 1 then 
+            int_点数 = 100
+        elseif int_难度 == 2 then 
+            int_点数 = 120
+        elseif int_难度 == 3 then 
+            int_点数 = 150
+        end
+        if G.call('get_point',21+i) >= int_点数 then 
+            self.基础属性1.getChildByName('基础属性').getChildByName(tostring(i)).style = 3
+        else
+            self.基础属性1.getChildByName('基础属性').getChildByName(tostring(i)).style = 10
+        end
         self.基础属性1.getChildByName('基础属性').getChildByName(tostring(i)).text = G.QueryName(0x10030001)[tostring(i + 200)]
     end
     for i = 1,4 do
