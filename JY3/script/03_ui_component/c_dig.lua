@@ -17,7 +17,7 @@ function t:start()
     self.obj.getChildByName('力道').width = 137*n/100
     self.obj.getChildByName('气劲').width = 137*m/100
     self.挖矿 = 0
-    self.挖矿值 = -3500
+    self.挖矿值 = -4000
 end
 function t:click(tar)
     if tar == self.obj.getChildByName('开始')  then 
