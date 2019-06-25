@@ -2995,6 +2995,7 @@ t['通用_还原装备']=function()
     for i = 1,3 do
         if o_body[装备[i]] then
             local o_equip = G.QueryName(o_body[装备[i]])
+            local int_品质 = o_equip.品质 - 1
             if o_equip.品质转换 == 1 then 
                 o_equip.品质转换 = 2
                 local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
@@ -3008,8 +3009,8 @@ t['通用_还原装备']=function()
                             o_equip[属性[2]] = o_equip_mod[属性[2]] + int_递增属性*250
                         end
                         for p = 3,10 do
-                            if o_equip[属性[p]] > o_equip_mod[属性[p]] + int_递增属性 then
-                                o_equip[属性[p]] = o_equip_mod[属性[p]] + int_递增属性
+                            if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
+                                o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) + int_递增属性
                             end 
                         end
                         break	
@@ -3029,14 +3030,12 @@ t['通用_还原装备']=function()
                     break 
                 end
                 local o_equip = G.QueryName(o_store.装备[i].代码)
+                local int_品质 = o_equip.品质 - 1
                 if o_store.装备[i].数量 > 0 and o_equip.类型 < 4 and o_equip.品质转换 == 1 then
                     o_equip.品质转换 = 2
                     local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
                     for j = 1,40 do 
                         local o_equip_mod = G.QueryName(0x10180000+j)
-                        if j == 5 then
-                            print(o_equip_mod.名称,string_cut) 
-                        end
                         if o_equip_mod.名称 == string_cut then 
                             if o_equip[属性[1]] > o_equip_mod[属性[1]] + int_递增属性*500 then
                                 o_equip[属性[1]] = o_equip_mod[属性[1]] + int_递增属性*500
@@ -3045,8 +3044,8 @@ t['通用_还原装备']=function()
                                 o_equip[属性[2]] = o_equip_mod[属性[2]] + int_递增属性*250
                             end
                             for p = 3,10 do
-                                if o_equip[属性[p]] > o_equip_mod[属性[p]] + int_递增属性 then
-                                    o_equip[属性[p]] = o_equip_mod[属性[p]] + int_递增属性
+                                if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
+                                    o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) + int_递增属性
                                 end 
                             end
                             break	
