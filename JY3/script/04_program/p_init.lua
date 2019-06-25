@@ -195,7 +195,7 @@ t['地图系统_防修改监控'] = function()
 	if int_检测 == 9 then
 		G.call('指令_备份基础属性')
 	end
-	if G.call('get_newpoint',115) == 0 and G.call('get_point',115) > 0 then 
+	if G.call('get_newpoint',115) == 0  then 
 		G.call('set_newpoint',115,-10-G.call('get_point',115)) 
 	end
 	for i = 111,115 do
