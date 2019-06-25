@@ -37,7 +37,7 @@ t['战斗系统_胜负监控'] = function()
             local int_role = o_battle[位置[6]]
             if G.call('get_role',int_role,15) ~= math.abs(G.call('get_newpoint',201) + 10 )  then 
                 G.call('通用_强退游戏',999) 
-            end.
+            end
         end
         c:战场显示()
         if G.call('get_result') == 1   then  
