@@ -3179,11 +3179,13 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
 	if o_equip_物品.套装 > 0 then 
 		o_equip_物品.品质 = 3
     end
-    local o_equip
+    local o_equip = {}
+    local o_equip_mod = {}
     local result = false
 	for i = 1,40 do 
 		o_equip = G.QueryName(0x10180000+i)
         if o_equip_物品.名称 == o_equip.名称  then 
+            o_equip_mod = G.QueryName(0x10180000+i)
             result = true
             if o_equip_物品.套装 > 0 then
                 o_equip_物品.名称 = o_equip.名称
@@ -3191,10 +3193,17 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
                 o_equip_物品.名称 =  str_品质[o_equip_物品.品质]..o_equip.名称
             end
             break
-		end	
+        end	
     end	
     if result == false then
         local string_cut = G.utf8sub(o_equip_物品.名称,4,G.getStrLen(o_equip_物品.名称) )
+        for i = 1,40 do 
+            o_equip = G.QueryName(0x10180000+i)
+            if o_equip.名称 == string_cut then
+                o_equip_mod = G.QueryName(0x10180000+i)
+                break 
+            end
+        end
         o_equip_物品.名称 = str_品质[o_equip_物品.品质]..string_cut
     end
 	if o_equip_物品.转换次数 == nil then 
@@ -3238,80 +3247,41 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
         end
 
     end
-    if result == false then
-        for i = 1,#str do 
-            if o_equip_物品[str[i]] ~= 0 then 
-                if o_equip_物品.品质 == 1 then 
-                    if o_equip[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random(math.floor(o_equip_物品[str[i]] * 0.5+0.5) ,int_递增属性 +math.floor(o_equip_物品[str[i]] * 0.7+0.5))
-                    elseif o_equip_物品[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip_物品[str[i]] * 0.7-0.5),int_递增属性 +math.floor(o_equip_物品[str[i]] * 0.5-0.5))
-                    end
-                elseif o_equip_物品.品质 == 2 then 
-                    if o_equip_物品[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip_物品[str[i]] * 0.7+0.5),int_递增属性 +math.floor(o_equip_物品[str[i]] * 0.9+0.5))
-                    elseif o_equip_物品[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random(math.floor(o_equip_物品[str[i]] * 0.9-0.5),int_递增属性 +math.floor(o_equip_物品[str[i]] * 0.7-0.5))
-                    end
-                elseif o_equip_物品.品质 == 3 then 
-                    if o_equip_物品[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip_物品[str[i]] * 0.9+0.5),int_递增属性 +math.floor(o_equip_物品[str[i]] * 1.1+0.5))
-                    elseif o_equip_物品[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random(math.floor(o_equip_物品[str[i]] * 1.1-0.5),int_递增属性 +math.floor(o_equip_物品[str[i]] * 0.9-0.5))
-                    end
-                elseif o_equip_物品.品质 == 4 then 
-                    if o_equip_物品[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random(math.floor(o_equip_物品[str[i]] * 1.1+0.5),int_递增属性 +math.floor(o_equip_物品[str[i]] * 1.3+0.5))
-                    elseif o_equip_物品[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip_物品[str[i]] * 1.3-0.5),int_递增属性 +math.floor(o_equip_物品[str[i]] * 1.1-0.5))
-                    end
-                elseif o_equip_物品.品质 == 5 then 
-                    if o_equip_物品[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random(math.floor(o_equip_物品[str[i]] * 1.3+0.5),int_递增属性 +math.floor(o_equip_物品[str[i]] * 1.5+0.5))
-                    elseif o_equip_物品[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip_物品[str[i]] * 1.5-0.5),int_递增属性 +math.floor(o_equip_物品[str[i]] * 1.3-0.5))
-                    end
+    for i = 1,#str do 
+        if o_equip_物品[str[i]] ~= 0 then 
+            if o_equip_物品.品质 == 1 then 
+                if o_equip[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 0.5+0.5) ,int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.7+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 0.7-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.5-0.5))
+                end
+            elseif o_equip_物品.品质 == 2 then 
+                if o_equip_物品[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 0.7+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.9+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 0.9-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.7-0.5))
+                end
+            elseif o_equip_物品.品质 == 3 then 
+                if o_equip_物品[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 0.9+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.1+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 1.1-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.9-0.5))
+                end
+            elseif o_equip_物品.品质 == 4 then 
+                if o_equip_物品[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 1.1+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.3+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 1.3-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.1-0.5))
+                end
+            elseif o_equip_物品.品质 == 5 then 
+                if o_equip_物品[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 1.3+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.5+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 1.5-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.3-0.5))
                 end
             end
-        end	
-    else
-        for i = 1,#str do 
-            if o_equip[str[i]] ~= 0 then 
-                if o_equip_物品.品质 == 1 then 
-                    if o_equip[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip[str[i]] * 0.5+0.5) ,int_递增属性 +math.floor(o_equip[str[i]] * 0.7+0.5))
-                    elseif o_equip[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random(math.floor(o_equip[str[i]] * 0.7-0.5),int_递增属性 +math.floor(o_equip[str[i]] * 0.5-0.5))
-                    end
-                elseif o_equip_物品.品质 == 2 then 
-                    if o_equip[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random(math.floor(o_equip[str[i]] * 0.7+0.5),int_递增属性 +math.floor(o_equip[str[i]] * 0.9+0.5))
-                    elseif o_equip[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip[str[i]] * 0.9-0.5),int_递增属性 +math.floor(o_equip[str[i]] * 0.7-0.5))
-                    end
-                elseif o_equip_物品.品质 == 3 then 
-                    if o_equip[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip[str[i]] * 0.9+0.5),int_递增属性 +math.floor(o_equip[str[i]] * 1.1+0.5))
-                    elseif o_equip[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip[str[i]] * 1.1-0.5),int_递增属性 +math.floor(o_equip[str[i]] * 0.9-0.5))
-                    end
-                elseif o_equip_物品.品质 == 4 then 
-                    if o_equip[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip[str[i]] * 1.1+0.5),int_递增属性 +math.floor(o_equip[str[i]] * 1.3+0.5))
-                    elseif o_equip[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip[str[i]] * 1.3-0.5),int_递增属性 +math.floor(o_equip[str[i]] * 1.1-0.5))
-                    end
-                elseif o_equip_物品.品质 == 5 then 
-                    if o_equip[str[i]] > 0 then 
-                        o_equip_物品[str[i]] = math.random(math.floor(o_equip[str[i]] * 1.3+0.5),int_递增属性 +math.floor(o_equip[str[i]] * 1.5+0.5))
-                    elseif o_equip[str[i]] < 0 then 
-                        o_equip_物品[str[i]] = math.random( math.floor(o_equip[str[i]] * 1.5-0.5),int_递增属性 +math.floor(o_equip[str[i]] * 1.3-0.5))
-                    end
-                end
-            end
-        end	
-    end     
-
+        end
+    end	
 end  
 t['通用_取得敌方队伍特效']=function(int_特效号)
     local o_battle = G.QueryName(0x10150001)
