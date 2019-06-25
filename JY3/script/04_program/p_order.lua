@@ -3001,9 +3001,6 @@ t['通用_还原装备']=function()
                 local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
                 for j = 1,40 do 
                     local o_equip_mod = G.QueryName(0x10180000+j)
-                    if j == 5 then
-                        print(o_equip_mod.名称,string_cut) 
-                    end
                     if o_equip_mod.名称 == string_cut then 
                         if o_equip[属性[1]] > o_equip_mod[属性[1]] + int_递增属性*500 then
                             o_equip[属性[1]] = o_equip_mod[属性[1]] + int_递增属性*500
