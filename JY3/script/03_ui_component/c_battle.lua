@@ -73,6 +73,13 @@ function t:start()
     local i_battle = 0x10150001
     local i_role = 0x10040000
     local o_battle = G.QueryName(i_battle)
+    if G.misc().随机切磋 == 1 then
+        local int_role = o_battle[位置[6]]
+        if G.call('get_role',int_role,15) == 0 then
+            G.call('通用_强退游戏',999) 
+        end
+        G.call('set_newpoint',201,-G.call('get_role',int_role,15)-10) 
+    end
     --G.call('指令_存储属性')
     --G.call('set_point',48,100)
     G.call('逻辑整理-武功等级')
