@@ -299,7 +299,8 @@ t['new_test'] = function()
     -- G.call('set_team',36,0,0,0)
     -- G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
     --G.call('join',4)
-    G.call('add_equip',0x10180028 + 15,1)
+    G.call('通用_还原装备')
+   -- G.call('add_equip',0x10180028 + 15,1)
     -- local o_book_story = G.QueryName(0x101c000e)
     -- o_book_story.流程 = 0
     -- G.call('天书_鸳鸯刀') 
@@ -436,6 +437,7 @@ t['通用_记录继承装备']=function(int_重生)
     local i_继承装备_3 = o_body.脚穿
     local i_继承装备_4 = o_body.印记
     local int_继承个数 = 0
+    G.call('通用_还原装备')
     if i_继承装备_1 then 
         table.insert(_o_继承装备,i_继承装备_1)
     end
@@ -2986,6 +2988,79 @@ t['to_chinese']=function(int_number) --数字转换大写
 		return G.call('to_chinese',math.floor(i / 1000000000000)) .. c_digit[6] ..G.call('to_chinese',i % 1000000000000)  
 	end
 end 
+t['通用_还原装备']=function()
+    local 装备 = {'头戴','手戴','脚穿','印记'}
+    local 属性 = {'生命','内力','拆招','搏击','闪躲','内功','轻身','减伤','左右','斗转'}
+    local int_递增属性 = G.call('get_point',237) - 2
+    local o_body = G.QueryName(0x10030001)
+    for i = 1,3 do
+        if o_body[装备[i]] then
+            local o_equip = G.QueryName(o_body[装备[i]])
+            if o_equip.品质转换 == 1 then 
+                o_equip.品质转换 = 2
+                local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
+                for j = 1,40 do 
+                    local o_equip_mod = G.QueryName(0x10180000+j)
+                    if j == 5 then
+                        print(o_equip_mod.名称,string_cut) 
+                    end
+                    if o_equip_mod.名称 == string_cut then 
+                        if o_equip[属性[1]] > o_equip_mod[属性[1]] + int_递增属性*500 then
+                            o_equip[属性[1]] = o_equip_mod[属性[1]] + int_递增属性*500
+                        end
+                        if o_equip[属性[2]] > o_equip_mod[属性[2]] + int_递增属性*250 then
+                            o_equip[属性[2]] = o_equip_mod[属性[2]] + int_递增属性*250
+                        end
+                        for p = 3,10 do
+                            if o_equip[属性[p]] > o_equip_mod[属性[p]] + int_递增属性 then
+                                o_equip[属性[p]] = o_equip_mod[属性[p]] + int_递增属性
+                            end 
+                        end
+                        break	
+                    end
+                    
+                end	
+            end
+        end
+    end
+    local o_store = G.QueryName(0x10190001)
+    local int_继承个数 = 0
+    if G.call('get_point',237) > 1   then 
+        if #o_store.装备 > 0 then
+            for i = 1, #o_store.装备 do
+                int_继承个数 = int_继承个数 + 1
+                if int_继承个数 == G.call('get_point',237) + 1 then
+                    break 
+                end
+                local o_equip = G.QueryName(o_store.装备[i].代码)
+                if o_store.装备[i].数量 > 0 and o_equip.类型 < 4 and o_equip.品质转换 == 1 then
+                    o_equip.品质转换 = 2
+                    local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
+                    for j = 1,40 do 
+                        local o_equip_mod = G.QueryName(0x10180000+j)
+                        if j == 5 then
+                            print(o_equip_mod.名称,string_cut) 
+                        end
+                        if o_equip_mod.名称 == string_cut then 
+                            if o_equip[属性[1]] > o_equip_mod[属性[1]] + int_递增属性*500 then
+                                o_equip[属性[1]] = o_equip_mod[属性[1]] + int_递增属性*500
+                            end
+                            if o_equip[属性[2]] > o_equip_mod[属性[2]] + int_递增属性*250 then
+                                o_equip[属性[2]] = o_equip_mod[属性[2]] + int_递增属性*250
+                            end
+                            for p = 3,10 do
+                                if o_equip[属性[p]] > o_equip_mod[属性[p]] + int_递增属性 then
+                                    o_equip[属性[p]] = o_equip_mod[属性[p]] + int_递增属性
+                                end 
+                            end
+                            break	
+                        end    
+                    end	 
+                end
+            end
+        end 
+    end
+end
 t['produce_equip']=function(i_equip_装备,int_数量,int_随机类型,int_品质级别,int_递增属性) 
     if not i_equip_装备 then return end
     local i_equip =  i_equip_装备
@@ -3086,11 +3161,11 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
         end
         int_几率 = int_几率 + int_寻宝
     end
-    if o_equip_物品.品质转换 and o_equip_物品.品质转换 == 1 then
+    if o_equip_物品.品质转换 and o_equip_物品.品质转换 >= 1 then
         int_递增属性 = 0 
     end
     if int_递增属性 and int_递增属性 > 0 and G.call('get_point',237) > 2  and not o_equip_物品.品质转换 then
-        int_递增属性 = G.call('get_point',237) - 2
+        int_递增属性 = 40
         o_equip_物品.品质转换 = 1
     else
         int_递增属性 = 0
