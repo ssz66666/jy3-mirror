@@ -3158,12 +3158,12 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
                 o_equip_物品.特效 = 300 + math.random(4)
             end 
             if o_equip_物品.特效 == 101 then
-                o_equip_物品.生命 = math.random(5000 + int_递增属性 * 1000,10000+ int_递增属性 * 1000)
+                o_equip_物品.生命 = math.random(5000 ,10000+ int_递增属性 * 500)
             elseif o_equip_物品.特效 == 102 then
-                o_equip_物品.内力 = math.random(5000+ int_递增属性 * 1000,10000+ int_递增属性 * 1000)
+                o_equip_物品.内力 = math.random(5000,10000+ int_递增属性 * 500)
             elseif o_equip_物品.特效 == 103 then
-                o_equip_物品.生命 = math.random(2500+ int_递增属性 * 500,5000+ int_递增属性 * 500)
-                o_equip_物品.内力 = math.random(2500+ int_递增属性 * 500,5000+ int_递增属性 * 500)
+                o_equip_物品.生命 = math.random(2500,5000+ int_递增属性 * 250)
+                o_equip_物品.内力 = math.random(2500,5000+ int_递增属性 * 250)
             end
         end
 
