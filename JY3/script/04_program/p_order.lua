@@ -260,7 +260,7 @@ t['通用_读档'] = function(int_档案编号)
                     int_继承个数 = int_继承个数 + 1  
                 end  
             end
-            if int_继承个数 >= 500 then
+            if int_继承个数 >= 400 then
                 G.call('通用_强退游戏') 
             end
             G.start_program('地图系统_游戏时长监控')
@@ -3669,6 +3669,17 @@ t['通用_替换装备']=function(i_role,i_equip)
     G.call('add_role',int_队员编号,14,int_内力)
 end
 t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_品质级别,int_递增属性)
+    local o_store = G.QueryName(0x10190001)
+    local int_继承个数 = 0
+    for i = 1,#o_store.装备 do
+        if o_store.装备[i].数量 > 0 then
+            int_继承个数 = int_继承个数 + 1  
+        end  
+    end
+    if int_继承个数 >= 200 then
+        G.call('notice1','装备过多请速度分解')
+        return  
+    end
     local int_级别 = 1
     local int_几率 = math.random(10000)
     local int_礼物 = 1
