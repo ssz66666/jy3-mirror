@@ -502,14 +502,15 @@ function t:click(tar)
     end 
     if  G.misc().data == 23 then
         local o_achieve = G.QueryName(0x10170000+G.misc().data) 
-        for i = 1,14 do 
+        for i = 1,15 do 
             self.list_23[i].visible = true
         end  
-        for i = 1,14 do 
+        for i = 1,15 do 
             self.list_23[i].getChildByName('名称').text = o_achieve.进度列表[i].名称
             self.list_23[i].getChildByName('图片').img = 0x560f1000+i
             --self.list_23[i].visible = true
             local o_book_story = G.QueryName(0x101c0000 + i)
+            local o_book_story_list = G.QueryName(0x101e0000 + i)
             if o_achieve.进度列表[i].完成 == 0 then 
                 self.list_23[i].getChildByName('完成').img = 0x56160073
                 self.list_23[i].getChildByName('名称').style = 10
@@ -517,7 +518,7 @@ function t:click(tar)
                 self.list_23[i].getChildByName('完成').img = 0x56160072
                 self.list_23[i].getChildByName('名称').style = 5
             end 
-            if  o_book_story.完美 == 1 then
+            if  o_book_story_list.完美 == 1 then
                 self.list_23[i].getChildByName('闪光').visible = true
             else
                 self.list_23[i].getChildByName('闪光').visible = false
