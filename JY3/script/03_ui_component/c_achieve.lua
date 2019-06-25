@@ -502,9 +502,20 @@ function t:click(tar)
     end 
     if  G.misc().data == 23 then
         local o_achieve = G.QueryName(0x10170000+G.misc().data) 
-        for i = 1,15 do 
+        for i = 1,14 do 
             self.list_23[i].visible = true
         end  
+        local book_story_list = G.DBTable('o_book_story_list')
+        local int_完美 = 0
+        for i = 1,#book_story_list do 
+            local o_book_story_list = G.QueryName(0x101e0000+i)
+            if  o_book_story_list.完美 == 1 then 
+                int_完美 = int_完美 + 1
+            end     
+        end
+        if int_完美 >= 14  then 
+            self.list_23[15].visible = true
+        end
         for i = 1,15 do 
             self.list_23[i].getChildByName('名称').text = o_achieve.进度列表[i].名称
             self.list_23[i].getChildByName('图片').img = 0x560f1000+i
