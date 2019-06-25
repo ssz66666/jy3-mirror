@@ -299,7 +299,6 @@ t['new_test'] = function()
     -- G.call('set_team',36,0,0,0)
     -- G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
     --G.call('join',4)
-    G.call('通用_还原装备')
    -- G.call('add_equip',0x10180028 + 15,1)
     -- local o_book_story = G.QueryName(0x101c000e)
     -- o_book_story.流程 = 0
@@ -3162,7 +3161,7 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
         int_递增属性 = 0 
     end
     if int_递增属性 and int_递增属性 > 0 and G.call('get_point',237) > 2  and not o_equip_物品.品质转换 then
-        int_递增属性 = 40
+        int_递增属性 = G.call('get_point',237) - 2
         o_equip_物品.品质转换 = 1
     else
         int_递增属性 = 0
