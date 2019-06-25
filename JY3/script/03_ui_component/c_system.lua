@@ -374,6 +374,7 @@ function t:click(tar)
                 G.call('add_magicexp',i+1,999)
                 o_skill.修为等级 = 5
             end
+            G.call('通用_印记状态')
         elseif self.文本.getChildByName('secret').getChildByName('文本').text == '人生何处不相逢' then
             local o_achieve = G.QueryName(0x10170012)
             local result = false
