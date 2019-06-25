@@ -351,6 +351,19 @@ function t:click(tar)
             --下面为测试代码
             local item =G.DBTable('o_item')
             local skill =G.DBTable('o_skill')
+            local achieve = G.DBTable('o_achieve')
+            local book_story_list = G.DBTable('o_book_story_list')
+            for i = 1,#achieve do
+                local o_achieve = G.QueryName(0x10170000+i)
+                for j = 1,#o_achieve.进度列表 do
+                    o_achieve.进度列表[j].完成 = 1  
+                end
+            end
+            for i = 1,#book_story_list do 
+                local o_book_story_list = G.QueryName(0x101e0000+i)
+                o_book_story_list.完美 = 1
+                G.call('add_equip',0x10180028 + i,1)
+            end
             for i = 1,#item do  --全物品
                 G.call('add_item',i+1,1)
             end	

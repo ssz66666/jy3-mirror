@@ -3852,7 +3852,7 @@ t['通用_拥有印记']=function(int_印记)
     return result
 end
 t['通用_印记状态']=function()
-    for i = 1,14 do
+    for i = 1,15 do
         local o_book_story_list = G.QueryName(0x101e0000 + i)
         if o_book_story_list.完美 == 1 then
             local i_equip = 0x10180028 + i
