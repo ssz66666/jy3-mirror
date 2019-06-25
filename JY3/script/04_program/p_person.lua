@@ -1540,6 +1540,8 @@ t['事件_随机切磋']=function()
             G.call('set_role',int_role,110+j,team_skill[j]) 
         end   
     end 
+    G.call('通用_存档',4)
+    G.call('通用_存档',G.call('get_point',143))
     G.call('all_over')
 end     
 t['副本_通天塔']=function(int_模式)
