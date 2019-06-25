@@ -1498,8 +1498,12 @@ t['事件_随机切磋']=function()
         G.call("talk",'',int_role,'   【'..name..'】大侠果然功夫过人，些许薄礼就送与大侠了，有机会再来挑战！',1,1) 
         G.misc().随机切磋次数 = G.misc().随机切磋次数 + 1
         G.misc().随机切磋监控 = G.misc().随机切磋监控 - 1
-        if int_role == 390 then
-            G.call('通用_抽礼物',9,1,1,1)
+        if int_role == 390   then
+            if math.random(100) > 70 then 
+                G.call('通用_抽礼物',9,1,1,1)
+            else
+                G.call('通用_抽礼物',9,1,1,0)
+            end
         else
             if G.misc().随机切磋次数%100 == 0 then 
                 if G.call('通用_取宝物随机') > 50 then 
