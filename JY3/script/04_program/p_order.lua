@@ -1607,17 +1607,17 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
         elseif int_属性 >= 901 and int_属性 <= 908  then
             o_role_人物[tostring(int_属性)] =  o_role_人物[tostring(int_属性)] + int_数量     
         elseif int_属性 == 15 then 
-            if G.misc().随机切磋 == 1 then
+            if G.misc().role  == int_编号  then
                 G.call('set_newpoint',201,G.call('get_newpoint',201)-int_数量) 
             end
             o_role_人物.生命 = o_role_人物.生命 + int_数量
             if o_role_人物.生命 > o_role_人物[tostring(1)] then 
                 o_role_人物.生命 = o_role_人物[tostring(1)]  
-                if G.misc().随机切磋 == 1 then
+                if G.misc().role  == int_编号  then
                     G.call('set_newpoint',201,-o_role_人物[tostring(1)] -int_数量) 
                 end
             elseif o_role_人物.生命 < 0 then
-                if G.misc().随机切磋 == 1 then
+                if G.misc().role  == int_编号  then
                     G.call('set_newpoint',201,-10)  
                 end
                 o_role_人物.生命 = 0 

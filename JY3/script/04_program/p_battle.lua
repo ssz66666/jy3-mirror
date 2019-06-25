@@ -33,9 +33,8 @@ t['战斗系统_胜负监控'] = function()
         if G.call('get_point',46) ~= math.abs(G.call('get_newpoint',46) + 10 )  then
            G.call('通用_强退游戏',104) 
         end
-        if G.misc().随机切磋 == 1 then
-            local int_role = o_battle[位置[6]]
-            if G.call('get_role',int_role,15) ~= math.abs(G.call('get_newpoint',201) + 10 )  then 
+        if G.misc().role > 0 then
+            if G.call('get_role',G.misc().role,15) ~= math.abs(G.call('get_newpoint',201) + 10 )  then 
                 G.call('通用_强退游戏',999) 
             end
         end
