@@ -253,6 +253,16 @@ t['通用_读档'] = function(int_档案编号)
             if #o_achieve.进度列表 < 9 then 
                 G.call('通用_强退游戏') 
             end
+            local o_store = G.QueryName(0x10190001)
+            local int_继承个数 = 0
+            for i = 1,#o_store.装备 do
+                if o_store.装备[i].数量 > 0 then
+                    int_继承个数 = int_继承个数 + 1  
+                end  
+            end
+            if int_继承个数 >= 500 then
+                G.call('通用_强退游戏') 
+            end
             G.start_program('地图系统_游戏时长监控')
         end 
     end
