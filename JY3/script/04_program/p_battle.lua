@@ -794,7 +794,7 @@ t['战斗系统_事件响应'] = function()
                                                         int_hp = 9999
                                                     end
                                                 end
-                                                G.QueryName(o_role +o_battle[位置[p]] ).生命 = int_hp
+                                                G.call('add_role',o_battle[位置[p]],15,int_hp)
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = int_hp
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
                                             end    
@@ -1233,7 +1233,7 @@ t['战斗系统_事件响应'] = function()
                                                 --         int_hp = 9999
                                                 --     end
                                                 -- end
-                                                G.QueryName(o_role +o_battle[位置[p]] ).生命 = int_hp
+                                                G.call('add_role',o_battle[位置[p]],15,int_hp)
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = int_hp
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
                                             end
