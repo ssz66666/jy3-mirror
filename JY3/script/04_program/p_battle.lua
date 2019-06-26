@@ -1604,8 +1604,8 @@ t['战斗系统_事件响应'] = function()
                                             if int_hp > 9999 then 
                                                 int_hp = 9999
                                             end
-                                        end  
-                                        G.QueryName(o_role +o_battle[位置[i]] ).生命 = int_hp
+                                        end 
+                                        G.call('add_role',o_battle[位置[i]],15,int_hp) 
                                         ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').text = int_hp
                                         ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').visible = true
                                     end
