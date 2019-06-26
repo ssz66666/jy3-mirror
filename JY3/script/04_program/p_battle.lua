@@ -1329,9 +1329,9 @@ t['战斗系统_事件响应'] = function()
                                 elseif 	o_skill.范围 == 3 or  o_skill.范围 == 5 or int_剑神无双 == 1   then
                                     int_动画位置 = 13   
                                 end
-                                if o_skill.范围 == 2  or o_skill.范围 == 4 then
+                                if (o_skill.范围 == 2  or o_skill.范围 == 4) and int_剑神无双 == 0  then
                                     ui.getChildByName('hurt').getChildByName(位置[n]).getChildByName('减生命').visible = true
-                                elseif 	o_skill.范围 == 3  or o_skill.范围 == 5 then
+                                elseif 	o_skill.范围 == 3  or o_skill.范围 == 5 or int_剑神无双 == 1   then
                                     ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible = true
                                     for p = 2,5 do 
                                         if p > 1 then    
@@ -3131,12 +3131,14 @@ t['magic_power1'] = function(int_id,int_no)
                 end 
             end 
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,33)) then  --剑神无双效果
-                if  ( G.call('get_role',int_id,1) <=6000 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)/10) then 
-                    if string_字符串_1 == '' then 
-                        string_字符串_1 = string_字符串_1..'剑神无双'
-                    else
-                        string_字符串_1 = string_字符串_1..'.'..'剑神无双'
-                    end 
+                if string_字符串_1 == '' then 
+                    string_字符串_1 = string_字符串_1..'剑神无双'
+                else
+                    string_字符串_1 = string_字符串_1..'.'..'剑神无双'
+                end 
+                local int_斩杀血量 = 6000
+                local int_斩杀百分比 = 10
+                if  ( G.call('get_role',int_id,1) <=int_斩杀血量 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)*int_斩杀百分比/100) then 
                     if string_字符串_4 == '' then 
                         string_字符串_4 = string_字符串_4..'剑神斩杀'
                     else
@@ -3795,12 +3797,24 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end     
             end
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
-                if  ( G.call('get_role',int_enemy,1) <=6000 or G.call('get_role',int_enemy,15)  < G.call('get_role',int_enemy,1)/10) then 
+                local int_斩杀血量 = 6000
+                local int_斩杀百分比 = 10
+                if int_id == 418 or int_id == 419 then 
+                    int_斩杀血量 = 10000
+                    int_斩杀百分比 = 15
+                    if string_字符串_1 == '' then 
+                        string_字符串_1 = string_字符串_1..'真剑神无双'
+                    else
+                        string_字符串_1 = string_字符串_1..'.'..'真剑神无双'
+                    end 
+                else
                     if string_字符串_1 == '' then 
                         string_字符串_1 = string_字符串_1..'剑神无双'
                     else
                         string_字符串_1 = string_字符串_1..'.'..'剑神无双'
                     end 
+                end
+                if  ( G.call('get_role',int_enemy,1) <=int_斩杀血量 or G.call('get_role',int_enemy,15)  < G.call('get_role',int_enemy,1)*int_斩杀百分比/100) then 
                     if string_字符串_4 == '' then 
                         string_字符串_4 = string_字符串_4..'剑神斩杀'
                     else
@@ -4476,12 +4490,24 @@ t['magic_power3'] = function(int_id,int_no)
                 end 
             end
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
-                if  ( G.call('get_point',217) <=6000 or G.call('get_point',44)  < G.call('get_point',217)/10) then 
+                local int_斩杀血量 = 6000
+                local int_斩杀百分比 = 10
+                if int_id == 418 or int_id == 419 then 
+                    int_斩杀血量 = 10000
+                    int_斩杀百分比 = 15
+                    if string_字符串_1 == '' then 
+                        string_字符串_1 = string_字符串_1..'真剑神无双'
+                    else
+                        string_字符串_1 = string_字符串_1..'.'..'真剑神无双'
+                    end 
+                else
                     if string_字符串_1 == '' then 
                         string_字符串_1 = string_字符串_1..'剑神无双'
                     else
                         string_字符串_1 = string_字符串_1..'.'..'剑神无双'
                     end 
+                end
+                if  ( G.call('get_point',217) <=int_斩杀血量 or G.call('get_point',44)  < G.call('get_point',217)*int_斩杀百分比/100) then
                     if string_字符串_4 == '' then 
                         string_字符串_4 = string_字符串_4..'剑神斩杀'
                     else

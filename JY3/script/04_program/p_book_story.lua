@@ -1945,7 +1945,7 @@ t['天书_越女剑'] = function()
         G.call("talk",'',419,'   勇气可嘉，你和你的朋友一起上吧！',2,1)
         G.call('all_over')
         G.call('set_team',418,0,0,0)
-        G.call('call_battle',1,107,3,600,418,0,0,0,0,0,0) 
+        G.call('call_battle',1,107,3,666,418,0,0,0,0,0,0) 
         if o_battle_结果 == 1 then
             G.call("talk",'',419,'   你的队伍不错，我就随你看看！',2,1)
             G.call('join',419)
@@ -1956,5 +1956,8 @@ t['天书_越女剑'] = function()
         end
 
     end
-
+    G.call('all_over')
+    G.call('add_time',2)
+    G.call('dark')
+    G.call('goto_map',4)
 end
