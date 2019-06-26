@@ -1212,6 +1212,7 @@ t['聚贤庄-华山之巅']=function()
                                 G.call('set_role',223,10,750)--设置武功等级
                                 G.call('set_role',223,11,750)--设置武功等级
                                 G.call('set_role',223,12,750)--设置武功等级
+                                G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
                                 local int_点数 = 0
                                 if int_难度 == 1 then 
                                     int_点数 = 120
