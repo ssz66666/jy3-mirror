@@ -2117,7 +2117,6 @@ t['指令_备份基础属性']=function() --
         else
             o_team[tostring(12+i)] = -10
         end
-        print(o_team[tostring(12+i)])
     end
     for i = 16,37 do
         G.call('set_newpoint',i,-G.call('get_point',i)-10) 

@@ -279,7 +279,15 @@ function t:click(tar)
                            m = m + 1 
                         end    
                     end  
-                    if m < 19 then   
+                    if m < 19 then
+                        local o_team = G.QueryName(0x10110001)
+                        for i = 1,12 do
+                            if o_team[tostring(i)] then 
+                                o_team[tostring(12+i)] =   0x10040000 - o_team[tostring(i)] - 10
+                            else
+                                o_team[tostring(12+i)] = -10
+                            end
+                        end   
                         while true do
                             if G.call('in_team',n) == false then 
                                 G.call('join',n)
