@@ -422,4 +422,6 @@ _dir[0x91b0000]="audio/role/0012_1"
 _dir[0x91c0000]="audio/role/0012_2"
 _dir[0x91d0000]="audio/role/0013_1"
 _dir[0x91e0000]="audio/role/0013_2"
+_dir[0x91f0000]="audio/role/0014_1"
+_dir[0x9200000]="audio/role/0014_2"
 return _dir

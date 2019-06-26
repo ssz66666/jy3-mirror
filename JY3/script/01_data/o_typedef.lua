@@ -444,28 +444,53 @@ local t = {
 			},
 			[13]={
 				['name']='13',
-				['type']='i_role',
+				['type']='int',
 			},
 			[14]={
 				['name']='14',
-				['type']='i_role',
+				['type']='int',
 			},
 			[15]={
 				['name']='15',
-				['type']='i_role',
+				['type']='int',
 			},
 			[16]={
 				['name']='16',
-				['type']='i_role',
+				['type']='int',
 			},
 			[17]={
 				['name']='17',
-				['type']='i_role',
+				['type']='int',
 			},
 			[18]={
 				['name']='18',
-				['type']='i_role',
+				['type']='int',
 			},
+			[19]={
+				['name']='18',
+				['type']='int',
+			},
+			[20]={
+				['name']='18',
+				['type']='int',
+			},
+			[21]={
+				['name']='18',
+				['type']='int',
+			},
+			[22]={
+				['name']='18',
+				['type']='int',
+			},
+			[23]={
+				['name']='18',
+				['type']='int',
+			},
+			[24]={
+				['name']='18',
+				['type']='int',
+			},
+
 		},
 	},
 	{

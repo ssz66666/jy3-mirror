@@ -189,6 +189,7 @@ t['地图系统_防修改监控'] = function()
 		int_检测 = int_检测 + 1
 	end
 	print('int_检测',int_检测)
+	G.call('通用_队伍检测') 
 	if int_检测 > 0 and int_检测 < 9 then
 		G.call('通用_强退游戏',299)  
 	end

@@ -1492,7 +1492,9 @@ t['join']=function(int_编号) --加入队友
     end 
     if G.call('in_team',int_编号) == false then
         if p < 12 then   --如果不满队伍则加入
+           G.call('通用_队伍检测')
            G.QueryName(0x10110001)[tostring(p+1)] = o_role_人物编码
+           G.QueryName(0x10110001)[tostring(p+13)] = -10-int_编号
            G.call('notice1','【'..G.QueryName(o_role_人物编码).姓名..'】加入队伍')
         end 
         for i = 1,#o_gpmz.进度列表 do
@@ -1537,17 +1539,45 @@ t['leave']=function(int_编号) --离队
        if team[tostring(i)] ~= nil then 
           p = p + 1
        end 
-    end     
+    end  
+    G.call('通用_队伍检测')   
     for i = 1, 12 do
         if team[tostring(i)] == o_role_人物编码 then    --判断离队的人物是否在队伍
             for j = i, 12 - 1 do  --剔除离队人物，后面人物顺号上排
                 team[tostring(j)] = team[tostring(j + 1)];
+                if team[tostring(j)] then 
+                    team[tostring(j+12)] = 0x10040000 - team[tostring(j)] - 10
+                else
+                    team[tostring(j+12)] = -10
+                end
             end
             team[tostring(p)] = nil;  --剔除最后的编号
+            team[tostring(p+12)] = -10
             break   
         end
     end
 end  
+t['通用_队伍检测']=function()
+    local o_team = G.QueryName(0x10110001)
+    for i = 1,12 do
+        local int_队伍编号 = math.abs(o_team[tostring(12+i)] + 10) 
+        if int_队伍编号 == 0 then
+            if o_team[tostring(i)] ~= nil then 
+                G.call('通用_强退游戏',1201) 
+            end
+        else
+            if not o_team[tostring(i)]  then 
+                G.call('通用_强退游戏',1202) 
+            else
+                local int_编号 = o_team[tostring(i)] - 0x10040000
+                if int_编号 ~= int_队伍编号 then
+                    G.call('通用_强退游戏',1203) 
+                end
+            end    
+            
+        end    
+    end
+end
 t['team_full']=function()  --判断满队伍
     local result = false
     local team = G.QueryName(0x10110001)
@@ -2066,7 +2096,7 @@ t['set_point']=function(int_代码,int_数量) --设置主角部分属性
     end    
 end
 t['通用_重置检测']=function() --
-    if  G.misc().检测_1008 == nil  then
+    if  G.misc().检测_1009 == nil  then
         local role = G.DBTable('o_role')
         for i = 1,#role do 
             for p = 81,90 do 
@@ -2080,6 +2110,15 @@ t['通用_重置检测']=function() --
     end
 end
 t['指令_备份基础属性']=function() --
+    local o_team = G.QueryName(0x10110001)
+    for i = 1,12 do
+        if o_team[tostring(i)] then 
+            o_team[tostring(12+i)] =   0x10040000 - o_team[tostring(i)] - 10
+        else
+            o_team[tostring(12+i)] = -10
+        end
+        print(o_team[tostring(12+i)])
+    end
     for i = 16,37 do
         G.call('set_newpoint',i,-G.call('get_point',i)-10) 
     end
@@ -2111,7 +2150,7 @@ t['指令_备份基础属性']=function() --
     for i = 45,47 do 
         G.call('set_newpoint',i,-G.call('get_point',i)-10) 
     end
-    G.misc().检测_1008 = 1
+    G.misc().检测_1009 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
     return G.QueryName(0x101b0001)[tostring(int_代码)]
