@@ -148,6 +148,7 @@ t['战斗系统_主角监控'] = function()
                 end
             elseif 	tonumber(ui.getChildByName('状态').text) == 2 then 
                 G.misc().战斗状态 = 1
+                G.misc().吃药次数 = G.misc().吃药次数 + 1
                 G.call('use_item',int_代码+1,1)			
                 G.misc().战斗状态 = 0
                 ui.getChildByName('map').getChildByName(位置[1]).x = 0

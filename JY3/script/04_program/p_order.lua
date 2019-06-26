@@ -782,6 +782,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     else
         G.misc().用药 = 1
     end
+    G.misc().吃药次数 = 0
     if not int_音乐 or  int_音乐 == 0 then
         G.Play(0x49010000+math.random(25,30), 1,true,1)
     else
@@ -933,7 +934,7 @@ t['get_result']=function()
         result = 2
     elseif o_battle.狙杀 >= 6 and  G.call('get_role',o_battle[位置[o_battle.狙杀]],15) == 0 then 
         result = 1
-    end  
+    end 
     return result
 end
 t['通用_随机种子']=function()

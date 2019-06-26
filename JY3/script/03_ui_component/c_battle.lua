@@ -313,7 +313,10 @@ function t:战场显示()
     self.敌方存活 = num  
     self.obj.getChildByName('num').text = tostring(num)
     local 快捷 = {'q','w','e','r'}
-    local o_hotkey = G.QueryName(0x100c0001)    
+    local o_hotkey = G.QueryName(0x100c0001)  
+    if G.misc().吃药次数 >= 99 then
+        G.misc().用药 = 1
+    end   
     for i = 1,4 do 
         if o_hotkey[tostring(10+i)] ~= nil and G.QueryName(o_hotkey[tostring(10+i)]).数量 > 0 then 
             self.按钮.getChildByName(快捷[i]).visible = true
