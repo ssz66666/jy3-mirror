@@ -1930,4 +1930,31 @@ t['天书_鸳鸯刀'] = function()
     G.call('goto_map',4)
 end
 t['天书_越女剑'] = function()
+    local o_book_story = G.QueryName(0x101c000f)
+    if G.call('team_full') and o_book_story.流程 == 0 then 
+        G.call("talk",'',38,'   请保持队伍空出一位再来！',2,1)
+        G.call('all_over')
+        return
+    end 
+    if o_book_story.流程 == 0 then
+        G.call('地图_进入地图','无名冢',107,57)
+        G.call("talk",'',419,'   你竟然能到这里来，看来你的本事不了得！',2,1)
+        G.call("talk",'',0,'   那当然了，毕竟我是【天下第一】！',0,0)
+        G.call("talk",'',419,'   口气不小，你应该看到闪落在这里的兵器吧，这些都是手下败将留下的！',2,1)
+        G.call("talk",'',0,'   恐怖如斯，不过我还是要挑战你！',0,0)
+        G.call("talk",'',419,'   勇气可嘉，你和你的朋友一起上吧！',2,1)
+        G.call('all_over')
+        G.call('set_team',418,0,0,0)
+        G.call('call_battle',1,107,3,600,418,0,0,0,0,0,0) 
+        if o_battle_结果 == 1 then
+            G.call("talk",'',419,'   你的队伍不错，我就随你看看！',2,1)
+            G.call('join',419)
+            o_book_story.完美 = 1
+            o_book_story.完成 = 1
+        else
+            G.call("talk",'',419,'   光有勇气是不行的！',2,1)
+        end
+
+    end
+
 end
