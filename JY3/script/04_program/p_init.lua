@@ -153,7 +153,7 @@ t['地图系统_防修改监控'] = function()
 		int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',110) ~= math.abs(G.call('get_newpoint',110)+2000)  then
-		print('金钱',G.call('get_point',110),G.call('get_newpoint',110))
+		--print('金钱',G.call('get_point',110),G.call('get_newpoint',110))
 		int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',45) ~= math.abs(G.call('get_newpoint',45) + 10)  then
