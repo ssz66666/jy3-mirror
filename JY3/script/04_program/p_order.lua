@@ -230,8 +230,8 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().通天塔 == nil then 
                 G.misc().通天塔 = 0
             end
-            if G.misc().存储监控 == nil  then
-                G.misc().存储监控 = 1
+            if G.misc().存储监控_1 == nil  then
+                G.misc().存储监控_1 = 1
                 G.call('通用_存储记录')
             end
             G.call('write_min')          
