@@ -261,7 +261,7 @@ t['通用_读档'] = function(int_档案编号)
                 end  
             end
             if int_继承个数 >= 400 then
-                G.call('通用_强退游戏') 
+                G.call('通用_强退游戏',int_继承个数) 
             end
             G.start_program('地图系统_游戏时长监控')
         end 
@@ -1573,6 +1573,7 @@ t['in_team']=function(int_no)  --判断NPC是否在队伍
     return result
 end
 t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
+    local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6','all1','all2','all3'}
     local o_role_人物 = G.QueryName(0x10040000+int_编号)
     if o_role_人物 == nil then 
         G.call('notice','人物编号错误')
@@ -1606,19 +1607,25 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
             end 
         elseif int_属性 >= 901 and int_属性 <= 908  then
             o_role_人物[tostring(int_属性)] =  o_role_人物[tostring(int_属性)] + int_数量     
-        elseif int_属性 == 15 then 
-            if G.misc().role  == int_编号  then
-                G.call('set_newpoint',201,G.call('get_newpoint',201)-int_数量) 
+        elseif int_属性 == 15 then
+            for i = 2,11 do  
+                if G.misc()[位置[i] ]  == int_编号  then
+                    G.call('set_newpoint',199+i,G.call('get_newpoint',199+i)-int_数量) 
+                end
             end
             o_role_人物.生命 = o_role_人物.生命 + int_数量
             if o_role_人物.生命 > o_role_人物[tostring(1)] then 
                 o_role_人物.生命 = o_role_人物[tostring(1)]  
-                if G.misc().role  == int_编号  then
-                    G.call('set_newpoint',201,-o_role_人物[tostring(1)] -10) 
+                for i = 2,11 do  
+                    if G.misc()[位置[i] ]  == int_编号  then
+                        G.call('set_newpoint',199+i,-o_role_人物[tostring(1)] -10) 
+                    end
                 end
             elseif o_role_人物.生命 < 0 then
-                if G.misc().role  == int_编号  then
-                    G.call('set_newpoint',201,-10)  
+                for i = 2,11 do  
+                    if G.misc()[位置[i] ]  == int_编号  then
+                        G.call('set_newpoint',199+i,-10)  
+                    end
                 end
                 o_role_人物.生命 = 0 
             end 

@@ -73,12 +73,16 @@ function t:start()
     local i_battle = 0x10150001
     local i_role = 0x10040000
     local o_battle = G.QueryName(i_battle)
-    G.misc().role = o_battle[位置[6]]
-    if G.misc().role > 0 then
-        if G.call('get_role',G.misc().role,15) == 0 then
-            G.call('通用_强退游戏',999) 
+    for i = 2,11 do
+        G.misc()[位置[i]] = o_battle[位置[i]] 
+        if G.misc()[位置[i]] > 0 then
+            if i > 5 then 
+                if G.call('get_role',G.misc()[位置[i]],15) == 0 then
+                    G.call('通用_强退游戏',1000 + i) 
+                end
+            end
+            G.call('set_newpoint',199+i,-G.call('get_role',G.misc()[位置[i]],15)-10 )
         end
-        G.call('set_newpoint',201,-G.call('get_role',G.misc().role,15)-10) 
     end
     --G.call('指令_存储属性')
     --G.call('set_point',48,100)

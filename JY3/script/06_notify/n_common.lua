@@ -34,6 +34,12 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
         if o_battle [位置[i] ] ~= G.misc().队伍记录[i-1] then
             G.call('通用_强退游戏',101) 
         end
+        if G.misc()[位置[i] ] > 0 then
+            if G.call('get_role',G.misc()[位置[i] ],15) ~= math.abs(G.call('get_newpoint',199+i) + 10 )  then 
+                --print(i,G.call('get_role',G.misc()[位置[i] ],15),G.call('get_newpoint',199+i)) 
+                G.call('通用_强退游戏',2000+i) 
+            end
+        end
     end 
     if G.call('get_point',48) ~= math.abs(G.call('get_newpoint',48) + 10 ) then
         G.call('通用_强退游戏',102) 
@@ -44,12 +50,12 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
     if G.call('get_point',46) ~= math.abs(G.call('get_newpoint',46) + 10 )  then
        G.call('通用_强退游戏',104) 
     end
-    if G.misc().role > 0 then
-        print(G.call('get_role',G.misc().role,15),G.call('get_newpoint',201))
-        if G.call('get_role',G.misc().role,15) ~= math.abs(G.call('get_newpoint',201) + 10 )  then 
-            G.call('通用_强退游戏',999) 
-        end
-    end
+    -- if G.misc().role > 0 then
+    --     print(G.call('get_role',G.misc().role,15),G.call('get_newpoint',201))
+    --     if G.call('get_role',G.misc().role,15) ~= math.abs(G.call('get_newpoint',201) + 10 )  then 
+    --         G.call('通用_强退游戏',999) 
+    --     end
+    -- end
     c:刷新记事本()
     ui.getChildByName('图表').visible = false
 end
