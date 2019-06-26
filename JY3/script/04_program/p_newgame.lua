@@ -89,6 +89,7 @@ t['回答问题']=function()
         elseif  int_选项 == 2 then
             G.call("talk",'',38,'   祖传武功，不可荒废！',3,0)
             G.call('learnmagic',83)
+            G.call('set_newpoint',77,-11)
             G.call('all_over')
         elseif  int_选项 == 3 then
             G.call("talk",'',38,'   朴实的生活造就了你淳朴的性格',3,0)
@@ -552,7 +553,6 @@ t['回答问题']=function()
     local int_point = math.floor( (point - 250*int_true*(int_true + 1 )   )      /20)
     if int_point > 0 then 
         G.call('add_point',5,int_point)
-        G.call('set_point',76,int_point)
     end
     if int_true > 0 then    
         for i = 1,int_true do 
@@ -562,6 +562,7 @@ t['回答问题']=function()
             end
         end 
     end
+    G.call('地图系统_防修改监控')
     G.call('指令_存储属性')
     G.call('rest')
     G.misc().人物头像 = G.call('get_point',119)
