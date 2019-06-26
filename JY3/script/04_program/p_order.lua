@@ -330,6 +330,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
+    G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
     -- G.call('all_over')
@@ -337,10 +338,10 @@ t['new_test'] = function()
     -- G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
     --G.call('join',4)
    -- G.call('add_equip',0x10180028 + 15,1)
-    local o_book_story = G.QueryName(0x101c000f)
-    o_book_story.流程 = 0
-    G.call('天书_越女剑') 
-    G.call('通用_印记状态')
+    -- local o_book_story = G.QueryName(0x101c000f)
+    -- o_book_story.流程 = 0
+    -- G.call('天书_越女剑') 
+    -- G.call('通用_印记状态')
 end   
 t['in_test'] = function() 
     G.misc().测试 = 1
@@ -590,6 +591,10 @@ t['create']=function()  --建立角色
     G.addUI('v_addpoint')
     G.wait1('建立角色结束')
     G.removeUI('v_addpoint')
+    G.call('指令_备份基础属性')
+    -- for i = 16,35 do
+    --     G.call('set_newpoint',i,-G.call('get_point',i)-10) 
+    -- end
     G.call('回答问题')
 end
 t['playmovie']=function(int_序号,int_延时,int_x,int_y)  --播放动画

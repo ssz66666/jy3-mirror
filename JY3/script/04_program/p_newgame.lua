@@ -311,7 +311,7 @@ t['回答问题']=function()
             G.call('all_over')
         elseif  int_选项 == 3 then
             for i = 22,26 do 
-               G.call('set_point',i,math.floor(G.QueryName(0x10030001)[tostring(i)]/2))
+               G.call('add_point',i,-math.floor(G.QueryName(0x10030001)[tostring(i)]/2))
             end  
             G.call('all_over')    
         elseif  int_选项 == 4 then
@@ -401,6 +401,7 @@ t['回答问题']=function()
         end
         if o_body[tostring(i)] > int_点数   then 
             o_body[tostring(i)] = int_点数
+            G.call('set_newpoint',i,-int_点数-10)
         end 
     end
     --
@@ -452,29 +453,42 @@ t['回答问题']=function()
             end
         end
     end
+    local int_物品数量 = 0
+	local item = G.DBTable('o_item')
+    for i = 1,#item do
+        local o_item = G.QueryName(0x100b0000 + i)
+        if o_item.数量 then
+            int_物品数量 = int_物品数量 + o_item.数量 
+        end
+	end
     point = point + math.random(5)
     if point >= 1000 then 
         local int_选项 = 0
         while int_选项 == 0 do
             int_选项 = G.call("menu",'',0,'十五：需要消耗1000成就点换取下列哪一项？',1,1,
             {"1,换取一本秘籍","2,换取一件装备","3,换取大还丹","4,换取腊八粥","5,换取银钱","6,都不需要"},1)
+            local int_随机数 = math.random(3)
             if int_选项 == 1 then
                 local item = {121,120,124,125,100,117,106}
                 point = point - 1000 + math.random(5) 
                 G.call('set_item',item[math.random(#item)],1 )
+                G.call('set_newpoint',76,G.call('get_newpoint',76)-1  )
             elseif  int_选项 == 2 then 
                 local item = {25,54,61,74,72,91} 
                 point = point - 1000 + math.random(5) 
                 G.call('set_item',item[math.random(#item)],1 )
+                G.call('set_newpoint',76,G.call('get_newpoint',76) -1)
             elseif  int_选项 == 3 then
                 point = point - 1000 + math.random(5) 
-                G.call('set_item',224,math.random(3))
+                G.call('set_item',224,int_随机数)
+                G.call('set_newpoint',76,G.call('get_newpoint',76) -int_随机数)
             elseif  int_选项 == 4 then
                 point = point - 1000 + math.random(5) 
-                G.call('set_item',238,math.random(3))
+                G.call('set_item',238,int_随机数)
+                G.call('set_newpoint',76,G.call('get_newpoint',76) -int_随机数)
             elseif  int_选项 == 5 then   
                 point = point - 1000 + math.random(5) 
-                G.call('add_point',110,math.random(5,10)*10000)
+                G.call('add_point',110,int_随机数*30000)
             elseif  int_选项 == 6 then    
             end
 
@@ -544,13 +558,13 @@ t['回答问题']=function()
         for i = 1,int_true do 
             if G.QueryName(0x10030001)[tostring(110+i)] == 0 then   
                 G.QueryName(0x10030001)[tostring(110+i)] = m[i]
+                G.call('set_newpoint',110+i,-10-m[i]) 
             end
         end 
     end
     G.call('指令_存储属性')
     G.call('rest')
     G.misc().人物头像 = G.call('get_point',119)
-    G.call('指令_备份基础属性')
     G.misc().通关 = 0
     G.call('通用_随机种子')
     G.call('通用_宝物随机种子')

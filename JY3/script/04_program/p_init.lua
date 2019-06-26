@@ -173,7 +173,7 @@ t['地图系统_防修改监控'] = function()
 	-- 	G.call('通用_强退游戏') 
 	-- end
 	if G.call('get_magicexp',83) ~= math.abs(G.call('get_newpoint',77) + 10) then 
-		print('野球拳',G.call('get_magicexp',83),G.call('get_newpoint',77))
+		--print('野球拳',G.call('get_magicexp',83),G.call('get_newpoint',77))
 		int_检测 = int_检测 + 1
 	end
 	local int_物品数量 = 0
@@ -201,7 +201,7 @@ t['地图系统_防修改监控'] = function()
 	end
 	for i = 111,115 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 10)  then 
-			print(i,G.call('get_point',i),G.call('get_newpoint',i)+10)
+			--print(i,G.call('get_point',i),G.call('get_newpoint',i)+10)
 			G.call('通用_强退游戏',211) 
 			break
 		end
