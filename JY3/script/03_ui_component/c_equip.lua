@@ -304,15 +304,15 @@ function t:显示装备()
                         end
                         str = str..'[br]'
                         if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 2 then
-                            str = str..'[br][07](二件套:)[br][06]'..'生命+2500 内力+2500 闪避率UP'
+                            str = str..'[br][07](二件套:)[br][06]'..'生命+2500 内力+2500 闪避率UP 武功出招速度+1'
                         else
-                            str = str..'[br][09](二件套:)[br][09]'..'生命+2500 内力+2500 闪避率UP'
+                            str = str..'[br][09](二件套:)[br][09]'..'生命+2500 内力+2500 闪避率UP 武功出招速度+1'
                         end
                         str = str..'[br]'
                         if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 3 then
-                            str = str..'[br][07](三件套:)[br][06]'..'生命+5000 内力+5000 闪避率UP 武功出招速度+1'
+                            str = str..'[br][07](三件套:)[br][06]'..'生命+5000 内力+5000 闪避率UP 武功出招速度+3'
                         else
-                            str = str..'[br][09](三件套:)[br][09]'..'生命+5000 内力+5000 闪避率UP 武功出招速度+1'
+                            str = str..'[br][09](三件套:)[br][09]'..'生命+5000 内力+5000 闪避率UP 武功出招速度+3'
                         end
                     elseif o_equip.套装 == 2 then
                         if o_role.头戴 and G.QueryName(o_role.头戴).套装 == 2 then    

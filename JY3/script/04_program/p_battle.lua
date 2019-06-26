@@ -2448,8 +2448,10 @@ t['集气'] = function()
 					    speed[i] = (100 -  int_气槽)/4
                     end 	
                     if i == 1 then 
-                        if G.call('通用_取得套装',0,1) == 3 then--套装1效果
+                        if G.call('通用_取得套装',0,1) == 2 then--套装1效果
                             speed[1] = speed[1] + 1 
+                        elseif G.call('通用_取得套装',0,1) == 3 then
+                            speed[1] = speed[1] + 3
                         end
                         if G.call('get_point',196) ~= nil then --主角内功对集气的加成
                             if G.QueryName(G.call('get_point',196) ).内功轻功效果 == 9 then 
@@ -2475,8 +2477,10 @@ t['集气'] = function()
 					end 
 					if i > 1  then 
                         local o_role_tb = G.QueryName(0x10040000 + o_battle[位置[i] ] )
-                        if G.call('通用_取得套装',o_battle[位置[i] ],1) == 3 then --套装1效果
+                        if G.call('通用_取得套装',o_battle[位置[i] ],1) == 2 then --套装1效果
                             speed[i] = speed[i] + 1 
+                        elseif G.call('通用_取得套装',o_battle[位置[i] ],1) == 3 then --套装1效果
+                            speed[i] = speed[i] + 3
                         end
                         if o_role_tb ~= nil then 
                             speed[i] = speed[i] + G.call('通用_取得NPC内功效果',o_battle[位置[i] ],9)
@@ -2815,9 +2819,9 @@ t['magic_power1'] = function(int_id,int_no)
         int_闪避 = int_闪避 + 200
     end 
     if G.call('通用_取得套装',int_id,1) == 2 then --套装1闪避效果
-        int_闪避 = int_闪避 + 30
-    elseif  G.call('通用_取得套装',int_id,1) == 3 then
         int_闪避 = int_闪避 + 50
+    elseif  G.call('通用_取得套装',int_id,1) == 3 then
+        int_闪避 = int_闪避 + 100
     end
     if G.call('get_role',int_id,89) > 0  then --逍遥御风闪避效果
         if string_字符串_4 == '' then 
@@ -3534,9 +3538,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         int_闪避 = int_闪避 + 100
     end
     if G.call('通用_取得套装',int_enemy,1) == 2 then --套装1闪避效果
-        int_闪避 = int_闪避 + 30
-    elseif  G.call('通用_取得套装',int_enemy,1) == 3 then
         int_闪避 = int_闪避 + 50
+    elseif  G.call('通用_取得套装',int_enemy,1) == 3 then
+        int_闪避 = int_闪避 + 100
     end
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避+1) then  --命中计算
         if hurt > 0 then 
@@ -4213,9 +4217,9 @@ t['magic_power3'] = function(int_id,int_no)
         int_闪避 = int_闪避 + 100
     end
     if G.call('通用_取得套装',0,1) == 2 then --套装1闪避效果
-        int_闪避 = int_闪避 + 30
-    elseif  G.call('通用_取得套装',0,1) == 3 then
         int_闪避 = int_闪避 + 50
+    elseif  G.call('通用_取得套装',0,1) == 3 then
+        int_闪避 = int_闪避 + 100
     end
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避 + 1) then  --命中计算
         if hurt > 0 then 
