@@ -833,6 +833,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                     local o_role = G.QueryName(0x100400df)
                     o_role.拥有 = 0
                     G.call('set_role',223,1,4000)
+                    G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
                     G.call('set_role',223,2,4000)
                     G.call('set_role',223,15,4000)
                     G.call('set_role',223,14,4000)
