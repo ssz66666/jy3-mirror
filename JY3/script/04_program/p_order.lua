@@ -1646,7 +1646,8 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
             if int_编号 == 223 or int_编号 == 390  then 
             else
                 if o_role_人物[tostring(1)] > 99999 then 
-                    o_role_人物[tostring(1)] = 99999  
+                    o_role_人物[tostring(1)] = 99999 
+                    o_role_人物.存储记录 = -99999-10 
                 end 
                 if    o_role_人物[tostring(2)] > 99999 then 
                     o_role_人物[tostring(2)] = 99999
