@@ -1614,7 +1614,7 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
             if o_role_人物.生命 > o_role_人物[tostring(1)] then 
                 o_role_人物.生命 = o_role_人物[tostring(1)]  
                 if G.misc().role  == int_编号  then
-                    G.call('set_newpoint',201,-o_role_人物[tostring(1)] -int_数量) 
+                    G.call('set_newpoint',201,-o_role_人物[tostring(1)] -10) 
                 end
             elseif o_role_人物.生命 < 0 then
                 if G.misc().role  == int_编号  then

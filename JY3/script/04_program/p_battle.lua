@@ -19,25 +19,6 @@ t['战斗系统_胜负监控'] = function()
     local result = 0
     while true do 
         G.wait_time(10)
-        for i = 2,11 do
-            if o_battle [位置[i] ] ~= G.misc().队伍记录[i-1] then
-                G.call('通用_强退游戏',101) 
-            end
-        end 
-        if G.call('get_point',48) ~= math.abs(G.call('get_newpoint',48) + 10 ) then
-            G.call('通用_强退游戏',102) 
-        end
-        if G.call('get_point',44) ~= math.abs(G.call('get_newpoint',44) + 10 )  then
-            G.call('通用_强退游戏',103) 
-        end
-        if G.call('get_point',46) ~= math.abs(G.call('get_newpoint',46) + 10 )  then
-           G.call('通用_强退游戏',104) 
-        end
-        if G.misc().role > 0 then
-            if G.call('get_role',G.misc().role,15) ~= math.abs(G.call('get_newpoint',201) + 10 )  then 
-                G.call('通用_强退游戏',999) 
-            end
-        end
         c:战场显示()
         if G.call('get_result') == 1   then  
             for i = 1,11 do 
@@ -4269,7 +4250,8 @@ t['magic_power3'] = function(int_id,int_no)
             if G.call('通用_取得人物特效',int_id,20) and math.random(100) < 50 then
                 G.call('add_role',int_id,14,1500)
                 G.call('add_point',46,-1500)
-            end 
+            end
+            print(int_id,G.misc().role,hurt4) 
             G.call('add_role',int_id,15,hurt4)    
             G.call('add_role',int_id,2,hurt0)
             G.call('add_role',int_id,15,-hurt3)

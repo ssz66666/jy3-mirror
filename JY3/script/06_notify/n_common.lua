@@ -29,6 +29,27 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
     ui.getChildByName('图表').getChildByName('文字').text = o_skill.名称
     --G.trig_event('战斗飘字')
     G.call('通用_战斗飘字',int_位置,int_范围)
+    local o_battle = G.QueryName(0x10150001)
+    for i = 2,11 do
+        if o_battle [位置[i] ] ~= G.misc().队伍记录[i-1] then
+            G.call('通用_强退游戏',101) 
+        end
+    end 
+    if G.call('get_point',48) ~= math.abs(G.call('get_newpoint',48) + 10 ) then
+        G.call('通用_强退游戏',102) 
+    end
+    if G.call('get_point',44) ~= math.abs(G.call('get_newpoint',44) + 10 )  then
+        G.call('通用_强退游戏',103) 
+    end
+    if G.call('get_point',46) ~= math.abs(G.call('get_newpoint',46) + 10 )  then
+       G.call('通用_强退游戏',104) 
+    end
+    if G.misc().role > 0 then
+        print(G.call('get_role',G.misc().role,15),G.call('get_newpoint',201))
+        if G.call('get_role',G.misc().role,15) ~= math.abs(G.call('get_newpoint',201) + 10 )  then 
+            G.call('通用_强退游戏',999) 
+        end
+    end
     c:刷新记事本()
     ui.getChildByName('图表').visible = false
 end
