@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_addpoint = require 'c_addpoint'
 local c_button = require 'c_button'
+local c_addpoint = require 'c_addpoint'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -554,13 +554,15 @@ tp = tc
 	tc = G.TextQuad()
 	tp.addChild(tc)
 	tc.name = '密令'
-	tc.left = 114.000
-	tc.right = 314.000
-	tc.bottom = 89.000
-	tc.top = 189.000
+	tc.left = 14.000
+	tc.right = 414.000
+	tc.bottom = 39.000
+	tc.top = 239.000
 	tc.mouseEnabled = true
 	tc.visible = false
-	tc.font = 0x61200041
+	tc.scaleX = 0.500
+	tc.scaleY = 0.500
+	tc.font = 0x61400000
 	tp = tc
 	tp = tp.parent
 	--end
@@ -613,13 +615,15 @@ tp = tc
 		tc = G.TextQuad()
 		tp.addChild(tc)
 		tc.name = '文本'
-		tc.left = -125.000
-		tc.right = 125.000
-		tc.bottom = -2.500
-		tc.top = 52.500
+		tc.left = -250.000
+		tc.right = 250.000
+		tc.bottom = -30.000
+		tc.top = 80.000
 		tc.mouseEnabled = true
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
 		tc.readOnly = false
-		tc.font = 0x61180000
+		tc.font = 0x61300000
 		tc.style = 4
 		tp = tc
 		tp = tp.parent
