@@ -1113,6 +1113,7 @@ t['聚贤庄-华山之巅']=function()
                                     G.call('all_over')
                                     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
                                     G.call('set_role',223,1,30000 + int_难度*10000  ) --设置HPmax
+                                    G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
                                     G.call('set_role',223,2,1000000)--设置MPmax
                                     G.call('set_role',223,15,30000 + int_难度*10000)--设置HP
                                     G.call('set_role',223,14,1000000)--设置MP

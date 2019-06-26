@@ -230,6 +230,10 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().通天塔 == nil then 
                 G.misc().通天塔 = 0
             end
+            if not G.misc().存储记录 then
+                G.misc().存储记录 = 1
+                G.call('通用_存储记录')
+            end
             G.call('write_min')          
         end 	
         if int_档案编号 == 0 then 
@@ -265,6 +269,27 @@ t['通用_读档'] = function(int_档案编号)
             end
             G.start_program('地图系统_游戏时长监控')
         end 
+    end
+end
+t['通用_存储记录'] = function()
+    local role = G.DBTable('o_role')
+    for i = 1,#role do
+        local o_role = G.QueryName(0x10040000+i)
+        if not o_role[tostring(901)] then
+            o_role.存储记录 = -o_role[tostring(1)]-10 
+        end  
+    end
+end
+t['通用_存储检测'] = function()
+    local o_battle = G.QueryName(0x10150001)
+    local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6','all1','all2','all3'}
+    for i = 2,11 do 
+        if o_battle[位置[i]] > 0 then
+            local o_role = G.QueryName(o_battle[位置[i]]+0x10040000)
+            if o_role[tostring(1)] ~= math.abs(o_role.存储记录+10) then 
+                G.call('通用_强退游戏',2000+i)
+            end
+        end
     end
 end
 t['read_diffmin'] = function() 
@@ -691,6 +716,7 @@ t['call_wood']=function()
     --if G.misc().战斗结果 == 0 then return end 
     G.call('set_role',223,15,9989999)
     G.call('set_role',223,1,9989999)
+    G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
     local o_body = G.QueryName(0x1003001)
     local int_hp = G.call('get_point',44) 
     local int_hpmax = G.call('get_point',45)  
@@ -711,6 +737,7 @@ t['call_wood']=function()
     end
     G.call('set_role',223,15,40000)
     G.call('set_role',223,1,40000)
+    G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
     G.call('set_roleskill',223,1,167)
     G.call('set_roleskill',223,2,145)
     G.call('set_roleskill',223,3,71)
