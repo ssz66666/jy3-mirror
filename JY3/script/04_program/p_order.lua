@@ -588,13 +588,11 @@ t['call_title']=function(int_代码)  --开始菜单
     end    
 end 
 t['create']=function()  --建立角色
+    G.call('指令_备份基础属性')
     G.addUI('v_addpoint')
     G.wait1('建立角色结束')
     G.removeUI('v_addpoint')
-    G.call('指令_备份基础属性')
-    -- for i = 16,35 do
-    --     G.call('set_newpoint',i,-G.call('get_point',i)-10) 
-    -- end
+    G.call('地图系统_防修改监控')
     G.call('回答问题')
 end
 t['playmovie']=function(int_序号,int_延时,int_x,int_y)  --播放动画

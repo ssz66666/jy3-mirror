@@ -163,14 +163,15 @@ function t:click(tar)
                     point3 = math.floor(n%5%4%3/2)
                     point4 = math.floor(n%5%4%3%2)
                 end     
-                G.call('set_point',16,a0 +point +point1+point2+point3+point4)
-                G.call('set_point',17,b0+point +point1+point2+point3)
-                G.call('set_point',18,c0+point +point1+point2)
-                G.call('set_point',20,d0+point +point1)
-                G.call('set_point',19,e0+point)
+                G.call('add_point',16,a0 +point +point1+point2+point3+point4)
+                G.call('add_point',17,b0+point +point1+point2+point3)
+                G.call('add_point',18,c0+point +point1+point2)
+                G.call('add_point',20,d0+point +point1)
+                G.call('add_point',19,e0+point)
                 for i = 16,20 do 
                     if G.call('get_point',i) > 70 then
                         G.call('set_point',i,70)
+                        G.call('set_newpoint',i,-80)
                     end
                 end   
                 local p = tonumber(self.序号.text)
@@ -205,14 +206,18 @@ function t:click(tar)
                 elseif str == '十年磨一剑' then
                     for i = 16,20 do --基础属性全+1
                         G.call('set_point',i,1)
+                        G.call('set_newpoint',i,-11)
                     end 
                     for i = 22,26 do --兵器值全+100
                         G.call('set_point',i,75)
+                        G.call('set_newpoint',i,-85)
                     end 
                     for i = 27,37 do --基础属性全+1
                         G.call('set_point',i,1)
+                        G.call('set_newpoint',i,-11)
                     end 
                     G.call('set_point',31,10)
+                    G.call('set_newpoint',31,-20)
                     G.QueryName(0x10030001)[tostring(1)] = '十'
                     G.QueryName(0x10030001)[tostring(2)] = '年磨一剑'
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089006 --设定头像
@@ -252,8 +257,6 @@ function t:click(tar)
                     end  
                     G.misc().太监 = 0
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089005 --设定头像
-                elseif str == '犹吊遗踪一泫然' then
-                    G.call('set_point',110,17)
                 elseif str == '天残地缺' then
                     G.QueryName(0x10030001)[tostring(1)] = '落'
                     G.QueryName(0x10030001)[tostring(2)] = '萧'
@@ -269,7 +272,7 @@ function t:click(tar)
                     G.QueryName(0x10030001)[tostring(1)] = ''
                     G.QueryName(0x10030001)[tostring(2)] = '无名'
                 elseif str == '一点意思一壶酒' then
-                    G.call('add_money',5000) 
+                    G.call('add_money',10000) 
                 elseif str == '书中自有颜如玉' then
                     local  wife = {1,3,6,8,12,14,15,16,18,19,20,22,24,25,26,28,39,40,130,252}
                     local n = wife[math.random(20)]
