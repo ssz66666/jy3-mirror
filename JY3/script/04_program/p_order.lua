@@ -230,8 +230,8 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().通天塔 == nil then 
                 G.misc().通天塔 = 0
             end
-            if not G.misc().存储记录 then
-                G.misc().存储记录 = 1
+            if G.misc().存储监控 == nil  then
+                G.misc().存储监控 = 1
                 G.call('通用_存储记录')
             end
             G.call('write_min')          
@@ -275,7 +275,7 @@ t['通用_存储记录'] = function()
     local role = G.DBTable('o_role')
     for i = 1,#role do
         local o_role = G.QueryName(0x10040000+i)
-        if not o_role[tostring(901)] then
+        if o_role[tostring(901)] == nil then
             o_role.存储记录 = -o_role[tostring(1)]-10 
         end  
     end
@@ -286,7 +286,7 @@ t['通用_存储检测'] = function()
     for i = 2,11 do 
         if o_battle[位置[i]] > 0 then
             local o_role = G.QueryName(o_battle[位置[i]]+0x10040000)
-            if not o_role[tostring(901)] then
+            if o_role[tostring(901)] == nil then
                 if o_role[tostring(1)] ~= math.abs(o_role.存储记录+10) then 
                     G.call('通用_强退游戏',2000+i)
                 end
