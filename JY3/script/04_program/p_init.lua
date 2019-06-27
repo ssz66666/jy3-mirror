@@ -383,8 +383,10 @@ t['地图系统_事件响应'] = function()
 			local BJ2 = BJ
 			local o_xdyq = G.QueryName(0x10170001)
 			local o_yzwj = G.QueryName(0x10170002)
-			o_yzwj.进度列表[1].当前进度 = o_yzwj.进度列表[1].当前进度 - BJ2 + BJ1
-			G.call('set_newpoint',80,G.call('get_newpoint',80)- (BJ1- BJ2)    )
+			if o_yzwj.完成 == 0 then
+				o_yzwj.进度列表[1].当前进度 = o_yzwj.进度列表[1].当前进度 - BJ2 + BJ1
+				G.call('set_newpoint',80,G.call('get_newpoint',80)- (BJ1- BJ2)    )
+			end
 			G.call('set_newpoint',130,G.call('get_newpoint',130) + (BJ1- BJ2) )
 			G.call('set_point',130,G.call('get_point',130) - (BJ1- BJ2) )
 			ui1.getChildByName('一').text = tostring(a)
@@ -622,8 +624,10 @@ t['地图系统_事件响应'] = function()
 				ui3.getChildByName('口白').text = '累死了，总算砍完了'
 				G.call('add_point',101,50)
 				G.call('add_item',280,1)
-				o_mxyl.进度列表[1].当前进度 = o_mxyl.进度列表[1].当前进度 + 1
-				G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+				if o_mxyl.完成 == 0 then 
+					o_mxyl.进度列表[1].当前进度 = o_mxyl.进度列表[1].当前进度 + 1
+					G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+				end
 				if o_mxyl.进度列表[1].当前进度 >= 500 and o_mxyl.完成 == 0 then 
 					o_mxyl.进度列表[1].完成 = 1
 					o_mxyl.完成 = 1
@@ -688,7 +692,7 @@ t['地图系统_事件响应'] = function()
 							local money = math.random(100)
 							G.call('add_money',money)
 							G.call('add_point',19,2)
-							if o_wjyd.进度列表[1].当前进度 < 20000 then
+							if o_wjyd.完成 == 0 then
 								o_wjyd.进度列表[1].当前进度 = o_wjyd.进度列表[1].当前进度 + money							
 								G.call('set_newpoint',80,G.call('get_newpoint',80)- money   )
 							end
@@ -808,8 +812,10 @@ t['地图系统_事件响应'] = function()
 			ui2.getChildByName('背景').visible = false
 			ui2.getChildByName('物品').visible = false
 			G.call('add_item',318,-1)
-			o_dsyy.进度列表[1].当前进度 = o_dsyy.进度列表[1].当前进度 + 1
-			G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+			if o_dsyy.完成 == 0 then 
+				o_dsyy.进度列表[1].当前进度 = o_dsyy.进度列表[1].当前进度 + 1
+				G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+			end
 			if o_dsyy.进度列表[1].当前进度 >= 10000 and o_dsyy.完成 == 0 then 
 				o_dsyy.进度列表[1].完成 = 1
 				o_dsyy.完成 = 1 
@@ -1012,8 +1018,10 @@ t['地图系统_事件响应'] = function()
 						if JL < 15 then
 							ui4.getChildByName('口白').text = '   运气真不错，得到【'..'虎皮'..'】一付'
 							G.call('add_item',328,1)
-							o_yhmp.进度列表[1].当前进度 = o_yhmp.进度列表[1].当前进度 + 1	
-							G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+							if o_yhmp.完成 == 0 then 
+								o_yhmp.进度列表[1].当前进度 = o_yhmp.进度列表[1].当前进度 + 1	
+								G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+							end
 						else
 							if JL >= 15 and JL < 35 then 
 								ui4.getChildByName('口白').text = '   运气真不错，得到【'..'虎掌'..'】一只'
@@ -1043,8 +1051,10 @@ t['地图系统_事件响应'] = function()
 					if  JL < 35 then 
 						ui4.getChildByName('口白').text = '   运气真不错，得到【'..'熊胆'..'】一只'
 						G.call('add_item',218,1)
-						o_yssd.进度列表[1].当前进度 = o_yssd.进度列表[1].当前进度 + 1
-						G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+						if o_yssd.完成 == 0 then 
+							o_yssd.进度列表[1].当前进度 = o_yssd.进度列表[1].当前进度 + 1
+							G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+						end
 					else
 						ui4.getChildByName('口白').text = '   真晦气，什么也没有得到'
 					end 

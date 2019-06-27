@@ -235,7 +235,7 @@ t['地图系统_人物'] = function()
                 end
             end    
             local o_zzqy = G.QueryName(0x10170014)
-            if o_zzqy.进度列表[1].当前进度 < 20000 then 
+            if o_zzqy.完成 == 0 then 
                 o_zzqy.进度列表[1].当前进度 = o_zzqy.进度列表[1].当前进度 + G.misc().蚯蚓数量
                 G.call('set_newpoint',80,G.call('get_newpoint',80)- G.misc().蚯蚓数量  )
             end
@@ -1376,8 +1376,10 @@ t['猜数字']=function()
         else
             G.call('add_point',104,5)
         end 
-        o_szyy.进度列表[6].当前进度 = o_szyy.进度列表[6].当前进度 + 1
-        G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+        if o_szyy.进度列表[6].完成 == 0 then 
+            o_szyy.进度列表[6].当前进度 = o_szyy.进度列表[6].当前进度 + 1
+            G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+        end
         if o_szyy.进度列表[6].完成 == 0 then 
             if o_szyy.进度列表[6].当前进度 >= 100 then 
                 o_szyy.进度列表[6].完成 = 1
@@ -2020,7 +2022,7 @@ t['小游戏-野球拳']=function()
             if int_猜拳结果 == 9 then
                 if  int_连胜-10 > 0 then 
                     local o_yqwd = G.QueryName(0x10170015)
-                    if o_yqwd.进度列表[1].当前进度 < 20000 then 
+                    if o_yqwd.完成 == 0 then 
                         G.call('set_newpoint',80,G.call('get_newpoint',80)- (int_连胜-10)   )
                         o_yqwd.进度列表[1].当前进度 = o_yqwd.进度列表[1].当前进度 + int_连胜-10
                     end

@@ -1679,8 +1679,10 @@ t['藏经阁寻宝']=function()
                 G.call('dark')
                 G.call('xunbao',6)
                 G.call("talk",'',0,'   "看来传说中的少林藏经阁的守卫也不过如此嘛，这么轻易就叫我混到了顶层。这里所藏定是非凡之物，待我好好看来。',0,0) 
-                o_xbdr.进度列表[1].当前进度 =  o_xbdr.进度列表[1].当前进度 + 1
-                G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+                if o_xbdr.完成 == 0 then
+                    o_xbdr.进度列表[1].当前进度 =  o_xbdr.进度列表[1].当前进度 + 1
+                    G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+                end
                 if b == 1 then 
                     if G.call('get_point',135) == 1 and G.call('get_point',134) == 1 then 
                         G.call("talk",'',0,'   "哇！原来这就是少林至宝《易筋经》！多亏我懂得梵文，不然可就当一般经书给扔掉了',0,0) 
@@ -1741,8 +1743,10 @@ t['藏经阁寻宝']=function()
         G.call('dark')
         G.call('xunbao',6)
         G.call("talk",'',0,'   "看来传说中的少林藏经阁的守卫也不过如此嘛，这么轻易就叫我混到了顶层。这里所藏定是非凡之物，待我好好看来。',0,0) 
-        o_xbdr.进度列表[1].当前进度 =  o_xbdr.进度列表[1].当前进度 + 1
-        G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+        if o_xbdr.完成 == 0 then
+            o_xbdr.进度列表[1].当前进度 =  o_xbdr.进度列表[1].当前进度 + 1
+            G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+        end
         if b == 1 then 
             if G.call('get_point',135) == 1 and G.call('get_point',134) == 1 then 
                 G.call("talk",'',0,'   "哇！原来这就是少林至宝《易筋经》！多亏我懂得梵文，不然可就当一般经书给扔掉了',0,0) 

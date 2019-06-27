@@ -45,8 +45,10 @@ t['牛家村-秀才']=function()
                         end    
                         G.call('add_money',-1000)  
                         local o_kzyy = G.QueryName(0x1017000a)  
-                        G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
-                        o_kzyy.进度列表[1].当前进度 = o_kzyy.进度列表[1].当前进度 + 1
+                        if o_kzyy.完成 == 0 then 
+                            G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
+                            o_kzyy.进度列表[1].当前进度 = o_kzyy.进度列表[1].当前进度 + 1
+                        end
                         if o_kzyy.进度列表[1].当前进度 >= 500 and o_kzyy.完成 == 0 then 
                             o_kzyy.进度列表[1].完成 = 1
                             o_kzyy.完成 = 1 
