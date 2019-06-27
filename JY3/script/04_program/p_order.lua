@@ -252,7 +252,6 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
-            G.call('通用_存档',int_档案编号)
             local achieve = G.DBTable('o_achieve')
             for i = 1,#achieve do 
                 if i ~= 4 then 
@@ -275,6 +274,7 @@ t['通用_读档'] = function(int_档案编号)
             if int_继承个数 >= 400 then
                 G.call('通用_强退游戏',int_继承个数) 
             end
+            G.call('通用_存档',int_档案编号)
             G.start_program('地图系统_游戏时长监控')
         end 
     end
@@ -338,7 +338,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('通关_存档')
+    --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
     -- G.call('all_over')
