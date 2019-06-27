@@ -1607,7 +1607,7 @@ t['通用_队伍检测']=function()
                 G.call('通用_强退游戏',1201) 
             end
         else
-            if not o_team[tostring(i)]  then 
+            if o_team[tostring(i)] == nil then 
                 G.call('通用_强退游戏',1202) 
             else
                 local int_编号 = o_team[tostring(i)] - 0x10040000
