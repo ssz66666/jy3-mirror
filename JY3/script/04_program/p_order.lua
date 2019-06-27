@@ -253,10 +253,16 @@ t['通用_读档'] = function(int_档案编号)
                 G.call('通用_大随机种子')
             end
             G.call('通用_存档',int_档案编号)
-            local o_achieve = G.QueryName(0x1017000e)
-            if #o_achieve.进度列表 < 9 then 
-                G.call('通用_强退游戏') 
-            end
+            local achieve = G.DBTable('o_achieve')
+            for i = 1,#achieve do 
+                local o_achieve = G.QueryName(0x10170000 + i)
+                for j = 1,#o_achieve.进度列表 do 
+                    if o_achieve.进度列表[j].当前进度 > 50000 then
+                        G.call('通用_强退游戏')
+                        break 
+                    end 
+                end
+            end   
             local o_store = G.QueryName(0x10190001)
             local int_继承个数 = 0
             for i = 1,#o_store.装备 do
