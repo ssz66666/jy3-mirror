@@ -1599,25 +1599,25 @@ t['leave']=function(int_编号) --离队
     end
 end  
 t['通用_队伍检测']=function()
-    local o_team = G.QueryName(0x10110001)
-    for i = 1,12 do
-        local int_队伍编号 = math.abs(o_team[tostring(12+i)] + 10) 
-        if int_队伍编号 == 0 then
-            if o_team[tostring(i)] ~= nil then 
-                G.call('通用_强退游戏',1201) 
-            end
-        else
-            if o_team[tostring(i)] == nil then 
-                G.call('通用_强退游戏',1202) 
-            else
-                local int_编号 = o_team[tostring(i)] - 0x10040000
-                if int_编号 ~= int_队伍编号 then
-                    G.call('通用_强退游戏',1203) 
-                end
-            end    
+    -- local o_team = G.QueryName(0x10110001)
+    -- for i = 1,12 do
+    --     local int_队伍编号 = math.abs(o_team[tostring(12+i)] + 10) 
+    --     if int_队伍编号 == 0 then
+    --         if o_team[tostring(i)] ~= nil then 
+    --             G.call('通用_强退游戏',1201) 
+    --         end
+    --     else
+    --         if o_team[tostring(i)] == nil then 
+    --             G.call('通用_强退游戏',1202) 
+    --         else
+    --             local int_编号 = o_team[tostring(i)] - 0x10040000
+    --             if int_编号 ~= int_队伍编号 then
+    --                 G.call('通用_强退游戏',1203) 
+    --             end
+    --         end    
             
-        end    
-    end
+    --     end    
+    -- end
 end
 t['team_full']=function()  --判断满队伍
     local result = false
