@@ -180,7 +180,10 @@ t['地图系统_防修改监控'] = function()
 	local item = G.DBTable('o_item')
     for i = 1,#item do
         local o_item = G.QueryName(0x100b0000 + i)
-        if o_item.数量 then
+		if o_item.数量 then
+			if o_item.数量 > 999 then
+				G.call('通用_强退游戏',299) 
+			end
             int_物品数量 = int_物品数量 + o_item.数量 
         end
 	end
@@ -213,7 +216,7 @@ t['地图系统_防修改监控'] = function()
 			break
 		end
 	end
-	for i = 16,35 do 
+	for i = 16,34 do 
 		if i < 22 then 
 			if G.call('get_point',i) > 100 then 
 				--print(i,G.call('get_point',i),G.call('get_newpoint',i))
