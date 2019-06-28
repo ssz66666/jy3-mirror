@@ -219,6 +219,21 @@ t['地图系统_防修改监控'] = function()
 				--print(i,G.call('get_point',i),G.call('get_newpoint',i))
 				G.call('通用_强退游戏',213)
 			end
+		else
+			local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
+			local int_点数 = 100
+			if int_代码 >= 22 then 
+				if int_难度 == 1 then 
+					int_点数 = 100
+				elseif int_难度 == 2 then 
+					int_点数 = 120
+				elseif int_难度 == 3 then 
+					int_点数 = 150
+				end
+			end
+			if G.call('get_point',i)  > int_点数   then 
+				G.call('通用_强退游戏',213)
+			end 
 		end
 		if G.call('get_point',i) ~=  math.abs(G.call('get_newpoint',i) + 10)  then
 			--print(i,G.call('get_point',i),G.call('get_newpoint',i))
