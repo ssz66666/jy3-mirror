@@ -3283,7 +3283,7 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
         o_equip_物品.品质 = 5
     end
 	if o_equip_物品.套装 > 0 then 
-		o_equip_物品.品质 = 3
+		o_equip_物品.品质 = 4
     end
     local o_equip = {}
     local o_equip_mod = {}
