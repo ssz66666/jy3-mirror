@@ -254,8 +254,8 @@ t['通用_读档'] = function(int_档案编号)
             end
             local achieve = G.DBTable('o_achieve')
             for i = 1,#achieve do 
+                local o_achieve = G.QueryName(0x10170000 + i)
                 if i ~= 4 then 
-                    local o_achieve = G.QueryName(0x10170000 + i)
                     for j = 1,#o_achieve.进度列表 do 
                         if o_achieve.进度列表[j].当前进度 > 50000 then
                             G.call('通用_强退游戏')
@@ -263,7 +263,10 @@ t['通用_读档'] = function(int_档案编号)
                         end 
                     end
                 end
-            end   
+                if i == 19 #o_achieve.进度列表 < 19 then 
+                    G.call('通用_强退游戏')
+                end
+            end    
             local o_store = G.QueryName(0x10190001)
             local int_继承个数 = 0
             for i = 1,#o_store.装备 do
