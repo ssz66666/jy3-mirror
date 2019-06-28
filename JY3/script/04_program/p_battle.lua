@@ -2888,7 +2888,8 @@ t['magic_power1'] = function(int_id,int_no)
                 hurt = math.floor(hurt *0.8)
             end
             if o_battle.模式 ~= 99 then
-                hurt = math.floor(hurt*G.call('get_point',4)*200/(o_battle.diffty*100)) --根据难度和战斗敌人强度计算伤害
+                local int_比例 = math.ceil(G.call('get_point',4)/10)
+                hurt = math.floor(hurt*int_比例*200/(o_battle.diffty*10)) --根据难度和战斗敌人强度计算伤害
             end
             if hurt < 10 then 
                 hurt = math.random(10)
@@ -3580,11 +3581,20 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 hurt = math.floor(hurt *0.8)
             end
             if o_battle.模式 ~= 5 then
-                if att_role == 0  then --根据难度和攻击方计算最终伤害
-                    hurt = math.floor(hurt*G.call('get_point',4)*o_battle.diffty/20000) 
+                local int_比例 = math.ceil(G.call('get_point',4)/10)
+                if att_role == 0 then --根据难度和攻击方计算最终伤害
+                    hurt = math.floor(hurt*int_比例*o_battle.diffty/2000) 
                 else   
-                    hurt = math.floor(hurt*G.call('get_point',4)*200/(o_battle.diffty*100)) 
-                end    
+                    hurt = math.floor(hurt*200*int_比例/(o_battle.diffty*10)) 
+                end  
+                if hurt < 10 then 
+                    hurt = math.random(10)
+                end 
+                -- if att_role == 0  then --根据难度和攻击方计算最终伤害
+                --     hurt = math.floor(hurt*G.call('get_point',4)*o_battle.diffty/20000) 
+                -- else   
+                --     hurt = math.floor(hurt*G.call('get_point',4)*200/(o_battle.diffty*100)) 
+                -- end    
             end
             if hurt < 10 then 
                hurt = math.random(10)
@@ -4288,10 +4298,11 @@ t['magic_power3'] = function(int_id,int_no)
                 hurt = math.floor(hurt *0.8)
             end 
             if o_battle.模式 ~= 99 then
+                local int_比例 = math.ceil(G.call('get_point',4)/10)
                 if att_role == 0 then --根据难度和攻击方计算最终伤害
-                    hurt = math.floor(hurt*G.call('get_point',4)*o_battle.diffty/20000) 
+                    hurt = math.floor(hurt*int_比例*o_battle.diffty/2000) 
                 else   
-                    hurt = math.floor(hurt*200*G.call('get_point',4)/(o_battle.diffty*100)) 
+                    hurt = math.floor(hurt*200*int_比例/(o_battle.diffty*10)) 
                 end  
                 if hurt < 10 then 
                     hurt = math.random(10)
