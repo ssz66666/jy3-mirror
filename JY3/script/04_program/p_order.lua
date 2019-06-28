@@ -3301,7 +3301,7 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
             break
         end	
     end	
-    if result == false then
+    if result == false  then
         local string_cut = G.utf8sub(o_equip_物品.名称,4,G.getStrLen(o_equip_物品.名称) )
         for i = 1,40 do 
             o_equip = G.QueryName(0x10180000+i)
@@ -3311,6 +3311,9 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
             end
         end
         o_equip_物品.名称 = str_品质[o_equip_物品.品质]..string_cut
+        if o_equip_物品.套装 > 0 then
+            o_equip_物品.名称  = o_equip.名称
+        end
     end
 	if o_equip_物品.转换次数 == nil then 
 		o_equip_物品.转换次数 = 0
