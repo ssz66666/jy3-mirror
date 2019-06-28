@@ -252,7 +252,7 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
-           
+            local achieve = G.DBTable('o_achieve')
             for i = 1,#achieve do 
                 local o_achieve = G.QueryName(0x10170000 + i)
                 if i ~= 4 then 
@@ -263,7 +263,7 @@ t['通用_读档'] = function(int_档案编号)
                         end 
                     end
                 end
-                if i == 19  and #o_achieve.进度列表 < 19 then 
+                if i == 19 and  #o_achieve.进度列表 < 19 then 
                     G.call('通用_强退游戏')
                 end
             end    
