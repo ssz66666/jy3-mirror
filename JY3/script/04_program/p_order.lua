@@ -3199,14 +3199,9 @@ t['通用_检测装备']=function()
         end
     end
     local o_store = G.QueryName(0x10190001)
-    local int_继承个数 = 0
     if G.call('get_point',237) > 1   then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
-                int_继承个数 = int_继承个数 + 1
-                if int_继承个数 == G.call('get_point',237) + 1 then
-                    break 
-                end
                 local o_equip = G.QueryName(o_store.装备[i].代码)
                 local int_品质 = o_equip.品质 - 1
                 if o_store.装备[i].数量 > 0 and o_equip.类型 < 4 and o_equip.品质转换 == 1 then
