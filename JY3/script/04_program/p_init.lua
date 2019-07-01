@@ -132,7 +132,7 @@ t['地图系统_游戏加速监控'] = function()
 end
 t['地图系统_防修改监控'] = function()
 	G.call('通用_重置检测')
-	G.call('通用_还原装备')
+	G.call('通用_检测装备')
 	local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
     local int_检测 = 0
 	if int_成就 ~= math.abs(G.call('get_newpoint',80)+2000) then 
