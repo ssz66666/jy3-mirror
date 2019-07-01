@@ -71,6 +71,7 @@ t['初始化'] = function()
 	G.call('通用_存档',0)
 	G.start_program("地图系统_初始化地图系统")
 	G.start_program('地图系统_事件响应')
+	G.start_program('地图系统_小游戏')
 	G.start_program('地图系统_人物')
 	G.start_program('地图系统_聚贤庄任务')
 	G.start_program('地图系统_功能')
@@ -318,13 +319,8 @@ t['地图系统_事件响应'] = function()
 		G.case(6, '治疗')
 		G.case(7, '切磋')
 		G.case(8, '离队')
-		G.case(9, '跳骰')
-		G.case(10, '伐木')
-		G.case(11, '钓鱼')
-		G.case(12, '打猎')
-		G.case(13, '挖矿')
-		G.case(14, '返回标题')
-		G.case(15, '木桩')
+		G.case(9, '返回标题')
+		G.case(10, '木桩')
 	    local r = G.wait_case();
 		if r == 1 then
 			G.Tween("color", 800, ui, 0)
@@ -339,10 +335,10 @@ t['地图系统_事件响应'] = function()
 			G.call('通用_存档',G.call('get_point',143))
 		elseif r == 2 then
 			G.call('通用_战斗飘字')
-		elseif r == 14  then 
+		elseif r == 9  then 
 			G.call('成就_读档',10)
 			G.call('call_title')	
-		elseif r == 15  then 
+		elseif r == 10  then 
 			G.call('call_wood')
         elseif r == 4 then
 		elseif r == 3 then
@@ -355,9 +351,24 @@ t['地图系统_事件响应'] = function()
 			G.call('切磋')
 		elseif r == 8 then
 			G.call('离队')
-
-		
-		elseif r == 9 then
+		end
+	end
+end
+t['地图系统_小游戏'] = function()
+	local ui ;
+	if not G.getUI('v_citymap_system_map') then 
+		return
+	end 
+    ui = G.getUI('v_citymap_system_map');
+	local c = ui.c_citymap_system_map;
+	while true do
+		G.case(1, '跳骰')
+		G.case(2, '伐木')
+		G.case(3, '钓鱼')
+		G.case(4, '打猎')
+		G.case(5, '挖矿')
+	    local r = G.wait_case();
+        if r == 1 then
 			local ui1 ;
 			if not G.getUI('v_gambling') then 
 				return
@@ -437,7 +448,7 @@ t['地图系统_事件响应'] = function()
 		        ui1.getChildByName(tostring(i)).getChildByName('注数').text = d[i]
 			end 
 			G.misc().下注 = 0
-		elseif r == 13 then	
+		elseif r == 5 then	
 			local ui ;
 			if not G.getUI('v_dig') then 
 				return
@@ -585,7 +596,7 @@ t['地图系统_事件响应'] = function()
 				end
 				G.trig_event('挖矿结束')
             end 
-		elseif r == 10 then
+		elseif r == 2 then
 			local ui3 ;
 			if not G.getUI('v_logging') then 
 				return
@@ -655,7 +666,7 @@ t['地图系统_事件响应'] = function()
 				end	
 				G.trig_event('伐木结束')	
 			end 
-		elseif r == 11 then
+		elseif r == 3 then
 			local ui2 ;
 			if not G.getUI('v_fishing') then 
 				return
@@ -868,7 +879,7 @@ t['地图系统_事件响应'] = function()
 				G.wait_time(500)
 				G.trig_event('钓鱼结束')	
 			end		
-		elseif r == 12 then
+		elseif r == 4 then
 			local ui4 ;
 			if not G.getUI('v_hunting') then 
 				return
