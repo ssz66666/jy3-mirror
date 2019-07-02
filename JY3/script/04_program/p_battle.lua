@@ -646,6 +646,9 @@ t['战斗系统_事件响应'] = function()
                                     if  o_role_tb[magic[n]] == 0x10050000+int_代码  then 
                                         local o_skill_武功熟练度 =o_role_tb[tostring(n+9)]
                                         o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_代码,o_skill_武功熟练度 )
+                                        if o_skill.类别 > 5 then
+                                            o_skill_武功等级 = 10 
+                                        end
                                         needmp = math.floor(o_skill.消耗内力 * (o_skill_武功等级/2)*(o_skill_武功等级/2)*0.65)
                                         if needmp == 0 then 
                                             needmp = 1
@@ -1114,6 +1117,9 @@ t['战斗系统_事件响应'] = function()
                                     if  o_role_tb[magic[n]] == 0x10050000+int_代码  then 
                                         local o_skill_武功熟练度 =o_role_tb[tostring(n+9)]
                                         o_skill_武功等级 =  G.call('逻辑整理-NPC武功等级',int_代码,o_skill_武功熟练度 )
+                                        if o_skill.类别 > 5 then
+                                            o_skill_武功等级 = 10 
+                                        end
                                         needmp = math.floor(o_skill.消耗内力 * (o_skill_武功等级/2)*(o_skill_武功等级/2)*0.65)
                                         if needmp == 0 then 
                                             needmp = 1
