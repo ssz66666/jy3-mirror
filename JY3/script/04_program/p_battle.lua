@@ -3352,14 +3352,16 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 string_字符串_3 = string_字符串_3..'.'..'北冥'
             end
             hurt0 = math.floor(int_北冥)
-        elseif int_吸星 > 0 then 
+        end
+        if int_吸星 > 0 then 
             if string_字符串_3 == '' then 
                 string_字符串_3 = string_字符串_3..'吸星'
             else
                 string_字符串_3 = string_字符串_3..'.'..'吸星'
             end
-            hurt0 = math.floor(int_吸星)
-        elseif int_化工 > 0 then 
+            hurt0 = hurt0 + math.floor(int_吸星)
+        end
+        if int_化工 > 0 then 
             if string_字符串_3 == '' then 
                 string_字符串_3 = string_字符串_3..'化工'
             else
@@ -4038,14 +4040,16 @@ t['magic_power3'] = function(int_id,int_no)
                 string_字符串_3 = string_字符串_3..'.'..'北冥'
             end
             hurt0 = math.floor(int_北冥)
-        elseif int_吸星 > 0 then 
+        end
+        if int_吸星 > 0 then 
             if string_字符串_3 == '' then 
                 string_字符串_3 = string_字符串_3..'吸星'
             else
                 string_字符串_3 = string_字符串_3..'.'..'吸星'
             end
-            hurt0 = math.floor(int_吸星)
-        elseif int_化工 > 0 then 
+            hurt0 = hurt0 + math.floor(int_吸星)
+        end
+        if int_化工 > 0 then 
             if string_字符串_3 == '' then 
                 string_字符串_3 = string_字符串_3..'化工'
             else
