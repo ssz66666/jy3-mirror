@@ -3365,7 +3365,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             else
                 string_字符串_3 = string_字符串_3..'.'..'化工'
             end
-            hurt0 = math.floor(int_化工)
+            hurt2 = math.floor(int_化工)
         end
     end
     if G.call('get_npcskill',int_id,0x100500bd) > 0 then   --左右被动
@@ -4051,7 +4051,7 @@ t['magic_power3'] = function(int_id,int_no)
             else
                 string_字符串_3 = string_字符串_3..'.'..'化工'
             end
-            hurt0 = math.floor(int_化工)
+            hurt2 = math.floor(int_化工)
         end
     end
     if G.call('get_npcskill',int_id,0x100500bd) > 0 then   --左右被动
