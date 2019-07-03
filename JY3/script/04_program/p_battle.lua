@@ -2822,7 +2822,7 @@ t['magic_power1'] = function(int_id,int_no)
         else
             string_字符串_2 = string_字符串_2..'.'..'盲目'
         end
-        int_闪避 = int_闪避 + 200
+        int_闪避 = int_闪避 + 100
     end 
     if G.call('通用_取得套装',int_id,1) == 2 then --套装1闪避效果
         int_闪避 = int_闪避 + 50
@@ -3539,7 +3539,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         else
             string_字符串_2 = string_字符串_2..'.'..'盲目'
         end
-        int_闪避 = int_闪避 + 200
+        int_闪避 = int_闪避 + 100
     end
     if G.call('get_role',int_id,89) > 0  then --逍遥御风闪避效果
         if string_字符串_4 == '' then 
@@ -4232,7 +4232,7 @@ t['magic_power3'] = function(int_id,int_no)
         else
             string_字符串_2 = string_字符串_2..'.'..'盲目'
         end
-        int_闪避 = int_闪避 + 200
+        int_闪避 = int_闪避 + 100
     end 
     if G.call('get_point',89) > 0 then --逍遥御风闪避效果
         if string_字符串_4 == '' then 
