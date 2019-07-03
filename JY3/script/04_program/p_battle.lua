@@ -2894,7 +2894,10 @@ t['magic_power1'] = function(int_id,int_no)
                 hurt = math.floor(hurt *0.8)
             end
             if o_battle.模式 ~= 99 then
-                local int_比例 = math.ceil(G.call('get_point',4)/10)
+                local int_比例 = math.ceil(G.call('get_point',4)/20)*2
+                if int_id = 418 then
+                    int_比例 = 10
+                end
                 hurt = math.floor(hurt*int_比例*200/(o_battle.diffty*10)) --根据难度和战斗敌人强度计算伤害
             end
             if hurt < 10 then 
@@ -3589,7 +3592,10 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 hurt = math.floor(hurt *0.8)
             end
             if o_battle.模式 ~= 5 then
-                local int_比例 = math.ceil(G.call('get_point',4)/10)
+                local int_比例 = math.ceil(G.call('get_point',4)/20)*2
+                if int_id = 418 then
+                    int_比例 = 10
+                end
                 if att_role == 0 then --根据难度和攻击方计算最终伤害
                     hurt = math.floor(hurt*int_比例*o_battle.diffty/2000) 
                 else   
@@ -4290,7 +4296,6 @@ t['magic_power3'] = function(int_id,int_no)
                 G.call('add_role',int_id,14,1500)
                 G.call('add_point',46,-1500)
             end
-            print(int_id,G.misc().role,hurt4) 
             G.call('add_role',int_id,15,hurt4)    
             G.call('add_role',int_id,2,hurt0)
             G.call('add_role',int_id,15,-hurt3)
@@ -4308,7 +4313,10 @@ t['magic_power3'] = function(int_id,int_no)
                 hurt = math.floor(hurt *0.8)
             end 
             if o_battle.模式 ~= 99 then
-                local int_比例 = math.ceil(G.call('get_point',4)/10)
+                local int_比例 = math.ceil(G.call('get_point',4)/20)*2
+                if int_id = 418 then
+                    int_比例 = 10
+                end
                 if att_role == 0 then --根据难度和攻击方计算最终伤害
                     hurt = math.floor(hurt*int_比例*o_battle.diffty/2000) 
                 else   
