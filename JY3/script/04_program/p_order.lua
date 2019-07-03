@@ -847,6 +847,8 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         end 
     elseif o_battle.模式 == 4 then   --NPC互相殴打
     elseif o_battle.模式 == 5 then   --队友上阵，主角看戏
+    elseif o_battle.模式 == 99 then
+        G.call('set_team',0,0,0,0) 
     end 
     for i = 6,11 do
         for p = 81,90 do   --清除敌人的全部异常
