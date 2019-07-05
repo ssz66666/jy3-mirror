@@ -2933,7 +2933,7 @@ t['magic_power1'] = function(int_id,int_no)
                 end
             end
             if o_battle.模式 == 99 then
-                hurt = -10
+                hurt = 0
                 hurt0 = 0
                 hurt1 = 0
                 hurt2 = 0
