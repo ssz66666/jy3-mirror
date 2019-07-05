@@ -408,9 +408,9 @@ function t:click(tar)
             G.removeUI('v_system') 
             G.call("goto_map",G.QueryName(0x10030001)[tostring(140)]-0x10060000)
             G.call('notice1','开启梦幻专用测试通道')
-            for i = 1,15 do 
-                G.call('add_equip',0x10180028 + i,1)
-            end
+            -- for i = 1,15 do 
+            --     G.call('add_equip',0x10180028 + i,1)
+            -- end
             G.misc().梦幻测试 = 1
         elseif self.文本.getChildByName('secret').getChildByName('文本').text == '端午节快乐'  then
             if G.call('get_point',237) > 1 then 
