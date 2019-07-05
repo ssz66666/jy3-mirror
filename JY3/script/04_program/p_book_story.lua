@@ -1948,6 +1948,7 @@ t['天书_越女剑'] = function()
         if o_battle_结果 == 1 then
             G.call("talk",'',419,'   你的队伍不错，我就随你看看！',2,1)
             G.call('join',419)
+            G.call('add_item',343,1)
             o_book_story.完美 = 1
             o_book_story.完成 = 1
         else
