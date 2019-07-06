@@ -299,7 +299,7 @@ t['通用_存储检测'] = function()
             local o_role = G.QueryName(o_battle[位置[i]]+0x10040000)
             if o_role[tostring(901)] == nil then
                 if o_role[tostring(1)] ~= math.abs(o_role.存储记录+10) then 
-                    G.call('通用_强退游戏',2000+i)
+                    G.call('通用_强退游戏',3000+i)
                 end
             end
         end

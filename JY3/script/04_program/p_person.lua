@@ -760,6 +760,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                             G.call('模式_笑梦游记')
                         else
                             G.call('all_over')
+                            --G.call('模式_笑梦游记')
                             G.call('organ')
                         end
                     elseif int_选项 == 2 then
@@ -1492,7 +1493,7 @@ t['事件_随机切磋']=function()
     end 
     local name = G.call('get_point',1)
     G.call("talk",'',int_role,'   【'..name..'】大侠，久闻大名，今日特来领教阁下高招！',1,1)
-    G.call('call_battle',1,10,1,400,int_role,0,0,0,0,0,0,0,1)
+    G.call('call_battle',1,10,1,555,int_role,0,0,0,0,0,0,0,1)
     if int_被动 > 0 and int_role ~= 418 then--还原被动
         for j = 1,int_被动 do 
             G.call('set_role',int_role,110+j,team_skill[j]) 
