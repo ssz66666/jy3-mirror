@@ -2211,7 +2211,7 @@ t['聚贤庄任务_唐诗选辑的秘密']=function()
     if G.call('get_item',265) > 0 then 
         G.call("talk",'',0,'   "我得到的这本《唐诗选辑》究竟有什么不同呢？咦？！原来是这样哦..',0,0)   
         G.call('dark')
-        if G.call('get_magic',210) == 0  and G.call('get_point',35) == 100 then 
+        if G.call('get_magic',210) == 0  and G.call('get_point',35) >= 100 then 
             G.call("talk",'',0,'   原来这里面还隐藏这这门剑法！',0,0) 
             G.call('learnmagic',210)
         else
