@@ -4310,7 +4310,7 @@ t['magic_power3'] = function(int_id,int_no)
             elseif  G.call('通用_取得套装',int_id,3) == 2 then
                 hurt = math.floor(hurt *1.1)
             end
-            elseif  G.call('通用_取得套装',0,4) == 3 then
+            if  G.call('通用_取得套装',0,4) == 3 then
                 hurt = math.floor(hurt *0.8)
             elseif  G.call('通用_取得套装',0,4) == 2 then
                 hurt = math.floor(hurt *0.9)
