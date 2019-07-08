@@ -667,10 +667,10 @@ t['战斗系统_事件响应'] = function()
                                     if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
                                         int_hp = math.floor(int_hp * 1.2) 
                                     end  
-                                    if G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then --套装3回血效果
-                                        int_hp = math.floor(int_hp * 1.05)
-                                    elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then
+                                    if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
                                         int_hp = math.floor(int_hp * 1.1)
+                                    elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                        int_hp = math.floor(int_hp * 1.05)
                                     end  
                                     if G.call('通用_取得套装',o_battle[位置[i]],3) < 3 then
                                         if int_hp > 9999 then 
@@ -704,10 +704,10 @@ t['战斗系统_事件响应'] = function()
                                                 if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
                                                    int_hp = math.floor(int_hp * 1.2) 
                                                 end 
-                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then --套装3回血效果
-                                                    int_hp = math.floor(int_hp * 1.05)
-                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then
+                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
                                                     int_hp = math.floor(int_hp * 1.1)
+                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                                    int_hp = math.floor(int_hp * 1.05)
                                                 end  
                                                 if G.call('通用_取得套装',o_battle[位置[i]],3) < 3 then
                                                     if int_hp > 9999 then 
@@ -741,10 +741,10 @@ t['战斗系统_事件响应'] = function()
                                                 if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
                                                    int_hp = math.floor(int_hp * 1.2) 
                                                 end 
-                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then --套装3回血效果
-                                                    int_hp = math.floor(int_hp * 1.05)
-                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then
+                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
                                                     int_hp = math.floor(int_hp * 1.1)
+                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                                    int_hp = math.floor(int_hp * 1.05)
                                                 end  
                                                 if G.call('通用_取得套装',o_battle[位置[i]],3) < 3 then
                                                     if int_hp > 9999 then 
@@ -788,10 +788,10 @@ t['战斗系统_事件响应'] = function()
                                                 if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
                                                     int_hp = math.floor(int_hp * 1.2)
                                                 end 
-                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then --套装3回血效果
-                                                    int_hp = math.floor(int_hp * 1.05)
-                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then
+                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
                                                     int_hp = math.floor(int_hp * 1.1)
+                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                                    int_hp = math.floor(int_hp * 1.05)
                                                 end  
                                                 if G.call('通用_取得套装',o_battle[位置[i]],3) < 3 then
                                                     if int_hp > 9999 then 
@@ -1139,10 +1139,10 @@ t['战斗系统_事件响应'] = function()
                                     if G.call('通用_取得敌方队伍特效',4) or G.call('通用_取得敌方装备特效',201) then --敌方妙手加成
                                         int_hp = math.floor(int_hp * 1.2) 
                                     end  
-                                    if G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then --套装3回血效果
-                                        int_hp = math.floor(int_hp * 1.05)
-                                    elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then
+                                    if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
                                         int_hp = math.floor(int_hp * 1.1)
+                                    elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                        int_hp = math.floor(int_hp * 1.05)
                                     end  
                                     ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').text = tostring(int_hp) 
                                     ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').visible = true
@@ -1170,10 +1170,10 @@ t['战斗系统_事件响应'] = function()
                                                 if G.call('通用_取得敌方队伍特效',4) or G.call('通用_取得敌方装备特效',201) then--敌方妙手加成
                                                     int_hp = math.floor(int_hp * 1.2) 
                                                 end  
-                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then --套装3回血效果
-                                                    int_hp = math.floor(int_hp * 1.05)
-                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then
+                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
                                                     int_hp = math.floor(int_hp * 1.1)
+                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                                    int_hp = math.floor(int_hp * 1.05)
                                                 end  
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = tostring(int_hp)
                                             end
@@ -1197,10 +1197,10 @@ t['战斗系统_事件响应'] = function()
                                                 if G.call('通用_取得敌方队伍特效',4) or G.call('通用_取得敌方装备特效',201) then--敌方妙手加成
                                                     int_hp = math.floor(int_hp * 1.2) 
                                                 end  
-                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then --套装3回血效果
-                                                    int_hp = math.floor(int_hp * 1.05)
-                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then
+                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
                                                     int_hp = math.floor(int_hp * 1.1)
+                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                                    int_hp = math.floor(int_hp * 1.05)
                                                 end  
                                                 for j = 81,90 do 
                                                     G.call('ser_role',o_battle[位置[p]],j,0)
@@ -1230,10 +1230,10 @@ t['战斗系统_事件响应'] = function()
                                                 if G.call('通用_取得敌方队伍特效',4) or G.call('通用_取得敌方装备特效',201) then--敌方妙手加成 
                                                     int_hp = math.floor(int_hp * 1.2)
                                                 end   
-                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then --套装3回血效果
-                                                    int_hp = math.floor(int_hp * 1.05)
-                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then
+                                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
                                                     int_hp = math.floor(int_hp * 1.1)
+                                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                                    int_hp = math.floor(int_hp * 1.05)
                                                 end  
                                                 -- if G.call('通用_取得套装',o_battle[位置[i]],3) < 3 then
                                                 --     if int_hp > 9999 then 
@@ -1490,10 +1490,10 @@ t['战斗系统_事件响应'] = function()
                             if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
                                 int_hp = math.floor(int_hp * 1.2) 
                             end  
-                            if G.call('通用_取得套装',0,3) == 2 then --套装3回血效果
-                                int_hp = math.floor(int_hp * 1.05)
-                            elseif G.call('通用_取得套装',0,3) == 3 then
+                            if G.call('通用_取得套装',0,3) == 3 then --套装3回血效果
                                 int_hp = math.floor(int_hp * 1.1)
+                            elseif G.call('通用_取得套装',0,3) == 2 then
+                                int_hp = math.floor(int_hp * 1.05)
                             end  
                             if G.call('通用_取得套装',0,3) < 3 then
                                 if int_hp > 9999 then 
@@ -1523,10 +1523,10 @@ t['战斗系统_事件响应'] = function()
                                         if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
                                             int_hp = math.floor(int_hp * 1.2) 
                                         end  
-                                        if G.call('通用_取得套装',0,3) == 2 then --套装3回血效果
-                                            int_hp = math.floor(int_hp * 1.05)
-                                        elseif G.call('通用_取得套装',0,3) == 3 then
+                                        if G.call('通用_取得套装',0,3) == 3 then --套装3回血效果
                                             int_hp = math.floor(int_hp * 1.1)
+                                        elseif G.call('通用_取得套装',0,3) == 2 then
+                                            int_hp = math.floor(int_hp * 1.05)
                                         end  
                                         if G.call('通用_取得套装',0,3) < 3 then
                                             if int_hp > 9999 then 
@@ -1559,10 +1559,10 @@ t['战斗系统_事件响应'] = function()
                                         if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
                                             int_hp = math.floor(int_hp * 1.2) 
                                         end  
-                                        if G.call('通用_取得套装',0,3) == 2 then --套装3回血效果
-                                            int_hp = math.floor(int_hp * 1.05)
-                                        elseif G.call('通用_取得套装',0,3) == 3 then
+                                        if G.call('通用_取得套装',0,3) == 3 then --套装3回血效果
                                             int_hp = math.floor(int_hp * 1.1)
+                                        elseif G.call('通用_取得套装',0,3) == 2then
+                                            int_hp = math.floor(int_hp * 1.05)
                                         end  
                                         if G.call('通用_取得套装',0,3) < 3 then
                                             if int_hp > 9999 then 
@@ -1602,10 +1602,10 @@ t['战斗系统_事件响应'] = function()
                                         if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
                                             int_hp  = math.floor(int_hp * 1.2)
                                         end  
-                                        if G.call('通用_取得套装',0,3) == 2 then --套装3回血效果
-                                            int_hp = math.floor(int_hp * 1.05)
-                                        elseif G.call('通用_取得套装',0,3) == 3 then
+                                        if G.call('通用_取得套装',0,3) == 3 then --套装3回血效果
                                             int_hp = math.floor(int_hp * 1.1)
+                                        elseif G.call('通用_取得套装',0,3) == 1 then
+                                            int_hp = math.floor(int_hp * 1.05)
                                         end  
                                         if G.call('通用_取得套装',0,3) < 3 then
                                             if int_hp > 9999 then 
@@ -1665,10 +1665,10 @@ t['战斗系统_事件响应'] = function()
                                 if int_奇才 == 1 then   
                                     int_point = int_point + IQ_point
                                 end  
-                                if G.call('通用_取得套装',0,2) == 2  then --套装2修炼武功效果
-                                    int_point = int_point + 5
-                                elseif G.call('通用_取得套装',0,2) == 3  then 
+                                if G.call('通用_取得套装',0,2) == 3  then --套装2修炼武功效果
                                     int_point = int_point *2
+                                elseif G.call('通用_取得套装',0,2) == 2  then 
+                                    int_point = int_point +5
                                 end
                                 G.call('add_magicexp',int_代码+1,int_point)
                             end
@@ -1906,18 +1906,18 @@ t['战斗系统_事件响应'] = function()
                     if i > 1 then 
                         if math.random(100) > 90 and G.call('通用_取得青龙附加效果',o_battle[位置[i]],i_skill)   then --青龙以及5项兵器效果
                             ui.getChildByName('map').getChildByName(位置[i]).x = 140
-                        elseif G.call('通用_取得套装',o_battle[位置[i]],5) == 2 then
-                            ui.getChildByName('map').getChildByName(位置[i]).x = 15
                         elseif G.call('通用_取得套装',o_battle[位置[i]],5) == 3 then
                             ui.getChildByName('map').getChildByName(位置[i]).x = 50
+                        elseif G.call('通用_取得套装',o_battle[位置[i]],5) == 2 then
+                            ui.getChildByName('map').getChildByName(位置[i]).x = 15
                         end 
                     else
                         if math.random(100) > 90 and  G.call('通用_取得青龙附加效果',0,i_skill)   then --青龙以及5项兵器效果
                             ui.getChildByName('map').getChildByName(位置[i]).x = 140
-                        elseif G.call('通用_取得套装',0,5) == 2 then
-                            ui.getChildByName('map').getChildByName(位置[i]).x = 15
                         elseif G.call('通用_取得套装',0,5) == 3 then
                             ui.getChildByName('map').getChildByName(位置[i]).x = 50
+                        elseif G.call('通用_取得套装',0,5) == 2 then
+                            ui.getChildByName('map').getChildByName(位置[i]).x = 15
                         end 
                     end
 				    if  ui.getChildByName('tab').getChildByName(位置[i]).getChildByName('over').text == tostring(1) then  
@@ -2454,10 +2454,10 @@ t['集气'] = function()
 					    speed[i] = (100 -  int_气槽)/4
                     end 	
                     if i == 1 then 
-                        if G.call('通用_取得套装',0,1) == 2 then--套装1效果
-                            speed[1] = speed[1] + 1 
-                        elseif G.call('通用_取得套装',0,1) == 3 then
+                        if G.call('通用_取得套装',0,1) == 3 then--套装1效果
                             speed[1] = speed[1] + 3
+                        elseif G.call('通用_取得套装',0,1) == 2 then
+                            speed[1] = speed[1] + 1
                         end
                         if G.call('get_point',196) ~= nil then --主角内功对集气的加成
                             if G.QueryName(G.call('get_point',196) ).内功轻功效果 == 9 then 
@@ -2483,10 +2483,10 @@ t['集气'] = function()
 					end 
 					if i > 1  then 
                         local o_role_tb = G.QueryName(0x10040000 + o_battle[位置[i] ] )
-                        if G.call('通用_取得套装',o_battle[位置[i] ],1) == 2 then --套装1效果
-                            speed[i] = speed[i] + 1 
-                        elseif G.call('通用_取得套装',o_battle[位置[i] ],1) == 3 then --套装1效果
-                            speed[i] = speed[i] + 3
+                        if G.call('通用_取得套装',o_battle[位置[i] ],1) == 3 then --套装1效果
+                            speed[i] = speed[i] + 3 
+                        elseif G.call('通用_取得套装',o_battle[位置[i] ],1) == 2 then --套装1效果
+                            speed[i] = speed[i] + 1
                         end
                         if o_role_tb ~= nil then 
                             speed[i] = speed[i] + G.call('通用_取得NPC内功效果',o_battle[位置[i] ],9)
@@ -2652,10 +2652,10 @@ t['magic_power1'] = function(int_id,int_no)
     if G.call('get_point',18) <= 50 and G.call('get_magic',190) > 0 then --左右被动
         local int_左右 = 0
         int_左右 =  G.call('get_magic_lv',190)*2*(100-G.call('get_point',18) )/5 + G.call('通用_取得装备左右效果',0)
-        if G.call('通用_取得套装',0,6) == 2 then
-            int_左右 = int_左右*1.25
-        elseif  G.call('通用_取得套装',0,6) == 3 then
+        if G.call('通用_取得套装',0,6) == 3 then
             int_左右 = int_左右*1.5
+        elseif  G.call('通用_取得套装',0,6) == 2 then
+            int_左右 = int_左右*1.25
         end
         if string_字符串_1 == '' then 
             string_字符串_1 = string_字符串_1..'左右互搏'
@@ -2770,10 +2770,10 @@ t['magic_power1'] = function(int_id,int_no)
             string_字符串_3 = string_字符串_3..'.'..'暴击'
         end
         result = result + 150
-        if G.call('通用_取得套装',0,4) == 2 then 
-            result = result + 50
-        elseif G.call('通用_取得套装',0,4) == 3 then 
+        if G.call('通用_取得套装',0,4) == 3 then 
             result = result + 150
+        elseif G.call('通用_取得套装',0,4) == 2 then 
+            result = result + 50
         end 
     end
     local def_role = 0
@@ -2824,10 +2824,10 @@ t['magic_power1'] = function(int_id,int_no)
         end
         int_闪避 = int_闪避 + 100
     end 
-    if G.call('通用_取得套装',int_id,1) == 2 then --套装1闪避效果
-        int_闪避 = int_闪避 + 50
-    elseif  G.call('通用_取得套装',int_id,1) == 3 then
+    if G.call('通用_取得套装',int_id,1) == 3 then --套装1闪避效果
         int_闪避 = int_闪避 + 100
+    elseif  G.call('通用_取得套装',int_id,1) == 2 then
+        int_闪避 = int_闪避 + 50
     end
     if G.call('get_role',int_id,89) > 0  then --逍遥御风闪避效果
         if string_字符串_4 == '' then 
@@ -2846,10 +2846,10 @@ t['magic_power1'] = function(int_id,int_no)
                     string_字符串_4 = string_字符串_4..'.'..'斗转星移'
                 end
                 hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_id)/2 )   /100 ) 
-                if G.call('通用_取得套装',int_id,6) == 2 then
-                    hurt3 = math.floor(hurt3*1.25)
-                elseif  G.call('通用_取得套装',int_id,6) == 3 then
+                if G.call('通用_取得套装',int_id,6) == 3 then
                     hurt3 = math.floor(hurt3*1.5)
+                elseif  G.call('通用_取得套装',int_id,6) == 2 then
+                    hurt3 = math.floor(hurt3*1.25)
                 end
             end
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
@@ -2884,14 +2884,15 @@ t['magic_power1'] = function(int_id,int_no)
             if o_skill.类别 == 2 then --五岳剑阵效果
                 hurt = math.floor(hurt* (int_五岳剑阵效果*5/100 +1)  )
             end
-            if G.call('通用_取得套装',0,3) == 2 then --套装3和套装4强伤和减伤效果
-                hurt = math.floor(hurt *1.1)
-            elseif  G.call('通用_取得套装',0,3) == 3 then
+            if G.call('通用_取得套装',0,3) == 3 then --套装3和套装4强伤和减伤效果
                 hurt = math.floor(hurt *1.2)
+            elseif  G.call('通用_取得套装',0,3) == 2 then
+                hurt = math.floor(hurt *1.1)
+            end
+            if  G.call('通用_取得套装',int_id,4) == 3 then
+                hurt = math.floor(hurt *0.8)
             elseif  G.call('通用_取得套装',int_id,4) == 2 then
                 hurt = math.floor(hurt *0.9)
-            elseif  G.call('通用_取得套装',int_id,4) == 3 then
-                hurt = math.floor(hurt *0.8)
             end
             if o_battle.模式 ~= 99 then
                 local int_比例 = math.ceil(G.call('get_point',4)/20)*2
@@ -2959,10 +2960,10 @@ t['magic_power1'] = function(int_id,int_no)
                 seed = seed * 2
             end 
             seed = math.floor(seed * (100-int_五行八卦效果*10)/100) --五行八卦阵效果  
-            if G.call('通用_取得套装',int_id,4) == 2 then
-                seed = math.max(1,math.floor(seed/2))
-            elseif G.call('通用_取得套装',int_id,4) == 3 then
-                seed = 1
+            if G.call('通用_取得套装',int_id,4) == 3 then
+                seed = 100000
+            elseif G.call('通用_取得套装',int_id,4) == 2 then
+                seed = seed * 2
             end 
             local deytime = G.call('get_point',236)
             local int_时序 = 50 * deytime 
@@ -3210,10 +3211,10 @@ t['magic_power1'] = function(int_id,int_no)
         else
             int_怒气 = math.ceil(hurt/2000 + 0.5)
         end 
-        if G.call('通用_取得套装',0,4) == 2 then --套装4增加怒气效果
-            int_怒气 = int_怒气 + 2
-        elseif G.call('通用_取得套装',0,4) == 3 then --套装4怒气效果
+        if G.call('通用_取得套装',0,4) == 3 then --套装4增加怒气效果
             int_怒气 = int_怒气 * 2
+        elseif G.call('通用_取得套装',0,4) == 2 then --套装4怒气效果
+            int_怒气 = int_怒气 + 2
         end
         G.call('add_point',48,int_怒气)
     end
@@ -3375,10 +3376,10 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     end
     if G.call('get_npcskill',int_id,0x100500bd) > 0 then   --左右被动
         local int_左右 = 150 + G.call('通用_取得装备左右效果',int_id)
-        if G.call('通用_取得套装',int_id,6) == 2 then
-            int_左右 = int_左右*1.25
-        elseif  G.call('通用_取得套装',int_id,6) == 3 then
+        if G.call('通用_取得套装',int_id,6) == 3 then
             int_左右 = int_左右*1.5
+        elseif  G.call('通用_取得套装',int_id,6) == 2 then
+            int_左右 = int_左右*1.25
         end
         if string_字符串_1 == '' then 
             string_字符串_1 = string_字符串_1..'左右互搏'
@@ -3524,10 +3525,10 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             string_字符串_3 = string_字符串_3..'.'..'暴击'
         end
         result = result + 150
-        if G.call('通用_取得套装',int_id,4) == 2 then 
-            result = result + 50
-        elseif G.call('通用_取得套装',int_id,4) == 3 then 
+        if G.call('通用_取得套装',int_id,4) == 3 then 
             result = result + 150
+        elseif G.call('通用_取得套装',int_id,4) == 2 then 
+            result = result + 50
         end 
     end
     hurt = hurt * result/100
@@ -3549,10 +3550,10 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         end
         int_闪避 = int_闪避 + 100
     end
-    if G.call('通用_取得套装',int_enemy,1) == 2 then --套装1闪避效果
-        int_闪避 = int_闪避 + 50
-    elseif  G.call('通用_取得套装',int_enemy,1) == 3 then
+    if G.call('通用_取得套装',int_enemy,1) == 3 then --套装1闪避效果
         int_闪避 = int_闪避 + 100
+    elseif  G.call('通用_取得套装',int_enemy,1) == 2 then
+        int_闪避 = int_闪避 + 50
     end
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避+1) then  --命中计算
         if hurt > 0 then 
@@ -3563,10 +3564,10 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 else
                     string_字符串_4 = string_字符串_4..'.'..'斗转星移'
                 end
-                if G.call('通用_取得套装',int_enemy,6) == 2 then
-                    hurt3 = math.floor(hurt3*1.25)
-                elseif  G.call('通用_取得套装',int_enemy,6) == 3 then
+                if G.call('通用_取得套装',int_enemy,6) == 3 then
                     hurt3 = math.floor(hurt3*1.5)
+                elseif  G.call('通用_取得套装',int_enemy,6) == 2 then
+                    hurt3 = math.floor(hurt3*1.25)
                 end
             end
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
@@ -3582,14 +3583,15 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             else
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 ) )  --按敌人的拆招和内功免伤进行计算伤害
             end
-            if G.call('通用_取得套装',int_id,3) == 2 then --套装3和套装4强伤和减伤效果
-                hurt = math.floor(hurt *1.1)
-            elseif  G.call('通用_取得套装',int_id,3) == 3 then
+            if G.call('通用_取得套装',int_id,3) == 3 then --套装3和套装4强伤和减伤效果
                 hurt = math.floor(hurt *1.2)
+            elseif  G.call('通用_取得套装',int_id,3) == 2 then
+                hurt = math.floor(hurt *1.1)
+            end
+            if  G.call('通用_取得套装',int_enemy,4) == 3 then
+                hurt = math.floor(hurt *0.8)
             elseif  G.call('通用_取得套装',int_enemy,4) == 2 then
                 hurt = math.floor(hurt *0.9)
-            elseif  G.call('通用_取得套装',int_enemy,4) == 3 then
-                hurt = math.floor(hurt *0.8)
             end
             if o_battle.模式 ~= 5 then
                 local int_比例 = math.ceil(G.call('get_point',4)/20)*2
@@ -3652,10 +3654,10 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             if G.call('通用_取得人物特效',int_enemy,6) then --受击方冰心效果
                 seed = seed * 2
             end 
-            if G.call('通用_取得套装',int_id,4) == 2 then
-                seed = math.max(1,math.floor(seed/2))
-            elseif G.call('通用_取得套装',int_id,4) == 3 then
-                seed = 1
+            if G.call('通用_取得套装',int_id,4) == 3 then
+                seed = 100000
+            elseif G.call('通用_取得套装',int_id,4) == 2 then
+                seed = seed * 2
             end  
             local deytime = G.call('get_point',236)
             local int_时序 = 50 * deytime 
@@ -4066,10 +4068,10 @@ t['magic_power3'] = function(int_id,int_no)
     end
     if G.call('get_npcskill',int_id,0x100500bd) > 0 then   --左右被动
         local int_左右 = 150 + G.call('通用_取得装备左右效果',int_id)
-        if G.call('通用_取得套装',int_id,6) == 2 then
-            int_左右 = int_左右*1.25
-        elseif  G.call('通用_取得套装',int_id,6) == 3 then
+        if G.call('通用_取得套装',int_id,6) == 3 then
             int_左右 = int_左右*1.5
+        elseif  G.call('通用_取得套装',int_id,6) == 2 then
+            int_左右 = int_左右*1.25
         end
         if string_字符串_1 == '' then 
             string_字符串_1 = string_字符串_1..'左右互搏'
@@ -4194,10 +4196,10 @@ t['magic_power3'] = function(int_id,int_no)
             string_字符串_3 = string_字符串_3..'.'..'暴击'
         end
         result = result + 150
-        if G.call('通用_取得套装',int_id,4) == 2 then 
-            result = result + 50
-        elseif G.call('通用_取得套装',int_id,4) == 3 then 
+        if G.call('通用_取得套装',int_id,4) == 3 then 
             result = result + 150
+        elseif G.call('通用_取得套装',int_id,4) == 2 then 
+            result = result + 50
         end 
     end
     if  G.call('通用_取得我方队伍特效',2) then
@@ -4242,10 +4244,10 @@ t['magic_power3'] = function(int_id,int_no)
         end
         int_闪避 = int_闪避 + 100
     end
-    if G.call('通用_取得套装',0,1) == 2 then --套装1闪避效果
-        int_闪避 = int_闪避 + 50
-    elseif  G.call('通用_取得套装',0,1) == 3 then
+    if G.call('通用_取得套装',0,1) == 3 then --套装1闪避效果
         int_闪避 = int_闪避 + 100
+    elseif  G.call('通用_取得套装',0,1) == 2 then
+        int_闪避 = int_闪避 + 50
     end
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避 + 1) then  --命中计算
         if hurt > 0 then 
@@ -4256,10 +4258,10 @@ t['magic_power3'] = function(int_id,int_no)
                     string_字符串_4 = string_字符串_4..'.'..'斗转星移'
                 end
                 hurt3 = math.floor(hurt * (20+G.call('通用_取得装备斗转效果',0)/2  )   *G.call('get_magic_lv',152)/500  )
-                if G.call('通用_取得套装',0,6) == 2 then
-                    hurt3 = math.floor(hurt3*1.25)
-                elseif  G.call('通用_取得套装',0,6) == 3 then
+                if G.call('通用_取得套装',0,6) == 3 then
                     hurt3 = math.floor(hurt3*1.5)
+                elseif  G.call('通用_取得套装',0,6) == 2 then
+                    hurt3 = math.floor(hurt3*1.25)
                 end
             end 
             if G.call('get_point',196) ~= nil then   
@@ -4303,14 +4305,15 @@ t['magic_power3'] = function(int_id,int_no)
             G.call('add_point',46,-hurt1)
             G.call('add_point',46,-hurt0)
             G.call('add_point',46,-hurt2) 
-            if G.call('通用_取得套装',int_id,3) == 2 then --套装3和套装4强伤和减伤效果
-                hurt = math.floor(hurt *1.1)
-            elseif  G.call('通用_取得套装',int_id,3) == 3 then
+            if G.call('通用_取得套装',int_id,3) == 3 then --套装3和套装4强伤和减伤效果
                 hurt = math.floor(hurt *1.2)
-            elseif  G.call('通用_取得套装',0,4) == 2 then
-                hurt = math.floor(hurt *0.9)
+            elseif  G.call('通用_取得套装',int_id,3) == 2 then
+                hurt = math.floor(hurt *1.1)
+            end
             elseif  G.call('通用_取得套装',0,4) == 3 then
                 hurt = math.floor(hurt *0.8)
+            elseif  G.call('通用_取得套装',0,4) == 2 then
+                hurt = math.floor(hurt *0.9)
             end 
             if o_battle.模式 ~= 99 then
                 local int_比例 = math.ceil(G.call('get_point',4)/20)*2
@@ -4332,10 +4335,10 @@ t['magic_power3'] = function(int_id,int_no)
             else
                 int_怒气 = math.ceil(hurt/1000 + 0.5)
             end
-            if G.call('通用_取得套装',0,4) == 2 then --套装4增加怒气效果
-                int_怒气 = int_怒气 + 2
-            elseif G.call('通用_取得套装',0,4) == 3 then --套装4怒气效果
+            if G.call('通用_取得套装',0,4) == 3 then --套装4增加怒气效果
                 int_怒气 = int_怒气 * 2
+            elseif G.call('通用_取得套装',0,4) == 2 then --套装4怒气效果
+                int_怒气 = int_怒气 + 2
             end
             G.call('add_point',48,int_怒气 )
             local seed = 100
@@ -4350,10 +4353,10 @@ t['magic_power3'] = function(int_id,int_no)
             if G.call('通用_取得人物特效',0,6) then --受击方冰心效果
                 seed = seed * 2
             end 
-            if G.call('通用_取得套装',0,4) == 2 then
-                seed = math.max(1,math.floor(seed/2))
-            elseif G.call('通用_取得套装',0,4) == 3 then
-                seed = 1
+            if G.call('通用_取得套装',0,4) == 3 then
+                seed = 100000
+            elseif G.call('通用_取得套装',0,4) == 2 then
+                seed = seed * 2
             end 
             local deytime = G.call('get_point',236)
             local int_时序 = 50 * deytime 
@@ -4571,7 +4574,7 @@ t['magic_power3'] = function(int_id,int_no)
                     end
                 elseif o_skill_ta.内功轻功效果  ==  14 then 
                     if math.random(seed) < o_skill_ta.效果等级*o_skill_ta.修为等级 then
-                        G.call('set_point',82,2) 
+                        G.call('set_point',82,0) 
                     end
                 elseif o_skill_ta.内功轻功效果  ==  15 then 
                     if math.random(seed) < o_skill_ta.效果等级*o_skill_ta.修为等级 then

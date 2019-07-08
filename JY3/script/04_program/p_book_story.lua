@@ -1945,6 +1945,7 @@ t['天书_越女剑'] = function()
         G.call("talk",'',419,'   勇气可嘉，你和你的朋友一起上吧！',2,1)
         G.call('all_over')
         G.call('call_battle',1,107,3,666,418,0,0,0,0,0,0) 
+        o_battle_结果 = G.call('get_battle') 
         if o_battle_结果 == 1 then
             G.call("talk",'',419,'   你的队伍不错，我就随你看看！',2,1)
             G.call('join',419)

@@ -3857,7 +3857,7 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
             int_寻宝 = 100
         end
         if G.call('get_point',115) == 16 then
-            int_寻宝 = 50 
+            int_寻宝 = int_寻宝 + 50 
         end
         int_几率 = int_几率 + int_寻宝
     end
