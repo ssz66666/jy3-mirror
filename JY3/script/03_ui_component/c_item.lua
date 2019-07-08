@@ -353,6 +353,7 @@ function t:rollOver(tar)
             self.obj.getChildByName('关闭菜单').visible = false
             self.obj.getChildByName('说明').visible = true
             local o_equip = G.QueryName(o_body[类别[i]] )
+            if o_body[类别[i]] == nil then return end
             self.说明.getChildByName('名称').text = '名称:[07] '..o_equip.名称
             local  str = '说明:[07] '..o_equip.描述..'[br][08]效果: '
             local 效果 = {'生命','内力','拆招','搏击','闪躲','内功','轻身','减伤','左右','斗转'}
