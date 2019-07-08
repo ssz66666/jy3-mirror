@@ -368,14 +368,14 @@ t['回答问题']=function()
         local 印记 = {}
         local int_印记数量 = 0
         local int_完美 = 0
-        local o_achieve_xmyj = G.QueryName(0x10170017)
         for i = 1,14 do
+            local o_book_story_list = G.QueryName(0x101e0000 + i)
             if G.call('通用_拥有印记',i) then 
                 int_印记数量 = int_印记数量 + 1
             else
                 table.insert(印记, i)
             end 
-            if o_achieve_xmyj.进度列表[i].完美 == 1 then 
+            if o_book_story_list.完美 == 1 then 
                 int_完美 = int_完美 + 1
             end
         end
