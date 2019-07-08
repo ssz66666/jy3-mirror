@@ -45,7 +45,7 @@ function t:刷新显示()
         local o_jm = 0x100a0000 
         local dtsl = G.QueryName(o_jm+i).打通数量
         for n = 1,dtsl do 
-            self.经脉.getChildByName(tostring(i)).getChildByName(tostring(n)).c_button:disable()
+            --self.经脉.getChildByName(tostring(i)).getChildByName(tostring(n)).c_button:disable()
             self.经脉.getChildByName(tostring(i)).getChildByName(tostring(n)).state = 'd'
             self.经脉.getChildByName(tostring(i)).getChildByName(tostring(n)).mouseEnabled = false
         end 
