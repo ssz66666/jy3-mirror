@@ -4001,7 +4001,7 @@ t['通用_拥有印记']=function(int_印记)
         for i = 1,#o_store.装备 do
             local i_equip = o_store.装备[i].代码
             local o_equip = G.QueryName(i_equip)
-            if o_equip.名称 == 印记名称[int_印记]   then 
+            if o_equip.类型 == 4 and  o_equip.名称 == 印记名称[int_印记]   then 
                 result = true
                 break
             end
