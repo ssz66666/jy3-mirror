@@ -252,6 +252,9 @@ t['通用_读档'] = function(int_档案编号)
             if G.misc().大随机序号 == nil then 
                 G.call('通用_大随机种子')
             end
+            if G.call('get_point',217) >= 99999 then 
+                G.call('通用_强退游戏')
+            end
             local achieve = G.DBTable('o_achieve')
             for i = 1,#achieve do 
                 local o_achieve = G.QueryName(0x10170000 + i)
@@ -3193,9 +3196,7 @@ t['通用_检测装备']=function()
                                 o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
                             end 
                         end
-                        break	
                     end
-                    
                 end	
             end
         end
@@ -3206,8 +3207,7 @@ t['通用_检测装备']=function()
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
                 local int_品质 = o_equip.品质 - 1
-                if o_store.装备[i].数量 > 0 and o_equip.类型 < 4 and o_equip.品质转换 == 1 then
-                    o_equip.品质转换 = 2
+                if o_store.装备[i].数量 > 0 and o_equip.类型 < 4  then
                     local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
                     for j = 1,40 do 
                         local o_equip_mod = G.QueryName(0x10180000+j)
@@ -3223,7 +3223,6 @@ t['通用_检测装备']=function()
                                     o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
                                 end 
                             end
-                            break	
                         end    
                     end	 
                 end
