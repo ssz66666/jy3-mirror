@@ -450,11 +450,15 @@ function t:click(tar)
                 if n < 0  or n == nil  or n > #item then 
                     G.call('notice1','请输入（1~'..#item..'）的整数数字')
                 else
-                    G.misc().物品代码 = n + 1
-                    local str = G.QueryName(0x100b0000+n).名称
-                    self.按钮.getChildByName('物品').text = 1
-                    self.obj.getChildByName('secret').getChildByName('文本').text = ''
-                    self.obj.getChildByName('secret').getChildByName('说明').text = '说明：输入需要增加的【'..str..'】数量'
+                    if n == 339 then 
+                        G.call('notice1','请输入其他整数数字！')
+                    else
+                        G.misc().物品代码 = n + 1
+                        local str = G.QueryName(0x100b0000+n).名称
+                        self.按钮.getChildByName('物品').text = 1
+                        self.obj.getChildByName('secret').getChildByName('文本').text = ''
+                        self.obj.getChildByName('secret').getChildByName('说明').text = '说明：输入需要增加的【'..str..'】数量'
+                    end
                 end
             else
                 if n == 0 or n == nil then
