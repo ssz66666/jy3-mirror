@@ -1943,6 +1943,12 @@ t['指令_存储属性'] = function() --计算主角最终属性
     end
     if G.call('get_point',196) ~= nil  and  G.call('get_point',196) > 0  then--内功附加装备属性
         local o_skill_技能 = G.QueryName(G.call('get_point',196))  
+        if o_skill_技能.生命加 > 9999 then 
+            o_skill_技能.生命加 = 9999
+        end
+        if o_skill_技能.内力加 > 9999 then 
+            o_skill_技能.内力加 = 9999
+        end
         add[17] = add[17] + o_skill_技能.生命加 * o_skill_技能.修为等级
         add[18] = add[18] + o_skill_技能.内力加 * o_skill_技能.修为等级
         add[1] = add[1] + o_skill_技能.拳掌加 * o_skill_技能.修为等级
