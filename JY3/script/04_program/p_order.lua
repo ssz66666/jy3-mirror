@@ -578,7 +578,7 @@ t['重生']=function()
         G.misc().密令序号 = nil
         G.call('通用_印记状态')
         local book_story_list = G.DBTable('o_book_story_list')
-        local int_完美 == 0
+        local int_完美 = 0
         for i = 1,#book_story_list do
             local o_book_story_list = G.QueryName(0x101e0000 + i)
             if o_book_story_list.完美 == 1 then
@@ -4023,7 +4023,7 @@ t['通用_拥有印记']=function(int_印记)
 end
 t['通用_印记状态']=function()
     local book_story_list = G.DBTable('o_book_story_list')
-    local int_完美 == 0
+    local int_完美 = 0
     for i = 1,#book_story_list do
         local o_book_story_list = G.QueryName(0x101e0000 + i)
         if o_book_story_list.完美 == 1 then

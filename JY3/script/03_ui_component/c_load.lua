@@ -153,7 +153,7 @@ function t:click(tar)
                             G.misc().梦幻完成 = nil
                             G.misc().密令序号 = nil
                             local book_story_list = G.DBTable('o_book_story_list')
-                            local int_完美 == 0
+                            local int_完美 = 0
                             for i = 1,#book_story_list do
                                 local o_book_story_list = G.QueryName(0x101e0000 + i)
                                 if o_book_story_list.完美 == 1 then
