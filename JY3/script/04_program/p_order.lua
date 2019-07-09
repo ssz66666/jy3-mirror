@@ -574,7 +574,22 @@ t['重生']=function()
             end
         end
         G.misc().重生 = 1
+        G.misc().梦幻完成 = nil
+        G.misc().密令序号 = nil
         G.call('通用_印记状态')
+        local book_story_list = G.DBTable('o_book_story_list')
+        local int_完美 == 0
+        for i = 1,#book_story_list do
+            local o_book_story_list = G.QueryName(0x101e0000 + i)
+            if o_book_story_list.完美 == 1 then
+                int_完美 = int_完美 + 1 
+            end
+        end
+        if int_完美 >= 15 then 
+            for i = 1,#book_story_list do
+                o_book_story_list.完美 = 0
+            end
+        end
         G.misc().礼包 = 礼包
         G.misc().切磋次数 = 0
         G.call('set_point',237,int_周目)
@@ -4008,12 +4023,19 @@ t['通用_拥有印记']=function(int_印记)
 end
 t['通用_印记状态']=function()
     local book_story_list = G.DBTable('o_book_story_list')
+    local int_完美 == 0
     for i = 1,#book_story_list do
         local o_book_story_list = G.QueryName(0x101e0000 + i)
         if o_book_story_list.完美 == 1 then
+            int_完美 = int_完美 + 1
             local i_equip = 0x10180028 + i
             local o_equip = G.QueryName(i_equip)
-            o_equip.转换次数 = 2
+            o_equip.转换次数 = 2   
+        end
+    end
+    if int_完美 >= 15 then 
+        for i = 1,#book_story_list do
+            o_book_story_list.完美 = 0
         end
     end
 end

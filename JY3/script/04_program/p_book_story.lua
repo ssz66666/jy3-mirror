@@ -1952,6 +1952,7 @@ t['天书_越女剑'] = function()
             G.call('add_item',343,1)
             o_book_story.完美 = 1
             o_book_story.完成 = 1
+            G.misc().梦幻完成 = 1
         else
             G.call("talk",'',419,'   光有勇气是不行的！',2,1)
         end

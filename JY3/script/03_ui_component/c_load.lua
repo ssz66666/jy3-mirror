@@ -150,6 +150,21 @@ function t:click(tar)
                                 end  
                             end
                             G.call('通用_印记状态')
+                            G.misc().梦幻完成 = nil
+                            G.misc().密令序号 = nil
+                            local book_story_list = G.DBTable('o_book_story_list')
+                            local int_完美 == 0
+                            for i = 1,#book_story_list do
+                                local o_book_story_list = G.QueryName(0x101e0000 + i)
+                                if o_book_story_list.完美 == 1 then
+                                    int_完美 = int_完美 + 1 
+                                end
+                            end
+                            if int_完美 >= 15 then 
+                                for i = 1,#book_story_list do
+                                    o_book_story_list.完美 = 0
+                                end
+                            end
                             G.misc().切磋次数 = 0
                             G.trig_event('load_over')
                             G.misc().通关 = 1

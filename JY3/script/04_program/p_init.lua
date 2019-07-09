@@ -66,6 +66,8 @@ t['初始化'] = function()
 	G.misc().密令年数 = 0
 	G.misc().切磋次数 = 0
 	G.misc().重生 = 0
+	G.misc().梦幻完成 = nil
+	G.misc().密令序号 = nil
 	G.misc().出师 = nil
 	G.misc().礼包 = nil
 	G.call('通用_存档',0)
