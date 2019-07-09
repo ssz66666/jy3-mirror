@@ -1925,7 +1925,7 @@ t['副本_通天塔']=function(int_模式)
                 o_wjtz.进度列表[19].完成 = 1
                 G.call('notice1','恭喜完成单人无尽100层') 
             end
-            if G.misc().梦幻完成 == 1 then
+            if G.misc().梦幻完成 and G.misc().梦幻完成 == 1 then
                 G.misc().密令序号 = math.random(10000) 
             end 
         end
