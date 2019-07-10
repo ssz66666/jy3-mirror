@@ -3335,9 +3335,9 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
         int_几率 = G.call('通用_取大随机') 
     end
     if int_品质级别 and int_品质级别 == 1 then 
-        int_几率 = math.random(9400,10000)
+        int_几率 = math.random(9000,10000)
     elseif int_品质级别 and int_品质级别 == 2 then 
-        int_几率 = math.random(9900,10000)
+        int_几率 = math.random(9500,10000)
     else
         local int_寻宝 = 0
         if G.call('通用_取得套装',0,2) == 2 then
@@ -3865,9 +3865,9 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
         int_几率 = G.call('通用_取大随机')
     end
     if int_通关级别 and int_通关级别 == 1 then 
-        int_几率 = math.random(9400,10000)
+        int_几率 = math.random(9000,10000)
     elseif int_通关级别 and int_通关级别 == 2 then 
-        int_几率 = math.random(9900,10000)
+        int_几率 = math.random(9500,10000)
     else
         local int_寻宝 = 0
         if G.call('通用_取得套装',0,2) == 2 then
