@@ -3338,18 +3338,17 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
         int_几率 = math.random(9000,10000)
     elseif int_品质级别 and int_品质级别 == 2 then 
         int_几率 = math.random(9500,10000)
-    else
-        local int_寻宝 = 0
-        if G.call('通用_取得套装',0,2) == 2 then
-            int_寻宝 = 25
-        elseif G.call('通用_取得套装',0,2) == 3 then 
-            int_寻宝 = 50
-        end
-        if G.call('get_point',115) == 16 then
-            int_寻宝 = 25 
-        end
-        int_几率 = int_几率 + int_寻宝
     end
+    local int_寻宝 = 0
+    if G.call('通用_取得套装',0,2) == 2 then
+        int_寻宝 = 50
+    elseif G.call('通用_取得套装',0,2) == 3 then 
+        int_寻宝 = 100
+    end
+    if G.call('get_point',115) == 16 then
+        int_寻宝 = int_寻宝 + 50
+    end
+    int_几率 = int_几率 + int_寻宝
     if o_equip_物品.品质转换 and o_equip_物品.品质转换 >= 1 then
         int_递增属性 = 0 
     end
@@ -3868,18 +3867,17 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
         int_几率 = math.random(9000,10000)
     elseif int_通关级别 and int_通关级别 == 2 then 
         int_几率 = math.random(9500,10000)
-    else
-        local int_寻宝 = 0
-        if G.call('通用_取得套装',0,2) == 2 then
-            int_寻宝 = 25
-        elseif G.call('通用_取得套装',0,2) == 3 then 
-            int_寻宝 = 50
-        end
-        if G.call('get_point',115) == 16 then
-            int_寻宝 = int_寻宝 + 25 
-        end
-        int_几率 = int_几率 + int_寻宝
     end
+    local int_寻宝 = 0
+    if G.call('通用_取得套装',0,2) == 2 then
+        int_寻宝 = 50
+    elseif G.call('通用_取得套装',0,2) == 3 then 
+        int_寻宝 = 100
+    end
+    if G.call('get_point',115) == 16 then
+        int_寻宝 = int_寻宝 + 50 
+    end
+    int_几率 = int_几率 + int_寻宝
     if int_几率 <= 5390 then --0.539 
         int_级别 = 1
     elseif int_几率 <= 8390 and int_几率 > 5390 then  --0.30
