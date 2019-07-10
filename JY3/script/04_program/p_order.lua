@@ -281,6 +281,7 @@ t['通用_读档'] = function(int_档案编号)
                 G.call('通用_强退游戏',int_继承个数) 
             end
             G.call('通用_存档',int_档案编号)
+            G.call('通用_印记状态')
             G.start_program('地图系统_游戏时长监控')
         end 
     end
@@ -4029,19 +4030,23 @@ t['通用_拥有印记']=function(int_印记)
 end
 t['通用_印记状态']=function()
     local book_story_list = G.DBTable('o_book_story_list')
+    local o_store = G.QueryName(0x10190001)
     local int_完美 = 0
+    local 印记名称 = {'飞','雪','连','天','射','白','鹿','笑','书','神','侠','倚','碧','鸳','越'}
     for i = 1,#book_story_list do
         local o_book_story_list = G.QueryName(0x101e0000 + i)
         if o_book_story_list.完美 == 1 then
             int_完美 = int_完美 + 1
-            local i_equip = 0x10180028 + i
-            local o_equip = G.QueryName(i_equip)
-            o_equip.转换次数 = 2   
-        end
-    end
-    if int_完美 >= 15 then 
-        for i = 1,#book_story_list do
-            o_book_story_list.完美 = 0
+            if #o_store.装备 > 0 then 
+                for j = 1,#o_store.装备 do
+                    local i_equip = o_store.装备[j].代码
+                    local o_equip = G.QueryName(i_equip)
+                    if o_equip.类型 == 4 and  o_equip.名称 == 印记名称[i]   then 
+                        o_equip.转换次数 = 2
+                        break
+                    end
+                end
+            end  
         end
     end
 end
