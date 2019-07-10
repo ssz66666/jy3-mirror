@@ -3341,12 +3341,12 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
     else
         local int_寻宝 = 0
         if G.call('通用_取得套装',0,2) == 2 then
-            int_寻宝 = 50
+            int_寻宝 = 25
         elseif G.call('通用_取得套装',0,2) == 3 then 
-            int_寻宝 = 100
+            int_寻宝 = 50
         end
         if G.call('get_point',115) == 16 then
-            int_寻宝 = 50 
+            int_寻宝 = 25 
         end
         int_几率 = int_几率 + int_寻宝
     end
@@ -3871,12 +3871,12 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
     else
         local int_寻宝 = 0
         if G.call('通用_取得套装',0,2) == 2 then
-            int_寻宝 = 50
+            int_寻宝 = 25
         elseif G.call('通用_取得套装',0,2) == 3 then 
-            int_寻宝 = 100
+            int_寻宝 = 50
         end
         if G.call('get_point',115) == 16 then
-            int_寻宝 = int_寻宝 + 50 
+            int_寻宝 = int_寻宝 + 25 
         end
         int_几率 = int_几率 + int_寻宝
     end
