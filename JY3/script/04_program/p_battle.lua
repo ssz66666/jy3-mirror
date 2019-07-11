@@ -3143,7 +3143,7 @@ t['magic_power1'] = function(int_id,int_no)
                         string_字符串_4 = string_字符串_4..'.'..'斩杀'
                     end 
                     hurt = G.call('get_role',int_id,15)
-                    G.call('add_point',44,math.floor(G.call('get_point',44)/10))
+                    G.call('add_point',44,-math.floor(G.call('get_point',44)/10))
                 end 
             end 
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,33)) then  --剑神无双效果
@@ -3824,7 +3824,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         string_字符串_4 = string_字符串_4..'.'..'斩杀'
                     end 
                     hurt = G.call('get_role',int_enemy,15)
-                    G.call('add_role',int_id,15,-math.floor(G.call('get_role',int_id,15)/2) )
+                    G.call('add_role',int_id,15,-math.floor(G.call('get_role',int_id,15)/10) )
                 end     
             end
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
@@ -4523,7 +4523,7 @@ t['magic_power3'] = function(int_id,int_no)
                         string_字符串_4 = string_字符串_4..'.'..'斩杀'
                     end 
                     hurt = G.call('get_point',44)
-                    G.call('add_role',int_id,15,-math.floor(G.call('get_role',int_id,15)/2) )
+                    G.call('add_role',int_id,15,-math.floor(G.call('get_role',int_id,15)/10) )
                 end 
             end
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
