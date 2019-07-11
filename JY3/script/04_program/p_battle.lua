@@ -3878,14 +3878,6 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     else
         hurt = 0    
     end  
-    if hurt > 99999 then 
-        hurt = 99999
-    end
-    if att_role == 1 and G.call('通用_取得套装',int_id,3) < 3 then --对友套装3效果突破伤害上限 9999
-        if hurt > 9999 then 
-            hurt = 9999
-        end
-    end
     if hurt < 0 then 
         hurt = math.random(10,20)
     end
@@ -3897,7 +3889,15 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         end 
         hurt = hurt + G.call('get_role',int_enemy,15)*0.05 
     end
-    hurt = math.ceil(hurt) 
+    hurt = math.floor(hurt) 
+    if hurt > 99999 then 
+        hurt = 99999
+    end
+    if att_role == 1 and G.call('通用_取得套装',int_id,3) < 3 then --对友套装3效果突破伤害上限 9999
+        if hurt > 9999 then 
+            hurt = 9999
+        end
+    end
     local string_字符串 = ''
     if o_skill.类别 < 6 then 
         if hurt == 0 then
