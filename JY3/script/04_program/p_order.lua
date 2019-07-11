@@ -1707,6 +1707,7 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
             for i = 2,11 do  
                 if G.misc()[位置[i] ]  == int_编号  then
                     G.call('set_newpoint',199+i,G.call('get_newpoint',199+i)-int_数量) 
+                    break
                 end
             end
             o_role_人物.生命 = o_role_人物.生命 + int_数量
@@ -1715,12 +1716,14 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
                 for i = 2,11 do  
                     if G.misc()[位置[i] ]  == int_编号  then
                         G.call('set_newpoint',199+i,-o_role_人物[tostring(1)] -10) 
+                        break
                     end
                 end
             elseif o_role_人物.生命 <= 0 then
                 for i = 2,11 do  
                     if G.misc()[位置[i] ]  == int_编号  then
                         G.call('set_newpoint',199+i,-10)  
+                        break
                     end
                 end
                 o_role_人物.生命 = 0 
