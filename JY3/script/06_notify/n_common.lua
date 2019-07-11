@@ -27,7 +27,6 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
     ui.getChildByName('tab').getChildByName(位置[int_位置]).frameActionID(int_动作编号)
     ui.getChildByName('flash').getChildByName(位置[int_动画位置]).frameActionID(int_序列帧)
     ui.getChildByName('图表').getChildByName('文字').text = o_skill.名称
-    G.call('通用_战斗飘字',int_位置,int_范围)
     local o_battle = G.QueryName(0x10150001)
     for i = 2,11 do
         if o_battle [位置[i] ] ~= G.misc().队伍记录[i-1] then
@@ -35,7 +34,6 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
         end
         if G.misc()[位置[i] ] > 0 then
             if G.call('get_role',G.misc()[位置[i] ],15) ~= math.abs(G.call('get_newpoint',199+i) + 10 )  then 
-                --print(i,G.call('get_role',G.misc()[位置[i] ],15),G.call('get_newpoint',199+i)) 
                 G.call('通用_强退游戏',2000+i) 
             end
         end
@@ -49,6 +47,7 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
     if G.call('get_point',46) ~= math.abs(G.call('get_newpoint',46) + 10 )  then
        G.call('通用_强退游戏',104) 
     end
+    G.call('通用_战斗飘字',int_位置,int_范围)
     --G.call('通用_存储检测')
     -- if G.misc().role > 0 then
     --     print(G.call('get_role',G.misc().role,15),G.call('get_newpoint',201))
