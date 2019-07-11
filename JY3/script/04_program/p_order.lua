@@ -924,7 +924,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         G.call('get_drop')  
     end
     G.misc().战斗结果 = 0
-    G.wait_time(500)
+    G.wait_time(1000)
     G.removeUI('v_battle')
     G.Stop(1)
     for p = 81,90 do   --战斗后清除主角除了内伤外的其他异常状态
