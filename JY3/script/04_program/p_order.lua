@@ -685,7 +685,6 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
     end
     local   hurt = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('生命').text)
     if ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').visible == true then 
-        print('hurt',hurt,ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('减生命').text)
         if G.QueryName(0x10150001).模式 < 4 or  o_battle.模式 == 99 then 
             G.call('add_point',44,-hurt)
             if G.call('get_point',8) ==  4 then --判断复生效果，全真复生低于30%血10%几率触发，其他门派低于20%血5%几率触发 
@@ -1704,13 +1703,13 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
         elseif int_属性 >= 901 and int_属性 <= 908  then
             o_role_人物[tostring(int_属性)] =  o_role_人物[tostring(int_属性)] + int_数量     
         elseif int_属性 == 15 then
+            o_role_人物.生命 = o_role_人物.生命 + int_数量
             for i = 2,11 do  
                 if G.misc()[位置[i] ]  == int_编号  then
                     G.call('set_newpoint',199+i,G.call('get_newpoint',199+i)-int_数量) 
                     break
                 end
             end
-            o_role_人物.生命 = o_role_人物.生命 + int_数量
             if o_role_人物.生命 > o_role_人物[tostring(1)] then 
                 o_role_人物.生命 = o_role_人物[tostring(1)]  
                 for i = 2,11 do  
@@ -1720,13 +1719,13 @@ t['add_role']=function(int_编号,int_属性,int_数量) --NPC部分属性增加
                     end
                 end
             elseif o_role_人物.生命 <= 0 then
+                o_role_人物.生命 = 0 
                 for i = 2,11 do  
                     if G.misc()[位置[i] ]  == int_编号  then
                         G.call('set_newpoint',199+i,-10)  
                         break
                     end
                 end
-                o_role_人物.生命 = 0 
             end 
         elseif int_属性 == 14 then 
             o_role_人物.内力 = o_role_人物.内力 + int_数量

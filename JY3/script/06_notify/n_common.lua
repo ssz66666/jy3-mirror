@@ -27,7 +27,6 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
     ui.getChildByName('tab').getChildByName(位置[int_位置]).frameActionID(int_动作编号)
     ui.getChildByName('flash').getChildByName(位置[int_动画位置]).frameActionID(int_序列帧)
     ui.getChildByName('图表').getChildByName('文字').text = o_skill.名称
-    --G.trig_event('战斗飘字')
     G.call('通用_战斗飘字',int_位置,int_范围)
     local o_battle = G.QueryName(0x10150001)
     for i = 2,11 do
