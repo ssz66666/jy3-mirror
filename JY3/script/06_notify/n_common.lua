@@ -48,13 +48,6 @@ function noti.战场_效果(int_位置,int_动作编号,int_动画位置,int_nee
        G.call('通用_强退游戏',104) 
     end
     G.call('通用_战斗飘字',int_位置,int_范围)
-    --G.call('通用_存储检测')
-    -- if G.misc().role > 0 then
-    --     print(G.call('get_role',G.misc().role,15),G.call('get_newpoint',201))
-    --     if G.call('get_role',G.misc().role,15) ~= math.abs(G.call('get_newpoint',201) + 10 )  then 
-    --         G.call('通用_强退游戏',999) 
-    --     end
-    -- end
     c:刷新记事本()
     ui.getChildByName('图表').visible = false
 end
