@@ -1307,6 +1307,15 @@ t['猜数字']=function()
     local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4] 
     if G.misc().一鸣惊人 == nil then 
         G.misc().一鸣惊人 =  int_no
+        m = {0,0,0,0}
+        t = {0,1,2,3,4,5,6,7,8,9}
+        for i = 1,4 do 
+            local len = #t
+            local r = math.random(len)
+            m[i] =t[r]
+            table.remove(t, r)
+        end
+        int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4] 
     end  
     --print(int_no)
     G.call("talk",'',38,'   来来来，猜数字，规则很简单，猜出4个不同数字!',2,1)
