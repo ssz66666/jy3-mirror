@@ -1304,19 +1304,10 @@ t['猜数字']=function()
         m[i] =t[r]
         table.remove(t, r)
     end
-    -- len = #t
-    -- r = math.random(len)	
-    -- m[2] =t[r]
-    -- table.remove(t, r)
-    -- len = #t
-    -- r = math.random(len)	
-    -- m[3] =t[r]
-    -- table.remove(t, r)
-    -- len = #t
-    -- r = math.random(len)	
-    -- m[4] =t[r]
-    -- table.remove(t, r)
-    local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4]   
+    local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4] 
+    if G.misc().一鸣惊人 == nil then 
+        G.misc().一鸣惊人 =  int_no
+    end  
     --print(int_no)
     G.call("talk",'',38,'   来来来，猜数字，规则很简单，猜出4个不同数字!',2,1)
     local int_选项 = 0
@@ -1327,6 +1318,9 @@ t['猜数字']=function()
             G.call('input')
             G.misc().猜数字 = 0
             int_mo = int_mo + 1
+            if int_mo == 1 and G.misc().number == int_no then
+                int_no = G.misc().一鸣惊人
+            end
             if G.misc().number == int_no then 
                 G.call('all_over')
                 break
