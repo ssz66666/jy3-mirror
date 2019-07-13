@@ -562,6 +562,17 @@ t['回答问题']=function()
             end
         end 
     end
+    local int_mo = 0
+    local m = {0,0,0,0}
+    local t = {0,1,2,3,4,5,6,7,8,9}
+    for i = 1,4 do 
+        local len = #t
+        local r = math.random(len)
+        m[i] =t[r]
+        table.remove(t, r)
+    end
+    local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4] 
+    G.misc().一鸣惊人 = int_no
     G.call('地图系统_防修改监控')
     G.call('指令_存储属性')
     G.call('rest')
