@@ -17,7 +17,14 @@ function t:start()
             int_完美 = int_完美 + 1
         end     
     end
-    if int_完美 >= 14 then
+    for i = 1,14 do
+        if G.call('get_point',237) > i then
+            self.按钮.getChildByName('book_'..i).visible = true 
+        else
+            self.按钮.getChildByName('book_'..i).visible = false
+        end 
+    end
+    if int_完美 >= 14 and G.call('get_point',237) > 14 then
         self.按钮.getChildByName('book_15').visible = true
     end
     self.天书 = 0
