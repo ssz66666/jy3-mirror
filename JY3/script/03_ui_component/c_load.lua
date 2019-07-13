@@ -125,6 +125,7 @@ function t:click(tar)
                             end
                         end
                         local int_礼包 = G.misc().礼包
+                        local int_梦幻完成 = G.misc().梦幻完成
                         G.call('通用_读档',0)
                         G.misc().出师 = nil
                         G.misc().礼包 = int_礼包
@@ -140,18 +141,7 @@ function t:click(tar)
                         if int_万金 > 400000 or int_继承个数 > 3000 then 
                             G.call('notice1','该存档无法正常读取，请重新开始游戏！')
                         else
-                            if #o_equip_usb > 0 and int_继承个数 < 3000 then 
-                                for i = 1,#o_equip_usb do 
-                                    if o_equip_usb[i] then 
-                                        G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
-                                        i_equip = o_equip_usb[i].name
-                                        G.call('add_equip',i_equip,1)
-                                    end
-                                end  
-                            end
-                            G.call('通用_印记状态')
-                            G.misc().梦幻完成 = nil
-                            G.misc().密令序号 = nil
+                            G.call('通用_印记状态')       
                             local book_story_list = G.DBTable('o_book_story_list')
                             local int_完美 = 0
                             for i = 1,#book_story_list do
@@ -160,15 +150,31 @@ function t:click(tar)
                                     int_完美 = int_完美 + 1 
                                 end
                             end
-                            if int_完美 >= 15 then 
-                                for i = 1,#book_story_list do
-                                    o_book_story_list.完美 = 0
+                            if int_梦幻完成~= 1 and int_完美 >= 15 then 
+                                G.call('notice1','拒绝非法操作，请正常读取')
+                            else
+                                if #o_equip_usb > 0 and int_继承个数 < 3000 then 
+                                    for i = 1,#o_equip_usb do 
+                                        if o_equip_usb[i] then 
+                                            G.addNewInst2Dynamic(o_equip_usb[i],'o_equip')
+                                            i_equip = o_equip_usb[i].name
+                                            G.call('add_equip',i_equip,1)
+                                        end
+                                    end  
                                 end
+                                if int_完美 >= 15 then 
+                                    for i = 1,#book_story_list do
+                                        local o_book_story_list = G.QueryName(0x101e0000 + i)
+                                        o_book_story_list.完美 = 0
+                                    end
+                                end
+                                G.misc().梦幻完成 = nil
+                                G.misc().密令序号 = nil
+                                G.misc().切磋次数 = 0
+                                G.trig_event('load_over')
+                                G.misc().通关 = 1
+                                G.trig_event('开始结束')    
                             end
-                            G.misc().切磋次数 = 0
-                            G.trig_event('load_over')
-                            G.misc().通关 = 1
-                            G.trig_event('开始结束')
                         end
                     else
                         G.call('notice1','拒绝非法操作，请正常读取')
