@@ -281,6 +281,7 @@ t['通用_读档'] = function(int_档案编号)
                 G.call('通用_强退游戏',int_继承个数) 
             end
             if G.misc().重置梦幻 == nil  then
+                local book_story_list = G.DBTable('o_book_story_list')
                 for i = 1,#book_story_list do
                     local o_book_story_list = G.QueryName(0x101e0000 + i)
                     o_book_story_list.完美 = 0
