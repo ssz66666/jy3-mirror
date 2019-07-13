@@ -749,13 +749,13 @@ t['聚贤庄-半瓶神仙醋']=function()
                 G.call("talk",'',38,'   兄弟找我有什么事情吗？',2,1)
                 local int_选项 = 0
                 while int_选项 == 0 do
-                    if G.misc().梦幻测试 == 1 then
+                    if G.misc().梦幻测试 == 9 then
                         int_选项 = G.call("menu",'',0,'',0,0,{"1,笑梦游记(需对应印记)","2,无尽挑战","3,没有事情"},0)
                     else
                         int_选项 = G.call("menu",'',0,'',0,0,{"1,机关拼图(无奖励)","2,无尽挑战","3,没有事情"},0)
                     end
                     if int_选项 == 1 then 
-                        if G.misc().梦幻测试 == 1 then
+                        if G.misc().梦幻测试 == 9 then
                             G.call('all_over')
                             G.call('模式_笑梦游记')
                         else

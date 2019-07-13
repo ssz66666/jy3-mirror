@@ -280,6 +280,19 @@ t['通用_读档'] = function(int_档案编号)
             if int_继承个数 >= 400 then
                 G.call('通用_强退游戏',int_继承个数) 
             end
+            if G.misc().重置梦幻 == nil  then 
+                for i = 1,#book_story_list do
+                    local o_book_story_list = G.QueryName(0x101e0000 + i)
+                    o_book_story_list.完美 = 0
+                end
+            end
+            if G.misc().重置梦幻 == nil  then
+                local o_achieve = G.QueryName(0x10170017) 
+                for i = 1,#o_achieve.进度列表 do
+                    o_achieve.进度列表[i].完成 = 0
+                end
+                G.misc().重置梦幻 = 1
+            end
             G.call('通用_存档',int_档案编号)
             G.call('通用_印记状态')
             G.start_program('地图系统_游戏时长监控')

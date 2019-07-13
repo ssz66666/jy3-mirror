@@ -126,6 +126,7 @@ function t:click(tar)
                         end
                         local int_礼包 = G.misc().礼包
                         local int_梦幻完成 = G.misc().梦幻完成
+                        local int_重置梦幻 = G.misc().重置梦幻 
                         G.call('通用_读档',0)
                         G.misc().出师 = nil
                         G.misc().礼包 = int_礼包
@@ -162,11 +163,20 @@ function t:click(tar)
                                         end
                                     end  
                                 end
-                                if int_完美 >= 15 then 
+                                if int_完美 >= 15 or int_重置梦幻 == nil  then 
                                     for i = 1,#book_story_list do
                                         local o_book_story_list = G.QueryName(0x101e0000 + i)
                                         o_book_story_list.完美 = 0
                                     end
+                                end
+                                if int_重置梦幻 == nil  then
+                                    local o_achieve = G.QueryName(0x10170017) 
+                                    for i = 1,#o_achieve.进度列表 do
+                                        o_achieve.进度列表[i].完成 = 0
+                                    end
+                                    G.misc().重置梦幻 = 1
+                                else
+                                    G.misc().重置梦幻 = int_重置梦幻
                                 end
                                 G.misc().梦幻完成 = nil
                                 G.misc().密令序号 = nil
@@ -179,7 +189,6 @@ function t:click(tar)
                     else
                         G.call('notice1','拒绝非法操作，请正常读取')
                     end
-
                 else
                     G.Play(0x4901000f, 1,false,100) 
                     G.call('通用_读档',i)
