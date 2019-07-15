@@ -262,8 +262,13 @@ t['地图系统_防修改监控'] = function()
 				end
 				if i > 2 then
 					if o_role_人物[tostring(900 + i)] > 350 then 
-						G.call('通用_强退游戏',214) 
+						G.call('通用_强退游戏',215) 
 					end 
+					if i == 8 then
+						if o_role_人物[tostring(900 + i)] > 200 then 
+							G.call('通用_强退游戏',215) 
+						end 
+					end
 				end
 			end
 		end
