@@ -96,7 +96,6 @@ function t:click(tar)
             if  self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('true').visible == true then
                 local  n = tonumber(self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text)
                 if n > 0  then
-                    G.trig_event('监控')
                     G.call('mapoff')
                     G.Play(0x49011001, 1,true,1)
                     G.call('信息_读档',5)
