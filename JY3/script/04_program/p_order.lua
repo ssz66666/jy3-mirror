@@ -3145,6 +3145,16 @@ t['通用_还原装备']=function()
     for i = 1,3 do
         if o_body[装备[i]] then
             local o_equip = G.QueryName(o_body[装备[i]])
+            local int属性_1 = o_equip[属性[1]]
+            local int属性_2 = o_equip[属性[2]]
+            if o_equip.特效 == 101 then
+                int属性_1 = 5000
+            elseif o_equip.特效 == 102 then
+                int属性_2 = 5000
+            elseif o_equip.特效 == 103 then
+                int属性_1 = 2500
+                int属性_2 = 2500
+            end
             local int_品质 = o_equip.品质 - 1
             if o_equip.品质转换 == 1 then 
                 o_equip.品质转换 = 2
@@ -3152,11 +3162,11 @@ t['通用_还原装备']=function()
                 for j = 1,40 do 
                     local o_equip_mod = G.QueryName(0x10180000+j)
                     if o_equip_mod.名称 == string_cut then 
-                        if o_equip[属性[1]] > o_equip_mod[属性[1]] + int_递增属性*500 then
-                            o_equip[属性[1]] = o_equip_mod[属性[1]] + int_递增属性*500
+                        if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
+                            o_equip[属性[1]] = int属性_1 + int_递增属性*500
                         end
-                        if o_equip[属性[2]] > o_equip_mod[属性[2]] + int_递增属性*250 then
-                            o_equip[属性[2]] = o_equip_mod[属性[2]] + int_递增属性*250
+                        if o_equip[属性[2]] > int属性_2 + int_递增属性*250 then
+                            o_equip[属性[2]] = int属性_2 + int_递增属性*250
                         end
                         for p = 3,10 do
                             if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
@@ -3180,6 +3190,16 @@ t['通用_还原装备']=function()
                     break 
                 end
                 local o_equip = G.QueryName(o_store.装备[i].代码)
+                local int属性_1 = o_equip[属性[1]]
+                local int属性_2 = o_equip[属性[2]]
+                if o_equip.特效 == 101 then
+                    int属性_1 = 5000
+                elseif o_equip.特效 == 102 then
+                    int属性_2 = 5000
+                elseif o_equip.特效 == 103 then
+                    int属性_1 = 2500
+                    int属性_2 = 2500
+                end
                 local int_品质 = o_equip.品质 - 1
                 if o_store.装备[i].数量 > 0 and o_equip.类型 < 4 and o_equip.品质转换 == 1 then
                     o_equip.品质转换 = 2
@@ -3187,11 +3207,11 @@ t['通用_还原装备']=function()
                     for j = 1,40 do 
                         local o_equip_mod = G.QueryName(0x10180000+j)
                         if o_equip_mod.名称 == string_cut then 
-                            if o_equip[属性[1]] > o_equip_mod[属性[1]] + int_递增属性*500 then
-                                o_equip[属性[1]] = o_equip_mod[属性[1]] + int_递增属性*500
+                            if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
+                                o_equip[属性[1]] = int属性_1 + int_递增属性*500
                             end
-                            if o_equip[属性[2]] > o_equip_mod[属性[2]] + int_递增属性*250 then
-                                o_equip[属性[2]] = o_equip_mod[属性[2]] + int_递增属性*250
+                            if o_equip[属性[2]] > int属性_2 + int_递增属性*250 then
+                                o_equip[属性[2]] = int属性_2 + int_递增属性*250
                             end
                             for p = 3,10 do
                                 if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
