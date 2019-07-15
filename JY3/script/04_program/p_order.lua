@@ -3228,6 +3228,9 @@ t['通用_检测装备']=function()
             end
             for j = 1,40 do 
                 local o_equip_mod = G.QueryName(0x10180000+j)
+                if o_equip_mod[属性[1]] > 10000 or  o_equip_mod[属性[2]] then 
+                    G.call('通用_强退游戏',999) 
+                end
                 if o_equip_mod.名称 == string_cut then 
                     if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
                         o_equip[属性[1]] = int属性_1
@@ -3236,6 +3239,9 @@ t['通用_检测装备']=function()
                         o_equip[属性[2]] = int属性_2 
                     end
                     for p = 3,10 do
+                        if o_equip_mod[属性[p]] > 50 then
+                            G.call('通用_强退游戏',999) 
+                        end
                         if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
                             o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
                         end 
@@ -3246,7 +3252,7 @@ t['通用_检测装备']=function()
     end
     
     local o_store = G.QueryName(0x10190001)
-    if G.call('get_point',237) > 1   then 
+    if G.call('get_point',237) >= 1   then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
@@ -3265,6 +3271,9 @@ t['通用_检测装备']=function()
                     local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
                     for j = 1,40 do 
                         local o_equip_mod = G.QueryName(0x10180000+j)
+                        if o_equip_mod[属性[1]] > 10000 or  o_equip_mod[属性[2]] then 
+                            G.call('通用_强退游戏',999) 
+                        end
                         if o_equip_mod.名称 == string_cut then 
                             if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
                                 o_equip[属性[1]] = int属性_1 
@@ -3273,6 +3282,9 @@ t['通用_检测装备']=function()
                                 o_equip[属性[2]] = int属性_2 
                             end
                             for p = 3,10 do
+                                if o_equip_mod[属性[p]] > 50 then
+                                    G.call('通用_强退游戏',999) 
+                                end
                                 if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
                                     o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
                                 end 
