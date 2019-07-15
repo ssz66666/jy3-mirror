@@ -3254,7 +3254,7 @@ t['通用_检测装备']=function()
                 int属性_1 = 2500
                 int属性_2 = 2500
             end
-            if o_equip.名称 = '鹿' then 
+            if o_equip.名称 == '鹿' then 
                 int属性_1 = 2500
                 int属性_2 = 2500
             end
@@ -3298,7 +3298,7 @@ t['通用_检测装备']=function()
                     int属性_1 = 2500
                     int属性_2 = 2500
                 end
-                if o_equip.名称 = '鹿' then 
+                if o_equip.名称 == '鹿' then 
                     int属性_1 = 2500
                     int属性_2 = 2500
                 end
