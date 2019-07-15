@@ -127,6 +127,7 @@ function t:click(tar)
                         local int_礼包 = G.misc().礼包
                         local int_梦幻完成 = G.misc().梦幻完成
                         local int_重置梦幻 = G.misc().重置梦幻 
+                        G.call('通用_检测装备')
                         G.call('通用_读档',0)
                         G.misc().出师 = nil
                         G.misc().礼包 = int_礼包
