@@ -191,7 +191,7 @@ t['地图系统_防修改监控'] = function()
         local o_item = G.QueryName(0x100b0000 + i)
 		if o_item.数量 then
 			if o_item.数量 > 999 then
-				G.call('通用_强退游戏',299) 
+				G.call('通用_强退游戏',300) 
 			end
             int_物品数量 = int_物品数量 + o_item.数量 
         end
@@ -202,8 +202,8 @@ t['地图系统_防修改监控'] = function()
 	end
 	print('int_检测',int_检测)
 	G.call('通用_队伍检测') 
-	if int_检测 > 0 and int_检测 < 9 then
-		G.call('通用_强退游戏',299)  
+	if int_检测 > 0 and int_检测 < 10 then
+		G.call('通用_强退游戏',301)  
 	end
 	if int_检测 == 9 then
 		G.call('指令_备份基础属性')
