@@ -1296,6 +1296,7 @@ t['自创武功']=function() --
 end 
 t['猜数字']=function()
     local int_mo = 0
+    local int_mo_监控 = -100
     local m = {0,0,0,0}
     local t = {0,1,2,3,4,5,6,7,8,9}
     for i = 1,4 do 
@@ -1327,6 +1328,7 @@ t['猜数字']=function()
             G.call('input')
             G.misc().猜数字 = 0
             int_mo = int_mo + 1
+            int_mo_监控 = int_mo_监控 - 1
             if int_mo == 1 and G.misc().number == int_no then
                 int_no = G.misc().一鸣惊人
             end
@@ -1362,6 +1364,9 @@ t['猜数字']=function()
         end
     end
     --print(int_mo)
+    if math.abs(int_mo_监控+100) ~= int_mo then
+        G.call('通用_强退游戏',444)  
+    end
     if G.misc().number == int_no then 
         local o_szyy = G.QueryName(0x10170012)
         if int_mo <= 5 then
