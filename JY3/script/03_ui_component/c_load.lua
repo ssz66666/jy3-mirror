@@ -107,7 +107,12 @@ function t:click(tar)
                     if int_通关 > 0  then 
                         local o_store = G.QueryName(0x10190001)
                         int_周目 = int_周目 + 1
-                        local int_继承个数 = #o_store.装备
+                        local int_继承个数 = 0
+                        for i = 1,#o_store.装备 do
+                            if o_store.装备[i].数量 > 0 then
+                                int_继承个数 = int_继承个数 + 1
+                            end  
+                        end
                         local table_继承装备 = {}
                         G.call('set_point',237,int_周目)
                         table_继承装备 =  G.call('通用_记录继承装备',1)
