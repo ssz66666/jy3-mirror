@@ -206,10 +206,10 @@ t['地图系统_人物'] = function()
                 if math.random(100) > 50 then 
                     local int_几率 = math.random(10000)
                     local item_1 = {5,32,63,188} --
-                    local item_2 = {17,43,65}    --
-                    local item_3 = {115,249,265} --
-                    local item_4 = {214,215,234,235} --
-                    local item_5 = {97,118,121 }  --
+                    local item_2 = {5,32,63,188,17,43,65}    --
+                    local item_3 = {5,32,63,188,17,43,65,115,249,265} --
+                    local item_4 = {5,32,63,188,17,43,65,115,249,265,214,215,234,235} --
+                    local item_5 = {5,32,63,188,17,43,65,115,249,265,214,215,234,235,97,118,121 }  --
                     local item = 5
                     if int_几率 <= 5890 then 
                         item = item_1[math.random(#item_1)]
