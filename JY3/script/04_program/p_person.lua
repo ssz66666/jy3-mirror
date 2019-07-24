@@ -1632,8 +1632,10 @@ t['副本_通天塔']=function(int_模式)
                 G.deepcopy( boss[int_boss+4],team_boss)
             elseif G.misc().通天塔层数 > 50 and G.misc().通天塔层数 <= 75   then
                 G.deepcopy( boss[int_boss+8],team_boss)
-            elseif G.misc().通天塔层数 > 75 and G.misc().通天塔层数 <= 100   then
+            elseif G.misc().通天塔层数 > 75 and G.misc().通天塔层数 < 100   then
                 G.deepcopy( boss[int_boss+12],team_boss) 
+            elseif  G.misc().通天塔层数 == 100   then   
+                G.deepcopy( boss[16],team_boss) 
             end
         else
             if int_整数层数 < 4 then 
