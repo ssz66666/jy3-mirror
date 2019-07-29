@@ -127,9 +127,12 @@ t['战斗系统_主角监控'] = function()
                     if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then 
                         int_天罡效果 = int_队友
                     end 
+                    if G.call('get_point',8) == 4 then 
+                        int_天罡效果 = 3 
+                    end
                     if o_skill.内功轻功效果 == 10 or o_skill.内功轻功效果 == 11 then 
                         if o_skill.内功轻功效果 == 10 then 
-                            local int_hp = math.floor(G.call('get_point',217)*o_skill.修为等级*(int_天罡效果 +  o_skill.效果等级 )/500)
+                            local int_hp = math.floor(G.call('get_point',217)*o_skill.修为等级*(int_天罡效果 +  o_skill.效果等级 )/200)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             G.call('add_point',44,int_hp)
                         end 
