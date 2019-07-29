@@ -603,8 +603,8 @@ t['初入聚贤庄']=function()
     G.call("talk",'',38,'   这一点你大可不必担心。醋某送一匹好马，此马一个跟头就是十万八千里，小小中原弹丸之地，无论你去到哪里，都不会花费你半点时间。',2,1)
     G.call("talk",'',0,'   （原来这马是齐天大圣转世...）原来什么事情你都准备好了，我还担心什么。这就立刻开始这段惊心动魄的江湖旅程咯！',0,0)
     G.call('all_over')
-    if G.misc().礼包 == nil  and G.call('get_point',237) > 1 then 
-        G.misc().礼包 = 1
+    if G.misc().七夕礼包 == nil  and G.call('get_point',237) > 1 then 
+        G.misc().七夕礼包 = 1
     end
     if G.misc().出师 == nil then 
         G.misc().出师 = 1
