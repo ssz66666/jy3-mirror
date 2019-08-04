@@ -1924,6 +1924,7 @@ t['指令_重铸'] = function() --洗去经脉和内功轻功并返还修为点
         n = o_jm.打通数量 + n
         o_jm.打通数量 = 0
         o_jm.是否打通 = false
+        G.call('set_point',220+i,0)
     end
     G.QueryName(0x100c0001)[tostring(7)] = nil 
     G.QueryName(0x100c0001)[tostring(8)] = nil 
