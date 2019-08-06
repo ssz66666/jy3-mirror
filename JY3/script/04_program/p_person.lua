@@ -1072,41 +1072,42 @@ t['聚贤庄-华山之巅']=function()
         G.call('all_over')
     else
         G.call('goto_map',17)
+        local int_难度系数 = G.call('get_point',237)*10
         if G.call('get_point',15) > 0 then 
             G.call("talk",'',82,'   姓'..str1..'的小子，这几年你的出现可把我们这群邪魔外道给害苦了。今日我们大家要一鼓作气把你碎尸万段，以消昔日之恨！',2,1)
             G.call("talk",'',104,'   我们四大恶人先来会会这小子！',2,1)
             G.call('all_over')
-            G.call('call_battle',0,81,3,130,104,105,106,107,0,0)
+            G.call('call_battle',0,81,3,130 + int_难度系数,104,105,106,107,0,0)
             ---1_root.War("华山论剑", 0,104, 0, 105, 106,107, 1, 1.3, 1);
             local o_battle_结果 = G.call('get_battle')
             if o_battle_结果 == 1 then     
                  G.call("talk",'',185,'   我们江南四友来会会这小子！',2,1)
                  G.call('all_over')
-                 G.call('call_battle',0,81,3,150,185,186,187,188,0,0)
+                 G.call('call_battle',0,81,3,150+ int_难度系数,185,186,187,188,0,0)
                  local o_battle_结果 = G.call('get_battle')
                 --_root.War("华山论剑", 0,185, 0, 186, 187,188, 1, 1.5, 1);
                 if o_battle_结果 == 1 then 
                     G.call("talk",'',123,'   确实有两下子，不知道能不能过的了我们这关！',2,1)
                     G.call('all_over')
-                    G.call('call_battle',0,81,3,170,245,123,95,0,0,0)
+                    G.call('call_battle',0,81,3,170+ int_难度系数,245,123,95,0,0,0)
                     local o_battle_结果 = G.call('get_battle')
                     --_root.War("华山论剑", 123,245, 95, 0, 0,0, 1, 1.7, 1);
                     if o_battle_结果 == 1 then 
                         G.call("talk",'',82,'   一群没用的废物，还要迫得老夫出手！',2,1)
                         G.call('all_over')
-                        G.call('call_battle',0,81,3,130,81,82,52,0,0,0)
+                        G.call('call_battle',0,81,3,130+ int_难度系数,81,82,52,0,0,0)
                         local o_battle_结果 = G.call('get_battle')
                         --_root.War("华山论剑", 82, 81, 52, 0, 0, 0, 1, 1.3, 1);
                         if o_battle_结果 == 1 then 
                             G.call("talk",'',180,'   小兄弟，你好福气呀，武林中有多少人梦寐以求想挣得天下第一，但是你知道什么样的人才配称作【天下第一】吗？今天见识我东方不败真正的实力！',2,1)
                             G.call('all_over')
-                            G.call('call_battle',0,81,3,100,180,114,115,200,0,0)
+                            G.call('call_battle',0,81,3,150+ int_难度系数,180,114,115,200,0,0)
                             local o_battle_结果 = G.call('get_battle')
                              --_root.War("华山论剑", 0, 180, 0, 0, 0, 0, 1, 1.5, 1);
                             if o_battle_结果 == 1 then 
                                 G.call("talk",'',159,'   终于走到这里了，让我们也来送你一程吧',2,1)
                                 G.call('all_over')
-                                G.call('call_battle',0,81,3,100,209,159,210,147,0,0)
+                                G.call('call_battle',0,81,3,150+ int_难度系数,209,159,210,147,0,0)
                                 local o_battle_结果 = G.call('get_battle')
                                 if o_battle_结果 == 1 then 
                                     G.call("talk",'',38,'   恭喜你渡过此劫！普天之下，声望武功，无人再能高过于你，你是古往今来第一人！前提是——你必须再打过我！',2,1)
@@ -1138,7 +1139,7 @@ t['聚贤庄-华山之巅']=function()
                                     G.call('set_roleskill',223,2,141)
                                     G.call('set_roleskill',223,3,199)
                                     --_root.War("华山论剑", 0, 223, 0, 0, 0, 0, 0, 1.5, 1);
-                                    G.call('call_battle',1,81,1,int_点数,223,0,0,0,0,0)
+                                    G.call('call_battle',1,81,1,int_点数+ int_难度系数,223,0,0,0,0,0)
                                     local o_battle_结果 = G.call('get_battle')
                                     if o_battle_结果 == 1 then  
                                         G.call("talk",'',38,'   哈哈哈哈...我苦熬了四个多月，直到今日才可交差了。今天不但你功德圆满，就连我也大功告成了…',2,1)
@@ -1173,32 +1174,32 @@ t['聚贤庄-华山之巅']=function()
             G.call("talk",'',139,'   让我们【落花流水】先陪他活动活动筋骨',2,1)
             G.call('all_over')
             ---_root.War("华山论剑", 0,139, 0, 140, 141,142, 1, 1.3, 1);
-            G.call('call_battle',0,81,3,130,140,141,142,0,0,0)
+            G.call('call_battle',0,81,3,130+ int_难度系数,140,141,142,0,0,0)
             local o_battle_结果 = G.call('get_battle')
             if o_battle_结果 == 1 then  
                 G.call("talk",'',189,'   我们五岳剑派，要看他有多大能耐！',2,1)
                 G.call('all_over')
                 --__root.War("华山论剑", 191, 189, 190, 192, 0, 193, 1, 1.5, 1);
-                G.call('call_battle',0,81,3,150,189,190,191,192,193,0)
+                G.call('call_battle',0,81,3,150+ int_难度系数,189,190,191,192,193,0)
                 local o_battle_结果 = G.call('get_battle')
                 if o_battle_结果 == 1 then
                     G.call("talk",'',160,'   武当派在此，看看你有多少能耐！',2,1)
                     G.call('all_over')
-                    G.call('call_battle',0,81,3,130,162,161,160,164,165,0)
+                    G.call('call_battle',0,81,3,130+ int_难度系数,162,161,160,164,165,0)
                     local o_battle_结果 = G.call('get_battle')
                     --_root.War("华山论剑", 160,175, 61, 100, 131,119, 1, 1.7, 1);
                     --159，
                     if o_battle_结果 == 1 then 
                         G.call("talk",'',165,'   好久没活动筋骨了',2,1)
                         G.call('all_over')
-                        G.call('call_battle',0,81,3,100,94,111,165,75,0,0,0)
+                        G.call('call_battle',0,81,3,150+ int_难度系数,94,111,165,75,0,0,0)
     
                         local o_battle_结果 = G.call('get_battle')
                         --__root.War("华山论剑", 0, 159, 0, 0, 0, 0, 1, 1.3, 1);
                         if o_battle_结果 == 1 then 
                             G.call("talk",'',159,'   终于走到这里了，让我们也来送你一程吧',2,1)
                             G.call('all_over')
-                            G.call('call_battle',0,81,3,100,209,159,210,147,0,0)
+                            G.call('call_battle',0,81,3,150+ int_难度系数,209,159,210,147,0,0)
                             local o_battle_结果 = G.call('get_battle')
                             if o_battle_结果 == 1 then 
                                 G.call("talk",'',38,'   恭喜你渡过此劫！普天之下，声望武功，无人再能高过于你，你是古往今来第一人！前提是——你必须再打过我！',2,1)
@@ -1230,7 +1231,7 @@ t['聚贤庄-华山之巅']=function()
                                 G.call('set_roleskill',223,2,141)
                                 G.call('set_roleskill',223,3,199)
                                 --_root.War("华山论剑", 0, 223, 0, 0, 0, 0, 0, 1.5, 1);
-                                G.call('call_battle',1,81,1,int_点数,223,0,0,0,0,0)
+                                G.call('call_battle',1,81,1,int_点数+ int_难度系数,223,0,0,0,0,0)
                                 local o_battle_结果 = G.call('get_battle')
                                 if o_battle_结果 == 1 then  
                                     G.call("talk",'',38,'   哈哈哈哈...我苦熬了四个多月，直到今日才可交差了。今天不但你功德圆满，就连我也大功告成了…',2,1)
