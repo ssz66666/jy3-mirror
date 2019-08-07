@@ -2373,11 +2373,11 @@ t['集气'] = function()
                     if (G.call('通用_取得人物特效',int_role,12) or G.call('通用_取得装备特效',int_role,104)) and o_role_npc.生命 < o_role_npc[tostring(1)]*0.5  and  o_role_npc.生命 > 0 then --npc回春效果
                         G.call('add_role',int_role,15,20) 
                     end     
-                    if G.call('get_role',int_role,81) > 0 then --npc中毒受伤
-                        G.call('add_role',int_role,15,-20)  
+                    if G.call('get_role',int_role,81) > 0 and G.call('get_role',int_role,90) == 0 then --npc中毒受伤
+                        G.call('add_role',int_role,15,-15)  
                     end
                     if G.call('get_role',int_role,90) > 0 then --npc剧毒受伤
-                        G.call('add_role',int_role,15,-30)  
+                        G.call('add_role',int_role,15,-25)  
                     end
                     if G.call('get_role',int_role,85) > 0 then 
                         G.call('add_role',int_role,15,-10) 
@@ -2393,11 +2393,11 @@ t['集气'] = function()
                 end    
             end 
         end 
-        if G.call('get_point',81) > 0 then  --中毒剧毒受伤
-            G.call('add_point',44,-20)
+        if G.call('get_point',81) > 0  and G.call('get_point',90) == 0 then  --中毒剧毒受伤
+            G.call('add_point',44,-15)
         end
         if G.call('get_point',90) > 0 then  
-            G.call('add_point',44,-30)
+            G.call('add_point',44,-25)
         end
         if G.call('get_point',85) > 0 and G.call('get_point',48) > 0 then
             G.call('add_point',48,-1)  
