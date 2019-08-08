@@ -2303,7 +2303,7 @@ t['集气'] = function()
                         elseif  int_难度 == 3 then    
                             int_speed = int_speed * 1.8
                         end
-                        int_speed = int_speed + G.call('get_point',237)
+                        int_speed = int_speed + G.call('get_point',237)-1
                     end
                     speed[i] = speed[i] + int_speed   --NPC速度
                     if i < 6 then --NPC激励对全队速度的加成
