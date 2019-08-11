@@ -2120,7 +2120,7 @@ t['聚贤庄任务_落花流水恶斗血刀僧']=function()
             end
         elseif int_选项 == 2 then 
             G.call('all_over') 
-            if G.call('get_point',88) == 7 then 
+            if G.call('get_point',8) == 7 then 
                 G.call("talk",'',143,'   你这欺师灭祖的东西,今日我就清理门户！',1,1) 
                 G.call('all_over') 
                 G.call('call_battle',1,42,3,100,143,0,0,0,0,0)

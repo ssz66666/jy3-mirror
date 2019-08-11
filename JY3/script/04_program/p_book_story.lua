@@ -1025,6 +1025,7 @@ t['天书_鹿鼎记'] = function()
             while int_选项 == 0 do
                 int_选项 = G.call("menu",nil,13,'',0,0,{"1,饶过郑克爽","2,阉了郑克爽"},0) 
                 if int_选项 == 1 then 
+                    G.call('all_over')
                     G.call("talk",'',13,'   为了老婆今日放过你，日后你就自求多福，滚吧！',0,0)
                     G.call('join',20)
                     o_book_story.流程 = 4
