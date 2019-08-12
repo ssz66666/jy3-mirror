@@ -379,7 +379,7 @@ t['回答问题']=function()
                 int_完美 = int_完美 + 1
             end
         end
-        if int_完美 == 14 then 
+        if int_完美 == 14 and not G.call('通用_拥有印记',15)  then 
             G.call('add_equip',0x10180028 + 15,1)
         end
         if int_印记数量 < 14 and G.misc().重生 == 0 then 
