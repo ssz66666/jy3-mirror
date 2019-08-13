@@ -1334,13 +1334,17 @@ t['猜数字']=function()
             int_mo_监控 = int_mo_监控 - 1
             if int_mo == 1 and G.misc().number == int_no then
                 int_no = G.misc().一鸣惊人
-            else
-                int_no = int_输入数字
+                local int_数字 = G.misc().一鸣惊人
+                m[1] =  math.floor(int_数字/1000)
+                m[2] =  math.floor((int_数字 - m[1] *1000)/100)
+                m[3] =  math.floor((int_数字 - m[1] *1000 - m[2] *100)/10 )
+                m[4] =  int_数字 - m[1] *1000 - m[2] *100 - m[3] * 10 
             end
             if G.misc().number == int_no then 
                 G.call('all_over')
                 break
             else
+           
                 local p = G.misc().number
                 local n = {0,0,0,0}
                 local r = 0
