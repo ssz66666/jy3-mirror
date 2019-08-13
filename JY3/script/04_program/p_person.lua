@@ -1320,6 +1320,7 @@ t['猜数字']=function()
         end
         int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4] 
     end  
+    local int_输入数字 = int_no
     --print(int_no)
     G.call("talk",'',38,'   来来来，猜数字，规则很简单，猜出4个不同数字!',2,1)
     local int_选项 = 0
@@ -1333,6 +1334,8 @@ t['猜数字']=function()
             int_mo_监控 = int_mo_监控 - 1
             if int_mo == 1 and G.misc().number == int_no then
                 int_no = G.misc().一鸣惊人
+            else
+                int_no = int_输入数字
             end
             if G.misc().number == int_no then 
                 G.call('all_over')
