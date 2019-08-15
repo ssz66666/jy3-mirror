@@ -489,7 +489,7 @@ t['通用_记录继承装备']=function(int_重生)
     local i_继承装备_3 = o_body.脚穿
     local i_继承装备_4 = o_body.印记
     local int_继承个数 = 0
-    G.call('通用_还原装备')
+    G.call('通用_检测装备')
     if i_继承装备_1 then 
         table.insert(_o_继承装备,i_继承装备_1)
     end
