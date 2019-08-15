@@ -3247,11 +3247,11 @@ t['通用_检测装备']=function()
                 int属性_1 = 2500
                 int属性_2 = 2500
             end
+            if o_equip[属性[1]] > 5000 or  o_equip[属性[2]] > 5000 then 
+                G.call('通用_强退游戏',999) 
+            end
             for p = 3,10 do
                 if o_equip[属性[p]] > 100 then
-                    G.call('通用_强退游戏',999) 
-                end
-                if o_equip[属性[1]] > 5000 or  o_equip[属性[2]] > 5000 then 
                     G.call('通用_强退游戏',999) 
                 end
             end
@@ -3297,11 +3297,11 @@ t['通用_检测装备']=function()
                     int属性_2 = 2500
                 end
                 local int_品质 = o_equip.品质 - 1
+                if o_equip[属性[1]] > 5000 or  o_equip[属性[2]] > 5000 then 
+                    G.call('通用_强退游戏',999) 
+                end
                 for p = 3,10 do
                     if o_equip[属性[p]] > 100 then
-                        G.call('通用_强退游戏',999) 
-                    end
-                    if o_equip[属性[1]] > 5000 or  o_equip[属性[2]] > 5000 then 
                         G.call('通用_强退游戏',999) 
                     end
                 end
