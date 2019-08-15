@@ -3249,12 +3249,9 @@ t['通用_检测装备']=function()
                 int属性_2 = 2500
             end
             for p = 3,10 do
-                if o_equip_mod[属性[p]] > 100 then
+                if o_equip[属性[p]] > 100 then
                     G.call('通用_强退游戏',999) 
                 end
-                if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
-                    o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
-                end 
             end
             for j = 1,40 do 
                 local o_equip_mod = G.QueryName(0x10180000+j)
@@ -3268,7 +3265,9 @@ t['通用_检测装备']=function()
                     if o_equip[属性[2]] > int属性_2 + int_递增属性*250 then
                         o_equip[属性[2]] = int属性_2 
                     end
-         
+                    if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
+                        o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
+                    end 
                 end
             end	
         end
@@ -3295,12 +3294,9 @@ t['通用_检测装备']=function()
                 end
                 local int_品质 = o_equip.品质 - 1
                 for p = 3,10 do
-                    if o_equip_mod[属性[p]] > 100 then
+                    if o_equip[属性[p]] > 100 then
                         G.call('通用_强退游戏',999) 
                     end
-                    if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
-                        o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
-                    end 
                 end
                 if o_store.装备[i].数量 > 0 and o_equip.类型 < 4  then
                     local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
@@ -3316,6 +3312,9 @@ t['通用_检测装备']=function()
                             if o_equip[属性[2]] > int属性_2 + int_递增属性*250 then
                                 o_equip[属性[2]] = int属性_2 
                             end
+                            if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
+                                o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
+                            end 
                         end    
                     end	 
                 end
