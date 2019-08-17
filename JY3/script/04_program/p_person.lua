@@ -1103,6 +1103,7 @@ t['聚贤庄-华山之巅']=function()
                             G.call('all_over')
                             G.call('call_battle',0,81,3,150+ int_难度系数,180,114,115,200,0,0)
                             local o_battle_结果 = G.call('get_battle')
+                            local int_周目 = G.call('get_point',237) 
                              --_root.War("华山论剑", 0, 180, 0, 0, 0, 0, 1, 1.5, 1);
                             if o_battle_结果 == 1 then 
                                 G.call("talk",'',159,'   终于走到这里了，让我们也来送你一程吧',2,1)
@@ -1115,31 +1116,22 @@ t['聚贤庄-华山之巅']=function()
                                     G.call("talk",'',38,'   你那是靠群殴赢的，你也有脸说！有本事跟我单打独斗，打胜了我，你才算功德圆满。不然被我打败，你一样会GameOver',2,1)
                                     G.call("talk",'',0,'   真是没事找打。谁怕谁啊，打就打！',0,0)  
                                     G.call('all_over')
-                                    local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-                                    G.call('set_role',223,1,30000 + int_难度*10000  ) --设置HPmax
+                                    G.call('set_role',223,1,40000 + int_周目*10000  ) --设置HPmax
                                     G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
                                     G.call('set_role',223,2,1000000)--设置MPmax
-                                    G.call('set_role',223,15,30000 + int_难度*10000)--设置HP
+                                    G.call('set_role',223,15,40000 + int_周目*10000)--设置HP
                                     G.call('set_role',223,14,1000000)--设置MP
                                     G.call('set_role',223,10,750)--设置武功等级
                                     G.call('set_role',223,11,750)--设置武功等级
                                     G.call('set_role',223,12,750)--设置武功等级
-                                    local int_点数 = 0
-                                    if int_难度 == 1 then 
-                                        int_点数 = 120
-                                    elseif int_难度 == 2 then 
-                                        int_点数 = 150
-                                    elseif int_难度 == 3 then 
-                                        int_点数 = 180
-                                    end
                                     for i = 2,8 do  --设置半瓶基本属性
-                                        G.call('set_role',223,i,120 )
+                                        G.call('set_role',223,i,120 + int_周目  )
                                     end   
                                     G.call('set_roleskill',223,1,131)
                                     G.call('set_roleskill',223,2,141)
                                     G.call('set_roleskill',223,3,199)
                                     --_root.War("华山论剑", 0, 223, 0, 0, 0, 0, 0, 1.5, 1);
-                                    G.call('call_battle',1,81,1,int_点数+ int_难度系数,223,0,0,0,0,0)
+                                    G.call('call_battle',1,81,1,125+ int_周目*10,223,0,0,0,0,0)
                                     local o_battle_结果 = G.call('get_battle')
                                     if o_battle_结果 == 1 then  
                                         G.call("talk",'',38,'   哈哈哈哈...我苦熬了四个多月，直到今日才可交差了。今天不但你功德圆满，就连我也大功告成了…',2,1)
@@ -1201,37 +1193,29 @@ t['聚贤庄-华山之巅']=function()
                             G.call('all_over')
                             G.call('call_battle',0,81,3,150+ int_难度系数,209,159,210,147,0,0)
                             local o_battle_结果 = G.call('get_battle')
+                            local int_周目 = G.call('get_point',237) 
                             if o_battle_结果 == 1 then 
                                 G.call("talk",'',38,'   恭喜你渡过此劫！普天之下，声望武功，无人再能高过于你，你是古往今来第一人！前提是——你必须再打过我！',2,1)
                                 G.call("talk",'',0,'   我为什么还要跟你打？那么多高手都被我们打败了，你这不是自不量力吗。',0,0)    
                                 G.call("talk",'',38,'   你那是靠群殴赢的，你也有脸说！有本事跟我单打独斗，打胜了我，你才算功德圆满。不然被我打败，你一样会GameOver',2,1)
                                 G.call("talk",'',0,'   真是没事找打。谁怕谁啊，打就打！',0,0)  
                                 G.call('all_over')
-                                local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-                                G.call('set_role',223,1,30000 + int_难度*10000  ) --设置HPmax
+                                G.call('set_role',223,1,40000 + int_周目*10000  ) --设置HPmax
                                 G.call('set_role',223,2,1000000)--设置MPmax
-                                G.call('set_role',223,15,30000 + int_难度*10000)--设置HP
+                                G.call('set_role',223,15,40000 + int_周目*10000)--设置HP
                                 G.call('set_role',223,14,1000000)--设置MP
                                 G.call('set_role',223,10,750)--设置武功等级
                                 G.call('set_role',223,11,750)--设置武功等级
                                 G.call('set_role',223,12,750)--设置武功等级
                                 G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
-                                local int_点数 = 0
-                                if int_难度 == 1 then 
-                                    int_点数 = 120
-                                elseif int_难度 == 2 then 
-                                    int_点数 = 150
-                                elseif int_难度 == 3 then 
-                                    int_点数 = 180
-                                end
                                 for i = 2,8 do  --设置半瓶基本属性
-                                    G.call('set_role',223,i,120 )
+                                    G.call('set_role',223,i,120 + int_周目  )
                                 end   
                                 G.call('set_roleskill',223,1,131)
                                 G.call('set_roleskill',223,2,141)
                                 G.call('set_roleskill',223,3,199)
                                 --_root.War("华山论剑", 0, 223, 0, 0, 0, 0, 0, 1.5, 1);
-                                G.call('call_battle',1,81,1,int_点数+ int_难度系数,223,0,0,0,0,0)
+                                G.call('call_battle',1,81,1,125+ int_周目*10,223,0,0,0,0,0)
                                 local o_battle_结果 = G.call('get_battle')
                                 if o_battle_结果 == 1 then  
                                     G.call("talk",'',38,'   哈哈哈哈...我苦熬了四个多月，直到今日才可交差了。今天不但你功德圆满，就连我也大功告成了…',2,1)
