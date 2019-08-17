@@ -405,6 +405,20 @@ t['回答问题']=function()
             G.call('set_newpoint',i,-int_点数-10)
         end 
     end
+    local int_周目 = G.call('get_point',237) - 1
+    local role = G.DBTable('o_role')
+    for i = 1,#role do 
+        local o_role = G.QueryName(0x10040000 + i)
+        if  not o_role[tostring(901)] and o_role[tostring(1)] < 8000000 then 
+            o_role[tostring(1)] = math.floor(o_role[tostring(1)] * (1+int_周目*0.1) )
+            o_role[tostring(2)] = math.floor(o_role[tostring(2)] * (1+int_周目*0.1) )
+            o_role.生命 = o_role[tostring(1)] 
+            o_role.内力 = o_role[tostring(2)] 
+            for j = 3,8 do
+                o_role[tostring(i)] = o_role[tostring(i)] +1
+            end
+        end
+    end    
     --
     local int_选项 = 0
     while int_选项 == 0 do
