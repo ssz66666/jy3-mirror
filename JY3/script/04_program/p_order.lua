@@ -3141,20 +3141,17 @@ t['通用_读档检测']=function()
             break 
         end 
     end
-    if G.call('get_point',217) >= 80000   or G.call('get_point',218) >= 80000 then 
-        result = true
-    end
     if G.call('get_point',237) >= 1 and result == false  then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
                 local int属性_1 = o_equip[属性[1]]
                 local int属性_2 = o_equip[属性[2]]
-                if o_equip.特效 ~= 101 and  o_equip.名称 ~= '鹿'  and int属性_1 > 0 then 
+                if o_equip.特效 ~= 101 and  o_equip.名称 ~= '鹿'  and int属性_1 > 0 and o_equip.特效 ~= 103 then 
                     result = true
                     break
                 end
-                if o_equip.特效 ~= 102 and  o_equip.名称 ~= '鹿'  and int属性_2 > 0 then 
+                if o_equip.特效 ~= 102 and  o_equip.名称 ~= '鹿'  and int属性_2 > 0 and o_equip.特效 ~= 103 then 
                     result = true
                     break
                 end
@@ -3208,18 +3205,22 @@ t['通用_检测装备']=function()
             local int属性_1 = o_equip[属性[1]]
             local int属性_2 = o_equip[属性[2]]
             if o_equip.特效 == 101 then
-                int属性_1 = 5000
+                int属性_1 = 10000 
             elseif o_equip.特效 == 102 then
-                int属性_2 = 5000
+                int属性_2 = 10000 
             elseif o_equip.特效 == 103 then
-                int属性_1 = 2500
-                int属性_2 = 2500
+                int属性_1 = 5000 
+                int属性_2 = 5000
+            else
+                if o_equip.名称 == '鹿' then 
+                    int属性_1 = 2500
+                    int属性_2 = 2500
+                else
+                    int属性_1 = 0
+                    int属性_2 = 0
+                end 
             end
-            if o_equip.名称 == '鹿' then 
-                int属性_1 = 2500
-                int属性_2 = 2500
-            end
-            if o_equip[属性[1]] > 5000 or  o_equip[属性[2]] > 5000 then 
+            if (int属性_1 == 0 and o_equip[属性[1]] > 0) or (int属性_2 == 0 and o_equip[属性[2]] > 0) then 
                 G.call('通用_强退游戏',999) 
             end
             for p = 3,10 do
@@ -3231,6 +3232,11 @@ t['通用_检测装备']=function()
                 local o_equip_mod = G.QueryName(0x10180000+j)
                 if o_equip_mod[属性[1]] > 5000 or  o_equip_mod[属性[2]] > 5000 then 
                     G.call('通用_强退游戏',999) 
+                end
+                for p = 3,10 do
+                    if o_equip_mod[属性[p]] > 100 then
+                        G.call('通用_强退游戏',999) 
+                    end
                 end
                 if o_equip_mod.名称 == string_cut then 
                     if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
