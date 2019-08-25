@@ -3159,7 +3159,7 @@ t['通用_读档检测']=function()
                         break
                     end
                 elseif o_equip.类型 == 3 then
-                    if o_equip.拆招 > 0 or o_equip.搏击 > 0 or o_equip.内功 > 0 or o_equip.拆招 > 0 or o_equip.减伤 > 0 or o_equip.左右 > 0 then 
+                    if o_equip.拆招 > 0 or o_equip.搏击 > 0 or o_equip.内功 > 0 or o_equip.闪躲 > 0 or o_equip.减伤 > 0 or o_equip.左右 > 0 then 
                         result = true
                         break
                     end
