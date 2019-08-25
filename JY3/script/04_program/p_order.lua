@@ -3135,7 +3135,19 @@ t['通用_读档检测']=function()
     local result = false
     local o_store = G.QueryName(0x10190001)
     local int_继承个数 = 0
+    for i = 201,216 do 
+        if G.call('get_point',i) > 350 then 
+            result = true
+            break 
+        end 
+    end
+    if G.call('get_point',217) >= 80000   or G.call('get_point',218) >= 80000 then 
+        result = true
+    end
     if G.call('get_point',237) >= 1   then 
+        if result == true then
+            break 
+        end
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
@@ -3181,15 +3193,6 @@ t['通用_读档检测']=function()
                 end
             end
         end 
-    end
-    for i = 201,216 do 
-        if G.call('get_point',i) > 350 then 
-            result = true
-            break 
-        end 
-    end
-    if G.call('get_point',217) >= 80000   or G.call('get_point',218) >= 80000 then 
-        result = true
     end
     if result == true then 
         G.call('通用_强退游戏',999)
