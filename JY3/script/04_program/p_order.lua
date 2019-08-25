@@ -3194,6 +3194,9 @@ t['通用_检测装备']=function()
     local 装备 = {'头戴','手戴','脚穿','印记'}
     local 属性 = {'生命','内力','拆招','搏击','闪躲','内功','轻身','减伤','左右','斗转'}
     local int_递增属性 = G.call('get_point',237) - 2
+    if G.call('get_point',237) == 1 then 
+        int_递增属性 = 0
+    end
     local result = false
     local o_store = G.QueryName(0x10190001)
     local int_继承个数 = 0
@@ -3203,7 +3206,7 @@ t['通用_检测装备']=function()
             break 
         end 
     end
-    if G.call('get_point',237) > 1 and result == false  then 
+    if G.call('get_point',237) >= 1 and result == false  then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
@@ -3281,7 +3284,7 @@ t['通用_检测装备']=function()
                     if o_equip_mod.名称 == string_cut or o_equip_mod.名称 == o_equip.名称 then 
                         if  o_equip.类型 < 4  then
                             for p = 3,10 do
-                                if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2)  then
+                                if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2)  + int_递增属性 then
                                     o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
                                 end 
                             end
@@ -3296,29 +3299,6 @@ t['通用_检测装备']=function()
                 end	
             end
         end
-    elseif G.call('get_point',237) == 1  then 
-        local string_cut = o_equip.名称
-        if  o_equip.类型 < 4  then
-            string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
-        end
-        for j = 1,40 do 
-            local o_equip_mod = G.QueryName(0x10180000+j)
-            if o_equip_mod.名称 == string_cut or o_equip_mod.名称 == o_equip.名称 then 
-                if  o_equip.类型 < 4  then
-                    for p = 3,10 do
-                        if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
-                            o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
-                        end 
-                    end
-                else
-                    for p = 1,10 do
-                        if o_equip[属性[p]] > o_equip_mod[属性[p]] then
-                            o_equip[属性[p]] = o_equip_mod[属性[p]]
-                        end 
-                    end
-                end
-            end    
-        end	
     end
     if result == true then 
         G.call('通用_强退游戏',999)
