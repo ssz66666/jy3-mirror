@@ -490,6 +490,7 @@ t['通用_记录继承装备']=function(int_重生)
     local i_继承装备_4 = o_body.印记
     local int_继承个数 = 0
     G.call('通用_检测装备')
+    G.call('通用_读档检测')
     if i_继承装备_1 then 
         table.insert(_o_继承装备,i_继承装备_1)
     end
@@ -3126,101 +3127,71 @@ t['to_chinese']=function(int_number) --数字转换大写
 		return G.call('to_chinese',math.floor(i / 1000000000000)) .. c_digit[6] ..G.call('to_chinese',i % 1000000000000)  
 	end
 end 
-t['通用_还原装备']=function()
+t['通用_读档检测']=function()
     local 装备 = {'头戴','手戴','脚穿','印记'}
     local 属性 = {'生命','内力','拆招','搏击','闪躲','内功','轻身','减伤','左右','斗转'}
     local int_递增属性 = G.call('get_point',237) - 2
-    local o_body = G.QueryName(0x10030001)
-    for i = 1,3 do
-        if o_body[装备[i]] then
-            local o_equip = G.QueryName(o_body[装备[i]])
-            local int属性_1 = o_equip[属性[1]]
-            local int属性_2 = o_equip[属性[2]]
-            if o_equip.特效 == 101 then
-                int属性_1 = 5000
-            elseif o_equip.特效 == 102 then
-                int属性_2 = 5000
-            elseif o_equip.特效 == 103 then
-                int属性_1 = 2500
-                int属性_2 = 2500
-            end
-            if o_equip.名称 == '鹿' then 
-                int属性_1 = 2500
-                int属性_2 = 2500
-            end
-            local int_品质 = o_equip.品质 - 1
-            if o_equip.品质转换 == 1 then 
-                o_equip.品质转换 = 2
-                local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
-                for j = 1,40 do 
-                    local o_equip_mod = G.QueryName(0x10180000+j)
-                    if o_equip_mod.名称 == string_cut then 
-                        if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
-                            o_equip[属性[1]] = int属性_1 + int_递增属性*500
-                        end
-                        if o_equip[属性[2]] > int属性_2 + int_递增属性*250 then
-                            o_equip[属性[2]] = int属性_2 + int_递增属性*250
-                        end
-                        for p = 3,10 do
-                            if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
-                                o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) + int_递增属性
-                            end 
-                        end
-                        break	
-                    end
-                    
-                end	
-            end
-        end
-    end
+    local result = false
     local o_store = G.QueryName(0x10190001)
     local int_继承个数 = 0
-    if G.call('get_point',237) > 1   then 
+    if G.call('get_point',237) >= 1   then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
-                int_继承个数 = int_继承个数 + 1
-                if int_继承个数 == G.call('get_point',237) + 1 then
-                    break 
-                end
                 local o_equip = G.QueryName(o_store.装备[i].代码)
                 local int属性_1 = o_equip[属性[1]]
                 local int属性_2 = o_equip[属性[2]]
-                if o_equip.特效 == 101 then
-                    int属性_1 = 5000
-                elseif o_equip.特效 == 102 then
-                    int属性_2 = 5000
-                elseif o_equip.特效 == 103 then
-                    int属性_1 = 2500
-                    int属性_2 = 2500
+                if o_equip.特效 ~= 101 and  o_equip.名称 ~= '鹿'  and int属性_1 > 0 then 
+                    result = true
+                    break
                 end
-                if o_equip.名称 == '鹿' then 
-                    int属性_1 = 2500
-                    int属性_2 = 2500
+                if o_equip.特效 ~= 102 and  o_equip.名称 ~= '鹿'  and int属性_2 > 0 then 
+                    result = true
+                    break
                 end
-                local int_品质 = o_equip.品质 - 1
-                if o_store.装备[i].数量 > 0 and o_equip.类型 < 4 and o_equip.品质转换 == 1 then
-                    o_equip.品质转换 = 2
-                    local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
-                    for j = 1,40 do 
-                        local o_equip_mod = G.QueryName(0x10180000+j)
-                        if o_equip_mod.名称 == string_cut then 
-                            if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
-                                o_equip[属性[1]] = int属性_1 + int_递增属性*500
-                            end
-                            if o_equip[属性[2]] > int属性_2 + int_递增属性*250 then
-                                o_equip[属性[2]] = int属性_2 + int_递增属性*250
-                            end
-                            for p = 3,10 do
-                                if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
-                                    o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) + int_递增属性
-                                end 
-                            end
-                            break	
-                        end    
-                    end	 
+                if o_equip.类型 == 1 then
+                    if o_equip.搏击 > 0 or o_equip.闪躲 > 0 or o_equip.内功 > 0 or o_equip.轻身 > 0 or o_equip.左右 > 0 or o_equip.斗转 > 0 then 
+                        result = true
+                        break
+                    end
+                elseif o_equip.类型 == 2 then
+                    if o_equip.拆招 > 0 or o_equip.闪躲 > 0 or o_equip.内功 > 0 or o_equip.轻身 > 0 or o_equip.减伤 > 0 or o_equip.斗转 > 0 then 
+                        result = true
+                        break
+                    end
+                elseif o_equip.类型 == 3 then
+                    if o_equip.拆招 > 0 or o_equip.搏击 > 0 or o_equip.内功 > 0 or o_equip.轻身 > 0 or o_equip.减伤 > 0 or o_equip.左右 > 0 then 
+                        result = true
+                        break
+                    end
+                end
+                for p = 3,10 do
+                    if o_equip[属性[p]] > 100 then
+                        result = true
+                        break 
+                    end
+                end
+                if o_equip.级别 < 5  and o_equip.特效 > 0 then 
+                    result = true
+                    break 
+                end
+                if o_equip.套装 > 0 and o_equip.级别 ~= 3 then
+                    result = true
+                    break 
                 end
             end
         end 
+    end
+    for i = 201,216 do 
+        if G.call('get_point',i) > 350 then 
+            result = true
+            break 
+        end 
+    end
+    if G.call('get_point',217) >= 80000   or G.call('get_point',218) >= 80000 then 
+        result = true
+    end
+    if result == true then 
+        G.call('通用_强退游戏',999)
     end
 end
 t['通用_检测装备']=function()
