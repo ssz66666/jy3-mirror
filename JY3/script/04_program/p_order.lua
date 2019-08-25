@@ -240,6 +240,7 @@ t['通用_读档'] = function(int_档案编号)
            G.trig_event('创建角色')
         end 
         G.call('指令_存储属性')
+        G.call('通用_读档检测')
         G.misc().新游戏 = 1
         if int_档案编号 > 0 and int_档案编号 <= 4 then
             local o_team = G.QueryName(0x10110001)
@@ -3149,7 +3150,7 @@ t['通用_读档检测']=function()
                     break
                 end
                 if o_equip.类型 == 1 then
-                    if o_equip.搏击 > 0 or o_equip.闪躲 > 0 or o_equip.内功 > 0 or o_equip.轻身 > 0 or o_equip.左右 > 0 or o_equip.斗转 > 0 then 
+                    if  o_equip.闪躲 > 0 or o_equip.内功 > 0 or o_equip.轻身 > 0 or o_equip.左右 > 0 or o_equip.斗转 > 0 then 
                         result = true
                         break
                     end
