@@ -3326,7 +3326,13 @@ t['通用_检测装备']=function()
                                 end 
                             end
                         end    
-                    end	 
+                    end	
+                else
+                    for p = 1,10 do
+                        if o_equip[属性[p]] > o_equip_mod[属性[p]] then
+                            o_equip[属性[p]] = o_equip_mod[属性[p]]
+                        end 
+                    end 
                 end
             end
         end 
