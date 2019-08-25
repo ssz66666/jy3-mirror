@@ -3212,6 +3212,9 @@ t['通用_检测装备']=function()
                 local o_equip = G.QueryName(o_store.装备[i].代码)
                 local int属性_1 = o_equip[属性[1]]
                 local int属性_2 = o_equip[属性[2]]
+                if  o_equip.装备类型 == nil and   o_equip.套装 > 0  and G.misc().套装恢复 == nil then
+                    o_equip.装备类型 = 4
+                end
                 if o_equip.特效 == 101 then
                     int属性_1 = 10000 
                 elseif o_equip.特效 == 102 then
@@ -3248,7 +3251,7 @@ t['通用_检测装备']=function()
                     result = true
                     break 
                 end
-                if o_equip.套装 > 0 and o_equip.品质 ~= 4 then
+                if o_equip.套装 > 0 and (o_equip.品质 ~= 4 or o_equip.装备类型 ~= 4) then
                     result = true
                     break
                 end
@@ -3299,6 +3302,7 @@ t['通用_检测装备']=function()
                 end	
             end
         end
+        G.misc().套装恢复 = 1
     end
     if result == true then 
         G.call('通用_强退游戏',999)
@@ -3424,7 +3428,8 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
         o_equip_物品.品质 = 5
     end
 	if o_equip_物品.套装 > 0 then 
-		o_equip_物品.品质 = 4
+        o_equip_物品.品质 = 4
+        o_equip_物品.装备类型 = 4
     end
     local o_equip = {}
     local o_equip_mod = {}
