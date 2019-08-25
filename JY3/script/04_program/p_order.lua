@@ -3259,8 +3259,7 @@ t['通用_检测装备']=function()
                 end
             end	
         end
-    end
-    
+    end  
     local o_store = G.QueryName(0x10190001)
     if G.call('get_point',237) >= 1   then 
         if #o_store.装备 > 0 then
