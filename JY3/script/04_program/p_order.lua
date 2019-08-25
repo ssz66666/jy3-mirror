@@ -3278,7 +3278,7 @@ t['通用_检测装备']=function()
                 end
                 for j = 1,40 do 
                     local o_equip_mod = G.QueryName(0x10180000+j)
-                    if o_equip_mod.名称 == string_cut then 
+                    if o_equip_mod.名称 == string_cut or o_equip_mod.名称 == o_equip.名称 then 
                         if  o_equip.类型 < 4  then
                             for p = 3,10 do
                                 if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2) + int_递增属性 then
