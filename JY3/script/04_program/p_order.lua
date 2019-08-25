@@ -3145,13 +3145,19 @@ t['通用_读档检测']=function()
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
-                local int属性_1 = o_equip[属性[1]]
-                local int属性_2 = o_equip[属性[2]]
-                if o_equip.特效 ~= 101 and  o_equip.名称 ~= '鹿'  and int属性_1 > 0 and o_equip.特效 ~= 103 then 
+                local int属性_1 = 0
+                local int属性_2 = 0
+                if o_equip.特效 == 101 or o_equip.名称 ~= '鹿' or o_equip.名称 ~= '越'  or o_equip.特效 == 103 then 
+                    int属性_1  = 99
+                end
+                if o_equip.特效 == 102 or o_equip.名称 ~= '鹿' or o_equip.名称 ~= '越'  or o_equip.特效 == 103 then 
+                    int属性_2  = 99
+                end
+                if int属性_1 == 0 and o_equip[属性[1]] > 0 then 
                     result = true
                     break
                 end
-                if o_equip.特效 ~= 102 and  o_equip.名称 ~= '鹿'  and int属性_2 > 0 and o_equip.特效 ~= 103 then 
+                if int属性_2 == 0 and o_equip[属性[2]] > 0 then 
                     result = true
                     break
                 end
@@ -3212,7 +3218,7 @@ t['通用_检测装备']=function()
                 int属性_1 = 5000 
                 int属性_2 = 5000
             else
-                if o_equip.名称 == '鹿' then 
+                if o_equip.名称 == '鹿'  or o_equip.名称 == '越'   then
                     int属性_1 = 2500
                     int属性_2 = 2500
                 else
