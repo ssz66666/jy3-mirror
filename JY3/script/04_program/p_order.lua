@@ -3174,7 +3174,7 @@ t['通用_读档检测']=function()
                     result = true
                     break 
                 end
-                if o_equip.套装 > 0 and o_equip.品质 ~= 3 then
+                if o_equip.套装 > 0 and o_equip.品质 ~= 4 then
                     result = true
                     break 
                 end
