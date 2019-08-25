@@ -3240,6 +3240,14 @@ t['通用_检测装备']=function()
                     G.call('通用_强退游戏',999) 
                 end
             end
+            if o_equip.级别 < 5  and o_equip.特效 > 0 then 
+                G.call('通用_强退游戏',999) 
+                break 
+            end
+            if o_equip.套装 > 0 and o_equip.品质 ~= 4 then
+                G.call('通用_强退游戏',999) 
+                break 
+            end
             for j = 1,40 do 
                 local o_equip_mod = G.QueryName(0x10180000+j)
                 for p = 3,10 do
@@ -3291,6 +3299,14 @@ t['通用_检测装备']=function()
                 if (int属性_1 == 0 and o_equip[属性[1]] > 0) or (int属性_2 == 0 and o_equip[属性[2]] > 0) then 
                     G.call('通用_强退游戏',999) 
                     break
+                end
+                if o_equip.级别 < 5  and o_equip.特效 > 0 then 
+                    G.call('通用_强退游戏',999) 
+                    break 
+                end
+                if o_equip.套装 > 0 and o_equip.品质 ~= 4 then
+                    G.call('通用_强退游戏',999) 
+                    break 
                 end
                 local int_品质 = o_equip.品质 - 1
                 for p = 3,10 do
