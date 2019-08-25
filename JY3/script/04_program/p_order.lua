@@ -3315,7 +3315,7 @@ t['通用_检测装备']=function()
                         break
                     end
                 end
-                if o_store.装备[i].数量 > 0 and o_equip.类型 < 4  then
+                if  o_equip.类型 < 4  then
                     local string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
                     for j = 1,40 do 
                         local o_equip_mod = G.QueryName(0x10180000+j)
