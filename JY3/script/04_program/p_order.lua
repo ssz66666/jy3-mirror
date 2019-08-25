@@ -3144,15 +3144,12 @@ t['通用_读档检测']=function()
     if G.call('get_point',217) >= 80000   or G.call('get_point',218) >= 80000 then 
         result = true
     end
-    if G.call('get_point',237) >= 1   then 
+    if G.call('get_point',237) >= 1 and result == false  then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
                 local int属性_1 = o_equip[属性[1]]
                 local int属性_2 = o_equip[属性[2]]
-                if result == true then
-                    break 
-                end
                 if o_equip.特效 ~= 101 and  o_equip.名称 ~= '鹿'  and int属性_1 > 0 then 
                     result = true
                     break
