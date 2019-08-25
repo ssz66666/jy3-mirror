@@ -3263,24 +3263,30 @@ t['通用_检测装备']=function()
                 local int属性_1 = o_equip[属性[1]]
                 local int属性_2 = o_equip[属性[2]]
                 if o_equip.特效 == 101 then
-                    int属性_1 = 5000
+                    int属性_1 = 10000 
                 elseif o_equip.特效 == 102 then
-                    int属性_2 = 5000
+                    int属性_2 = 10000 
                 elseif o_equip.特效 == 103 then
-                    int属性_1 = 2500
-                    int属性_2 = 2500
+                    int属性_1 = 5000 
+                    int属性_2 = 5000
+                else
+                    if o_equip.名称 == '鹿' then 
+                        int属性_1 = 2500
+                        int属性_2 = 2500
+                    else
+                        int属性_1 = 0
+                        int属性_2 = 0
+                    end 
                 end
-                if o_equip.名称 == '鹿' then 
-                    int属性_1 = 2500
-                    int属性_2 = 2500
+                if (int属性_1 == 0 and o_equip[属性[1]] > 0) or (int属性_2 == 0 and o_equip[属性[2]] > 0) then 
+                    G.call('通用_强退游戏',999) 
+                    break
                 end
                 local int_品质 = o_equip.品质 - 1
-                if o_equip[属性[1]] > 5000 or  o_equip[属性[2]] > 5000 then 
-                    G.call('通用_强退游戏',999) 
-                end
                 for p = 3,10 do
                     if o_equip[属性[p]] > 100 then
                         G.call('通用_强退游戏',999) 
+                        break
                     end
                 end
                 if o_store.装备[i].数量 > 0 and o_equip.类型 < 4  then
