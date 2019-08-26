@@ -3470,8 +3470,11 @@ t['通用_检测装备']=function()
                         int_删除装备 = 0
                     end
                     for p = 1,12 do
+                        if o_team[tostring(p)] == nil then
+                            break 
+                        end 
                         local o_role =  G.QueryName(o_team[tostring(p)])
-                        if o_role[装备[o_equip.类型]] ==  o_store.装备[i].代码  then 
+                        if  o_role[装备[o_equip.类型]] ==  o_store.装备[i].代码  then 
                             int_删除装备 = 0
                             break
                         end
