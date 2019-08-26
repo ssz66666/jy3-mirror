@@ -3305,7 +3305,7 @@ t['通用_检测装备']=function()
                         break
                     end
                     if o_equip_mod.名称 == string_cut or o_equip_mod.名称 == o_equip.名称 then
-                        local str_对比 = {'品质','类型','级别','套装'}
+                        local str_对比 = {'类型','级别','套装'}
                         for p = 1,#str_对比 do 
                             if  o_equip_mod[str_对比[p]] ~= o_equip[str_对比[p]] then 
                                 result = true
