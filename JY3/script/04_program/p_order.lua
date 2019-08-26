@@ -3285,6 +3285,89 @@ t['通用_检测装备']=function()
                 if  o_equip.类型 < 4  then
                     string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
                 end
+                local int_套装 = 0
+                if o_equip.套装 == 1 then
+                    if   o_equip.类型 == 1 then 
+                        if string_cut ~= '浩然無塵冠' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 2 then 
+                        if string_cut ~= '战神护腕' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 3 then 
+                        if string_cut ~= '御风追日' then 
+                            int_套装 = 1
+                        end
+                    end
+                elseif o_equip.套装 == 2 then
+                    if   o_equip.类型 == 1 then 
+                        if string_cut ~= '獬豸忠正帽' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 2 then 
+                        if string_cut ~= '丹石戒' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 3 then 
+                    end
+                elseif o_equip.套装 == 3 then
+                    if   o_equip.类型 == 1 then 
+                        if string_cut ~= '烈殺霸王盔' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 2 then 
+                        if string_cut ~= '玄铁戒' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 3 then 
+                        if string_cut ~= '烏騅踏雪靴' then 
+                            int_套装 = 1
+                        end
+                    end
+                elseif o_equip.套装 == 4 then
+                    if   o_equip.类型 == 1 then 
+                        if string_cut ~= '寒殺鬼面盔' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 2 then 
+                        if string_cut ~= '青冥护腕' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 3 then 
+                        if string_cut ~= '鎮獄' then 
+                            int_套装 = 1
+                        end
+                    end
+                elseif o_equip.套装 == 5 then
+                    if   o_equip.类型 == 1 then 
+                        if string_cut ~= '明霞紅玉簪' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 2 then 
+                        if string_cut ~= '海晶花戒' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 3 then 
+                        if string_cut ~= '寸金生蓮鞋' then 
+                            int_套装 = 1
+                        end
+                    end
+                elseif o_equip.套装 == 6 then
+                    if   o_equip.类型 == 1 then 
+                        if string_cut ~= '猛虎嘯日冠' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 2 then 
+                        if string_cut ~= '紫晶神戒' then 
+                            int_套装 = 1
+                        end
+                    elseif   o_equip.类型 == 3 then 
+                        if string_cut ~= '火鳳煌羽靴' then 
+                            int_套装 = 1
+                        end
+                    end
+                end
                 for j = 1,40 do 
                     local o_equip_mod = G.QueryName(0x10180000+j)
                     for p = 3,10 do
@@ -3349,6 +3432,9 @@ t['通用_检测装备']=function()
                 end	
                 if result == true  then
                     break
+                end
+                if int_套装 == 1 then 
+                    o_equip.套装 = 0
                 end
             end
         end
