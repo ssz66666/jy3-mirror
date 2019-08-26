@@ -3374,7 +3374,7 @@ t['通用_检测装备']=function()
                 for j = 1,40 do 
                     local o_equip_mod = G.QueryName(0x10180000+j)
                     for p = 3,10 do
-                        if o_equip_mod[属性[p]] > 25*(0.7+int_品质*0.2)  + int_递增属性 then
+                        if o_equip_mod[属性[p]] > 25 then
                             result = true
                             break
                         end
@@ -3444,7 +3444,7 @@ t['通用_检测装备']=function()
         G.misc().套装恢复 = 1
     end
     if result == true then 
-        G.call('通用_强退游戏',999)
+        G.call('通用_强退游戏',9999)
     end
 end
 t['produce_equip']=function(i_equip_装备,int_数量,int_随机类型,int_品质级别,int_递增属性) 
