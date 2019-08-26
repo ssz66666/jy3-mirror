@@ -3542,11 +3542,11 @@ end
 t['add_equip']=function(i_equip_装备,int_数量,boolean_是否删除物品)
     if not i_equip_装备 then return end 
     local o_store = G.QueryName(0x10190001)
-    if #o_store.装备 > 180 and  then
+    if #o_store.装备 > 180 and int_数量  > 0 then
         G.call('notice1','装备太多已经无法获取更多')
         return 
     end 
-    if #o_store.装备 > 0 int_数量 > 0 then 
+    if #o_store.装备 > 0 then 
         local result = false
         local int_序号 = 0
         for i = #o_store.装备,1,-1 do
