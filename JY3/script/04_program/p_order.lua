@@ -185,7 +185,9 @@ t['通用_存档'] = function(int_档案编号)
             o_files.次数 = number  
         end 
         G.call('通用_存档',5)
-    end
+        G.call('通用_检测装备')
+        G.call('地图系统_防修改监控')
+    end 
 end
 --type=通用指令
 --hide=false
@@ -802,6 +804,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
     o_battle.背景 = int_map  --战斗地图
     o_battle.模式 = int_mod  --战斗模式
+    G.call('通用_检测装备')
     local int_战斗难度 = 50
     local int_难度 =  G.QueryName(0x10160000 +G.call('get_point',143)).难度
     if int_难度 == 1 then
@@ -3284,22 +3287,69 @@ t['通用_检测装备']=function()
                 end
                 for j = 1,40 do 
                     local o_equip_mod = G.QueryName(0x10180000+j)
-                    if o_equip_mod.名称 == string_cut or o_equip_mod.名称 == o_equip.名称 then 
+                    for p = 3,10 do
+                        if o_equip_mod[属性[p]] > 25*(0.7+int_品质*0.2)  + int_递增属性 then
+                            result = true
+                            break
+                        end
+                    end 
+                    if o_equip_mod[属性[1]] > int属性_1 + int_递增属性*500 then
+                        result = true
+                        break
+                    end
+                    if o_equip_mod[属性[2]] > int属性_2 + int_递增属性*250 then
+                        result = true
+                        break
+                    end
+                    if result == true   then
+                        break
+                    end
+                    if o_equip_mod.名称 == string_cut or o_equip_mod.名称 == o_equip.名称 then
+                        local str_对比 = {'品质','类型','级别','套装'}
+                        for p = 1,#str_对比 do 
+                            if  o_equip_mod[str_对比[p]] ~= o_equip[str_对比[p]] then 
+                                result = true
+                                break
+                            end
+                        end
+                        if result == true   then
+                            break
+                        end
                         if  o_equip.类型 < 4  then
+                            if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
+                                o_equip[属性[1]] = int属性_1 + int_递增属性*500
+                            end
+                            if o_equip[属性[2]] > int属性_2 + int_递增属性*250 then
+                                o_equip[属性[2]] = int属性_2 + int_递增属性*250 
+                            end
                             for p = 3,10 do
                                 if o_equip[属性[p]] > o_equip_mod[属性[p]]*(0.7+int_品质*0.2)  + int_递增属性 then
                                     o_equip[属性[p]] = math.floor(o_equip_mod[属性[p]]*(0.7+int_品质*0.2)) 
                                 end 
                             end
                         else
-                            for p = 1,10 do
-                                if o_equip[属性[p]] > o_equip_mod[属性[p]] then
-                                    o_equip[属性[p]] = o_equip_mod[属性[p]]
+                            for p = 3,10 do
+                                if o_equip[属性[p]] > 10 then
+                                    result = true
+                                    break
                                 end 
                             end
+                            if o_equip[属性[1]] >2500 or o_equip[属性[2]] > 2500 then 
+                                result = true
+                                break
+                            end
                         end
-                    end    
+                        if result == true   then
+                            break
+                        end
+                    end  
+                    if result == true   then
+                        break
+                    end  
                 end	
+                if result == true  then
+                    break
+                end
             end
         end
         G.misc().套装恢复 = 1
