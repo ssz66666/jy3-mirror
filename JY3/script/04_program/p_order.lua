@@ -3270,7 +3270,7 @@ t['通用_检测装备']=function()
                 end
                 local int_品质 = o_equip.品质 - 1
                 for p = 3,10 do
-                    if o_equip[属性[p]] > 50 then
+                    if o_equip[属性[p]] > 80 then
                         print('000008')
                         result = true
                         break
