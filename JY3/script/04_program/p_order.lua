@@ -3209,6 +3209,7 @@ t['通用_检测装备']=function()
     for i = 201,216 do 
         if G.call('get_point',i) > 300 then 
             result = true
+            print('000001')
             break 
         end 
     end
@@ -3238,32 +3239,39 @@ t['通用_检测装备']=function()
                     end 
                 end
                 if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
+                    print('000002')
                     result = true
                     break
                 end
                 if o_equip[属性[2]] > int属性_2 + int_递增属性*250 then
                     result = true
+                    print('000003')
                     break
                 end
                 if (int属性_1 == 0 and o_equip[属性[1]] > 0) or (int属性_2 == 0 and o_equip[属性[2]] > 0) then 
+                    print('000004')
                     result = true
                     break
                 end
                 if o_equip.级别 < 5  and o_equip.特效 > 0 then 
                     result = true
+                    print('000005')
                     break 
                 end
                 if  o_equip.特效 > 0 and   o_equip.类型 ~= math.floor(o_equip.特效/100) then 
                     result = true
+                    print('000006')
                     break 
                 end
                 if o_equip.套装 > 0 and (o_equip.品质 ~= 4 or o_equip.装备类型 ~= 4) then
+                    print('000007')
                     result = true
                     break
                 end
                 local int_品质 = o_equip.品质 - 1
                 for p = 3,10 do
                     if o_equip[属性[p]] > 50 then
+                        print('000008')
                         result = true
                         break
                     end
@@ -3271,102 +3279,109 @@ t['通用_检测装备']=function()
                 if o_equip.类型 == 1 then
                     if  o_equip.闪躲 > 0 or o_equip.内功 > 0 or o_equip.轻身 > 0 or o_equip.左右 > 0 or o_equip.斗转 > 0 then 
                         result = true
+                        print('000009')
                         break
                     end
                 elseif o_equip.类型 == 2 then
                     if o_equip.拆招 > 0 or o_equip.闪躲 > 0 or o_equip.内功 > 0 or o_equip.轻身 > 0 or o_equip.减伤 > 0 or o_equip.斗转 > 0 then 
                         result = true
+                        print('000010')
                         break
                     end
                 elseif o_equip.类型 == 3 then
                     if o_equip.拆招 > 0 or o_equip.搏击 > 0 or o_equip.内功 > 0 or o_equip.闪躲 > 0 or o_equip.减伤 > 0 or o_equip.左右 > 0 then 
                         result = true
+                        print('000011')
                         break
                     end
                 end
                 local string_cut = o_equip.名称
+                local string_cut_1 = ''
                 if  o_equip.类型 < 4  then
                     string_cut = G.utf8sub(o_equip.名称,4,G.getStrLen(o_equip.名称) )
                 end
                 local int_套装 = 0
                 if o_equip.套装 == 1 then
                     if   o_equip.类型 == 1 then 
-                        if string_cut ~= '浩然無塵冠' then 
-                            int_套装 = 1
+                        if string_cut ~= '浩然無塵冠' and  o_equip.名称 ~= '浩然無塵冠' then 
+                            int_套装 = 0
                         end
                     elseif   o_equip.类型 == 2 then 
-                        if string_cut ~= '战神护腕' then 
+                        if string_cut ~= '战神护腕' and  o_equip.名称 ~= '战神护腕' then 
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 3 then 
-                        if string_cut ~= '御风追日' then 
+                        if string_cut ~= '御风追日' and  o_equip.名称 ~= '战神护腕' then 
                             int_套装 = 1
                         end
                     end
                 elseif o_equip.套装 == 2 then
                     if   o_equip.类型 == 1 then 
-                        if string_cut ~= '獬豸忠正帽' then 
+                        if string_cut ~= '獬豸忠正帽' and  o_equip.名称 ~= '战神护腕' then 
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 2 then 
-                        if string_cut ~= '丹石戒' then 
+                        if string_cut ~= '丹石戒' and  o_equip.名称 ~= '战神护腕' then  
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 3 then 
+                        if string_cut ~= '皂白躍淵靴' and  o_equip.名称 ~= '皂白躍淵靴' then  
+                            int_套装 = 1
+                        end
                     end
                 elseif o_equip.套装 == 3 then
                     if   o_equip.类型 == 1 then 
-                        if string_cut ~= '烈殺霸王盔' then 
+                        if string_cut ~= '烈殺霸王盔' and  o_equip.名称 ~= '烈殺霸王盔' then 
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 2 then 
-                        if string_cut ~= '玄铁戒' then 
+                        if string_cut ~= '玄铁戒' and  o_equip.名称 ~= '玄铁戒' then 
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 3 then 
-                        if string_cut ~= '烏騅踏雪靴' then 
+                        if string_cut ~= '烏騅踏雪靴' and  o_equip.名称 ~= '烏騅踏雪靴' then 
                             int_套装 = 1
                         end
                     end
                 elseif o_equip.套装 == 4 then
                     if   o_equip.类型 == 1 then 
-                        if string_cut ~= '寒殺鬼面盔' then 
+                        if string_cut ~= '寒殺鬼面盔' and  o_equip.名称 ~= '寒殺鬼面盔' then  
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 2 then 
-                        if string_cut ~= '青冥护腕' then 
+                        if string_cut ~= '青冥护腕' and  o_equip.名称 ~= '青冥护腕' then  
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 3 then 
-                        if string_cut ~= '鎮獄' then 
+                        if string_cut ~= '鎮獄' and  o_equip.名称 ~= '鎮獄' then 
                             int_套装 = 1
                         end
                     end
                 elseif o_equip.套装 == 5 then
                     if   o_equip.类型 == 1 then 
-                        if string_cut ~= '明霞紅玉簪' then 
+                        if string_cut ~= '明霞紅玉簪' and  o_equip.名称 ~= '明霞紅玉簪' then 
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 2 then 
-                        if string_cut ~= '海晶花戒' then 
+                        if string_cut ~= '海晶花戒' and  o_equip.名称 ~= '海晶花戒' then 
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 3 then 
-                        if string_cut ~= '寸金生蓮鞋' then 
+                        if string_cut ~= '寸金生蓮鞋' and  o_equip.名称 ~= '寸金生蓮鞋' then  
                             int_套装 = 1
                         end
                     end
                 elseif o_equip.套装 == 6 then
                     if   o_equip.类型 == 1 then 
-                        if string_cut ~= '猛虎嘯日冠' then 
+                        if string_cut ~= '猛虎嘯日冠' and  o_equip.名称 ~= '猛虎嘯日冠' then 
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 2 then 
-                        if string_cut ~= '紫晶神戒' then 
+                        if string_cut ~= '紫晶神戒' and  o_equip.名称 ~= '紫晶神戒' then  
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 3 then 
-                        if string_cut ~= '火鳳煌羽靴' then 
+                        if string_cut ~= '火鳳煌羽靴' and  o_equip.名称 ~= '火鳳煌羽靴' then  
                             int_套装 = 1
                         end
                     end
@@ -3375,26 +3390,30 @@ t['通用_检测装备']=function()
                     local o_equip_mod = G.QueryName(0x10180000+j)
                     for p = 3,10 do
                         if o_equip_mod[属性[p]] > 25 then
+                            print('000012')
                             result = true
                             break
                         end
                     end 
                     if o_equip_mod[属性[1]] > int属性_1 + int_递增属性*500 then
+                        print('000013')
                         result = true
                         break
                     end
                     if o_equip_mod[属性[2]] > int属性_2 + int_递增属性*250 then
                         result = true
+                        print('000014')
                         break
                     end
                     if result == true   then
                         break
                     end
                     if o_equip_mod.名称 == string_cut or o_equip_mod.名称 == o_equip.名称 then
-                        local str_对比 = {'类型','级别','套装'}
+                        local str_对比 = {'类型','级别'}
                         for p = 1,#str_对比 do 
                             if  o_equip_mod[str_对比[p]] ~= o_equip[str_对比[p]] then 
                                 result = true
+                                print('000015')
                                 break
                             end
                         end
@@ -3416,11 +3435,13 @@ t['通用_检测装备']=function()
                         else
                             for p = 3,10 do
                                 if o_equip[属性[p]] > 10 then
+                                    print('000016')
                                     result = true
                                     break
                                 end 
                             end
                             if o_equip[属性[1]] >2500 or o_equip[属性[2]] > 2500 then 
+                                print('000017')
                                 result = true
                                 break
                             end
