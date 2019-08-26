@@ -3215,7 +3215,7 @@ t['通用_检测装备']=function()
     end
     if G.call('get_point',237) >= 1 and result == false  then 
         if #o_store.装备 > 0 then
-            for i = 1, #o_store.装备 do
+            for i = #o_store.装备,1,-1 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
                 local int属性_1 = o_equip[属性[1]]
                 local int属性_2 = o_equip[属性[2]]
@@ -3460,6 +3460,26 @@ t['通用_检测装备']=function()
                 if int_套装 == 1 then 
                     o_equip.套装 = 0
                 end
+                local int_删除装备 = 0
+                if o_store.装备[i].数量 == 0 then
+                    int_删除装备 = 1
+                    local 装备 = {'头戴','手戴','脚穿','印记'}
+                    local o_body = G.QueryName(0x10030001)
+                    local o_team = G.QueryName(0x10110001)
+                    if o_body[装备[o_equip.类型]] ==  o_store.装备[i].代码  then 
+                        int_删除装备 = 0
+                    end
+                    for p = 1,12 do
+                        local o_role =  G.QueryName(o_team[tostring(p)])
+                        if o_role[装备[o_equip.类型]] ==  o_store.装备[i].代码  then 
+                            int_删除装备 = 0
+                            break
+                        end
+                    end
+                end
+                if  int_删除装备 == 1 then
+                    table.remove(o_store.装备, i) 
+                end
             end
         end
         G.misc().套装恢复 = 1
@@ -3516,16 +3536,23 @@ t['produce_equip']=function(i_equip_装备,int_数量,int_随机类型,int_品�
         end
     end
 end
-t['add_equip']=function(i_equip_装备,int_数量)
+t['add_equip']=function(i_equip_装备,int_数量,boolean_是否删除物品)
     if not i_equip_装备 then return end 
     local o_store = G.QueryName(0x10190001)
-    if #o_store.装备 > 0 then 
+    if #o_store.装备 > 180 then
+        G.call('notice1','装备太多已经无法获取更多')
+        return 
+    end 
+    if #o_store.装备 > 0  then 
         local result = false
         local int_序号 = 0
         for i = 1,#o_store.装备 do
             if  o_store.装备[i].代码 == i_equip_装备 then 
                 result = true
                 o_store.装备[i].数量 = o_store.装备[i].数量 + int_数量
+                if boolean_是否删除物品 then 
+                    table.remove(o_store.装备, i)
+                end
                 break
             end    
         end

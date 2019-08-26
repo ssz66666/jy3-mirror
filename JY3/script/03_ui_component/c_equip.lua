@@ -496,7 +496,7 @@ function t:click(tar)
     elseif tar == self.按钮.getChildByName('特殊') then
         local i_equip = G.misc().equip[(G.misc().equip_data_i - 1)*18 + G.misc().equip_data ] 
         if G.misc().神奇装备 == 1 then 
-            G.call('add_equip',i_equip,-1)
+            G.call('add_equip',i_equip,-1,true)
             G.call('add_item',340,1)
         elseif G.misc().神奇装备 == 2 then 
             G.misc().转换装备 = i_equip 
