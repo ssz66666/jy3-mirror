@@ -3546,7 +3546,7 @@ t['add_equip']=function(i_equip_装备,int_数量,boolean_是否删除物品)
     if #o_store.装备 > 0  then 
         local result = false
         local int_序号 = 0
-        for i = 1,#o_store.装备 do
+        for i = #o_store.装备,1,-1 do
             if  o_store.装备[i].代码 == i_equip_装备 then 
                 result = true
                 o_store.装备[i].数量 = o_store.装备[i].数量 + int_数量
