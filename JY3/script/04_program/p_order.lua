@@ -3317,7 +3317,7 @@ t['通用_检测装备']=function()
                     end
                 elseif o_equip.套装 == 2 then
                     if   o_equip.类型 == 1 then 
-                        if string_cut ~= '獬豸忠正帽' and  o_equip.名称 ~= '战神护腕' then 
+                        if string_cut ~= '獬豸忠正帽' and  o_equip.名称 ~= '獬豸忠正帽' then 
                             int_套装 = 1
                         end
                     elseif   o_equip.类型 == 2 then 
