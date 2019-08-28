@@ -3213,6 +3213,17 @@ t['通用_检测装备']=function()
             break 
         end 
     end
+    local achieve = G.DBTable('o_achieve')
+    for i = 1,#achieve do
+        local o_achieve = G.QueryName(0x1017000a)
+        for j = 1,#o_achieve.进度列表 do
+            if o_achieve.进度列表[j].分数 > 100 then
+                result = true
+                print('000099')
+                break   
+            end 
+        end 
+    end
     if G.call('get_point',237) >= 1 and result == false  then 
         if #o_store.装备 > 0 then
             for i = #o_store.装备,1,-1 do
