@@ -3215,13 +3215,110 @@ t['通用_检测装备']=function()
     end
     local achieve = G.DBTable('o_achieve')
     for i = 1,#achieve do
-        local o_achieve = G.QueryName(0x1017000a)
+        local o_achieve = G.QueryName(0x10170000 + i)
         for j = 1,#o_achieve.进度列表 do
-            if o_achieve.进度列表[j].分数 > 100 then
+            if i == 1 and o_achieve.进度列表[j].分数 > 20 then
                 result = true
-                print('000099')
+                print('000100')
+                break  
+            elseif i == 2 and o_achieve.进度列表[j].分数 > 100 then 
+                result = true
+                print('000101')
+                break  
+            elseif i == 3 and o_achieve.进度列表[j].分数 > 30 then 
+                result = true
+                print('000102')
+                break  
+            elseif i == 4 and o_achieve.进度列表[j].分数 > 50 then 
+                result = true
+                print('000103')
+                break  
+            elseif i == 5 and o_achieve.进度列表[j].分数 > 100 then
+                result = true
+                print('000104')
                 break   
+            elseif i == 6 and o_achieve.进度列表[j].分数 > 30 then 
+                result = true
+                print('000105')
+                break  
+            elseif i == 7 and o_achieve.进度列表[j].分数 > 100 then
+                result = true
+                print('000122')
+                break   
+            elseif i == 8 and o_achieve.进度列表[j].分数 > 100 then 
+                result = true
+                print('000106')
+                break   
+            elseif i == 9 and o_achieve.进度列表[j].分数 > 100 then 
+                result = true
+                print('000107')
+                break   
+            elseif i == 10 and o_achieve.进度列表[j].分数 > 100 then 
+                result = true
+                print('000108')
+                break   
+            elseif i == 11 and o_achieve.进度列表[j].分数 > 100 then 
+                result = true
+                print('000109')
+                break   
+            elseif i == 12 and o_achieve.进度列表[j].分数 > 5 then 
+                result = true
+                print('000110')
+                break   
+            elseif i == 13 and o_achieve.进度列表[j].分数 > 5 then 
+                result = true
+                print('000111')
+                break   
+            elseif i == 14 and o_achieve.进度列表[j].分数 > 50 then
+                result = true
+                print('000112')
+                break    
+            elseif i == 15 and o_achieve.进度列表[j].分数 > 5 then 
+                result = true
+                print('000113')
+                break   
+            elseif i == 16 and o_achieve.进度列表[j].分数 > 20 then 
+                result = true
+                print('000114')
+                break   
+            elseif i == 17 and o_achieve.进度列表[j].分数 > 100 then 
+                result = true
+                print('000115')
+                break   
+            elseif i == 18 and o_achieve.进度列表[j].分数 > 100 then 
+                result = true
+                print('000116')
+                break   
+            elseif j == 19 and o_achieve.进度列表[j].分数 > 200 then
+                result = true
+                print('000117')
+                break    
+            elseif i == 20 and o_achieve.进度列表[j].分数 > 100 then 
+                result = true
+                print('000118')
+                break   
+            elseif i == 21 and o_achieve.进度列表[j].分数 > 100 then
+                result = true
+                print('000119')
+                break       
+            elseif i == 22 and o_achieve.进度列表[j].分数 > 20 then 
+                result = true
+                print('000120')
+                break   
+            elseif i == 23  then 
+                if j < 15 and o_achieve.进度列表[j].分数 > 20 then 
+                    result = true
+                    print('0000121')
+                    break  
+                else
+                    if o_achieve.进度列表[j].分数 > 100 then 
+                        result = true 
+                    end
+                end   
             end 
+        end 
+        if result == true  then
+            break 
         end 
     end
     if G.call('get_point',237) >= 1 and result == false  then 
