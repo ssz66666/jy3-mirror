@@ -166,7 +166,7 @@ t['门派-桃花岛']=function()
             while int_选项 == 0 do
                 int_选项 = G.call("menu",'',0,'',0,0,{"1,想跟你们切磋武功","2,我要【征服】这个门派","3,(乔装混进直接找掌门)","4,没有事情"},0) 
                 if int_选项 == 1 then
-                    G.call("talk",'门派弟子',249,'   我怕把你打傻了，还是不要了',1,1) 
+                    G.call("talk",'门派弟子',90,'   我怕把你打傻了，还是不要了',1,1) 
                     G.call('all_over') 
                     G.call('goto_map',1) 
                 elseif int_选项 == 2 then 
