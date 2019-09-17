@@ -103,6 +103,9 @@ function t:click(tar)
                     local int_周目 = o_files.周目
                     local int_清除成就 = G.misc().清除成就
                     local int_通关 = o_files.通关
+                    local _随机库 = G.misc().随机库
+                    local _大随机库 = G.misc().大随机库
+                    local _宝物随机库 = G.misc().宝物随机库
                     G.call('继承_读档',10)
                     if int_通关 > 0  then 
                         local o_store = G.QueryName(0x10190001)
@@ -133,6 +136,12 @@ function t:click(tar)
                         local int_梦幻完成 = G.misc().梦幻完成
                         G.call('通用_检测装备')
                         G.call('通用_读档',0)
+                        G.misc().随机序号 = 1
+                        G.misc().大随机序号 = 1
+                        G.misc().宝物随机序号 = 1
+                        G.misc().随机库 = _随机库
+                        G.misc().大随机库 = _大随机库
+                        G.misc().宝物随机库 = _宝物随机库
                         G.misc().出师 = nil
                         G.misc().七夕礼包 = int_礼包
                         if int_清除成就 ~= 1 then   
