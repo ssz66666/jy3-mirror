@@ -554,8 +554,7 @@ t['重生']=function()
         end
     end
     local _随机库 = G.misc().随机库
-    local _大随机库 = G.misc().大随机库
-    local _宝物随机库 = G.misc().宝物随机库
+    local int_随机序号 = G.misc().随机序号
     G.call('成就_读档',10)
     local int_万金 = G.QueryName(0x10170004).进度列表[1].当前进度
     G.call('成就_读档',G.call('get_point',143))
@@ -596,12 +595,8 @@ t['重生']=function()
                 o_book_story_list.完美 = 0
             end
         end
-        G.misc().随机序号 = 1
-        G.misc().大随机序号 = 1
-        G.misc().宝物随机序号 = 1
+        G.misc().随机序号 = int_随机序号
         G.misc().随机库 = _随机库
-        G.misc().大随机库 = _大随机库
-        G.misc().宝物随机库 = _宝物随机库
         G.misc().七夕礼包 = 礼包
         G.misc().切磋次数 = 0
         G.call('set_point',237,int_周目)
@@ -629,6 +624,15 @@ t['call_title']=function(int_代码)  --开始菜单
     end    
 end 
 t['create']=function()  --建立角色
+    if G.misc().随机序号 == nil then 
+        G.call('通用_随机种子')
+    end
+    if G.misc().宝物随机序号 == nil then 
+        G.call('通用_宝物随机种子')
+    end
+    if G.misc().大随机序号 == nil then 
+        G.call('通用_大随机种子')
+    end
     G.call('指令_备份基础属性')
     G.addUI('v_addpoint')
     G.wait1('建立角色结束')

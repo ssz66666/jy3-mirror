@@ -441,19 +441,19 @@ t['回答问题']=function()
     local t = {1,4,5,7,8,10,11,12,13,14}
     --local t = {1,4,5,7,8,10,11,12,13,14,22,23,24}
     local len = #t
-    local r = math.random(len)
+    local  r = math.ceil(len*G.call('通用_取随机')/100)
     m[1] =t[r]
     table.remove(t, r)
     len = #t
-    r = math.random(len)	
+    r = math.ceil(len*G.call('通用_取随机')/100)	
     m[2] =t[r]
     table.remove(t, r)
     len = #t
-    r = math.random(len)	
+    r = math.ceil(len*G.call('通用_取随机')/100)	
     m[3] =t[r]
     table.remove(t, r)
     len = #t
-    r = math.random(len)	
+    r = math.ceil(len*G.call('通用_取随机')/100)	
     m[4] =t[r]
     table.remove(t, r)
     local point = 0
@@ -482,7 +482,7 @@ t['回答问题']=function()
         while int_选项 == 0 do
             int_选项 = G.call("menu",'',0,'十五：需要消耗1000成就点换取下列哪一项？',1,1,
             {"1,换取一本秘籍","2,换取一件装备","3,换取大还丹","4,换取腊八粥","5,换取银钱","6,都不需要"},1)
-            local int_随机数 = math.random(3)
+            local int_随机数 = math.ceil(3*G.call('通用_取随机')/100)
             if int_选项 == 1 then
                 local item = {121,120,124,125,100,117,106}
                 point = point - 1000 + math.random(5) 
@@ -592,9 +592,6 @@ t['回答问题']=function()
     G.call('rest')
     G.misc().人物头像 = G.call('get_point',119)
     G.misc().通关 = 0
-    G.call('通用_随机种子')
-    G.call('通用_宝物随机种子')
-    G.call('通用_大随机种子')
     G.call('set_point',140,0x10060002)
     G.call('通用_存档',G.call('get_point',143)) 
     G.call('通用_存档',4)

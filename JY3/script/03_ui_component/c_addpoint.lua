@@ -275,7 +275,7 @@ function t:click(tar)
                     G.call('add_money',10000) 
                 elseif str == '书中自有颜如玉' then
                     local  wife = {1,3,6,8,12,14,15,16,18,19,20,22,24,25,26,28,39,40,130,252}
-                    local n = wife[math.random(20)]
+                    local n = wife[math.ceil(20*G.call('通用_取随机')/100)]
                     local m = 0
                     for i = 1,#wife do 
                         if G.call('in_team',wife[i]) == true then 
