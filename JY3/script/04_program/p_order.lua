@@ -347,6 +347,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
+    G.call('小游戏-野球拳')
     --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)

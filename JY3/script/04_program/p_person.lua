@@ -1977,56 +1977,183 @@ end
 t['小游戏-野球拳']=function()
     G.call("talk",'？？？？',247,'   当日华山论剑，他用【黯然销魂掌】，破了我的七十二路【空明拳】；我改【降龙十八掌】，他伸开食指中指，竟是【六脉神剑】商阳剑和中冲剑并用，又胜我一筹。可见天下武功彼此克制，武学之道玄之又玄！',1,1) 
     if G.call('get_magic',83) > 0 then 
-        G.call("talk",'',0,'   这不就是【野球拳】吗？',0,0)
-        G.call("talk",'？？？？',247,'   小子既然知道这是【野球拳】，那就来比比吧！',1,1) 
         local int_猜拳_1 = 0
         local int_猜拳_2 = 0
         local int_猜拳结果 = 0
-        local int_连胜 = 10
+        local int_连胜 = 10.0
         local str = {'六脉神剑','空明拳','降龙十八掌'}
-        while true do 
-            int_猜拳_2 = math.random(3)
-            if int_连胜-10 > 0 then 
-                G.call("talk",'？？？？',247,'   你已经连续胜利了'..(int_连胜-10)..'次!',1,1) 
-            end
-            local int_选项 = 0       
-            while int_选项 == 0 do
-                if int_连胜-10 > 0 then 
-                    int_选项 = G.call("menu",'',0,'我要出什么呢？',0,4,
-                    {"1,六脉神剑","2,空明拳","3,降龙十八掌","4,见好就收"},0)
+        if G.call('get_magicexp',83) >= 6000 then 
+            G.call("talk",'？？？？',247,'   现在开启更深层次的比试吧！',1,1) 
+            local ui = G.addUI('v_yeqiuquan');
+            local c = ui.c_yeqiuquan;
+            while true do
+                if int_连胜 <= 10 then 
+                    G.call("talk",'？？？？',247,'   做出你的选择吧！',1,1) 
                 else
-                    int_选项 = G.call("menu",'',0,'我要出什么呢？',0,4,
-                    {"1,六脉神剑","2,空明拳","3,降龙十八掌","4,不玩了"},0)
+                    local int_胜利次数 =math.floor(int_连胜-10)
+                    G.call("talk",'？？？？',247,'   你赢了，你已经连续胜利了'..int_胜利次数..'次，还需要继续吗？',1,1)  
+                    local int_选项 = 0       
+                    while int_选项 == 0 do
+                        int_选项 = G.call("menu",'',0,'我该怎么抉择？',0,4,
+                        {"1,乘风破浪","2,见好就收"},0)
+                        if int_选项 == 2 then
+                            int_猜拳结果 = 9     
+                            G.call('all_over')
+                        else
+                            c.体力一 = 100.0
+                            c.体力二 = 100.0
+                            c.怒气一 = 0.0
+                            c.怒气二 = 0.0
+                            G.call("talk",'？？？？',247,'   做出你的选择吧！',1,1) 
+                        end
+                    end
                 end
-                if int_选项 == 1 then
-                    int_猜拳_1 = 1
-                elseif int_选项 == 2 then
-                    int_猜拳_1 = 2
-                elseif int_选项 == 3 then
-                    int_猜拳_1 = 3
-                elseif int_选项 == 4 then
-                    int_猜拳结果 = 9
+                if int_猜拳结果 == 9 then
+                    break 
+                end
+                local int_选项 = 0       
+                while int_选项 == 0 do
+                    if c.怒气一 >= 5  and c.怒气一 < 10 then 
+                        int_选项 = G.call("menu",'',0,'',0,0,
+                        {"1,聚气","2,弱攻击","3,弱防御","4,强防御(消耗5怒气)"},0,0)
+                    elseif c.怒气一 >= 10 then
+                        int_选项 = G.call("menu",'',0,'',0,0,
+                        {"1,聚气","2,弱攻击","3,弱防御","4,强防御(消耗5怒气)","5,强攻击(消耗10怒气)"},0,0)
+                    else
+                        int_选项 = G.call("menu",'',0,'',0,0,
+                        {"1,聚气","2,弱攻击","3,弱防御"},0,0)
+                    end
+                    if int_选项 > 0 then 
+                        local int_主角出招 = int_选项
+                        local int_对方出招 = math.random(1,3)
+                        if c.怒气二 > 10 then
+                            int_对方出招 = math.random(4,5)
+                        end
+                        if int_主角出招 == 5 then
+                            c.怒气一 = c.怒气一 - 10 
+                        elseif int_主角出招 == 4 then
+                            c.怒气一 = c.怒气一 - 5
+                        end 
+                        if int_对方出招 == 5 then
+                            c.怒气二 = c.怒气二 - 10 
+                        elseif int_对方出招 == 4 then
+                            c.怒气二 = c.怒气二 - 5
+                        end
+                        c:刷新显示()
+                        local str_字符串 = ''
+                        if int_主角出招 == 1 then 
+                            str_字符串 = '你执行聚气获得了[03]10[02]点怒气值[br]'
+                            c.怒气一 = c.怒气一 + 10
+                            if int_对方出招 == 1 then 
+                                str_字符串 = str_字符串..'对方执行聚气获得了[03]10[02]点怒气值'
+                                c.怒气二 = c.怒气二 + 10
+                            elseif int_对方出招 == 2 then 
+                                c.体力一 = c.体力一 - 10
+                                c.怒气二 = c.怒气二 + 5
+                                str_字符串 = str_字符串..'对方执行弱攻击击中了你，你的体力减少[03]10[02]点，'..'对方获得[03]5[02]点怒气值'
+                            elseif int_对方出招 == 3 then 
+                                str_字符串 = str_字符串..'对方执行弱防御，并没有什么发生'
+                            elseif int_对方出招 == 4 then 
+                                c.体力一 = c.体力一 - 20
+                                c.怒气二 = c.怒气二 + 5
+                                str_字符串 = str_字符串..'对方执行强攻击击中了你，你的体力减少[03]20[02]点，'..'对方获得[03]5[02]点怒气值'
+                            elseif int_对方出招 == 5 then    
+                                str_字符串 = str_字符串..'对方执行强防御，并没有什么发生' 
+                            end
+                        elseif int_主角出招 == 2 then 
+                            str_字符串 = '你执行弱攻击'
+                            if int_对方出招 == 1 then 
+                                c.体力二 = c.体力二 - 10
+                                c.怒气二 = c.怒气二 + 5
+                                c.怒气一 = c.怒气一 + 5
+                                str_字符串 = str_字符串..'击中了对方，'..'对方体力减少[03]10点[02]，你获得了[03]5[02]点怒气值[br]'..'对方执行聚气，'..'对方获得[03]10[02]点怒气值'
+                            elseif int_对方出招 == 2 then 
+                                c.体力一 = c.体力一 - 10
+                                c.体力一 = c.体力一 - 10
+                                str_字符串 = str_字符串..'击中了对方，'..'对方体力减少[03]10[02]点[br]'..'对方执行弱攻击击中了你，你的体力减少[03]10[02]点'
+                            elseif int_对方出招 == 3 then
+                                c.怒气二 = c.怒气二 + 5
+                                str_字符串 = str_字符串..'被'..'对方巧妙的躲避过去，'..'对方获得[03]5[02]点怒气值'
+                            elseif int_对方出招 == 4 then 
+                                c.体力一 = c.体力一 - 20
+                                c.体力二 = c.体力二 - 10
+                                str_字符串 = str_字符串..'击中了对方，'..'对方体力减少[03]10[02]点[br]'..'对方执行强攻击击中了你，你的体力减少[03]20[02]点'
+                            elseif int_对方出招 == 5 then
+                                c.怒气二 = c.怒气二 + 5 
+                                G.call("任务数据修改_设置标记",'门派-武当其他','修炼太极对方怒气','加上',5)    
+                            end
+                        elseif int_主角出招 == 3 then
+                            str_字符串 = '你执行弱防御，'
+                            if int_对方出招 == 1 then 
+                                c.怒气二 = c.怒气二 + 5
+                                str_字符串 = str_字符串..'对方执行聚气获得了[03]10[02]点怒气值'
+                            elseif int_对方出招 == 2 then
+                                c.怒气一 = c.怒气一 + 5 
+                                str_字符串 = str_字符串..'巧妙地躲避了'..'对方的攻击，你获得[03]5[02]点怒气值'
+                            elseif int_对方出招 == 3 then 
+                                str_字符串 = str_字符串..'对方执行弱防御，并没有什么发生'
+                            elseif int_对方出招 == 4 then 
+                                c.体力一 = c.体力一 - 10
+                                str_字符串 = str_字符串..'对方执行强攻击被你躲避了部分伤害，你的体力减少[03]10[02]点'
+                            elseif int_对方出招 == 5 then  
+                                str_字符串 = str_字符串..'对方执行强防御，并没有什么发生'   
+                            end 
+                        elseif int_主角出招 == 4 then
+                            str_字符串 = '你执行强防御，'
+                            if int_对方出招 == 1 then 
+                                c.怒气二 = c.怒气二 + 5
+                                str_字符串 = str_字符串..'对方执行聚气获得了[03]10[02]点怒气值'
+                            elseif int_对方出招 == 2 then
+                                c.怒气一 = c.怒气一 + 5 
+                                str_字符串 = str_字符串..'巧妙地躲避了'..'对方的攻击，你获得[03]5[02]点怒气值'
+                            elseif int_对方出招 == 3 then 
+                                str_字符串 = str_字符串..'对方执行弱防御，并没有什么发生'
+                            elseif int_对方出招 == 4 then 
+                                c.怒气一 = c.怒气一 + 5 
+                                str_字符串 = str_字符串..'巧妙地躲避了'..'对方的攻击，你获得[03]5[02]点怒气值'
+                            elseif int_对方出招 == 5 then  
+                                str_字符串 = str_字符串..'对方执行强防御，并没有什么发生'   
+                            end 
+                        elseif int_主角出招 == 5 then
+                            str_字符串 = '你执行强攻击，'
+                            if int_对方出招 == 1 then 
+                                c.体力二 = c.体力二 - 20
+                                c.怒气二 = c.怒气二 + 10
+                                c.怒气一 = c.怒气一 + 5
+                                str_字符串 = str_字符串..'击中了对方，'..'对方体力减少[03]20点[02]，你获得了[03]5[02]点怒气值[br]'..'对方执行聚气，'..'对方获得[03]10[02]点怒气值'
+                            elseif int_对方出招 == 2 then
+                                c.体力一 = c.体力一 - 10
+                                c.体力二 = c.体力二 - 20
+                                str_字符串 = str_字符串..'击中了对方，'..'对方体力减少[03]20[02]点[br]'..'对方执行弱攻击击中了你，你的体力减少[03]10[02]点' 
+                            elseif int_对方出招 == 3 then 
+                                c.体力二 = c.体力二 - 10
+                                str_字符串 = str_字符串..'被'..'对方巧妙的躲避了部分攻击，'..'对方体力减少[03]10点'
+                            elseif int_对方出招 == 4 then 
+                                c.体力一 = c.体力一 - 20
+                                c.体力二 = c.体力二 - 20
+                                str_字符串 = str_字符串..'击中了对方，'..'对方体力减少[03]20[02]点[br]'..'对方执行强攻击击中了，你的体力减少[03]20[02]点'
+                            elseif int_对方出招 == 5 then 
+                                c.怒气二 = c.怒气二 + 5 
+                                str_字符串 = str_字符串..'被'..'对方巧妙的躲避过去，'..'对方获得[03]5[02]点怒气值' 
+                            end     
+                        end
+                        c:刷新显示()
+                        G.call("talk",'？？？？',38,'   '..str_字符串,1,1) 
+                    end
+                    G.call('all_over')
+                end
+                if c.体力一 <= 0 then
+                    G.call("talk",'？？？？',247,'   还需要多加努力才是！',1,1) 
+                    int_猜拳结果 = 2
+                    break
+                else
+                    if c.体力二 <= 0 then
+                        int_连胜 = int_连胜 + 1
+                    end
                 end
                 G.call('all_over')
             end
-            if int_猜拳结果 ~= 9 then
-                int_猜拳结果 = int_猜拳_1 - int_猜拳_2
-                if int_猜拳结果 == 0 then 
-                    G.call("talk",'',0,'   我出【'..str[int_猜拳_1]..'】！',0,0)
-                    G.call("talk",'？？？？',247,'   我出【'..str[int_猜拳_2]..'】平手，再来！',1,1) 
-                end
-                if int_猜拳结果 == 1 or int_猜拳结果 == -2 then 
-                    G.call("talk",'',0,'   我出【'..str[int_猜拳_1]..'】',0,0)
-                    G.call("talk",'？？？？',247,'   我出【'..str[int_猜拳_2]..'】你赢了，再来！',1,1) 
-                    int_连胜 = int_连胜 + 1
-                end
-                if int_猜拳结果 == -1 or int_猜拳结果 == 2 then 
-                    G.call("talk",'',0,'   我出【'..str[int_猜拳_1]..'】！',0,0)
-                    G.call("talk",'？？？？',247,'   我出【'..str[int_猜拳_2]..'】你输了，下次再来！',1,1) 
-                    int_连胜 = 10
-                    break
-                end
-            end
+            G.removeUI('v_yeqiuquan')
             if int_猜拳结果 == 9 then
                 if  int_连胜-10 > 0 then 
                     local o_yqwd = G.QueryName(0x10170015)
@@ -2037,8 +2164,8 @@ t['小游戏-野球拳']=function()
                     if o_yqwd.进度列表[1].当前进度 >= 10000 and o_yqwd.进度列表[1].完成 == 0 then 
                         o_yqwd.进度列表[1].完成 = 1
                         if o_yqwd.完成 == 0 then 
-                           o_yqwd.完成 = 1
-                           G.call('notice1','恭喜完成成就【野球无敌】')
+                        o_yqwd.完成 = 1
+                        G.call('notice1','恭喜完成成就【野球无敌】')
                         end
                     end
                     local int_经验 = 5 + math.floor(G.call('get_point',18)/10)
@@ -2054,7 +2181,83 @@ t['小游戏-野球拳']=function()
                 else
                     G.call("talk",'？？？？',247,'   哈哈，还没比就怂了啊！',1,1) 
                 end
-                break
+            end
+        else
+            G.call("talk",'',0,'   这不就是【野球拳】吗？',0,0)
+            G.call("talk",'？？？？',247,'   小子既然知道这是【野球拳】，那就来比比吧！',1,1) 
+            while true do 
+                int_猜拳_2 = math.random(3)
+                if int_连胜-10 > 0 then 
+                    local int_胜利次数 =math.floor(int_连胜-10)
+                    G.call("talk",'？？？？',247,'   你已经连续胜利了'..int_胜利次数..'次!',1,1) 
+                end
+                local int_选项 = 0       
+                while int_选项 == 0 do
+                    if int_连胜-10 > 0 then 
+                        int_选项 = G.call("menu",'',0,'我要出什么呢？',0,4,
+                        {"1,六脉神剑","2,空明拳","3,降龙十八掌","4,见好就收"},0)
+                    else
+                        int_选项 = G.call("menu",'',0,'我要出什么呢？',0,4,
+                        {"1,六脉神剑","2,空明拳","3,降龙十八掌","4,不玩了"},0)
+                    end
+                    if int_选项 == 1 then
+                        int_猜拳_1 = 1
+                    elseif int_选项 == 2 then
+                        int_猜拳_1 = 2
+                    elseif int_选项 == 3 then
+                        int_猜拳_1 = 3
+                    elseif int_选项 == 4 then
+                        int_猜拳结果 = 9
+                    end
+                    G.call('all_over')
+                end
+                if int_猜拳结果 ~= 9 then
+                    int_猜拳结果 = int_猜拳_1 - int_猜拳_2
+                    if int_猜拳结果 == 0 then 
+                        G.call("talk",'',0,'   我出【'..str[int_猜拳_1]..'】！',0,0)
+                        G.call("talk",'？？？？',247,'   我出【'..str[int_猜拳_2]..'】平手，再来！',1,1) 
+                    end
+                    if int_猜拳结果 == 1 or int_猜拳结果 == -2 then 
+                        G.call("talk",'',0,'   我出【'..str[int_猜拳_1]..'】',0,0)
+                        G.call("talk",'？？？？',247,'   我出【'..str[int_猜拳_2]..'】你赢了，再来！',1,1) 
+                        int_连胜 = int_连胜 + 1
+                    end
+                    if int_猜拳结果 == -1 or int_猜拳结果 == 2 then 
+                        G.call("talk",'',0,'   我出【'..str[int_猜拳_1]..'】！',0,0)
+                        G.call("talk",'？？？？',247,'   我出【'..str[int_猜拳_2]..'】你输了，下次再来！',1,1) 
+                        int_连胜 = 10
+                        break
+                    end
+                end
+                if int_猜拳结果 == 9 then
+                    if  int_连胜-10 > 0 then 
+                        local o_yqwd = G.QueryName(0x10170015)
+                        if o_yqwd.完成 == 0 then 
+                            G.call('set_newpoint',80,G.call('get_newpoint',80)- (int_连胜-10)   )
+                            o_yqwd.进度列表[1].当前进度 = o_yqwd.进度列表[1].当前进度 + int_连胜-10
+                        end
+                        if o_yqwd.进度列表[1].当前进度 >= 10000 and o_yqwd.进度列表[1].完成 == 0 then 
+                            o_yqwd.进度列表[1].完成 = 1
+                            if o_yqwd.完成 == 0 then 
+                            o_yqwd.完成 = 1
+                            G.call('notice1','恭喜完成成就【野球无敌】')
+                            end
+                        end
+                        local int_经验 = 5 + math.floor(G.call('get_point',18)/10)
+                        G.call("talk",'？？？？',247,'   见好就收也不失为一种胜利！',1,1) 
+                        G.call('add_magicexp',83,math.floor(int_经验*2^(int_连胜-11)) ) 
+                        if int_连胜 >= 17 then 
+                            G.call("talk",'？？？？',247,'   表现不错，给你点奖励吧！',1,1) 
+                            G.call('通用_抽礼物',9,0) 
+                            if int_连胜 >= 21 then 
+                                G.call('add_item',235,1)
+                            end
+                        end
+                    else
+                        G.call("talk",'？？？？',247,'   哈哈，还没比就怂了啊！',1,1) 
+                    end
+                    break
+                end
             end
         end
     else
