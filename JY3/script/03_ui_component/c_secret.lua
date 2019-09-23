@@ -476,14 +476,19 @@ function t:click(tar)
                 if n == nil or n < 0  or n > 223 then 
                     G.call('notice1','请输入（1~223）的整数数字')
                 else
-                    G.misc().人物代码 = n 
-                    self.主菜单.visible = false
-                    self.返回.visible = true
-                    self.NPC属性.visible = true 
-                    self.obj.getChildByName('secret').getChildByName('文本').text = ''
-                    self.obj.getChildByName('secret').visible = false 
-                    local str = G.QueryName(0x10040000+n).姓名
-                    self.NPC属性.getChildByName('文本').text = '请选择修改【'..str..'】的属性'
+                    local o_role = G.QueryName(0x10040000+n)
+                    if not o_role[tostring(901)] then 
+                        G.call('notice1','无法修改非队友NPC属性！')
+                    else
+                        G.misc().人物代码 = n 
+                        self.主菜单.visible = false
+                        self.返回.visible = true
+                        self.NPC属性.visible = true 
+                        self.obj.getChildByName('secret').getChildByName('文本').text = ''
+                        self.obj.getChildByName('secret').visible = false 
+                        local str = G.QueryName(0x10040000+n).姓名
+                        self.NPC属性.getChildByName('文本').text = '请选择修改【'..str..'】的属性'
+                    end
                 end
             else  
                 if G.misc().序号 < 13 then
