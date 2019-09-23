@@ -2005,6 +2005,7 @@ t['小游戏-野球拳']=function()
                             c.怒气一 = 0.0
                             c.怒气二 = 0.0
                             G.call("talk",'？？？？',247,'   做出你的选择吧！',1,1) 
+                            G.call('all_over')
                         end
                     end
                 end
