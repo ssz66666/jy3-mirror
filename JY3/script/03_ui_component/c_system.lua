@@ -415,7 +415,7 @@ function t:click(tar)
             --     G.call('add_equip',0x10180028 + i,1)
             -- end
             -- G.misc().梦幻测试 = 1
-        elseif self.文本.getChildByName('secret').getChildByName('文本').text == '七月七日晴'  then
+        elseif self.文本.getChildByName('secret').getChildByName('文本').text == '五星红旗迎风飘扬'  then
             if G.call('get_point',237) > 1 then 
                 G.call('通用_发放礼包')
             else

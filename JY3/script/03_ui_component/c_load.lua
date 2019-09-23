@@ -131,14 +131,14 @@ function t:click(tar)
                                 end
                             end
                         end
-                        local int_礼包 = G.misc().七夕礼包
+                        local int_礼包 = G.misc().国庆礼包
                         local int_梦幻完成 = G.misc().梦幻完成
                         G.call('通用_检测装备')
                         G.call('通用_读档',0)
                         G.misc().随机序号 = int_随机序号
                         G.misc().随机库 = _随机库
                         G.misc().出师 = nil
-                        G.misc().七夕礼包 = int_礼包
+                        G.misc().国庆礼包 = int_礼包
                         if int_清除成就 ~= 1 then   
                             G.call('成就_读档',10)
                             G.call('故事_读档',10)

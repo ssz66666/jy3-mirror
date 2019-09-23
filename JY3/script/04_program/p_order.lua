@@ -535,7 +535,7 @@ t['重生']=function()
     local o_body = G.QueryName(0x10030001)
     local o_store = G.QueryName(0x10190001)
     local int_存档位置 = G.call('get_point',143) 
-    local 礼包 = G.misc().七夕礼包
+    local 礼包 = G.misc().国庆礼包
     local table_继承装备 = {}
     local int_周目 = G.call('get_point',237)
     local int_清除成就 = G.misc().清除成就
@@ -598,7 +598,7 @@ t['重生']=function()
         end
         G.misc().随机序号 = int_随机序号
         G.misc().随机库 = _随机库
-        G.misc().七夕礼包 = 礼包
+        G.misc().国庆礼包 = 礼包
         G.misc().切磋次数 = 0
         G.call('set_point',237,int_周目)
         G.call('set_newpoint',237,-int_周目-10)
@@ -4342,14 +4342,15 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
     G.call('produce_equip',i_equip,1,int_随机类型,int_品质级别,int_递增属性)
 end
 t['通用_发放礼包']=function()
-    if G.misc().七夕礼包 == nil or (G.misc().七夕礼包 == 1 and G.call('get_point',4) < 50) then
+    if G.misc().国庆礼包 == nil or (G.misc().国庆礼包 == 1 and G.call('get_point',4) < 50) then
         G.call('notice1','礼包需入[03]聚贤庄[01]且等级超过[03]50级[01]才能领取！')
-    elseif G.misc().七夕礼包 == 0  then
-        G.call('notice1','你已经领取过该礼包，请[03]下周目[01]再来领取！')
-    elseif G.misc().七夕礼包 == 1 and G.call('get_point',4) >= 0  then
+    elseif G.misc().国庆礼包 == 0  then
+        G.call('notice1','你已经领取过该礼包，请关注后续活动！')
+    elseif G.misc().国庆礼包 == 1 and G.call('get_point',4) >= 0  then
+        G.call('通用_抽礼物',1,0,1,0,1) 
         G.call('通用_抽礼物',2,0,1,0,1) 
-        G.call('通用_抽礼物',2,0,1,0,1) 
-        G.misc().七夕礼包 = 0
+        G.call('通用_抽礼物',3,0,1,0,1) 
+        G.misc().国庆礼包 = 0
     end 
 end
 t['count_inversion']=function(_table_数组) --逆序数计算
