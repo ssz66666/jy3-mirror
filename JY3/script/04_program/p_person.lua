@@ -1982,7 +1982,7 @@ t['小游戏-野球拳']=function()
         local int_猜拳结果 = 0
         local int_连胜 = 10.0
         local str = {'六脉神剑','空明拳','降龙十八掌'}
-        if G.call('get_magicexp',83) >= 6000 then 
+        if G.call('get_magicexp',83) >= 2000 then 
             G.call("talk",'？？？？',247,'   现在开启更深层次的比试吧！',1,1) 
             local ui = G.addUI('v_yeqiuquan');
             local c = ui.c_yeqiuquan;
@@ -2026,8 +2026,82 @@ t['小游戏-野球拳']=function()
                         {"1,聚气","2,弱攻击","3,弱防御"},0)
                     end
                     if int_选项 > 0 then 
+                        local int_随机数 = math.random(100) 
                         local int_主角出招 = int_选项
                         local int_对方出招 = math.random(1,3)
+                        if int_主角出招 == 1 then
+                            if int_随机数 <= 25  then 
+                                int_对方出招 = 1
+                            elseif int_随机数 > 25 and  int_随机数 <= 75  then 
+                                if  c.怒气二 >= 10 then
+                                    if math.random(100) > 50 then
+                                        int_对方出招 = 4
+                                    else
+                                        int_对方出招 = 2
+                                    end
+                                else
+                                    int_对方出招 = 2
+                                end
+                            elseif int_随机数 > 75  then 
+                                if  c.怒气二 >= 5 then
+                                    if math.random(100) > 50 then
+                                        int_对方出招 = 5
+                                    else
+                                        int_对方出招 = 3
+                                    end
+                                else
+                                    int_对方出招 = 3
+                                end    
+                            end 
+                        elseif int_主角出招 == 2 or int_主角出招 == 5 then 
+                            if int_随机数 <= 25  then 
+                                int_对方出招 = 1
+                            elseif int_随机数 > 25 and  int_随机数 <= 75  then 
+                                if  c.怒气二 >= 10 then
+                                    if math.random(100) > 50 then
+                                        int_对方出招 = 5
+                                    else
+                                        int_对方出招 = 3
+                                    end
+                                else
+                                    int_对方出招 = 3
+                                end
+                            elseif int_随机数 > 75  then 
+                                if  c.怒气二 >= 5 then
+                                    if math.random(100) > 50 then
+                                        int_对方出招 = 4
+                                    else
+                                        int_对方出招 = 2
+                                    end
+                                else
+                                    int_对方出招 = 2
+                                end    
+                            end 
+                        elseif int_主角出招 == 3 or int_主角出招 == 4 then
+                            if int_随机数 <= 50  then 
+                                int_对方出招 = 1
+                            elseif int_随机数 > 50 and  int_随机数 <= 75  then 
+                                if  c.怒气二 >= 10 then
+                                    if math.random(100) > 50 then
+                                        int_对方出招 = 4
+                                    else
+                                        int_对方出招 = 2
+                                    end
+                                else
+                                    int_对方出招 = 2
+                                end
+                            elseif int_随机数 > 75  then 
+                                if  c.怒气二 >= 5 then
+                                    if math.random(100) > 50 then
+                                        int_对方出招 = 5
+                                    else
+                                        int_对方出招 = 3
+                                    end
+                                else
+                                    int_对方出招 = 3
+                                end    
+                            end 
+                        end 
                         if c.怒气二 > 10 then
                             int_对方出招 = math.random(4,5)
                         end
@@ -2170,7 +2244,7 @@ t['小游戏-野球拳']=function()
                         G.call('notice1','恭喜完成成就【野球无敌】')
                         end
                     end
-                    local int_经验 = 5 + math.floor(G.call('get_point',18)/10)
+                    local int_经验 = 25 + math.floor(G.call('get_point',18)/4)
                     G.call("talk",'？？？？',247,'   见好就收也不失为一种胜利！',1,1) 
                     G.call('add_magicexp',83,math.floor(int_经验*2^(int_连胜-11)) ) 
                     if int_连胜 >= 17 then 
