@@ -1987,7 +1987,7 @@ t['小游戏-野球拳']=function()
             local ui = G.addUI('v_yeqiuquan');
             local c = ui.c_yeqiuquan;
             while true do
-                if int_连胜 <= 10 then 
+                if int_连胜 <= 10 and c.体力二 > 0 then 
                     G.call("talk",'？？？？',247,'   做出你的选择吧！',1,1) 
                 else
                     local int_胜利次数 =math.floor(int_连胜-10)
