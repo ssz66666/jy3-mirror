@@ -1748,7 +1748,7 @@ t['切磋'] = function()
 	else 
 		G.call("talk",'',o_role_人物代码,'   '..o_role_人物.切磋接受对白,0,0)  
 		G.call('all_over')
-		G.call('call_battle',1,10,1,50 + G.call('get_love',o_role_人物代码),o_role_人物代码,0,0,0,0,0)
+		G.call('call_battle',0,10,1,50 + G.call('get_love',o_role_人物代码),o_role_人物代码,0,0,0,0,0)
 		local o_battle_结果 = G.call('get_battle')
 		if o_battle_结果  == 1 then 
 			local int_mo = {}
