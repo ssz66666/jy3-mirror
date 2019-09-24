@@ -1987,8 +1987,7 @@ t['小游戏-野球拳']=function()
             local ui = G.addUI('v_yeqiuquan');
             local c = ui.c_yeqiuquan;
             while true do
-                if int_连胜 <= 10 and c.体力二 > 0 then 
-                    G.call("talk",'？？？？',247,'   做出你的选择吧！',1,1) 
+                if int_连胜 <= 10 or (int_连胜 > 10 and c.体力二 > 0) then 
                 else
                     local int_胜利次数 =math.floor(int_连胜-10)
                     G.call("talk",'？？？？',247,'   你赢了，你已经连续胜利了'..int_胜利次数..'次，还需要继续吗？',1,1)  
@@ -2005,11 +2004,11 @@ t['小游戏-野球拳']=function()
                             c.怒气一 = 0.0
                             c.怒气二 = 0.0
                             c:刷新显示()
-                            G.call("talk",'？？？？',247,'   做出你的选择吧！',1,1) 
                             G.call('all_over')
                         end
                     end
                 end
+                G.call("talk",'？？？？',247,'   做出你的选择吧！',1,1) 
                 if int_猜拳结果 == 9 then
                     break 
                 end
