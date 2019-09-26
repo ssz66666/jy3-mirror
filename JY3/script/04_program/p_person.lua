@@ -1930,7 +1930,8 @@ t['副本_通天塔']=function(int_模式)
                 G.call('notice1','恭喜完成单人无尽100层') 
             end
             if G.misc().梦幻完成 and G.misc().梦幻完成 == 1 then
-                G.misc().密令序号 = math.random(10000) 
+                G.misc().密令序号 = math.random(999999) 
+                G.call('notice1','恭喜完成全部梦幻剧情，你的幸运密令为[03]'..G.misc().密令序号)
             end 
         end
     end

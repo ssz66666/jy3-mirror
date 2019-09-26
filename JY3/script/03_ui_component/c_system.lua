@@ -345,7 +345,7 @@ function t:click(tar)
         if  self.文本.getChildByName('secret').getChildByName('文本').text == '修改一时爽，一直修改一直爽' and (G.call('get_point',237) == 1 or G.misc().作弊菜单 == 1) then 
             G.removeUI('v_system') 
             G.addUI('v_secret')  
-        elseif G.misc().密令序号 ~= nil and  self.文本.getChildByName('secret').getChildByName('文本').text == '修改一时爽，一直修改一直爽' then 
+        elseif G.misc().密令序号 ~= nil and  self.文本.getChildByName('secret').getChildByName('文本').text == G.misc().密令序号 then 
             G.removeUI('v_system') 
             G.addUI('v_secret')  
         elseif self.文本.getChildByName('secret').getChildByName('文本').text == 'hzw1.14159 ' and  G.misc().开启 == 1 then
