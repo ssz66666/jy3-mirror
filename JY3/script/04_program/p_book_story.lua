@@ -1954,6 +1954,7 @@ t['天书_越女剑'] = function()
             o_book_story.完美 = 1
             o_book_story.完成 = 1
             G.misc().梦幻完成 = 1
+            G.call('通用_存档',G.call('get_point',143))
         else
             G.call("talk",'',419,'   光有勇气是不行的！',2,1)
         end
