@@ -1983,7 +1983,7 @@ t['小游戏-野球拳']=function()
         local int_猜拳结果 = 0
         local int_连胜 = 10.0
         local str = {'六脉神剑','空明拳','降龙十八掌'}
-        if G.call('get_magicexp',83) >= 2000 then 
+        if G.call('get_magicexp',83) >= 7000 then 
             G.call("talk",'？？？？',247,'   现在开启更深层次的比试吧！',1,1) 
             local ui = G.addUI('v_yeqiuquan');
             local c = ui.c_yeqiuquan;
