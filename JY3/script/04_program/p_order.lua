@@ -4347,9 +4347,9 @@ t['通用_发放礼包']=function()
     elseif G.misc().国庆礼包 == 0  then
         G.call('notice1','你已经领取过该礼包，请关注后续活动！')
     elseif G.misc().国庆礼包 == 1 and G.call('get_point',4) >= 0  then
-        G.call('通用_抽礼物',1,0,1,0,1) 
-        G.call('通用_抽礼物',2,0,1,0,1) 
-        G.call('通用_抽礼物',3,0,1,0,1) 
+        G.call('通用_抽礼物',1,1,1,0,1) 
+        G.call('通用_抽礼物',2,1,1,0,1) 
+        G.call('通用_抽礼物',3,1,1,0,1) 
         G.misc().国庆礼包 = 0
     end 
 end
