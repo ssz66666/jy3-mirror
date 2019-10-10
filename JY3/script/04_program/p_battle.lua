@@ -2657,7 +2657,7 @@ t['magic_power1'] = function(int_id,int_no)
     end  
     if G.call('get_point',18) <= 50 and G.call('get_magic',190) > 0 then --左右被动
         local int_左右 = 0
-        int_左右 =  G.call('get_magic_lv',190)*2*(100-G.call('get_point',18) )/5 + G.call('通用_取得装备左右效果',0)
+        int_左右 =  G.call('get_magic_lv',190)*4*(100-G.call('get_point',18) )/5 + G.call('通用_取得装备左右效果',0)
         if G.call('通用_取得套装',0,6) == 3 then
             int_左右 = int_左右*1.5
         elseif  G.call('通用_取得套装',0,6) == 2 then
@@ -2845,19 +2845,6 @@ t['magic_power1'] = function(int_id,int_no)
     end
     if math.random(a +15) > math.random(math.floor(b/6)+1+int_闪避) then  --命中计算     
         if hurt > 0 then 
-            if math.random(100) > 50 and G.call('get_npcskill',int_id,0x10050097) > 0 then   --斗转被动 
-                if string_字符串_4 == '' then 
-                    string_字符串_4 = string_字符串_4..'斗转星移'
-                else
-                    string_字符串_4 = string_字符串_4..'.'..'斗转星移'
-                end
-                hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_id)/2 )   /100 ) 
-                if G.call('通用_取得套装',int_id,6) == 3 then
-                    hurt3 = math.floor(hurt3*1.5)
-                elseif  G.call('通用_取得套装',int_id,6) == 2 then
-                    hurt3 = math.floor(hurt3*1.25)
-                end
-            end
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
             if math.random(100) > 80 and (G.call('通用_取得人物特效',0,22) or G.call('通用_取得装备特效',0,206))  then --朱雀被动效果
                 if string_字符串_4 == '' then 
@@ -2910,6 +2897,19 @@ t['magic_power1'] = function(int_id,int_no)
             if hurt < 10 then 
                 hurt = math.random(10)
             end  
+            if math.random(100) > 50 and G.call('get_npcskill',int_id,0x10050097) > 0 then   --斗转被动 
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'斗转星移'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'斗转星移'
+                end
+                hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_id)/2 )   /100 ) 
+                if G.call('通用_取得套装',int_id,6) == 3 then
+                    hurt3 = math.floor(hurt3*1.5)
+                elseif  G.call('通用_取得套装',int_id,6) == 2 then
+                    hurt3 = math.floor(hurt3*1.25)
+                end
+            end
             if (int_no == 205 or int_no == 206 or int_no == 21 or int_no == 235 ) and G.call('通用_取得人物特效',0,19)     then --舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
@@ -3380,7 +3380,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         end
     end
     if G.call('get_npcskill',int_id,0x100500bd) > 0 then   --左右被动
-        local int_左右 = 150 + G.call('通用_取得装备左右效果',int_id)
+        local int_左右 = 200+ G.call('通用_取得装备左右效果',int_id)
         if G.call('通用_取得套装',int_id,6) == 3 then
             int_左右 = int_左右*1.5
         elseif  G.call('通用_取得套装',int_id,6) == 2 then
@@ -3562,19 +3562,6 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     end
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避+1) then  --命中计算
         if hurt > 0 then 
-            if math.random(100) > 50 and G.call('get_npcskill',int_enemy,0x10050097) > 0 then   --斗转被动 
-                hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_enemy)/2  )   /100 ) 
-                if string_字符串_4 == '' then 
-                    string_字符串_4 = string_字符串_4..'斗转星移'
-                else
-                    string_字符串_4 = string_字符串_4..'.'..'斗转星移'
-                end
-                if G.call('通用_取得套装',int_enemy,6) == 3 then
-                    hurt3 = math.floor(hurt3*1.5)
-                elseif  G.call('通用_取得套装',int_enemy,6) == 2 then
-                    hurt3 = math.floor(hurt3*1.25)
-                end
-            end
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))  then --朱雀被动效果
                 if string_字符串_4 == '' then 
@@ -3620,6 +3607,19 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             if hurt < 10 then 
                hurt = math.random(10)
             end   
+            if math.random(100) > 50 and G.call('get_npcskill',int_enemy,0x10050097) > 0 then   --斗转被动 
+                hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_enemy)/2  )   /100 ) 
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'斗转星移'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'斗转星移'
+                end
+                if G.call('通用_取得套装',int_enemy,6) == 3 then
+                    hurt3 = math.floor(hurt3*1.5)
+                elseif  G.call('通用_取得套装',int_enemy,6) == 2 then
+                    hurt3 = math.floor(hurt3*1.25)
+                end
+            end
             if G.call('通用_取得人物特效',int_id,19) then  --舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
@@ -4071,7 +4071,7 @@ t['magic_power3'] = function(int_id,int_no)
         end
     end
     if G.call('get_npcskill',int_id,0x100500bd) > 0 then   --左右被动
-        local int_左右 = 150 + G.call('通用_取得装备左右效果',int_id)
+        local int_左右 = 200 + G.call('通用_取得装备左右效果',int_id)
         if G.call('通用_取得套装',int_id,6) == 3 then
             int_左右 = int_左右*1.5
         elseif  G.call('通用_取得套装',int_id,6) == 2 then
@@ -4255,19 +4255,6 @@ t['magic_power3'] = function(int_id,int_no)
     end
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避 + 1) then  --命中计算
         if hurt > 0 then 
-            if G.call('get_point',18) > 50 and G.call('get_magic',152) > 0 and math.random(100) <= G.call('get_point',18) - 50 then --斗转被动) 
-                if string_字符串_4 == '' then 
-                    string_字符串_4 = string_字符串_4..'斗转星移'
-                else
-                    string_字符串_4 = string_字符串_4..'.'..'斗转星移'
-                end
-                hurt3 = math.floor(hurt * (20+G.call('通用_取得装备斗转效果',0)/2  )   *G.call('get_magic_lv',152)/500  )
-                if G.call('通用_取得套装',0,6) == 3 then
-                    hurt3 = math.floor(hurt3*1.5)
-                elseif  G.call('通用_取得套装',0,6) == 2 then
-                    hurt3 = math.floor(hurt3*1.25)
-                end
-            end 
             if G.call('get_point',196) ~= nil then   
                 local o_skill_ta = G.QueryName(G.call('get_point',196))
                 if o_skill_ta.内功轻功效果 == 4 then --内功减伤效果计算
@@ -4298,6 +4285,19 @@ t['magic_power3'] = function(int_id,int_no)
                 end
                 hurt4 = math.floor(hurt*0.3) 
             end   
+            if G.call('get_point',18) > 50 and G.call('get_magic',152) > 0 and math.random(100) <= G.call('get_point',18) - 50 then --斗转被动) 
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'斗转星移'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'斗转星移'
+                end
+                hurt3 = math.floor(hurt * (20+G.call('通用_取得装备斗转效果',0)/2  )   *G.call('get_magic_lv',152)/500  )
+                if G.call('通用_取得套装',0,6) == 3 then
+                    hurt3 = math.floor(hurt3*1.5)
+                elseif  G.call('通用_取得套装',0,6) == 2 then
+                    hurt3 = math.floor(hurt3*1.25)
+                end
+            end 
             if G.call('通用_取得人物特效',int_id,20) and math.random(100) < 50 then
                 G.call('add_role',int_id,14,1500)
                 G.call('add_point',46,-1500)

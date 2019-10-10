@@ -2044,7 +2044,7 @@ t['指令_存储属性'] = function() --计算主角最终属性
         G.call('set_point',200+i,G.call('get_point',21+i)+ add[i]) 
     end 
     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-    local int_点数 = 200
+    local int_点数 = 200 + G.call('get_point',237) - 1
     if int_难度 == 1 then 
         int_点数 = 200
     elseif int_难度 == 2 then 
@@ -2065,11 +2065,11 @@ t['指令_存储属性'] = function() --计算主角最终属性
         G.call('set_point',218,99999) 
     end
     if int_难度 == 1 then 
-        int_点数 = 100
+        int_点数 = 100+ G.call('get_point',237) - 1
     elseif int_难度 == 2 then 
-        int_点数 = 110
+        int_点数 = 110+ G.call('get_point',237) - 1
     elseif int_难度 == 3 then 
-        int_点数 = 120
+        int_点数 = 120+ G.call('get_point',237) - 1
     end
     if G.call('get_point',210) > int_点数 then
         G.call('set_point',210,int_点数) 
@@ -2405,9 +2405,9 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
     elseif int_代码 == 45 or int_代码 == 47  then  --MAX生命值内力值
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
-        if  G.call('get_point',int_代码) > 50000 then 
-            G.call('set_newpoint',int_代码,-50000-10)
-            G.call('set_point',int_代码,50000)
+        if  G.call('get_point',int_代码) > 50000 + (G.call('get_point',237) - 1)*500 then 
+            G.call('set_newpoint',int_代码,-50000-10 - (G.call('get_point',237) - 1)*500 )
+            G.call('set_point',int_代码,50000 + (G.call('get_point',237) - 1)*500)
         end      
         if  G.call('get_point',int_代码) < 0 then 
             G.call('set_point',int_代码,0)
@@ -2450,14 +2450,14 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
             G.call('set_point',int_代码,0)
         end 
         local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-        local int_点数 = 100
+        local int_点数 = 100 + G.call('get_point',237) - 1
         if int_代码 >= 22 then 
             if int_难度 == 1 then 
-                int_点数 = 100
+                int_点数 = 100+ G.call('get_point',237) - 1
             elseif int_难度 == 2 then 
-                int_点数 = 120
+                int_点数 = 120+ G.call('get_point',237) - 1
             elseif int_难度 == 3 then 
-                int_点数 = 150
+                int_点数 = 150+ G.call('get_point',237) - 1
             end
         end
         if G.call('get_point',int_代码)  > int_点数   then 
