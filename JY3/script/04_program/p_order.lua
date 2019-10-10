@@ -2450,7 +2450,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
             G.call('set_point',int_代码,0)
         end 
         local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-        local int_点数 = 100 + G.call('get_point',237) - 1
+        local int_点数 = 100 
         if int_代码 >= 22 then 
             if int_难度 == 1 then 
                 int_点数 = 100+ G.call('get_point',237) - 1
