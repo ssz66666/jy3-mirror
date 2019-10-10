@@ -89,7 +89,7 @@ t['门派-桃花岛']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 + (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >=   50000 + (G.call('get_point',237) - 1)*500 then
                                 G.call("talk",'',83,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) >= 2  then 
@@ -487,7 +487,7 @@ t['门派-血刀门']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 + (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >=   50000 + (G.call('get_point',237) - 1)*500 then 
                                 G.call("talk",'',143,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) >= 2  then 
@@ -742,7 +742,7 @@ t['门派-全真教']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 + (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >=   50000 + (G.call('get_point',237) - 1)*500 then
                                 G.call("talk",'',166,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) >= 2  then 
@@ -1055,7 +1055,7 @@ t['门派-武当派']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 + (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >=   50000 + (G.call('get_point',237) - 1)*500 then
                                 G.call("talk",'',160,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) >= 2 then 
@@ -1352,7 +1352,7 @@ t['门派-少林寺']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 + (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >=   50000 + (G.call('get_point',237) - 1)*500 then
                                 G.call("talk",'',175,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) >= 2  then 
@@ -1948,7 +1948,7 @@ t['门派-华山派']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 + (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >=   50000 + (G.call('get_point',237) - 1)*500 then
                                 G.call("talk",'',191,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) >= 2  then 
@@ -2324,7 +2324,7 @@ t['门派-丐帮']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 + (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >=   50000 + (G.call('get_point',237) - 1)*500 then
                                 G.call("talk",'',169,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) >= 2  then 
@@ -2634,7 +2634,7 @@ t['门派-星宿派']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 + (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >=   50000 +(G.call('get_point',237) - 1)*500 then 
                                 G.call("talk",'',116,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) >= 2  then 

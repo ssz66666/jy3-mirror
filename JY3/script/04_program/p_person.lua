@@ -641,7 +641,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 +(G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 +(G.call('get_point',237) - 1)*500 then 
                                 G.call("talk",'',38,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) > 0 then 
@@ -921,7 +921,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
+                            if G.call('get_point',45) >= 50000 +  (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 + (G.call('get_point',237) - 1)*500 then 
                                 G.call("talk",'',38,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) > 0 then 
