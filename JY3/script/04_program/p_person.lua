@@ -866,7 +866,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                             G.call('set_love',38,10) 
                         end 
                         local m = math.random(10) 
-                        if G.call('get_point',4) < 31 then 
+                        if G.call('get_point',4) < 51 then 
                             local num = {17,30,54,106,116,173,156} 
                             if m < 8 then 
                                 local str = G.QueryName(0x10050000 + num[m] - 1).名称
