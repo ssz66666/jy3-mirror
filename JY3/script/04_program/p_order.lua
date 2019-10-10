@@ -1582,7 +1582,7 @@ t['join']=function(int_编号) --加入队友
            G.call('notice1','【'..G.QueryName(o_role_人物编码).姓名..'】加入队伍')
            if G.call('get_point',237) >= 10 then
                for i = 3,8 do
-                   G.call('set_role',int_编号,G.call('get_role',int_编号,900+i )  ) 
+                   G.call('set_role',int_编号,i,G.call('get_role',int_编号,900+i )  ) 
                end 
            end
         end 
