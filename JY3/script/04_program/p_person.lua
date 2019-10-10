@@ -632,16 +632,16 @@ t['聚贤庄-半瓶神仙醋']=function()
                     while true do
                         int_选项 = G.call("menu",'',0,'',0,0,{"1,转化生命为【生命内力+50】","2,转化成搏击属性【搏击+1】",'3,转化成拆招属性【拆招+1】',"4,转化成闪躲属性【闪躲+1】","5,没有事情"},0)
                         local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-                        local int_点数 = 100
+                        local int_点数 = 100+G.call('get_point',237) - 1
                         if int_难度 == 1 then 
-                            int_点数 = 100
+                            int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
-                            int_点数 = 120
+                            int_点数 = 120+G.call('get_point',237) - 1
                         elseif int_难度 == 3 then 
-                            int_点数 = 150
+                            int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 and G.call('get_point',47) >= 50000 then 
+                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
                                 G.call("talk",'',38,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) > 0 then 
@@ -912,16 +912,16 @@ t['聚贤庄-半瓶神仙醋']=function()
                     while true do
                         int_选项 = G.call("menu",'',0,'',0,0,{"1,转化生命为【生命内力+50】","2,转化成搏击属性【搏击+1】",'3,转化成拆招属性【拆招+1】',"4,转化成闪躲属性【闪躲+1】","5,没有事情"},0)
                         local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-                        local int_点数 = 100
+                        local int_点数 = 100+G.call('get_point',237) - 1
                         if int_难度 == 1 then 
-                            int_点数 = 100
+                            int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
-                            int_点数 = 120
+                            int_点数 = 120+G.call('get_point',237) - 1
                         elseif int_难度 == 3 then 
-                            int_点数 = 150
+                            int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 and G.call('get_point',47) >= 50000 then 
+                            if G.call('get_point',45) >= 50000 (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 (G.call('get_point',237) - 1)*500 then 
                                 G.call("talk",'',38,'    已经不需要再提升了',2,1)
                             else
                                 if G.call('get_point',5) > 0 then 
