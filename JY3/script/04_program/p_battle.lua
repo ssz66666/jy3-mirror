@@ -1909,7 +1909,7 @@ t['战斗系统_事件响应'] = function()
                 if ui.getChildByName('map').getChildByName(位置[i]).x >= 330 then 
                     ui.getChildByName('map').getChildByName(位置[i]).x = 0
                     if i > 1 then 
-                        if math.random(100) > 90 and G.call('通用_取得青龙附加效果',o_battle[位置[i]],i_skill)   then --青龙以及5项兵器效果
+                        if math.random(100) > 80 and G.call('通用_取得青龙附加效果',o_battle[位置[i]],i_skill)   then --青龙以及5项兵器效果
                             ui.getChildByName('map').getChildByName(位置[i]).x = 140
                         elseif G.call('通用_取得套装',o_battle[位置[i]],5) == 3 then
                             ui.getChildByName('map').getChildByName(位置[i]).x = 50
@@ -1917,7 +1917,7 @@ t['战斗系统_事件响应'] = function()
                             ui.getChildByName('map').getChildByName(位置[i]).x = 15
                         end 
                     else
-                        if math.random(100) > 90 and  G.call('通用_取得青龙附加效果',0,i_skill)   then --青龙以及5项兵器效果
+                        if math.random(100) > 80 and  G.call('通用_取得青龙附加效果',0,i_skill)   then --青龙以及5项兵器效果
                             ui.getChildByName('map').getChildByName(位置[i]).x = 140
                         elseif G.call('通用_取得套装',0,5) == 3 then
                             ui.getChildByName('map').getChildByName(位置[i]).x = 50
@@ -2870,7 +2870,7 @@ t['magic_power1'] = function(int_id,int_no)
                 else
                     string_字符串_2 = string_字符串_2..'.'..'真武破防'
                 end
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.2-int_真武效果*5/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.2-int_真武效果*10/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
             else 
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
             end
@@ -3571,7 +3571,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21) then --真武效果
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 )  ) 
+                hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.6)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 )  ) 
             else
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 ) )  --按敌人的拆招和内功免伤进行计算伤害
             end
