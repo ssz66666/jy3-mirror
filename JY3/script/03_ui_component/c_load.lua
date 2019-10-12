@@ -101,11 +101,11 @@ function t:click(tar)
                     G.call('信息_读档',5)
                     local o_files = G.QueryName(0x10160000 + i)
                     local int_周目 = o_files.周目
-                    local int_清除成就 = G.misc().清除成就
                     local int_通关 = o_files.通关
+                    G.call('继承_读档',10)
+                    local int_清除成就 = G.misc().清除成就
                     local _随机库 = G.misc().随机库
                     local int_随机序号 = G.misc().随机序号
-                    G.call('继承_读档',10)
                     if int_通关 > 0  then 
                         local o_store = G.QueryName(0x10190001)
                         int_周目 = int_周目 + 1
