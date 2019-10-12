@@ -557,6 +557,7 @@ t['重生']=function()
     end
     local _随机库 = G.misc().随机库
     local int_随机序号 = G.misc().随机序号
+    --G.trig_event('监控')
     G.call('成就_读档',10)
     local int_万金 = G.QueryName(0x10170004).进度列表[1].当前进度
     G.call('mapoff')
@@ -564,7 +565,6 @@ t['重生']=function()
         G.call('notice1','该存档无法正常重生！')
         G.call("goto_map",G.call('get_point',140)-0x10060000)
     else
-        G.trig_event('监控')
         G.call('dark')
         G.call('通用_读档',0) 
         if  int_清除成就 ~= 1 then 
