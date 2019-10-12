@@ -620,400 +620,752 @@ t['聚贤庄-半瓶神仙醋']=function()
         G.call("talk",'',38,'   '..G.QueryName(0x10030001)[tostring(1)]..'兄弟找我有什么事情吗？',2,1)
         local int_选项 = 0
         while int_选项 == 0 do
-            int_选项 = G.call("menu",'',0,'',0,0,{"1,查看本月公告","2,修为点转化属性","3,闭关十天修炼武功","4,猜数字","5,没有事情","6,下一页"},0)
-            if int_选项 == 1 then
-                G.call('all_over')
-                G.call('call_lakes')
-            elseif  int_选项 == 2 then
-                if G.call('get_point',5) > 0 then  
+            if G.call('get_point',4) >= 100 then 
+                int_选项 = G.call("menu",'',0,'',0,0,{"1,查看本月公告","2,修为点转化属性","3,猜数字","4,没有事情","5,下一页"},0)
+                if int_选项 == 1 then
                     G.call('all_over')
-                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                    G.call('call_lakes')
+                elseif  int_选项 == 2 then
+                    if G.call('get_point',5) > 0 then  
+                        G.call('all_over')
+                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                        local int_选项 = 0
+                        while true do
+                            int_选项 = G.call("menu",'',0,'',0,0,{"1,转化生命为【生命内力+50】","2,转化成搏击属性【搏击+1】",'3,转化成拆招属性【拆招+1】',"4,转化成闪躲属性【闪躲+1】","5,没有事情"},0)
+                            local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
+                            local int_点数 = 100+G.call('get_point',237) - 1
+                            if int_难度 == 1 then 
+                                int_点数 = 100 +G.call('get_point',237) - 1
+                            elseif int_难度 == 2 then 
+                                int_点数 = 120+G.call('get_point',237) - 1
+                            elseif int_难度 == 3 then 
+                                int_点数 = 150+G.call('get_point',237) - 1
+                            end
+                            if int_选项 == 1 then 
+                                if G.call('get_point',45) >= 50000 +(G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 +(G.call('get_point',237) - 1)*500 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1)
+                                else
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',45,50)
+                                        G.call('add_point',47,50)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    生命内力各加50',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end 
+                                end
+                            elseif int_选项 == 2 then 
+                                if G.call('get_point',29) >=  int_点数 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1)
+                                else  
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',29,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    搏击加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end    
+                                end
+                            elseif int_选项 == 3 then 
+                                if G.call('get_point',28) >=  int_点数 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1)
+                                    G.call('all_over')
+                                    break
+                                else  
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',28,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    拆招加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)  
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end  
+                                end
+                            elseif int_选项 == 4 then 
+                                if G.call('get_point',30) >=  int_点数 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1) 
+                                    G.call('all_over')
+                                    break
+                                else
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',30,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    闪躲加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end  
+                                end
+                            elseif int_选项 == 5 then
+                                G.call('all_over')
+                                break
+                            end      
+                        end 
+                    else
+                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                        G.call('all_over')
+                    end   
+                elseif  int_选项 == 3 then
+                    G.call('all_over')
+                    G.call('猜数字')  
+                elseif int_选项 == 4 then 
+                    G.call('all_over')
+                elseif  int_选项 == 5 then 
+                    G.call('all_over')
+                    if not G.misc().梦幻测试 then 
+                        G.misc().梦幻测试 = 0
+                    end
+                    G.call("talk",'',38,'   兄弟找我有什么事情吗？',2,1)
                     local int_选项 = 0
-                    while true do
-                        int_选项 = G.call("menu",'',0,'',0,0,{"1,转化生命为【生命内力+50】","2,转化成搏击属性【搏击+1】",'3,转化成拆招属性【拆招+1】',"4,转化成闪躲属性【闪躲+1】","5,没有事情"},0)
-                        local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-                        local int_点数 = 100+G.call('get_point',237) - 1
-                        if int_难度 == 1 then 
-                            int_点数 = 100 +G.call('get_point',237) - 1
-                        elseif int_难度 == 2 then 
-                            int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 then 
-                            int_点数 = 150+G.call('get_point',237) - 1
+                    while int_选项 == 0 do
+                        if G.misc().梦幻测试 == 9 then
+                            int_选项 = G.call("menu",'',0,'',0,0,{"1,笑梦游记(需对应印记)","2,无尽挑战","3,没有事情"},0)
+                        else
+                            int_选项 = G.call("menu",'',0,'',0,0,{"1,笑梦游记(需对应印记)","2,无尽挑战","3,没有事情"},0)
+                            --int_选项 = G.call("menu",'',0,'',0,0,{"1,机关拼图(无奖励)","2,无尽挑战","3,没有事情"},0)
                         end
                         if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 +(G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 +(G.call('get_point',237) - 1)*500 then 
-                                G.call("talk",'',38,'    已经不需要再提升了',2,1)
-                            else
-                                if G.call('get_point',5) > 0 then 
-                                    G.call('add_point',45,50)
-                                    G.call('add_point',47,50)
-                                    G.call('add_point',5,-1)
-                                    G.call("talk",'',38,'    生命内力各加50',2,1) 
-                                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
-                                else     
-                                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
-                                    G.call('all_over')
-                                    break
-                                end 
-                            end
-                        elseif int_选项 == 2 then 
-                            if G.call('get_point',29) >=  int_点数 then 
-                                G.call("talk",'',38,'    已经不需要再提升了',2,1)
-                            else  
-                                if G.call('get_point',5) > 0 then 
-                                    G.call('add_point',29,1)
-                                    G.call('add_point',5,-1)
-                                    G.call("talk",'',38,'    搏击加1',2,1) 
-                                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
-                                else     
-                                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
-                                    G.call('all_over')
-                                    break
-                                end    
-                            end
-                        elseif int_选项 == 3 then 
-                            if G.call('get_point',28) >=  int_点数 then 
-                                G.call("talk",'',38,'    已经不需要再提升了',2,1)
+                            if G.misc().梦幻测试 == 9 then
                                 G.call('all_over')
-                                break
-                            else  
-                                if G.call('get_point',5) > 0 then 
-                                    G.call('add_point',28,1)
-                                    G.call('add_point',5,-1)
-                                    G.call("talk",'',38,'    拆招加1',2,1) 
-                                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)  
-                                else     
-                                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
-                                    G.call('all_over')
-                                    break
-                                end  
-                            end
-                        elseif int_选项 == 4 then 
-                            if G.call('get_point',30) >=  int_点数 then 
-                                G.call("talk",'',38,'    已经不需要再提升了',2,1) 
-                                G.call('all_over')
-                                break
+                                G.call('模式_笑梦游记')
                             else
-                                if G.call('get_point',5) > 0 then 
-                                    G.call('add_point',30,1)
-                                    G.call('add_point',5,-1)
-                                    G.call("talk",'',38,'    闪躲加1',2,1) 
-                                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
-                                else     
-                                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
-                                    G.call('all_over')
-                                    break
-                                end  
+                                G.call('all_over')
+                                G.call('模式_笑梦游记')
+                                --G.call('organ')
                             end
-                        elseif int_选项 == 5 then
-                            G.call('all_over')
-                            break
-                        end      
-                    end 
-                else
-                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
-                    G.call('all_over')
-                end  
-            elseif  int_选项 == 3 then  
-                G.call('all_over')
-                local JY = 0
-                if G.call('get_point',4) < 50 then
-                    local n = G.call('get_point',4)
-                    JY = math.floor(15 *n* (n+1)*   G.QueryName(0x10030001)[tostring(200)]/100 * 0.3) 
-                else
-                    JY = math.floor(15 *50* 51*   G.QueryName(0x10030001)[tostring(200)]/100* 0.85)
-                end  
-                --G.call('dark')
-                if G.call('get_point',4) > 79 and G.call('get_story',14) == 0 and G.call('get_point',22) > 80 and G.call('get_point',23) > 80 and G.call('get_point',24) > 80
-                and G.call('get_point',25) > 80 and G.call('get_point',8) == 0 then 
-                    G.call('set_story',14,1) 
-                    G.call("talk",'',0,'    我已学会了这么多功夫，何不融汇百家独创一门？我得想想我发明的这个功夫叫什么名堂。',0,0) 
-                    G.call('自创武功')
-                    G.call('learnmagic',139)
-                    --自创条件等级>=80,5项兵器值80+
-                end 
-                G.call('add_day',10)
-                G.call('add_point',3,JY)
-                G.call('all_over') 
-                G.call('turn_map')  
-            elseif  int_选项 == 4 then
-                G.call('all_over')
-                G.call('猜数字')  
-            elseif int_选项 == 5 then 
-                G.call('all_over')
-            elseif  int_选项 == 6 then 
-                G.call('all_over')
-                if not G.misc().梦幻测试 then 
-                    G.misc().梦幻测试 = 0
-                end
-                G.call("talk",'',38,'   兄弟找我有什么事情吗？',2,1)
-                local int_选项 = 0
-                while int_选项 == 0 do
-                    if G.misc().梦幻测试 == 9 then
-                        int_选项 = G.call("menu",'',0,'',0,0,{"1,笑梦游记(需对应印记)","2,无尽挑战","3,没有事情"},0)
-                    else
-                        int_选项 = G.call("menu",'',0,'',0,0,{"1,笑梦游记(需对应印记)","2,无尽挑战","3,没有事情"},0)
-                        --int_选项 = G.call("menu",'',0,'',0,0,{"1,机关拼图(无奖励)","2,无尽挑战","3,没有事情"},0)
-                    end
-                    if int_选项 == 1 then 
-                        if G.misc().梦幻测试 == 9 then
-                            G.call('all_over')
-                            G.call('模式_笑梦游记')
-                        else
-                            G.call('all_over')
-                            G.call('模式_笑梦游记')
-                            --G.call('organ')
-                        end
-                    elseif int_选项 == 2 then
-                        for i = 1,5 do
-                            if  G.misc()['通天塔奖励_'..i] == nil then 
-                                G.misc()['通天塔奖励_'..i] = 0
+                        elseif int_选项 == 2 then
+                            for i = 1,5 do
+                                if  G.misc()['通天塔奖励_'..i] == nil then 
+                                    G.misc()['通天塔奖励_'..i] = 0
+                                end
+                                if  G.misc()['通天塔单人奖励_'..i] == nil then 
+                                    G.misc()['通天塔单人奖励_'..i] = 0
+                                end
                             end
-                            if  G.misc()['通天塔单人奖励_'..i] == nil then 
-                                G.misc()['通天塔单人奖励_'..i] = 0
-                            end
-                        end
-                        G.call('all_over')
-                        local int_min = G.call('通用_读取时间差')  
-                        if int_min   >= 60  then   
-                            G.call("talk",'',38,'    请选择无尽模式！',2,1) 
-                            local int_选项 = 0
-                            while int_选项 == 0 do
-                                int_选项 = G.call("menu",'',0,'',0,0,{"1,单人模式","2,组队模式","3,没有事情"},0)
-                                if int_选项 == 1 then 
-                                    G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
-                                    G.call('all_over')
-                                    G.call('通用_存档',G.call('get_point',143))
-                                    G.call('副本_通天塔',1) 
-                                    G.call('通用_记录时间')
-                                    G.misc().通天塔监控 = -8
-                                elseif int_选项 == 2 then
-                                    G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
-                                    G.call('all_over')
-                                    G.call('通用_存档',G.call('get_point',143))
-                                    G.call('副本_通天塔',0) 
-                                    G.call('通用_记录时间')
-                                    G.misc().通天塔监控 = -8
-                                elseif int_选项 == 3 then
-                                    G.call('all_over')
-                                end    
+                            G.call('all_over')
+                            local int_min = G.call('通用_读取时间差')  
+                            if int_min   >= 60  then   
+                                G.call("talk",'',38,'    请选择无尽模式！',2,1) 
+                                local int_选项 = 0
+                                while int_选项 == 0 do
+                                    int_选项 = G.call("menu",'',0,'',0,0,{"1,单人模式","2,组队模式","3,没有事情"},0)
+                                    if int_选项 == 1 then 
+                                        G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
+                                        G.call('all_over')
+                                        G.call('通用_存档',G.call('get_point',143))
+                                        G.call('副本_通天塔',1) 
+                                        G.call('通用_记录时间')
+                                        G.misc().通天塔监控 = -8
+                                    elseif int_选项 == 2 then
+                                        G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
+                                        G.call('all_over')
+                                        G.call('通用_存档',G.call('get_point',143))
+                                        G.call('副本_通天塔',0) 
+                                        G.call('通用_记录时间')
+                                        G.misc().通天塔监控 = -8
+                                    elseif int_选项 == 3 then
+                                        G.call('all_over')
+                                    end    
+                                end   
+                            else
+                                G.call("talk",'',38,'    还需'..60-int_min..'分钟才能再次挑战',2,1) 
                             end   
-                        else
-                            G.call("talk",'',38,'    还需'..60-int_min..'分钟才能再次挑战',2,1) 
-                        end   
-                        G.call('all_over')
-                    elseif int_选项 == 3 then
-                        G.call('all_over')
+                            G.call('all_over')
+                        elseif int_选项 == 3 then
+                            G.call('all_over')
+                        end
                     end
-                end
-            end 
+                end 
+            else
+                int_选项 = G.call("menu",'',0,'',0,0,{"1,查看本月公告","2,修为点转化属性","3,闭关十天修炼武功","4,猜数字","5,没有事情","6,下一页"},0)
+                if int_选项 == 1 then
+                    G.call('all_over')
+                    G.call('call_lakes')
+                elseif  int_选项 == 2 then
+                    if G.call('get_point',5) > 0 then  
+                        G.call('all_over')
+                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                        local int_选项 = 0
+                        while true do
+                            int_选项 = G.call("menu",'',0,'',0,0,{"1,转化生命为【生命内力+50】","2,转化成搏击属性【搏击+1】",'3,转化成拆招属性【拆招+1】',"4,转化成闪躲属性【闪躲+1】","5,没有事情"},0)
+                            local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
+                            local int_点数 = 100+G.call('get_point',237) - 1
+                            if int_难度 == 1 then 
+                                int_点数 = 100 +G.call('get_point',237) - 1
+                            elseif int_难度 == 2 then 
+                                int_点数 = 120+G.call('get_point',237) - 1
+                            elseif int_难度 == 3 then 
+                                int_点数 = 150+G.call('get_point',237) - 1
+                            end
+                            if int_选项 == 1 then 
+                                if G.call('get_point',45) >= 50000 +(G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 +(G.call('get_point',237) - 1)*500 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1)
+                                else
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',45,50)
+                                        G.call('add_point',47,50)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    生命内力各加50',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end 
+                                end
+                            elseif int_选项 == 2 then 
+                                if G.call('get_point',29) >=  int_点数 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1)
+                                else  
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',29,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    搏击加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end    
+                                end
+                            elseif int_选项 == 3 then 
+                                if G.call('get_point',28) >=  int_点数 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1)
+                                    G.call('all_over')
+                                    break
+                                else  
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',28,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    拆招加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)  
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end  
+                                end
+                            elseif int_选项 == 4 then 
+                                if G.call('get_point',30) >=  int_点数 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1) 
+                                    G.call('all_over')
+                                    break
+                                else
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',30,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    闪躲加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end  
+                                end
+                            elseif int_选项 == 5 then
+                                G.call('all_over')
+                                break
+                            end      
+                        end 
+                    else
+                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                        G.call('all_over')
+                    end  
+                elseif  int_选项 == 3 then  
+                    G.call('all_over')
+                    local JY = 0
+                    if G.call('get_point',4) < 50 then
+                        local n = G.call('get_point',4)
+                        JY = math.floor(15 *n* (n+1)*   G.QueryName(0x10030001)[tostring(200)]/100 * 0.3) 
+                    else
+                        JY = math.floor(15 *50* 51*   G.QueryName(0x10030001)[tostring(200)]/100* 0.85)
+                    end  
+                    --G.call('dark')
+                    if G.call('get_point',4) > 79 and G.call('get_story',14) == 0 and G.call('get_point',22) > 80 and G.call('get_point',23) > 80 and G.call('get_point',24) > 80
+                    and G.call('get_point',25) > 80 and G.call('get_point',8) == 0 then 
+                        G.call('set_story',14,1) 
+                        G.call("talk",'',0,'    我已学会了这么多功夫，何不融汇百家独创一门？我得想想我发明的这个功夫叫什么名堂。',0,0) 
+                        G.call('自创武功')
+                        G.call('learnmagic',139)
+                        --自创条件等级>=80,5项兵器值80+
+                    end 
+                    G.call('add_day',10)
+                    G.call('add_point',3,JY)
+                    G.call('all_over') 
+                    G.call('turn_map')  
+                elseif  int_选项 == 4 then
+                    G.call('all_over')
+                    G.call('猜数字')  
+                elseif int_选项 == 5 then 
+                    G.call('all_over')
+                elseif  int_选项 == 6 then 
+                    G.call('all_over')
+                    if not G.misc().梦幻测试 then 
+                        G.misc().梦幻测试 = 0
+                    end
+                    G.call("talk",'',38,'   兄弟找我有什么事情吗？',2,1)
+                    local int_选项 = 0
+                    while int_选项 == 0 do
+                        if G.misc().梦幻测试 == 9 then
+                            int_选项 = G.call("menu",'',0,'',0,0,{"1,笑梦游记(需对应印记)","2,无尽挑战","3,没有事情"},0)
+                        else
+                            int_选项 = G.call("menu",'',0,'',0,0,{"1,笑梦游记(需对应印记)","2,无尽挑战","3,没有事情"},0)
+                            --int_选项 = G.call("menu",'',0,'',0,0,{"1,机关拼图(无奖励)","2,无尽挑战","3,没有事情"},0)
+                        end
+                        if int_选项 == 1 then 
+                            if G.misc().梦幻测试 == 9 then
+                                G.call('all_over')
+                                G.call('模式_笑梦游记')
+                            else
+                                G.call('all_over')
+                                G.call('模式_笑梦游记')
+                                --G.call('organ')
+                            end
+                        elseif int_选项 == 2 then
+                            for i = 1,5 do
+                                if  G.misc()['通天塔奖励_'..i] == nil then 
+                                    G.misc()['通天塔奖励_'..i] = 0
+                                end
+                                if  G.misc()['通天塔单人奖励_'..i] == nil then 
+                                    G.misc()['通天塔单人奖励_'..i] = 0
+                                end
+                            end
+                            G.call('all_over')
+                            local int_min = G.call('通用_读取时间差')  
+                            if int_min   >= 60  then   
+                                G.call("talk",'',38,'    请选择无尽模式！',2,1) 
+                                local int_选项 = 0
+                                while int_选项 == 0 do
+                                    int_选项 = G.call("menu",'',0,'',0,0,{"1,单人模式","2,组队模式","3,没有事情"},0)
+                                    if int_选项 == 1 then 
+                                        G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
+                                        G.call('all_over')
+                                        G.call('通用_存档',G.call('get_point',143))
+                                        G.call('副本_通天塔',1) 
+                                        G.call('通用_记录时间')
+                                        G.misc().通天塔监控 = -8
+                                    elseif int_选项 == 2 then
+                                        G.call("talk",'',38,'    无尽挑战游戏时间每经过60分钟才能完成一次，请小心应对！',2,1) 
+                                        G.call('all_over')
+                                        G.call('通用_存档',G.call('get_point',143))
+                                        G.call('副本_通天塔',0) 
+                                        G.call('通用_记录时间')
+                                        G.misc().通天塔监控 = -8
+                                    elseif int_选项 == 3 then
+                                        G.call('all_over')
+                                    end    
+                                end   
+                            else
+                                G.call("talk",'',38,'    还需'..60-int_min..'分钟才能再次挑战',2,1) 
+                            end   
+                            G.call('all_over')
+                        elseif int_选项 == 3 then
+                            G.call('all_over')
+                        end
+                    end
+                end 
+            end
         end 
     else 
         G.call("talk",'',38,'   '..G.QueryName(0x10030001)[tostring(1)]..'兄弟找我有什么事情吗？',2,1)
         local int_选项 = 0
         while int_选项 == 0 do
-            int_选项 = G.call("menu",'',0,'',0,0,{"1,查看本月公告","2,与庄主切磋武功","3,修为点转化属性","4,闭关十天修炼武功","5,没有事情"},0)
-            if int_选项 == 1 then
-                G.call('all_over')
-                G.call('call_lakes')
-                
-            elseif  int_选项 == 2 then  
-                G.call('all_over')
-                local p = 0
-                for i = 1,38 do 
-                    if G.QueryName(0x10080000+i).是否完成 == true then 
-                       p = p + 1
-                    end    
-                end 
-                if G.call('get_love',38) >= 80 and p >= 20 and G.call('in_team',38) == false and G.call('get_point',237)  >= 2 then 
-                    G.call("talk",'',38,'    咱们也不是一两天的交情了，看你现在奋斗得这么辛苦，我真是有心想帮你一把。把你的队伍给我腾出一个空位，我好与你并肩作战！',2,1)
-                    G.call('join',38)
+            if G.call('get_point',4) >= 100 then 
+                int_选项 = G.call("menu",'',0,'',0,0,{"1,查看本月公告","2,与庄主切磋武功","3,修为点转化属性","4,没有事情"},0)
+                if int_选项 == 1 then
                     G.call('all_over')
-                else    
-                    G.call("talk",'',0,'   我学了这么多招数还没地方施展，就拿你过过招吧！',0,0)
+                    G.call('call_lakes')
+                    
+                elseif  int_选项 == 2 then  
                     G.call('all_over')
-                    local o_role = G.QueryName(0x100400df)
-                    o_role.拥有 = 0
-                    G.call('set_role',223,1,4000)
-                    G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
-                    G.call('set_role',223,2,4000)
-                    G.call('set_role',223,15,4000)
-                    G.call('set_role',223,14,4000)
-                    G.call('set_role',223,10,500)
-                    G.call('set_role',223,11,500)
-                    G.call('set_role',223,12,500)
-                    G.call('set_roleskill',223,1,math.random(129)+1)
-                    G.call('set_roleskill',223,2,math.random(129)+1)
-                    G.call('set_roleskill',223,3,math.random(129)+1)
-                    if G.call('get_roleskill',223,1) == 83 or G.call('get_roleskill',223,1) == 97 then 
-                        G.call('set_roleskill',223,1,80) 
+                    local p = 0
+                    for i = 1,38 do 
+                        if G.QueryName(0x10080000+i).是否完成 == true then 
+                           p = p + 1
+                        end    
                     end 
-                    if G.call('get_roleskill',223,2) == 83 or G.call('get_roleskill',223,2) == 97 then 
-                        G.call('set_roleskill',223,2,81) 
-                    end  
-                    if G.call('get_roleskill',223,3) == 83 or G.call('get_roleskill',223,3) == 97 then 
-                        G.call('set_roleskill',223,3,82) 
-                    end 
-                    G.call('call_battle',1,10,1,G.call('get_love',38)*0.3,223,0,0,0,0,0)
-                    local o_battle_结果 = G.call('get_battle') 
-                    if o_battle_结果  == 1 then--
-                        G.call('add_love',38,3)
-                        G.call("talk",'',38,'    我真的很想怀疑一下，你是不是又偷偷作弊了？我这么强悍怎会被你打倒，不甘心啊！',2,1)
+                    if G.call('get_love',38) >= 80 and p >= 20 and G.call('in_team',38) == false and G.call('get_point',237)  >= 2 then 
+                        G.call("talk",'',38,'    咱们也不是一两天的交情了，看你现在奋斗得这么辛苦，我真是有心想帮你一把。把你的队伍给我腾出一个空位，我好与你并肩作战！',2,1)
+                        G.call('join',38)
                         G.call('all_over')
-                    else
-                        G.call('add_love',38,-4)
-                        if G.call('get_love',38) < 10 then 
-                            G.call('set_love',38,10) 
+                    else    
+                        G.call("talk",'',0,'   我学了这么多招数还没地方施展，就拿你过过招吧！',0,0)
+                        G.call('all_over')
+                        local o_role = G.QueryName(0x100400df)
+                        o_role.拥有 = 0
+                        G.call('set_role',223,1,4000)
+                        G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
+                        G.call('set_role',223,2,4000)
+                        G.call('set_role',223,15,4000)
+                        G.call('set_role',223,14,4000)
+                        G.call('set_role',223,10,500)
+                        G.call('set_role',223,11,500)
+                        G.call('set_role',223,12,500)
+                        G.call('set_roleskill',223,1,math.random(129)+1)
+                        G.call('set_roleskill',223,2,math.random(129)+1)
+                        G.call('set_roleskill',223,3,math.random(129)+1)
+                        if G.call('get_roleskill',223,1) == 83 or G.call('get_roleskill',223,1) == 97 then 
+                            G.call('set_roleskill',223,1,80) 
                         end 
-                        local m = math.random(10) 
-                        if G.call('get_point',4) < 51 then 
-                            local num = {17,30,54,106,116,173,156} 
-                            if m < 8 then 
-                                local str = G.QueryName(0x10050000 + num[m] - 1).名称
-                                if G.call('get_magic',num[m]) <= 0 then 
-                                    G.call("talk",'',38,'    你的功夫太差，我传你一套【'..str..'】，平时好好练练吧。',2,1)
-                                    G.call('learnmagic',num[m])
-                                    G.call('all_over')
-                                else
-                                    G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
-                                    G.call('all_over')
-                                end
-                            else 
-                                G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
-                                G.call('all_over')
-                            end 
+                        if G.call('get_roleskill',223,2) == 83 or G.call('get_roleskill',223,2) == 97 then 
+                            G.call('set_roleskill',223,2,81) 
+                        end  
+                        if G.call('get_roleskill',223,3) == 83 or G.call('get_roleskill',223,3) == 97 then 
+                            G.call('set_roleskill',223,3,82) 
+                        end 
+                        G.call('call_battle',1,10,1,G.call('get_love',38)*0.3,223,0,0,0,0,0)
+                        local o_battle_结果 = G.call('get_battle') 
+                        if o_battle_结果  == 1 then--
+                            G.call('add_love',38,3)
+                            G.call("talk",'',38,'    我真的很想怀疑一下，你是不是又偷偷作弊了？我这么强悍怎会被你打倒，不甘心啊！',2,1)
+                            G.call('all_over')
                         else
-                            local num = {19,24,65,82,130,171,169} 
-                            if m < 8 then 
-                                local str = G.QueryName(0x10050000 + num[m] - 1).名称
-                                if G.call('get_magic',num[m]) <= 0 then 
-                                    G.call("talk",'',38,'    你的功夫太差，我传你一套【'..str..'】，平时好好练练吧。',2,1)
-                                    G.call('learnmagic',num[m])
-                                    G.call('all_over')
-                                else
+                            G.call('add_love',38,-4)
+                            if G.call('get_love',38) < 10 then 
+                                G.call('set_love',38,10) 
+                            end 
+                            local m = math.random(10) 
+                            if G.call('get_point',4) < 51 then 
+                                local num = {17,30,54,106,116,173,156} 
+                                if m < 8 then 
+                                    local str = G.QueryName(0x10050000 + num[m] - 1).名称
+                                    if G.call('get_magic',num[m]) <= 0 then 
+                                        G.call("talk",'',38,'    你的功夫太差，我传你一套【'..str..'】，平时好好练练吧。',2,1)
+                                        G.call('learnmagic',num[m])
+                                        G.call('all_over')
+                                    else
+                                        G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
+                                        G.call('all_over')
+                                    end
+                                else 
                                     G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
                                     G.call('all_over')
-                                end
-                            else 
-                                G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
-                                G.call('all_over')
+                                end 
+                            else
+                                local num = {19,24,65,82,130,171,169} 
+                                if m < 8 then 
+                                    local str = G.QueryName(0x10050000 + num[m] - 1).名称
+                                    if G.call('get_magic',num[m]) <= 0 then 
+                                        G.call("talk",'',38,'    你的功夫太差，我传你一套【'..str..'】，平时好好练练吧。',2,1)
+                                        G.call('learnmagic',num[m])
+                                        G.call('all_over')
+                                    else
+                                        G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
+                                        G.call('all_over')
+                                    end
+                                else 
+                                    G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
+                                    G.call('all_over')
+                                end 
                             end 
                         end 
-                    end 
-                    o_role.拥有 = 1
-                    G.call('add_time',4)
-                    G.call('turn_map')
-                end     
-            elseif  int_选项 == 3 then
-                if G.call('get_point',5) > 0 then  
-                    G.call('all_over')
-                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
-                    local int_选项 = 0
-                    while true do
-                        int_选项 = G.call("menu",'',0,'',0,0,{"1,转化生命为【生命内力+50】","2,转化成搏击属性【搏击+1】",'3,转化成拆招属性【拆招+1】',"4,转化成闪躲属性【闪躲+1】","5,没有事情"},0)
-                        local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
-                        local int_点数 = 100+G.call('get_point',237) - 1
-                        if int_难度 == 1 then 
-                            int_点数 = 100 +G.call('get_point',237) - 1
-                        elseif int_难度 == 2 then 
-                            int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 then 
-                            int_点数 = 150+G.call('get_point',237) - 1
-                        end
-                        if int_选项 == 1 then 
-                            if G.call('get_point',45) >= 50000 +  (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 + (G.call('get_point',237) - 1)*500 then 
-                                G.call("talk",'',38,'    已经不需要再提升了',2,1)
-                            else
+                        o_role.拥有 = 1
+                        G.call('add_time',4)
+                        G.call('turn_map')
+                    end     
+                elseif  int_选项 == 3 then
+                    if G.call('get_point',5) > 0 then  
+                        G.call('all_over')
+                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                        local int_选项 = 0
+                        while true do
+                            int_选项 = G.call("menu",'',0,'',0,0,{"1,转化生命为【生命内力+50】","2,转化成搏击属性【搏击+1】",'3,转化成拆招属性【拆招+1】',"4,转化成闪躲属性【闪躲+1】","5,没有事情"},0)
+                            local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
+                            local int_点数 = 100+G.call('get_point',237) - 1
+                            if int_难度 == 1 then 
+                                int_点数 = 100 +G.call('get_point',237) - 1
+                            elseif int_难度 == 2 then 
+                                int_点数 = 120+G.call('get_point',237) - 1
+                            elseif int_难度 == 3 then 
+                                int_点数 = 150+G.call('get_point',237) - 1
+                            end
+                            if int_选项 == 1 then 
+                                if G.call('get_point',45) >= 50000 +  (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 + (G.call('get_point',237) - 1)*500 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1)
+                                else
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',45,50)
+                                        G.call('add_point',47,50)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    生命内力各加50',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end 
+                                end
+                            elseif int_选项 == 2 then  
                                 if G.call('get_point',5) > 0 then 
-                                    G.call('add_point',45,50)
-                                    G.call('add_point',47,50)
-                                    G.call('add_point',5,-1)
-                                    G.call("talk",'',38,'    生命内力各加50',2,1) 
-                                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    if G.call('get_point',29) >=  int_点数 then 
+                                        G.call("talk",'',38,'    已经不需要再提升了',2,1) 
+                                    else
+                                        G.call('add_point',29,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    搏击加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    end
                                 else     
                                     G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
                                     G.call('all_over')
                                     break
-                                end 
-                            end
-                        elseif int_选项 == 2 then  
-                            if G.call('get_point',5) > 0 then 
-                                if G.call('get_point',29) >=  int_点数 then 
-                                    G.call("talk",'',38,'    已经不需要再提升了',2,1) 
-                                else
-                                    G.call('add_point',29,1)
-                                    G.call('add_point',5,-1)
-                                    G.call("talk",'',38,'    搏击加1',2,1) 
-                                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
-                                end
-                            else     
-                                G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                end    
+                            elseif int_选项 == 3 then 
+                                if G.call('get_point',5) > 0 then 
+                                    if G.call('get_point',28) >=  int_点数 then 
+                                        G.call("talk",'',38,'    已经不需要再提升了',2,1) 
+                                    else
+                                        G.call('add_point',28,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    拆招加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    end
+                                else     
+                                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                    G.call('all_over')
+                                    break
+                                end  
+                            elseif int_选项 == 4 then 
+                                if G.call('get_point',5) > 0 then 
+                                    if G.call('get_point',30) >=  int_点数 then 
+                                        G.call("talk",'',38,'    已经不需要再提升了',2,1) 
+                                    else
+                                        G.call('add_point',30,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    闪躲加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    end
+                                else     
+                                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                    G.call('all_over')
+                                    break
+                                end  
+                            elseif int_选项 == 5 then
                                 G.call('all_over')
                                 break
-                            end    
-                        elseif int_选项 == 3 then 
-                            if G.call('get_point',5) > 0 then 
-                                if G.call('get_point',28) >=  int_点数 then 
-                                    G.call("talk",'',38,'    已经不需要再提升了',2,1) 
-                                else
-                                    G.call('add_point',28,1)
-                                    G.call('add_point',5,-1)
-                                    G.call("talk",'',38,'    拆招加1',2,1) 
-                                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
-                                end
-                            else     
-                                G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
-                                G.call('all_over')
-                                break
-                            end  
-                        elseif int_选项 == 4 then 
-                            if G.call('get_point',5) > 0 then 
-                                if G.call('get_point',30) >=  int_点数 then 
-                                    G.call("talk",'',38,'    已经不需要再提升了',2,1) 
-                                else
-                                    G.call('add_point',30,1)
-                                    G.call('add_point',5,-1)
-                                    G.call("talk",'',38,'    闪躲加1',2,1) 
-                                    G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
-                                end
-                            else     
-                                G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
-                                G.call('all_over')
-                                break
-                            end  
-                        elseif int_选项 == 5 then
-                            G.call('all_over')
-                            break
-                        end      
-                    end 
-                else
-                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                            end      
+                        end 
+                    else
+                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                        G.call('all_over')
+                    end  
+                elseif  int_选项 == 4 then 
                     G.call('all_over')
-                end  
-            elseif  int_选项 == 4 then  
-                G.call('all_over')
-                local JY = 0
-                if G.call('get_point',4) < 50 then
-                    local n = G.call('get_point',4)
-                    JY = math.floor(15 *n* (n+1)*   G.QueryName(0x10030001)[tostring(200)]/100 * 0.3) 
-                else
-                    JY = math.floor(15 *50* 51*   G.QueryName(0x10030001)[tostring(200)]/100* 0.85)
-                end  
-                G.call('dark')
-                if G.call('get_point',4) > 79 and G.call('get_story',14) == 0 and G.call('get_point',22) > 80 and G.call('get_point',23) > 80 and G.call('get_point',24) > 80
-                and G.call('get_point',25) > 80  and G.call('get_point',8) == 0 then  
-                    G.call('set_story',14,1) 
-                    G.call("talk",'',0,'    我已学会了这么多功夫，何不融汇百家独创一门？我得想想我发明的这个功夫叫什么名堂。',0,0) 
-                    G.call('自创武功')
-                    G.call('learnmagic',139)
-                end  
-                G.call('add_day',10)
-                G.call('add_point',3,JY)
-                G.call('all_over') 
-                G.call('turn_map') 
-            elseif  int_选项 == 5 then 
-                G.call('all_over')
-            end 
+                end 
+            else
+                int_选项 = G.call("menu",'',0,'',0,0,{"1,查看本月公告","2,与庄主切磋武功","3,修为点转化属性","4,闭关十天修炼武功","5,没有事情"},0)
+                if int_选项 == 1 then
+                    G.call('all_over')
+                    G.call('call_lakes')
+                    
+                elseif  int_选项 == 2 then  
+                    G.call('all_over')
+                    local p = 0
+                    for i = 1,38 do 
+                        if G.QueryName(0x10080000+i).是否完成 == true then 
+                        p = p + 1
+                        end    
+                    end 
+                    if G.call('get_love',38) >= 80 and p >= 20 and G.call('in_team',38) == false and G.call('get_point',237)  >= 2 then 
+                        G.call("talk",'',38,'    咱们也不是一两天的交情了，看你现在奋斗得这么辛苦，我真是有心想帮你一把。把你的队伍给我腾出一个空位，我好与你并肩作战！',2,1)
+                        G.call('join',38)
+                        G.call('all_over')
+                    else    
+                        G.call("talk",'',0,'   我学了这么多招数还没地方施展，就拿你过过招吧！',0,0)
+                        G.call('all_over')
+                        local o_role = G.QueryName(0x100400df)
+                        o_role.拥有 = 0
+                        G.call('set_role',223,1,4000)
+                        G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
+                        G.call('set_role',223,2,4000)
+                        G.call('set_role',223,15,4000)
+                        G.call('set_role',223,14,4000)
+                        G.call('set_role',223,10,500)
+                        G.call('set_role',223,11,500)
+                        G.call('set_role',223,12,500)
+                        G.call('set_roleskill',223,1,math.random(129)+1)
+                        G.call('set_roleskill',223,2,math.random(129)+1)
+                        G.call('set_roleskill',223,3,math.random(129)+1)
+                        if G.call('get_roleskill',223,1) == 83 or G.call('get_roleskill',223,1) == 97 then 
+                            G.call('set_roleskill',223,1,80) 
+                        end 
+                        if G.call('get_roleskill',223,2) == 83 or G.call('get_roleskill',223,2) == 97 then 
+                            G.call('set_roleskill',223,2,81) 
+                        end  
+                        if G.call('get_roleskill',223,3) == 83 or G.call('get_roleskill',223,3) == 97 then 
+                            G.call('set_roleskill',223,3,82) 
+                        end 
+                        G.call('call_battle',1,10,1,G.call('get_love',38)*0.3,223,0,0,0,0,0)
+                        local o_battle_结果 = G.call('get_battle') 
+                        if o_battle_结果  == 1 then--
+                            G.call('add_love',38,3)
+                            G.call("talk",'',38,'    我真的很想怀疑一下，你是不是又偷偷作弊了？我这么强悍怎会被你打倒，不甘心啊！',2,1)
+                            G.call('all_over')
+                        else
+                            G.call('add_love',38,-4)
+                            if G.call('get_love',38) < 10 then 
+                                G.call('set_love',38,10) 
+                            end 
+                            local m = math.random(10) 
+                            if G.call('get_point',4) < 51 then 
+                                local num = {17,30,54,106,116,173,156} 
+                                if m < 8 then 
+                                    local str = G.QueryName(0x10050000 + num[m] - 1).名称
+                                    if G.call('get_magic',num[m]) <= 0 then 
+                                        G.call("talk",'',38,'    你的功夫太差，我传你一套【'..str..'】，平时好好练练吧。',2,1)
+                                        G.call('learnmagic',num[m])
+                                        G.call('all_over')
+                                    else
+                                        G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
+                                        G.call('all_over')
+                                    end
+                                else 
+                                    G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
+                                    G.call('all_over')
+                                end 
+                            else
+                                local num = {19,24,65,82,130,171,169} 
+                                if m < 8 then 
+                                    local str = G.QueryName(0x10050000 + num[m] - 1).名称
+                                    if G.call('get_magic',num[m]) <= 0 then 
+                                        G.call("talk",'',38,'    你的功夫太差，我传你一套【'..str..'】，平时好好练练吧。',2,1)
+                                        G.call('learnmagic',num[m])
+                                        G.call('all_over')
+                                    else
+                                        G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
+                                        G.call('all_over')
+                                    end
+                                else 
+                                    G.call("talk",'',38,'    我会使百家拳术，要是会被你打败，那真是没天理了，哇哈哈哈。',2,1)
+                                    G.call('all_over')
+                                end 
+                            end 
+                        end 
+                        o_role.拥有 = 1
+                        G.call('add_time',4)
+                        G.call('turn_map')
+                    end     
+                elseif  int_选项 == 3 then
+                    if G.call('get_point',5) > 0 then  
+                        G.call('all_over')
+                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                        local int_选项 = 0
+                        while true do
+                            int_选项 = G.call("menu",'',0,'',0,0,{"1,转化生命为【生命内力+50】","2,转化成搏击属性【搏击+1】",'3,转化成拆招属性【拆招+1】',"4,转化成闪躲属性【闪躲+1】","5,没有事情"},0)
+                            local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
+                            local int_点数 = 100+G.call('get_point',237) - 1
+                            if int_难度 == 1 then 
+                                int_点数 = 100 +G.call('get_point',237) - 1
+                            elseif int_难度 == 2 then 
+                                int_点数 = 120+G.call('get_point',237) - 1
+                            elseif int_难度 == 3 then 
+                                int_点数 = 150+G.call('get_point',237) - 1
+                            end
+                            if int_选项 == 1 then 
+                                if G.call('get_point',45) >= 50000 +  (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >= 50000 + (G.call('get_point',237) - 1)*500 then 
+                                    G.call("talk",'',38,'    已经不需要再提升了',2,1)
+                                else
+                                    if G.call('get_point',5) > 0 then 
+                                        G.call('add_point',45,50)
+                                        G.call('add_point',47,50)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    生命内力各加50',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    else     
+                                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                        G.call('all_over')
+                                        break
+                                    end 
+                                end
+                            elseif int_选项 == 2 then  
+                                if G.call('get_point',5) > 0 then 
+                                    if G.call('get_point',29) >=  int_点数 then 
+                                        G.call("talk",'',38,'    已经不需要再提升了',2,1) 
+                                    else
+                                        G.call('add_point',29,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    搏击加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    end
+                                else     
+                                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                    G.call('all_over')
+                                    break
+                                end    
+                            elseif int_选项 == 3 then 
+                                if G.call('get_point',5) > 0 then 
+                                    if G.call('get_point',28) >=  int_点数 then 
+                                        G.call("talk",'',38,'    已经不需要再提升了',2,1) 
+                                    else
+                                        G.call('add_point',28,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    拆招加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    end
+                                else     
+                                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                    G.call('all_over')
+                                    break
+                                end  
+                            elseif int_选项 == 4 then 
+                                if G.call('get_point',5) > 0 then 
+                                    if G.call('get_point',30) >=  int_点数 then 
+                                        G.call("talk",'',38,'    已经不需要再提升了',2,1) 
+                                    else
+                                        G.call('add_point',30,1)
+                                        G.call('add_point',5,-1)
+                                        G.call("talk",'',38,'    闪躲加1',2,1) 
+                                        G.call("talk",'',38,'   你现在有【'..G.call('to_chinese',G.QueryName(0x10030001)[tostring(5)])..'点'..'】,你想转化成什么属性?',2,1)
+                                    end
+                                else     
+                                    G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                                    G.call('all_over')
+                                    break
+                                end  
+                            elseif int_选项 == 5 then
+                                G.call('all_over')
+                                break
+                            end      
+                        end 
+                    else
+                        G.call("talk",'',38,'    你还没有修为点，等你升过级，有了修为点再找我转化吧。',2,1) 
+                        G.call('all_over')
+                    end  
+                elseif  int_选项 == 4 then  
+                    G.call('all_over')
+                    local JY = 0
+                    if G.call('get_point',4) < 50 then
+                        local n = G.call('get_point',4)
+                        JY = math.floor(15 *n* (n+1)*   G.QueryName(0x10030001)[tostring(200)]/100 * 0.3) 
+                    else
+                        JY = math.floor(15 *50* 51*   G.QueryName(0x10030001)[tostring(200)]/100* 0.85)
+                    end  
+                    G.call('dark')
+                    if G.call('get_point',4) > 79 and G.call('get_story',14) == 0 and G.call('get_point',22) > 80 and G.call('get_point',23) > 80 and G.call('get_point',24) > 80
+                    and G.call('get_point',25) > 80  and G.call('get_point',8) == 0 then  
+                        G.call('set_story',14,1) 
+                        G.call("talk",'',0,'    我已学会了这么多功夫，何不融汇百家独创一门？我得想想我发明的这个功夫叫什么名堂。',0,0) 
+                        G.call('自创武功')
+                        G.call('learnmagic',139)
+                    end  
+                    G.call('add_day',10)
+                    G.call('add_point',3,JY)
+                    G.call('all_over') 
+                    G.call('turn_map') 
+                elseif  int_选项 == 5 then 
+                    G.call('all_over')
+                end 
+            end
         end 
     end  
     for i = 1,38 do 
