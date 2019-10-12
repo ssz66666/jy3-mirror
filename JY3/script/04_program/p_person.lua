@@ -1456,7 +1456,7 @@ t['事件_随机切磋']=function()
         boss_final = boos_3
     elseif int_lv >= 81 and int_lv <= 90 then 
         boss_final = boos_4
-    elseif int_lv >= 91 and int_lv <= 100 then 
+    elseif int_lv >= 91  then 
         boss_final = boos_5
     end
     local int_role = boss_final[math.ceil(G.call('通用_取宝物随机')*#boss_final/100)]
