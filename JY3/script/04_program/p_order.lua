@@ -2295,11 +2295,12 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
             end
         end
     elseif int_代码 == 4 then   --等级计算 
+        local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
         G.call('set_newpoint',int_代码,G.call('get_newpoint',int_代码)- int_数量)
-        if G.call('get_point',4) >= 100 then
-            G.call('set_newpoint',int_代码,-100-10 )
-            G.call('set_point',int_代码,100)
+        if G.call('get_point',4) >= int_lvmax then
+            G.call('set_newpoint',int_代码,-int_lvmax-10 )
+            G.call('set_point',int_代码,int_lvmax)
         end
     elseif int_代码 >= 80 and int_代码 <=100 then  --异常
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)
