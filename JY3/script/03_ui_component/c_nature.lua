@@ -125,7 +125,8 @@ function t:刷新属性()
     self.基础属性1.getChildByName('生命值').text = str_hp..'[01]/'..str_maxhp 
     self.基础属性1.getChildByName('内力值').text = str_mp..'[01]/'..str_maxmp 
     self.基础属性1.getChildByName('等级').text = G.QueryName(0x10030001)[tostring(4)]..' 级' 
-    if G.call('get_point',4) < 100 then
+    local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+    if G.call('get_point',4) < int_lvmax  then
         self.基础属性1.getChildByName('当前经验').text = G.QueryName(0x10030001)[tostring(3)]..'/'
     else
         self.基础属性1.getChildByName('当前经验').text = '--/'
@@ -133,7 +134,6 @@ function t:刷新属性()
     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
     local int_升级经验 = math.floor(15 *G.call('get_point',4)* (G.call('get_point',4)+1) * (int_难度+1)/2   )
     self.基础属性1.getChildByName('升级经验').text = int_升级经验
-    local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
     if G.QueryName(0x10030001)[tostring(4)] >= int_lvmax then
         self.基础属性1.getChildByName('升级经验').text = '--'  
     end     
