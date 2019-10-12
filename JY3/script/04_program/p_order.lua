@@ -95,9 +95,10 @@ t['继承_读档'] = function(int_档案编号)
 		local zipbuf = G.LoadFile(path);
 		local buf = G.unzip(zipbuf);
         local obj = eris.unpersist(perms, buf);  
-        for i,v in ipairs({'o_body', 'o_storehouse','o_equip','o_files'}) do
-            G.newinst_cache[v] = obj[1][v]
-        end
+        -- for i,v in ipairs({'o_body', 'o_storehouse','o_equip','o_files'}) do
+        --     G.newinst_cache[v] = obj[1][v]
+        -- end
+        load_ofile(obj);
     end
 end
 t['通用_存档'] = function(int_档案编号)
