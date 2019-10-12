@@ -2267,12 +2267,13 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
     if int_数量 < 0 and math.abs(int_数量) > G.call('get_point',int_代码) and int_代码 ~= 15 then 
         int_数量 = -G.call('get_point',int_代码)
     end
+    local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
     if int_代码 == 3 then   --经验升级计算
         local int_升级经验 = math.floor(15 *G.call('get_point',4)* (G.call('get_point',4)+1) * (int_难度+1)/2   )
         G.call('set_point',3,G.call('get_point',3)+ int_数量) 
         G.call('set_newpoint',3,G.call('get_newpoint',3)- int_数量) 
         while true  do  --循环判断升级
-            if G.call('get_point',3) >= int_升级经验  and int_升级经验 > 0 and G.call('get_point',4) < 100  then 
+            if G.call('get_point',3) >= int_升级经验  and int_升级经验 > 0 and G.call('get_point',4) < int_lvmax  then 
                 G.call('add_point',4, 1) 
                 local int_随机种子 = G.call('通用_取随机')
                 local int_point = math.floor(int_随机种子/100 * G.call('get_point',18)/20 + 0.5)+3

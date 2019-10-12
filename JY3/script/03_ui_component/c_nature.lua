@@ -133,7 +133,8 @@ function t:刷新属性()
     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
     local int_升级经验 = math.floor(15 *G.call('get_point',4)* (G.call('get_point',4)+1) * (int_难度+1)/2   )
     self.基础属性1.getChildByName('升级经验').text = int_升级经验
-    if G.QueryName(0x10030001)[tostring(4)] >= 100 then
+    local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+    if G.QueryName(0x10030001)[tostring(4)] >= int_lvmax then
         self.基础属性1.getChildByName('升级经验').text = '--'  
     end     
     self.基础属性1.getChildByName('修为点').text = G.QueryName(0x10030001)[tostring(5)] 
