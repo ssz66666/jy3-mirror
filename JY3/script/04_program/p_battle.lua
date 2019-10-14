@@ -31,7 +31,8 @@ t['战斗系统_胜负监控'] = function()
                     exp = exp + G.QueryName(0x10040000 + o_battle [位置[i] ] ).战后获得经验值
                 end 	
             end 
-            exp = math.floor(exp * G.QueryName(0x10150001).diffty/100)  
+            local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
+            exp = exp*int_难度
             if G.call('get_point',4) >= 50 then
                 exp = math.floor(exp/10) 
             end

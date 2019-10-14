@@ -153,6 +153,10 @@ t['地图系统_防修改监控'] = function()
 		--print('修为点',G.call('get_point',5),G.call('get_newpoint',5))
 		int_检测 = int_检测 + 1
 	end 
+	if G.call('get_point',3) ~= math.abs(G.call('get_newpoint',3)+10)  then
+		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
+		int_检测 = int_检测 + 1
+	end
 	if G.call('get_point',4) ~= math.abs(G.call('get_newpoint',4)+10)  then
 		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
 		int_检测 = int_检测 + 1
