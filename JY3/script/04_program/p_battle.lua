@@ -34,6 +34,8 @@ t['战斗系统_胜负监控'] = function()
             local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
             exp = exp*int_难度
             if G.call('get_point',4) >= 50 then
+                exp = math.floor(exp/100) 
+            else
                 exp = math.floor(exp/10) 
             end
             G.call('add_point',3,exp)		
