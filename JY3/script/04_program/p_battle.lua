@@ -32,6 +32,9 @@ t['战斗系统_胜负监控'] = function()
                 end 	
             end 
             exp = math.floor(exp * G.QueryName(0x10150001).diffty/100)  
+            if G.call('get_point',4) >= 50 then
+                exp = math.floor(exp/10) 
+            end
             G.call('add_point',3,exp)		
             ui.getChildByName('胜利').visible = true
             G.remove_program('集气',1)
