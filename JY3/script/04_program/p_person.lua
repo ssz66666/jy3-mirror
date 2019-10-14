@@ -617,10 +617,11 @@ end
 --private=false  
 t['聚贤庄-半瓶神仙醋']=function()
     if G.call('in_team',38) == true and G.call('get_point',237) > 1 then
+        local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
         G.call("talk",'',38,'   '..G.QueryName(0x10030001)[tostring(1)]..'兄弟找我有什么事情吗？',2,1)
         local int_选项 = 0
         while int_选项 == 0 do
-            if G.call('get_point',4) >= 100 then 
+            if G.call('get_point',4) >= 100  and G.call('get_point',4) < int_lvmax then 
                 int_选项 = G.call("menu",'',0,'',0,0,{"1,查看本月公告","2,修为点转化属性","3,猜数字","4,没有事情","5,下一页"},0)
                 if int_选项 == 1 then
                     G.call('all_over')
@@ -978,9 +979,10 @@ t['聚贤庄-半瓶神仙醋']=function()
         end 
     else 
         G.call("talk",'',38,'   '..G.QueryName(0x10030001)[tostring(1)]..'兄弟找我有什么事情吗？',2,1)
+        local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
         local int_选项 = 0
         while int_选项 == 0 do
-            if G.call('get_point',4) >= 100 then 
+            if G.call('get_point',4) >= 100 and G.call('get_point',4) < int_lvmax then 
                 int_选项 = G.call("menu",'',0,'',0,0,{"1,查看本月公告","2,与庄主切磋武功","3,修为点转化属性","4,没有事情"},0)
                 if int_选项 == 1 then
                     G.call('all_over')
