@@ -133,11 +133,19 @@ t['战斗系统_主角监控'] = function()
                     if o_skill.内功轻功效果 == 10 or o_skill.内功轻功效果 == 11 then 
                         if o_skill.内功轻功效果 == 10 then 
                             local int_hp = math.floor(G.call('get_point',217)*o_skill.修为等级*(int_天罡效果 +  o_skill.效果等级 )/200)
+                            if G.call('get_point',85) > 0 then
+                                int_hp = math.floor(int_hp/2) 
+                            end
+                            int_hp = math.max(1,int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             G.call('add_point',44,int_hp)
                         end 
                         if o_skill.内功轻功效果 == 11 then 
                             local int_mp = math.floor(G.call('get_point',218)*o_skill.修为等级*(int_天罡效果 + o_skill.效果等级 )/500)
+                            if G.call('get_point',85) > 0 then
+                                int_mp  = math.floor(int_mp /2) 
+                            end
+                            int_mp = math.max(1,int_mp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加内力').text = tostring(int_mp)
                             G.call('add_point',46,int_mp)
                         end 
@@ -162,10 +170,18 @@ t['战斗系统_主角监控'] = function()
                 if G.QueryName(G.call('get_point',197)).内功轻功效果 == 10 or G.QueryName(G.call('get_point',197)).内功轻功效果 == 11 then 
                     if G.QueryName(G.call('get_point',197)).内功轻功效果 == 10 then 
                         int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*G.QueryName(G.call('get_point',197)).效果等级/100)
+                        if G.call('get_point',85) > 0 then
+                            int_hp = math.floor(int_hp/2) 
+                        end
+                        int_hp = math.max(1,int_hp)
                         G.call('add_point',44,int_hp)
                     end 
                     if G.QueryName(G.call('get_point',197)).内功轻功效果 == 11 then 
                         int_mp = math.floor(G.QueryName(0x10030001)[tostring(218)]*G.QueryName(G.call('get_point',197)).效果等级/100)
+                        if G.call('get_point',85) > 0 then
+                            int_mp = math.floor(int_mp/2) 
+                        end
+                        int_mp = math.max(1,int_mp)
                         G.call('add_point',46,int_mp)
                     end 
                 end 
@@ -680,9 +696,12 @@ t['战斗系统_事件响应'] = function()
                                             int_hp = 9999
                                         end
                                     end
+                                    if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                        int_hp = math.floor(int_hp/2)
+                                    end
+                                    int_hp = math.max(1,int_hp)
                                     ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').text = tostring(int_hp) 
                                     G.noti_call('战场_效果',i,int_动作编号,i)
-                                    G.call('add_point',44,int_hp)
                                     ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').visible = false
                                     G.call('add_role',o_battle[位置[i]],14,-needmp) 
                                 elseif 	o_skill.内功轻功效果 == 99 then   --自身解毒
@@ -717,6 +736,10 @@ t['战斗系统_事件响应'] = function()
                                                         int_hp = 9999
                                                     end
                                                 end  
+                                                if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                                    int_hp = math.floor(int_hp/2)
+                                                end
+                                                int_hp = math.max(1,int_hp)
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = tostring(int_hp)  
                                             end
                                         end 
@@ -753,7 +776,11 @@ t['战斗系统_事件响应'] = function()
                                                     if int_hp > 9999 then 
                                                         int_hp = 9999
                                                     end
-                                                end  
+                                                end 
+                                                if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                                    int_hp = math.floor(int_hp/2)
+                                                end 
+                                                int_hp = math.max(1,int_hp)
                                                 for j = 81,90 do 
                                                     G.call('ser_role',o_battle[位置[p]],j,0)
                                                     G.call('ser_role',o_battle[位置[p]],j+10,0)
@@ -801,6 +828,10 @@ t['战斗系统_事件响应'] = function()
                                                         int_hp = 9999
                                                     end
                                                 end
+                                                if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                                    int_hp = math.floor(int_hp/2)
+                                                end
+                                                int_hp = math.max(1,math.floor(int_hp/2))
                                                 G.call('add_role',o_battle[位置[p]],15,int_hp)
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = int_hp
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
@@ -1147,6 +1178,10 @@ t['战斗系统_事件响应'] = function()
                                     elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
                                         int_hp = math.floor(int_hp * 1.05)
                                     end  
+                                    if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                        int_hp = math.floor(int_hp/2)
+                                    end
+                                    int_hp = math.max(1,int_hp)
                                     ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').text = tostring(int_hp) 
                                     ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').visible = true
                                     --G.call('通用_战斗飘字')
@@ -1178,6 +1213,10 @@ t['战斗系统_事件响应'] = function()
                                                 elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
                                                     int_hp = math.floor(int_hp * 1.05)
                                                 end  
+                                                if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                                    int_hp = math.floor(int_hp/2)
+                                                end
+                                                int_hp = math.max(1,int_hp)
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = tostring(int_hp)
                                             end
                                         
@@ -1205,6 +1244,10 @@ t['战斗系统_事件响应'] = function()
                                                 elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
                                                     int_hp = math.floor(int_hp * 1.05)
                                                 end  
+                                                if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                                    int_hp = math.floor(int_hp/2)
+                                                end
+                                                int_hp = math.max(1,int_hp)
                                                 for j = 81,90 do 
                                                     G.call('ser_role',o_battle[位置[p]],j,0)
                                                     G.call('ser_role',o_battle[位置[p]],j+10,0)
@@ -1238,11 +1281,10 @@ t['战斗系统_事件响应'] = function()
                                                 elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
                                                     int_hp = math.floor(int_hp * 1.05)
                                                 end  
-                                                -- if G.call('通用_取得套装',o_battle[位置[i]],3) < 3 then
-                                                --     if int_hp > 9999 then 
-                                                --         int_hp = 9999
-                                                --     end
-                                                -- end
+                                                if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                                    int_hp = math.floor(int_hp/2)
+                                                end
+                                                int_hp = math.max(1,math.floor(int_hp/2))
                                                 G.call('add_role',o_battle[位置[p]],15,int_hp)
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = int_hp
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
@@ -1503,6 +1545,10 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = 9999
                                 end
                             end
+                            if G.call('get_point',85) > 0 then 
+                                int_hp = math.floor(int_hp/2)
+                            end
+                            int_hp = math.max(1,int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true
                         elseif o_skill.内功轻功效果 == 16 then   --逍遥御风
                             G.call('set_point',89,1)
@@ -1536,6 +1582,10 @@ t['战斗系统_事件响应'] = function()
                                                 int_hp = 9999
                                             end
                                         end
+                                        if G.call('get_point',85) > 0 then 
+                                            int_hp = math.floor(int_hp/2)
+                                        end
+                                        int_hp = math.max(1,int_hp)
                                         ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').text = tostring(int_hp)
                                         ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').visible = true
                                     end
@@ -1572,6 +1622,10 @@ t['战斗系统_事件响应'] = function()
                                                 int_hp = 9999
                                             end
                                         end
+                                        if G.call('get_point',85) > 0 then 
+                                            int_hp = math.floor(int_hp/2)
+                                        end
+                                        int_hp = math.max(1,int_hp)
                                         for j = 81,90 do 
                                             G.call('ser_role',o_battle[位置[i]],j,0)
                                             G.call('ser_role',o_battle[位置[i]],j+10,0)
@@ -1617,6 +1671,10 @@ t['战斗系统_事件响应'] = function()
                                                 int_hp = 9999
                                             end
                                         end 
+                                        if G.call('get_point',85) > 0 then 
+                                            int_hp = math.floor(int_hp/2)
+                                        end
+                                        int_hp = math.max(1,math.floor(int_hp/2))
                                         G.call('add_role',o_battle[位置[i]],15,int_hp) 
                                         ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').text = int_hp
                                         ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').visible = true
@@ -2074,6 +2132,12 @@ t['战斗系统_事件响应'] = function()
                             --判断NPC的内功回血回内效果
                             int_hp = math.floor(o_role_tb[tostring(1)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],10)/100)
                             int_mp = math.floor(o_role_tb[tostring(2)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],11)/100)
+                            if G.call('get_role',o_battle[位置[i] ],85) > 0 then
+                                int_hp = math.floor(int_hp/2) 
+                                int_mp = math.floor(int_mp/2)
+                            end
+                            int_hp = math.max(1,int_hp)
+                            int_mp = math.max(1,int_mp)
                             G.call('add_role',o_battle[位置[i] ],15,int_hp)
                             G.call('add_role',o_battle[位置[i] ],14,int_mp)
                             if G.call('get_role',int_role,84) > 0 then 
@@ -2375,15 +2439,12 @@ t['集气'] = function()
                     if (G.call('通用_取得人物特效',int_role,12) or G.call('通用_取得装备特效',int_role,104)) and o_role_npc.生命 < o_role_npc[tostring(1)]*0.5  and  o_role_npc.生命 > 0 then --npc回春效果
                         G.call('add_role',int_role,15,20) 
                     end     
-                    if G.call('get_role',int_role,81) > 0 and G.call('get_role',int_role,90) == 0 then --npc中毒受伤
+                    if G.call('get_role',int_role,81) > 0 and G.call('get_role',int_role,90) == 0 then --npc中毒
                         G.call('add_role',int_role,15,-15)  
                     end
-                    if G.call('get_role',int_role,90) > 0 then --npc剧毒受伤
+                    if G.call('get_role',int_role,90) > 0 then --npc剧毒
                         G.call('add_role',int_role,15,-25)  
-                    end
-                    if G.call('get_role',int_role,85) > 0 then 
-                        G.call('add_role',int_role,15,-10) 
-                    end     
+                    end  
                     for p = 81,90 do --npc异常状态随时间清除
                         if G.call('get_role',int_role,p )  > 0 then 
                             G.call('add_role',int_role,p+10,-deytime)
