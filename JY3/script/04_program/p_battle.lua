@@ -141,7 +141,7 @@ t['战斗系统_主角监控'] = function()
                                 int_hp = math.floor(int_hp/2) 
                             end
                             local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                            int_hp = int_hp * G.call('get_point',4)/int_lvmax
+                            int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
                             int_hp = math.max(1,int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             G.call('add_point',44,int_hp)
@@ -152,7 +152,7 @@ t['战斗系统_主角监控'] = function()
                                 int_mp  = math.floor(int_mp /2) 
                             end
                             local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                            int_mp = int_mp * G.call('get_point',4)/int_lvmax
+                            int_mp = math.floor(int_mp * G.call('get_point',4)/int_lvmax)
                             int_mp = math.max(1,int_mp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加内力').text = tostring(int_mp)
                             G.call('add_point',46,int_mp)
@@ -182,7 +182,7 @@ t['战斗系统_主角监控'] = function()
                             int_hp = math.floor(int_hp/2) 
                         end
                         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                        int_hp = int_hp * G.call('get_point',4)/int_lvmax
+                        int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
                         int_hp = math.max(1,int_hp)
                         G.call('add_point',44,int_hp)
                     end 
@@ -192,7 +192,7 @@ t['战斗系统_主角监控'] = function()
                             int_mp = math.floor(int_mp/2) 
                         end
                         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                        int_mp = int_mp * G.call('get_point',4)/int_lvmax
+                        int_mp = math.floor(int_mp * G.call('get_point',4)/int_lvmax)
                         int_mp = math.max(1,int_mp)
                         G.call('add_point',46,int_mp)
                     end 
@@ -713,7 +713,7 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = math.floor(int_hp/2)
                                 end
                                 local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                                int_hp = int_hp * G.call('get_point',4)/int_lvmax
+                                int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
                                 int_hp = math.max(1,int_hp) 
                             end
                             if  o_skill.范围 == 0  then 
@@ -1125,7 +1125,7 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = math.floor(int_hp/2)
                                 end
                                 local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                                int_hp = int_hp * G.call('get_point',4)/int_lvmax
+                                int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
                                 int_hp = math.max(1,int_hp)
                             end
                             if  o_skill.范围 == 0  then 
@@ -1446,7 +1446,7 @@ t['战斗系统_事件响应'] = function()
                             int_hp = math.floor(int_hp/2)
                         end
                         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                        int_hp = int_hp * G.call('get_point',4)/int_lvmax
+                        int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
                         int_hp = math.max(1,int_hp)
                     end
                     if  o_skill.范围 == 0  then 
@@ -1968,8 +1968,8 @@ t['战斗系统_事件响应'] = function()
                             int_hp = math.floor(o_role_tb[tostring(1)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],10)/100)
                             int_mp = math.floor(o_role_tb[tostring(2)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],11)/100)
                             local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                            int_hp = int_hp * G.call('get_point',4)/int_lvmax
-                            int_mp = int_mp * G.call('get_point',4)/int_lvmax
+                            int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                            int_mp = math.floor(int_mp * G.call('get_point',4)/int_lvmax)
                             if G.call('get_role',o_battle[位置[i] ],85) > 0 then
                                 int_hp = math.floor(int_hp/2) 
                                 int_mp = math.floor(int_mp/2)
