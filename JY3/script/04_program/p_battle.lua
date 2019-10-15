@@ -735,7 +735,6 @@ t['战斗系统_事件响应'] = function()
                                 end
                             elseif o_skill.范围 == 1 then
                                 if o_skill.内功轻功效果 == 1 then
-                                    local int_hp = 0
                                     for p = 2,5 do 
                                         if o_battle[位置[p]] > 0 then
                                             if G.QueryName(o_role +o_battle[位置[p]] ).生命 > 0  then
@@ -1147,7 +1146,6 @@ t['战斗系统_事件响应'] = function()
                                 end
                             elseif o_skill.范围 == 1 then
                                 if o_skill.内功轻功效果 == 1 then
-                                    local int_hp = 0
                                     for p = 6,11 do 
                                         if o_battle[位置[p]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[p]] ).生命 > 0  then
@@ -1161,7 +1159,6 @@ t['战斗系统_事件响应'] = function()
                                     G.noti_call('战场_效果',i,int_动作编号,12) 
                                     G.call('add_role',o_battle[位置[i]],14,-needmp) 
                                 elseif o_skill.内功轻功效果 == 19 then
-                                    local int_hp = 0
                                     for p = 6,11 do 
                                         if o_battle[位置[p]] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[p]] ).生命 > 0  then
@@ -1180,8 +1177,6 @@ t['战斗系统_事件响应'] = function()
                                     G.call('add_role',o_battle[位置[i]],14,-needmp) 
                                 elseif 	o_skill.内功轻功效果 == 6 then   --全体复活
                                     local n = 0
-                                    local int_hp = 0
-                                    local int_hp = 0
                                     for p = 6,11 do 
                                         if o_battle[位置[p] ] > 0 then
                                             if  G.QueryName(o_role +o_battle[位置[p]] ).生命 <= 0 then 
@@ -1428,6 +1423,7 @@ t['战斗系统_事件响应'] = function()
                         int_逍遥御仙效果 = int_队友
                     end 
                     if o_skill.范围 < 2 then 
+                        local int_hp = 0
                         if G.call('get_point',46) >= needmp then 
                             int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500)
                         else
@@ -1465,7 +1461,6 @@ t['战斗系统_事件响应'] = function()
                         G.noti_call('战场_效果',1,6001,1,needmp)
                     elseif  o_skill.范围 == 1  then 	
                         if o_skill.内功轻功效果 == 1 then
-                            local int_hp = 0
                             for i = 2,5 do 
                                 if o_battle[位置[i]] > 0 then
                                     if  G.QueryName(o_role +o_battle[位置[i]] ).生命 > 0  then
@@ -1482,7 +1477,6 @@ t['战斗系统_事件响应'] = function()
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true     
                         elseif o_skill.内功轻功效果 == 19 then
-                            local int_hp = 0
                             for i = 2,5 do 
                                 if o_battle[位置[i]] > 0 then
                                     if  G.QueryName(o_role +o_battle[位置[i]] ).生命 > 0  then
@@ -1508,7 +1502,6 @@ t['战斗系统_事件响应'] = function()
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true             
                         elseif 	o_skill.内功轻功效果 == 6 then   --全体复活
                             local n = 0
-                            local int_hp = 0
                             for i = 2,5 do 
                                 if o_battle[位置[i] ] > 0 then
                                     if  G.QueryName(o_role +o_battle[位置[i]] ).生命 <= 0 then 
