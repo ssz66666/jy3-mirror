@@ -715,7 +715,6 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
             end 
         end 
     end
-    local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
     for p = 2,11 do 
         if o_battle[位置[p]] > 0 then
             if  G.QueryName(i_role + o_battle[位置[p]] ).生命 > 0  then
@@ -727,14 +726,12 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
                     end           
                 end 
                 local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text)
-                int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
                 int_hp = math.max(0,int_hp) 
                 G.call('add_role',o_battle[位置[p]],15,int_hp)  
             end
         end 		
     end 
     local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text)
-    int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
     int_hp = math.max(0,int_hp) 
     if int_hp > 0 then 
        G.call('add_point',44,int_hp)

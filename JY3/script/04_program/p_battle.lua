@@ -141,7 +141,11 @@ t['战斗系统_主角监控'] = function()
                                 int_hp = math.floor(int_hp/2) 
                             end
                             local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                            int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                            if G.call('get_point',4) > 50 then 
+                                int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                            else
+                                int_hp = math.floor(int_hp/2) 
+                            end
                             int_hp = math.max(1,int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             G.call('add_point',44,int_hp)
@@ -152,7 +156,11 @@ t['战斗系统_主角监控'] = function()
                                 int_mp  = math.floor(int_mp /2) 
                             end
                             local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                            int_mp = math.floor(int_mp * G.call('get_point',4)/int_lvmax)
+                            if G.call('get_point',4) > 50 then 
+                                int_mp = math.floor(int_mp * G.call('get_point',4)/int_lvmax)
+                            else
+                                int_mp = math.floor(int_mp * 50/int_lvmax)
+                            end
                             int_mp = math.max(1,int_mp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加内力').text = tostring(int_mp)
                             G.call('add_point',46,int_mp)
@@ -182,7 +190,11 @@ t['战斗系统_主角监控'] = function()
                             int_hp = math.floor(int_hp/2) 
                         end
                         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                        int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                        if G.call('get_point',4) > 50 then 
+                            int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                        else
+                            int_hp = math.floor(int_hp * 50/int_lvmax)
+                        end
                         int_hp = math.max(1,int_hp)
                         G.call('add_point',44,int_hp)
                     end 
@@ -192,7 +204,11 @@ t['战斗系统_主角监控'] = function()
                             int_mp = math.floor(int_mp/2) 
                         end
                         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                        int_mp = math.floor(int_mp * G.call('get_point',4)/int_lvmax)
+                        if G.call('get_point',4) > 50 then 
+                            int_mp = math.floor(int_mp * G.call('get_point',4)/int_lvmax)
+                        else
+                            int_mp = math.floor(int_mp * 50/int_lvmax)
+                        end
                         int_mp = math.max(1,int_mp)
                         G.call('add_point',46,int_mp)
                     end 
@@ -713,7 +729,11 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = math.floor(int_hp/2)
                                 end
                                 local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                                int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                                if G.call('get_point',4) > 50 then 
+                                    int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                                else
+                                    int_hp = math.floor(int_hp * 50/int_lvmax)
+                                end
                                 int_hp = math.max(1,int_hp) 
                             end
                             if  o_skill.范围 == 0  then 
@@ -1124,7 +1144,11 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = math.floor(int_hp/2)
                                 end
                                 local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                                int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                                if G.call('get_point',4) > 50 then 
+                                    int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                                else
+                                    int_hp = math.floor(int_hp * 50/int_lvmax)
+                                end
                                 int_hp = math.max(1,int_hp)
                             end
                             if  o_skill.范围 == 0  then 
@@ -1442,7 +1466,11 @@ t['战斗系统_事件响应'] = function()
                             int_hp = math.floor(int_hp/2)
                         end
                         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                        int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                        if G.call('get_point',4) > 50 then 
+                            int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                        else
+                            int_hp = math.floor(int_hp * 50/int_lvmax)
+                        end
                         int_hp = math.max(1,int_hp)
                     end
                     if  o_skill.范围 == 0  then 
@@ -1961,8 +1989,13 @@ t['战斗系统_事件响应'] = function()
                             int_hp = math.floor(o_role_tb[tostring(1)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],10)/100)
                             int_mp = math.floor(o_role_tb[tostring(2)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],11)/100)
                             local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                            int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
-                            int_mp = math.floor(int_mp * G.call('get_point',4)/int_lvmax)
+                            if G.call('get_point',4) > 50 then 
+                                int_hp = math.floor(int_hp * G.call('get_point',4)/int_lvmax)
+                                int_mp = math.floor(int_mp * G.call('get_point',4)/int_lvmax)
+                            else
+                                int_hp = math.floor(int_hp * 50/int_lvmax)
+                                int_mp = math.floor(int_mp * 50/int_lvmax)
+                            end
                             if G.call('get_role',o_battle[位置[i] ],85) > 0 then
                                 int_hp = math.floor(int_hp/2) 
                                 int_mp = math.floor(int_mp/2)
@@ -2170,6 +2203,9 @@ t['集气'] = function()
         local speed = {}
         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
         local int_比例 = int_lvmax/G.call('get_point',4)
+        if G.call('get_point',4) <= 50 then
+            int_比例 = int_lvmax/50
+        end
 		for i = 1,11 do 
 			speed[i] = 0
 		end 
@@ -3058,6 +3094,9 @@ t['magic_power1'] = function(int_id,int_no)
                 local int_斩杀百分比 = 10
                 local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
                 local int_比例 = int_lvmax/G.call('get_point',4) 
+                if G.call('get_point',4) < 50 then 
+                    int_比例 = int_lvmax/50
+                end
                 int_斩杀百分比 = math.max(1,int_斩杀百分比/int_比例)
                 int_斩杀血量 = math.max(1,int_斩杀血量/int_比例)
                 if  ( G.call('get_role',int_id,1) <=int_斩杀血量 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)*int_斩杀百分比/100) then 
@@ -3103,7 +3142,11 @@ t['magic_power1'] = function(int_id,int_no)
         end
         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
         if int_斩杀 ~= 1  then 
-            hurt = hurt * G.call('get_point',4)/int_lvmax
+            if G.call('get_point',4) < 50 then 
+                hurt = hurt * 50/int_lvmax
+            else
+                hurt = hurt * G.call('get_point',4)/int_lvmax
+            end
         end
         hurt = math.floor(hurt) 
     else
@@ -3744,6 +3787,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 local int_斩杀百分比 = 10
                 local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
                 local int_比例 = int_lvmax/G.call('get_point',4) 
+                if G.call('get_point',4) < 50 then 
+                    int_比例 = int_lvmax/50
+                end
                 if int_id == 418 or int_id == 419 then 
                     int_斩杀血量 = 10000
                     int_斩杀百分比 = 15
@@ -3810,7 +3856,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     end
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
     if int_斩杀 ~= 1 then 
-       hurt = hurt * G.call('get_point',4)/int_lvmax
+        if G.call('get_point',4) < 50 then 
+            hurt = hurt * 50/int_lvmax
+        else
+            hurt = hurt * G.call('get_point',4)/int_lvmax
+        end
     end
     hurt = math.floor(hurt) 
     if hurt > 99999 then 
@@ -4449,6 +4499,9 @@ t['magic_power3'] = function(int_id,int_no)
                 end 
             end
             local int_比例 = int_lvmax/G.call('get_point',4) 
+            if G.call('get_point',4) < 50 then 
+                int_比例 = int_lvmax/50
+            end
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
@@ -4510,7 +4563,11 @@ t['magic_power3'] = function(int_id,int_no)
             end  
         end
         if int_斩杀 ~= 1 then 
-            hurt = hurt * G.call('get_point',4)/int_lvmax
+            if G.call('get_point',4) < 50 then 
+                hurt = hurt * 50/int_lvmax
+            else
+                hurt = hurt * G.call('get_point',4)/int_lvmax
+            end
         end
         hurt = math.floor(hurt) 
     else
