@@ -3062,6 +3062,9 @@ t['magic_power1'] = function(int_id,int_no)
                 end 
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
+                local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+                local int_比例 = int_lvmax/G.call('get_point',4) 
+                int_斩杀百分比 = math.max(1,int_斩杀百分比/int_比例)
                 if  ( G.call('get_role',int_id,1) <=int_斩杀血量 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)*int_斩杀百分比/100) then 
                     int_斩杀 = 1
                     if string_字符串_4 == '' then 
@@ -3743,6 +3746,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
+                local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+                local int_比例 = int_lvmax/G.call('get_point',4) 
+                int_斩杀百分比 = math.max(1,int_斩杀百分比/int_比例)
                 if int_id == 418 or int_id == 419 then 
                     int_斩杀血量 = 10000
                     int_斩杀百分比 = 15
@@ -4444,11 +4450,13 @@ t['magic_power3'] = function(int_id,int_no)
                 end 
             end
             local int_斩杀 = 0
+            local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+            local int_比例 = int_lvmax/G.call('get_point',4) 
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
-                local int_斩杀血量 = 6000
+                local int_斩杀血量 = 6000/int_比例
                 local int_斩杀百分比 = 10
                 if int_id == 418 or int_id == 419 then 
-                    int_斩杀血量 = 10000
+                    int_斩杀血量 = 10000 
                     int_斩杀百分比 = 15
                     if string_字符串_1 == '' then 
                         string_字符串_1 = string_字符串_1..'真剑神无双'
@@ -4462,6 +4470,7 @@ t['magic_power3'] = function(int_id,int_no)
                         string_字符串_1 = string_字符串_1..'.'..'剑神无双'
                     end 
                 end
+                int_斩杀百分比 = math.max(1,int_斩杀百分比/int_比例)
                 if  ( G.call('get_point',217) <=int_斩杀血量 or G.call('get_point',44)  < G.call('get_point',217)*int_斩杀百分比/100) then
                     if string_字符串_4 == '' then 
                         string_字符串_4 = string_字符串_4..'剑神斩杀'
@@ -4502,7 +4511,6 @@ t['magic_power3'] = function(int_id,int_no)
                 end 
             end  
         end
-        local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
         if int_斩杀 ~= 1 then 
             hurt = hurt * G.call('get_point',4)/int_lvmax
         end
