@@ -3053,6 +3053,7 @@ t['magic_power1'] = function(int_id,int_no)
                     hurt = G.call('get_role',int_id,15)
                 end 
             end 
+            local int_斩杀 = 0
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,33)) then  --剑神无双效果
                 if string_字符串_1 == '' then 
                     string_字符串_1 = string_字符串_1..'剑神无双'
@@ -3062,6 +3063,7 @@ t['magic_power1'] = function(int_id,int_no)
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
                 if  ( G.call('get_role',int_id,1) <=int_斩杀血量 or G.call('get_role',int_id,15)  < G.call('get_role',int_id,1)*int_斩杀百分比/100) then 
+                    int_斩杀 = 1
                     if string_字符串_4 == '' then 
                         string_字符串_4 = string_字符串_4..'剑神斩杀'
                     else
@@ -3102,7 +3104,9 @@ t['magic_power1'] = function(int_id,int_no)
             end  
         end
         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-        hurt = hurt * G.call('get_point',4)/int_lvmax
+        if int_斩杀 ~= 1  then 
+            hurt = hurt * G.call('get_point',4)/int_lvmax
+        end
         hurt = math.floor(hurt) 
     else
         hurt = 0
@@ -3735,6 +3739,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     hurt = G.call('get_role',int_enemy,15)
                 end     
             end
+            local int_斩杀 = 0
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
@@ -3759,6 +3764,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     else
                         string_字符串_4 = string_字符串_4..'.'..'剑神斩杀'
                     end 
+                    int_斩杀 = 1
                     hurt = G.call('get_role',int_enemy,15)
                 end  
             end
@@ -3800,7 +3806,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         hurt = hurt + G.call('get_role',int_enemy,15)*0.05 
     end
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    hurt = hurt * G.call('get_point',4)/int_lvmax
+    if int_斩杀 ~= 1 then 
+       hurt = hurt * G.call('get_point',4)/int_lvmax
+    end
     hurt = math.floor(hurt) 
     if hurt > 99999 then 
         hurt = 99999
@@ -4435,6 +4443,7 @@ t['magic_power3'] = function(int_id,int_no)
                     hurt = G.call('get_point',44)
                 end 
             end
+            local int_斩杀 = 0
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
@@ -4459,6 +4468,7 @@ t['magic_power3'] = function(int_id,int_no)
                     else
                         string_字符串_4 = string_字符串_4..'.'..'剑神斩杀'
                     end 
+                    int_斩杀 = 1
                     hurt = G.call('get_point',44)
                 end  
             end
@@ -4493,7 +4503,9 @@ t['magic_power3'] = function(int_id,int_no)
             end  
         end
         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-        hurt = hurt * G.call('get_point',4)/int_lvmax
+        if int_斩杀 ~= 1 then 
+            hurt = hurt * G.call('get_point',4)/int_lvmax
+        end
         hurt = math.floor(hurt) 
     else
         hurt = 0  
