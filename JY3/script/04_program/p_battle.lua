@@ -2744,6 +2744,7 @@ t['magic_power1'] = function(int_id,int_no)
         end
         int_闪避 = int_闪避 + 100
     end
+    local int_斩杀 = 0
     if math.random(a +15) > math.random(math.floor(b/6)+1+int_闪避) then  --命中计算     
         if hurt > 0 then 
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
@@ -3053,7 +3054,6 @@ t['magic_power1'] = function(int_id,int_no)
                     hurt = G.call('get_role',int_id,15)
                 end 
             end 
-            local int_斩杀 = 0
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,33)) then  --剑神无双效果
                 if string_字符串_1 == '' then 
                     string_字符串_1 = string_字符串_1..'剑神无双'
@@ -3472,6 +3472,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     elseif  G.call('通用_取得套装',int_enemy,1) == 2 then
         int_闪避 = int_闪避 + 50
     end
+    local int_斩杀 = 0
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避+1) then  --命中计算
         if hurt > 0 then 
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
@@ -3743,7 +3744,6 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     hurt = G.call('get_role',int_enemy,15)
                 end     
             end
-            local int_斩杀 = 0
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
@@ -4175,6 +4175,7 @@ t['magic_power3'] = function(int_id,int_no)
     elseif  G.call('通用_取得套装',0,1) == 2 then
         int_闪避 = int_闪避 + 50
     end
+    local int_斩杀 = 0
     if math.random(a+15) > math.random(math.floor(b/6)+int_闪避 + 1) then  --命中计算
         if hurt > 0 then 
             if G.call('get_point',196) ~= nil then   
@@ -4451,7 +4452,6 @@ t['magic_power3'] = function(int_id,int_no)
                     hurt = G.call('get_point',44)
                 end 
             end
-            local int_斩杀 = 0
             local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
             local int_比例 = int_lvmax/G.call('get_point',4) 
             if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
