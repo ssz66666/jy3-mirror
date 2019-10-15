@@ -4574,7 +4574,7 @@ t['magic_power3'] = function(int_id,int_no)
                     end 
                 end 
             end
-            if  o_skill.附加效果 == 9 then
+            if  o_skill.附加效果 == 9 or G.call('通用_取得人物特效',int_id,23) or G.call('通用_取得装备特效',int_id,207) then --混乱（玄武判断）
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',87) == 0 then 
                         if string_字符串_4 == '' then 
