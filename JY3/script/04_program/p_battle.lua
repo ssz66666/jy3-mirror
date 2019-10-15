@@ -35,7 +35,7 @@ t['战斗系统_胜负监控'] = function()
             exp = exp*int_难度
             local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
             local int_比例 = int_lvmax/G.call('get_point',4)
-            exp = math.floor(exp/(25*int_比例)   )
+            exp = math.floor(int_比例*exp/25  )
             G.call('add_point',3,exp)		
             ui.getChildByName('胜利').visible = true
             G.remove_program('集气',1)
