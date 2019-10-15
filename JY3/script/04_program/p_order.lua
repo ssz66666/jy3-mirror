@@ -728,6 +728,7 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
                 end 
                 local int_hp = tonumber(ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text)
                 int_hp = int_hp * G.call('get_point',4)/int_lvmax
+                int_hp = math.max(1,int_hp) 
                 G.call('add_role',o_battle[位置[p]],15,int_hp)  
             end
         end 		
