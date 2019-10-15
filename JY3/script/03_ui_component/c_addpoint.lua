@@ -236,6 +236,7 @@ function t:click(tar)
                     G.QueryName(0x10030001)[tostring(1)] = '半瓶'
                     G.QueryName(0x10030001)[tostring(2)] = '神仙醋'
                     G.QueryName(0x10030001)[tostring(119)] = 0x56080026 --设定头像
+                    G.misc().奇才 = 1
                     for i = 16,20 do --基础属性全+5
                         G.call('add_point',i,5)
                     end  

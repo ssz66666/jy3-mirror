@@ -456,6 +456,9 @@ t['回答问题']=function()
     r = math.ceil(len*G.call('通用_取随机')/100)	
     m[4] =t[r]
     table.remove(t, r)
+    if G.misc().奇才 == 1 then
+        m[1] = 16
+    end
     local point = 0
     local maxpoint = 0
     local achieve = G.DBTable('o_achieve')
