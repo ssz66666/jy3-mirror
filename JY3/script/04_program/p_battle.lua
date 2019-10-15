@@ -3267,6 +3267,8 @@ t['magic_power1'] = function(int_id,int_no)
                 G.call('set_role',int_id,84,0)
             end  
         end
+        local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+        hurt = hurt * G.call('get_point',4)/int_lvmax
         hurt = math.floor(hurt) 
     else
         hurt = 0
@@ -3963,6 +3965,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         end 
         hurt = hurt + G.call('get_role',int_enemy,15)*0.05 
     end
+    local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+    hurt = hurt * G.call('get_point',4)/int_lvmax
     hurt = math.floor(hurt) 
     if hurt > 99999 then 
         hurt = 99999
@@ -4654,6 +4658,8 @@ t['magic_power3'] = function(int_id,int_no)
                 end 
             end  
         end
+        local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+        hurt = hurt * G.call('get_point',4)/int_lvmax
         hurt = math.floor(hurt) 
     else
         hurt = 0  
