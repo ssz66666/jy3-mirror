@@ -2977,7 +2977,8 @@ t['magic_power1'] = function(int_id,int_no)
                     hurt3 = math.floor(hurt3*1.25)
                 end
             end
-            if (int_no == 205 or int_no == 206 or int_no == 21 or int_no == 235 ) and G.call('通用_取得人物特效',0,19)     then --舔血效果计算
+            if G.call('通用_取得人物特效',0,19)     then --舔血效果计算
+            --if (int_no == 205 or int_no == 206 or int_no == 21 or int_no == 235 ) and G.call('通用_取得人物特效',0,19)     then --舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
                 else
