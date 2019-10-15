@@ -690,30 +690,32 @@ t['战斗系统_事件响应'] = function()
                             end 
                             local int_hp = 0
                             local int_mp = 0
-                            if o_role_tb.内力 >= needmp then 
-                                int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000)
-                            else
-                                int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000*o_role_tb.内力/needmp)
-                            end   
-                            if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
-                                int_hp = math.floor(int_hp * 1.2) 
-                            end  
-                            if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
-                                int_hp = math.floor(int_hp * 1.1)
-                            elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
-                                int_hp = math.floor(int_hp * 1.05)
-                            end  
-                            if G.call('通用_取得套装',o_battle[位置[i]],3) < 3 then
-                                if int_hp > 9999 then 
-                                    int_hp = 9999
+                            if o_skill.范围 < 2 then 
+                                if o_role_tb.内力 >= needmp then 
+                                    int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000)
+                                else
+                                    int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000*o_role_tb.内力/needmp)
+                                end   
+                                if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
+                                    int_hp = math.floor(int_hp * 1.2) 
+                                end  
+                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
+                                    int_hp = math.floor(int_hp * 1.1)
+                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                    int_hp = math.floor(int_hp * 1.05)
+                                end  
+                                if G.call('通用_取得套装',o_battle[位置[i]],3) < 3 then
+                                    if int_hp > 9999 then 
+                                        int_hp = 9999
+                                    end
                                 end
+                                if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                    int_hp = math.floor(int_hp/2)
+                                end
+                                local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+                                int_hp = int_hp * G.call('get_point',4)/int_lvmax
+                                int_hp = math.max(1,int_hp) 
                             end
-                            if G.call('get_role',o_battle[位置[i]],85) > 0 then 
-                                int_hp = math.floor(int_hp/2)
-                            end
-                            local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                            int_hp = int_hp * G.call('get_point',4)/int_lvmax
-                            int_hp = math.max(1,int_hp) 
                             if  o_skill.范围 == 0  then 
                                 if o_skill.内功轻功效果 == 1 then
                                     ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').text = tostring(int_hp) 
@@ -736,9 +738,7 @@ t['战斗系统_事件响应'] = function()
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
                                                 if G.call('get_role',o_battle[位置[i]],85) > 0 then 
                                                     int_hp = math.floor(int_hp/2)
-                                                end  local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                                                int_hp = int_hp * G.call('get_point',4)/int_lvmax
-                                                int_hp = math.max(1,int_hp)
+                                                end  
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = tostring(int_hp)  
                                             end
                                         end 
@@ -1107,25 +1107,27 @@ t['战斗系统_事件响应'] = function()
                             end 
                             ui.getChildByName('图表').getChildByName('文字').text = o_skill.名称
                             local int_hp = 0
-                            if o_role_tb.内力 >= needmp then 
-                                int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000)
-                            else
-                                int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000*o_role_tb.内力/needmp)
-                            end  
-                            if G.call('通用_取得敌方队伍特效',4) or G.call('通用_取得敌方装备特效',201) then --敌方妙手加成
-                                int_hp = math.floor(int_hp * 1.2) 
-                            end  
-                            if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
-                                int_hp = math.floor(int_hp * 1.1)
-                            elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
-                                int_hp = math.floor(int_hp * 1.05)
-                            end  
-                            if G.call('get_role',o_battle[位置[i]],85) > 0 then 
-                                int_hp = math.floor(int_hp/2)
+                            if  o_skill.范围 < 2  then 
+                                if o_role_tb.内力 >= needmp then 
+                                    int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000)
+                                else
+                                    int_hp = math.floor(o_role_tb[tostring(1)]*o_skill.效果等级*o_skill_武功等级/1000*o_role_tb.内力/needmp)
+                                end  
+                                if G.call('通用_取得敌方队伍特效',4) or G.call('通用_取得敌方装备特效',201) then --敌方妙手加成
+                                    int_hp = math.floor(int_hp * 1.2) 
+                                end  
+                                if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
+                                    int_hp = math.floor(int_hp * 1.1)
+                                elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
+                                    int_hp = math.floor(int_hp * 1.05)
+                                end  
+                                if G.call('get_role',o_battle[位置[i]],85) > 0 then 
+                                    int_hp = math.floor(int_hp/2)
+                                end
+                                local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+                                int_hp = int_hp * G.call('get_point',4)/int_lvmax
+                                int_hp = math.max(1,int_hp)
                             end
-                            local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                            int_hp = int_hp * G.call('get_point',4)/int_lvmax
-                            int_hp = math.max(1,int_hp)
                             if  o_skill.范围 == 0  then 
                                 if o_skill.内功轻功效果 == 1 then
                                     ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').text = tostring(int_hp) 
@@ -1421,30 +1423,32 @@ t['战斗系统_事件响应'] = function()
                     if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then 
                         int_逍遥御仙效果 = int_队友
                     end 
-                    if G.call('get_point',46) >= needmp then 
-                        int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500)
-                    else
-                        int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500*G.call('get_point',46)/needmp)
-                    end 
-                    if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
-                        int_hp = math.floor(int_hp * 1.2) 
-                    end  
-                    if G.call('通用_取得套装',0,3) == 3 then --套装3回血效果
-                        int_hp = math.floor(int_hp * 1.1)
-                    elseif G.call('通用_取得套装',0,3) == 2 then
-                        int_hp = math.floor(int_hp * 1.05)
-                    end  
-                    if G.call('通用_取得套装',0,3) < 3 then
-                        if int_hp > 9999 then 
-                            int_hp = 9999
+                    if o_skill.范围 < 2 then 
+                        if G.call('get_point',46) >= needmp then 
+                            int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500)
+                        else
+                            int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500*G.call('get_point',46)/needmp)
+                        end 
+                        if G.call('通用_取得我方队伍特效',4) or G.call('通用_取得我方装备特效',201) then --我方妙手加成
+                            int_hp = math.floor(int_hp * 1.2) 
+                        end  
+                        if G.call('通用_取得套装',0,3) == 3 then --套装3回血效果
+                            int_hp = math.floor(int_hp * 1.1)
+                        elseif G.call('通用_取得套装',0,3) == 2 then
+                            int_hp = math.floor(int_hp * 1.05)
+                        end  
+                        if G.call('通用_取得套装',0,3) < 3 then
+                            if int_hp > 9999 then 
+                                int_hp = 9999
+                            end
                         end
+                        if G.call('get_point',85) > 0 then 
+                            int_hp = math.floor(int_hp/2)
+                        end
+                        local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
+                        int_hp = int_hp * G.call('get_point',4)/int_lvmax
+                        int_hp = math.max(1,int_hp)
                     end
-                    if G.call('get_point',85) > 0 then 
-                        int_hp = math.floor(int_hp/2)
-                    end
-                    local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-                    int_hp = int_hp * G.call('get_point',4)/int_lvmax
-                    int_hp = math.max(1,int_hp)
                     if  o_skill.范围 == 0  then 
                         if o_skill.内功轻功效果 == 1 then
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true
