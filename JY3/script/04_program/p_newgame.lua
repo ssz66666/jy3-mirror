@@ -571,14 +571,19 @@ t['回答问题']=function()
     if int_point > 0 then 
         G.call('add_point',5,int_point)
     end
-    if int_true > 0 then    
-        for i = 1,int_true do 
-            if G.QueryName(0x10030001)[tostring(110+i)] == 0 then   
-                G.QueryName(0x10030001)[tostring(110+i)] = m[i]
-                G.call('set_newpoint',110+i,-10-m[i]) 
-            end
-        end 
+    G.misc().被动个数 = int_true
+    -- if int_true > 0 then    
+    --     for i = 1,int_true do 
+    --         if G.QueryName(0x10030001)[tostring(110+i)] == 0 then   
+    --             G.QueryName(0x10030001)[tostring(110+i)] = m[i]
+    --             G.call('set_newpoint',110+i,-10-m[i]) 
+    --         end
+    --     end 
+    -- end
+    if G.misc().被动个数 > 0 then 
+        G.call('select_magic')
     end
+    --定制出个人的一鸣惊人
     local int_mo = 0
     local m = {0,0,0,0}
     local t = {0,1,2,3,4,5,6,7,8,9}

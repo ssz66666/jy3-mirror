@@ -674,6 +674,11 @@ t['select']=function()  --队友选择
     G.wait1('选择队友结束')
     G.removeUI('v_select')
 end   
+t['select_magic']=function()  --队友选择
+    G.addUI('v_select_magic')
+    G.wait1('选择被动结束')
+    G.removeUI('v_select_magic')
+end 
 t['get_fullname']=function()  --
     return G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]
 end
