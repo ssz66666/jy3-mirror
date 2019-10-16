@@ -216,7 +216,23 @@ function t:rollOver(tar)
     for i = 1,4 do 
         if tar == self.被动.getChildByName(tostring(i)) then 
             self.被动.getChildByName('显示').visible = true
-            self.被动.getChildByName('显示').getChildByName('文本').text = '说明:[br]'..str[G.call('get_point',110+i)]
+            if G.call('get_point',110+i) == 20 then 
+                local str_字符串 = ''
+                if G.call('get_point',63) < 2500 then
+                    str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]初识'..'('..G.call('get_point',63)..'/2500)'
+                elseif G.call('get_point',63) < 5000  and G.call('get_point',63) >= 2500 then
+                    str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]意境'..'('..G.call('get_point',63)..'/5000)'
+                elseif G.call('get_point',63) >= 5000  and G.call('get_point',63) < 7500 then
+                    str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]明境'..'('..G.call('get_point',63)..'/7500)'
+                elseif G.call('get_point',63) >= 7500  and G.call('get_point',63) < 10000 then
+                    str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]暗境'..'('..G.call('get_point',63)..'/10000)'
+                elseif G.call('get_point',63) == 10000 then 
+                    str_字符串 = '说明:[br]'..str20..'[br]当前境界:[br]化境'
+                end
+                self.被动.getChildByName('显示').getChildByName('文本').text = str_字符串
+            else
+                self.被动.getChildByName('显示').getChildByName('文本').text = '说明:[br]'..str[G.call('get_point',110+i)]
+            end
         end
     end
     if tar == self.门派被动.getChildByName('技能') then 
