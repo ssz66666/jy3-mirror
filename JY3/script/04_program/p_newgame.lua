@@ -571,7 +571,7 @@ t['回答问题']=function()
     if int_point > 0 then 
         G.call('add_point',5,int_point)
     end
-    G.misc().被动个数 = int_true
+    G.misc().被动个数 = 4
     -- if int_true > 0 then    
     --     for i = 1,int_true do 
     --         if G.QueryName(0x10030001)[tostring(110+i)] == 0 then   

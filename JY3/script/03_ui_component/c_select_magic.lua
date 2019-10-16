@@ -24,6 +24,22 @@ function t:start()
 end
 function t:刷新显示()
     local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气','绝杀','剑神'}
+    local magic_1= {1,4,5,7,8,10,11,12,13,14}
+    local magic_2= {2,3,6,9,15,16,17,18,19,20}
+    local magic_3 = {21,22,23,24,25,26,27,28,29,30}
+    local len = #magic_1
+    local  r = math.ceil(len*G.call('通用_取随机')/100)
+    self.被动组[1] = magic_1[r]
+    table.remove(magic_1, r)
+    len = #magic_1
+    r = math.ceil(len*G.call('通用_取随机')/100)
+    self.被动组[2] = magic_1[r]
+    len = #magic_2
+    r = math.ceil(len*G.call('通用_取随机')/100)
+    self.被动组[3] = magic_2[r]
+    len = #magic_3
+    r = math.ceil(len*G.call('通用_取随机')/100)
+    self.被动组[4] = magic_3[r]
     local str1 = '增加全队伤害基值'
     local str2 = '降低全队被攻击伤害基值'
     local str3 = '使用武功30%不用读条直接出手'
@@ -60,14 +76,14 @@ function t:刷新显示()
     local str = {str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22,str23,str24,str25,str26,str27,str28,str29,str30,str31,str32,str33}
     local str_字符串_1 = ''
     local str_字符串_2 = ''
-    for i = 1,G.misc().被动个数 do
-        if i < 4 then
-            self.被动组[i] = math.random((i-1)*8+1,i*8)
-        else
-            self.被动组[i] = math.random((i-1)*8+1,31)
-        end
+    -- for i = 1,G.misc().被动个数 do
+    --     if i < 4 then
+    --         self.被动组[i] = math.random((i-1)*8+1,i*8)
+    --     else
+    --         self.被动组[i] = math.random((i-1)*8+1,31)
+    --     end
       
-    end
+    -- end
     if G.misc().奇才 == 1 then
         self.被动组[2] = 16
     end
