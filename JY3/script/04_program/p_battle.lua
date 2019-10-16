@@ -2853,7 +2853,7 @@ t['magic_power1'] = function(int_id,int_no)
                 end
                 hurt4 = math.floor(hurt*(0.25 + int_舔血效果*5/100)*(100 - G.call('get_point',15)       )/100    ) 
             end 
-            if i_skill == 0x10050083 and G.call('get_point',115) == 20 and G.misc().木桩 == 0 then --北冥真气吸蓝判定
+            if i_skill == 0x10050083 and G.call('通用_取得人物特效',0,20) and G.misc().木桩 == 0 then --北冥真气吸蓝判定
                 G.call('add_point',63,hurt0) 
             end 
             if G.call('通用_取得人物特效',0,20)  then --北冥真气效果
