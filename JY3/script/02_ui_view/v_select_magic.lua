@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_select_magic = require 'c_select_magic'
 local c_button = require 'c_button'
+local c_select_magic = require 'c_select_magic'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -154,16 +154,16 @@ tp = tc
 	tc.name = '被动说明'
 	tc.pivotX = 0.000
 	tc.pivotY = 1.000
-	tc.left = -291.000
-	tc.right = -230.000
-	tc.bottom = -209.000
-	tc.top = 31.000
+	tc.left = -294.000
+	tc.right = 902.000
+	tc.bottom = -307.000
+	tc.top = 38.000
 	tc.mouseEnabled = true
 	tc.scaleX = 0.500
 	tc.scaleY = 0.500
-	tc.autosize = 3
 	tc.text = '无[br]无[br]无[br]无'
-	tc.font = 0x613c0000
+	tc.wrap = true
+	tc.font = 0x61340000
 	tc.align = 1
 	tc.style = 5
 	tp = tc
