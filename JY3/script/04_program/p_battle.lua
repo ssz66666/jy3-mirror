@@ -2231,14 +2231,16 @@ t['集气'] = function()
                     local int_speed = o_role_npc[tostring(8)] 
                     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
                     if i >= 6 then 
-                        if int_难度 == 1 then 
-                            int_speed = int_speed*1.2 
-                        elseif  int_难度 == 2 then    
-                            int_speed = int_speed * 1.5
-                        elseif  int_难度 == 3 then    
-                            int_speed = int_speed * 1.8
+                        if o_battle.模式 < 5 then
+                            if int_难度 == 1 then 
+                                int_speed = int_speed*1.2 
+                            elseif  int_难度 == 2 then    
+                                int_speed = int_speed * 1.5
+                            elseif  int_难度 == 3 then    
+                                int_speed = int_speed * 1.8
+                            end
+                            int_speed = int_speed + G.call('get_point',237)-1
                         end
-                        int_speed = int_speed + G.call('get_point',237)-1
                     end
                     speed[i] = speed[i] + int_speed   --NPC速度
                     if i < 6 then --NPC激励对全队速度的加成
