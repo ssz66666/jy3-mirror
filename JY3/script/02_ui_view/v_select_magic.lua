@@ -79,6 +79,21 @@ tp = tc
 		tp = tc
 		tp = tp.parent
 		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = '标签2'
+		tc.left = 3.000
+		tc.right = 303.000
+		tc.bottom = 145.000
+		tc.top = 245.000
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.text = '剩余次数'
+		tc.font = 0x603c0000
+		tc.style = 5
+		tp = tc
+		tp = tp.parent
+		--end
 	tp = tp.parent
 	--end
 	tc = G.loadUI('v_empty')
@@ -166,6 +181,21 @@ tp = tc
 	tc.font = 0x61340000
 	tc.align = 1
 	tc.style = 5
+	tp = tc
+	tp = tp.parent
+	--end
+	tc = G.TextQuad()
+	tp.addChild(tc)
+	tc.name = '剩余次数'
+	tc.left = 161.000
+	tc.right = 361.000
+	tc.bottom = 147.000
+	tc.top = 247.000
+	tc.scaleX = 0.500
+	tc.scaleY = 0.500
+	tc.text = '99'
+	tc.font = 0x603c0000
+	tc.style = 3
 	tp = tc
 	tp = tp.parent
 	--end

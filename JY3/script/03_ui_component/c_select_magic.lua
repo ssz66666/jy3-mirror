@@ -10,16 +10,22 @@ function t:init()
     self.确定 = self.按钮.getChildByName('接受')
     self.重选 = self.按钮.getChildByName('重选')
     self.被动组 = {0,0,0,0}
+    self.剩余次数 = G.call('get_point',237) * 2
+    self.剩余次数校验 = -999 - G.call('get_point',237) * 2
 end
 function t:start()
     self.背景.getChildByName('说明').shadowX = 1
     self.背景.getChildByName('说明').shadowAlpha = 120
     self.背景.getChildByName('标签').shadowX = 1
     self.背景.getChildByName('标签').shadowAlpha = 120
+    self.背景.getChildByName('标签2').shadowX = 1
+    self.背景.getChildByName('标签2').shadowAlpha = 120
     self.obj.getChildByName('被动').shadowX = 1
     self.obj.getChildByName('被动').shadowAlpha = 120
     self.obj.getChildByName('被动说明').shadowX = 1
     self.obj.getChildByName('被动说明').shadowAlpha = 120
+    self.obj.getChildByName('剩余次数').shadowX = 1
+    self.obj.getChildByName('剩余次数').shadowAlpha = 120
     self:刷新显示()
 end
 function t:刷新显示()
@@ -93,12 +99,24 @@ function t:刷新显示()
     end
     self.obj.getChildByName('被动').text = str_字符串_1 
     self.obj.getChildByName('被动说明').text = str_字符串_2 
-    print(str_字符串_1)
-    print(str_字符串_2)
+    self.obj.getChildByName('剩余次数').text = self.剩余次数 - 1
+    print(self.剩余次数,self.剩余次数校验)
 end
 function t:click(tar)
-    if tar == self.重选 then 
-        self:刷新显示()
+    if tar == self.重选 then
+        self.剩余次数 = self.剩余次数 - 1 
+        self.剩余次数校验 = self.剩余次数校验 + 1
+        if self.剩余次数 == 0 or self.剩余次数 ~= math.abs(self.剩余次数校验 + 999) then
+            print(self.剩余次数,self.剩余次数校验)
+            for i = 1,G.misc().被动个数 do
+                G.QueryName(0x10030001)[tostring(110+i)] = self.被动组[i]
+                G.call('set_newpoint',110+i,-10-self.被动组[i]) 
+            end
+            G.trig_event('选择被动结束')  
+        else
+           self:刷新显示()
+        end
+      
     elseif tar == self.确定 then 
         for i = 1,G.misc().被动个数 do
             G.QueryName(0x10030001)[tostring(110+i)] = self.被动组[i]
