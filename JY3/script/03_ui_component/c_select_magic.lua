@@ -26,6 +26,10 @@ function t:start()
     self.obj.getChildByName('被动说明').shadowAlpha = 120
     self.obj.getChildByName('剩余次数').shadowX = 1
     self.obj.getChildByName('剩余次数').shadowAlpha = 120
+    if G.call('get_point',237) >= 10 then
+        self.剩余次数 = 20
+        self.剩余次数校验 = -999 - 20 
+    end
     self:刷新显示()
 end
 function t:刷新显示()
