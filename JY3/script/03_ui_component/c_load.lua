@@ -103,6 +103,10 @@ function t:click(tar)
                     local int_周目 = o_files.周目
                     local int_通关 = o_files.通关
                     G.call('继承_读档',10)
+                    if G.call('通用_存档剔除') and  G.misc().重置存档 == nil then
+                        G.call('notice1','请重新开始游戏')
+                        return 
+                    end
                     G.call('mapoff')
                     local int_清除成就 = G.misc().清除成就
                     local _随机库 = G.misc().随机库
