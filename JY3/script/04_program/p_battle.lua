@@ -135,14 +135,14 @@ t['战斗系统_主角监控'] = function()
                             end
                         end
                     end
-                    if G.call('get_magic',241) > 0 then
+                    if G.call('get_magic',241) > 0 then --武穆遗书加成
                         int_队友 = int_队友 + 1
                     end
-                    if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then 
+                    if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then --天罡北斗阵对内功回血的加成
                         int_天罡效果 = int_队友
                     end 
-                    if G.call('get_point',8) == 4 then 
-                        int_天罡效果 = 3 
+                    if G.call('get_point',8) == 4 then --全真派加成
+                        int_天罡效果 = int_天罡效果 + 3 
                     end
                     if o_skill.内功轻功效果 == 10 or o_skill.内功轻功效果 == 11 then 
                         if o_skill.内功轻功效果 == 10 then 
