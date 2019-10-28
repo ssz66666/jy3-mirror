@@ -805,36 +805,63 @@ t['通用_战斗飘字']=function(int_位置,int_范围)  --
 end 
 t['call_wood']=function() 
     --if G.misc().战斗结果 == 0 then return end 
-    G.call('set_role',223,15,9989999)
-    G.call('set_role',223,1,9989999)
-    G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
-    local o_body = G.QueryName(0x1003001)
-    local int_hp = G.call('get_point',44) 
-    local int_hpmax = G.call('get_point',45)  
-    for i = 3,8 do
-        G.call('set_role',223,i,0)
+    G.call("talk",'',38,'   选择木桩类型？',2,1)
+    local int_选项 = 0
+    while int_选项 == 0 do
+        int_选项 = G.call("menu",'',0,'',0,0,{"1,经验木桩","2,练功木桩","3,离开"},0)
+        if int_选项 > 0 then
+            G.call('all_over') 
+        end
     end
-    G.call('set_role',223,31,100)
-    G.call('set_roleskill',223,1,191)
-    G.call('set_roleskill',223,2,191)
-    G.call('set_roleskill',223,3,191)
-    G.misc().木桩 = 1
-    --G.call('set_point',87,1)
-    --G.call('set_point',97,99999)
-    G.call('set_team',2,3,4,16)
-    G.call('call_battle',1,10,3,0.000000003,223,0,0,0,0,0)
-    for i = 3,8 do
-        G.call('set_role',223,i,100)
+    if int_选项 == 1 then
+        G.QueryName(0x10040000+420).存储记录 = -10-G.call('get_role',420,1)
+        G.call('set_roleskill',420,1,math.random(129)+1)
+        G.call('set_roleskill',420,2,math.random(129)+1)
+        G.call('set_roleskill',420,3,math.random(129)+1)
+        if G.call('get_roleskill',420,1) == 83 or G.call('get_roleskill',420,1) == 97 then 
+            G.call('set_roleskill',420,1,80) 
+        end 
+        if G.call('get_roleskill',420,2) == 83 or G.call('get_roleskill',420,2) == 97 then 
+            G.call('set_roleskill',420,2,81) 
+        end  
+        if G.call('get_roleskill',420,3) == 83 or G.call('get_roleskill',420,3) == 97 then 
+            G.call('set_roleskill',223,3,82) 
+        end 
+        G.call('call_battle',1,10,1,G.call('get_love',38)*0.3,420,0,0,0,0,0)
+        G.call('add_hour',1)
+        G.call('turn_map')
+    elseif int_选项 == 2 then
+        G.call('set_role',223,15,9989999)
+        G.call('set_role',223,1,9989999)
+        G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
+        local o_body = G.QueryName(0x1003001)
+        local int_hp = G.call('get_point',44) 
+        local int_hpmax = G.call('get_point',45)  
+        for i = 3,8 do
+            G.call('set_role',223,i,0)
+        end
+        G.call('set_role',223,31,100)
+        G.call('set_roleskill',223,1,191)
+        G.call('set_roleskill',223,2,191)
+        G.call('set_roleskill',223,3,191)
+        G.misc().木桩 = 1
+        --G.call('set_point',87,1)
+        --G.call('set_point',97,99999)
+        G.call('set_team',2,3,4,16)
+        G.call('call_battle',1,10,3,0.000000003,223,0,0,0,0,0)
+        for i = 3,8 do
+            G.call('set_role',223,i,100)
+        end
+        G.call('set_role',223,15,40000)
+        G.call('set_role',223,1,40000)
+        G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
+        G.call('set_roleskill',223,1,167)
+        G.call('set_roleskill',223,2,145)
+        G.call('set_roleskill',223,3,71)
+        G.misc().木桩 = 0
+        G.call('add_hour',6)
+        G.call('turn_map')
     end
-    G.call('set_role',223,15,40000)
-    G.call('set_role',223,1,40000)
-    G.QueryName(0x10040000+223).存储记录 = -10-G.call('get_role',223,1)
-    G.call('set_roleskill',223,1,167)
-    G.call('set_roleskill',223,2,145)
-    G.call('set_roleskill',223,3,71)
-    G.misc().木桩 = 0
-    G.call('add_hour',6)
-    G.call('turn_map')
 end 
 t['get_drop']=function()  --取得战斗掉落
     local o_battle = G.QueryName(0x10150001)

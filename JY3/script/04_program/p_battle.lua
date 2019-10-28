@@ -1502,11 +1502,6 @@ t['战斗系统_事件响应'] = function()
                                         ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').visible = true
                                     end
                                 end 
-                            end 
-                            if G.call('get_point',46) >= needmp then 
-                                int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500)
-                            else
-                                int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500*G.call('get_point',46)/needmp)
                             end 	
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true     
