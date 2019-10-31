@@ -265,6 +265,9 @@ t['通用_读档'] = function(int_档案编号)
                 local o_achieve = G.QueryName(0x10170000+i)
                 for n = 1,#o_achieve.进度列表 do 
                     maxpoint = maxpoint + o_achieve.进度列表[n].分数
+                    if o_achieve.进度列表[n].分数 > 200 then
+                        G.call('通用_强退游戏') 
+                    end
                     if o_achieve.进度列表[n].完成 == 1 then
                         point = point + o_achieve.进度列表[n].分数
                     end
