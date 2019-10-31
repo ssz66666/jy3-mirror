@@ -376,6 +376,8 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
+    G.call('set_point',237,2)
+    G.call('功能_周目套装成就记录')
     --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
@@ -2293,6 +2295,17 @@ t['指令_备份基础属性']=function() --
     end
     local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
     print('int_成就=',int_成就)
+    local int_周目成就 = 0
+    for i = 1,#G.QueryName(0x10170018).进度列表 do 
+        if G.QueryName(0x10170018).进度列表[i].当前进度 == 1 then
+            int_周目成就 = int_周目成就 + 1
+        end
+    end
+    for i = 1,#G.QueryName(0x10170019).进度列表 do 
+        if G.QueryName(0x10170019).进度列表[i].当前进度 == 1 then
+            int_周目成就 = int_周目成就 + 1
+        end
+    end
     local int_物品数量 = 0
     local item = G.DBTable('o_item')
     for i = 1,#item do
@@ -2312,6 +2325,7 @@ t['指令_备份基础属性']=function() --
     G.call('set_newpoint',237,-G.call('get_point',237)-10)
     G.call('set_newpoint',76,-int_物品数量-2000)
     G.call('set_newpoint',80,-int_成就-2000)
+    G.call('set_newpoint',81,-int_周目成就-2000)
     G.call('set_newpoint',3,-G.call('get_point',3)-10) 
     G.call('set_newpoint',5,-G.call('get_point',5)-10) 
     G.call('set_newpoint',63,-G.call('get_point',63)-10) 
@@ -3805,6 +3819,8 @@ t['功能_周目套装成就记录']=function()
     if int_取得套装 > 0 then 
         if o_套装成就.进度列表[int_取得套装].完成 == 0 then 
             o_套装成就.进度列表[int_取得套装].完成 = 1
+            o_套装成就.进度列表[int_取得套装].当前进度 = 1
+            G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
             G.call('notice1','恭喜完成[03]'..o_套装成就.进度列表[int_取得套装].名称)
             local int_完成数 = 0
             for i = 1,#o_套装成就 do
@@ -3821,21 +3837,29 @@ t['功能_周目套装成就记录']=function()
     local int_周目 = G.call('get_point',237) 
     if int_周目 == 2 then 
         if o_周目成就.进度列表[1].完成 == 0 then 
-           o_周目成就.进度列表[1].完成 = 1
-           G.call('notice1','恭喜完成[03]'..o_周目成就.进度列表[1].名称)
+            o_周目成就.进度列表[1].当前进度 = 1
+            G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
+            o_周目成就.进度列表[1].完成 = 1
+            G.call('notice1','恭喜完成[03]'..o_周目成就.进度列表[1].名称)
         end
     elseif int_周目 == 10 then 
         if o_周目成就.进度列表[2].完成 == 0 then 
+            o_周目成就.进度列表[2].当前进度 = 1
+            G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
             o_周目成就.进度列表[2].完成 = 1
             G.call('notice1','恭喜完成[03]'..o_周目成就.进度列表[2].名称)
         end
     elseif int_周目 == 16 then
         if o_周目成就.进度列表[3].完成 == 0 then 
+            o_周目成就.进度列表[3].当前进度 = 1
+            G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
             o_周目成就.进度列表[3].完成 = 1
             G.call('notice1','恭喜完成[03]'..o_周目成就.进度列表[3].名称)
         end
     elseif int_周目 == 30 then  
         if o_周目成就.进度列表[4].完成 == 0 then 
+            o_周目成就.进度列表[4].当前进度 = 1
+            G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
             o_周目成就.进度列表[4].完成 = 1
             G.call('notice1','恭喜完成[03]'..o_周目成就.进度列表[4].名称)
         end

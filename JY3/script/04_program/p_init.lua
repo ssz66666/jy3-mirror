@@ -150,6 +150,25 @@ t['地图系统_防修改监控'] = function()
 			int_检测 = int_检测 + 1
 		end
 	end
+	local int_周目成就 = 0
+    for i = 1,#G.QueryName(0x10170018).进度列表 do 
+        if G.QueryName(0x10170018).进度列表[i].当前进度 == 1 then
+            int_周目成就 = int_周目成就 + 1
+        end
+    end
+    for i = 1,#G.QueryName(0x10170019).进度列表 do 
+        if G.QueryName(0x10170019).进度列表[i].当前进度 == 1 then
+            int_周目成就 = int_周目成就 + 1
+        end
+	end
+	if  G.misc().检测_1011 == nil  then
+		G.misc().检测_1011 = 1
+		G.call('set_newpoint',81,-int_周目成就-2000)
+	end
+	if math.abs(int_周目成就) ~= math.abs(G.call('get_newpoint',81)+2000) then 
+		print('int_周目成就',int_周目成就,G.call('get_newpoint',81))
+		int_检测 = int_检测 + 1
+	end
 	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 10 )  then
 		--print('周目',G.call('get_point',237),G.call('get_newpoint',237))
 		int_检测 = int_检测 + 1
