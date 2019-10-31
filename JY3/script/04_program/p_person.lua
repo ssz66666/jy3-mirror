@@ -755,6 +755,9 @@ t['聚贤庄-半瓶神仙醋']=function()
                             end
                             G.call('all_over')
                             local int_min = G.call('通用_读取时间差')  
+                            if G.call('get_point',237) >= 10 then
+                                int_min = 60
+                            end 
                             if int_min   >= 60  then   
                                 G.call("talk",'',38,'    请选择无尽模式！',2,1) 
                                 local int_选项 = 0
