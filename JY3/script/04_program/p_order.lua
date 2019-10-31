@@ -105,21 +105,7 @@ t['通用_存档剔除'] = function(int_档案编号)
     local result = false
     local point = 0
     local maxpoint = 0
-    local o_一鸣惊人 =  G.QueryName(0x10170012).进度列表[1]
-    local achieve = G.DBTable('o_achieve')
-    for i = 1,#achieve do 
-        local o_achieve = G.QueryName(0x10170000+i)
-        for n = 1,#o_achieve.进度列表 do 
-            maxpoint = maxpoint + o_achieve.进度列表[n].分数
-            if o_achieve.进度列表[n].完成 == 1 then
-                point = point + o_achieve.进度列表[n].分数
-            end
-        end
-    end  
-    if o_一鸣惊人.完成 == 1  and maxpoint < 5035 then 
-        result = true
-    end
-    if point == 5035 or maxpoint == point then 
+    if G.QueryName(0x10170012).进度列表[1].完成 == 1   then 
         result = true
     end
     return  result
@@ -237,7 +223,7 @@ t['通用_读档'] = function(int_档案编号)
         load_ofile(obj);
         math.randomseed(tostring(os.time()):reverse():sub(1, 6)) --随机种子
         if int_档案编号 > 0 and int_档案编号 < 5 then 
-            if G.call('通用_存档剔除') and  G.misc().重置存档 == nil then
+            if G.call('通用_存档剔除') and  G.misc().重置数据存档 == nil then
                 G.call('notice1','请重新开始游戏')
                 return
             end
@@ -587,7 +573,7 @@ t['重生']=function()
     local int_随机序号 = G.misc().随机序号
     --G.trig_event('监控')
     G.call('成就_读档',10)
-    if G.call('通用_存档剔除') and  G.misc().重置存档 == nil then
+    if G.call('通用_存档剔除') and  G.misc().重置数据存档 == nil then
         G.call('notice1','请重新开始游戏')
         return 
     end
@@ -668,7 +654,7 @@ t['create']=function()  --建立角色
         G.call('通用_大随机种子')
     end
     G.call('指令_备份基础属性')
-    G.misc().重置存档 = 1
+    G.misc().重置数据存档 = 1
     G.addUI('v_addpoint')
     G.wait1('建立角色结束')
     G.removeUI('v_addpoint')
