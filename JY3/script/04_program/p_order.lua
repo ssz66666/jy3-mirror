@@ -105,7 +105,7 @@ t['通用_存档剔除'] = function(int_档案编号)
     local result = false
     local point = 0
     local maxpoint = 0
-    local o_gpmz =  G.QueryName(0x1017000f)
+    local o_一鸣惊人 =  G.QueryName(0x10170012).进度列表[1]
     local achieve = G.DBTable('o_achieve')
     for i = 1,#achieve do 
         local o_achieve = G.QueryName(0x10170000+i)
@@ -116,11 +116,10 @@ t['通用_存档剔除'] = function(int_档案编号)
             end
         end
     end  
-    if maxpoint == point and maxpoint < 5035 then 
+    if o_一鸣惊人.完成 == 1  and maxpoint < 5035 then 
         result = true
     end
-    print('point=',point)
-    if point == 5035 then 
+    if point == 5035 or maxpoint = point then 
         result = true
     end
     return  result
