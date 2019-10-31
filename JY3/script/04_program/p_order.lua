@@ -2309,7 +2309,7 @@ t['指令_备份基础属性']=function() --
             int_周目成就 = int_周目成就 + 1
         end
     end
-    for i = 1,#G.QueryName(0x10170012).进度列表 do 
+    for i = 1,(#G.QueryName(0x10170012).进度列表 - 1) do 
         if G.QueryName(0x10170012).进度列表[i].当前进度 == 1 then
             int_周目成就 = int_周目成就 + 1
         end
