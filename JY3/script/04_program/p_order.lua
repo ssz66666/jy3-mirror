@@ -3725,7 +3725,7 @@ t['通用_检测装备']=function()
         G.misc().套装恢复 = 1
     end
     if result == true then 
-        --G.call('通用_强退游戏',9999)
+        G.call('通用_强退游戏',9999)
     end
 end
 t['produce_equip']=function(i_equip_装备,int_数量,int_随机类型,int_品质级别,int_递增属性) 
