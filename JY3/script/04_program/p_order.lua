@@ -119,7 +119,7 @@ t['通用_存档剔除'] = function(int_档案编号)
     if o_一鸣惊人.完成 == 1  and maxpoint < 5035 then 
         result = true
     end
-    if point == 5035 or maxpoint = point then 
+    if point == 5035 or maxpoint == point then 
         result = true
     end
     return  result
