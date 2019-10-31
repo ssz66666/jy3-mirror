@@ -404,13 +404,13 @@ function t:rollOver(tar)
                         str = str..'[br][09]游俠之御风追日' 
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 2 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 2 then
                         str = str..'[br][07](二件套:)[br][06]'..'生命+2500 内力+2500 闪避率UP 武功出招速度+1'
                     else
                         str = str..'[br][09](二件套:)[br][09]'..'生命+2500 内力+2500 闪避率UP 武功出招速度+1'
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 3 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 3 then
                         str = str..'[br][07](三件套:)[br][06]'..'生命+5000 内力+5000 闪避率UP 武功出招速度+3'
                     else
                         str = str..'[br][09](三件套:)[br][09]'..'生命+5000 内力+5000 闪避率UP 武功出招速度+3'
@@ -432,13 +432,13 @@ function t:rollOver(tar)
                         str = str..'[br][09]學士之皂白躍淵靴' 
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 2 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 2 then
                         str = str..'[br][07](二件套:)[br][06]'..'生命+2500 内力+2500 修炼武功速度加速，可以和奇才叠加,装备爆率+0.5%'
                     else
                         str = str..'[br][09](二件套:)[br][09]'..'生命+2500 内力+2500 修炼武功速度加速，可以和奇才叠加,装备爆率+0.5%'
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 3 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 3 then
                         str = str..'[br][07](三件套:)[br][06]'..'生命+5000 内力+5000 修炼武功速度翻倍，可以和奇才叠加，升级获得修为点额外+1,装备爆率+1%'
                     else
                         str = str..'[br][09](三件套:)[br][09]'..'生命+5000 内力+5000 修炼武功速度翻倍，可以和奇才叠加，升级获得修为点额外+1,装备爆率+1%'
@@ -460,13 +460,13 @@ function t:rollOver(tar)
                         str = str..'[br][09]霸王之烏騅踏雪靴' 
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 2 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 2 then
                         str = str..'[br][07](二件套:)[br][06]'..'生命+2500 内力+2500  伤害+10%，治疗效果+5%'
                     else
                         str = str..'[br][09](二件套:)[br][09]'..'生命+2500 内力+2500  伤害+10%，治疗效果+5%'
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 3 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 3 then
                         str = str..'[br][07](三件套:)[br][06]'..'生命+5000 内力+5000 伤害+20%，治疗效果+10%，可以突破治疗上限9999 队友可以突破伤害上限9999'
                     else
                         str = str..'[br][09](三件套:)[br][09]'..'生命+5000 内力+5000 伤害+20%，治疗效果+10%，可以突破治疗上限9999 队友可以突破伤害上限9999'
@@ -488,13 +488,13 @@ function t:rollOver(tar)
                         str = str..'[br][09]修羅之鎮獄' 
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 2 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 2 then
                         str = str..'[br][07](二件套:)[br][06]'..'生命+2500 内力+2500  降低伤害10% 怒气增加速度UP 暴击伤害+50% 异常抵抗率UP'
                     else
                         str = str..'[br][09](二件套:)[br][09]'..'生命+2500 内力+2500  降低伤害10% 怒气增加速度UP 暴击伤害+50% 异常抵抗率UP'
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 3 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 3 then
                         str = str..'[br][07](三件套:)[br][06]'..'生命+5000 内力+5000 降低伤害20% 怒气恢复速度翻倍 暴击伤害+100% 完全免疫全部异常状态'
                     else
                         str = str..'[br][09](三件套:)[br][09]'..'生命+5000 内力+5000 降低伤害20% 怒气恢复速度翻倍 暴击伤害+100% 完全免疫全部异常状态'
@@ -516,13 +516,13 @@ function t:rollOver(tar)
                         str = str..'[br][09]淑女之寸金生蓮鞋' 
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 2 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 2 then
                         str = str..'[br][07](二件套:)[br][06]'..'生命+2500 内力+2500  出手后集气从10%开始  增加内功【晕眩】几率'
                     else
                         str = str..'[br][09](二件套:)[br][09]'..'生命+2500 内力+2500  出手后集气从10%开始  增加内功【晕眩】几率'
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 3 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 3 then
                         str = str..'[br][07](三件套:)[br][06]'..'生命+5000 内力+5000 出手后集气从30%开始 攻击附加【晕眩】'
                     else
                         str = str..'[br][09](三件套:)[br][09]'..'生命+5000 内力+5000 出手后集气从30%开始 攻击附加【晕眩】'
@@ -544,13 +544,13 @@ function t:rollOver(tar)
                         str = str..'[br][09]傳奇之火鳳煌羽靴' 
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 2 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 2 then
                         str = str..'[br][07](二件套:)[br][06]'..'生命+2500 内力+2500  左右和斗转效果+25%'
                     else
                         str = str..'[br][09](二件套:)[br][09]'..'生命+2500 内力+2500  左右和斗转效果+25%'
                     end
                     str = str..'[br]'
-                    if G.call('通用_取得套装',G.misc().equip_队员编号,o_equip.套装) >= 3 then
+                    if G.call('通用_取得套装',0,o_equip.套装) >= 3 then
                         str = str..'[br][07](三件套:)[br][06]'..'生命+5000 内力+5000 左右和斗转效果+50%，无视条件修炼武学和装备内功'
                     else
                         str = str..'[br][09](三件套:)[br][09]'..'生命+5000 内力+5000 左右和斗转效果+50%，无视条件修炼武学和装备内功'
