@@ -1732,7 +1732,8 @@ t['猜数字']=function()
             end
             G.call('all_over')
             o_szyy.进度列表[int_mo].当前进度 = o_szyy.进度列表[int_mo].当前进度 + 1
-            if o_szyy.进度列表[int_mo].完成 == 0 then 
+            if o_szyy.进度列表[int_mo].完成 == 0 then
+                G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   ) 
                 o_szyy.进度列表[int_mo].完成 = 1
                 G.call('notice1','完成成就【'..o_szyy.进度列表[int_mo].名称..'】') 
             end 
