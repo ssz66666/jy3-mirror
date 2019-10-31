@@ -258,6 +258,21 @@ t['通用_读档'] = function(int_档案编号)
         G.call('指令_存储属性')
         G.misc().新游戏 = 1
         if int_档案编号 > 0 and int_档案编号 <= 4 then
+            local point = 0
+            local maxpoint = 0
+            local achieve = G.DBTable('o_achieve')
+            for i = 1,#achieve do 
+                local o_achieve = G.QueryName(0x10170000+i)
+                for n = 1,#o_achieve.进度列表 do 
+                    maxpoint = maxpoint + o_achieve.进度列表[n].分数
+                    if o_achieve.进度列表[n].完成 == 1 then
+                        point = point + o_achieve.进度列表[n].分数
+                    end
+                end  
+            end  
+            if  maxpoint > 5275  then
+                G.call('通用_强退游戏') 
+            end
             local o_team = G.QueryName(0x10110001)
             if G.misc().随机序号 == nil then 
                 G.call('通用_随机种子')
