@@ -376,7 +376,6 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('小游戏-野球拳')
     --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
@@ -3792,6 +3791,67 @@ t['add_equip']=function(i_equip_装备,int_数量,boolean_是否删除物品)
         o_store.装备[1].代码 = i_equip_装备
         o_store.装备[1].数量 = int_数量
     end
+end
+t['功能_周目套装成就记录']=function()
+    local o_周目成就 =  G.QueryName(0x10170018)
+    local o_套装成就 =  G.QueryName(0x10170019)
+    local int_取得套装 = 0
+    for i = 1,6 do 
+        if G.call('通用_取得套装',0,i) == 3 then
+            int_取得套装 = i
+            break 
+        end
+    end
+    if int_取得套装 > 0 then 
+        if o_套装成就.进度列表[int_取得套装].完成 == 0 then 
+            o_套装成就.进度列表[int_取得套装].完成 = 1
+            G.call('notice1','恭喜完成[03]'..o_套装成就.进度列表[int_取得套装].名称)
+            local int_完成数 = 0
+            for i = 1,#o_套装成就 do
+                if o_套装成就.进度列表[i].完成 == 1 then 
+                    int_完成数 = int_完成数 + 1
+                end
+            end
+            if int_完成数 == #o_套装成就.进度列表  and o_套装成就.完成 == 0 then
+                o_套装成就.完成 = 1
+                G.call('notice1','恭喜完成[03]配套成龙')
+            end
+        end
+    end
+    local int_周目 = G.call('get_point',237) 
+    if int_周目 == 2 then 
+        if o_周目成就.进度列表[1].完成 == 0 then 
+           o_周目成就.进度列表[1].完成 = 1
+           G.call('notice1','恭喜完成[03]'..o_周目成就.进度列表[1].名称)
+        end
+    elseif int_周目 == 10 then 
+        if o_周目成就.进度列表[2].完成 == 0 then 
+            o_周目成就.进度列表[2].完成 = 1
+            G.call('notice1','恭喜完成[03]'..o_周目成就.进度列表[2].名称)
+        end
+    elseif int_周目 == 16 then
+        if o_周目成就.进度列表[3].完成 == 0 then 
+            o_周目成就.进度列表[3].完成 = 1
+            G.call('notice1','恭喜完成[03]'..o_周目成就.进度列表[3].名称)
+        end
+    elseif int_周目 == 30 then  
+        if o_周目成就.进度列表[4].完成 == 0 then 
+            o_周目成就.进度列表[4].完成 = 1
+            G.call('notice1','恭喜完成[03]'..o_周目成就.进度列表[4].名称)
+        end
+    end
+    local int_完成数 = 0
+    for i = 1,#o_周目成就 do
+        if o_周目成就.进度列表[i].完成 == 1 then 
+            int_完成数 = int_完成数 + 1
+        end
+    end
+    if int_完成数 == #o_周目成就.进度列表  and o_周目成就.完成 == 0 then
+        print('int_完成数',int_完成数)
+        o_周目成就.完成 = 1
+        G.call('notice1','恭喜完成[03]一往无前')
+    end
+
 end
 t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级别,int_递增属性)
     local o_equip_物品 = G.QueryName(i_equip_装备)

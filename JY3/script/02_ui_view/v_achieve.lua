@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_achieve = require 'c_achieve'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -1228,7 +1228,6 @@ tp = tc
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
 		tc.name = '进度'
-		tc.visible = false
 		tp = tc
 			tc = G.Quad()
 			tp.addChild(tc)
@@ -3245,6 +3244,128 @@ tp = tc
 			--end
 			tc = G.loadUI('v_empty')
 			tp.addChild(tc)
+			tc.name = '24'
+			tc.left = -5.000
+			tc.right = -5.000
+			tc.bottom = -1.000
+			tc.top = -1.000
+			tc.visible = false
+			tp = tc
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '周目'
+				tc.left = -187.000
+				tc.right = -187.000
+				tc.bottom = 120.000
+				tc.top = 120.000
+				tc.visible = false
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -75.000
+					tc.right = 75.000
+					tc.bottom = -25.000
+					tc.top = 25.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -110.000
+					tc.right = 140.000
+					tc.bottom = -36.000
+					tc.top = 36.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '一往无前'
+					tc.wrap = true
+					tc.font = 0x61320000
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -70.000
+					tc.right = -30.000
+					tc.bottom = -18.000
+					tc.top = 22.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_empty')
+			tp.addChild(tc)
+			tc.name = '25'
+			tc.left = -5.000
+			tc.right = -5.000
+			tc.bottom = -1.000
+			tc.top = -1.000
+			tc.visible = false
+			tp = tc
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '套装'
+				tc.left = -187.000
+				tc.right = -187.000
+				tc.bottom = 120.000
+				tc.top = 120.000
+				tc.visible = false
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -75.000
+					tc.right = 75.000
+					tc.bottom = -25.000
+					tc.top = 25.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -110.000
+					tc.right = 140.000
+					tc.bottom = -36.000
+					tc.top = 36.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '配套成龙'
+					tc.wrap = true
+					tc.font = 0x61320000
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -70.000
+					tc.right = -30.000
+					tc.bottom = -18.000
+					tc.top = 22.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_empty')
+			tp.addChild(tc)
 			tc.name = '14'
 			tc.visible = false
 			tp = tc
@@ -4429,6 +4550,7 @@ tp = tc
 			tc.right = 397.000
 			tc.bottom = 147.000
 			tc.top = 207.000
+			tc.visible = false
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.text = '点数:9999/9999'

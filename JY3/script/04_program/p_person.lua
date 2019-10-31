@@ -1494,6 +1494,7 @@ t['聚贤庄-华山之巅']=function()
                                     G.call('call_battle',1,81,1,125+ int_周目*10,223,0,0,0,0,0)
                                     local o_battle_结果 = G.call('get_battle')
                                     if o_battle_结果 == 1 then  
+                                        G.call('功能_周目套装成就记录')
                                         G.call("talk",'',38,'   哈哈哈哈...我苦熬了四个多月，直到今日才可交差了。今天不但你功德圆满，就连我也大功告成了…',2,1)
                                         G.call('all_over')
                                         G.call('通关_存档')
@@ -1577,7 +1578,8 @@ t['聚贤庄-华山之巅']=function()
                                 --_root.War("华山论剑", 0, 223, 0, 0, 0, 0, 0, 1.5, 1);
                                 G.call('call_battle',1,81,1,125+ int_周目*10,223,0,0,0,0,0)
                                 local o_battle_结果 = G.call('get_battle')
-                                if o_battle_结果 == 1 then  
+                                if o_battle_结果 == 1 then     
+                                    G.call('功能_周目套装成就记录')
                                     G.call("talk",'',38,'   哈哈哈哈...我苦熬了四个多月，直到今日才可交差了。今天不但你功德圆满，就连我也大功告成了…',2,1)
                                     G.call('all_over')
                                     G.call('通关_存档')
