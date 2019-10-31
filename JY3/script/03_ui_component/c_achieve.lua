@@ -44,7 +44,10 @@ function t:start()
                 end    
             end
         end
-    end   
+    end  
+    if  maxpoint > 5275  then
+        G.trig_event('强制退出')   
+    end
     G.misc().achieve_data_i = 1  
     G.misc().achieve_data_z = math.floor( (#achieve-1)/18) + 1
     self.成就.getChildByName('点数').text = '点数:'..tostring(point)..'/'..tostring(maxpoint)  

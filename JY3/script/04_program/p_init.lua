@@ -176,7 +176,7 @@ t['地图系统_防修改监控'] = function()
 	end
 	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 10 )  then
 		--print('周目',G.call('get_point',237),G.call('get_newpoint',237))
-		--int_检测 = int_检测 + 1
+		int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',237) == 1 then return end
 	local o_body = G.QueryName(0x10030001)
