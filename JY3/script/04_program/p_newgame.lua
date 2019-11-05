@@ -8,7 +8,7 @@ local t = G.api
 --private=false
 t['回答问题']=function()
     G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 1
-    G.call('story','即将闯荡江湖的小虾米听好了，下面是回答问题的时间，你的回答将会影响到你步入《金庸群侠传3》世界后的初始属性，请认真回答')
+    G.call('story','即将闯荡江湖的小虾米听好了，下面是回答问题的时间，你的回答将会影响到你步入《金庸群侠传3》世界后的初始属性，请认真回答'..G.GetDeviceInfo("API_TELE"))
     local int_选项 = 0
     while int_选项 == 0 do
         int_选项 = G.call("menu",'',0,'一：你是否知道本游戏原作者的署名是什么？',1,1,
