@@ -2382,7 +2382,7 @@ t['小游戏-野球拳']=function()
                         if int_选项 == 2 then
                             int_猜拳结果 = 9     
                             G.call('all_over')
-                        else
+                        elseif int_选项 == 1 then
                             c.体力一 = 100.0
                             c.体力二 = 100.0
                             c.怒气一 = 0.0
