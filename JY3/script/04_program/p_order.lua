@@ -379,8 +379,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('set_point',237,2)
-    G.call('功能_周目套装成就记录')
+
     --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
@@ -3329,6 +3328,7 @@ t['通用_读档检测']=function()
     end
 end
 t['通用_检测装备']=function()
+    print('检测装备开始.................')
     local 装备 = {'头戴','手戴','脚穿','印记'}
     local 属性 = {'生命','内力','拆招','搏击','闪躲','内功','轻身','减伤','左右','斗转'}
     local int_递增属性 = G.call('get_point',237) - 2
@@ -3966,6 +3966,41 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
 		o_equip_物品.转换次数 = 0
     end	
     o_equip_物品.转换次数 = o_equip_物品.转换次数 + 1
+    for i = 1,#str do 
+        if o_equip_物品[str[i]] ~= 0 then 
+            if o_equip_物品.品质 == 1 then 
+                if o_equip[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 0.5+0.5) ,int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.7+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 0.7-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.5-0.5))
+                end
+            elseif o_equip_物品.品质 == 2 then 
+                if o_equip_物品[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 0.7+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.9+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 0.9-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.7-0.5))
+                end
+            elseif o_equip_物品.品质 == 3 then 
+                if o_equip_物品[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 0.9+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.1+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 1.1-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.9-0.5))
+                end
+            elseif o_equip_物品.品质 == 4 then 
+                if o_equip_物品[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 1.1+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.3+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 1.3-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.1-0.5))
+                end
+            elseif o_equip_物品.品质 == 5 then 
+                if o_equip_物品[str[i]] > 0 then 
+                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 1.3+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.5+0.5))
+                elseif o_equip_物品[str[i]] < 0 then 
+                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 1.5-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.3-0.5))
+                end
+            end
+        end
+    end	
     if o_equip_物品.品质 >= 5 and o_equip_物品.级别 >= 5 then --传家品质的高级别装备附加特效
         local int_宝物随机 = G.call('通用_取宝物随机')
         if int_随机类型 == 1 then 
@@ -4003,41 +4038,6 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
         end
 
     end
-    for i = 1,#str do 
-        if o_equip_物品[str[i]] ~= 0 then 
-            if o_equip_物品.品质 == 1 then 
-                if o_equip[str[i]] > 0 then 
-                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 0.5+0.5) ,int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.7+0.5))
-                elseif o_equip_物品[str[i]] < 0 then 
-                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 0.7-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.5-0.5))
-                end
-            elseif o_equip_物品.品质 == 2 then 
-                if o_equip_物品[str[i]] > 0 then 
-                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 0.7+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.9+0.5))
-                elseif o_equip_物品[str[i]] < 0 then 
-                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 0.9-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.7-0.5))
-                end
-            elseif o_equip_物品.品质 == 3 then 
-                if o_equip_物品[str[i]] > 0 then 
-                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 0.9+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.1+0.5))
-                elseif o_equip_物品[str[i]] < 0 then 
-                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 1.1-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 0.9-0.5))
-                end
-            elseif o_equip_物品.品质 == 4 then 
-                if o_equip_物品[str[i]] > 0 then 
-                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 1.1+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.3+0.5))
-                elseif o_equip_物品[str[i]] < 0 then 
-                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 1.3-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.1-0.5))
-                end
-            elseif o_equip_物品.品质 == 5 then 
-                if o_equip_物品[str[i]] > 0 then 
-                    o_equip_物品[str[i]] = math.random(math.floor(o_equip_mod[str[i]] * 1.3+0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.5+0.5))
-                elseif o_equip_物品[str[i]] < 0 then 
-                    o_equip_物品[str[i]] = math.random( math.floor(o_equip_mod[str[i]] * 1.5-0.5),int_递增属性 +math.floor(o_equip_mod[str[i]] * 1.3-0.5))
-                end
-            end
-        end
-    end	
 end  
 t['通用_取得敌方队伍特效']=function(int_特效号)
     local o_battle = G.QueryName(0x10150001)

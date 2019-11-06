@@ -230,7 +230,6 @@ function t:显示装备()
             self.装备_list[i].visible = true
             local i_equip = G.misc().equip[(G.misc().equip_data_i - 1)*18 + i ]
             local o_equip = G.QueryName( i_equip      ) 
-            print(i,i_equip)
             self.装备_list[i].getChildByName('图片').img =  o_equip.图片
             if o_equip.套装 > 0 then
                 self.装备_list[i].getChildByName('品质').img = 0x560f2008
