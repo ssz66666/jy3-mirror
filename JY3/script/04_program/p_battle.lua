@@ -190,9 +190,9 @@ t['战斗系统_主角监控'] = function()
                 G.misc().战斗状态 = 0
                 ui.getChildByName('map').getChildByName(位置[1]).x = 0
             end 	
-            local int_hp = 0
-            local int_mp = 0
             if G.call('get_point',197) ~= nil and G.call('get_point',44) > 0 then   --内功回血回内效果
+                local int_hp = 0
+                local int_mp = 0
                 if G.QueryName(G.call('get_point',197)).内功轻功效果 == 10 or G.QueryName(G.call('get_point',197)).内功轻功效果 == 11 then 
                     if G.QueryName(G.call('get_point',197)).内功轻功效果 == 10 then 
                         int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*G.QueryName(G.call('get_point',197)).效果等级/100)
@@ -1378,7 +1378,6 @@ t['战斗系统_事件响应'] = function()
                     needmp = math.floor(needmp*G.QueryName(G.call('get_point',196)).效果等级/100)
                 end 
                 local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}
-                local int_hp = 0
                 ui.getChildByName('图表').getChildByName('文字').text = o_skill.名称
                 if G.call('get_point',87) > 0 then --混乱状态用普通攻击
                     o_skill = G.QueryName(0x10050000+207)
@@ -1452,8 +1451,8 @@ t['战斗系统_事件响应'] = function()
                     if i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 4  then 
                         int_逍遥御仙效果 = int_队友
                     end 
+                    local int_hp = 0
                     if o_skill.范围 < 2 then 
-                        local int_hp = 0
                         if G.call('get_point',46) >= needmp then 
                             int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500)
                         else
@@ -1502,7 +1501,8 @@ t['战斗系统_事件响应'] = function()
                                         ui.getChildByName('hurt').getChildByName(位置[i]).getChildByName('加生命').visible = true
                                     end
                                 end 
-                            end 	
+                            end 
+                            print('int_hp=',int_hp)	
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true     
                         elseif o_skill.内功轻功效果 == 19 then
@@ -1521,12 +1521,7 @@ t['战斗系统_事件响应'] = function()
                             for j = 81,90 do 
                                 G.call('ser_point',j,0)
                                 G.call('ser_point',j+10,0)
-                            end
-                            if G.call('get_point',46) >= needmp then 
-                                int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500)
-                            else
-                                int_hp = math.floor(G.QueryName(0x10030001)[tostring(217)]*o_skill.效果等级*o_skill.修为等级/500*G.call('get_point',46)/needmp)
-                            end 	
+                            end	
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true             
                         elseif 	o_skill.内功轻功效果 == 6 then   --全体复活
@@ -1987,9 +1982,9 @@ t['战斗系统_事件响应'] = function()
                             end 
                             ui.getChildByName('代码').getChildByName(位置[i]).text = tostring(i_skill -0x10050000)
                         end
-                        local int_hp = 0
-                        local int_mp = 0
                         if ui.getChildByName('map').getChildByName(位置[i]).x == 150 then
+                            local int_hp = 0
+                            local int_mp = 0
                             --判断NPC的内功回血回内效果
                             int_hp = math.floor(o_role_tb[tostring(1)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],10)/100)
                             int_mp = math.floor(o_role_tb[tostring(2)]*G.call('通用_取得NPC内功效果',o_battle[位置[i] ],11)/100)

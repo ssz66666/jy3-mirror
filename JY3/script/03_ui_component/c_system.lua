@@ -352,32 +352,26 @@ function t:click(tar)
             G.misc().作弊菜单 = 1 
         elseif self.文本.getChildByName('secret').getChildByName('文本').text == 'hzw1014159 ' and  G.misc().作弊菜单 == 1 then 
             --下面为测试代码
-            -- local item =G.DBTable('o_item')
-            -- local skill =G.DBTable('o_skill')
-            -- local achieve = G.DBTable('o_achieve')
-            -- local book_story_list = G.DBTable('o_book_story_list')
-            -- for i = 1,#achieve do
-            --     local o_achieve = G.QueryName(0x10170000+i)
-            --     for j = 1,#o_achieve.进度列表 do
-            --         o_achieve.进度列表[j].完成 = 1  
-            --     end
-            -- end
-            -- for i = 1,#book_story_list do 
-            --     local o_book_story_list = G.QueryName(0x101e0000+i)
-            --     o_book_story_list.完美 = 1
-            --     G.call('add_equip',0x10180028 + i,1)
-            -- end
-            -- for i = 1,#item do  --全物品
-            --     G.call('add_item',i+1,1)
-            -- end	
-            -- G.call('add_point',5,500)--修为点
-            -- G.call('add_money',9999)  --金钱
-            -- for i = 1,#skill do --全技能
-            --     local o_skill = G.QueryName(0x10050000 + i)
-            --     G.call('add_magicexp',i+1,999)
-            --     o_skill.修为等级 = 5
-            -- end
-            -- G.call('通用_印记状态')
+            local item =G.DBTable('o_item')
+            local skill =G.DBTable('o_skill')
+            local achieve = G.DBTable('o_achieve')
+            local book_story_list = G.DBTable('o_book_story_list')
+            for i = 1,#book_story_list do 
+                local o_book_story_list = G.QueryName(0x101e0000+i)
+                o_book_story_list.完美 = 1
+                G.call('add_equip',0x10180028 + i,1)
+            end
+            for i = 1,#item do  --全物品
+                G.call('add_item',i+1,1)
+            end	
+            G.call('add_point',5,500)--修为点
+            G.call('add_money',9999)  --金钱
+            for i = 1,#skill do --全技能
+                local o_skill = G.QueryName(0x10050000 + i)
+                G.call('add_magicexp',i+1,999)
+                o_skill.修为等级 = 5
+            end
+            G.call('通用_印记状态')
         elseif self.文本.getChildByName('secret').getChildByName('文本').text == '人生何处不相逢' then
             local o_achieve = G.QueryName(0x10170012)
             local result = false
