@@ -2270,12 +2270,15 @@ t['副本_通天塔']=function(int_模式)
                     int_完美 = int_完美 + 1
                 end
             end
-            if int_完美 == 14 and not G.call('通用_拥有印记',15)  and not G.misc().获取剑神 then 
-                G.misc().获取剑神 = 1
-                G.call('add_equip',0x10180028 + 15,1)
-            end
-            if int_印记数量 < 14 and G.misc().重生 == 0 then 
-                G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记   
+            if not G.misc().获取印记 then 
+                if int_完美 == 14 and not G.call('通用_拥有印记',15)  and not G.misc().获取剑神 then 
+                    G.misc().获取剑神 = 1
+                    G.call('add_equip',0x10180028 + 15,1)
+                end
+                if int_印记数量 < 14 and G.misc().重生 == 0 then
+                    G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记   
+                end
+                G.misc().获取印记 = 1
             end
         end
     elseif int_模式 == 1 then
