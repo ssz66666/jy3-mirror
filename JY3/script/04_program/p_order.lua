@@ -902,6 +902,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     if G.call('get_point',237) == 1 then
         int_diffty = int_diffty/2 
     end
+    o_battle.diffty = int_diffty + int_战斗难度 
     --o_battle.diffty = int_diffty + int_战斗难度 + (G.call('get_point',237)-1)*5  --战斗难度随周目增加而增加
     if G.call('get_year') > 2 then --难度随时间增长
         o_battle.diffty = o_battle.diffty + (G.call('get_year') - 2)*10
