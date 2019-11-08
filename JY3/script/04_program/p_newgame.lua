@@ -417,7 +417,7 @@ t['回答问题']=function()
             o_role.生命 = o_role[tostring(1)] 
             o_role.内力 = o_role[tostring(2)] 
             for j = 3,7 do
-                o_role[tostring(j)] = o_role[tostring(j)] + math.floor(int_周目/3 + 1)
+                o_role[tostring(j)] = o_role[tostring(j)] + math.floor(int_周目/3 + 1)*int_周目
             end
             o_role[tostring(8)] = o_role[tostring(8)] + int_周目 
         end
