@@ -41,9 +41,9 @@ t['战斗系统_胜负监控'] = function()
             else
                 if G.call('get_point',4) < 50 then 
                     int_比例 = int_lvmax/50
-                    exp = math.floor(int_比例*exp/5  )
+                    exp = math.floor(int_比例*exp/2  )
                 else
-                    exp = math.floor(int_比例*exp/10  )
+                    exp = math.floor(int_比例*exp/5  )
                 end
             end
             G.call('add_point',3,exp)		
@@ -179,7 +179,12 @@ t['战斗系统_主角监控'] = function()
                 end 
                 ui.getChildByName('map').getChildByName(位置[1]).x = 151
                 ui.getChildByName('状态').text = tostring(0)
-                if G.call('通用_取得人物特效',0,3) and math.random(100) > 80 then --判断主角先攻发动 
+                local int_几率 = math.random(100)
+                local int_基值 = 10
+                if G.call('get_point',8) == 3 then 
+                    int_基值 = 20
+                end
+                if G.call('通用_取得人物特效',0,3) and int_几率 <= int_基值 then --判断主角先攻发动 
                     ui.getChildByName('map').getChildByName(位置[1]).x = 330 
                     G.trig_event('出手') 
                 end
@@ -2642,6 +2647,7 @@ t['magic_power1'] = function(int_id,int_no)
     local int_真武效果 = 0
     local int_舔血效果 = 0
     local int_毒仙阵效果 = 0
+    local int_慈悲效果 = 0
     for i = 2,5 do 
         if G.QueryName(0x10150001)[位置[i]] > 0 then 
             if G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i]] ).生命 > 0 then 
@@ -2665,6 +2671,8 @@ t['magic_power1'] = function(int_id,int_no)
             int_舔血效果 = int_队友
         elseif G.QueryName(i_magic_阵法).附加效果 == 10 then 
             int_毒仙阵效果 = int_队友
+        elseif G.QueryName(i_magic_阵法).附加效果 == 2 then
+            int_慈悲效果 = int_队友
         end
     end
     if G.call('get_point',44) < G.call('get_point',217)*0.5 and  (G.call('通用_取得人物特效',0,13) or G.call('通用_取得装备特效',0,204))   then --主角强力判断
@@ -2736,7 +2744,11 @@ t['magic_power1'] = function(int_id,int_no)
             else
                 string_字符串_3 = string_字符串_3..'.'..'慈悲'
             end
-            result = result - 150
+            if G.call('get_point',8) == 2 then 
+                result = result  - 150 - int_慈悲效果*25
+            else
+                result = result  - 75 - int_慈悲效果*25
+            end
         end 
     end 
     if  G.call('通用_取得我方队伍特效',1) or G.call('通用_取得我方装备特效',202) then --我方破绽效果
@@ -2804,7 +2816,11 @@ t['magic_power1'] = function(int_id,int_no)
                 else
                     string_字符串_2 = string_字符串_2..'.'..'真武破防'
                 end
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.2-int_真武效果*10/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                if G.call('get_point',8) == 1 then 
+                    hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.3-int_真武效果*10/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                else
+                    hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.15-int_真武效果*10/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                end
             else 
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
             end
@@ -2908,7 +2924,7 @@ t['magic_power1'] = function(int_id,int_no)
             end 
             local deytime = G.call('get_point',236)
             local int_时序 = 50 * deytime 
-            if o_skill.附加效果 == 1 then         --武功附加状态赋予
+            if o_skill.附加效果 == 1 or (G.call('通用_取得人物特效',0,18) and G.call('get_point',8) == 10  ) then         --武功附加状态赋予
                 if G.call('通用_取得人物特效',0,18)  then
                     seed = math.max(1,math.floor(seed/2))
                 end  
@@ -3162,8 +3178,12 @@ t['magic_power1'] = function(int_id,int_no)
     end
     local int_怒气 = 0 
     if hurt > 0 then 
-        if  G.call('逻辑_拥有被动',17) then 
-            int_怒气 = math.ceil(hurt/1000 + 0.5)
+        if  G.call('通用_取得人物特效',0,17) then 
+            if G.call('get_point',8) == 9 then 
+                int_怒气 = math.ceil(hurt/1000 + 0.5)
+            else
+                int_怒气 = math.ceil(hurt/1500 + 0.5)
+            end
         else
             int_怒气 = math.ceil(hurt/2000 + 0.5)
         end 
@@ -3471,7 +3491,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             else
                 string_字符串_3 = string_字符串_3..'.'..'慈悲'
             end
-            result = result - 150 - int_慈悲效果*25
+            if G.call('get_point',8) == 2 then 
+                result = result  - 150 - int_慈悲效果*25
+            else
+                result = result  - 75 - int_慈悲效果*25
+            end
         end 
     end  
     if math.random(100) > 80 and  (G.call('通用_取得人物特效',int_id,7) or G.call('通用_取得装备特效',int_id,203) or G.call('通用_取得装备特效',int_id,410) )  then --攻击方暴击效果
@@ -3579,7 +3603,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 else
                     string_字符串_2 = string_字符串_2..'.'..'舔血'
                 end
-                hurt4 = math.floor(hurt*0.3) 
+                if G.call('get_point',8) == 7 then 
+                    hurt4 = math.floor(hurt*0.3) 
+                else
+                    hurt4 = math.floor(hurt*0.15) 
+                end
             end  
             if G.call('通用_取得人物特效',int_id,20)  and math.random(100) < 50 then
                 G.call('add_role',int_id,14,1500)
@@ -3619,7 +3647,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             end  
             local deytime = G.call('get_point',236)
             local int_时序 = 50 * deytime 
-            if o_skill.附加效果 == 1 then         --武功附加状态赋予
+            if o_skill.附加效果 == 1  and G.call('通用_取得人物特效',int_id,18) then         --武功附加状态赋予
                 if G.call('通用_取得人物特效',int_id,18) then --阴毒效果
                     seed = math.max(1,math.floor(seed/2))
                 end  
@@ -4181,7 +4209,11 @@ t['magic_power3'] = function(int_id,int_no)
         else
             string_字符串_3 = string_字符串_3..'.'..'慈悲'
         end 
-        result = result  - 150 - int_慈悲效果*25
+        if G.call('get_point',8) == 2 then 
+            result = result  - 150 - int_慈悲效果*25
+        else
+            result = result  - 75 - int_慈悲效果*25
+        end
     end    
     hurt = hurt * result/100
     local int_闪避 = 0
@@ -4305,8 +4337,12 @@ t['magic_power3'] = function(int_id,int_no)
                 end 
             end
             local int_怒气 = 0
-            if  G.call('逻辑_拥有被动',17) then --计算怒气
-                int_怒气 = math.ceil(hurt/500 + 0.5)
+            if  G.call('通用_取得人物特效',0,17) then --计算怒气
+                if G.call('get_point',8) == 9 then 
+                    int_怒气 = math.ceil(hurt/500 + 0.5)
+                else
+                    int_怒气 = math.ceil(hurt/750 + 0.5)
+                end
             else
                 int_怒气 = math.ceil(hurt/1000 + 0.5)
             end
@@ -4335,7 +4371,7 @@ t['magic_power3'] = function(int_id,int_no)
             end 
             local deytime = G.call('get_point',236)
             local int_时序 = 50 * deytime 
-            if o_skill.附加效果 == 1 then         --武功附加状态赋予,主角定力越大几率越低
+            if o_skill.附加效果 == 1 or G.call('通用_取得人物特效',int_id,18) then         --武功附加状态赋予,主角定力越大几率越低
                 if G.call('通用_取得人物特效',int_id,18) then  --阴毒效果
                     seed = math.max(1,math.floor(seed/2))
                 end  

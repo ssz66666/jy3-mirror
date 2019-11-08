@@ -3905,8 +3905,12 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
     elseif G.call('通用_取得套装',0,2) == 3 then 
         int_寻宝 = 100
     end
-    if G.call('get_point',115) == 16 or G.misc().奇才 == 1 then
-        int_寻宝 = int_寻宝 + 50 
+    if G.call('通用_取得人物特效',0,16) then 
+        if (G.call('get_point',8) == 8 or G.misc().奇才 == 1)  then
+            int_寻宝 = int_寻宝 + 100 
+        else
+            int_寻宝 = int_寻宝 + 50 
+        end
     end
     int_几率 = int_几率 + int_寻宝
     if o_equip_物品.品质转换 and o_equip_物品.品质转换 >= 1 then
