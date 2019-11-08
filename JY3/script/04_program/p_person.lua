@@ -1748,6 +1748,7 @@ t['猜数字']=function()
         if o_szyy.进度列表[6].完成 == 0 then 
             if o_szyy.进度列表[6].当前进度 >= 100 then 
                 o_szyy.进度列表[6].完成 = 1
+                G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   ) 
                 G.call('notice1','完成成就【'..o_szyy.进度列表[6].名称..'】') 
             end
         end
