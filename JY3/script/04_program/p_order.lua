@@ -276,7 +276,7 @@ t['通用_读档'] = function(int_档案编号)
             if  maxpoint > 5275  then
                 G.call('通用_强退游戏') 
             end
-            if G.QueryName(0x10170012).进度列表[1].完成 and not G.misc().一鸣惊人完成 then 
+            if G.QueryName(0x10170012).进度列表[1].完成 == 1 and not G.misc().一鸣惊人完成 then 
                 G.call('通用_强退游戏') 
             end
             local o_team = G.QueryName(0x10110001)
