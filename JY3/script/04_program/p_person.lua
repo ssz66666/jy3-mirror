@@ -603,8 +603,8 @@ t['初入聚贤庄']=function()
     G.call("talk",'',38,'   这一点你大可不必担心。醋某送一匹好马，此马一个跟头就是十万八千里，小小中原弹丸之地，无论你去到哪里，都不会花费你半点时间。',2,1)
     G.call("talk",'',0,'   （原来这马是齐天大圣转世...）原来什么事情你都准备好了，我还担心什么。这就立刻开始这段惊心动魄的江湖旅程咯！',0,0)
     G.call('all_over')
-    if G.misc().国庆礼包 == nil  and G.call('get_point',237) > 1 then 
-        G.misc().国庆礼包 = 1
+    if G.misc().双十一礼包 == nil  and G.call('get_point',237) > 1 then 
+        G.misc().双十一礼包 = 1
     end
     if G.misc().出师 == nil then 
         G.misc().出师 = 1
@@ -1732,6 +1732,9 @@ t['猜数字']=function()
             end
             G.call('all_over')
             o_szyy.进度列表[int_mo].当前进度 = o_szyy.进度列表[int_mo].当前进度 + 1
+            if int_mo == 1  and o_szyy.进度列表[int_mo].完成  then
+                G.misc().一鸣惊人完成 = 1
+            end
             if o_szyy.进度列表[int_mo].完成 == 0 then
                 G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   ) 
                 o_szyy.进度列表[int_mo].完成 = 1
@@ -2267,7 +2270,8 @@ t['副本_通天塔']=function(int_模式)
                     int_完美 = int_完美 + 1
                 end
             end
-            if int_完美 == 14 and not G.call('通用_拥有印记',15)  then 
+            if int_完美 == 14 and not G.call('通用_拥有印记',15)  and not G.misc().获取剑神 then 
+                G.misc().获取剑神 = 1
                 G.call('add_equip',0x10180028 + 15,1)
             end
             if int_印记数量 < 14 and G.misc().重生 == 0 then 

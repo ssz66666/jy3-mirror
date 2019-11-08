@@ -2684,15 +2684,19 @@ t['magic_power1'] = function(int_id,int_no)
         result = result + 100    
     end  
     if G.call('通用_取得人物特效',int_id,9)  then --受击者见切效果
+        local int_几率 = 95
+        if G.call('get_point',8) == 3 then
+            int_几率 = 90
+        end
         local jq_randow = math.random(100)
-        if jq_randow > 90 then 
+        if jq_randow > int_几率 then 
             if string_字符串_3 == '' then 
                 string_字符串_3 = string_字符串_3..'见切闪躲'
             else
                 string_字符串_3 = string_字符串_3..'.'..'见切闪躲'
             end
             hurt = 0
-        elseif jq_randow > 80 then 
+        elseif jq_randow > int_几率 - 10 then 
             if string_字符串_3 == '' then 
                 string_字符串_3 = string_字符串_3..'见切免伤'
             else
@@ -2878,13 +2882,17 @@ t['magic_power1'] = function(int_id,int_no)
                 else
                     string_字符串_2 = string_字符串_2..'.'..'北冥真气'
                 end
-                if G.call('get_point',63) < 2500  and math.random(100) < 20  then
+                local int_几率 = 1
+                if G.call('get_point',8) == 6  then 
+                    int_几率 = 20
+                end
+                if G.call('get_point',63) < 2500  and math.random(100) < int_几率  then
                     G.call('add_point',46,150)
-                elseif G.call('get_point',63) < 5000  and G.call('get_point',63) >= 2500 and math.random(100) < 30  then
+                elseif G.call('get_point',63) < 5000  and G.call('get_point',63) >= 2500 and math.random(100) < int_几率 + 10  then
                     G.call('add_point',46,300)
-                elseif G.call('get_point',63) >= 5000  and G.call('get_point',63) < 7500 and math.random(100) < 40  then
+                elseif G.call('get_point',63) >= 5000  and G.call('get_point',63) < 7500 and math.random(100) < int_几率 + 20  then
                     G.call('add_point',46,450)
-                elseif G.call('get_point',63) >= 7500  and G.call('get_point',63) < 10000 and math.random(100) < 50  then
+                elseif G.call('get_point',63) >= 7500  and G.call('get_point',63) < 10000 and math.random(100) < int_几率 + 30   then
                     G.call('add_point',46,750)
                 elseif G.call('get_point',63) == 10000 and math.random(100) < 60  then
                     G.call('add_point',46,1500)
