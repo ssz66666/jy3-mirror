@@ -202,7 +202,7 @@ function t:详细显示()
         end
         local 属性 = {'拆招','搏击','闪躲','内功','攻击','速度'}
         for i = 1,6 do
-            if o_role_人物[tostring(i+2)] > 100 and not o_role_人物[tostring(901)] then
+            if o_role_人物[tostring(i+2)] > 150 and not o_role_人物[tostring(901)] then
                 self.属性.getChildByName(属性[i]).text = '????'
             else
                 self.属性.getChildByName(属性[i]).text = o_role_人物[tostring(i+2)]
