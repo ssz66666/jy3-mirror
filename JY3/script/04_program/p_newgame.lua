@@ -7,6 +7,7 @@ local t = G.api
 --type=剧情
 --private=false
 t['回答问题']=function()
+    print('初始属性_1',G.call('get_role',47,1))
     G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 1
     G.call('story','即将闯荡江湖的小虾米听好了，下面是回答问题的时间，你的回答将会影响到你步入《金庸群侠传3》世界后的初始属性，请认真回答'..G.GetDeviceInfo("API_TELE"))
     local int_选项 = 0
@@ -405,6 +406,7 @@ t['回答问题']=function()
             G.call('set_newpoint',i,-int_点数-10)
         end 
     end
+    --根据周目数重置NPC属性
     local int_周目 = G.call('get_point',237) - 1
     local role = G.DBTable('o_role')
     for i = 1,#role do 
@@ -414,9 +416,10 @@ t['回答问题']=function()
             o_role[tostring(2)] = math.floor(o_role[tostring(2)] * (1+int_周目*0.1) )
             o_role.生命 = o_role[tostring(1)] 
             o_role.内力 = o_role[tostring(2)] 
-            for j = 3,8 do
-                o_role[tostring(j)] = o_role[tostring(j)] +int_周目
+            for j = 3,7 do
+                o_role[tostring(j)] = o_role[tostring(j)] + math.floor(int_周目/3 + 1)*int_周目
             end
+            o_role[tostring(8)] = o_role[tostring(8)] + int_周目 
         end
     end    
     --
@@ -593,6 +596,7 @@ t['回答问题']=function()
         m[i] =t[r]
         table.remove(t, r)
     end
+    print('初始属性_2',G.call('get_role',47,1))
     local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4] 
     G.misc().一鸣惊人 = int_no
     G.call('地图系统_防修改监控')
@@ -605,6 +609,7 @@ t['回答问题']=function()
     G.call('通用_存档',4)
     G.call('list')
     G.call('序幕_开始')
+    print('初始属性_0',G.call('get_role',47,1))
 end
 t['序幕_开始']=function()
     G.call('goto_map',17)
