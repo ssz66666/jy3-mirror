@@ -3851,7 +3851,7 @@ t['功能_周目套装成就记录']=function()
         end
     end
     local int_周目 = G.call('get_point',237) 
-    if int_周目 == 2 then 
+    if int_周目 == 3 then 
         if o_周目成就.进度列表[1].完成 == 0 then 
             o_周目成就.进度列表[1].当前进度 = 1
             G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
