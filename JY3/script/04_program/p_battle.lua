@@ -2238,13 +2238,12 @@ t['集气'] = function()
                     if i >= 6 then 
                         if o_battle.模式 < 5 then
                             if int_难度 == 1 then 
-                                int_speed = int_speed*1.2 
+                                int_speed = int_speed*1.1 
                             elseif  int_难度 == 2 then    
-                                int_speed = int_speed * 1.5
+                                int_speed = int_speed * 1.3
                             elseif  int_难度 == 3 then    
-                                int_speed = int_speed * 1.8
+                                int_speed = int_speed * 1.5
                             end
-                            int_speed = int_speed + G.call('get_point',237)-1
                         end
                     end
                     speed[i] = speed[i] + int_speed   --NPC速度
