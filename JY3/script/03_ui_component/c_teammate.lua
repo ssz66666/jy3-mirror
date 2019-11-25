@@ -15,6 +15,8 @@ function t:init()
     self.队友按钮 = self.obj.getChildByName('按钮')
     self.副按钮 = self.obj.getChildByName('副按钮')
     self.关闭菜单 = self.obj.getChildByName('关闭菜单')
+    self.选择 = self.obj.getChildByName('secret')
+    self.输入 = 0
 end
 function t:start()
     G.misc().队友 = 1
@@ -23,6 +25,10 @@ function t:start()
         self.副按钮.getChildByName(str[i]).shadowX = 1 
         self.副按钮.getChildByName(str[i]).shadowAlpha = 180
     end
+    self.选择.getChildByName('提示框').getChildByName('提示').shadowX = 1
+    self.选择.getChildByName('提示框').getChildByName('提示').shadowAlpha = 180
+    self.选择.getChildByName('文本').shadowX = 1
+    self.选择.getChildByName('文本').shadowAlpha = 180
     self:显示队友()
     G.call('指令_存储属性')
 end  
@@ -57,7 +63,7 @@ function t:rollOver(tar)
     local str13 = '生命低于50%时增加一定伤害基值'
     local str14 = '生命低于20%时集气速度增加30%'
     local str15 = '受到攻击后生命低于20%时有5%几率回满'
-    local str16 = '招式武功获得经验翻倍'
+    local str16 = '招式武功获得经验翻倍,升级时等级为偶数时修为额外加1,装备爆率+0.5%'
     local str17 = '怒气槽增加速度翻倍'
     local str18 = '敌人中毒几率UP和持续时间翻倍'
     local str19 = '血刀门武功附加吸血效果'
@@ -68,14 +74,16 @@ function t:rollOver(tar)
     local str24 = '龙啸九天，几率下次可立即行动'
     local str25 = '回血效果几率回复双倍'
     local str26 = '指法招式攻击后几率下次可立即行动'
-    local str28 = '剑法招式攻击后几率下次可立即行动'
     local str27 = '拳法招式攻击后几率下次可立即行动'
+    local str28 = '剑法招式攻击后几率下次可立即行动'
     local str29 = '刀法招式攻击后几率下次可立即行动'
     local str30 = '奇门招式攻击后几率下次可立即行动'
-    local str31 = '招式攻击几率造成迟缓'
-    local str32 = '附加5%比例伤害'
-    local str33 = '任意剑法全体攻击,附加斩杀效果'
-    local str = {str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22,str23,str24,str25,str26,str27,str28,str29,str30,str31,str32,str33}
+    local str31 = '暗器招式攻击后几率下次可立即行动'
+    local str32 = '招式攻击几率造成迟缓'
+    local str33 = '附加5%比例伤害'
+    local str34 = '任意剑法全体攻击,附加斩杀效果'
+    local str35 = '招式攻击必定不会被对方闪躲'
+    local str = {str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22,str23,str24,str25,str26,str27,str28,str29,str30,str31,str32,str33,str34,str35}
     local o_role_人物 = G.QueryName(G.QueryName(0x10030001)[tostring(189)])
     for i = 1,5 do 
         if tar == self.被动.getChildByName(tostring(i)) then 
@@ -84,7 +92,7 @@ function t:rollOver(tar)
             self.被动.getChildByName('显示').getChildByName('文本').text = '说明:[br]'..str[o_role_人物[tostring(110+i)]]
         end
     end
-    local str = {'宴请','馈赠','治疗','切磋','离队','没事'}
+    local str = {'宴请','馈赠','治疗','切磋','离队','领悟','没事'}
     for i = 1,#str do
         if tar == self.副按钮.getChildByName(str[i]) then
             self.副按钮.getChildByName(str[i]).style = 1
@@ -97,7 +105,7 @@ function t:rollOut(tar)
             self.被动.getChildByName('显示').visible = false 
         end
     end 
-    local str = {'宴请','馈赠','治疗','切磋','离队','没事'}
+    local str = {'宴请','馈赠','治疗','切磋','离队','领悟','没事'}
     for i = 1,#str do
         if tar == self.副按钮.getChildByName(str[i]) then
             self.副按钮.getChildByName(str[i]).style = 8
@@ -125,8 +133,7 @@ function t:click(tar)
             self.子菜单.visible = true 
             self.副按钮.visible = true
             self.obj.getChildByName('属性').visible = true 
-            self.obj.c_teammate:显示更新(G.misc().队友) 
-              
+            self.obj.c_teammate:显示更新(G.misc().队友)       
         end     
     end 
     if tar == self.副按钮.getChildByName('百宝箱') then
@@ -139,6 +146,7 @@ function t:click(tar)
     if tar == self.结束 or tar == self.关闭菜单 then
         G.Play(0x49011003, 1,false,100)  
         self.属性.visible = false
+        self.选择.visible = false
         self.子菜单.visible = false 
         self.副按钮.visible = false
     end   
@@ -146,14 +154,14 @@ function t:click(tar)
         G.Play(0x49011003, 1,false,100) 
         G.removeUI('v_teammate')
     end    
- 
-    local list = {'宴请','馈赠','治疗','切磋','离队'}
+    local list = {'宴请','馈赠','治疗','切磋','切磋','离队'}
     for i = 1,5 do 
         if tar == self.按钮.getChildByName(tostring(i)) then
             G.Play(0x49011003, 1,false,100) 
             if i >1  then 
                self.副按钮.visible = false 
             end
+            self.选择.visible = false 
             G.trig_event(list[i])  
         end
     end 
@@ -161,6 +169,7 @@ function t:click(tar)
     for i = 1,#str do
         if tar == self.副按钮.getChildByName(str[i]) then
             G.Play(0x49011003, 1,false,100)
+            self.选择.visible = false 
             if i == 2 or i == 5  then 
                 self.副按钮.visible = false 
             else
@@ -169,11 +178,49 @@ function t:click(tar)
             G.trig_event(list[i]) 
         end
     end
+    if tar == self.副按钮.getChildByName('领悟') then
+        local i_role = G.QueryName(0x10030001)[tostring(189)] 
+        local o_role_人物 = G.QueryName(i_role)
+        local int_队员编号 = i_role - 0x10040000
+        if G.call('通用_选取队友是否为结婚结义对象',int_队员编号) then 
+            if not o_role_人物.获取被动 then 
+                self.选择.visible  = true
+            else
+                G.call('notice1','[03]'..o_role_人物.姓名..'[01]已经领悟过特技！') 
+            end
+        else
+            G.call('notice1','非[03]结婚结义队友[01]无法领悟特技！') 
+        end
+    end
+    if tar == self.选择.getChildByName('确定') then
+        local int_输入数 = tonumber(self.选择.getChildByName('文本').text)
+        if int_输入数  and int_输入数 >= 1 and int_输入数 <= 31 then 
+            local i_role = G.QueryName(0x10030001)[tostring(189)] 
+            local o_role_人物 = G.QueryName(i_role)
+            o_role_人物.获取被动 = 1
+            self.选择.visible = false
+            local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神','通明'}
+            local int_被动栏 = 115
+            for i = 111,115 do 
+                if not o_role_人物[tostring(i)]  or o_role_人物[tostring(i)] == 0 then
+                    int_被动栏 = i
+                    break 
+                end 
+            end
+            G.call('notice1','[03]'..o_role_人物.姓名..'[01]领悟特技[03]'..magic[int_输入数]) 
+            print(int_被动栏,int_输入数)
+            o_role_人物[tostring(int_被动栏)] = int_输入数
+            self:显示更新(G.misc().队友)
+        else
+            G.call('notice1','输入数字[03](1-31)[01]的整数') 
+        end
+    end
     if tar == self.按钮.getChildByName(tostring(6)) or tar == self.副按钮.getChildByName(str[6])  then 
         G.Play(0x49011003, 1,false,100) 
         self.属性.visible = false
         self.子菜单.visible = false 
-        self.副按钮.visible = false    
+        self.副按钮.visible = false 
+        self.选择.visible = false   
     end  
     G.call('指令_存储属性')    
 end 
@@ -203,7 +250,7 @@ function t:显示更新(int_队友序号)
     local o_role_人物 = G.QueryName(G.QueryName(0x10030001)[tostring(189)])
     if o_role_人物 ~= nil then 
         if o_role_人物.头像 then 
-             self.属性.getChildByName('头像').img = o_role_人物.头像
+            self.属性.getChildByName('头像').img = o_role_人物.头像
         end 
         self.属性.getChildByName('姓名').text = o_role_人物.姓名
         self.属性.getChildByName('生命').text = tostring(o_role_人物.生命)..'/'..(o_role_人物[tostring(1)] )
@@ -228,7 +275,7 @@ function t:显示更新(int_队友序号)
             self.属性.getChildByName('好感度').style = 10
         end
         self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
-        local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','寒气','绝杀','剑神'}
+        local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神','通明'}
         for i = 1,5 do 
             if o_role_人物[tostring(110+i)]  and o_role_人物[tostring(110+i)] > 0 then 
                 self.被动.getChildByName(tostring(i)).visible = true

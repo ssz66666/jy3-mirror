@@ -399,6 +399,22 @@ end
 t['in_test'] = function() 
     G.misc().测试 = 1
 end 
+t['通用_选取队友是否为结婚结义对象'] = function(int_人物序号)
+    if G.QueryName(0x10030001)[tostring(13)] == int_人物序号 then 
+        return  true
+    end
+    for i = 52,62 do 
+        if G.QueryName(0x10030001)[tostring(i)] == int_人物序号 then 
+            return  true
+        end    
+    end 
+    for i = 70,75 do 
+        if G.QueryName(0x10030001)[tostring(i)] == int_人物序号 then 
+            return  true
+        end      
+    end 
+    return  false
+end 
 t['input'] = function() 
     G.addUI('v_input')
     G.wait1('input_over')
@@ -2102,9 +2118,6 @@ t['指令_存储属性'] = function() --计算主角最终属性
             local o_equip = G.QueryName(i_equip) 
             for j = 6,10 do 
                 add[j] = add[j] + o_equip[属性[j-5]]
-                if o_equip[属性[j-5]] > 100 or o_equip.生命 > 15000 or o_equip.内力 > 15000 then
-                    G.call('通用_强退游戏') 
-                end
             end
             add[17] = add[17] + math.floor(o_equip.生命*G.call('get_point',4)/100)
             add[18] = add[18] + math.floor(o_equip.内力*G.call('get_point',4)/100)
@@ -4019,7 +4032,7 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
             if o_equip_物品.类型 == 1 then
                 o_equip_物品.特效 = 100 + math.ceil(int_宝物随机*6/100)
             elseif o_equip_物品.类型 == 2 then
-                o_equip_物品.特效 = 200 + math.ceil(int_宝物随机*7/100)
+                o_equip_物品.特效 = 200 + math.ceil(int_宝物随机*8/100)
             elseif o_equip_物品.类型 == 3 then
                 o_equip_物品.特效 = 300 + math.ceil(int_宝物随机*4/100)
             end
@@ -4035,7 +4048,7 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
             if o_equip_物品.类型 == 1 then
                 o_equip_物品.特效 = 100 + math.random(6)
             elseif o_equip_物品.类型 == 2 then
-                o_equip_物品.特效 = 200 + math.random(7)
+                o_equip_物品.特效 = 200 + math.random(8)
             elseif o_equip_物品.类型 == 3 then
                 o_equip_物品.特效 = 300 + math.random(4)
             end 

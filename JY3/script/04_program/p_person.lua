@@ -1831,9 +1831,9 @@ t['事件_随机切磋']=function()
     for j = 1,24 do 
         table.insert(skill,j )
     end 
-    table.insert(skill,31 )
-    table.insert(skill,32 )
-    table.insert(skill,33 )
+    for i = 32,35 do 
+        table.insert(skill,i )
+    end
     local team_skill = {0,0,0,0,0}
     -- local team_skill_2 = {0,0,0,0,0}
     local skill_mod = {0,0,0,0,0} 
@@ -1974,9 +1974,9 @@ t['副本_通天塔']=function(int_模式)
     for j = 1,25 do 
        table.insert(skill_use,j )
     end 
-    table.insert(skill_use,31 )
-    table.insert(skill_use,32 )
-    table.insert(skill_use,33 )
+    for i = 32,35 do 
+        table.insert(skill_use,i )
+    end
     while true do 
        if int_通天塔判定 == 0 then 
             int_通天塔层数 = -G.misc().通天塔层数 - 7
@@ -2271,7 +2271,7 @@ t['副本_通天塔']=function(int_模式)
                 end
             end
             if not G.misc().获取印记 then 
-                if int_完美 == 14 and not G.call('通用_拥有印记',15)  and not G.misc().获取剑神 then 
+                if int_完美 == 14 and not G.call('通用_拥有印记',15)  and not G.misc().获取剑神 and G.misc().重生 == 0 then
                     G.misc().获取剑神 = 1
                     G.call('add_equip',0x10180028 + 15,1)
                 end

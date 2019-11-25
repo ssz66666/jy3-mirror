@@ -1918,6 +1918,7 @@ t['天书_鸳鸯刀'] = function()
             if o_battle_结果 == 1 then 
                 G.call("talk",'',409,'   看来小兄弟武功的确不错，这本夫妻刀法就留给小兄弟了！',2,1)
                 G.call('add_item',346,1)
+                G.call('add_item',343,1)
                 o_book_story.完美 = 1
                 o_book_story.完成 = 1
             else
@@ -1948,9 +1949,9 @@ t['天书_越女剑'] = function()
         G.call('call_battle',1,107,3,666,418,0,0,0,0,0,0) 
         o_battle_结果 = G.call('get_battle') 
         if o_battle_结果 == 1 then
-            G.call("talk",'',419,'   你的队伍不错，我就随你看看！',2,1)
+            G.call("talk",'',419,'   你的队伍不错，我就随你看看，这套剑法也教你了！',2,1)
             G.call('join',419)
-            G.call('add_item',343,1)
+            G.call('learn_magic',249)
             o_book_story.完美 = 1
             o_book_story.完成 = 1
             G.misc().梦幻完成 = 1

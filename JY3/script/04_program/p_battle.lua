@@ -769,10 +769,7 @@ t['战斗系统_事件响应'] = function()
                                     for p = 2,5 do 
                                         if o_battle[位置[p]] > 0 then
                                             if G.QueryName(o_role +o_battle[位置[p]] ).生命 > 0  then
-                                                ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true
-                                                if G.call('get_role',o_battle[位置[i]],85) > 0 then 
-                                                    int_hp = math.floor(int_hp/2)
-                                                end  
+                                                ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').visible = true 
                                                 ui.getChildByName('hurt').getChildByName(位置[p]).getChildByName('加生命').text = tostring(int_hp)  
                                             end
                                         end 
@@ -2792,7 +2789,7 @@ t['magic_power1'] = function(int_id,int_no)
     end
     local int_斩杀 = 0
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    if math.random(a +15) > math.random(math.floor(b/6)+1+int_闪避) then  --命中计算     
+    if math.random(a+20) > math.random(math.floor(b/3)+1+int_闪避) or G.call('通用_取得装备特效',0,208) or o_skill.附加效果 == 13 then  --命中计算     
         if hurt > 0 then 
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
             if math.random(100) > 80 and (G.call('通用_取得人物特效',0,22) or G.call('通用_取得装备特效',0,206))  then --朱雀被动效果
@@ -3037,7 +3034,7 @@ t['magic_power1'] = function(int_id,int_no)
                     end 
                 end 
             end
-            if  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',0,31) or G.call('通用_取得装备特效',0,408) then  --减速
+            if  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',0,32) or G.call('通用_取得装备特效',0,408) then  --减速
                 if math.random(seed) < 15 then 
                     if G.call('get_role',int_id,86) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3109,7 +3106,7 @@ t['magic_power1'] = function(int_id,int_no)
                     hurt = G.call('get_role',int_id,15)
                 end 
             end 
-            if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,33)) then  --剑神无双效果
+            if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,34)) then  --剑神无双效果
                 if string_字符串_1 == '' then 
                     string_字符串_1 = string_字符串_1..'剑神无双'
                 else
@@ -3134,7 +3131,7 @@ t['magic_power1'] = function(int_id,int_no)
                     hurt = G.call('get_role',int_id,15)
                 end  
             end
-            if  (math.random(100) < 50 or (G.call('get_magic',190) > 0 and G.call('get_point',18) <= 50   )) and (o_skill.附加效果 == 12   or G.call('通用_取得人物特效',0,32)) then --绝杀效果
+            if  (math.random(100) < 50 or (G.call('get_magic',190) > 0 and G.call('get_point',18) <= 50   )) and (o_skill.附加效果 == 12   or G.call('通用_取得人物特效',0,33)) then --绝杀效果
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'绝杀'
                 else
@@ -3544,7 +3541,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     end
     local int_斩杀 = 0
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    if math.random(a+15) > math.random(math.floor(b/6)+int_闪避+1) then  --命中计算
+    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避+1) or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 13 then  --命中计算
         if hurt > 0 then 
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))  then --朱雀被动效果
@@ -3747,7 +3744,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     end   
                 end 
             end
-            if  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,31) or G.call('通用_取得装备特效',int_id,408) then  --减速
+            if  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,32) or G.call('通用_取得装备特效',int_id,408) then  --减速
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10)  then 
                     if G.call('get_role',int_enemy,86) == 0 then 
                         if string_字符串_4 == '' then 
@@ -3819,7 +3816,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     hurt = G.call('get_role',int_enemy,15)
                 end     
             end
-            if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
+            if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,34)) then  --剑神无双效果
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
                 local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
@@ -3883,7 +3880,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     if hurt < 0 then 
         hurt = math.random(10,20)
     end
-    if  (math.random(100) < 50 or G.call('get_npcskill',int_id,0x100500bd) > 0) and  ( o_skill.附加效果 == 12   or G.call('通用_取得人物特效',int_enemy,32) ) and hurt > 0 then --绝杀效果
+    if  (math.random(100) < 50 or G.call('get_npcskill',int_id,0x100500bd) > 0) and  ( o_skill.附加效果 == 12   or G.call('通用_取得人物特效',int_enemy,33) ) and hurt > 0 then --绝杀效果
         if string_字符串_4 == '' then 
             string_字符串_4 = string_字符串_4..'绝杀'
         else
@@ -4263,7 +4260,7 @@ t['magic_power3'] = function(int_id,int_no)
     end
     local int_斩杀 = 0
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    if math.random(a+15) > math.random(math.floor(b/6)+int_闪避 + 1) then  --命中计算
+    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避 + 1)  or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 13 then  --命中计算
         if hurt > 0 then 
             if G.call('get_point',196) ~= nil then   
                 local o_skill_ta = G.QueryName(G.call('get_point',196))
@@ -4471,7 +4468,7 @@ t['magic_power3'] = function(int_id,int_no)
                     end 
                 end 
             end
-            if  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,31) or G.call('通用_取得装备特效',int_id,408) then  --减速
+            if  o_skill.附加效果 == 6  or G.call('通用_取得人物特效',int_id,32) or G.call('通用_取得装备特效',int_id,408) then  --减速
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',86) == 0 then
                         if string_字符串_4 == '' then 
@@ -4547,7 +4544,7 @@ t['magic_power3'] = function(int_id,int_no)
             if G.call('get_point',4) < 50 then 
                 int_比例 = int_lvmax/50
             end
-            if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,33)) then  --剑神无双效果
+            if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',int_id,412)  or G.call('通用_取得人物特效',int_id,34)) then  --剑神无双效果
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
                 if int_id == 418 or int_id == 419 then 
@@ -4577,7 +4574,7 @@ t['magic_power3'] = function(int_id,int_no)
                     hurt = G.call('get_point',44)
                 end  
             end
-            if  (math.random(100) < 50 or G.call('get_npcskill',int_id,0x100500bd) > 0) and (o_skill.附加效果 == 12   or G.call('通用_取得人物特效',int_id,32)) then --绝杀效果
+            if  (math.random(100) < 50 or G.call('get_npcskill',int_id,0x100500bd) > 0) and (o_skill.附加效果 == 12   or G.call('通用_取得人物特效',int_id,33)) then --绝杀效果
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'绝杀'
                 else

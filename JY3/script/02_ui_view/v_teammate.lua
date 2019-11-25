@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_teammate = require 'c_teammate'
 local c_button = require 'c_button'
+local c_teammate = require 'c_teammate'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -891,10 +891,10 @@ tp = tc
 	tc = G.TextQuad()
 	tp.addChild(tc)
 	tc.name = '关闭菜单'
-	tc.left = 304.000
-	tc.right = 448.000
-	tc.bottom = -198.000
-	tc.top = -62.000
+	tc.left = 301.000
+	tc.right = 445.000
+	tc.bottom = -260.000
+	tc.top = -124.000
 	tc.mouseEnabled = true
 	tc.scaleX = 0.500
 	tc.scaleY = 0.500
@@ -994,11 +994,27 @@ tp = tc
 		--end
 		tc = G.TextQuad()
 		tp.addChild(tc)
-		tc.name = '没事'
+		tc.name = '领悟'
 		tc.left = 296.000
 		tc.right = 446.000
 		tc.bottom = -65.000
 		tc.top = -15.000
+		tc.mouseEnabled = true
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.text = '领悟'
+		tc.font = 0x613c0000
+		tc.style = 8
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = '没事'
+		tc.left = 297.000
+		tc.right = 447.000
+		tc.bottom = -105.000
+		tc.top = -55.000
 		tc.mouseEnabled = true
 		tc.scaleX = 0.500
 		tc.scaleY = 0.500
@@ -1018,6 +1034,120 @@ tp = tc
 		tc.mouseEnabled = true
 		tc.img = 0x560e010a
 		tp = tc
+		tp = tp.parent
+		--end
+	tp = tp.parent
+	--end
+	tc = G.Quad()
+	tp.addChild(tc)
+	tc.name = 'secret'
+	tc.left = -192.500
+	tc.right = 212.500
+	tc.bottom = -71.500
+	tc.top = 161.500
+	tc.mouseEnabled = true
+	tc.visible = false
+	tc.img = 0x56160020
+	tp = tc
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'c1'
+		tc.left = -329.500
+		tc.right = 309.500
+		tc.bottom = -285.000
+		tc.top = 195.000
+		tc.mouseEnabled = true
+		tc.alpha = 0
+		tc.img = 0x56000001
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = '提示框'
+		tc.left = -85.000
+		tc.right = 91.000
+		tc.bottom = 43.000
+		tc.top = 87.000
+		tc.img = 0x56160065
+		tp = tc
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '提示'
+			tc.left = -199.000
+			tc.right = 201.000
+			tc.bottom = -43.000
+			tc.top = 45.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '请输入(1-31)数字'
+			tc.font = 0x61240000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '提醒'
+			tc.left = -396.000
+			tc.right = 404.000
+			tc.bottom = -153.000
+			tc.top = -65.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '只有一次领悟机会，请谨慎使用！'
+			tc.font = 0x61200000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = 'c1'
+		tc.left = -126.000
+		tc.right = 124.000
+		tc.bottom = -21.500
+		tc.top = 33.500
+		tc.img = 0x5603001e
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = '文本'
+		tc.left = -253.000
+		tc.right = 247.000
+		tc.bottom = -50.000
+		tc.top = 60.000
+		tc.mouseEnabled = true
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.readOnly = false
+		tc.font = 0x61300000
+		tc.style = 4
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.loadUI('v_button')
+		tp.addChild(tc)
+		tc.name = '确定'
+		tc.left = -39.000
+		tc.right = 27.000
+		tc.bottom = -92.000
+		tc.top = -70.000
+		tp = tc
+			tc = tp.getChildByName('img')
+			if tc then
+			tc.img = 0x5616002c
+			tp = tc
+			end
+			tp = tp.parent
+			--end
+		com = tp.c_button
+		com['img_normal'] =1444282412.000
+		com['img_hover'] =1444282414.000
 		tp = tp.parent
 		--end
 	tp = tp.parent
