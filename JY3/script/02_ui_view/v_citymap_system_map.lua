@@ -1484,6 +1484,28 @@ tp = tc
 		--end
 	tp = tp.parent
 	--end
+	tc = G.loadUI('v_button')
+	tp.addChild(tc)
+	tc.name = '公告'
+	tc.left = -413.000
+	tc.right = -353.000
+	tc.bottom = 75.000
+	tc.top = 155.000
+	tp = tc
+		tc = tp.getChildByName('img')
+		if tc then
+		tc.img = 0x560400f9
+		tp = tc
+		end
+		tp = tp.parent
+		--end
+	com = tp.c_button
+	com['customsize'] =true
+	com['img_normal'] =1443102969.000
+	com['img_hover'] =1443102972.000
+	com['img_press'] =1443102969.000
+	tp = tp.parent
+	--end
 	tc = G.Quad()
 	tp.addChild(tc)
 	tc.name = 'c1'

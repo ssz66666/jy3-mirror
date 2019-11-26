@@ -249,6 +249,9 @@ function t:click(tar)
         end
         G.misc().music = G.misc().music + 1
         G.Play(0x49010000 + G.misc().music, 1,true,1)
-    end  
+    end 
+    if tar == self.obj.getChildByName('公告') then
+        G.addUI('v_bulletin')
+    end 
 end
 return t
