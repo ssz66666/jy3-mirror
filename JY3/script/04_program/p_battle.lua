@@ -2931,7 +2931,7 @@ t['magic_power1'] = function(int_id,int_no)
             end 
             local deytime = G.call('get_point',236)
             local int_时序 = 50 * deytime 
-            if o_skill.附加效果 == 1 or (G.call('通用_取得人物特效',0,18) and G.call('get_point',8) == 10  ) then         --武功附加状态赋予
+            if o_skill.附加效果 == 1 or (G.call('通用_取得人物特效',0,18) and (G.call('get_point',8) == 10 or math.random(100) > 50)  ) then         --武功附加状态赋予
                 if G.call('通用_取得人物特效',0,18)  then
                     seed = math.max(1,math.floor(seed/2))
                 end  
