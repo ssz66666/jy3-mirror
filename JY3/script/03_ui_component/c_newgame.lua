@@ -79,7 +79,7 @@ function t:click(tar)
     --     self.obj.getChildByName('build').visible = false 
     -- end
     if tar == self.obj.getChildByName('公告') then
-        G.addUI('v_notice')
+        G.addUI('v_bulletin')
     end
     if tar == self.code.getChildByName('飞')  then
         G.misc().code = 1
