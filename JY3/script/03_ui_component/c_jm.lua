@@ -40,7 +40,7 @@ function t:刷新显示()
         jmdtsl = jmdtsl + G.QueryName(0x100a0000 +i).打通数量  
         jmzl = jmzl + G.QueryName(0x100a0000 +i).经脉数量
     end     
-    self.经脉进度.width = 179 * jmdtsl/jmzl
+    self.经脉进度.width = 250 * jmdtsl/jmzl
     for i = 1,9 do 
         local o_jm = 0x100a0000 
         local dtsl = G.QueryName(o_jm+i).打通数量

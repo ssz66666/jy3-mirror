@@ -3,7 +3,7 @@
 ]]
 local G = require 'gf'
 local c_scrollview = require 'c_scrollview'
-local c_bullletin = require 'c_bullletin'
+local c_bulletin = require 'c_bulletin'
 local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
@@ -222,4 +222,4 @@ tp = tc
 	tp = tc
 	tp = tp.parent
 	--end
-tp.c_bullletin = setmetatable({}, c_bullletin)
+tp.c_bulletin = setmetatable({}, c_bulletin)
