@@ -27,6 +27,8 @@ tp = tc
 	tc = G.loadUI('v_empty')
 	tp.addChild(tc)
 	tc.name = '按钮'
+	tc.left = -30.000
+	tc.right = -30.000
 	tp = tc
 		tc = G.loadUI('v_button')
 		tp.addChild(tc)
@@ -73,6 +75,8 @@ tp = tc
 	tc = G.loadUI('v_empty')
 	tp.addChild(tc)
 	tc.name = '显示'
+	tc.left = -30.000
+	tc.right = -30.000
 	tp = tc
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
