@@ -202,6 +202,9 @@ function t:start()
     if not  G.misc().队友AI then 
         G.misc().队友AI = 0
     end
+    if G.misc().被动开关 then 
+        G.misc().被动开关 = 1
+    end
     if not G.misc().加血阈值 then 
         G.misc().加血阈值 = 50  
     end
@@ -587,6 +590,18 @@ function t:click(tar)
     elseif tar == self.设置按钮.getChildByName('攻击最低') then
         G.misc().队友AI = 0
     end
+    if tar == self.设置按钮.getChildByName('开') then
+        G.misc().被动开关 = 1     
+    elseif tar == self.设置按钮.getChildByName('关') then
+        G.misc().被动开关 = 0
+    end
+    if G.misc().被动开关 == 0 then
+        self.设置按钮.getChildByName('开').style = 9
+        self.设置按钮.getChildByName('关').style = 3
+    elseif  G.misc().被动开关 == 1 then
+        self.设置按钮.getChildByName('开').style = 3
+        self.设置按钮.getChildByName('关').style = 9
+    end
     if G.misc().队友AI == 0 then
         self.设置按钮.getChildByName('攻击最高').style = 9
         self.设置按钮.getChildByName('攻击最低').style = 3
@@ -595,8 +610,7 @@ function t:click(tar)
         self.设置按钮.getChildByName('攻击最低').style = 9 
     end
     if tar == self.设置按钮.getChildByName('加') then
-        G.misc().加血阈值 = G.misc().加血阈值 + 10 
-         
+        G.misc().加血阈值 = G.misc().加血阈值 + 10     
     elseif tar == self.设置按钮.getChildByName('减') then
         G.misc().加血阈值 = G.misc().加血阈值 - 10 
     end

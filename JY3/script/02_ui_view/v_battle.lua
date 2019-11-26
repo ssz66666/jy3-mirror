@@ -7392,10 +7392,26 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '文字11'
+			tc.left = -109.000
+			tc.right = 95.000
+			tc.bottom = 32.000
+			tc.top = 92.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '被动开关'
+			tc.font = 0x61320000
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '文字111'
 			tc.left = -211.000
 			tc.right = 197.000
-			tc.bottom = 14.000
-			tc.top = 74.000
+			tc.bottom = -47.000
+			tc.top = 13.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
@@ -7408,10 +7424,10 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '阈值'
-			tc.left = -52.500
-			tc.right = 36.500
-			tc.bottom = -26.000
-			tc.top = 34.000
+			tc.left = -47.500
+			tc.right = 41.500
+			tc.bottom = -84.000
+			tc.top = -24.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
@@ -7458,6 +7474,40 @@ tp = tc
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
+			tc.name = '开'
+			tc.left = -114.500
+			tc.right = -67.500
+			tc.bottom = -2.000
+			tc.top = 58.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = 'ON'
+			tc.font = 0x61300000
+			tc.style = 9
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '关'
+			tc.left = 19.500
+			tc.right = 90.500
+			tc.bottom = -2.000
+			tc.top = 58.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = 'OFF'
+			tc.font = 0x61300000
+			tc.style = 9
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
 			tc.name = '攻击最低'
 			tc.left = -21.000
 			tc.right = 221.000
@@ -7478,8 +7528,8 @@ tp = tc
 			tc.name = '加'
 			tc.left = 61.000
 			tc.right = 89.000
-			tc.bottom = -20.000
-			tc.top = 20.000
+			tc.bottom = -74.000
+			tc.top = -34.000
 			tc.scaleX = -1.000
 			tp = tc
 				tc = tp.getChildByName('img')
@@ -7500,8 +7550,8 @@ tp = tc
 			tc.name = '减'
 			tc.left = -108.000
 			tc.right = -80.000
-			tc.bottom = -20.000
-			tc.top = 20.000
+			tc.bottom = -74.000
+			tc.top = -34.000
 			tp = tc
 				tc = tp.getChildByName('img')
 				if tc then

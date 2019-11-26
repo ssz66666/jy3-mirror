@@ -290,22 +290,6 @@ function t:click(tar)
             self.显示.getChildByName(tostring(i)).visible = true 
          end   
     end
-    for i = 1,4 do 
-        if tar == self.被动.getChildByName(tostring(i)) then 
-            if G.misc().被动开关 == 0 then
-                G.misc().被动开关 = 1
-            else
-                G.misc().被动开关 = 0
-            end 
-        end
-    end 
-    if tar == self.门派被动.getChildByName('技能') then 
-        if G.misc().被动开关 == 0 then
-            G.misc().被动开关 = 1
-        else
-            G.misc().被动开关 = 0
-        end 
-    end
     if tar == self.按钮.getChildByName(tostring(4)) or tar == self.obj.getChildByName('关闭菜单') then --关闭角色菜单
         G.Play(0x49011003, 1,false,100) 
         G.removeUI('v_nature')
