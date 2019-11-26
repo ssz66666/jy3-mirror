@@ -731,9 +731,9 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = math.floor(int_hp * 1.2) 
                                 end  
                                 if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
-                                    int_hp = math.floor(int_hp * 1.1)
+                                    int_hp = math.floor(int_hp * 1.3)
                                 elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
-                                    int_hp = math.floor(int_hp * 1.05)
+                                    int_hp = math.floor(int_hp * 1.15)
                                 end  
                                 if G.call('通用_取得套装',o_battle[位置[i]],3) < 3 then
                                     if int_hp > 9999 then 
@@ -1148,9 +1148,9 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = math.floor(int_hp * 1.2) 
                                 end  
                                 if G.call('通用_取得套装',o_battle[位置[i]],3) == 3 then --套装3回血效果
-                                    int_hp = math.floor(int_hp * 1.1)
+                                    int_hp = math.floor(int_hp * 1.3)
                                 elseif G.call('通用_取得套装',o_battle[位置[i]],3) == 2 then
-                                    int_hp = math.floor(int_hp * 1.05)
+                                    int_hp = math.floor(int_hp * 1.15)
                                 end  
                                 if G.call('get_role',o_battle[位置[i]],85) > 0 then 
                                     int_hp = math.floor(int_hp/2)
@@ -1464,9 +1464,9 @@ t['战斗系统_事件响应'] = function()
                             int_hp = math.floor(int_hp * 1.2) 
                         end  
                         if G.call('通用_取得套装',0,3) == 3 then --套装3回血效果
-                            int_hp = math.floor(int_hp * 1.1)
+                            int_hp = math.floor(int_hp * 1.3)
                         elseif G.call('通用_取得套装',0,3) == 2 then
-                            int_hp = math.floor(int_hp * 1.05)
+                            int_hp = math.floor(int_hp * 1.15)
                         end  
                         if G.call('通用_取得套装',0,3) < 3 then
                             if int_hp > 9999 then 
@@ -2831,9 +2831,9 @@ t['magic_power1'] = function(int_id,int_no)
                 hurt = math.floor(hurt* (int_五岳剑阵效果*5/100 +1)  )
             end
             if G.call('通用_取得套装',0,3) == 3 then --套装3和套装4强伤和减伤效果
-                hurt = math.floor(hurt *1.2)
+                hurt = math.floor(hurt *1.3)
             elseif  G.call('通用_取得套装',0,3) == 2 then
-                hurt = math.floor(hurt *1.1)
+                hurt = math.floor(hurt *1.15)
             end
             if  G.call('通用_取得套装',int_id,4) == 3 then
                 hurt = math.floor(hurt *0.8)
@@ -3563,9 +3563,9 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 ) )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if G.call('通用_取得套装',int_id,3) == 3 then --套装3和套装4强伤和减伤效果
-                hurt = math.floor(hurt *1.2)
+                hurt = math.floor(hurt *1.3)
             elseif  G.call('通用_取得套装',int_id,3) == 2 then
-                hurt = math.floor(hurt *1.1)
+                hurt = math.floor(hurt *1.15)
             end
             if  G.call('通用_取得套装',int_enemy,4) == 3 then
                 hurt = math.floor(hurt *0.8)
@@ -4326,9 +4326,9 @@ t['magic_power3'] = function(int_id,int_no)
             G.call('add_point',46,-hurt0)
             G.call('add_point',46,-hurt2) 
             if G.call('通用_取得套装',int_id,3) == 3 then --套装3和套装4强伤和减伤效果
-                hurt = math.floor(hurt *1.2)
+                hurt = math.floor(hurt *1.3)
             elseif  G.call('通用_取得套装',int_id,3) == 2 then
-                hurt = math.floor(hurt *1.1)
+                hurt = math.floor(hurt *1.15)
             end
             if  G.call('通用_取得套装',0,4) == 3 then
                 hurt = math.floor(hurt *0.8)
