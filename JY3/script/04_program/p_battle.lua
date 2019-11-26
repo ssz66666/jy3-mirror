@@ -2787,9 +2787,12 @@ t['magic_power1'] = function(int_id,int_no)
         end
         int_闪避 = int_闪避 + 100
     end
+    if G.call('通用_取得套装',0,3) == 2 then
+        a = a + 100
+    end
     local int_斩杀 = 0
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    if math.random(a+20) > math.random(math.floor(b/3)+1+int_闪避) or G.call('通用_取得装备特效',0,208) or o_skill.附加效果 == 13 then  --命中计算     
+    if math.random(a+20) > math.random(math.floor(b/3)+1+int_闪避) or G.call('通用_取得装备特效',0,208) or o_skill.附加效果 == 13 or G.call('通用_取得套装',0,3) == 3 then  --命中计算     
         if hurt > 0 then 
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
             if math.random(100) > 80 and (G.call('通用_取得人物特效',0,22) or G.call('通用_取得装备特效',0,206))  then --朱雀被动效果
@@ -3539,9 +3542,12 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     elseif  G.call('通用_取得套装',int_enemy,1) == 2 then
         int_闪避 = int_闪避 + 50
     end
+    if G.call('通用_取得套装',int_id,3) == 2 then
+        a = a + 100 
+    end
     local int_斩杀 = 0
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避+1) or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 13 then  --命中计算
+    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避+1) or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 13 or G.call('通用_取得套装',int_id,3) == 3 then  --命中计算
         if hurt > 0 then 
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
             if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))  then --朱雀被动效果
@@ -4258,9 +4264,12 @@ t['magic_power3'] = function(int_id,int_no)
     elseif  G.call('通用_取得套装',0,1) == 2 then
         int_闪避 = int_闪避 + 50
     end
+    if G.call('通用_取得套装',int_id,3) == 2 then
+        a = a + 100 
+    end
     local int_斩杀 = 0
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避 + 1)  or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 13 then  --命中计算
+    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避 + 1)  or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 13  or G.call('通用_取得套装',int_id,3) == 3 then  --命中计算
         if hurt > 0 then 
             if G.call('get_point',196) ~= nil then   
                 local o_skill_ta = G.QueryName(G.call('get_point',196))
