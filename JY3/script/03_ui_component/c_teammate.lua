@@ -154,7 +154,7 @@ function t:click(tar)
         G.Play(0x49011003, 1,false,100) 
         G.removeUI('v_teammate')
     end    
-    local list = {'宴请','馈赠','治疗','切磋','切磋','离队'}
+    local list = {'宴请','馈赠','治疗','切磋','离队'}
     for i = 1,5 do 
         if tar == self.按钮.getChildByName(tostring(i)) then
             G.Play(0x49011003, 1,false,100) 

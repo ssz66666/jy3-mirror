@@ -3851,17 +3851,17 @@ t['功能_周目套装成就记录']=function()
             o_套装成就.进度列表[int_取得套装].当前进度 = 1
             G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
             G.call('notice1','恭喜完成[03]'..o_套装成就.进度列表[int_取得套装].名称)
-            local int_完成数 = 0
-            for i = 1,#o_套装成就 do
-                if o_套装成就.进度列表[i].完成 == 1 then 
-                    int_完成数 = int_完成数 + 1
-                end
-            end
-            if int_完成数 == #o_套装成就.进度列表  and o_套装成就.完成 == 0 then
-                o_套装成就.完成 = 1
-                G.call('notice1','恭喜完成[03]配套成龙')
-            end
         end
+    end
+    local int_完成数 = 0
+    for i = 1,#o_套装成就 do
+        if o_套装成就.进度列表[i].完成 == 1 then 
+            int_完成数 = int_完成数 + 1
+        end
+    end
+    if int_完成数 == #o_套装成就.进度列表  and o_套装成就.完成 == 0 then
+        o_套装成就.完成 = 1
+        G.call('notice1','恭喜完成[03]配套成龙')
     end
     local int_周目 = G.call('get_point',237) 
     if int_周目 == 3 then 

@@ -3614,8 +3614,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end
             end  
             if G.call('通用_取得人物特效',int_id,20)  and math.random(100) < 50 then
-                G.call('add_role',int_id,14,1500)
-                G.call('add_role',int_enemy,14,-1500)
+                G.call('add_role',int_id,14,750)
+                G.call('add_role',int_enemy,14,-750)
             end 
             if o_battle.模式 == 5 then
                 hurt = -10
