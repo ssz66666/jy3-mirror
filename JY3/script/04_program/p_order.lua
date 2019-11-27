@@ -3099,7 +3099,7 @@ end
 t['通用_称谓转换'] = function(string_文本)
     if string_文本 == nil then return end
     if not G.QueryName(0x10030001).性别 then 
-        G.QueryName(0x10030001).性别 = 0
+        G.QueryName(0x10030001).性别 = 1
     end
     local int_性别 = G.QueryName(0x10030001).性别
     local start,e,string_转换前 = string.find(string_文本, "%[(.-)%]")
