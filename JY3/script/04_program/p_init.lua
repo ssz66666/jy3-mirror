@@ -630,6 +630,9 @@ t['地图系统_小游戏'] = function()
 					str2 = tostring(r3)..'块'
 				end	
 				ui.getChildByName('口白').text = '    得到'..name1..str1..'块 '..name2..str2..name3..str3
+				if ui.getChildByName('时间').width == 0 then
+					return
+				end
 				G.wait_time(500)
 				local qcbl = 0
 				if o_qcbl.完成 == 0 then
@@ -642,6 +645,9 @@ t['地图系统_小游戏'] = function()
 						o_qcbl.完成 = 1
 						G.call('notice1','完成成就【千锤百炼】')
 					end	
+				end
+				if ui.getChildByName('时间').width == 0 then
+					return
 				end
 				G.trig_event('挖矿结束')
             end 

@@ -21,6 +21,7 @@ function t:start()
 end
 function t:click(tar)
     if tar == self.obj.getChildByName('开始')  then 
+        
         if self.obj.getChildByName('时间').width > 0 and tonumber(self.obj.getChildByName('耐久').text)  > 0 and self.挖矿 == 0 then
             G.trig_event('挖矿')
         end
