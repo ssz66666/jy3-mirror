@@ -3014,10 +3014,9 @@ t['add_exp']=function(int_编号,int_经验)
         else
             num1 = 1
         end 
-        local int_属性 =  math.random(250,500) 
         for i = 1,#int_mo do 
             if int_mo[i] < 2 then
-                G.call('add_role',int_编号,int_mo[i], int_属性 ) 
+                G.call('add_role',int_编号,int_mo[i], math.random(250,500) ) 
             else
                 G.call('add_role',int_编号,int_mo[i], num1-1 ) 
             end
