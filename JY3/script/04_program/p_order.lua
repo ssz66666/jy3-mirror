@@ -3499,12 +3499,12 @@ t['通用_检测装备']=function()
                         int属性_2 = 0
                     end 
                 end
-                if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
+                if o_equip[属性[1]] > int属性_1 + int_递增属性*500 or o_equip[属性[1]] > 20000 then
                     print('000002')
                     result = true
                     break
                 end
-                if o_equip[属性[2]] > int属性_2 + int_递增属性*250 then
+                if o_equip[属性[2]] > int属性_2 + int_递增属性*500 or o_equip[属性[2]] > 20000 then
                     result = true
                     print('000003')
                     break
@@ -4025,6 +4025,9 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
                 end
             end
         end
+        if o_equip_物品[str[i]] > 100 then
+            o_equip_物品[str[i]] = 100
+        end 
     end	
     if o_equip_物品.品质 >= 5 and o_equip_物品.级别 >= 5 then --传家品质的高级别装备附加特效
         local int_宝物随机 = G.call('通用_取宝物随机')
@@ -4060,6 +4063,12 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
                 o_equip_物品.生命 = math.random(2500,5000+ int_递增属性 * 250)
                 o_equip_物品.内力 = math.random(2500,5000+ int_递增属性 * 250)
             end
+        end
+        if o_equip_物品.生命 > 20000 then 
+            o_equip_物品.生命 = 20000
+        end
+        if o_equip_物品.内力 > 20000 then 
+            o_equip_物品.内力 = 20000
         end
 
     end
