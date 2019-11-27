@@ -509,7 +509,7 @@ function t:click(tar)
         local o_equip = G.QueryName( i_equip     ) 
         if i_equip  then 
             if G.misc().equip_队员编号 == 0 then 
-                if o_equip.需求性别 == 0 and G.QueryName(0x10030001).性别 ~= 1 then 
+                if o_equip.需求性别 == 0 and G.QueryName(0x10030001).性别 == 1 then 
                     G.call('notice1','[03]无法装备此装备！')
                 else
                     local o_body = G.QueryName(0x10030001)
