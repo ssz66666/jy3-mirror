@@ -251,7 +251,15 @@ function t:显示更新(int_队友序号)
     if o_role_人物 ~= nil then 
         if o_role_人物.头像 then 
             self.属性.getChildByName('头像').img = o_role_人物.头像
-        end 
+        end
+        if G.call('通用_是否满属性',int_队员编号) then  
+            self.属性.getChildByName('经验').text = '--/--'
+        else
+            if not o_role_人物.经验值 then
+                o_role_人物.经验值 = 0 
+            end
+            self.属性.getChildByName('经验').text = o_role_人物.经验值..'/10000'
+        end
         self.属性.getChildByName('姓名').text = o_role_人物.姓名
         self.属性.getChildByName('生命').text = tostring(o_role_人物.生命)..'/'..(o_role_人物[tostring(1)] )
         self.属性.getChildByName('内力').text = tostring(o_role_人物.内力)..'/'..(o_role_人物[tostring(2)] )

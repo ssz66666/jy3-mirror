@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_teammate = require 'c_teammate'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -468,7 +468,6 @@ tp = tc
 	tc.right = 290.500
 	tc.bottom = -154.000
 	tc.top = 182.000
-	tc.visible = false
 	tc.img = 0x56160024
 	tp = tc
 		tc = G.Quad()
@@ -665,8 +664,8 @@ tp = tc
 		tc.pivotX = 0.000
 		tc.pivotY = 1.000
 		tc.left = -62.000
-		tc.right = -36.000
-		tc.bottom = -186.000
+		tc.right = -62.000
+		tc.bottom = -114.000
 		tc.top = -98.000
 		tc.scaleX = 0.500
 		tc.scaleY = 0.500
@@ -745,6 +744,37 @@ tp = tc
 		tc.text = '被动:'
 		tc.font = 0x61240000
 		tc.style = 3
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = 'c11'
+		tc.left = -80.000
+		tc.right = 20.000
+		tc.bottom = 99.000
+		tc.top = 139.000
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.text = '经验:'
+		tc.font = 0x61240000
+		tc.style = 2
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = '经验'
+		tc.left = -46.500
+		tc.right = 116.500
+		tc.bottom = 97.000
+		tc.top = 137.000
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.autosize = 1
+		tc.text = '9999/10000'
+		tc.font = 0x611e0000
+		tc.style = 10
 		tp = tc
 		tp = tp.parent
 		--end

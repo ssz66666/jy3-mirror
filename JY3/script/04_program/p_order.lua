@@ -853,7 +853,7 @@ t['call_wood']=function()
         if G.call('get_roleskill',420,3) == 83 or G.call('get_roleskill',420,3) == 97 then 
             G.call('set_roleskill',223,3,82) 
         end 
-        G.call('call_battle',1,10,1,G.call('get_love',38)*0.3,420,0,0,0,0,0)
+        G.call('call_battle',1,10,3,G.call('get_love',38)*0.3,420,0,0,0,0,0)
         G.call('add_hour',1)
         G.call('turn_map')
     elseif int_选项 == 2 then
@@ -2986,6 +2986,55 @@ t['use_item']=function(int_物品,int_数量) --使用物品
         G.call('notice1','使用物品数量大于已有数量')
     end         
 end 
+t['add_exp']=function(int_编号,int_经验)
+    local o_role_人物 = G.QueryName(0x10040000+int_编号 )
+    if not o_role_人物.经验值 then
+        o_role_人物.经验值 = 0 
+    end
+    o_role_人物.经验值 = o_role_人物.经验值 + int_经验
+    local result = false
+    if o_role_人物.经验值 >= 10000 then
+        o_role_人物.经验值 = 0 
+        result = true
+    end
+    if result == false then
+        return  
+    end
+    local int_mo = {}
+    for i = 1,8 do 
+        if G.call('get_role',int_编号,i) < G.call('get_role',int_编号,900 + i) then 
+            table.insert(int_mo,i)
+        end
+    end
+    if #int_mo > 0 then 
+        local num0 = math.floor(o_role_人物[tostring(9)]/25)
+        local num1 = 0
+        if num0 > 0 then 
+            num1 = math.random(num0)
+        else
+            num1 = 1
+        end 
+        local int_属性 =  math.random(250,500) 
+        for i = 1,#int_mo do 
+            if int_mo[i] < 2 then
+                G.call('add_role',int_编号,int_mo[i], int_属性 ) 
+            else
+                G.call('add_role',int_编号,int_mo[i], num1-1 ) 
+            end
+        end
+    end
+end
+t['通用_是否满属性']=function(int_编号)
+    if not G.call('get_role',int_编号,901) then
+        return true 
+    end 
+    for i = 1,8 do 
+        if G.call('get_role',int_编号,i) < G.call('get_role',int_编号,i + 900) then
+            return false  
+        end
+    end
+    return true 
+end
 t['逻辑_拥有被动']=function(int_编号)
     local result = false
     for i = 111,115 do 

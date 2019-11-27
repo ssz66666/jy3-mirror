@@ -393,17 +393,15 @@ function t:rollOver(tar)
                         self.属性.getChildByName('头像').img = o_role_人物.头像
                     end
                 end 
+                if G.call('通用_是否满属性',int_队员编号) then  
+                    self.属性.getChildByName('经验').text = '--/--'
+                else
+                    if not o_role_人物.经验值 then
+                        o_role_人物.经验值 = 0 
+                    end
+                    self.属性.getChildByName('经验').text = o_role_人物.经验值..'/10000'
+                end
                 self.属性.getChildByName('姓名').text = o_role_人物.姓名
-                -- if o_role_人物[tostring(1)] > 99999 then 
-                --     self.属性.getChildByName('生命').text = '?????/?????'
-                -- else
-                --     self.属性.getChildByName('生命').text = tostring(o_role_人物.生命)..'/'..tostring(o_role_人物[tostring(1)])
-                -- end
-                -- if o_role_人物[tostring(2)] > 99999 then 
-                --     self.属性.getChildByName('内力').text = '?????/?????'
-                -- else
-                --     self.属性.getChildByName('内力').text = tostring(o_role_人物.内力)..'/'..tostring(o_role_人物[tostring(2)])
-                -- end
                 if i > 5 then 
                     self.属性.getChildByName('生命').text = '?????/?????'
                     self.属性.getChildByName('内力').text = '?????/?????'
