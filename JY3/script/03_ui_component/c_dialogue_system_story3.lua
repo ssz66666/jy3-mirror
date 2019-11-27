@@ -32,6 +32,8 @@ end
 
 function t:update_role(name,int,dialogue,mod)
     --self.obj.getChildByName('字体大小').text = tostring(size))
+    dialogue = tostring(dialogue)
+    dialogue = G.call('通用_称谓转换',dialogue)
     self.文字.text = tostring(dialogue)
     self.obj.getChildByName('编号').text = tostring(int)
     self.obj.getChildByName('位置').text = tostring(mod)

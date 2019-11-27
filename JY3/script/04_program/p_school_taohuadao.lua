@@ -14,7 +14,7 @@ t['初入桃花岛'] = function()
     else
         G.call("talk",'',12,'   '..G.call('get_fullname')..'有时间记得来看我啊！',2,1) 
     end
-    G.call("talk",'',90,'   小师弟，咱们又见面了！',1,1)
+    G.call("talk",'',90,'   小[师弟]，咱们又见面了！',1,1)
     G.call("talk",'',83,'   本门看来目前也只有为师亲传你武功了，为师先传你【桃花岛心法】！,下去先好生练习，另外不要去本门禁地，还有务必将你师娘坟墓杂草清除干净，有不懂的地方问问你师姐吧！',2,1) 
     if G.call('get_magic',164) == 0 then
         G.call('learnmagic',164) 
@@ -156,7 +156,7 @@ t['初入桃花岛-傻姑'] = function()
         int_选项 = G.call("menu",'',0,'',0,0,{"1,有什么需要吗？","2,【切磋】武功","3,没什么事情，路过而已"},0) 
         if int_选项 == 1 then
             G.call('all_over')
-            G.call("talk",'',90,'   小兄弟你给我弄份【'..o_item_名称..'】来给我解解饿吧！',1,1)
+            G.call("talk",'',90,'   小[兄弟]你给我弄份【'..o_item_名称..'】来给我解解饿吧！',1,1)
             local int_选项 = 0
             while true do
                 int_选项 = G.call("menu",nil,0,'',0,0,{"1,我这里正好有你要的东西，就给了你吧。","2,我还要练武实在没有功夫"},0) 
@@ -423,7 +423,7 @@ t['初入桃花岛-周伯通'] = function()
                     break
                 end 
             end 
-            G.call("talk",'',86,'   小兄弟,你找我有什么事情吗？',2,1)
+            G.call("talk",'',86,'   小[兄弟],你找我有什么事情吗？',2,1)
             local int_选项 = 0
             while int_选项 == 0 do
                 int_选项 = G.call("menu",'',0,'',0,0,{"1,给你带了点吃的","2,与周大哥【切磋】武功","3,没什么事情，路过看看周大哥！"},0) 
@@ -433,14 +433,14 @@ t['初入桃花岛-周伯通'] = function()
                         local o_item_名称 = G.QueryName(o_item).名称  
                         G.call('all_over')
                         G.call("talk",'',0,'   刚好我带了份【'..o_item_名称..'】给周大哥！',0,0)
-                        G.call("talk",'',86,'   不错，不错，谢了小兄弟',2,1)
+                        G.call("talk",'',86,'   不错，不错，谢了小[兄弟]',2,1)
                         G.call('all_over')
                         G.call('add_item',int_no,-1)
                         G.call('add_love',86,3)
                         G.call('add_time',2)
                         G.call('turn_map')
                     else
-                        G.call("talk",'',86,'   小兄弟,你逗你周大哥吧，你哪有带什么吃的',2,1)
+                        G.call("talk",'',86,'   小[兄弟],你逗你周大哥吧，你哪有带什么吃的',2,1)
                         G.call('all_over')
                     end
                 elseif int_选项 == 2 then
@@ -450,7 +450,7 @@ t['初入桃花岛-周伯通'] = function()
                     if o_battle_结果  == 1 then
                         if (G.call('get_story',55) == 1 and G.call('get_love',86) >= 80) or  (G.call('get_story',55) == 2 and G.call('get_love',86) >= 90) then
                             G.call('set_story',55,3) 
-                            G.call("talk",'',86,'   小兄弟武功不错，我这里刚好有本我这多年悟的一套拳法还有一本《伯通真经》，今日就一并传给你了吧，看你太聪明，另有一套左右互搏肯定是学不会的了！',2,1)
+                            G.call("talk",'',86,'   小[兄弟]武功不错，我这里刚好有本我这多年悟的一套拳法还有一本《伯通真经》，今日就一并传给你了吧，看你太聪明，另有一套左右互搏肯定是学不会的了！',2,1)
                             if G.call('get_magic',87) == 0 then 
                                 G.call('learnmagic',87)
                             end
@@ -458,11 +458,11 @@ t['初入桃花岛-周伯通'] = function()
                                 G.call('add_item',118,1) 
                             end
                         else
-                            G.call("talk",'',86,'   小兄弟这武功不错，改日华山论剑就看你的了！',2,1)
+                            G.call("talk",'',86,'   小[兄弟]这武功不错，改日华山论剑就看你的了！',2,1)
                         end
                     else
                         G.call('add_love',86,-10) 
-                        G.call("talk",'',86,'   小兄弟这武功还得多练练！',2,1)
+                        G.call("talk",'',86,'   小[兄弟]这武功还得多练练！',2,1)
                     end
                     G.call('add_time',4)
                     G.call('all_over')
@@ -499,7 +499,7 @@ t['初入桃花岛-出师'] = function()
     G.call("talk",'',86,'   打不打的过不知道，打打不就知道了！',2,1)
     G.call("talk",'',83,'   也罢也罢，困了你十几年！至于小女婚事，明日由我出题，如果欧阳贤侄真能胜过我这徒儿，小女许配给他也未尝不可！',2,1)
     G.call("talk",'',82,'   你们都等着喝喜酒吧！',2,1)
-    G.call("talk",'',86,'   对对对，等着喝我这小兄弟跟黄老邪女儿的喜酒就是了！',2,1)
+    G.call("talk",'',86,'   对对对，等着喝我这小[兄弟]跟黄老邪女儿的喜酒就是了！',2,1)
     G.call("talk",'',82,'   老顽童你，明日走着瞧！',2,1)
     G.call('add_day',1)
     G.call('地图_进入地图','桃花岛',153,49,0)
@@ -563,7 +563,7 @@ t['初入桃花岛-出师'] = function()
     else
         G.call("talk",'',83,'   我和拙荆就只生了这一个女儿。拙荆不幸在生她的时候去世。今承蒙两位瞧得起，同来求亲，拙荆若是在世，也必十分欢喜……',2,1) 
         G.call("talk",'',83,'   这本册子是拙荆当年所手书，乃她心血所寄，现下请两位贤侄同时阅读一遍，然后背诵出来，谁背得又多又不错，我就把女儿许配于他。',2,1) 
-        G.call("talk",'',83,'   这书与兄弟一生大有关连，拙荆又因此书面死，现下我默祝她在天之灵亲自挑选女婿，庇佑那一位获胜',2,1) 
+        G.call("talk",'',83,'   这书与[兄弟]一生大有关连，拙荆又因此书面死，现下我默祝她在天之灵亲自挑选女婿，庇佑那一位获胜',2,1) 
         G.call("talk",'',83,'   好，现在开始，二位一炷香时间，看谁能记住的多！',2,1) 
         G.call('dark')
         if G.call('get_story',55) == 3  then
@@ -585,7 +585,7 @@ t['初入桃花岛-出师'] = function()
             G.call("talk",'',0,'   五藏六府之精气，皆上注于目而为之精。精之案为眼，骨之精为瞳子，筋之精为黑眼，血之精力络，其案气之精为白眼，肌肉之精为约束，裹撷筋骨血气之精而与脉并为系，上属于脑，后出于项中。',0,0)
             G.call("talk",'',0,'   故邪中于项，因逢其身之虚，其人深，则随眼系以入于脑，入手腼则脑转，脑转则引目系急，目系急则目眩以转矣。邪其精，其精所中不相比亦则精散，精散则视歧，视,歧见两物。',0,0)
             G.call("talk",'',0,'   阴极在六，何以言九。太极生两仪，天地初刨判。六阴已极，逢七归元太素，太素西方金德，阴之清纯，寒之渊源。',0,0)
-            G.call("talk",'',83,'   阿衡，阿衡，你对我如此情重，借这少年之口来把真经授我，怎么不让我见你一面？我晚晚吹箫给你听，你可听见么！',2,1) 
+            G.call("talk",'',83,'   阿衡，阿衡，你对我如此情重，借这[少年]之口来把真经授我，怎么不让我见你一面？我晚晚吹箫给你听，你可听见么！',2,1) 
             G.call("talk",'',83,'   好，锋兄，这是先室选中了的女婿，兄弟再无话说。孩子，我将蓉儿许配于你，你可要好好待她。蓉儿被我娇纵坏了，你须得容让三分。',2,1) 
             G.call("talk",'',33,'   '..G.call('get_fullname')..'所背诵的，远比这册页上所载为多，必是他得了《九阴真经》。晚辈斗胆，要放肆在他身上搜一搜。',2,1)
             G.call("talk",'',82,'   我姓欧阳的岂能任人欺蒙？你们桃花岛师徒的把戏，谁知道是不是你偷偷教给你徒儿了！',2,1) 
@@ -612,28 +612,52 @@ t['初入桃花岛-出师'] = function()
                 G.call('add_day',1)
                 G.call('地图_进入地图','桃花岛大殿',95,39,0)
                 G.Play(0x49010026, 1,true,1) 
-                G.call("talk",'',83,'   '..G.call('get_fullname')..',他们都走了，今日为师就为你们二人举办婚礼！',2,1)
-                G.call("talk",'',0,'   多谢师父！',0,0)
-                G.call("talk",'',83,'   傻小子！',2,1)
-                G.call("talk",'',12,'   傻哥哥！',2,1)
-                G.call("talk",'',0,'   多谢岳父大人！',0,0)
-                --设置与黄蓉结婚后的属性
-                G.QueryName(0x10030001)[tostring(13)] = 12
-                G.QueryName(0x10030001)[tostring(51)] = 1
-                G.call('add_role',12,1,5000)
-                G.call('add_role',12,2,5000)
-                G.call('set_role',12,15,G.call('get_role',12,1))
-                G.call('set_role',12,14,G.call('get_role',12,2))
-                G.call('add_role',12,3,30)
-                G.call('add_role',12,4,30)
-                G.call('add_role',12,5,30)
-                G.call('add_role',12,6,30)
-                G.call('add_role',12,7,30)
-                G.call('add_role',12,8,30)
-                G.call('地图_进入地图','桃花岛',95,3,0)
-                G.call("talk",'',83,'   一年也到期了'..G.call('get_fullname')..',也不用呆在岛上，这就和蓉儿一起出岛吧！',2,1)
-                G.call("talk",'',0,'   是，岳父大人！',0,0)
-                G.call("talk",'',12,'   爹爹自己多保重！',2,1)
+                if G.QueryName(0x10030001).性别 == 1 then  
+                    G.call("talk",'',83,'   '..G.call('get_fullname')..',他们都走了，今日为师就为你们二人举办婚礼！',2,1)
+                    G.call("talk",'',0,'   多谢师父！',0,0)
+                    G.call("talk",'',83,'   傻[小子]！',2,1)
+                    G.call("talk",'',12,'   傻[哥哥]！',2,1)
+                    G.call("talk",'',0,'   多谢岳父大人！',0,0)
+                    --设置与黄蓉结婚后的属性
+                    G.QueryName(0x10030001)[tostring(13)] = 12
+                    G.QueryName(0x10030001)[tostring(51)] = 1
+                    G.call('add_role',12,1,5000)
+                    G.call('add_role',12,2,5000)
+                    G.call('set_role',12,15,G.call('get_role',12,1))
+                    G.call('set_role',12,14,G.call('get_role',12,2))
+                    G.call('add_role',12,3,30)
+                    G.call('add_role',12,4,30)
+                    G.call('add_role',12,5,30)
+                    G.call('add_role',12,6,30)
+                    G.call('add_role',12,7,30)
+                    G.call('add_role',12,8,30)
+                    G.call('地图_进入地图','桃花岛',95,3,0)
+                    G.call("talk",'',83,'   一年也到期了'..G.call('get_fullname')..',也不用呆在岛上，这就和蓉儿一起出岛吧！',2,1)
+                    G.call("talk",'',0,'   是，岳父大人！',0,0)
+                    G.call("talk",'',12,'   爹爹自己多保重！',2,1)
+                else
+                    G.call("talk",'',83,'   '..G.call('get_fullname')..',他们都走了，你们今日结为姐妹！',2,1)
+                    G.call("talk",'',0,'   多谢师父！',0,0)
+                    G.call("talk",'',83,'   傻[小子]！',2,1)
+                    G.call("talk",'',12,'   傻[哥哥]！',2,1)
+                    --设置与黄蓉结婚后的属性
+                    G.QueryName(0x10030001)[tostring(70)] = 12
+                    G.QueryName(0x10030001)[tostring(50)] = 1
+                    G.call('add_role',12,1,5000)
+                    G.call('add_role',12,2,5000)
+                    G.call('set_role',12,15,G.call('get_role',12,1))
+                    G.call('set_role',12,14,G.call('get_role',12,2))
+                    G.call('add_role',12,3,30)
+                    G.call('add_role',12,4,30)
+                    G.call('add_role',12,5,30)
+                    G.call('add_role',12,6,30)
+                    G.call('add_role',12,7,30)
+                    G.call('add_role',12,8,30)
+                    G.call('地图_进入地图','桃花岛',95,3,0)
+                    G.call("talk",'',83,'   一年也到期了'..G.call('get_fullname')..',也不用呆在岛上，这就和蓉儿一起出岛吧！',2,1)
+                    G.call("talk",'',0,'   是，师父！',0,0)
+                    G.call("talk",'',12,'   爹爹自己多保重！',2,1) 
+                end
                 if G.misc().除草次数 >= 10 then 
                     G.call("talk",'',83,'   另外再传你一手【弹指神通】和本门绝技【五行八卦阵】，有时间多回来看看',2,1)
                     if G.call('get_magic',2) == 0 then

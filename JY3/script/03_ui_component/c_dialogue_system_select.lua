@@ -29,6 +29,7 @@ end
 function t:update_select(mod,_select,int_选择项)
     local ui_select
     self.选项.removeAllChildren()
+    --self.选项原型.getChildByName('text').text = G.call('通用_称谓转换',self.选项原型.getChildByName('text').text)
     self.obj.getChildByName('位置').text = tostring(mod)
     local p = tonumber(self.obj.getChildByName('位置').text)
     if p == 1 then                                         --队友UI
@@ -125,6 +126,7 @@ function t:update_select(mod,_select,int_选择项)
             ui_select = G.Clone(self.选项原型)
             ui_select.visible = true
             self.选项.addChild(ui_select)
+            _select[i] = G.call('通用_称谓转换',_select[i]) 
             ui_select.c_button.text = _select[i]
             ui_select.data = i
             ui_select.mouseEnabled = true

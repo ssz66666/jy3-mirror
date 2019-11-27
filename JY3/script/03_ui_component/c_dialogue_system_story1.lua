@@ -36,7 +36,8 @@ function t:setData(name,int,dialogue,mod)
 end
 function t:update_role(name,int,dialogue,mod)
     local int_字号大小 = 0x61100000
-
+    dialogue = tostring(dialogue)
+    dialogue = G.call('通用_称谓转换',dialogue)
     --self.obj.getChildByName('字体大小').text = tostring(size))
     self.文字.text = tostring(dialogue)
     self.obj.getChildByName('编号').text = tostring(int)

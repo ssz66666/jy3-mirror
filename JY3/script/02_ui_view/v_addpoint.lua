@@ -369,6 +369,38 @@ tp = tc
 			--end
 		tp = tp.parent
 		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = '男'
+		tc.left = -196.000
+		tc.right = 4.000
+		tc.bottom = 95.000
+		tc.top = 195.000
+		tc.mouseEnabled = true
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.text = '少侠'
+		tc.font = 0x60280000
+		tc.style = 10
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = '女'
+		tc.left = -95.000
+		tc.right = 105.000
+		tc.bottom = 96.000
+		tc.top = 196.000
+		tc.mouseEnabled = true
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.text = '女侠'
+		tc.font = 0x60280000
+		tc.style = 10
+		tp = tc
+		tp = tp.parent
+		--end
 	tp = tp.parent
 	--end
 	tc = G.loadUI('v_empty')

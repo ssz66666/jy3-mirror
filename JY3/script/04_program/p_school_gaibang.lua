@@ -72,7 +72,7 @@ t['初入丐帮-全冠清'] = function()
     end
     local BJ = G.call('get_point',130) 
     if BJ >= 50 then 
-        G.call("talk",'',173,'   师弟有没有兴趣跟着赌几把？咱赌小的，一注五两，说不定你还能发笔小财呢。',1,1)
+        G.call("talk",'',173,'   [师弟]有没有兴趣跟着赌几把？咱赌小的，一注五两，说不定你还能发笔小财呢。',1,1)
         local int_选项 = 0
         while int_选项 == 0 do
             int_选项 = G.call("menu",nil,0,'',0,0,{"1,好吧，我便试试手气","2,我一向运气不好，还是不赌了"},0)  
@@ -94,7 +94,7 @@ t['初入丐帮-全冠清'] = function()
             end 
         end
     else 
-        G.call("talk",'',173,'   师兄袋里的钱都叫师弟赢光了，做不成庄，还是不赌了。',1,1)
+        G.call("talk",'',173,'   师兄袋里的钱都叫[师弟]赢光了，做不成庄，还是不赌了。',1,1)
         local int_选项 = 0
         while int_选项 == 0 do
             int_选项 = G.call("menu",nil,0,'',0,0,{"1,小赌怡情咱就图个乐，这些钱师兄先拿去耍吧","2,等师兄有钱了咱们再赌几把"},0)  
@@ -103,10 +103,10 @@ t['初入丐帮-全冠清'] = function()
                     G.call('set_newpoint',130,G.call('get_newpoint',130) - 1000 )
                     G.call('set_point',130,G.call('get_point',130) + 1000 )
                     G.call('add_money',-math.floor(G.call('get_money')/2))
-                    G.call("talk",'',173,'   嘿嘿，师弟出手豪爽，想必今日也是运势正旺。来来来，咱兄弟再陪你大杀四方。',1,1)
+                    G.call("talk",'',173,'   嘿嘿，[师弟]出手豪爽，想必今日也是运势正旺。来来来，咱兄弟再陪你大杀四方。',1,1)
                     G.call('add_love',173,10)
                     if G.call('get_love',173) >= 80  and G.call('get_item',339) == 0 then 
-                        G.call("talk",'',173,'   师弟真有你的，偷偷教你一手功夫吧！',1,1)
+                        G.call("talk",'',173,'   [师弟]真有你的，偷偷教你一手功夫吧！',1,1)
                         G.call('add_item',339,1)
                     end
                 else 
@@ -465,8 +465,8 @@ t['初入丐帮-轩辕台'] = function()
             local o_battle_结果 = G.call('get_battle') --
             if o_battle_结果  == 1 then
                 G.call('set_story',57,1) 
-                G.call("talk",'',385,'   这小子竟然.......，裘帮主，我们先撤！',2,1) 
-                G.call("talk",'',87,'   改日再教训这小子！',2,1) 
+                G.call("talk",'',385,'   这[小子]竟然.......，裘帮主，我们先撤！',2,1) 
+                G.call("talk",'',87,'   改日再教训这[小子]！',2,1) 
                 G.call("talk",'',0,'   看还有谁敢在我们丐帮撒野！',0,0)
                 G.call('add_day',1)
                 G.call('all_over')

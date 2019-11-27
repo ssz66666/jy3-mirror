@@ -581,11 +581,11 @@ end
 t['初入聚贤庄']=function()
     G.call('地图_进入地图','大地图',41,22)
     G.call("talk",'',0,'    这中原大地如此广阔，我该从何处开始我的江湖行程呢？',0,0)
-    G.call("talk",'',38,'    这位兄弟一脸茫然的样子，想必是刚出来行走江湖。在下【聚贤庄】庄主半瓶神仙醋，醋某生平最好结交江湖朋友。小兄弟可随醋某到敝庄一叙，待醋某为你指点困惑。',2,1)
+    G.call("talk",'',38,'    这位[兄弟]一脸茫然的样子，想必是刚出来行走江湖。在下【聚贤庄】庄主半瓶神仙醋，醋某生平最好结交江湖朋友。小[兄弟]可随醋某到敝庄一叙，待醋某为你指点困惑。',2,1)
     G.call("talk",'',0,'    既如此，那就多多打扰醋庄主了。~（真是标新立异的称呼）',0,0)
     G.call('地图_进入地图','聚贤庄',40,59)
     G.call("talk",'',38,'   此处便是醋某的【聚贤庄】，本来是叫【醋仙居】的，后来被误认做副食店，所以才无奈改名。此庄乃是为结交天下各路豪杰好汉而建，而且还为过往的江湖人士免费提供住宿、练功的场所，',2,1)
-    G.call("talk",'',38,'因此在江湖上颇有微名。即使是像兄弟这般初入江湖的，醋某也是一视同仁。',2,1)
+    G.call("talk",'',38,'因此在江湖上颇有微名。即使是像[兄弟]这般初入江湖的，醋某也是一视同仁。',2,1)
     G.call("talk",'',0,'   也就是说我可以在这庄里蹭吃蹭喝咯？',0,0)
     G.call("talk",'',38,'   心无忧虑才会整天享受吃喝玩乐，我还真是羡慕你有这种心态。',2,1)
     G.call("talk",'',0,'   怎么可能没有忧虑呢？我可是将来要干大事的人，当然不会满脑子吃吃喝喝的事情。',0,0)
@@ -618,7 +618,7 @@ end
 t['聚贤庄-半瓶神仙醋']=function()
     if G.call('in_team',38) == true and G.call('get_point',237) > 1 then
         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-        G.call("talk",'',38,'   '..G.QueryName(0x10030001)[tostring(1)]..'兄弟找我有什么事情吗？',2,1)
+        G.call("talk",'',38,'   '..G.QueryName(0x10030001)[tostring(1)]..'[兄弟]找我有什么事情吗？',2,1)
         local int_选项 = 0
         while int_选项 == 0 do
             if G.call('get_point',4) >= 100  and G.call('get_point',4) < int_lvmax then 
@@ -726,7 +726,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                     if not G.misc().梦幻测试 then 
                         G.misc().梦幻测试 = 0
                     end
-                    G.call("talk",'',38,'   兄弟找我有什么事情吗？',2,1)
+                    G.call("talk",'',38,'   [兄弟]找我有什么事情吗？',2,1)
                     local int_选项 = 0
                     while int_选项 == 0 do
                         if G.misc().梦幻测试 == 9 then
@@ -917,7 +917,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                     if not G.misc().梦幻测试 then 
                         G.misc().梦幻测试 = 0
                     end
-                    G.call("talk",'',38,'   兄弟找我有什么事情吗？',2,1)
+                    G.call("talk",'',38,'   [兄弟]找我有什么事情吗？',2,1)
                     local int_选项 = 0
                     while int_选项 == 0 do
                         if G.misc().梦幻测试 == 9 then
@@ -984,7 +984,7 @@ t['聚贤庄-半瓶神仙醋']=function()
             end
         end 
     else 
-        G.call("talk",'',38,'   '..G.QueryName(0x10030001)[tostring(1)]..'兄弟找我有什么事情吗？',2,1)
+        G.call("talk",'',38,'   '..G.QueryName(0x10030001)[tostring(1)]..'[兄弟]找我有什么事情吗？',2,1)
         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
         local int_选项 = 0
         while int_选项 == 0 do
@@ -1434,14 +1434,14 @@ t['聚贤庄-华山之巅']=function()
         G.call('goto_map',17)
         local int_难度系数 = (G.call('get_point',237) - 1)*10
         if G.call('get_point',15) > 0 then 
-            G.call("talk",'',82,'   姓'..str1..'的小子，这几年你的出现可把我们这群邪魔外道给害苦了。今日我们大家要一鼓作气把你碎尸万段，以消昔日之恨！',2,1)
-            G.call("talk",'',104,'   我们四大恶人先来会会这小子！',2,1)
+            G.call("talk",'',82,'   姓'..str1..'的[小子]，这几年你的出现可把我们这群邪魔外道给害苦了。今日我们大家要一鼓作气把你碎尸万段，以消昔日之恨！',2,1)
+            G.call("talk",'',104,'   我们四大恶人先来会会这[小子]！',2,1)
             G.call('all_over')
             G.call('call_battle',0,81,3,130 + int_难度系数,104,105,106,107,0,0)
             ---1_root.War("华山论剑", 0,104, 0, 105, 106,107, 1, 1.3, 1);
             local o_battle_结果 = G.call('get_battle')
             if o_battle_结果 == 1 then     
-                 G.call("talk",'',185,'   我们江南四友来会会这小子！',2,1)
+                 G.call("talk",'',185,'   我们江南四友来会会这[小子]！',2,1)
                  G.call('all_over')
                  G.call('call_battle',0,81,3,150+ int_难度系数,185,186,187,188,0,0)
                  local o_battle_结果 = G.call('get_battle')
@@ -1459,7 +1459,7 @@ t['聚贤庄-华山之巅']=function()
                         local o_battle_结果 = G.call('get_battle')
                         --_root.War("华山论剑", 82, 81, 52, 0, 0, 0, 1, 1.3, 1);
                         if o_battle_结果 == 1 then 
-                            G.call("talk",'',180,'   小兄弟，你好福气呀，武林中有多少人梦寐以求想挣得天下第一，但是你知道什么样的人才配称作【天下第一】吗？今天见识我东方不败真正的实力！',2,1)
+                            G.call("talk",'',180,'   小[兄弟]，你好福气呀，武林中有多少人梦寐以求想挣得天下第一，但是你知道什么样的人才配称作【天下第一】吗？今天见识我东方不败真正的实力！',2,1)
                             G.call('all_over')
                             G.call('call_battle',0,81,3,150+ int_难度系数,180,114,115,200,0,0)
                             local o_battle_结果 = G.call('get_battle')
@@ -1860,7 +1860,7 @@ t['事件_随机切磋']=function()
         end   
     end 
     local name = G.call('get_point',1)
-    G.call("talk",'',int_role,'   【'..name..'】大侠，久闻大名，今日特来领教阁下高招！',1,1)
+    G.call("talk",'',int_role,'   【'..name..'】[大侠]，久闻大名，今日特来领教阁下高招！',1,1)
     G.call('call_battle',1,10,1,555,int_role,0,0,0,0,0,0,0,1)
     if int_被动 > 0 and int_role ~= 418 then--还原被动
         for j = 1,int_被动 do 
@@ -1869,7 +1869,7 @@ t['事件_随机切磋']=function()
     end 
     G.misc().随机切磋 = 0
     if G.call('get_battle') == 1 then
-        G.call("talk",'',int_role,'   【'..name..'】大侠果然功夫过人，些许薄礼就送与大侠了，有机会再来挑战！',1,1) 
+        G.call("talk",'',int_role,'   【'..name..'】[大侠]果然功夫过人，些许薄礼就送与[大侠]了，有机会再来挑战！',1,1) 
         G.misc().随机切磋次数 = G.misc().随机切磋次数 + 1
         G.misc().随机切磋监控 = G.misc().随机切磋监控 - 1
         if int_role == 390   then
@@ -1907,7 +1907,7 @@ t['事件_随机切磋']=function()
             end
         end
     else
-        G.call("talk",'',int_role,'   哈哈哈.......【'..name..'】大侠看来也不过是徒有虚名！',1,1)
+        G.call("talk",'',int_role,'   哈哈哈.......【'..name..'】[大侠]看来也不过是徒有虚名！',1,1)
     end
     if int_被动 > 0 then --还原被动
         for j = 1,int_被动 do 
@@ -2651,7 +2651,7 @@ t['小游戏-野球拳']=function()
             end
         else
             G.call("talk",'',0,'   这不就是【野球拳】吗？',0,0)
-            G.call("talk",'？？？？',247,'   小子既然知道这是【野球拳】，那就来比比吧！',1,1) 
+            G.call("talk",'？？？？',247,'   [小子]既然知道这是【野球拳】，那就来比比吧！',1,1) 
             while true do 
                 int_猜拳_2 = math.random(3)
                 if int_连胜-10 > 0 then 

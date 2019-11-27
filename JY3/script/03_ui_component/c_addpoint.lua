@@ -44,6 +44,16 @@ function t:start()
     self.显示.getChildByName(tostring(3)).text = tostring(savvy)
     self.显示.getChildByName(tostring(4)).text = tostring(speed)
     self.显示.getChildByName(tostring(5)).text = tostring(luck)
+    if not G.QueryName(0x10030001).性别 then 
+        G.QueryName(0x10030001).性别 = 1
+    end
+    if G.QueryName(0x10030001).性别 == 1 then
+        self.按钮.getChildByName('男').style = 3
+        self.按钮.getChildByName('女').style = 9
+    else
+        self.按钮.getChildByName('男').style = 9
+        self.按钮.getChildByName('女').style = 3
+    end
 end 
 function t:update()
 
@@ -59,6 +69,11 @@ function t:rollOut(tar)
     end
 end
 function t:click(tar)
+    if tar == self.按钮.getChildByName('女') then
+        G.QueryName(0x10030001).性别 = 0
+    elseif tar == self.按钮.getChildByName('男') then 
+        G.QueryName(0x10030001).性别 = 1
+    end
     if tar == self.obj.getChildByName('secret_order') then 
         self.obj.getChildByName('secret_order') .visible = false
         self.obj.getChildByName('secret').visible = true
@@ -102,7 +117,11 @@ function t:click(tar)
     end
     self.序号.text = tostring(p)
     local p = tonumber(self.序号.text)
-    self.头像.img = 0x56081000 + p
+    if G.QueryName(0x10030001).性别 == 1 then
+        self.头像.img = 0x56081000 + p
+    else
+        self.头像.img = 0x56082000 + p
+    end
     local a = G.QueryName(0x10030001)[tostring(101)]
     local b = G.QueryName(0x10030001)[tostring(102)] 
     local c = G.QueryName(0x10030001)[tostring(103)]  
@@ -175,7 +194,11 @@ function t:click(tar)
                     end
                 end   
                 local p = tonumber(self.序号.text)
-                G.QueryName(0x10030001)[tostring(119)] = 0x56081000 + p 
+                if G.QueryName(0x10030001).性别 == 1 then
+                    G.QueryName(0x10030001)[tostring(119)] = 0x56081000 + p 
+                else
+                    G.QueryName(0x10030001)[tostring(119)] = 0x56082000 + p 
+                end
                 G.QueryName(0x10030001)[tostring(1)] = self.obj.getChildByName('显示').getChildByName('姓').text
                 G.QueryName(0x10030001)[tostring(2)] = self.obj.getChildByName('显示').getChildByName('名').text
                 local str = self.obj.getChildByName('密令').text
@@ -187,6 +210,7 @@ function t:click(tar)
                     G.QueryName(0x10030001)[tostring(2)] = '丹心'
                 elseif str == '一天二十个游戏' then
                     G.QueryName(0x10030001)[tostring(41)] = 1 --设定为自宫状态
+                    G.QueryName(0x10030001).性别 = 3
                     G.QueryName(0x10030001)[tostring(1)] = '东厂'
                     G.QueryName(0x10030001)[tostring(2)] = '厂公'
                     G.QueryName(0x10030001)[tostring(119)] = 0x560800e2 --设定头像
@@ -197,6 +221,7 @@ function t:click(tar)
                     for i = 16,37 do --基础属性全+1
                         G.call('add_point',i,1)
                     end  
+                    G.QueryName(0x10030001).性别 = 1
                     G.call('add_point',14,50)
                     G.call('add_point',15,10)
                     G.QueryName(0x10030001)[tostring(1)] = '神'
@@ -204,6 +229,7 @@ function t:click(tar)
                     G.call('set_CH','神雕大侠')
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089008 --设定头像
                 elseif str == '十年磨一剑' then
+                    G.QueryName(0x10030001).性别 = 1
                     for i = 16,20 do --基础属性全+1
                         G.call('set_point',i,1)
                         G.call('set_newpoint',i,-11)
@@ -223,16 +249,19 @@ function t:click(tar)
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089006 --设定头像
                     G.call('learnmagic',190)
                 elseif str == '名字就叫狗狗' then
+                    G.QueryName(0x10030001).性别 = 1
                     G.QueryName(0x10030001)[tostring(1)] = '狗'
                     G.QueryName(0x10030001)[tostring(2)] = '狗'
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089007 --设定头像
                     local int_magic = {183,184,185,186,219,220,221}
                     G.call('set_magic',int_magic[math.random(#int_magic)])
                 elseif str == '天宇妹妹最靓了' then
+                    G.QueryName(0x10030001).性别 = 0
                     G.QueryName(0x10030001)[tostring(50)] = 2 --二次结义机会
                 elseif str == '自古红颜多离人' then
                     G.QueryName(0x10030001)[tostring(51)] = 2 --二次结婚机会
                 elseif str == '半瓶神仙醋' then
+                    G.QueryName(0x10030001).性别 = 1
                     G.QueryName(0x10030001)[tostring(1)] = '半瓶'
                     G.QueryName(0x10030001)[tostring(2)] = '神仙醋'
                     G.QueryName(0x10030001)[tostring(119)] = 0x56080026 --设定头像
@@ -241,16 +270,19 @@ function t:click(tar)
                         G.call('add_point',i,5)
                     end  
                 elseif str == '春风得意马蹄疾，一日看尽长安花' then
+                    G.QueryName(0x10030001).性别 = 1
                     G.QueryName(0x10030001)[tostring(1)] = '心猿'
                     G.QueryName(0x10030001)[tostring(2)] = '意马'
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089004 --设定头像
                     G.call('add_point',32,15)
                 elseif str == '狂躁' then
+                    G.QueryName(0x10030001).性别 = 0
                     G.QueryName(0x10030001)[tostring(1)] = '魔王'
                     G.QueryName(0x10030001)[tostring(2)] = '美娜'
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089001 --设定头像
                     G.call('learnmagic',190) --
                 elseif str == '裘球' then
+                    G.QueryName(0x10030001).性别 = 0
                     G.QueryName(0x10030001)[tostring(1)] = '白'
                     G.QueryName(0x10030001)[tostring(2)] = '喵'
                     for i = 16,20 do --基础属性全+5
@@ -265,6 +297,7 @@ function t:click(tar)
                     G.call('add_point',19,30)
                     G.call('add_point',5,10)
                 elseif str == '程灵素' then
+                    G.QueryName(0x10030001).性别 = 0
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089002 --设定头像
                     G.call('add_point',22,20)
                 elseif str == '一剑曾当百万师' then
@@ -386,7 +419,13 @@ function t:click(tar)
     local d0 = tonumber(self.显示.getChildByName(tostring(4)).text ) 
     local e0 = tonumber(self.显示.getChildByName(tostring(5)).text ) 
     self.余点.text = tostring(140-a0-b0-c0-d0-e0)
-
+    if G.QueryName(0x10030001).性别 == 1 then
+        self.按钮.getChildByName('男').style = 3
+        self.按钮.getChildByName('女').style = 9
+    else
+        self.按钮.getChildByName('男').style = 9
+        self.按钮.getChildByName('女').style = 3
+    end
 
 
 

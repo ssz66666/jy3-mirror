@@ -25,7 +25,7 @@ t['门派-桃花岛']=function()
         G.call('goto_map',1) 
     else
         if G.call('get_point',8) == 8 then   
-            G.call("talk",'',90,'   原来是师弟回来了，您可以直接去面见掌门。',2,1) 
+            G.call("talk",'',90,'   原来是[师弟]回来了，您可以直接去面见掌门。',2,1) 
             G.call('all_over') 
             G.call('dark')
             G.call('goto_map',68)
@@ -179,7 +179,7 @@ t['门派-桃花岛']=function()
                         G.call("talk",'门派弟子',90,'   你给我等着，我去请掌门来教训你！',1,1) 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',83,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',83,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,83,89,0,0,0,0)
@@ -214,7 +214,7 @@ t['门派-桃花岛']=function()
                         G.call("talk",'门派弟子',90,'   你给我等着，我去请掌门来教训你！',1,1) 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',83,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',83,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,83,89,0,0,0,0)
@@ -279,7 +279,7 @@ t['门派-神龙教']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',230,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',230,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',230,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -302,7 +302,7 @@ t['门派-神龙教']=function()
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
                         if G.call('team_full') == false then 
-                            G.call("talk",'',123,'   算你厉害！只要你不剿灭我们【神龙教】，我愿意奉你为【太上教主】！我把【四十二章经.镶白旗】我双手奉上,我的老婆【苏荃】也奉献给少侠，任少侠驱策。',1,1) 
+                            G.call("talk",'',123,'   算你厉害！只要你不剿灭我们【神龙教】，我愿意奉你为【太上教主】！我把【四十二章经.镶白旗】我双手奉上,我的老婆【苏荃】也奉献给[少侠]，任[少侠]驱策。',1,1) 
                             G.call('join',26)
                         else
                             G.call("talk",'',123,'   算你厉害！只要你不剿灭我们【神龙教】，我愿意奉你为【太上教主】！我把【四十二章经.镶白旗】我双手奉上。',2,1) 
@@ -396,7 +396,7 @@ t['门派-血刀门']=function()
         G.call('goto_map',1)  
     else
         if G.call('get_point',8) == 7 then   
-            G.call("talk",'',249,'   原来是师弟回来了，您可以直接去面见掌门。',2,1) 
+            G.call("talk",'',249,'   原来是[师弟]回来了，您可以直接去面见掌门。',2,1) 
             G.call('all_over') 
             G.call('dark')
             G.call('goto_map',44)
@@ -417,7 +417,7 @@ t['门派-血刀门']=function()
                                 G.call('learnmagic',207)
                                 G.call('learnmagic',206)
                             else
-                                G.call("talk",'',143,'   不过你小子还不够邪性！',2,1)    
+                                G.call("talk",'',143,'   不过你[小子]还不够邪性！',2,1)    
                             end   
                         end 
                     else
@@ -570,7 +570,7 @@ t['门派-血刀门']=function()
                     G.call('call_battle',1,19,3,100,249,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        G.call("talk",'门派弟子',249,'   公子真是好本事！',1,1) 
+                        G.call("talk",'门派弟子',249,'   [公子]真是好本事！',1,1) 
                     else
                         G.call("talk",'门派弟子',249,'   承让承让，我们还要看门，改日再会！',1,1) 
                     end
@@ -673,7 +673,7 @@ t['门派-全真教']=function()
         G.call('goto_map',1)    
     else
         if G.call('get_point',8) == 4 then   
-            G.call("talk",'',214,'   原来是师弟回来了，您可以直接去面见掌门。',2,1) 
+            G.call("talk",'',214,'   原来是[师弟]回来了，您可以直接去面见掌门。',2,1) 
             G.call('all_over') 
             G.call('dark')
             G.call('goto_map',6)
@@ -825,7 +825,7 @@ t['门派-全真教']=function()
                     G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        G.call("talk",'门派弟子',214,'   公子真是好本事！',1,1) 
+                        G.call("talk",'门派弟子',214,'   [公子]真是好本事！',1,1) 
                     else
                         G.call("talk",'门派弟子',214,'   承让承让，我们还要看门，改日再会！',1,1) 
                     end
@@ -842,7 +842,7 @@ t['门派-全真教']=function()
                         G.call("talk",'门派弟子',214,'   你给我等着，我去请掌门来教训你！',1,1) 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',166,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',166,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,166,0,0,0,0,0)
@@ -871,7 +871,7 @@ t['门派-全真教']=function()
                     if G.call('get_point',195) == 0x100b0055 then 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',166,'   好狂妄的小子！就看你有没有这个本事了！',1,1)  
+                        G.call("talk",'',166,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1)  
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,166,0,0,0,0,0)
@@ -903,7 +903,7 @@ t['门派-全真教']=function()
                             G.call("talk",'门派弟子',214,'   你给我等着，我去请掌门来教训你！',1,1) 
                             G.call('all_over') 
                             G.call('dark')
-                            G.call("talk",'',166,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                            G.call("talk",'',166,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                             G.call('all_over') 
                             G.call('add_time',2)
                             G.call('call_battle',0,10,3,200,166,0,0,0,0,0)
@@ -957,7 +957,7 @@ t['门派-武当派']=function()
         G.call('goto_map',1)    
     else
         if G.call('get_point',8) == 1 then   
-            G.call("talk",'',164,'   原来是师弟回来了，您可以直接去面见掌门。',2,1) 
+            G.call("talk",'',164,'   原来是[师弟]回来了，您可以直接去面见掌门。',2,1) 
             G.call('all_over') 
             G.call('dark')
             G.call('goto_map',7)
@@ -1138,7 +1138,7 @@ t['门派-武当派']=function()
                     G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        G.call("talk",'门派弟子',164,'   公子真是好本事！',1,1) 
+                        G.call("talk",'门派弟子',164,'   [公子]真是好本事！',1,1) 
                     else
                         G.call("talk",'门派弟子',164,'   承让承让，我们还要看门，改日再会！',1,1) 
                     end
@@ -1155,7 +1155,7 @@ t['门派-武当派']=function()
                         G.call("talk",'门派弟子',164,'   你给我等着，我去请掌门来教训你！',1,1) 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',160,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',160,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,160,0,0,0,0,0)
@@ -1184,7 +1184,7 @@ t['门派-武当派']=function()
                     if G.call('get_point',195) == 0x100b0059 then 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',160,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',160,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,160,0,0,0,0,0)
@@ -1216,7 +1216,7 @@ t['门派-武当派']=function()
                             G.call("talk",'门派弟子',164,'   你给我等着，我去请掌门来教训你！',1,1) 
                             G.call('all_over') 
                             G.call('dark')
-                            G.call("talk",'',160,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                            G.call("talk",'',160,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                             G.call('all_over') 
                             G.call('add_time',2)
                             G.call('call_battle',0,10,3,200,160,0,0,0,0,0)
@@ -1435,7 +1435,7 @@ t['门派-少林寺']=function()
                     G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        G.call("talk",'门派弟子',239,'   公子真是好本事！',1,1) 
+                        G.call("talk",'门派弟子',239,'   [公子]真是好本事！',1,1) 
                     else
                         G.call("talk",'门派弟子',239,'   承让承让，我们还要看门，改日再会！',1,1) 
                     end
@@ -1452,7 +1452,7 @@ t['门派-少林寺']=function()
                         G.call("talk",'门派弟子',239,'   你给我等着，我去请掌门来教训你！',1,1) 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',175,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',175,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,175,0,0,0,0,0)
@@ -1481,7 +1481,7 @@ t['门派-少林寺']=function()
                     if G.call('get_point',195) == 0x100b0057 then 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',175,'   好狂妄的小子！就看你有没有这个本事了！',1,1)  
+                        G.call("talk",'',175,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1)  
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,175,0,0,0,0,0)
@@ -1520,7 +1520,7 @@ t['门派-少林寺']=function()
                             G.call("talk",'门派弟子',239,'   你给我等着，我去请掌门来教训你！',1,1) 
                             G.call('all_over') 
                             G.call('dark')
-                            G.call("talk",'',175,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                            G.call("talk",'',175,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                             G.call('all_over') 
                             G.call('add_time',2)
                             G.call('call_battle',0,10,3,200,175,0,0,0,0,0)
@@ -1575,7 +1575,7 @@ t['藏经阁寻宝']=function()
             G.call('xunbao_off')
             G.call('dark')
             G.call('xunbao',8)
-            G.call("talk",'',94,'   放下才得解脱。老衲请'..G.QueryName(0x10030001)[tostring(1)]..'施主不要执着太深。',1,1) 
+            G.call("talk",'',94,'   放下才得解脱。老衲请'..G.QueryName(0x10030001)[tostring(1)]..'[施主]不要执着太深。',1,1) 
             local int_选项 = 0 
             while int_选项 == 0 do
                 int_选项 = G.call("menu",'',0,'',0,0,{"1,晚辈知错了，这便物归原主","2,我想来便来，想走便走，谁能拦我！"},0) 
@@ -2031,7 +2031,7 @@ t['门派-华山派']=function()
                     G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        G.call("talk",'门派弟子',233,'   公子真是好本事！',1,1) 
+                        G.call("talk",'门派弟子',233,'   [公子]真是好本事！',1,1) 
                     else
                         G.call("talk",'门派弟子',233,'   承让承让，我们还要看门，改日再会！',1,1) 
                     end
@@ -2048,7 +2048,7 @@ t['门派-华山派']=function()
                         G.call("talk",'门派弟子',233,'   你给我等着，我去请掌门来教训你！',1,1) 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',191,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',191,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,191,0,0,0,0,0)
@@ -2077,7 +2077,7 @@ t['门派-华山派']=function()
                     if G.call('get_point',193) == 0x100b0012 then 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',191,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',191,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,191,0,0,0,0,0)
@@ -2109,7 +2109,7 @@ t['门派-华山派']=function()
                             G.call("talk",'门派弟子',239,'   你给我等着，我去请掌门来教训你！',1,1) 
                             G.call('all_over') 
                             G.call('dark')
-                            G.call("talk",'',191,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                            G.call("talk",'',191,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                             G.call('all_over') 
                             G.call('add_time',2)
                             G.call('call_battle',0,10,3,200,191,0,0,0,0,0)
@@ -2174,7 +2174,7 @@ t['门派-峨眉派']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',109,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',109,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',109,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -2194,7 +2194,7 @@ t['门派-峨眉派']=function()
   
                     G.call('dark')
                    -- G.call('photo',65)
-                    G.call("talk",'',61,'   想好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                    G.call("talk",'',61,'   想好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                     G.call('all_over') 
                     G.call('add_time',2)
                     G.call('call_battle',0,10,3,200,61,109,18,0,0,0)
@@ -2202,7 +2202,7 @@ t['门派-峨眉派']=function()
                     if o_battle_结果  == 1 then
                         if G.call('team_full') == false then 
                             G.call('join',18)
-                            G.call("talk",'',61,'   算你厉害！只要你不把我们【峨嵋派】赶尽杀绝，我愿意奉你为【太上掌门】！我们【峨嵋派】祖传的【倚天剑】我双手奉上,我的爱徒【周芷若】也奉献给少侠，任少侠驱策。',2,1) 
+                            G.call("talk",'',61,'   算你厉害！只要你不把我们【峨嵋派】赶尽杀绝，我愿意奉你为【太上掌门】！我们【峨嵋派】祖传的【倚天剑】我双手奉上,我的爱徒【周芷若】也奉献给[少侠]，任[少侠]驱策。',2,1) 
                         else
                             G.call("talk",'',61,'   算你厉害！只要你不把我们【峨嵋派】赶尽杀绝，我愿意奉你为【太上掌门】！我们【峨嵋派】祖传的【倚天剑】我双手奉上。',2,1) 
                         end 
@@ -2250,7 +2250,7 @@ t['门派-丐帮']=function()
         G.call('goto_map',1)     
     else
         if G.call('get_point',8) == 9 then   
-            G.call("talk",'',173,'   原来是师弟回来了，您可以直接去面见掌门。',2,1) 
+            G.call("talk",'',173,'   原来是[师弟]回来了，您可以直接去面见掌门。',2,1) 
             G.call('all_over') 
             G.call('dark')
             G.call('goto_map',73)
@@ -2406,7 +2406,7 @@ t['门派-丐帮']=function()
                     G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        G.call("talk",'门派弟子',237,'   公子真是好本事！',1,1) 
+                        G.call("talk",'门派弟子',237,'   [公子]真是好本事！',1,1) 
                     else
                         G.call("talk",'门派弟子',237,'   承让承让，我们还要看门，改日再会！',1,1) 
                     end
@@ -2422,7 +2422,7 @@ t['门派-丐帮']=function()
                     if o_battle_结果  == 1 then
                         G.call("talk",'门派弟子',237,'   你给我等着，我去请掌门来教训你！',1,1) 
                         G.call('地图_进入地图','丐帮',4,48) 
-                        G.call("talk",'',169,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',169,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,169,170,171,172,173,0)
@@ -2451,7 +2451,7 @@ t['门派-丐帮']=function()
                     if G.call('get_point',195) == 0x100b004e then 
                         G.call('all_over') 
                         G.call('dark')
-                        G.call("talk",'',169,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',169,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,169,170,171,172,173,0)
@@ -2482,7 +2482,7 @@ t['门派-丐帮']=function()
                             G.call("talk",'门派弟子',237,'   你给我等着，我去请掌门来教训你！',1,1) 
                             G.call('all_over') 
                             G.call('dark')
-                            G.call("talk",'',169,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                            G.call("talk",'',169,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                             G.call('all_over') 
                             G.call('add_time',2)
                             G.call('call_battle',0,10,3,200,169,170,171,172,173,0)
@@ -2537,7 +2537,7 @@ t['门派-星宿派']=function()
         G.call('goto_map',1)   
     else
         if G.call('get_point',8) == 10 then   
-            G.call("talk",'',41,'   原来是师弟回来了，您可以直接去面见掌门。',2,1) 
+            G.call("talk",'',41,'   原来是[师弟]回来了，您可以直接去面见掌门。',2,1) 
             G.call('all_over') 
             G.call('dark')
             G.call('goto_map',77)
@@ -2716,7 +2716,7 @@ t['门派-星宿派']=function()
                     G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        G.call("talk",'门派弟子',240,'   公子真是好本事！',1,1) 
+                        G.call("talk",'门派弟子',240,'   [公子]真是好本事！',1,1) 
                     else
                         G.call("talk",'门派弟子',240,'   承让承让，我们还要看门，改日再会！',1,1) 
                     end
@@ -2790,7 +2790,7 @@ t['门派-青城派']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',228,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',228,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',228,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -2865,7 +2865,7 @@ t['门派-天龙寺']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',239,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',239,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',239,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -2880,13 +2880,13 @@ t['门派-天龙寺']=function()
                 if o_battle_结果  == 1 then
                     G.call("talk",'门派弟子',239,'   你给我等着，我去请掌门来教训你！',1,1) 
                     G.call('地图_进入地图','天龙寺',40,41) 
-                    G.call("talk",'',93,'   施主是来敝寺抢夺《六脉神剑》剑谱的吗？看你有没有这个本事了！',1,1) 
+                    G.call("talk",'',93,'   [施主]是来敝寺抢夺《六脉神剑》剑谱的吗？看你有没有这个本事了！',1,1) 
                     G.call('all_over') 
                     G.call('add_time',2)
                     G.call('call_battle',0,10,3,200,93,92,105,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                       G.call("talk",'',93,'   阿弥陀佛，施主果然高明。只要你不把我们【天龙寺】赶尽杀绝，我愿意奉你为【太上掌门】！这本【六脉神剑】秘籍，你拿去吧。',2,1) 
+                       G.call("talk",'',93,'   阿弥陀佛，[施主]果然高明。只要你不把我们【天龙寺】赶尽杀绝，我愿意奉你为【太上掌门】！这本【六脉神剑】秘籍，你拿去吧。',2,1) 
                        if G.call('get_item',96) == 0 then 
                             G.call('add_item',96,1)
                         end 
@@ -2941,7 +2941,7 @@ t['门派-昆仑派']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',228,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',228,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',228,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -3019,7 +3019,7 @@ t['门派-明教']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',241,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',241,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',241,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -3094,7 +3094,7 @@ t['门派-日月神教']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',238,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',238,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',238,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -3115,7 +3115,7 @@ t['门派-日月神教']=function()
                     G.call('call_battle',0,10,3,150,180,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                       G.call("talk",'',180,'   小兄弟，怎么对奴家这么狠哪。只要你不嫌弃我东方不败，我愿意奉你为【太上教主】！情愿交出本教至宝【葵花宝典】。',2,1) 
+                       G.call("talk",'',180,'   小[兄弟]，怎么对奴家这么狠哪。只要你不嫌弃我东方不败，我愿意奉你为【太上教主】！情愿交出本教至宝【葵花宝典】。',2,1) 
                         if G.call('get_item',92) == 0 then 
                             G.call('add_item',92,1)
                         end 
@@ -3171,7 +3171,7 @@ t['门派-崆峒派']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',228,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',228,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',228,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -3252,7 +3252,7 @@ t['门派-泰山派']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',235,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',235,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',235,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -3333,7 +3333,7 @@ t['门派-嵩山派']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',232,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',232,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',232,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -3414,7 +3414,7 @@ t['门派-恒山派']=function()
                     G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        G.call("talk",'门派弟子',234,'   公子真是好本事！',1,1) 
+                        G.call("talk",'门派弟子',234,'   [公子]真是好本事！',1,1) 
                     else
                         G.call("talk",'门派弟子',234,'   承让承让，我们还要看门，改日再会！',1,1) 
                     end
@@ -3437,7 +3437,7 @@ t['门派-恒山派']=function()
                         G.call('call_battle',0,10,3,200,193,0,0,0,0,0)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
-                            G.call("talk",'',193,'   算你厉害！只要你不把我们【恒山派】赶尽杀绝，我愿意奉你为【太上掌门】！我的爱徒【仪琳】也奉献给少侠，任少侠驱策。',2,1) 
+                            G.call("talk",'',193,'   算你厉害！只要你不把我们【恒山派】赶尽杀绝，我愿意奉你为【太上掌门】！我的爱徒【仪琳】也奉献给[少侠]，任[少侠]驱策。',2,1) 
                             if G.call('team_full') == false then
                             G.call('join',3)
                             end 
@@ -3493,7 +3493,7 @@ t['门派-衡山派']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',236,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',236,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',236,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end
@@ -3573,7 +3573,7 @@ t['门派-灵鹫宫']=function()
                     G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        G.call("talk",'门派弟子',228,'   公子真是好本事！',1,1) 
+                        G.call("talk",'门派弟子',228,'   [公子]真是好本事！',1,1) 
                     else
                         G.call("talk",'门派弟子',228,'   承让承让，我们还要看门，改日再会！',1,1) 
                     end
@@ -3588,7 +3588,7 @@ t['门派-灵鹫宫']=function()
                     if o_battle_结果  == 1 then
                         G.call("talk",'门派弟子',228,'   你给我等着，我去请掌门来教训你！',1,1) 
                         G.call('地图_进入地图','灵鹫宫',68,48) 
-                        G.call("talk",'',115,'   好狂妄的小子！就看你有没有这个本事了！',1,1) 
+                        G.call("talk",'',115,'   好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
                         G.call('call_battle',0,10,3,200,115,0,0,0,0,0)
@@ -3648,7 +3648,7 @@ t['门派-铁掌帮']=function()
                 G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
                 o_battle_结果 = G.call('get_battle') 
                 if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',231,'   公子真是好本事！',1,1) 
+                    G.call("talk",'门派弟子',231,'   [公子]真是好本事！',1,1) 
                 else
                     G.call("talk",'门派弟子',231,'   承让承让，我们还要看门，改日再会！',1,1) 
                 end

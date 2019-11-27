@@ -41,7 +41,7 @@ t['初入星宿'] = function()
     G.QueryName(0x10030001)[tostring(8)] = 10
     G.call('dark')
     G.call('goto_map',78)
-    G.call("talk",'',41,'   师弟，今日我就先教你本门初级心法！',2,1)
+    G.call("talk",'',41,'   [师弟]，今日我就先教你本门初级心法！',2,1)
     G.call('learnmagic',222)
     G.call('all_over')
 end
@@ -228,7 +228,7 @@ t['初入星宿-阿紫'] = function()
     G.call("talk",'',19,'   '..G.call('get_fullname')..',今天怎么那乖来陪师姐炼毒呀？',2,1)
     local int_选项 = 0
 	while int_选项 == 0 do
-        int_选项 = G.call("menu",'',0,'',0,0,{"1,师姐这里有没有什么事情师弟可以帮忙的？","2,没什么事情，顺路向师姐请安而已"},0) 
+        int_选项 = G.call("menu",'',0,'',0,0,{"1,师姐这里有没有什么事情[师弟]可以帮忙的？","2,没什么事情，顺路向师姐请安而已"},0) 
         if int_选项 == 1 then
             if G.misc().毒物 == nil then 
                 G.misc().毒物 = 0
@@ -241,7 +241,7 @@ t['初入星宿-阿紫'] = function()
                     local str_毒物名 = G.QueryName(0x100b0000 + G.misc().毒物 - 1).名称
                     G.call("talk",'',19,'   '..G.call('get_fullname')..',你去给我弄【'..G.misc().毒物数量..'】个'..str_毒物名,2,1)
                 else
-                    G.call("talk",'',19,'   改日再让师弟帮我！',2,1)
+                    G.call("talk",'',19,'   改日再让[师弟]帮我！',2,1)
                 end
             else
                 local str_毒物名 = G.QueryName(0x100b0000 + G.misc().毒物 - 1).名称
