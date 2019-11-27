@@ -88,7 +88,7 @@ function t:click(tar)
     end 
     local p = tonumber(self.序号.text)
     if tar == self.右 then 
-       if p < 14 then 
+       if p < 16 then 
           p = p + 1
        else      
           p = 1 
@@ -97,7 +97,7 @@ function t:click(tar)
         if p > 1 then 
             p = p - 1
         else      
-            p = 14 
+            p = 16 
         end 
     end
     self.序号.text = tostring(p)

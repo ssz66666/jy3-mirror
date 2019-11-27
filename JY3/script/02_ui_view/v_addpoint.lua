@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_addpoint = require 'c_addpoint'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -526,12 +526,13 @@ tp = tc
 	tc = G.TextQuad()
 	tp.addChild(tc)
 	tc.name = '序号'
-	tc.left = 52.000
-	tc.right = 112.000
+	tc.left = 66.500
+	tc.right = 97.500
 	tc.bottom = -80.000
 	tc.top = -40.000
 	tc.scaleX = 0.500
 	tc.scaleY = 0.500
+	tc.autosize = 1
 	tc.text = '1'
 	tc.font = 0x613c0000
 	tc.style = 10
