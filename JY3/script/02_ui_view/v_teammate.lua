@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_teammate = require 'c_teammate'
 local c_button = require 'c_button'
+local c_teammate = require 'c_teammate'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -468,6 +468,7 @@ tp = tc
 	tc.right = 290.500
 	tc.bottom = -154.000
 	tc.top = 182.000
+	tc.visible = false
 	tc.img = 0x56160024
 	tp = tc
 		tc = G.Quad()

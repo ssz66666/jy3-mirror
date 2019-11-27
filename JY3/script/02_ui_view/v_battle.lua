@@ -4148,6 +4148,7 @@ tp = tc
 		tc.top = 139.000
 		tc.alpha = 200
 		tc.img = 0x56160024
+		tc.visible = false
 		tp = tc
 			tc = G.Quad()
 			tp.addChild(tc)
