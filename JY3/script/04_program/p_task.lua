@@ -1271,7 +1271,7 @@ t['门派-少林寺']=function()
         G.call('goto_map',1)    
     else
         if G.call('get_point',8) == 2 then   
-            G.call("talk",'',239,'   原来是师兄回来了，您可以直接去面见掌门。',2,1) 
+            G.call("talk",'',239,'   原来是[师兄]回来了，您可以直接去面见掌门。',2,1) 
             G.call('all_over') 
             G.call('dark')
             G.call('goto_map',9)
@@ -1885,7 +1885,7 @@ t['门派-华山派']=function()
         G.call('goto_map',1)    
     else
         if G.call('get_point',8) == 3 then   
-            G.call("talk",'',233,'   原来是师兄回来了，您可以直接去面见掌门。',2,1) 
+            G.call("talk",'',233,'   原来是[师兄]回来了，您可以直接去面见掌门。',2,1) 
             G.call('all_over') 
             G.call('dark')
             G.call('goto_map',8)
