@@ -179,6 +179,7 @@ t['战斗系统_主角监控'] = function()
                                 int_hp = math.floor(int_hp/2) 
                             end
                             int_hp = math.max(1,int_hp)
+                            int_hp = math.min(10000,int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             G.call('add_point',44,int_hp)
                         end 
@@ -194,6 +195,7 @@ t['战斗系统_主角监控'] = function()
                                 int_mp = math.floor(int_mp * 50/int_lvmax)
                             end
                             int_mp = math.max(1,int_mp)
+                            int_mp = math.min(10000,int_mp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加内力').text = tostring(int_mp)
                             G.call('add_point',46,int_mp)
                         end 
@@ -772,6 +774,7 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = math.floor(int_hp * 50/int_lvmax)
                                 end
                                 int_hp = math.max(1,int_hp) 
+                                int_hp = math.min(20000,int_hp)
                             end
                             if  o_skill.范围 == 0  then 
                                 if o_skill.内功轻功效果 == 1 then
@@ -1184,6 +1187,7 @@ t['战斗系统_事件响应'] = function()
                                     int_hp = math.floor(int_hp * 50/int_lvmax)
                                 end
                                 int_hp = math.max(1,int_hp)
+                                int_hp = math.min(20000,int_hp)
                             end
                             if  o_skill.范围 == 0  then 
                                 if o_skill.内功轻功效果 == 1 then
@@ -1505,6 +1509,7 @@ t['战斗系统_事件响应'] = function()
                             int_hp = math.floor(int_hp * 50/int_lvmax)
                         end
                         int_hp = math.max(1,int_hp)
+                        int_hp = math.min(20000,int_hp)
                     end
                     if  o_skill.范围 == 0  then 
                         if o_skill.内功轻功效果 == 1 then
@@ -2025,7 +2030,9 @@ t['战斗系统_事件响应'] = function()
                                 int_mp = math.floor(int_mp/2)
                             end
                             int_hp = math.max(1,int_hp)
+                            int_hp = math.min(10000,int_hp)
                             int_mp = math.max(1,int_mp)
+                            int_mp = math.min(10000,int_mp)
                             G.call('add_role',o_battle[位置[i] ],15,int_hp)
                             G.call('add_role',o_battle[位置[i] ],14,int_mp)
                             if G.call('get_role',int_role,84) > 0 then 
