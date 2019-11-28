@@ -1376,8 +1376,8 @@ t['挖矿时间条'] = function()
 		if ui2.getChildByName('时间').width == 0 then
 			ui2.getChildByName('口白').text = '   换口气再来'
 			G.wait_time(500)
-			G.trig_event('挖矿结束')
 			c.挖矿 = 1
+			G.trig_event('挖矿结束')
 			break
 		end 
 	end 
