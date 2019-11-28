@@ -631,6 +631,8 @@ t['地图系统_小游戏'] = function()
 				end	
 				ui.getChildByName('口白').text = '    得到'..name1..str1..'块 '..name2..str2..name3..str3
 				if ui.getChildByName('时间').width == 0 then
+					c.挖矿 = 1
+					G.trig_event('挖矿结束')
 					return
 				end
 				G.wait_time(500)
@@ -647,9 +649,10 @@ t['地图系统_小游戏'] = function()
 					end	
 				end
 				if ui.getChildByName('时间').width == 0 then
+					c.挖矿 = 1
+					G.trig_event('挖矿结束')
 					return
 				end
-				G.trig_event('挖矿结束')
             end 
 		elseif r == 2 then
 			local ui3 ;
