@@ -2910,6 +2910,7 @@ t['magic_power1'] = function(int_id,int_no)
                     string_字符串_2 = string_字符串_2..'.'..'舔血'
                 end
                 hurt4 = math.floor(hurt*(0.25 + int_舔血效果*5/100)*(100 - G.call('get_point',15)       )/100    ) 
+                hurt4 = math.min(5000,hurt4)
             end 
             if i_skill == 0x10050083 and G.call('通用_取得人物特效',0,20) and G.misc().木桩 == 0 then --北冥真气吸蓝判定
                 G.call('add_point',63,hurt0) 
@@ -3657,6 +3658,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 else
                     hurt4 = math.floor(hurt*0.15) 
                 end
+                hurt4 = math.min(5000,hurt4)
             end  
             if G.call('通用_取得人物特效',int_id,20)  and math.random(100) < 50 then
                 G.call('add_role',int_id,14,750)
@@ -4339,6 +4341,7 @@ t['magic_power3'] = function(int_id,int_no)
                     string_字符串_2 = string_字符串_2..'.'..'舔血'
                 end
                 hurt4 = math.floor(hurt*0.3) 
+                hurt4 = math.min(5000,hurt4)
             end   
             if G.call('get_point',18) > 50 and G.call('get_magic',152) > 0 and math.random(100) <= G.call('get_point',18) - 50 then --斗转被动) 
                 if string_字符串_4 == '' then 
