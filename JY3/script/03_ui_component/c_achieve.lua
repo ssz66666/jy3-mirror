@@ -359,7 +359,7 @@ function t:click(tar)
         local o_achieve = G.QueryName(0x10170000+G.misc().data)
         self.按钮.getChildByName('子菜单').visible = false 
         self.按钮.getChildByName('进度').visible = true 
-        local no = {3,6,12,13,14,15,16,18,19,22,23,24,25}
+        local no = {3,6,12,13,14,15,16,18,19,22,23,24,25,26,27}
         self.进度.getChildByName('总页数').text = 1
         self.进度.getChildByName('页数').text = 1
         local point = 0
