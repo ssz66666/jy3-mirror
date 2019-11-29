@@ -166,7 +166,7 @@ t['战斗系统_主角监控'] = function()
                     if G.call('get_point',8) == 4 then --全真派加成
                         int_天罡效果 = int_天罡效果 + 3 
                     end
-                    if o_skill.内功轻功效果 == 10 or o_skill.内功轻功效果 == 11 then 
+                    if (o_skill.内功轻功效果 == 10 or o_skill.内功轻功效果 == 11) and (not G.call('get_point',240) or G.call('get_point',240) == 0)   then 
                         if o_skill.内功轻功效果 == 10 then 
                             local int_hp = math.floor(G.call('get_point',217)*o_skill.修为等级*(int_天罡效果 +  o_skill.效果等级 )/200)
                             if G.call('get_point',85) > 0 then
@@ -2033,8 +2033,10 @@ t['战斗系统_事件响应'] = function()
                             int_hp = math.min(20000,int_hp)
                             int_mp = math.max(1,int_mp)
                             int_mp = math.min(20000,int_mp)
-                            G.call('add_role',o_battle[位置[i] ],15,int_hp)
-                            G.call('add_role',o_battle[位置[i] ],14,int_mp)
+                            if  (not G.call('get_role',o_battle[位置[i] ],240) or G.call('get_role',o_battle[位置[i] ],240) == 0)   then--舔血效果计算
+                                G.call('add_role',o_battle[位置[i] ],15,int_hp)
+                                G.call('add_role',o_battle[位置[i] ],14,int_mp)
+                            end
                             if G.call('get_role',int_role,84) > 0 then 
                                 ui.getChildByName('map').getChildByName(位置[i]).x = 0 --npc内伤状态无法使用武功 
                             else
@@ -2294,9 +2296,13 @@ t['集气'] = function()
         G.wait_time(deytime)
         if (G.call('通用_取得人物特效',0,12) or G.call('通用_取得装备特效',0,104)) and G.call('get_point',44) < G.call('get_point',217)*0.3  then  --主角的回春技能加成
             if G.call('get_point',44) > 0 and G.call('get_point',82) == 0 then 
+                if o_role_npc[tostring(85)] > 0 then
+                    int_比例 = int_比例*2 
+                end
                 if G.call('get_point',85) > 0 then 
-                    G.call('add_point',44,math.max(1,math.floor(10/int_比例)))
-                else
+                    int_比例 = int_比例*2 
+                end
+                if not G.call('get_point',240) or G.call('get_point',240) == 0 then 
                     G.call('add_point',44,math.max(1,math.floor(20/int_比例))) 
                 end
             end
@@ -2314,10 +2320,17 @@ t['集气'] = function()
             end
         end  
         --异常状态显示 
-        local str_异常 = {'中毒','麻痹','晕眩','内伤','受伤','减速','混乱','致盲','御风','剧毒'}
+        local str_异常 = {'中毒','麻痹','晕眩','内伤','受伤','减速','混乱','致盲','御风','剧毒','强伤'}
+        local str_异常_1 = {'强伤'}
         local result = false
         for i = 81,90 do --
             if G.call('get_point',i) > 0 then 
+                result = true
+                break
+            end
+        end
+        for i = 240,249 do --
+            if G.call('get_point',i) and G.call('get_point',i) > 0 then 
                 result = true
                 break
             end
@@ -2329,6 +2342,13 @@ t['集气'] = function()
                 if G.call('get_point',i) > 0 then
                     local int_异常时间=  G.call('get_point',i+10)
                     string_字符串 = string_字符串..'[08]'..str_异常[i-80]..' [01]'..int_异常时间..'[br]'
+                end
+            end
+            if G.call('get_point',240) and G.call('get_point',240) > 0 then
+                local int_异常时间 =  G.call('get_point',250)
+                if G.call('get_point',250) and G.call('get_point',250) > 0 then
+                    string_字符串 = string_字符串..'[08]'..str_异常_1[1]..' [01]'..int_异常时间..'[br]'
+            
                 end
             end
             ui.getChildByName('异常').getChildByName('状态').text = string_字符串
@@ -2344,9 +2364,10 @@ t['集气'] = function()
                     if (G.call('通用_取得人物特效',int_role,12) or G.call('通用_取得装备特效',int_role,104)) and o_role_npc.生命 < o_role_npc[tostring(1)]*0.5  and  o_role_npc.生命 > 0 then --npc回春效果
                         if o_role_npc[tostring(82)] == 0 then
                             if o_role_npc[tostring(85)] > 0 then
-                                G.call('add_role',int_role,15,math.max(1,math.floor(10/int_比例))) 
-                            else
-                                G.call('add_role',int_role,15,math.max(1,math.floor(20/int_比例))) 
+                                int_比例 = int_比例*2 
+                            end
+                            if not o_role_npc[tostring(240)] or o_role_npc[tostring(240)] == 0 then 
+                               G.call('add_role',int_role,15,math.max(1,math.floor(20/int_比例)))
                             end
                         end
                     end     
@@ -2683,6 +2704,7 @@ t['magic_power1'] = function(int_id,int_no)
     local int_舔血效果 = 0
     local int_毒仙阵效果 = 0
     local int_慈悲效果 = 0
+    local int_诛仙效果 = 0
     for i = 2,5 do 
         if G.QueryName(0x10150001)[位置[i]] > 0 then 
             if G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i]] ).生命 > 0 then 
@@ -2706,6 +2728,8 @@ t['magic_power1'] = function(int_id,int_no)
             int_舔血效果 = int_队友
         elseif G.QueryName(i_magic_阵法).附加效果 == 10 then 
             int_毒仙阵效果 = int_队友
+        elseif G.QueryName(i_magic_阵法).附加效果 == 11 then
+            int_诛仙效果 = int_队友
         elseif G.QueryName(i_magic_阵法).附加效果 == 2 then
             int_慈悲效果 = int_队友
         end
@@ -2831,10 +2855,17 @@ t['magic_power1'] = function(int_id,int_no)
     end
     local int_斩杀 = 0
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    if math.random(a+20) > math.random(math.floor(b/3)+1+int_闪避) or G.call('通用_取得装备特效',0,208) or o_skill.附加效果 == 13 or G.call('通用_取得套装',0,3) == 3 then  --命中计算     
+    if math.random(a+20) > math.random(math.floor(b/3)+1+int_闪避) or G.call('通用_取得装备特效',0,208) or o_skill.附加效果 == 14 or o_skill.附加效果 == 13 or G.call('通用_取得套装',0,3) == 3 then  --命中计算     
         if hurt > 0 then 
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
-            if math.random(100) > 80 and (G.call('通用_取得人物特效',0,22) or G.call('通用_取得装备特效',0,206))  then --朱雀被动效果
+            if  o_skill.附加效果 == 14  then 
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'九破'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'九破'
+                end
+                hurt = hurt 
+            elseif math.random(100) > 80 and (G.call('通用_取得人物特效',0,22) or G.call('通用_取得装备特效',0,206) )  then --朱雀被动效果
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'朱雀'
                 else
@@ -2902,7 +2933,7 @@ t['magic_power1'] = function(int_id,int_no)
                     hurt3 = math.floor(hurt3*1.25)
                 end
             end
-            if G.call('通用_取得人物特效',0,19)     then --舔血效果计算
+            if G.call('通用_取得人物特效',0,19) and (not G.call('get_point',240) or G.call('get_point',240) == 0)     then --舔血效果计算
             --if (int_no == 205 or int_no == 206 or int_no == 21 or int_no == 235 ) and G.call('通用_取得人物特效',0,19)     then --舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
@@ -3125,6 +3156,35 @@ t['magic_power1'] = function(int_id,int_no)
                         G.call('set_role',int_id,98,int_时序)
                     end 
                 end 
+            end
+            --强伤（灭绝判断）
+            if G.call('通用_取得人物特效',0,36) and  G.call('通用_取得套装',int_id,4) ~= 3  then  
+                if math.random(100) < 50 - int_诛仙效果*10 then 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'灭绝'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'灭绝'
+                    end 
+                    G.call('set_role',int_id,240,1)
+                    if G.call('get_point',8) == 11 then 
+                        G.call('set_role',int_id,250,math.floor(int_时序*(2 + int_诛仙效果*0.20)    ))
+                    else
+                        G.call('set_role',int_id,250,math.floor(int_时序*(1 + int_诛仙效果*0.20)    ))
+                    end
+                end
+            end
+            if  o_skill.附加效果 == 15  then 
+                if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10) then 
+                    if not G.call('get_role',int_id,240) or G.call('get_role',int_id,240) == 0  then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'强伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'强伤'
+                        end 
+                        G.call('set_role',int_id,240,1)
+                        G.call('set_role',int_id,250,int_时序)
+                    end 
+                end
             end
             if  o_skill.附加效果 == 9 or G.call('通用_取得人物特效',0,23) or G.call('通用_取得装备特效',0,207) then --混乱（玄武判断）
                 if math.random(seed) < 5 + math.floor(G.call('get_point',179+27)/10) then 
@@ -3558,6 +3618,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             result = result + 50
         end 
     end
+    print('hurt1',hurt)
     hurt = hurt * result/100
     local int_闪避 = 0
     int_闪避 = int_闪避 + G.call('通用_取得NPC内功效果',int_enemy,5) --内功闪避效果计算
@@ -3587,10 +3648,17 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     end
     local int_斩杀 = 0
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避+1) or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 13 or G.call('通用_取得套装',int_id,3) == 3 then  --命中计算
+    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避+1) or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 14 or o_skill.附加效果 == 13 or G.call('通用_取得套装',int_id,3) == 3 then  --命中计算
         if hurt > 0 then 
             hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
-            if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))  then --朱雀被动效果
+            if  o_skill.附加效果 == 14  then 
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'九破'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'九破'
+                end
+                hurt = hurt 
+            elseif math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))  then --朱雀被动效果
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'朱雀'
                 else
@@ -3613,23 +3681,20 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 hurt = math.floor(hurt *0.9)
             end
             if o_battle.模式 ~= 5 then
+                print('hurt2',hurt)
                 local int_比例 = math.ceil(G.call('get_point',4)/20)*2
                 if int_id == 418 then
                     int_比例 = 10
                 end
                 if att_role == 0 then --根据难度和攻击方计算最终伤害
-                    hurt = math.floor(hurt*int_比例*o_battle.diffty/2000) 
+                    hurt = math.floor(hurt*int_比例*o_battle.diffty/200) 
                 else   
                     hurt = math.floor(hurt*200*int_比例/(o_battle.diffty*10)) 
                 end  
                 if hurt < 10 then 
                     hurt = math.random(10)
                 end 
-                -- if att_role == 0  then --根据难度和攻击方计算最终伤害
-                --     hurt = math.floor(hurt*G.call('get_point',4)*o_battle.diffty/20000) 
-                -- else   
-                --     hurt = math.floor(hurt*G.call('get_point',4)*200/(o_battle.diffty*100)) 
-                -- end    
+                print('hurt3',hurt)  
             end
             if hurt < 10 then 
                hurt = math.random(10)
@@ -3647,7 +3712,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     hurt3 = math.floor(hurt3*1.25)
                 end
             end
-            if G.call('通用_取得人物特效',int_id,19) then  --舔血效果计算
+            if G.call('通用_取得人物特效',int_id,19) and (not G.call('get_role',int_id,240) or G.call('get_role',int_id,240) == 0)   then--舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
                 else
@@ -3735,6 +3800,31 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                         G.call('set_role',int_enemy,100,int_时序*2)
                     end  
                 end 
+            end
+            --强伤（灭绝判断）
+            if G.call('通用_取得人物特效',int_id,36) and G.call('通用_取得套装',int_enemy,4) ~= 3  then 
+                if math.random(100) < 25 then 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'灭绝'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'灭绝'
+                    end 
+                    G.call('set_role',int_enemy,240,1)
+                    G.call('set_role',int_enemy,250,int_时序)
+                end
+            end
+            if  o_skill.附加效果 == 15  then 
+                if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10) then 
+                    if not G.call('get_role',int_enemy,240) or G.call('get_role',int_enemy,240) == 0  then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'强伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'强伤'
+                        end 
+                        G.call('set_role',int_enemy,240,1)
+                        G.call('set_role',int_enemy,250,int_时序)
+                    end 
+                end
             end
             if  o_skill.附加效果 == 2 then
                 if math.random(seed) < 5+ math.floor(G.call('get_role',int_id,6)/10) then 
@@ -4310,7 +4400,7 @@ t['magic_power3'] = function(int_id,int_no)
     end
     local int_斩杀 = 0
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
-    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避 + 1)  or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 13  or G.call('通用_取得套装',int_id,3) == 3 then  --命中计算
+    if math.random(a+20) > math.random(math.floor(b/3)+int_闪避 + 1)  or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 14 or o_skill.附加效果 == 13  or G.call('通用_取得套装',int_id,3) == 3 then  --命中计算
         if hurt > 0 then 
             if G.call('get_point',196) ~= nil then   
                 local o_skill_ta = G.QueryName(G.call('get_point',196))
@@ -4318,7 +4408,14 @@ t['magic_power3'] = function(int_id,int_no)
                     hurt = hurt * (100-o_skill_ta.效果等级*o_skill_ta.修为等级/10)/100
                 end 
             end  
-            if math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))   then --朱雀被动效果
+            if  o_skill.附加效果 == 14  then 
+                if string_字符串_4 == '' then 
+                    string_字符串_4 = string_字符串_4..'九破'
+                else
+                    string_字符串_4 = string_字符串_4..'.'..'九破'
+                end
+                hurt = hurt 
+            elseif math.random(100) > 80 and (G.call('通用_取得人物特效',int_id,22) or G.call('通用_取得装备特效',int_id,206))   then --朱雀被动效果
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'朱雀'
                 else
@@ -4334,7 +4431,7 @@ t['magic_power3'] = function(int_id,int_no)
                 local o_item = G.QueryName(G.call('get_point',194))
                 hurt = hurt*(1-(o_item.系数-100)/2/100)
             end 
-            if G.call('通用_取得人物特效',int_id,19) then  --舔血效果计算
+            if G.call('通用_取得人物特效',int_id,19) and (not G.call('get_role',int_id,240) or G.call('get_role',int_id,240) == 0)   then--舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
                 else
@@ -4383,7 +4480,7 @@ t['magic_power3'] = function(int_id,int_no)
                     int_比例 = 10
                 end
                 if att_role == 0 then --根据难度和攻击方计算最终伤害
-                    hurt = math.floor(hurt*int_比例*o_battle.diffty/2000) 
+                    hurt = math.floor(hurt*int_比例*o_battle.diffty/200) 
                 else   
                     hurt = math.floor(hurt*200*int_比例/(o_battle.diffty*10)) 
                 end  
@@ -4554,6 +4651,31 @@ t['magic_power3'] = function(int_id,int_no)
                         G.call('set_point',91,int_时序*2)
                     end 
                 end 
+            end
+            --强伤（灭绝判断）
+            if G.call('通用_取得人物特效',int_id,36) and G.call('通用_取得套装',0,4) ~= 3  then 
+                if math.random(100) < 25 then 
+                    if string_字符串_4 == '' then 
+                        string_字符串_4 = string_字符串_4..'灭绝'
+                    else
+                        string_字符串_4 = string_字符串_4..'.'..'灭绝'
+                    end 
+                    G.call('set_point',240,1) 
+                    G.call('set_point',240,int_时序)
+                end
+            end
+            if  o_skill.附加效果 == 15  then 
+                if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
+                    if not G.call('get_ponit',240) or G.call('get_ponit',240) == 0  then 
+                        if string_字符串_4 == '' then 
+                            string_字符串_4 = string_字符串_4..'强伤'
+                        else
+                            string_字符串_4 = string_字符串_4..'.'..'强伤'
+                        end 
+                        G.call('set_point',240,1) 
+                        G.call('set_point',240,int_时序)
+                    end 
+                end
             end
             if  o_skill.附加效果 == 8 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
