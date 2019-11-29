@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_achieve = require 'c_achieve'
 local c_button = require 'c_button'
+local c_achieve = require 'c_achieve'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -1228,7 +1228,6 @@ tp = tc
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
 		tc.name = '进度'
-		tc.visible = false
 		tp = tc
 			tc = G.Quad()
 			tp.addChild(tc)
@@ -3368,7 +3367,6 @@ tp = tc
 			tc = G.loadUI('v_empty')
 			tp.addChild(tc)
 			tc.name = '14'
-			tc.visible = false
 			tp = tc
 				tc = G.loadUI('v_empty')
 				tp.addChild(tc)
