@@ -2296,9 +2296,6 @@ t['集气'] = function()
         G.wait_time(deytime)
         if (G.call('通用_取得人物特效',0,12) or G.call('通用_取得装备特效',0,104)) and G.call('get_point',44) < G.call('get_point',217)*0.3  then  --主角的回春技能加成
             if G.call('get_point',44) > 0 and G.call('get_point',82) == 0 then 
-                if o_role_npc[tostring(85)] > 0 then
-                    int_比例 = int_比例*2 
-                end
                 if G.call('get_point',85) > 0 then 
                     int_比例 = int_比例*2 
                 end
