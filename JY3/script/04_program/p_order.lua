@@ -273,7 +273,7 @@ t['通用_读档'] = function(int_档案编号)
                     end
                 end  
             end  
-            if  maxpoint > 5275  then
+            if  maxpoint > 7000 or point > 7000  then
                 G.call('通用_强退游戏') 
             end
             if G.QueryName(0x10170012).进度列表[1].完成 == 1 and not G.misc().一鸣惊人完成 then 
@@ -382,7 +382,7 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-
+    G.call('goto_map',82)
     --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
@@ -1476,6 +1476,8 @@ t['set_role']=function(int_id,int_编号,int_number) --设置NPC部分属性
         end 
     elseif int_编号 >= 81 and int_编号 <= 115 then 
         G.QueryName(0x10040000+int_id)[tostring(int_编号)] = int_number
+    elseif int_编号 >= 240 and int_编号 <= 259 then 
+        G.QueryName(0x10040000+int_id)[tostring(int_编号)] = int_number
     elseif int_编号 >= 901 and int_编号 <= 908 then 
         G.QueryName(0x10040000+int_id)[tostring(int_编号)] = int_number 
     else
@@ -1531,6 +1533,8 @@ t['get_role']=function(int_id,int_编号) --取得NPC部分属性
         end 
     elseif int_编号 >= 901 and int_编号 <= 908 then 
         return   G.QueryName(0x10040000+int_id)[tostring(int_编号)]
+    elseif int_编号 >= 240 and int_编号 <= 259 then 
+        return   G.QueryName(0x10040000+int_id)[tostring(int_编号)] 
     elseif int_编号 >= 81 and int_编号 <= 115 then 
         return   G.QueryName(0x10040000+int_id)[tostring(int_编号)] 
     else
@@ -2023,6 +2027,7 @@ end
 t['指令_重铸'] = function() --洗去经脉和内功轻功并返还修为点
     local skill = G.DBTable('o_skill')
     local n = 0
+    local m = 0
     for i = 1,#skill do 
         local o_skill = G.QueryName(0x10050000+i)
         if o_skill.类别 == 6 or o_skill.类别 == 7  then  --计算现有内功和轻功所用修为点
@@ -2036,6 +2041,7 @@ t['指令_重铸'] = function() --洗去经脉和内功轻功并返还修为点
     for i = 1,9 do  --计算经脉所用的所有修为点
         local o_jm = G.QueryName(0x100a0000+i)
         n = o_jm.打通数量 + n
+        m = o_jm.打通数量 + m
         o_jm.打通数量 = 0
         o_jm.是否打通 = false
         G.call('set_point',220+i,0)
@@ -2046,7 +2052,7 @@ t['指令_重铸'] = function() --洗去经脉和内功轻功并返还修为点
     G.QueryName(0x10030001)[tostring(197)] = nil 
     if n > 0 then 
         G.call('add_point',5,n)   --增加修为点
-        G.call('add_point',27,-n) 
+        G.call('add_point',27,-m) 
     end
     G.call('指令_存储属性')
 end    
@@ -2524,6 +2530,9 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
                         G.call('add_point',19,5) 
                         G.call('notice1','【乞讨】技能提升，【福缘】提升')
                     elseif o_school == 10 then
+                        G.call('add_point',21,5) 
+                        G.call('notice1','【慈航】修为提升，【定力】提升')
+                    elseif o_school == 11 then
                         G.call('add_point',32,2) 
                         G.call('notice1','【谄媚】技能提升，【施毒】提升')
                     elseif o_school == 5 then 
@@ -3130,7 +3139,7 @@ end
 t['出师-增加被动']=function() 
     local int_门派 = G.QueryName(0x10030001)[tostring(8)]
     local result = false
-    local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武'}
+    local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','灭绝'}
     if int_门派 == 1 then
         G.call('set_point',115,21)
         G.call('notice1','领悟【'..magic[21]..'】')
@@ -3166,6 +3175,9 @@ t['出师-增加被动']=function()
     elseif int_门派 == 10 then
         G.call('set_point',115,18)
         G.call('notice1','领悟【'..magic[18]..'】')
+    elseif int_门派 == 11 then
+        G.call('set_point',115,36)
+        G.call('notice1','领悟【'..magic[22]..'】')
     end 
     G.call('set_newpoint',115,-10-G.call('get_point',115)) 
 end 
