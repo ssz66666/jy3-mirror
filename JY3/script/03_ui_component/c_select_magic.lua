@@ -83,6 +83,9 @@ function t:刷新显示()
     local str31 = '招式攻击几率造成迟缓'
     local str32 = '附加5%比例伤害'
     local str33 = '任意剑法全体攻击,附加斩杀效果'
+    local str34 = '任意剑法全体攻击,附加斩杀效果'
+    local str35 = '招式攻击必定不会被对方闪躲'
+    local str36 = '招式攻击附加抑制敌人回复能力'
     local str = {str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22,str23,str24,str25,str26,str27,str28,str29,str30,str31,str32,str33}
     local str_字符串_1 = ''
     local str_字符串_2 = ''
