@@ -1228,6 +1228,7 @@ tp = tc
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
 		tc.name = '进度'
+		tc.visible = false
 		tp = tc
 			tc = G.Quad()
 			tp.addChild(tc)
@@ -3367,6 +3368,7 @@ tp = tc
 			tc = G.loadUI('v_empty')
 			tp.addChild(tc)
 			tc.name = '14'
+			tc.visible = false
 			tp = tc
 				tc = G.loadUI('v_empty')
 				tp.addChild(tc)
