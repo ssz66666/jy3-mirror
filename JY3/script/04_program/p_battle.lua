@@ -3687,7 +3687,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     int_比例 = 10
                 end
                 if att_role == 0 then --根据难度和攻击方计算最终伤害
-                    hurt = math.floor(hurt*int_比例*o_battle.diffty/200) 
+                    hurt = math.floor(hurt*int_比例*o_battle.diffty/2000) 
                 else   
                     hurt = math.floor(hurt*200*int_比例/(o_battle.diffty*10)) 
                 end  
@@ -4480,7 +4480,7 @@ t['magic_power3'] = function(int_id,int_no)
                     int_比例 = 10
                 end
                 if att_role == 0 then --根据难度和攻击方计算最终伤害
-                    hurt = math.floor(hurt*int_比例*o_battle.diffty/200) 
+                    hurt = math.floor(hurt*int_比例*o_battle.diffty/2000) 
                 else   
                     hurt = math.floor(hurt*200*int_比例/(o_battle.diffty*10)) 
                 end  
