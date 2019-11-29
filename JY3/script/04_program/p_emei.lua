@@ -254,6 +254,8 @@ t['初入峨嵋派-三月大比较'] = function()
         G.call('all_over')
         return
     end
+
+    G.call('all_over')
 end
 t['初入峨嵋派-六月大比较'] = function()
     G.call('dark')
@@ -270,6 +272,7 @@ t['初入峨嵋派-六月大比较'] = function()
         G.call("talk",'',421,'   小师妹，请！',2,1)
     else
         G.call("talk",'',61,'   '..G.call('get_fullname')..'你太让为师失望了！',2,1)
+        G.call('all_over')
         return
     end
     G.call('all_over')
@@ -281,6 +284,7 @@ t['初入峨嵋派-六月大比较'] = function()
         G.call("talk",'',422,'   小师妹，请！',2,1)
     else
         G.call("talk",'',61,'   '..G.call('get_fullname')..'你太让为师失望了！',2,1)
+        G.call('all_over')
         return
     end
     G.call('all_over')
@@ -294,8 +298,10 @@ t['初入峨嵋派-六月大比较'] = function()
         G.QueryName(0x10030001)[tostring(9)] = '峨嵋入室弟子'
     else
         G.call("talk",'',61,'   '..G.call('get_fullname')..'你太让为师失望了！',2,1)
+        G.call('all_over')
         return
     end
+    G.call('all_over')
 end
 t['初入峨嵋派-九月大比较'] = function()
     G.call('dark')
@@ -312,6 +318,7 @@ t['初入峨嵋派-九月大比较'] = function()
         G.call("talk",'',421,'   小师妹，请！',2,1)
     else
         G.call("talk",'',61,'   '..G.call('get_fullname')..'你太让为师失望了！',2,1)
+        G.call('all_over')
         return
     end
     G.call('all_over')
@@ -323,6 +330,7 @@ t['初入峨嵋派-九月大比较'] = function()
         G.call("talk",'',422,'   小师妹，请！',2,1)
     else
         G.call("talk",'',61,'   '..G.call('get_fullname')..'你太让为师失望了！',2,1)
+        G.call('all_over')
         return
     end
     G.call('all_over')
@@ -337,8 +345,10 @@ t['初入峨嵋派-九月大比较'] = function()
         G.QueryName(0x10030001)[tostring(9)] = '峨嵋首席弟子'
     else
         G.call("talk",'',61,'   '..G.call('get_fullname')..'你太让为师失望了！',2,1)
+        G.call('all_over')
         return
     end
+    G.call('all_over')
 end
 t['初入峨嵋派-后山'] = function()
     if G.call('get_month') == 3 and G.call('get_story',64) == 0 then 
