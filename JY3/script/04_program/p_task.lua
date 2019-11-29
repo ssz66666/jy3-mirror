@@ -9,6 +9,53 @@ local o_tsbd = G.QueryName(0x1017000c)
 --type=剧情
 --private=false
 --hide=false
+t['门派-征服']=function()
+    local int_no = G.call('get_point',190)
+    if int_no == 1 then 
+        G.call('门派-全真教')
+    elseif int_no == 2 then 
+        G.call('门派-少林寺')
+    elseif int_no == 3 then 
+        G.call('门派-武当派')
+    elseif int_no == 4 then 
+        G.call('门派-峨嵋派')
+    elseif int_no == 5 then 
+        G.call('门派-丐帮')
+    elseif int_no == 6 then 
+        G.call('门派-星宿派')
+    elseif int_no == 7 then 
+        G.call('门派-青城派')
+    elseif int_no == 8 then 
+        G.call('门派-天龙寺')
+    elseif int_no == 9 then 
+        G.call('门派-昆仑派')
+    elseif int_no == 10 then 
+        G.call('门派-明教')
+    elseif int_no == 11 then 
+        G.call('门派-日月神教')
+    elseif int_no == 12 then 
+        G.call('门派-神龙教')
+    elseif int_no == 13 then 
+        G.call('门派-华山派')
+    elseif int_no == 14 then 
+        G.call('门派-崆峒派')
+    elseif int_no == 15 then 
+        G.call('门派-泰山派')
+    elseif int_no == 16 then 
+        G.call('门派-嵩山派')
+    elseif int_no == 17 then 
+        G.call('门派-恒山派')
+    elseif int_no == 18 then 
+        G.call('门派-衡山派')
+    elseif int_no == 19 then 
+        G.call('门派-灵鹫宫')
+    elseif int_no == 20 then 
+        G.call('门派-铁掌帮')
+    elseif int_no == 21 then 
+        G.call('门派-血刀门')
+    end
+    G.call('通用-门派完美判断')
+end
 t['门派-桃花岛']=function()
     local o_tsbd = G.QueryName(0x1017000c)
     G.call('地图_进入地图','桃花岛',94,3,0)
@@ -36,7 +83,7 @@ t['门派-桃花岛']=function()
                 if int_选项 == 1 then
                     G.call('all_over') 
                     G.call('add_time',2)
-                    G.call('call_battle',1,19,1,200,83,0,0,0,0,0)
+                    G.call('call_battle',1,19,1,150,83,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
                         G.call("talk",'',83,'   嗯，比起从前，确实大有长进。',2,1) 
@@ -333,52 +380,6 @@ t['门派-神龙教']=function()
         end
     end 
 end   
-t['门派-征服']=function()
-    local int_no = G.call('get_point',190)
-    if int_no == 1 then 
-        G.call('门派-全真教')
-    elseif int_no == 2 then 
-        G.call('门派-少林寺')
-    elseif int_no == 3 then 
-        G.call('门派-武当派')
-    elseif int_no == 4 then 
-        G.call('门派-峨眉派')
-    elseif int_no == 5 then 
-        G.call('门派-丐帮')
-    elseif int_no == 6 then 
-        G.call('门派-星宿派')
-    elseif int_no == 7 then 
-        G.call('门派-青城派')
-    elseif int_no == 8 then 
-        G.call('门派-天龙寺')
-    elseif int_no == 9 then 
-        G.call('门派-昆仑派')
-    elseif int_no == 10 then 
-        G.call('门派-明教')
-    elseif int_no == 11 then 
-        G.call('门派-日月神教')
-    elseif int_no == 12 then 
-        G.call('门派-神龙教')
-    elseif int_no == 13 then 
-        G.call('门派-华山派')
-    elseif int_no == 14 then 
-        G.call('门派-崆峒派')
-    elseif int_no == 15 then 
-        G.call('门派-泰山派')
-    elseif int_no == 16 then 
-        G.call('门派-嵩山派')
-    elseif int_no == 17 then 
-        G.call('门派-恒山派')
-    elseif int_no == 18 then 
-        G.call('门派-衡山派')
-    elseif int_no == 19 then 
-        G.call('门派-灵鹫宫')
-    elseif int_no == 20 then 
-        G.call('门派-铁掌帮')
-    elseif int_no == 21 then 
-        G.call('门派-血刀门')
-    end
-end
 t['门派-血刀门']=function()
     local o_tsbd = G.QueryName(0x1017000c)
     if G.call('get_story',54) == 1 then 
@@ -407,7 +408,7 @@ t['门派-血刀门']=function()
                 if int_选项 == 1 then
                     G.call('all_over') 
                     G.call('add_time',2)
-                    G.call('call_battle',1,19,1,100,143,0,0,0,0,0)
+                    G.call('call_battle',1,19,1,150,143,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
                         G.call("talk",'',143,'   嗯，比起从前，确实大有长进。',2,1) 
@@ -431,7 +432,7 @@ t['门派-血刀门']=function()
                         if G.call('get_CH','武林霸主') then
                             G.call("talk",'',143,'   既然你已经成为武林霸主，我就看看你的实力如何？',2,1)
                             G.call('add_time',2)
-                            G.call('call_battle',1,19,1,200,143,0,0,0,0,0)
+                            G.call('call_battle',1,19,1,250,143,0,0,0,0,0)
                             o_battle_结果 = G.call('get_battle') 
                             if o_battle_结果  == 1 then
                                 G.call("talk",'',0,'   这【血洗天下】果然了得！',0,0) 
@@ -456,7 +457,7 @@ t['门派-血刀门']=function()
                         G.call("talk",'',0,'   求之不得',0,0)
                         G.call('all_over') 
                         G.call('add_time',2)
-                        G.call('call_battle',1,19,3,200,143,0,0,0,0,0)
+                        G.call('call_battle',1,19,3,250,143,0,0,0,0,0)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
                             G.call("talk",'',0,'   这阵法也难不到我！',0,0)
@@ -688,7 +689,7 @@ t['门派-全真教']=function()
                         G.call("talk",'',0,'   求之不得',0,0)
                         G.call('all_over') 
                         G.call('add_time',2)
-                        G.call('call_battle',1,10,3,200,166,165,86,167,168,214)
+                        G.call('call_battle',1,10,3,250,166,165,86,167,168,214)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
                             G.call("talk",'',0,'   这阵法也难不到我！',0,0)
@@ -709,7 +710,7 @@ t['门派-全真教']=function()
                         G.call("talk",'',166,'   既然如此，那就觉悟吧！',2,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
-                        G.call('call_battle',1,10,1,200,166,165,86,167,168,214)
+                        G.call('call_battle',1,10,1,250,166,165,86,167,168,214)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
                             G.call("talk",'',0,'   这【七星点灯】果然了得！',0,0)
@@ -968,7 +969,7 @@ t['门派-武当派']=function()
                 if int_选项 == 1 then
                     G.call('all_over') 
                     G.call('add_time',2)
-                    G.call('call_battle',1,10,1,100,160,0,0,0,0,0)
+                    G.call('call_battle',1,10,1,150,160,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
                         if G.call('get_point',15) >= 80 and G.call('get_magicexp',99) == 0 then 
@@ -997,7 +998,7 @@ t['门派-武当派']=function()
                             G.call("talk",'',0,'   求之不得',0,0)
                             G.call('all_over') 
                             G.call('add_time',2)
-                            G.call('call_battle',1,10,3,200,160,159,161,162,163,164)
+                            G.call('call_battle',1,10,3,250,160,159,161,162,163,164)
                             o_battle_结果 = G.call('get_battle') 
                             if o_battle_结果  == 1 then
                                 G.call("talk",'',0,'   这阵法也难不到我！',0,0)
@@ -1023,7 +1024,7 @@ t['门派-武当派']=function()
                         G.call("talk",'',160,'   既然如此，那就觉悟吧！',2,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
-                        G.call('call_battle',1,10,1,200,160,159,161,162,163,164)
+                        G.call('call_battle',1,10,1,250,160,159,161,162,163,164)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
                             G.call("talk",'',0,'   这【真武太极】果然了得！',0,0)
@@ -1282,7 +1283,7 @@ t['门派-少林寺']=function()
                 if int_选项 == 1 then
                     G.call('all_over') 
                     G.call('add_time',2)
-                    G.call('call_battle',1,10,1,100,175,0,0,0,0,0)
+                    G.call('call_battle',1,10,1,150,175,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
                         G.call("talk",'',175,'   嗯，比起从前，确实大有长进。',2,1) 
@@ -1298,7 +1299,7 @@ t['门派-少林寺']=function()
                         G.call("talk",'',0,'   求之不得',0,0)
                         G.call('all_over') 
                         G.call('add_time',2)
-                        G.call('call_battle',1,10,3,200,175,94,211,212,213,176)
+                        G.call('call_battle',1,10,3,250,175,94,211,212,213,176)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
                             G.call("talk",'',0,'   这阵法也难不到我！',0,0)
@@ -1319,7 +1320,7 @@ t['门派-少林寺']=function()
                         G.call("talk",'',175,'   既然如此，那就觉悟吧！',2,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
-                        G.call('call_battle',1,10,1,200,175,94,211,212,213,176)
+                        G.call('call_battle',1,10,1,250,175,94,211,212,213,176)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
                             G.call("talk",'',0,'   这【金刚伏魔圈】果然了得！',0,0)
@@ -1896,7 +1897,7 @@ t['门派-华山派']=function()
                 if int_选项 == 1 then
                     G.call('all_over') 
                     G.call('add_time',2)
-                    G.call('call_battle',1,10,1,100,191,0,0,0,0,0)
+                    G.call('call_battle',1,10,1,150,191,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
                         G.call("talk",'',191,'   嗯，比起从前，确实大有长进。',2,1) 
@@ -1913,7 +1914,7 @@ t['门派-华山派']=function()
                             G.call("talk",'',0,'   求之不得',0,0)
                             G.call('all_over') 
                             G.call('add_time',2)
-                            G.call('call_battle',1,10,3,200,191,210,111,112,72,173)
+                            G.call('call_battle',1,10,3,250,191,210,111,112,72,173)
                             o_battle_结果 = G.call('get_battle') 
                             if o_battle_结果  == 1 then
                                 G.call("talk",'',0,'   这阵法也难不到我！',0,0)
@@ -2146,16 +2147,16 @@ t['门派-华山派']=function()
     end
 
 end
-t['门派-峨眉派']=function()
+t['门派-峨嵋派']=function()
     local o_tsbd = G.QueryName(0x1017000c)
     local int_mo = 373
     if G.call('get_story',23) == 1 then 
-        G.call('地图_进入地图','峨眉派',65,48) 
+        G.call('地图_进入地图','峨嵋派',291,48) 
         if G.call('get_point',166) ~= G.call('get_year') *12 + G.call('get_month') then 
-           G.call('set_point',166, G.call('get_year') *12 + G.call('get_month') )
-           local money = math.random(500)
-           G.call('add_money',money)
-           G.call("talk",'',61,'   启禀【太上掌门】，这是本月给您的“孝敬”，一共'..tostring(money)..'两银子，请您收好。',2,1) 
+        G.call('set_point',166, G.call('get_year') *12 + G.call('get_month') )
+        local money = math.random(500)
+        G.call('add_money',money)
+        G.call("talk",'',61,'   启禀【太上掌门】，这是本月给您的“孝敬”，一共'..tostring(money)..'两银子，请您收好。',2,1) 
         else
             G.call("talk",'',61,'   参见【太上掌门】。',2,1) 
         end 
@@ -2163,74 +2164,230 @@ t['门派-峨眉派']=function()
         
         G.call('goto_map',1)    
     else
-        G.call("talk",'门派弟子',109,'  请问有何贵干？',2,1) 
-        local int_选项 = 0 
-        while int_选项 == 0 do
-            int_选项 = G.call("menu",'',0,'',0,0,{"1,想跟你们切磋武功","2,我要【征服】这个门派","3,没有事情"},0) 
-            if int_选项 == 1 then
-                G.call("talk",'门派弟子',109,'   咱们较量一下，点到为止！',1,1) 
-                G.call('all_over') 
-                G.call('add_time',2)
-                G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
-                o_battle_结果 = G.call('get_battle') 
-                if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',109,'   [公子]真是好本事！',1,1) 
-                else
-                    G.call("talk",'门派弟子',109,'   承让承让，我们还要看门，改日再会！',1,1) 
-                end
-                G.call('all_over') 
-                
-                G.call('goto_map',1) 
-            elseif int_选项 == 2 then 
-                G.call("talk",'门派弟子',109,'   好大的口气，就让我等来领教领教。',1,1) 
-                G.call('all_over') 
-                G.call('add_time',2)
-                G.call('call_battle',0,10,3,200,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
-                o_battle_结果 = G.call('get_battle') 
-                if o_battle_结果  == 1 then
-                    G.call("talk",'门派弟子',109,'   你给我等着，我去请掌门来教训你！',1,1) 
-                    G.call('all_over') 
-                    --G.call('mapoff')
-  
-                    G.call('dark')
-                   -- G.call('photo',65)
-                    G.call("talk",'',61,'   想好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
+        if G.call('get_point',8) == 11 then 
+            G.call("talk",'',421,'   原来是[师妹]回来了，您可以直接去面见掌门。',2,1) 
+            G.call('all_over') 
+            G.call('dark')
+            G.call('goto_map',83)
+            G.call("talk",'',61,'   '..G.call('get_fullname')..'你回来啦，有什么事情吗？。',2,1) 
+            local int_选项 = 0 
+            while int_选项 == 0 do
+                int_选项 = G.call("menu",'',0,'',0,0,{"1,和掌门切磋武功【单挑】","2,参悟【截手九式】","3,参悟【峨嵋诛仙阵】","4,兑换【修为点】","5,我要【征服】这个门派","6,没有事情"},0) 
+                if int_选项 == 1 then
                     G.call('all_over') 
                     G.call('add_time',2)
-                    G.call('call_battle',0,10,3,200,61,109,18,0,0,0)
+                    G.call('call_battle',1,19,1,150,61,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
-                        if G.call('team_full') == false then 
-                            G.call('join',18)
-                            G.call("talk",'',61,'   算你厉害！只要你不把我们【峨嵋派】赶尽杀绝，我愿意奉你为【太上掌门】！我们【峨嵋派】祖传的【倚天剑】我双手奉上,我的爱徒【周芷若】也奉献给[少侠]，任[少侠]驱策。',2,1) 
+                        G.call("talk",'',61,'   嗯，比起从前，确实大有长进。',2,1) 
+                        if G.QueryName(0x10030001)[tostring(9)] == '峨嵋亲传弟子' then 
+                            if G.call('get_magic',240) == 0 and  G.call('get_magic',256) == 0 then 
+                                if G.call('get_point',15) > 90 then 
+                                    G.call("talk",'',61,'   为师近来研究了套剑法和内功心法也一并传授与你吧！',2,1)   
+                                    G.call('learnmagic',240)
+                                    G.call('learnmagic',256)
+                                else
+                                    G.call("talk",'',61,'   这段时间你又在外面做了什么恶事？为师看走眼了！',2,1)    
+                                end   
+                            end 
                         else
-                            G.call("talk",'',61,'   算你厉害！只要你不把我们【峨嵋派】赶尽杀绝，我愿意奉你为【太上掌门】！我们【峨嵋派】祖传的【倚天剑】我双手奉上。',2,1) 
-                        end 
+                            G.call("talk",'',61,'   还需要多加努力才是！',2,1)    
+                        end
+                    else
+                        G.call("talk",'',61,'   你的功夫越来越退步了，你这日子到底在干什么呢！',2,1) 
+                    end
+                    G.call('all_over') 
+                    G.call('goto_map',1)
+                elseif int_选项 == 2 then
+                    G.call('all_over')
+                    if G.call('get_magic',253) == 0 then 
+                        G.call("talk",'',63,'   既然你想领悟这【截手九式】，我就看看你的实力如何？',2,1)
+                        G.call('add_time',2)
+                        G.call('call_battle',1,19,1,250,61,421,422,0,0,0)
+                        o_battle_结果 = G.call('get_battle') 
+                        if o_battle_结果  == 1 then
+                            G.call("talk",'',0,'   这【截手九式】果然了得！',0,0) 
+                            G.call('learnmagic',253)
+                            G.call('set_magic_lv',253,5)
+                            G.call('set_magicexp',253,999)
+                        else
+                            G.call("talk",'',61,'   看来你还是无法领悟此绝招！',2,1) 
+                        end
+                    else
+                        G.call("talk",'',61,'   你不是已经领悟了【截手九式】吗？',2,1) 
+                    end
+                    G.call('all_over') 
+                    G.call('goto_map',1)
+                elseif int_选项 == 3 then
+                    G.call('all_over') 
+                    if G.call('get_magic',252) == 0 then 
+                        G.call("talk",'',61,'   既然如此，那就要过了本阵才行。',2,1) 
+                        G.call("talk",'',0,'   求之不得',0,0)
+                        G.call('all_over') 
+                        G.call('add_time',2)
+                        G.call('call_battle',1,19,3,250,61,422,421,0,0,0)
+                        o_battle_结果 = G.call('get_battle') 
+                        if o_battle_结果  == 1 then
+                            G.call("talk",'',0,'   这阵法也难不到我！',0,0)
+                            G.call('learnmagic',252) 
+                        else
+                            G.call("talk",'',61,'   看来你还是无法领悟此阵法的精妙之处！',2,1) 
+                        end
+                    else
+                        G.call("talk",'',61,'   你不是已经领悟了【峨嵋诛仙阵】吗？',2,1) 
+                    end
+                    G.call('all_over') 
+                    G.call('goto_map',1)
+                elseif int_选项 == 4 then 
+                    G.call('all_over') 
+                    G.call("talk",'',61,'   你现在有【'..tostring(G.call('get_point',5))..'点】修为值，每次转化消耗两点修为值。你想转化成什么属性？',2,1) 
+                    local int_选项 = 0 
+                    while true  do
+                        int_选项 = G.call("menu",'',0,'',0,0,{"1,转化生命内力【生命内力各加120】","2,转化为搏击属性【搏击+3】","3,转化为拆招属性【拆招+3】","4,没有事情"},0) 
+                        local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
+                        local int_点数 = 100+G.call('get_point',237) - 1
+                        if int_难度 == 1 then 
+                            int_点数 = 100 +G.call('get_point',237) - 1
+                        elseif int_难度 == 2 then 
+                            int_点数 = 120+G.call('get_point',237) - 1
+                        elseif int_难度 == 3 then 
+                            int_点数 = 150+G.call('get_point',237) - 1
+                        end
+                        if int_选项 == 1 then 
+                            if G.call('get_point',45) >= 50000 + (G.call('get_point',237) - 1)*500 and G.call('get_point',47) >=   50000 + (G.call('get_point',237) - 1)*500 then 
+                                G.call("talk",'',61,'    已经不需要再提升了',2,1)
+                            else
+                                if G.call('get_point',5) >= 2  then 
+                                    G.call('add_point',45,120)
+                                    G.call('add_point',47,120)
+                                    G.call('add_point',5,-2)
+                                else
+                                    G.call("talk",'',61,'   还要继续修炼啊',2,1) 
+                                end 
+                            end
+                            G.call("talk",'',61,'   你现在有【'..tostring(G.call('get_point',5))..'点】修为值，每次转化消耗两点修为值。你想转化成什么属性？',2,1)
+                        elseif int_选项 == 2 then
+                            if G.call('get_point',29) >= int_点数 then 
+                                G.call("talk",'',61,'   搏击已经达到最大值',2,1) 
+                            else
+                                if G.call('get_point',5) >= 2  then 
+                                    G.call('add_point',29,3)
+                                    G.call('add_point',5,-2)
+                                else
+                                    G.call("talk",'',61,'   还要继续修炼啊',2,1) 
+                                end 
+                            end
+                            G.call("talk",'',61,'   你现在有【'..tostring(G.call('get_point',5))..'点】修为值，每次转化消耗两点修为值。你想转化成什么属性？',2,1) 
+                        elseif int_选项 == 3 then
+                            if G.call('get_point',28) >= int_点数 then 
+                                G.call("talk",'',61,'   拆招已经达到最大值',2,1) 
+                            else
+                                if G.call('get_point',5) >= 2  then 
+                                    G.call('add_point',28,3)
+                                    G.call('add_point',5,-2)
+                                else
+                                    G.call("talk",'',61,'   还要继续修炼啊',2,1) 
+                                end 
+                            end
+                            G.call("talk",'',61,'   你现在有【'..tostring(G.call('get_point',5))..'点】修为值，每次转化消耗两点修为值。你想转化成什么属性？',2,1) 
+                        elseif int_选项 == 4 then  
+                            G.call('all_over') 
+                            G.call('goto_map',1)
+                            break 
+                        end
+                        
+                    end
+                elseif int_选项 == 5 then
+                    G.call("talk",'',61,'   你难道是其他门派派来的奸细？想要【征服】我的门派就看你有没有本事了！',1,1) 
+                    G.call('all_over') 
+                    G.call('add_time',2)
+                    G.call('call_battle',0,10,3,200,61,421,422,0,0,0)
+                    o_battle_结果 = G.call('get_battle') 
+                    if o_battle_结果  == 1 then
+                        G.call("talk",'',61,'   算你厉害！只要你不把我们【峨嵋派】赶尽杀绝，我愿意奉你为【太上掌门】！我们【峨嵋派】祖传的【倚天剑】我双手奉上。',2,1) 
                         if G.call('get_item',29) == 0 then 
                             G.call('add_item',29,1)
                         end 
                         G.call('set_story',23,1)
                         G.call('add_point',15,-10)
                         G.call('add_point',14,100)
-                        G.call('set,note','征服【峨眉派】')
-                        G.QueryName(0x10030001)[tostring(9)] = '峨眉派太上掌门'
+                        G.call('set,note','征服【峨嵋派】')
+                        G.QueryName(0x10030001)[tostring(9)] = '峨嵋派太上掌门'
                         o_tsbd.进度列表[4].完成 = 1 
                         G.call('all_over') 
-      
                         G.call('goto_map',1) 
                     else
                         G.call('gameover')
                     end 
-                else
-                    G.call('gameover')
+                elseif int_选项 == 6 then 
+                    G.call('all_over') 
+                    G.call('goto_map',1)
+                end 
+            end 
+        else
+            G.call("talk",'门派弟子',109,'  请问有何贵干？',2,1) 
+            local int_选项 = 0 
+            while int_选项 == 0 do
+                int_选项 = G.call("menu",'',0,'',0,0,{"1,想跟你们切磋武功","2,我要【征服】这个门派","3,没有事情"},0) 
+                if int_选项 == 1 then
+                    G.call("talk",'门派弟子',109,'   咱们较量一下，点到为止！',1,1) 
+                    G.call('all_over') 
+                    G.call('add_time',2)
+                    G.call('call_battle',1,10,3,100,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
+                    o_battle_结果 = G.call('get_battle') 
+                    if o_battle_结果  == 1 then
+                        G.call("talk",'门派弟子',109,'   [公子]真是好本事！',1,1) 
+                    else
+                        G.call("talk",'门派弟子',109,'   承让承让，我们还要看门，改日再会！',1,1) 
+                    end
+                    G.call('all_over') 
+                    
+                    G.call('goto_map',1) 
+                elseif int_选项 == 2 then 
+                    G.call("talk",'门派弟子',109,'   好大的口气，就让我等来领教领教。',1,1) 
+                    G.call('all_over') 
+                    G.call('add_time',2)
+                    G.call('call_battle',0,10,3,200,int_mo,int_mo+1,int_mo+2,int_mo+3,int_mo+4,int_mo+5)
+                    o_battle_结果 = G.call('get_battle') 
+                    if o_battle_结果  == 1 then
+                        G.call("talk",'门派弟子',109,'   你给我等着，我去请掌门来教训你！',1,1) 
+                        G.call('all_over') 
+                        --G.call('mapoff')
+    
+                        G.call('dark')
+                    -- G.call('photo',65)
+                        G.call("talk",'',61,'   想好狂妄的[小子]！就看你有没有这个本事了！',1,1) 
+                        G.call('all_over') 
+                        G.call('add_time',2)
+                        G.call('call_battle',0,10,3,200,61,421,18,422,0,0)
+                        o_battle_结果 = G.call('get_battle') 
+                        if o_battle_结果  == 1 then
+                            G.call("talk",'',61,'   算你厉害！只要你不把我们【峨嵋派】赶尽杀绝，我愿意奉你为【太上掌门】！我们【峨嵋派】祖传的【倚天剑】我双手奉上。',2,1) 
+                            if G.call('get_item',29) == 0 then 
+                                G.call('add_item',29,1)
+                            end 
+                            G.call('set_story',23,1)
+                            G.call('add_point',15,-10)
+                            G.call('add_point',14,100)
+                            G.call('set,note','征服【峨嵋派】')
+                            G.QueryName(0x10030001)[tostring(9)] = '峨嵋派太上掌门'
+                            o_tsbd.进度列表[4].完成 = 1 
+                            G.call('all_over') 
+                            G.call('goto_map',1) 
+                        else
+                            G.call('gameover')
+                        end 
+                    else
+                        G.call('gameover')
+                    end
+                elseif int_选项 == 3 then 
+                    G.call('all_over') 
+                    
+                    G.call('goto_map',1)
                 end
-            elseif int_选项 == 3 then 
-                G.call('all_over') 
-                
-                G.call('goto_map',1)
             end
-        end
-    end 
+        end 
+    end
 end 
 t['门派-丐帮']=function()  
     local o_tsbd = G.QueryName(0x1017000c)
@@ -2266,7 +2423,7 @@ t['门派-丐帮']=function()
                             G.call("talk",'',0,'   求之不得',0,0)
                             G.call('all_over') 
                             G.call('add_time',2)
-                            G.call('call_battle',1,10,3,200,169,84,170,171,172,173)
+                            G.call('call_battle',1,10,3,250,169,84,170,171,172,173)
                             o_battle_结果 = G.call('get_battle') 
                             if o_battle_结果  == 1 then
                                 G.call("talk",'',0,'   这阵法也难不到我！',0,0)
@@ -2291,7 +2448,7 @@ t['门派-丐帮']=function()
                         G.call("talk",'',169,'   既然如此，那就觉悟吧！',2,1) 
                         G.call('all_over') 
                         G.call('add_time',2)
-                        G.call('call_battle',1,10,1,200,169,84,170,171,172,173)
+                        G.call('call_battle',1,10,1,250,169,84,170,171,172,173)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
                             G.call("talk",'',0,'   这【天下无狗】果然了得！',0,0)
@@ -2548,7 +2705,7 @@ t['门派-星宿派']=function()
                 if int_选项 == 1 then
                     G.call('all_over') 
                     G.call('add_time',2)
-                    G.call('call_battle',1,19,1,100,116,0,0,0,0,0)
+                    G.call('call_battle',1,19,1,150,116,0,0,0,0,0)
                     o_battle_结果 = G.call('get_battle') 
                     if o_battle_结果  == 1 then
                         G.call("talk",'',116,'   嗯，比起从前，确实大有长进。',2,1) 
@@ -2572,7 +2729,7 @@ t['门派-星宿派']=function()
                         G.call("talk",'',0,'   求之不得',0,0)
                         G.call('all_over') 
                         G.call('add_time',2)
-                        G.call('call_battle',1,19,3,200,116,41,387,388,389,0)
+                        G.call('call_battle',1,19,3,250,116,41,387,388,389,0)
                         o_battle_结果 = G.call('get_battle') 
                         if o_battle_结果  == 1 then
                             G.call("talk",'',0,'   这阵法也难不到我！',0,0)
@@ -2595,7 +2752,7 @@ t['门派-星宿派']=function()
                         and G.call('get_item',293) >= 49  and G.call('get_item',294) >= 49 then 
                             G.call("talk",'',116,'   好孩子，竟然弄齐了五毒，为了考验你的能力，看你是否能够有这个实力这门绝学，接下来就是你的试炼！',2,1)
                             G.call('add_time',2)
-                            G.call('call_battle',1,19,1,200,116,41,387,388,389,0)
+                            G.call('call_battle',1,19,1,250,116,41,387,388,389,0)
                             o_battle_结果 = G.call('get_battle') 
                             if o_battle_结果  == 1 then
                                 G.call("talk",'',0,'   这【极乐逍遥】果然了得',0,0) 

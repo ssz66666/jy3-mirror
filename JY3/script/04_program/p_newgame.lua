@@ -7,7 +7,7 @@ local t = G.api
 --type=剧情
 --private=false
 t['回答问题']=function()
-    print('初始属性_1',G.call('get_role',47,1))
+    --print('初始属性_1',G.call('get_role',47,1))
     G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 1
     G.call('story','即将闯荡江湖的小虾米听好了，下面是回答问题的时间，你的回答将会影响到你步入《金庸群侠传3》世界后的初始属性，请认真回答'..G.GetDeviceInfo(""))
     local int_选项 = 0
@@ -596,7 +596,7 @@ t['回答问题']=function()
         m[i] =t[r]
         table.remove(t, r)
     end
-    print('初始属性_2',G.call('get_role',47,1))
+    --print('初始属性_2',G.call('get_role',47,1))
     local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4] 
     G.misc().一鸣惊人 = int_no
     G.call('地图系统_防修改监控')
@@ -609,7 +609,6 @@ t['回答问题']=function()
     G.call('通用_存档',4)
     G.call('list')
     G.call('序幕_开始')
-    print('初始属性_0',G.call('get_role',47,1))
 end
 t['序幕_开始']=function()
     G.call('goto_map',17)
@@ -955,6 +954,22 @@ t['途径牛家村-慧伦']=function()
         end     
     end 
 end  
+t['途径牛家村-周芷若']=function() 
+    G.call("talk",'',18,'   峨嵋派专收俗家弟子，希望能借此传播峨嵋武功。能够青灯伴佛一年的女侠均可报名！。',1,1)
+    local int_选项 = 0
+	while int_选项 == 0 do
+        int_选项 = G.call("menu",nil,0,'',0,0,{"1,我愿加入【峨嵋派】","2,还要在峨嵋呆一年，我可受不了"},0) 
+        if int_选项 == 1 then 
+            G.call('add_point',14,100)
+            G.call('add_day',5)
+            G.call("talk",'',18,'   我这就领你去见师父！。',1,1)
+            G.call('all_over')
+            G.call('初入峨嵋')
+        elseif int_选项 == 2 then 
+            G.call('all_over')
+        end     
+    end 
+end 
 t['途径牛家村-渔夫']=function() 
     G.call("talk",'渔  夫',137,'   “孤舟蓑笠翁，独钓寒江雪”，我这是在钓有缘人哪，哈哈。',1,1)
     local int_选项 = 0

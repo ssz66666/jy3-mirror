@@ -161,7 +161,7 @@ function GF.InitAttr(o_role_角色, dbname)
 				end 
 				基础值 = 基础值 or 0
 				o_role_角色[def[k].name] = GF.call('创建分层属性',5,基础值,def[k].name,o_role_角色)
-				-- print(GF.T(o_role_角色.root),def[k].name,基础值,o_role_角色[def[k].name])
+				-- --print(GF.T(o_role_角色.root),def[k].name,基础值,o_role_角色[def[k].name])
 				if def[k].type=='attr_life' then 
 					GF.call('属性有当前值',o_role_角色[def[k].name])
 				end 
@@ -181,7 +181,7 @@ function GF.misc(int_i)
 			return GF.QueryIndex("o_misc_round",1)
 		elseif int_i == 3 then 
 			-- 这里直接报错
-			print(debug.traceback())
+			--print(debug.traceback())
 			return nil
 		end
 	end
@@ -577,7 +577,7 @@ end
 --------------------------------------------------------------
 function GF.startGame(scriptid,index)
 	GF.clearEventSave()
-	print ('gfdream.startGame file =', index, 'is connect', GF.get_isconnect())
+	--print ('gfdream.startGame file =', index, 'is connect', GF.get_isconnect())
 	GF.NewSave(scriptid,index)
 	if GF.get_isconnect() then
 		GF.req_save_new(scriptid,index)
@@ -595,7 +595,7 @@ function GF.loadGame(scriptid, index)
 		if suc then
 			GF.start_program('剧本_加载游戏剧本')
 		else
-			print ('读档失败！请确保该存档存在！')
+			--print ('读档失败！请确保该存档存在！')
 			return false
 		end
 	end
@@ -642,9 +642,9 @@ end
 -- 通知服务端读取存档
 -- @params(int)  idx: 存档编号
 function GF.req_load(scriptid,idx, need_download)
-	print ('GF.req_load idx=', idx)
+	--print ('GF.req_load idx=', idx)
 	local saveBrief = GF.call('杂项_当前存档信息',idx)
-	print ('saveBrief ', saveBrief.角色ID, saveBrief.金钱, saveBrief.角色)
+	--print ('saveBrief ', saveBrief.角色ID, saveBrief.金钱, saveBrief.角色)
 	GF.netMessage('enter_game', scriptid)
 end
 
@@ -883,7 +883,7 @@ function GF.trig_net_event(...)
 	end
 	if GF.get_clientstate() == _G.CLIENT_STATE.TOWN then 
 	elseif GF.get_clientstate() == _G.CLIENT_STATE.GAME then
-		-- print('--== GF.trig_net_event')
+		-- --print('--== GF.trig_net_event')
 		-- GF.logtable(ev)
 		-- ev_buff = eris.persist({}, ev) 
 		-- GF.netMessage('trig_event', ev_buff) 
@@ -897,7 +897,7 @@ if NEW_DATA_TEST_FZT == false then
 	do return end
 end
 -----------------------------------------------------------------------------
-print('user ldb data')
+--print('user ldb data')
 local ldb = require "ldb.c"
 GF.ObjectCouldCopy = nil
 GF.deepCopyInst = nil
@@ -1039,7 +1039,7 @@ GF.call = function(func,ex,...)
 		r1 = f(ex, ...)
 	else 
 		if func ~= nil and GF.notify[func] == nil then 
-			print('Warning: Cannot find call func ' .. tostring(func) .. '!!!')
+			--print('Warning: Cannot find call func ' .. tostring(func) .. '!!!')
 			GF.log('Warning: Cannot find call func ' .. tostring(func) .. '!!!', debug.traceback())
 		end 
 	end

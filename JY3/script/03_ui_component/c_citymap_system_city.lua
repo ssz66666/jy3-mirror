@@ -99,6 +99,7 @@ function t:click(tar)
     G.trig_event('点击城市事件', self.city, {['是否进入'] = true})
     local lock = G.DBTable('o_citymap_system_city')
     for i, v in pairs(lock) do
+        --print(v.名称,self.名称.text)
         if v.关联地图 == nil and v.关联事件 ~= nil then
             if v.名称 == self.名称.text then                  --地图人物事件处理
                 G.trig_event(G.QueryName(v.关联事件).名称)

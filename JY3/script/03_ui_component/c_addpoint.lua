@@ -248,15 +248,7 @@ function t:click(tar)
                     G.QueryName(0x10030001)[tostring(2)] = '年磨一剑'
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089006 --设定头像
                     G.call('learnmagic',190)
-                elseif str == '名字就叫狗狗' then
-                    G.QueryName(0x10030001).性别 = 1
-                    G.QueryName(0x10030001)[tostring(1)] = '狗'
-                    G.QueryName(0x10030001)[tostring(2)] = '狗'
-                    G.QueryName(0x10030001)[tostring(119)] = 0x56089007 --设定头像
-                    local int_magic = {183,184,185,186,219,220,221}
-                    G.call('set_magic',int_magic[math.random(#int_magic)])
                 elseif str == '天宇妹妹最靓了' then
-                    G.QueryName(0x10030001).性别 = 0
                     G.QueryName(0x10030001)[tostring(50)] = 2 --二次结义机会
                 elseif str == '自古红颜多离人' then
                     G.QueryName(0x10030001)[tostring(51)] = 2 --二次结婚机会
@@ -362,11 +354,6 @@ function t:click(tar)
             self.obj.getChildByName('显示').getChildByName('姓').text = '半瓶'
             self.obj.getChildByName('显示').getChildByName('名').text = '神仙醋'
             self.头像.img = 0x56080026
-            G.Play(0x4901000f, 1,false,100) 
-        elseif str == '名字就叫狗狗' then
-            self.头像.img = 0x560899007
-            self.obj.getChildByName('显示').getChildByName('姓').text = '狗'
-            self.obj.getChildByName('显示').getChildByName('名').text = '狗'
             G.Play(0x4901000f, 1,false,100) 
         elseif str == '十年生死两茫茫' then
             self.头像.img = 0x560899008

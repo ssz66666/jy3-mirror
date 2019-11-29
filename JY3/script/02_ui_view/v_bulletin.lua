@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
+local c_button = require 'c_button'
 local c_scrollview = require 'c_scrollview'
 local c_bulletin = require 'c_bulletin'
-local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -154,15 +154,15 @@ tp = tc
 			tc.name = '更新说明'
 			tc.pivotX = 0.000
 			tc.pivotY = 1.000
-			tc.left = 10.000
-			tc.right = 1670.000
-			tc.bottom = -1148.000
-			tc.top = -308.000
+			tc.left = 13.000
+			tc.right = 1673.000
+			tc.bottom = -851.000
+			tc.top = -311.000
 			tc.anchor = 0x64640000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 2
-			tc.text = '[04]一，专属适配安卓10的版本出炉，安卓10手机请下载安装安卓10专属版本；旧版本存档依旧支持；[br]二，门派专属特技处理：具体见公众号说明；[br]三，取消难度随周目递增效果，取而代之相对增加多周目的敌人属性，具体可百科全书或者战斗中查看；[br]四，战斗获得经验翻倍；[br]五，门派大招伤害全体增加；[br]六，结婚结义队友可在队伍页面领悟选择一次被动；[br]七，增加越女神剑，效果为攻击必定命中，阿青加入时教会主角；增加被动通明，攻击必定命中，戒指有几率附加；基础闪躲效果翻倍；[br]八，双十一发放礼包，游戏内密令领取，密令“双十一狂欢”，获得999神奇宝石；[br]九，霸王套效果增强；      '
+			tc.text = '[04]一，开局增加女性角色系统，将原有结义成绩和结婚成就分离平分（更新后会出现总成就点降低，需完成女性结婚结义成就）；[br]二，峨嵋派剧情加入：第二日女性角色加入峨嵋，男性角色入少林;[br]三，取消狗狗密令获得阵法效果，取而代之加入门派宗师完美成就开启，如果完美门派宗师，则在进入聚贤庄庄时该完美门派宗师会自动习得该门派阵法和绝招；[br]四，队友经验系统植入，没满属性队友战斗可以获得经验，每满10000经验则全属性提升，可在战斗中关闭队友获得经验，原队友切磋将随机获得1000-3000经验;'
 			tc.wrap = true
 			tc.font = 0x603c0000
 			tc.style = 5
@@ -172,15 +172,15 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '更新标题'
-			tc.left = 264.000
-			tc.right = 596.000
+			tc.left = 254.000
+			tc.right = 606.000
 			tc.bottom = -316.000
 			tc.top = -256.000
 			tc.anchor = 0x64640000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 3
-			tc.text = 'V3.0更新说明'
+			tc.text = 'V3.01更新说明'
 			tc.font = 0x603c0000
 			tc.style = 5
 			tp = tc

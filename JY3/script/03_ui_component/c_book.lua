@@ -99,8 +99,8 @@ function t:显示更新()
     if int_显示数量 > 33 then
         int_显示数量 = 33 
     end
-    print('int_role=',int_role)
-    print('int_显示数量=',int_显示数量)
+    --print('int_role=',int_role)
+    --print('int_显示数量=',int_显示数量)
     for i = 1,int_显示数量  do 
         self[str_菜单[G.misc().book]..'_list'][i].visible = true
     end 
@@ -134,7 +134,7 @@ function t:详细显示()
         end 
         local img_动画 = 0x33061000 + G.misc().book_data 
         if o_role_人物.生命 > 0 then 
-            print(G.misc().book_data)
+            --print(G.misc().book_data)
             if G.misc().book_data < 385 and G.misc().book_data >= 253 then 
                 self.属性.getChildByName('动作').frameActionID(1000+o_role_人物.编号)
             else
@@ -209,7 +209,7 @@ function t:详细显示()
             end 
         end
         self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
-        local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神','通明'}
+        local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神','通明','灭绝'}
         for i = 1,5 do 
             if o_role_人物[tostring(110+i)]  and o_role_人物[tostring(110+i)] > 0 then 
                 self.被动.getChildByName(tostring(i)).visible = true
@@ -327,7 +327,7 @@ function t:详细显示()
         G.Play(0x49020001+G.misc().book_data , 1,true,100)
         if o_skill.类别 < 6 or o_skill.招式 then
             local int_序列帧 = G.misc().book_data + 1 
-            print('序列帧=',int_序列帧)
+            --print('序列帧=',int_序列帧)
             self.武功.getChildByName('动作').frameActionID(int_序列帧)
         end
         self.武功.getChildByName('图片').img = o_skill.图像
@@ -365,7 +365,7 @@ function t:详细显示()
         else
             self.武功.getChildByName('配合内功').text = '配合内功：[01]无'
         end
-        str = {'无','中毒','麻痹','晕眩','内伤','受伤','迟缓','中毒受伤','致盲','混乱','斩杀','剧毒','绝杀','通明'}
+        str = {'无','中毒','麻痹','晕眩','内伤','受伤','迟缓','中毒受伤','致盲','混乱','斩杀','剧毒','绝杀','通明','九破'}
         if o_skill.类别 < 6 or o_skill.招式  then 
             self.武功.getChildByName('攻击效果').text = '攻击效果：[01]'..str[o_skill.附加效果+1]
         else

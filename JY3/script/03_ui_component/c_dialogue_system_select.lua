@@ -137,7 +137,7 @@ function t:update_select(mod,_select,int_选择项)
     if int_选择项 then
         n = int_选择项 
     end 
-    print(int_选择项)
+    --print(int_选择项)
     if n > 1 then 
         for i = 1,n do 
             self.选择.getChildByName(tostring(i)).visible = true

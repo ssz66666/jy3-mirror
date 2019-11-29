@@ -69,12 +69,16 @@ t['城镇-京城']=function()
             int_选项 = G.call("menu",'',0,'',0,0,{"1,快点帮我【阉】了，我好练绝世武功！","2,不是我兴趣的地方，溜走",},0) 
             if int_选项 == 1 then
                 G.call('all_over') 
-                G.misc().人物头像 = 0x560800e2
-                G.QueryName(0x10030001)[tostring(119)] = 0x560800e2
-                G.call("talk",'',0,'   哇塞，【阉】过之后果然不同反响，全身上下轻飘飘的，好像去了十几斤的累赘似的...',0,0)
-                G.QueryName(0x10030001)[tostring(41)] = 1
-                G.call('set_CH','人   妖')
-                G.call('set_note','迈出了人生中最精彩的一步！')
+                if G.QueryName(0x10030001).性别 == 1 then 
+                    G.misc().人物头像 = 0x560800e2
+                    G.QueryName(0x10030001)[tostring(119)] = 0x560800e2
+                    G.call("talk",'',0,'   哇塞，【阉】过之后果然不同反响，全身上下轻飘飘的，好像去了十几斤的累赘似的...',0,0)
+                    G.QueryName(0x10030001)[tostring(41)] = 1
+                    G.call('set_CH','人   妖')
+                    G.call('set_note','迈出了人生中最精彩的一步！')
+                else
+                    G.call("talk",'太  监',226,'   等你下辈子再来吧！',1,1) 
+                end
             elseif   int_选项 == 2 then 
                 G.call('all_over') 
             end

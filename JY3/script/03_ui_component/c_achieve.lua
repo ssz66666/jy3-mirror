@@ -21,6 +21,8 @@ function t:init()
     self.list_23 = {}
     self.list_24 = {}
     self.list_25 = {}
+    self.list_26 = {}
+    self.list_27 = {}
 end
 function t:start()
     local point = 0
@@ -132,6 +134,26 @@ function t:start()
             self.进度.getChildByName(tostring(16)).addChild(ui_sub)
             ui_sub.visible = false
             self.list_16[(y - 1) * 3 + x] = ui_sub
+        end
+    end 
+    for x = 1, 3, 1 do
+        for y = 1, 4, 1 do
+            local ui_sub = G.Clone(self.进度.getChildByName(tostring(26)).getChildByName('人物'))
+            ui_sub.x = -30 + (x - 1) * 200 
+            ui_sub.y = -10 + (y - 1) * -90
+            self.进度.getChildByName(tostring(26)).addChild(ui_sub)
+            ui_sub.visible = false
+            self.list_26[(y - 1) * 3 + x] = ui_sub
+        end
+    end 
+    for x = 1, 3, 1 do
+        for y = 1, 4, 1 do
+            local ui_sub = G.Clone(self.进度.getChildByName(tostring(27)).getChildByName('人物'))
+            ui_sub.x = -30 + (x - 1) * 200 
+            ui_sub.y = -10 + (y - 1) * -90
+            self.进度.getChildByName(tostring(27)).addChild(ui_sub)
+            ui_sub.visible = false
+            self.list_27[(y - 1) * 3 + x] = ui_sub
         end
     end 
     G.misc().data = 0
@@ -287,7 +309,7 @@ function t:click(tar)
                     self.说明.getChildByName('详细').visible = true 
                 end
             elseif G.misc().achieve_data_i == 2 then
-                if i == 1  or i >=4 and i <=7 then
+                if i == 1  or i >=4 and i <=9 then
                     local dqjd = 0
                     local zjd = 0
                     for n = 1,#o_achieve.进度列表 do 
@@ -380,11 +402,16 @@ function t:click(tar)
     end 
     if  G.misc().data == 14 then
         local o_achieve = G.QueryName(0x10170000+G.misc().data) 
-        for i = 1,9 do 
+        for i = 1,10 do 
             self.进度.getChildByName(tostring(G.misc().data)).getChildByName(tostring(i)).visible = false
         end
         for i = 1,#o_achieve.进度列表 do
             self.进度.getChildByName(tostring(G.misc().data)).getChildByName(tostring(i)).visible = true
+            if o_achieve.进度列表[i].完美 then 
+                self.进度.getChildByName(tostring(G.misc().data)).getChildByName(tostring(i)).getChildByName('闪光').visible = true
+            else
+                self.进度.getChildByName(tostring(G.misc().data)).getChildByName(tostring(i)).getChildByName('闪光').visible = false 
+            end
             if o_achieve.进度列表[i].完成 == 0 then
                 self.进度.getChildByName(tostring(G.misc().data)).getChildByName(tostring(i)).getChildByName('完成').img = 0x56160073 
                 self.进度.getChildByName(tostring(G.misc().data)).getChildByName(tostring(i)).getChildByName('名称').style = 10
@@ -395,7 +422,7 @@ function t:click(tar)
             self.进度.getChildByName(tostring(G.misc().data)).getChildByName(tostring(i)).getChildByName('名称').text = o_achieve.进度列表[i].名称..'宗师'
         end
     end 
-    if  G.misc().data == 15 or G.misc().data == 16 or G.misc().data == 22 then 
+    if  G.misc().data == 15 or G.misc().data == 16 or G.misc().data == 22 or G.misc().data == 26 or G.misc().data == 27 then 
         local o_achieve = G.QueryName(0x10170000+G.misc().data) 
         self.进度.getChildByName('总页数').text = math.floor((#o_achieve.进度列表-1)/12) + 1
     end 
@@ -534,6 +561,81 @@ function t:click(tar)
                 self.list_16[i].getChildByName('完成').img = 0x56160072
                 self.list_16[i].getChildByName('名称').style = 5
                 self.list_16[i].getChildByName('闪光').visible = true
+            end    
+        end 
+    end 
+    if  G.misc().data == 16 then
+        local o_achieve = G.QueryName(0x10170000+G.misc().data) 
+        if ys < zys then
+            显示数量 = 12
+        else
+            显示数量 = #o_achieve.进度列表 - 12 *( zys -1) 
+        end 
+        for i = 1,12 do 
+            self.list_16[i].visible = false
+        end  
+        for i = 1,显示数量 do 
+            self.list_16[i].getChildByName('名称').text = o_achieve.进度列表[(ys-1)*12+i].名称
+            self.list_16[i].getChildByName('头像').img = 0x56080000+o_achieve.进度列表[(ys-1)*12+i].编号
+            self.list_16[i].visible = true
+            if o_achieve.进度列表[(ys-1)*12+i].完成 == 0 then 
+                self.list_16[i].getChildByName('完成').img = 0x56160073
+                self.list_16[i].getChildByName('名称').style = 10
+                self.list_16[i].getChildByName('闪光').visible = false
+            else
+                self.list_16[i].getChildByName('完成').img = 0x56160072
+                self.list_16[i].getChildByName('名称').style = 5
+                self.list_16[i].getChildByName('闪光').visible = true
+            end    
+        end 
+    end 
+    if  G.misc().data == 26 then
+        local o_achieve = G.QueryName(0x10170000+G.misc().data) 
+        if ys < zys then
+            显示数量 = 12
+        else
+            显示数量 = #o_achieve.进度列表 - 12 *( zys -1) 
+        end 
+        for i = 1,12 do 
+            self.list_26[i].visible = false
+        end  
+        for i = 1,显示数量 do 
+            self.list_26[i].getChildByName('名称').text = o_achieve.进度列表[(ys-1)*12+i].名称
+            self.list_26[i].getChildByName('头像').img = 0x56080000+o_achieve.进度列表[(ys-1)*12+i].编号
+            self.list_26[i].visible = true
+            if o_achieve.进度列表[(ys-1)*12+i].完成 == 0 then 
+                self.list_26[i].getChildByName('完成').img = 0x56160073
+                self.list_26[i].getChildByName('名称').style = 10
+                self.list_26[i].getChildByName('闪光').visible = false
+            else
+                self.list_26[i].getChildByName('完成').img = 0x56160072
+                self.list_26[i].getChildByName('名称').style = 5
+                self.list_26[i].getChildByName('闪光').visible = true
+            end    
+        end 
+    end 
+    if  G.misc().data == 27 then
+        local o_achieve = G.QueryName(0x10170000+G.misc().data) 
+        if ys < zys then
+            显示数量 = 12
+        else
+            显示数量 = #o_achieve.进度列表 - 12 *( zys -1) 
+        end 
+        for i = 1,12 do 
+            self.list_27[i].visible = false
+        end  
+        for i = 1,显示数量 do 
+            self.list_27[i].getChildByName('名称').text = o_achieve.进度列表[(ys-1)*12+i].名称
+            self.list_27[i].getChildByName('头像').img = 0x56080000+o_achieve.进度列表[(ys-1)*12+i].编号
+            self.list_27[i].visible = true
+            if o_achieve.进度列表[(ys-1)*12+i].完成 == 0 then 
+                self.list_27[i].getChildByName('完成').img = 0x56160073
+                self.list_27[i].getChildByName('名称').style = 10
+                self.list_27[i].getChildByName('闪光').visible = false
+            else
+                self.list_27[i].getChildByName('完成').img = 0x56160072
+                self.list_27[i].getChildByName('名称').style = 5
+                self.list_27[i].getChildByName('闪光').visible = true
             end    
         end 
     end 

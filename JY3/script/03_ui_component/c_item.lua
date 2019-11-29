@@ -152,7 +152,7 @@ function t:队友属性()
         self.属性.getChildByName('攻击').text = tostring(o_role_人物[tostring(7)]) 
         self.属性.getChildByName('速度').text = G.call('get_role',int_队员编号,8)
         self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
-        local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神'}
+        local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神','灭绝'}
         for i = 1,4 do 
             if o_role_人物[tostring(110+i)] ~= nil then 
                 self.被动.getChildByName(tostring(i)).visible = true

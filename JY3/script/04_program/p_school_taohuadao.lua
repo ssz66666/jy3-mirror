@@ -513,7 +513,7 @@ t['初入桃花岛-出师'] = function()
     local int_难度 =  G.QueryName(0x10160000 +G.call('get_point',143)).难度
     G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 1
     G.call('set_team',33,0,0,0)
-    G.call('call_battle',0,10,4,30,86,0,0,0,0,0,6)
+    G.call('call_battle',0,10,4,50,86,0,0,0,0,0,6)
     local o_battle_结果 = G.call('get_battle') --
     if o_battle_结果  == 1 then 
         int_胜利 = -1 

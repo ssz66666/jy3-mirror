@@ -24,7 +24,7 @@ function t:start()
         end 
     end
     for i =1,9 do
-        print('self.list'..i..'='..self.list[i])
+        --print('self.list'..i..'='..self.list[i])
         self.机关.getChildByName('tab_'..i).img = 0x56150000+i*4096+ self.list[i]
     end
 end

@@ -877,7 +877,7 @@ t['战斗系统_事件响应'] = function()
                                 if needmp < 1 then
                                     needmp = 1
                                 end 
-                                print(o_role_tb.姓名,'剩余人物',num) 
+                                --print(o_role_tb.姓名,'剩余人物',num) 
                                 G.call('add_role',o_battle[位置[i]],14,-needmp) 
                                 if num == 1 then --只有一个敌人直接取敌人位置数据
                                     for p = 6,11 do 
@@ -1531,7 +1531,7 @@ t['战斗系统_事件响应'] = function()
                                     end
                                 end 
                             end 
-                            print('int_hp=',int_hp)	
+                            --print('int_hp=',int_hp)	
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').text = tostring(int_hp)
                             ui.getChildByName('hurt').getChildByName(位置[1]).getChildByName('加生命').visible = true     
                         elseif o_skill.内功轻功效果 == 19 then
@@ -3618,7 +3618,6 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             result = result + 50
         end 
     end
-    print('hurt1',hurt)
     hurt = hurt * result/100
     local int_闪避 = 0
     int_闪避 = int_闪避 + G.call('通用_取得NPC内功效果',int_enemy,5) --内功闪避效果计算
@@ -3681,7 +3680,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 hurt = math.floor(hurt *0.9)
             end
             if o_battle.模式 ~= 5 then
-                print('hurt2',hurt)
+                print('hurt',hurt)
                 local int_比例 = math.ceil(G.call('get_point',4)/20)*2
                 if int_id == 418 then
                     int_比例 = 10
@@ -3691,10 +3690,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 else   
                     hurt = math.floor(hurt*200*int_比例/(o_battle.diffty*10)) 
                 end  
+                print('hurt1',hurt)
                 if hurt < 10 then 
                     hurt = math.random(10)
                 end 
-                print('hurt3',hurt)  
+                --print('hurt3',hurt)  
             end
             if hurt < 10 then 
                hurt = math.random(10)

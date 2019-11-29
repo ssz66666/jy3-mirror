@@ -84,6 +84,7 @@ function t:start()
             G.call('set_newpoint',199+i,-G.call('get_role',G.misc()[位置[i]],15)-10 )
         end
     end
+    --print('被动_0',G.call('get_point',111))
     --G.call('指令_存储属性')
     --G.call('set_point',48,100)
     G.call('逻辑整理-武功等级')
@@ -95,9 +96,9 @@ function t:start()
     G.call('set_newpoint',48,-G.call('get_point',48)-10)
     G.call('set_newpoint',44,-G.call('get_point',44)-10)
     G.call('set_newpoint',46,-G.call('get_point',46)-10)
-    -- print('怒气值',G.call('get_point',48),G.call('get_newpoint',48))
-    -- print('HP',G.call('get_point',44),G.call('get_newpoint',44))
-    -- print('MP',G.call('get_point',46),G.call('get_newpoint',46))
+    -- --print('怒气值',G.call('get_point',48),G.call('get_newpoint',48))
+    -- --print('HP',G.call('get_point',44),G.call('get_newpoint',44))
+    -- --print('MP',G.call('get_point',46),G.call('get_newpoint',46))
     G.call('set_point',80,0) --时序
     G.misc().自动 = 1
     G.misc().战斗状态 = 0
@@ -435,7 +436,7 @@ function t:rollOver(tar)
                     end 
                 end
                 self.属性.getChildByName('好感度').text = tostring(o_role_人物[tostring(9)]) 
-                local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神','通明'}
+                local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神','通明','灭绝'}
                 for i = 1,5 do 
                     if o_role_人物[tostring(110+i)]  and o_role_人物[tostring(110+i)] > 0 then 
                         self.被动.getChildByName(tostring(i)).visible = true

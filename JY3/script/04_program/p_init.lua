@@ -138,15 +138,14 @@ t['地图系统_防修改监控'] = function()
 	G.call('通用_重置检测')
 	local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
 	local int_检测 = 0
-	print('成就',int_成就,G.call('get_newpoint',80))
 	if int_成就 > 0 then 
 		if int_成就 ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			print('成就',int_成就,G.call('get_newpoint',80))
+			--print('成就',int_成就,G.call('get_newpoint',80))
 			int_检测 = int_检测 + 1
 		end
 	else
 		if math.abs(int_成就) ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			print('成就',int_成就,G.call('get_newpoint',80))
+			--print('成就',int_成就,G.call('get_newpoint',80))
 			int_检测 = int_检测 + 1
 		end
 	end
@@ -171,7 +170,7 @@ t['地图系统_防修改监控'] = function()
 		G.call('set_newpoint',81,-int_周目成就-2000)
 	end
 	if math.abs(int_周目成就) ~= math.abs(G.call('get_newpoint',81)+2000) then 
-		print('int_周目成就',int_周目成就,G.call('get_newpoint',81))
+		--print('int_周目成就',int_周目成就,G.call('get_newpoint',81))
 		int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 10 )  then
@@ -213,7 +212,7 @@ t['地图系统_防修改监控'] = function()
 		int_检测 = int_检测 + 1 
 	end
 	-- if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) + 10)  then
-	-- 	print('本金',G.call('get_point',130),G.call('get_newpoint',130))
+	-- 	--print('本金',G.call('get_point',130),G.call('get_newpoint',130))
 	-- 	G.call('通用_强退游戏') 
 	-- end
 	if G.call('get_magicexp',83) ~= math.abs(G.call('get_newpoint',77) + 10) then 
@@ -235,7 +234,7 @@ t['地图系统_防修改监控'] = function()
 		--print('物品数量',int_物品数量,G.call('get_newpoint',76))
 		int_检测 = int_检测 + 1
 	end
-	print('int_检测',int_检测)
+	--print('int_检测',int_检测)
 	G.call('通用_队伍检测') 
 	if int_检测 > 0 and int_检测 < 10 then
 		G.call('通用_强退游戏',301)  
@@ -690,7 +689,7 @@ t['地图系统_小游戏'] = function()
 			else
 				c.伐木值 = c.伐木值 + p
 				ui3.getChildByName('耐久').text = h - p
-				print(ui3.getChildByName('耐久').text,c.伐木值)
+				--print(ui3.getChildByName('耐久').text,c.伐木值)
 				if tonumber(ui3.getChildByName('耐久').text) ~= math.abs(c.伐木值) then
 					G.call('通用_强退游戏',302) 
 				end

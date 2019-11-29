@@ -141,12 +141,16 @@ t['地图系统_人物'] = function()
         G.case(123, '初入星宿-出师')
         G.case(124, '小游戏-野球拳')
         G.case(125, '锻造师-BT')
-        
-
-
-
-
-
+        G.case(126, '途径牛家村-周芷若')
+        G.case(127, '初入峨嵋派-后山')
+        G.case(128, '初入峨嵋派-灭绝师太')
+        G.case(129, '初入峨嵋派-周芷若')
+        G.case(130, '初入峨嵋派-丁敏君')
+        G.case(131, '初入峨嵋派-纪晓芙')
+        G.case(132, '初入峨嵋派-三月大比较')
+        G.case(133, '初入峨嵋派-六月大比较')
+        G.case(134, '初入峨嵋派-九月大比较')
+        G.case(135, '初入峨嵋派-出师')
 
 
 
@@ -163,7 +167,7 @@ t['地图系统_人物'] = function()
         G.case(808, '初入星宿')
         G.case(809, '事件_随机切磋')
         G.case(810, '初入聚贤庄')
-
+        G.case(811, '初入峨嵋')
         G.case(997, '聚贤庄-结局')
         G.case(998, '聚贤庄-应劫')
         G.case(999, '聚贤庄-半瓶神仙醋')
@@ -497,6 +501,28 @@ t['地图系统_人物'] = function()
             G.call('小游戏-野球拳')
         elseif r == 125 then
             G.call('锻造师-BT')
+        elseif r == 126 then
+            G.call('途径牛家村-周芷若')
+        elseif r == 127 then
+            G.call('初入峨嵋派-后山')
+        elseif r == 128 then
+            G.call('初入峨嵋派-灭绝师太')
+        elseif r == 129 then
+            G.call('初入峨嵋派-周芷若')
+        elseif r == 130 then
+            G.call('初入峨嵋派-丁敏君')
+        elseif r == 131 then
+            G.call('初入峨嵋派-纪晓芙')
+        elseif r == 131 then
+            G.call('初入峨嵋派-纪晓芙')
+        elseif r == 132 then
+            G.call('初入峨嵋派-三月大比较')
+        elseif r == 133 then
+            G.call('初入峨嵋派-六月大比较')
+        elseif r == 134 then
+            G.call('初入峨嵋派-九月大比较')
+        elseif r == 135 then
+            G.call('初入峨嵋派-出师')
 
 
 
@@ -521,6 +547,8 @@ t['地图系统_人物'] = function()
             G.call('事件_随机切磋')
         elseif r == 810 then
             G.call('初入聚贤庄')
+        elseif r == 811 then
+            G.call('初入峨嵋')
         elseif r == 997 then
             G.call('聚贤庄-结局')
         elseif r == 998 then
@@ -609,8 +637,8 @@ t['初入聚贤庄']=function()
     if G.misc().出师 == nil then 
         G.misc().出师 = 1
     end
+    G.call('通用-门派完美发放奖励')
     G.call('goto_map',4)
-
 end  
 --type=
 --hide=true
@@ -1812,7 +1840,7 @@ t['事件_随机切磋']=function()
             end
         end
     end
-    print('人数=',#boos_5)
+    --print('人数=',#boos_5)
     local boss_final = {}
     local int_lv = G.call('get_point',4)
     if int_lv >= 50 and int_lv <= 60 then 
@@ -1831,7 +1859,7 @@ t['事件_随机切磋']=function()
     for j = 1,24 do 
         table.insert(skill,j )
     end 
-    for i = 32,35 do 
+    for i = 32,36 do 
         table.insert(skill,i )
     end
     local team_skill = {0,0,0,0,0}
@@ -1974,7 +2002,7 @@ t['副本_通天塔']=function(int_模式)
     for j = 1,25 do 
        table.insert(skill_use,j )
     end 
-    for i = 32,35 do 
+    for i = 32,36 do 
         table.insert(skill_use,i )
     end
     while true do 

@@ -825,7 +825,7 @@ t['天书_白马啸西风'] = function()
         m[4] =t[r]
         table.remove(t, r)
         local int_no = m[1]*1000 + m[2]*100 + m[3]*10 + m[4]   
-        print(int_no)
+        --print(int_no)
         local int_选项 = 0
         while true do
             if int_mo == 0 then 
@@ -1622,9 +1622,9 @@ t['天书_倚天屠龙记'] = function()
         G.call('all_over')
         G.call("talk",'',18,'   师父我们还是先行下去再说吧！',2,1)
         if G.call('get_role',406,9) >= 70 then 
-            G.call("talk",'',61,'   芷若，峨眉在为师手上没有发扬光大，现在只能靠你了，今日过后，峨眉就全靠你了！',2,1)
+            G.call("talk",'',61,'   芷若，峨嵋在为师手上没有发扬光大，现在只能靠你了，今日过后，峨嵋就全靠你了！',2,1)
             G.call("talk",'',18,'   弟子恐会辜负师父！',2,1)
-            G.call("talk",'',61,'   此次下去为师当会隐退，你只要记住为师的话，我峨眉光大指日可待！',2,1)          
+            G.call("talk",'',61,'   此次下去为师当会隐退，你只要记住为师的话，我峨嵋光大指日可待！',2,1)          
             G.call("talk",'',18,'   弟子谨记师父教诲！',2,1)
             G.call("talk",'',61,'   那我们下下去吧！',2,1) 
             G.call('dark')

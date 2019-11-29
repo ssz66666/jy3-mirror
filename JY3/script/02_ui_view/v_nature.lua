@@ -3,8 +3,8 @@
 ]]
 local G = require 'gf'
 local c_button = require 'c_button'
-local c_nature = require 'c_nature'
 local c_jm = require 'c_jm'
+local c_nature = require 'c_nature'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -600,7 +600,6 @@ tp = tc
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
 		tc.name = '2'
-		tc.visible = false
 		tp = tc
 			tc = G.Quad()
 			tp.addChild(tc)
@@ -971,8 +970,8 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '技能'
-			tc.left = -44.000
-			tc.right = 48.000
+			tc.left = 2.000
+			tc.right = 2.000
 			tc.bottom = 11.000
 			tc.top = 45.000
 			tc.scaleX = 0.500
@@ -1039,7 +1038,7 @@ tp = tc
 			tc.name = '妻子'
 			tc.pivotX = 0.000
 			tc.left = -29.000
-			tc.right = 265.000
+			tc.right = -29.000
 			tc.bottom = -40.000
 			tc.top = 0.000
 			tc.scaleX = 0.500
@@ -1079,7 +1078,7 @@ tp = tc
 			tc.top = -71.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
-			tc.text = '结义兄弟：'
+			tc.text = '结    义：'
 			tc.font = 0x612d0000
 			tc.align = 1
 			tc.wordSpace = -2

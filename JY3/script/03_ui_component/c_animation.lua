@@ -9,7 +9,7 @@ function t:init()
 end
 
 function t:setData(o_animation_name)
-    print('序列帧动画',o_animation_name)
+    --print('序列帧动画',o_animation_name)
     local info = o_animation_name
     self.序列帧动画.img = 0x33010000 | (info.name&0x0000ffff)
     if o_animation_name.图像[1] then 

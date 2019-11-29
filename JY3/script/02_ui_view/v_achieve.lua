@@ -3413,6 +3413,18 @@ tp = tc
 					tp = tc
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
 				tp = tp.parent
 				--end
 				tc = G.loadUI('v_empty')
@@ -3455,6 +3467,18 @@ tp = tc
 					tc.bottom = 100.000
 					tc.top = 140.000
 					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
 					tp = tc
 					tp = tp.parent
 					--end
@@ -3505,6 +3529,18 @@ tp = tc
 					tp = tc
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
 				tp = tp.parent
 				--end
 				tc = G.loadUI('v_empty')
@@ -3552,6 +3588,18 @@ tp = tc
 					tp = tc
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
 				tp = tp.parent
 				--end
 				tc = G.loadUI('v_empty')
@@ -3596,6 +3644,18 @@ tp = tc
 					tc.bottom = 100.000
 					tc.top = 140.000
 					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
 					tp = tc
 					tp = tp.parent
 					--end
@@ -3647,6 +3707,18 @@ tp = tc
 					tp = tc
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
 				tp = tp.parent
 				--end
 				tc = G.loadUI('v_empty')
@@ -3692,6 +3764,18 @@ tp = tc
 					tc.bottom = 100.000
 					tc.top = 140.000
 					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
 					tp = tc
 					tp = tp.parent
 					--end
@@ -3743,6 +3827,18 @@ tp = tc
 					tp = tc
 					tp = tp.parent
 					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
 				tp = tp.parent
 				--end
 				tc = G.loadUI('v_empty')
@@ -3788,6 +3884,78 @@ tp = tc
 					tc.bottom = 100.000
 					tc.top = 140.000
 					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '10'
+				tc.left = 380.000
+				tc.right = 380.000
+				tc.bottom = -280.000
+				tc.top = -280.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -287.000
+					tc.right = -137.000
+					tc.bottom = 101.000
+					tc.top = 141.000
+					tc.text = '全真宗师'
+					tc.font = 0x611e0000
+					tc.wordSpace = -2
+					tc.lineSpace = -2
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
 					tp = tc
 					tp = tp.parent
 					--end
@@ -3865,6 +4033,140 @@ tp = tc
 			tc = G.loadUI('v_empty')
 			tp.addChild(tc)
 			tc.name = '16'
+			tc.visible = false
+			tp = tc
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '人物'
+				tc.left = -30.000
+				tc.right = -30.000
+				tc.bottom = -10.000
+				tc.top = -10.000
+				tc.visible = false
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '头像'
+					tc.left = -253.000
+					tc.right = -193.000
+					tc.bottom = 85.500
+					tc.top = 156.500
+					tc.img = 0x56080001
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -247.000
+					tc.right = -27.000
+					tc.bottom = 66.000
+					tc.top = 126.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '半瓶神仙醋'
+					tc.font = 0x61280000
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -257.500
+					tc.right = -188.500
+					tc.bottom = 75.000
+					tc.top = 163.000
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -166.000
+					tc.right = -116.000
+					tc.bottom = 105.000
+					tc.top = 155.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_empty')
+			tp.addChild(tc)
+			tc.name = '26'
+			tc.visible = false
+			tp = tc
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '人物'
+				tc.left = -30.000
+				tc.right = -30.000
+				tc.bottom = -10.000
+				tc.top = -10.000
+				tc.visible = false
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '头像'
+					tc.left = -253.000
+					tc.right = -193.000
+					tc.bottom = 85.500
+					tc.top = 156.500
+					tc.img = 0x56080001
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -247.000
+					tc.right = -27.000
+					tc.bottom = 66.000
+					tc.top = 126.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '半瓶神仙醋'
+					tc.font = 0x61280000
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -257.500
+					tc.right = -188.500
+					tc.bottom = 75.000
+					tc.top = 163.000
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -166.000
+					tc.right = -116.000
+					tc.bottom = 105.000
+					tc.top = 155.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_empty')
+			tp.addChild(tc)
+			tc.name = '27'
 			tc.visible = false
 			tp = tc
 				tc = G.loadUI('v_empty')

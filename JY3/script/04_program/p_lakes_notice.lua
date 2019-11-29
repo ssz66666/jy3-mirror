@@ -41,7 +41,7 @@ t['地图系统_聚贤庄任务'] = function()
         G.case(21, '聚贤庄任务_回族部落的圣物')
         G.case(22, '聚贤庄任务_群寇争镖银')
         G.case(23, '聚贤庄任务_老尼姑的险境')
-        G.case(24, '聚贤庄任务_峨眉派替天行道')
+        G.case(24, '聚贤庄任务_峨嵋派替天行道')
         G.case(25, '聚贤庄任务_西夏招亲')
         G.case(26, '聚贤庄任务_救治盲女')
         G.case(27, '聚贤庄任务_青城派的仇怨')
@@ -116,7 +116,7 @@ t['地图系统_聚贤庄任务'] = function()
         elseif r == 23 then 
             G.call('聚贤庄任务_老尼姑的险境')
         elseif r == 24 then 
-            G.call('聚贤庄任务_峨眉派替天行道')
+            G.call('聚贤庄任务_峨嵋派替天行道')
         elseif r == 25 then 
             G.call('聚贤庄任务_西夏招亲')
         elseif r == 26 then 
@@ -192,7 +192,7 @@ t['聚贤庄任务_义结金兰']=function()
                 if o_role.性别 and o_role.性别 ~= 1 then
                     table.insert(brother,i_role - 0x10040000)
                 end
-            else
+            elseif G.QueryName(0x10030001).性别 == 1 then 
                 if o_role.性别 and o_role.性别 == 1 then
                     table.insert(brother,i_role - 0x10040000)
                 end
@@ -274,23 +274,41 @@ t['聚贤庄任务_义结金兰']=function()
                                 end      
                                 G.call("talk",'',38,'   好吧，我如你们所愿。以后有福同享，有难同当，不求你们同年同月同月生，但求你们同年同月同日死！',1,1) 
                                 local int_no = G.misc().brother 
-                                local o_ybyt = G.QueryName(0x10170016)
-                                local ybyt = 0
-                                for i = 1,#o_ybyt.进度列表 do
-                                    if o_ybyt.进度列表[i].编号 == int_no then 
-                                        o_ybyt.进度列表[i].完成 = 1
+                                if G.QueryName(0x10030001).性别 == 1 then 
+                                    local o_ybyt = G.QueryName(0x10170016)
+                                    local ybyt = 0
+                                    for i = 1,#o_ybyt.进度列表 do
+                                        if o_ybyt.进度列表[i].编号 == int_no then 
+                                            o_ybyt.进度列表[i].完成 = 1
+                                        end    
+                                        if o_ybyt.进度列表[i].完成 == 1 then
+                                            ybyt = ybyt + 1
+                                        end   
                                     end    
-                                    if o_ybyt.进度列表[i].完成 == 1 then
-                                        ybyt = ybyt + 1
-                                    end   
-                                end    
-                                if o_ybyt.完成 == 0 then 
-                                    if ybyt == #o_ybyt.进度列表 then 
-                                        o_ybyt.完成 = 1
-                                        G.call('notice1','完成成就【义薄云天】') 
+                                    if o_ybyt.完成 == 0 then 
+                                        if ybyt == #o_ybyt.进度列表 then 
+                                            o_ybyt.完成 = 1
+                                            G.call('notice1','完成成就【义薄云天】') 
+                                        end    
+                                    end 
+                                elseif  G.QueryName(0x10030001).性别 == 0 then 
+                                    local o_bhzh = G.QueryName(0x1017001b)
+                                    local bhzh = 0
+                                    for i = 1,#o_bhzh.进度列表 do
+                                        if o_bhzh.进度列表[i].编号 == int_no then 
+                                            o_bhzh.进度列表[i].完成 = 1
+                                        end    
+                                        if o_bhzh.进度列表[i].完成 == 1 then
+                                            bhzh = bhzh + 1
+                                        end   
                                     end    
-                                end  
-                                local int_no = G.misc().brother                                   
+                                    if o_bhzh.完成 == 0 then 
+                                        if bhzh == #o_bhzh.进度列表 then 
+                                            o_bhzh.完成 = 1
+                                            G.call('notice1','完成成就【百合之好】') 
+                                        end    
+                                    end      
+                                end                             
                                 G.call('add_role',int_no,1,5000)
                                 G.call('add_role',int_no,2,5000)
                                 G.call('set_role',int_no,15,G.call('get_role',int_no,1))
@@ -343,7 +361,7 @@ t['聚贤庄任务_良辰吉日']=function()
                 if o_role.性别 and o_role.性别 ~= 1 then
                     table.insert(wife,i_role - 0x10040000)
                 end
-            else
+            elseif G.QueryName(0x10030001).性别 == 0 then 
                 if o_role.性别 and o_role.性别 == 1 then
                     table.insert(wife,i_role - 0x10040000)
                 end
@@ -351,13 +369,13 @@ t['聚贤庄任务_良辰吉日']=function()
         end
     end
     --local  wife = {1,3,6,8,12,14,15,16,18,19,20,22,24,25,26,28,39,40,130,179,248,252}
-    --local str = {'曼陀山庄','恒山派','古墓派','绝情谷','桃花岛','庄家大院','蒙古郡主','日月神教','峨眉派','星宿派','闯王之女','青竹帮','华山派','回部','神龙教','天鹰教','郭二小姐','药王庄','牛家村','日月神教','铃剑双侠','明教'}
+    --local str = {'曼陀山庄','恒山派','古墓派','绝情谷','桃花岛','庄家大院','蒙古郡主','日月神教','峨嵋派','星宿派','闯王之女','青竹帮','华山派','回部','神龙教','天鹰教','郭二小姐','药王庄','牛家村','日月神教','铃剑双侠','明教'}
     local int_选项 = 0
     while int_选项 == 0 do
         int_选项 = G.call("menu",'',0,'',0,0,{'1,当然在队伍里','2,突然觉得[娶媳妇]很恐怖，我不娶了',},0) 
         if int_选项 == 1 then
             -- for i = 1,p do 
-            --     print(str0[i])
+            --     --print(str0[i])
             -- end    
             if #wife == 0 then 
                 G.call("talk",'',38,'   有没有搞错！把你想[娶的人]一起带来见我，再给你们办理婚事。你自己单方面同意，于程序上行不通！',1,1) 
@@ -444,22 +462,41 @@ t['聚贤庄任务_良辰吉日']=function()
                                 end    
                                 G.call("talk",'',38,'   好吧，我如你们所愿。恭喜你们喜结连理，预祝你们举案齐眉。',1,1) 
                                 local int_no = G.misc().wife 
-                                local o_mbss = G.QueryName(0x10170010)
-                                local mbss = 0
-                                for i = 1,#o_mbss.进度列表 do
-                                    if o_mbss.进度列表[i].编号 == int_no then 
-                                        o_mbss.进度列表[i].完成 = 1
+                                if G.QueryName(0x10030001).性别 == 0 then 
+                                    local o_mbss = G.QueryName(0x10170010)
+                                    local mbss = 0
+                                    for i = 1,#o_mbss.进度列表 do
+                                        if o_mbss.进度列表[i].编号 == int_no then 
+                                            o_mbss.进度列表[i].完成 = 1
+                                        end    
+                                        if o_mbss.进度列表[i].完成 == 1 then
+                                            mbss = mbss + 1
+                                        end   
                                     end    
-                                    if o_mbss.进度列表[i].完成 == 1 then
-                                        mbss = mbss + 1
-                                    end   
-                                end    
-                                if o_mbss.完成 == 0 then 
-                                    if mbss == #o_mbss.进度列表 then 
-                                        o_mbss.完成 = 1
-                                        G.call('notice1','完成成就【美不胜收】') 
+                                    if o_mbss.完成 == 0 then 
+                                        if mbss == #o_mbss.进度列表 then 
+                                            o_mbss.完成 = 1
+                                            G.call('notice1','完成成就【美不胜收】') 
+                                        end    
+                                    end  
+                                elseif G.QueryName(0x10030001).性别 == 1 then 
+                                    local o_ccsc = G.QueryName(0x1017001a)
+                                    local ccsc = 0
+                                    for i = 1,#o_ccsc.进度列表 do
+                                        if o_ccsc.进度列表[i].编号 == int_no then 
+                                            o_ccsc.进度列表[i].完成 = 1
+                                        end    
+                                        if o_ccsc.进度列表[i].完成 == 1 then
+                                            ccsc = ccsc + 1
+                                        end   
                                     end    
-                                end                                   
+                                    if o_ccsc.完成 == 0 then 
+                                        if ccsc == #o_ccsc.进度列表 then 
+                                            o_ccsc.完成 = 1
+                                            G.call('notice1','完成成就【草草收场】') 
+                                        end    
+                                    end     
+                                end                             
                                 G.call('add_role',int_no,1,5000)
                                 G.call('add_role',int_no,2,5000)
                                 G.call('set_role',int_no,15,G.call('get_role',int_no,1))
@@ -1099,7 +1136,7 @@ t['聚贤庄任务_西夏招亲']=function()
     G.call('dark')
     G.call('goto_map',4)
 end 
-t['聚贤庄任务_峨眉派替天行道']=function()
+t['聚贤庄任务_峨嵋派替天行道']=function()
     local o_rwdr = G.QueryName(0x1017000d)
     G.call('add_day',1)
     G.call('地图_进入地图','？？？？',19,33)

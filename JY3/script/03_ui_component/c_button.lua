@@ -51,10 +51,10 @@ function t:rollOut(tar)
 	end
 end
 -- function t:mouseWheelUp(tar)
--- 	print("mouseWheelUp",tar)
+-- 	--print("mouseWheelUp",tar)
 -- end 
 -- function t:mouseWheelDown(tar)
--- 	print("mouseWheelDown",tar)
+-- 	--print("mouseWheelDown",tar)
 -- end 
 function t:mouseUp(tar)
 	if self.state == 'p' and self.btn_class == 1 then 

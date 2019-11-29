@@ -33,9 +33,9 @@ function t:start()
     self:刷新显示()
 end
 function t:刷新显示()
-    local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神','通明'}
+    local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','朱雀','玄武','青龙','白虎','指心','拳劲','剑意','刀魂','奇门','暗日','寒气','绝杀','剑神','通明','灭绝'}
     local magic_1= {1,4,5,7,8,10,11,12,13,14}
-    local magic_2= {2,3,6,9,15,16,17,18,19,20,21}
+    local magic_2= {2,3,6,9,15,16,17,18,19,20,21,36}
     local magic_3 = {22,23,24,25,26,27,28,29,30,31}
     local len = #magic_1
     local  r = math.ceil(len*G.call('通用_取随机')/100)
@@ -104,14 +104,14 @@ function t:刷新显示()
     self.obj.getChildByName('被动').text = str_字符串_1 
     self.obj.getChildByName('被动说明').text = str_字符串_2 
     self.obj.getChildByName('剩余次数').text = self.剩余次数 - 1
-    print(self.剩余次数,self.剩余次数校验)
+    --print(self.剩余次数,self.剩余次数校验)
 end
 function t:click(tar)
     if tar == self.重选 then
         self.剩余次数 = self.剩余次数 - 1 
         self.剩余次数校验 = self.剩余次数校验 + 1
         if self.剩余次数 == 0 or self.剩余次数 ~= math.abs(self.剩余次数校验 + 999) then
-            print(self.剩余次数,self.剩余次数校验)
+            --print(self.剩余次数,self.剩余次数校验)
             for i = 1,G.misc().被动个数 do
                 G.QueryName(0x10030001)[tostring(110+i)] = self.被动组[i]
                 G.call('set_newpoint',110+i,-10-self.被动组[i]) 

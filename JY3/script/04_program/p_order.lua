@@ -382,7 +382,6 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    G.call('goto_map',82)
     --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
@@ -933,9 +932,6 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     -- if G.call('get_point',237) > 16 then 
     --     o_battle.diffty = o_battle.diffty + (G.call('get_point',237)-16)*20
     -- end
-    if o_battle.模式 == 4 then
-        o_battle.diffty = int_diffty   
-    end
     if o_battle.模式 == 5 or o_battle.模式 == 99 then
         o_battle.diffty = 0   
     end
@@ -1500,7 +1496,7 @@ t['set_roleskill']=function(int_id,int_no,int_number) --设置NPC技能
     end
 end
 t['set_friend_skill']=function(int_id,int_no,int_number,int_熟练度) --设置NPC技能
-    print(int_熟练度)
+    --print(int_熟练度)
     if int_number > 0 then 
         if int_no < 5 then 
             if int_no < 5 then 
@@ -2326,7 +2322,7 @@ t['指令_备份基础属性']=function() --
         G.call('set_newpoint',i,-G.call('get_point',i)-10) 
     end
     local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
-    print('int_成就=',int_成就)
+    --print('int_成就=',int_成就)
     local int_周目成就 = 0
     for i = 1,#G.QueryName(0x10170018).进度列表 do 
         if G.QueryName(0x10170018).进度列表[i].当前进度 == 1 then
@@ -2497,7 +2493,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
             G.call('set_point',int_代码,-100)
         end  
     elseif int_代码 == 107 then   --门派经验增加
-        local school_magic = {'【侠义】技能','【佛法】修为','【儒风】技能','【养生】技能','【寡欲】技能','','【软言】技能','【怪才】技能','【乞讨】技能','【谄媚】技能'}
+        local school_magic = {'【侠义】技能','【佛法】修为','【儒风】技能','【养生】技能','【寡欲】技能','','【软言】技能','【怪才】技能','【乞讨】技能','【谄媚】技能','【慈航】技能'}
         local o_school = G.call('get_point',8)
        -- local o_body = G.QueryName(0x10030001)
         if o_school > 0 then    
@@ -2531,10 +2527,10 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
                         G.call('notice1','【乞讨】技能提升，【福缘】提升')
                     elseif o_school == 10 then
                         G.call('add_point',21,5) 
-                        G.call('notice1','【慈航】修为提升，【定力】提升')
+                        G.call('notice1','【谄媚】技能提升，【施毒】提升')
                     elseif o_school == 11 then
                         G.call('add_point',32,2) 
-                        G.call('notice1','【谄媚】技能提升，【施毒】提升')
+                        G.call('notice1','【慈航】修为提升，【定力】提升')
                     elseif o_school == 5 then 
                         G.call('notice1','【寡欲】技能提升，【生命内力】提升')
                         G.call('add_point',45,500) 
@@ -3114,7 +3110,7 @@ t['通用_称谓转换'] = function(string_文本)
     local start,e,string_转换前 = string.find(string_文本, "%[(.-)%]")
     local string_result = string_文本
     while start and string_转换前 do
-        print(start,e,string_转换前)
+        --print(start,e,string_转换前)
         local string_转换后
         if string_转换前 == '随机称谓' then
             string_转换后 = 转换规则[math.random(1,8)][1]
@@ -3492,7 +3488,7 @@ t['通用_读档检测']=function()
     end
 end
 t['通用_检测装备']=function()
-    print('检测装备开始.................')
+    --print('检测装备开始.................')
     local 装备 = {'头戴','手戴','脚穿','印记'}
     local 属性 = {'生命','内力','拆招','搏击','闪躲','内功','轻身','减伤','左右','斗转'}
     local int_递增属性 = G.call('get_point',237) - 2
@@ -3505,7 +3501,7 @@ t['通用_检测装备']=function()
     for i = 201,216 do 
         if G.call('get_point',i) > 400 then 
             result = true
-            print('000001')
+            --print('000001')
             break 
         end 
     end
@@ -3515,96 +3511,96 @@ t['通用_检测装备']=function()
         for j = 1,#o_achieve.进度列表 do
             if i == 1 and o_achieve.进度列表[j].分数 > 20 then
                 result = true
-                print('000100')
+                --print('000100')
                 break  
             elseif i == 2 and o_achieve.进度列表[j].分数 > 100 then 
                 result = true
-                print('000101')
+                --print('000101')
                 break  
             elseif i == 3 and o_achieve.进度列表[j].分数 > 30 then 
                 result = true
-                print('000102')
+                --print('000102')
                 break  
             elseif i == 4 and o_achieve.进度列表[j].分数 > 50 then 
                 result = true
-                print('000103')
+                --print('000103')
                 break  
             elseif i == 5 and o_achieve.进度列表[j].分数 > 100 then
                 result = true
-                print('000104')
+                --print('000104')
                 break   
             elseif i == 6 and o_achieve.进度列表[j].分数 > 30 then 
                 result = true
-                print('000105')
+                --print('000105')
                 break  
             elseif i == 7 and o_achieve.进度列表[j].分数 > 100 then
                 result = true
-                print('000122')
+                --print('000122')
                 break   
             elseif i == 8 and o_achieve.进度列表[j].分数 > 100 then 
                 result = true
-                print('000106')
+                --print('000106')
                 break   
             elseif i == 9 and o_achieve.进度列表[j].分数 > 100 then 
                 result = true
-                print('000107')
+                --print('000107')
                 break   
             elseif i == 10 and o_achieve.进度列表[j].分数 > 100 then 
                 result = true
-                print('000108')
+                --print('000108')
                 break   
             elseif i == 11 and o_achieve.进度列表[j].分数 > 100 then 
                 result = true
-                print('000109')
+                --print('000109')
                 break   
             elseif i == 12 and o_achieve.进度列表[j].分数 > 5 then 
                 result = true
-                print('000110')
+                --print('000110')
                 break   
             elseif i == 13 and o_achieve.进度列表[j].分数 > 5 then 
                 result = true
-                print('000111')
+                --print('000111')
                 break   
             elseif i == 14 and o_achieve.进度列表[j].分数 > 50 then
                 result = true
-                print('000112')
+                --print('000112')
                 break    
             elseif i == 15 and o_achieve.进度列表[j].分数 > 5 then 
                 result = true
-                print('000113')
+                --print('000113')
                 break   
             elseif i == 16 and o_achieve.进度列表[j].分数 > 20 then 
                 result = true
-                print('000114')
+                --print('000114')
                 break   
             elseif i == 17 and o_achieve.进度列表[j].分数 > 100 then 
                 result = true
-                print('000115')
+                --print('000115')
                 break   
             elseif i == 18 and o_achieve.进度列表[j].分数 > 100 then 
                 result = true
-                print('000116')
+                --print('000116')
                 break   
             elseif j == 19 and o_achieve.进度列表[j].分数 > 200 then
                 result = true
-                print('000117')
+                --print('000117')
                 break    
             elseif i == 20 and o_achieve.进度列表[j].分数 > 100 then 
                 result = true
-                print('000118')
+                --print('000118')
                 break   
             elseif i == 21 and o_achieve.进度列表[j].分数 > 100 then
                 result = true
-                print('000119')
+                --print('000119')
                 break       
             elseif i == 22 and o_achieve.进度列表[j].分数 > 20 then 
                 result = true
-                print('000120')
+                --print('000120')
                 break   
             elseif i == 23  then 
                 if j < 15 and o_achieve.进度列表[j].分数 > 20 then 
                     result = true
-                    print('0000121')
+                    --print('0000121')
                     break  
                 else
                     if o_achieve.进度列表[j].分数 > 100 then 
@@ -3643,39 +3639,39 @@ t['通用_检测装备']=function()
                     end 
                 end
                 if o_equip[属性[1]] > int属性_1 + int_递增属性*500 or o_equip[属性[1]] > 20000 then
-                    print('000002')
+                    --print('000002')
                     result = true
                     break
                 end
                 if o_equip[属性[2]] > int属性_2 + int_递增属性*500 or o_equip[属性[2]] > 20000 then
                     result = true
-                    print('000003')
+                    --print('000003')
                     break
                 end
                 if (int属性_1 == 0 and o_equip[属性[1]] > 0) or (int属性_2 == 0 and o_equip[属性[2]] > 0) then 
-                    print('000004')
+                    --print('000004')
                     result = true
                     break
                 end
                 if o_equip.级别 < 5  and o_equip.特效 > 0 then 
                     result = true
-                    print('000005')
+                    --print('000005')
                     break 
                 end
                 if  o_equip.特效 > 0 and   o_equip.类型 ~= math.floor(o_equip.特效/100) then 
                     result = true
-                    print('000006')
+                    --print('000006')
                     break 
                 end
                 if o_equip.套装 > 0 and (o_equip.品质 ~= 4 or o_equip.装备类型 ~= 4) then
-                    print('000007')
+                    --print('000007')
                     result = true
                     break
                 end
                 local int_品质 = o_equip.品质 - 1
                 for p = 3,10 do
                     if o_equip[属性[p]] > 100 then
-                        print('000008')
+                        --print('000008')
                         result = true
                         break
                     end
@@ -3683,19 +3679,19 @@ t['通用_检测装备']=function()
                 if o_equip.类型 == 1 then
                     if  o_equip.闪躲 > 0 or o_equip.内功 > 0 or o_equip.轻身 > 0 or o_equip.左右 > 0 or o_equip.斗转 > 0 then 
                         result = true
-                        print('000009')
+                        --print('000009')
                         break
                     end
                 elseif o_equip.类型 == 2 then
                     if o_equip.拆招 > 0 or o_equip.闪躲 > 0 or o_equip.内功 > 0 or o_equip.轻身 > 0 or o_equip.减伤 > 0 or o_equip.斗转 > 0 then 
                         result = true
-                        print('000010')
+                        --print('000010')
                         break
                     end
                 elseif o_equip.类型 == 3 then
                     if o_equip.拆招 > 0 or o_equip.搏击 > 0 or o_equip.内功 > 0 or o_equip.闪躲 > 0 or o_equip.减伤 > 0 or o_equip.左右 > 0 then 
                         result = true
-                        print('000011')
+                        --print('000011')
                         break
                     end
                 end
@@ -3794,19 +3790,19 @@ t['通用_检测装备']=function()
                     local o_equip_mod = G.QueryName(0x10180000+j)
                     for p = 3,10 do
                         if o_equip_mod[属性[p]] > 25 then
-                            print('000012')
+                            --print('000012')
                             result = true
                             break
                         end
                     end 
                     if o_equip_mod[属性[1]] > int属性_1 + int_递增属性*500 then
-                        print('000013')
+                        --print('000013')
                         result = true
                         break
                     end
                     if o_equip_mod[属性[2]] > int属性_2 + int_递增属性*250 then
                         result = true
-                        print('000014')
+                        --print('000014')
                         break
                     end
                     if result == true   then
@@ -3817,7 +3813,7 @@ t['通用_检测装备']=function()
                         for p = 1,#str_对比 do 
                             if  o_equip_mod[str_对比[p]] ~= o_equip[str_对比[p]] then 
                                 result = true
-                                print('000015')
+                                --print('000015')
                                 break
                             end
                         end
@@ -3839,13 +3835,13 @@ t['通用_检测装备']=function()
                         else
                             for p = 3,10 do
                                 if o_equip[属性[p]] > 10 then
-                                    print('000016')
+                                    --print('000016')
                                     result = true
                                     break
                                 end 
                             end
                             if o_equip[属性[1]] >2500 or o_equip[属性[2]] > 2500 then 
-                                print('000017')
+                                --print('000017')
                                 result = true
                                 break
                             end
@@ -4043,7 +4039,7 @@ t['功能_周目套装成就记录']=function()
         end
     end
     if int_完成数 == #o_周目成就.进度列表  and o_周目成就.完成 == 0 then
-        print('int_完成数',int_完成数)
+        --print('int_完成数',int_完成数)
         o_周目成就.完成 = 1
         G.call('notice1','恭喜完成[03]一往无前')
     end
@@ -4320,7 +4316,7 @@ t['通用_取得人物特效']=function(int_编号,int_特效号)
     if int_编号 > 0 then
         o_role = G.QueryName(0x10040000 + int_编号)
     end
-    for i = 110,115 do
+    for i = 111,115 do
         if o_role[tostring(i)] ==  int_特效号 then 
             result = true
             break
@@ -4726,7 +4722,7 @@ t['count_inversion']=function(_table_数组) --逆序数计算
             end
         end
     end
-    print('count_inversion='..inversions)
+    --print('count_inversion='..inversions)
     return inversions
 end
 t['通用_取得青龙附加效果']=function(int_编号,i_skill) 
@@ -4870,5 +4866,34 @@ t['通用_神秘结算']=function()
     else
         G.call("talk",'',148,'   你这貌似钱不够买那多，请减去部分再试试！',2,1)
         G.call('all_over')
+    end
+end
+t['通用-门派完美判断']=function()
+    if G.call('get_point',8) == 0 or G.call('get_point',8) == 6 then 
+        return
+    end
+    local magic_1 = {229,228,230,227,231,0,235,234,233,232,253}
+    local magic_2 = {186,183,219,185,221,0,246,220,184,247,252}
+    local int_school = G.call('get_point',8)
+    local o_门派成就 = G.QueryName(0x1017000e)
+    local int_序列 = int_school
+    if int_school > 6 then 
+        int_序列 = int_school - 1
+    end
+    if not o_门派成就.进度列表[int_序列].完美 then
+        if G.call('get_magic',magic_1[int_school]) > 0 and G.call('get_magic',magic_2[int_school]) > 0 then
+            o_门派成就.进度列表[int_序列].完美 = true
+        end 
+    end
+end
+t['通用-门派完美发放奖励']=function()
+    local magic_1 = {229,228,230,227,231,235,234,233,232,253}
+    local magic_2 = {186,183,219,185,221,246,220,184,247,252}
+    local o_门派成就 = G.QueryName(0x1017000e)
+    for i = 1,#o_门派成就.进度列表 do 
+        if o_门派成就.进度列表[i].完美 then
+            G.call('learnmagic',magic_1[i]) 
+            G.call('learnmagic',magic_2[i])  
+        end
     end
 end
