@@ -390,10 +390,7 @@ t['初入峨嵋派-后山'] = function()
                 G.call("talk",'',0,'   算了，和我无关的事，还是不要管了！',0,0)
                 G.call('all_over')
                 G.call('dark')
-            end
-            G.call('all_over')
-            G.call('goto_map',84) 
-        
+            end     
         end
     elseif G.call('get_month') == 6 and G.call('get_story',65) == 0 then 
         G.call('dark')
@@ -423,9 +420,9 @@ t['初入峨嵋派-后山'] = function()
         G.call("talk",'',0,'   今日这里好像没什么事情发生，还是回去吧！',0,0) 
         G.call('all_over')
         G.call('dark')
-        G.call('goto_map',84)
     end
     G.call('all_over')
+    G.call('goto_map',84) 
 end
 t['初入峨嵋派-出师'] = function()
     G.call('dark')
