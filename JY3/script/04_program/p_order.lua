@@ -283,7 +283,7 @@ t['通用_读档'] = function(int_档案编号)
                     G.QueryName(0x10170010).进度列表[i].分数 = 10
                 end
             end
-            if  maxpoint > 7000 or point > 7000  then
+            if  maxpoint > 5500 or point > 5500  then
                 G.call('通用_强退游戏') 
             end
             if G.QueryName(0x10170012).进度列表[1].完成 == 1 and not G.misc().一鸣惊人完成 then 
