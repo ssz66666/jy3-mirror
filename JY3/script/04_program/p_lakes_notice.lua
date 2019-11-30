@@ -462,7 +462,7 @@ t['聚贤庄任务_良辰吉日']=function()
                                 end    
                                 G.call("talk",'',38,'   好吧，我如你们所愿。恭喜你们喜结连理，预祝你们举案齐眉。',1,1) 
                                 local int_no = G.misc().wife 
-                                if G.QueryName(0x10030001).性别 == 0 then 
+                                if G.QueryName(0x10030001).性别 == 1 then 
                                     local o_mbss = G.QueryName(0x10170010)
                                     local mbss = 0
                                     for i = 1,#o_mbss.进度列表 do
@@ -479,7 +479,7 @@ t['聚贤庄任务_良辰吉日']=function()
                                             G.call('notice1','完成成就【美不胜收】') 
                                         end    
                                     end  
-                                elseif G.QueryName(0x10030001).性别 == 1 then 
+                                elseif G.QueryName(0x10030001).性别 == 0 then 
                                     local o_ccsc = G.QueryName(0x1017001a)
                                     local ccsc = 0
                                     for i = 1,#o_ccsc.进度列表 do
