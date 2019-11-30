@@ -257,6 +257,16 @@ t['通用_读档'] = function(int_档案编号)
         end 
         G.call('指令_存储属性')
         G.misc().新游戏 = 1
+        for i = 1,#G.QueryName(0x10170016).进度列表 do 
+            if G.QueryName(0x10170016).进度列表[i].分数 > 10 then 
+                G.QueryName(0x10170016).进度列表[i].分数 = 10
+            end
+        end
+        for i = 1,#G.QueryName(0x10170010).进度列表 do 
+            if G.QueryName(0x10170010).进度列表[i].分数 > 10 then 
+                G.QueryName(0x10170010).进度列表[i].分数 = 10
+            end
+        end
         if int_档案编号 > 0 and int_档案编号 <= 4 then
             local point = 0
             local maxpoint = 0
@@ -273,16 +283,6 @@ t['通用_读档'] = function(int_档案编号)
                     end
                 end  
             end  
-            for i = 1,#G.QueryName(0x10170016).进度列表 do 
-                if G.QueryName(0x10170016).进度列表[i].分数 > 10 then 
-                    G.QueryName(0x10170016).进度列表[i].分数 = 10
-                end
-            end
-            for i = 1,#G.QueryName(0x10170010).进度列表 do 
-                if G.QueryName(0x10170010).进度列表[i].分数 > 10 then 
-                    G.QueryName(0x10170010).进度列表[i].分数 = 10
-                end
-            end
             if  maxpoint > 5500 or point > 5500  then
                 G.call('通用_强退游戏') 
             end
