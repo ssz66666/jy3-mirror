@@ -267,6 +267,15 @@ t['通用_读档'] = function(int_档案编号)
                 G.QueryName(0x10170010).进度列表[i].分数 = 10
             end
         end
+        if not G.QueryName(0x1017000e).进度列表[10] then
+            G.QueryName(0x1017000e).进度列表[10] = {}
+            G.QueryName(0x1017000e).进度列表[10].名称 = '峨嵋派'
+            G.QueryName(0x1017000e).进度列表[10].当前进度 = 0
+            G.QueryName(0x1017000e).进度列表[10].总进度 = 1
+            G.QueryName(0x1017000e).进度列表[10].完成 = 0
+            G.QueryName(0x1017000e).进度列表[10].分数 = 50
+            G.QueryName(0x1017000e).进度列表[10].完美 = false
+        end
         if int_档案编号 > 0 and int_档案编号 <= 4 then
             local point = 0
             local maxpoint = 0
