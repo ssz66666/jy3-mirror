@@ -478,6 +478,8 @@ t['初入峨嵋派-出师'] = function()
     G.call('出师-增加被动')
     G.call('all_over')
     G.call('set_alltime',2,1,1,4,1) 
-    G.QueryName(0x1017000e).进度列表[10].完成 = 1
+    if G.QueryName(0x1017000e).进度列表[10] then 
+        G.QueryName(0x1017000e).进度列表[10].完成 = 1
+    end
     G.call('初入聚贤庄')
 end

@@ -382,9 +382,8 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
-    for i = 240,259 do 
-        print(G.call('get_point',i))
-    end
+    print(G.misc().出师)
+    G.call('add_day',150)
     --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
@@ -2542,10 +2541,10 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
                         G.call('add_point',19,5) 
                         G.call('notice1','【乞讨】技能提升，【福缘】提升')
                     elseif o_school == 10 then
-                        G.call('add_point',21,5) 
+                        G.call('add_point',32,5) 
                         G.call('notice1','【谄媚】技能提升，【施毒】提升')
                     elseif o_school == 11 then
-                        G.call('add_point',32,2) 
+                        G.call('add_point',21,5) 
                         G.call('notice1','【慈航】修为提升，【定力】提升')
                     elseif o_school == 5 then 
                         G.call('notice1','【寡欲】技能提升，【生命内力】提升')
