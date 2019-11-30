@@ -4912,6 +4912,9 @@ t['通用-门派完美判断']=function()
     if int_school > 6 then 
         int_序列 = int_school - 1
     end
+    if not o_门派成就.进度列表[int_序列] then 
+        return
+    end
     if not o_门派成就.进度列表[int_序列].完美 then
         if G.call('get_magic',magic_1[int_school]) > 0 and G.call('get_magic',magic_2[int_school]) > 0 then
             o_门派成就.进度列表[int_序列].完美 = true
