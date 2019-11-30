@@ -273,6 +273,16 @@ t['通用_读档'] = function(int_档案编号)
                     end
                 end  
             end  
+            for i = 1,#G.QueryName(0x10170016).进度列表 do 
+                if G.QueryName(0x10170016).进度列表[i].分数 > 10 then 
+                    G.QueryName(0x10170016).进度列表[i].分数 = 10
+                end
+            end
+            for i = 1,#G.QueryName(0x10170010).进度列表 do 
+                if G.QueryName(0x10170010).进度列表[i].分数 > 10 then 
+                    G.QueryName(0x10170010).进度列表[i].分数 = 10
+                end
+            end
             if  maxpoint > 7000 or point > 7000  then
                 G.call('通用_强退游戏') 
             end
