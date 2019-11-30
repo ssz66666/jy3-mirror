@@ -166,7 +166,7 @@ t['战斗系统_主角监控'] = function()
                     if G.call('get_point',8) == 4 then --全真派加成
                         int_天罡效果 = int_天罡效果 + 3 
                     end
-                    if (o_skill.内功轻功效果 == 10 or o_skill.内功轻功效果 == 11) and (not G.call('get_point',240) or G.call('get_point',240) == 0)   then 
+                    if (o_skill.内功轻功效果 == 10 or o_skill.内功轻功效果 == 11) and (not G.call('get_point',241) or G.call('get_point',241) == 0)   then 
                         if o_skill.内功轻功效果 == 10 then 
                             local int_hp = math.floor(G.call('get_point',217)*o_skill.修为等级*(int_天罡效果 +  o_skill.效果等级 )/200)
                             if G.call('get_point',85) > 0 then
@@ -2033,7 +2033,7 @@ t['战斗系统_事件响应'] = function()
                             int_hp = math.min(20000,int_hp)
                             int_mp = math.max(1,int_mp)
                             int_mp = math.min(20000,int_mp)
-                            if  (not G.call('get_role',o_battle[位置[i] ],240) or G.call('get_role',o_battle[位置[i] ],240) == 0)   then--舔血效果计算
+                            if  (not G.call('get_role',o_battle[位置[i] ],241) or G.call('get_role',o_battle[位置[i] ],241) == 0)   then
                                 G.call('add_role',o_battle[位置[i] ],15,int_hp)
                                 G.call('add_role',o_battle[位置[i] ],14,int_mp)
                             end
@@ -2299,7 +2299,7 @@ t['集气'] = function()
                 if G.call('get_point',85) > 0 then 
                     int_比例 = int_比例*2 
                 end
-                if not G.call('get_point',240) or G.call('get_point',240) == 0 then 
+                if not G.call('get_point',241) or G.call('get_point',241) == 0 then 
                     G.call('add_point',44,math.max(1,math.floor(20/int_比例))) 
                 end
             end
@@ -2316,6 +2316,14 @@ t['集气'] = function()
                G.call('set_point',i,0) 
             end
         end  
+        for i = 241,249 do --主角部分异常状态以及逍遥御风效果随时间清除
+            if G.call('get_point',i) and G.call('get_point',i) > 0 then 
+                G.call('add_point',i+10,-deytime)
+            end 
+            if G.call('get_point',i+10) and G.call('get_point',i+10) <= 0 then 
+               G.call('set_point',i,0) 
+            end
+        end 
         --异常状态显示 
         local str_异常 = {'中毒','麻痹','晕眩','内伤','受伤','减速','混乱','致盲','御风','剧毒','强伤'}
         local str_异常_1 = {'强伤'}
@@ -2326,7 +2334,7 @@ t['集气'] = function()
                 break
             end
         end
-        for i = 240,249 do --
+        for i = 241,249 do --
             if G.call('get_point',i) and G.call('get_point',i) > 0 then 
                 result = true
                 break
@@ -2341,9 +2349,9 @@ t['集气'] = function()
                     string_字符串 = string_字符串..'[08]'..str_异常[i-80]..' [01]'..int_异常时间..'[br]'
                 end
             end
-            if G.call('get_point',240) and G.call('get_point',240) > 0 then
-                local int_异常时间 =  G.call('get_point',250)
-                if G.call('get_point',250) and G.call('get_point',250) > 0 then
+            if G.call('get_point',241) and G.call('get_point',241) > 0 then
+                local int_异常时间 =  G.call('get_point',251)
+                if G.call('get_point',251) and G.call('get_point',251) > 0 then
                     string_字符串 = string_字符串..'[08]'..str_异常_1[1]..' [01]'..int_异常时间..'[br]'
             
                 end
@@ -2363,7 +2371,7 @@ t['集气'] = function()
                             if o_role_npc[tostring(85)] > 0 then
                                 int_比例 = int_比例*2 
                             end
-                            if not o_role_npc[tostring(240)] or o_role_npc[tostring(240)] == 0 then 
+                            if not o_role_npc[tostring(241)] or o_role_npc[tostring(241)] == 0 then 
                                G.call('add_role',int_role,15,math.max(1,math.floor(20/int_比例)))
                             end
                         end
@@ -2379,6 +2387,14 @@ t['集气'] = function()
                             G.call('add_role',int_role,p+10,-deytime)
                         end
                         if  G.call('get_role',int_role,p+10 )  <= 0 then 
+                            G.call('set_role',int_role,p ,0)
+                        end    
+                    end  
+                    for p = 241,249 do --npc异常状态随时间清除
+                        if G.call('get_role',int_role,p ) and G.call('get_role',int_role,p )  > 0 then 
+                            G.call('add_role',int_role,p+10,-deytime)
+                        end
+                        if  G.call('get_role',int_role,p ) and G.call('get_role',int_role,p+10 )  <= 0 then 
                             G.call('set_role',int_role,p ,0)
                         end    
                     end  
@@ -2930,7 +2946,7 @@ t['magic_power1'] = function(int_id,int_no)
                     hurt3 = math.floor(hurt3*1.25)
                 end
             end
-            if G.call('通用_取得人物特效',0,19) and (not G.call('get_point',240) or G.call('get_point',240) == 0)     then --舔血效果计算
+            if G.call('通用_取得人物特效',0,19) and (not G.call('get_point',241) or G.call('get_point',241) == 0)     then --舔血效果计算
             --if (int_no == 205 or int_no == 206 or int_no == 21 or int_no == 235 ) and G.call('通用_取得人物特效',0,19)     then --舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
@@ -3162,11 +3178,11 @@ t['magic_power1'] = function(int_id,int_no)
                     else
                         string_字符串_4 = string_字符串_4..'.'..'灭绝'
                     end 
-                    G.call('set_role',int_id,240,1)
+                    G.call('set_role',int_id,241,1)
                     if G.call('get_point',8) == 11 then 
-                        G.call('set_role',int_id,250,math.floor(int_时序*(2 + int_诛仙效果*0.20)    ))
+                        G.call('set_role',int_id,251,math.floor(int_时序*(2 + int_诛仙效果*0.20)    ))
                     else
-                        G.call('set_role',int_id,250,math.floor(int_时序*(1 + int_诛仙效果*0.20)    ))
+                        G.call('set_role',int_id,251,math.floor(int_时序*(1 + int_诛仙效果*0.20)    ))
                     end
                 end
             end
@@ -3709,7 +3725,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     hurt3 = math.floor(hurt3*1.25)
                 end
             end
-            if G.call('通用_取得人物特效',int_id,19) and (not G.call('get_role',int_id,240) or G.call('get_role',int_id,240) == 0)   then--舔血效果计算
+            if G.call('通用_取得人物特效',int_id,19) and (not G.call('get_role',int_id,241) or G.call('get_role',int_id,241) == 0)   then--舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
                 else
@@ -3806,8 +3822,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     else
                         string_字符串_4 = string_字符串_4..'.'..'灭绝'
                     end 
-                    G.call('set_role',int_enemy,240,1)
-                    G.call('set_role',int_enemy,250,int_时序)
+                    G.call('set_role',int_enemy,241,1)
+                    G.call('set_role',int_enemy,251,int_时序)
                 end
             end
             if  o_skill.附加效果 == 15  then 
@@ -4428,7 +4444,7 @@ t['magic_power3'] = function(int_id,int_no)
                 local o_item = G.QueryName(G.call('get_point',194))
                 hurt = hurt*(1-(o_item.系数-100)/2/100)
             end 
-            if G.call('通用_取得人物特效',int_id,19) and (not G.call('get_role',int_id,240) or G.call('get_role',int_id,240) == 0)   then--舔血效果计算
+            if G.call('通用_取得人物特效',int_id,19) and (not G.call('get_role',int_id,241) or G.call('get_role',int_id,241) == 0)   then--舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
                 else
@@ -4657,8 +4673,8 @@ t['magic_power3'] = function(int_id,int_no)
                     else
                         string_字符串_4 = string_字符串_4..'.'..'灭绝'
                     end 
-                    G.call('set_point',240,1) 
-                    G.call('set_point',240,int_时序)
+                    G.call('set_point',241,1) 
+                    G.call('set_point',251,int_时序)
                 end
             end
             if  o_skill.附加效果 == 15  then 
@@ -4670,7 +4686,7 @@ t['magic_power3'] = function(int_id,int_no)
                             string_字符串_4 = string_字符串_4..'.'..'强伤'
                         end 
                         G.call('set_point',240,1) 
-                        G.call('set_point',240,int_时序)
+                        G.call('set_point',250,int_时序)
                     end 
                 end
             end

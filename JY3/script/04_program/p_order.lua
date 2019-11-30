@@ -382,6 +382,9 @@ t['test'] = function()
     G.call('puzzle')
 end   
 t['new_test'] = function()
+    for i = 240,259 do 
+        print(G.call('get_point',i))
+    end
     --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
@@ -581,6 +584,18 @@ t['通用_记录继承装备']=function(int_重生)
     end
     return _o_继承装备
 end
+t['通用_初始化']=function() 
+    G.misc().code = 0
+	G.misc().木桩 = 0
+	G.misc().通关 = 0
+	G.misc().密令 = ''
+	G.misc().密令年数 = 0
+	G.misc().切磋次数 = 0
+	G.misc().梦幻完成 = nil
+	G.misc().重置梦幻 = nil
+	G.misc().密令序号 = nil
+	G.misc().出师 = nil
+end
 t['重生']=function() 
     local o_body = G.QueryName(0x10030001)
     local o_store = G.QueryName(0x10190001)
@@ -626,6 +641,7 @@ t['重生']=function()
             G.call('成就_读档',10)
             G.misc().清除成就 = 0 
         end
+        G.call('通用_初始化')
         if #o_equip_usb > 0  then 
             for i = 1,#o_equip_usb do 
                 if o_equip_usb[i] then 

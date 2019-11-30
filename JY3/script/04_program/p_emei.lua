@@ -372,6 +372,7 @@ t['初入峨嵋派-后山'] = function()
                 G.call("talk",'',0,'   知道了大师姐，不然我就不会来直接来问大师姐你了!',0,0)
                 G.call("talk",'',422,'   小师妹还是挺聪明的了！',2,1)
                 G.call('add_love',422,10)
+                G.call('all_over')
             elseif int_选项 == 2 then
                 G.call('set_story',64,2) 
                 G.call('all_over')
@@ -384,10 +385,12 @@ t['初入峨嵋派-后山'] = function()
                 G.call("talk",'',0,'   就怎么样？',0,0)
                 G.call("talk",'',421,'   没什么了，小师妹还是挺乖了！',2,1)
                 G.call('add_love',421,10)
+                G.call('all_over')
             elseif int_选项 == 3 then
                 G.call('set_story',64,3) 
                 G.call('all_over')
                 G.call("talk",'',0,'   算了，和我无关的事，还是不要管了！',0,0)
+                G.call('all_over')
                 G.call('dark')
                 G.call('goto_map',84) 
             end
@@ -406,12 +409,14 @@ t['初入峨嵋派-后山'] = function()
                 G.call("talk",'',422,'   小师妹说没看到，听到了没有？',2,1)
                 G.call("talk",'',421,'   下次让我看到，我就让师父自己来看！',2,1)
                 G.call('add_love',422,10)
+                G.call('all_over')
             elseif int_选项 == 2 then    
                 G.call('set_story',65,2) 
                 G.call("talk",'',421,'   小师妹都说看到了，看你如何狡辩！',2,1)
                 G.call("talk",'',422,'   二位师妹，师姐也是情非得已！',2,1)
                 G.call("talk",'',421,'   今日暂且作罢，如果还有下次，就别怪我告诉师父她老人家了！',2,1)
                 G.call('add_love',421,10)
+                G.call('all_over')
             end
         end
     else
