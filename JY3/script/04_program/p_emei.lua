@@ -372,7 +372,6 @@ t['初入峨嵋派-后山'] = function()
                 G.call("talk",'',0,'   知道了大师姐，不然我就不会来直接来问大师姐你了!',0,0)
                 G.call("talk",'',422,'   小师妹还是挺聪明的了！',2,1)
                 G.call('add_love',422,10)
-                G.call('all_over')
             elseif int_选项 == 2 then
                 G.call('set_story',64,2) 
                 G.call('all_over')
@@ -385,15 +384,16 @@ t['初入峨嵋派-后山'] = function()
                 G.call("talk",'',0,'   就怎么样？',0,0)
                 G.call("talk",'',421,'   没什么了，小师妹还是挺乖了！',2,1)
                 G.call('add_love',421,10)
-                G.call('all_over')
             elseif int_选项 == 3 then
                 G.call('set_story',64,3) 
                 G.call('all_over')
                 G.call("talk",'',0,'   算了，和我无关的事，还是不要管了！',0,0)
                 G.call('all_over')
                 G.call('dark')
-                G.call('goto_map',84) 
             end
+            G.call('all_over')
+            G.call('goto_map',84) 
+        
         end
     elseif G.call('get_month') == 6 and G.call('get_story',65) == 0 then 
         G.call('dark')
