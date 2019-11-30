@@ -168,7 +168,7 @@ t['地图事件_逻辑处理'] = function()
         end  
     end
     if G.call('get_school') == 11  and G.call('get_year') == 1  then   --峨嵋事件逻辑
-        if G.call('get_month') == 1 and G.call('get_day') >= 15 and G.call('get_story',61) == 0 then
+        if G.call('get_month') == 3 and G.call('get_day') >= 15 and G.call('get_story',61) == 0 then
             G.call('set_story',61,1) 
             G.trig_event('初入峨嵋派-三月大比较')
         elseif G.call('get_month') == 6 and G.call('get_day') >= 15 and G.call('get_story',62) == 0 then
