@@ -89,7 +89,7 @@ t['初入峨嵋派-纪晓芙'] = function()
         int_选项 = G.call("menu",'',0,'',0,0,{"1,请师姐传授功夫","2,没什么事情，向师姐请安"},0) 
         if int_选项 == 1 then 
             if G.call('get_magicexp',255) == 0 then 
-                if G.call('get_month') < 9 then
+                if G.call('get_month') >= 9 then
                     if G.call('get_love',422) < 70 then
                         G.call("talk",'',422,'   对你很失望，也没什么可教你的了！',2,1) 
                     else
@@ -131,7 +131,7 @@ t['初入峨嵋派-丁敏君'] = function()
         int_选项 = G.call("menu",'',0,'',0,0,{"1,请师姐传授功夫","2,没什么事情，向师姐请安"},0) 
         if int_选项 == 1 then 
             if G.call('get_magicexp',254) == 0 then 
-                if G.call('get_month') < 9 then 
+                if G.call('get_month') >= 9 then 
                     if G.call('get_love',421) < 70 then
                         G.call("talk",'',421,'   对你很失望，也没什么可教你的了！',2,1) 
                     else
