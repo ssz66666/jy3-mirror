@@ -79,21 +79,21 @@ t['地图事件_逻辑处理'] = function()
                 G.call('set_story',13,3) 
                 G.trig_event('初入全真-九月大比较') 
             elseif G.call('get_month') == 12 and G.call('get_day') >= 14 and not G.misc().出师 then
-                G.misc().出师 = 1
+                --G.misc().出师 = 1
                 G.trig_event('初入全真-出师') 
             end   
         end  
     end
     if G.call('get_school') == 5 and G.call('get_year') == 1   then   --古墓事件逻辑
         if G.call('get_month') == 12 and G.call('get_day') >= 14 and not G.misc().出师 then
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event('初入古墓-李莫愁来访') 
         end   
 
     end 
     if G.call('get_school') == 1  and G.call('get_year') == 1  then     --武当事件逻辑
         if G.call('get_month') == 12 and G.call('get_day') >= 14 and not G.misc().出师 then
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event('初入武当-出师') 
         end   
 
@@ -111,7 +111,7 @@ t['地图事件_逻辑处理'] = function()
         elseif  G.call('get_month') == 12 and G.call('get_day') >= 1 and int_map == 31  then
             G.trig_event('初入少林-出南少林') 
         elseif  G.call('get_month') == 12 and G.call('get_day') >= 14 and not G.misc().出师 then
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event('初入少林-出师')   
         end     
     end  
@@ -122,13 +122,13 @@ t['地图事件_逻辑处理'] = function()
             G.QueryName(0x1006002e).城市列表[4].隐藏 = 1
         end  
         if  G.call('get_month') == 12 and G.call('get_day') >= 14 and not G.misc().出师 then
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event('初入血刀门-出师')
         end   
     end
     if G.call('get_school') == 8  and G.call('get_year') == 1  then --桃花岛事件逻辑
         if  G.call('get_month') == 12 and G.call('get_day') >= 14 and not G.misc().出师 then
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event('初入桃花岛-出师')
         end  
     end
@@ -143,7 +143,7 @@ t['地图事件_逻辑处理'] = function()
             G.call('set_story',58,3) 
             G.trig_event('初入星宿-九月大比较') 
         elseif G.call('get_month') == 12 and G.call('get_day') >= 14 and not G.misc().出师 then 
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event('初入星宿-出师') 
         end  
     end
@@ -163,7 +163,7 @@ t['地图事件_逻辑处理'] = function()
             G.trig_event('初入丐帮-轩辕台')
         end  
         if  G.call('get_month') == 12 and G.call('get_day') >= 14 and not G.misc().出师 then
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event('初入丐帮-出师')
         end  
     end
@@ -179,7 +179,7 @@ t['地图事件_逻辑处理'] = function()
             G.trig_event('初入峨嵋派-九月大比较')
         end 
         if  G.call('get_month') == 12 and G.call('get_day') >= 14  and not G.misc().出师 then
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event('初入峨嵋派-出师')
         end  
     end
@@ -190,7 +190,7 @@ t['地图事件_逻辑处理'] = function()
             G.QueryName(0x10060026).城市列表[7].隐藏 = nil 
         end 
         if  G.call('get_month') == 12 and G.call('get_day') >= 14 and not G.misc().出师 then
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event('初入华山-出师')
         end    
     end 
@@ -232,7 +232,7 @@ t['地图事件_逻辑处理'] = function()
         if G.call('get_point',8) == 0  and G.call('get_year') >= 1 and G.call('get_day') >= 5   then
             G.trig_event('途径牛家村-超时') 
         elseif G.call('get_point',8) > 0 and G.call('get_point',8) ~= 6 and G.call('get_year') > 1  and not G.misc().出师 then
-            G.misc().出师 = 1
+            --G.misc().出师 = 1
             G.trig_event(str_事件[G.call('get_point',8)]) 
         end 
     end

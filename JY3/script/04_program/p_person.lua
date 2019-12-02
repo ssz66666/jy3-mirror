@@ -634,7 +634,7 @@ t['初入聚贤庄']=function()
     if G.misc().双十一礼包 == nil  and G.call('get_point',237) > 1 then 
         G.misc().双十一礼包 = 1
     end
-    if G.misc().出师 == nil then 
+    if not G.misc().出师  then 
         G.misc().出师 = 1
     end
     G.call('通用-门派完美发放奖励')
