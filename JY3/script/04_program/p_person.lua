@@ -1706,9 +1706,12 @@ t['猜数字']=function()
             G.misc().猜数字 = 0
             int_mo = int_mo + 1
             int_mo_监控 = int_mo_监控 - 1
-            if int_mo == 1 and G.misc().number == int_no then
+            if int_mo == 1 and G.misc().number == int_no  then
                 int_no = G.misc().一鸣惊人
                 local int_数字 = G.misc().一鸣惊人
+                if G.misc().一鸣惊人 == G.misc().number then 
+                    int_数字 = G.misc().一鸣惊人 - 1
+                end
                 m[1] =  math.floor(int_数字/1000)
                 m[2] =  math.floor((int_数字 - m[1] *1000)/100)
                 m[3] =  math.floor((int_数字 - m[1] *1000 - m[2] *100)/10 )
