@@ -2201,7 +2201,7 @@ t['门派-峨嵋派']=function()
                 elseif int_选项 == 2 then
                     G.call('all_over')
                     if G.call('get_magic',253) == 0 then 
-                        G.call("talk",'',63,'   既然你想领悟这【截手九式】，我就看看你的实力如何？',2,1)
+                        G.call("talk",'',61,'   既然你想领悟这【截手九式】，我就看看你的实力如何？',2,1)
                         G.call('add_time',2)
                         G.call('call_battle',1,19,1,250,61,421,422,0,0,0)
                         o_battle_结果 = G.call('get_battle') 
