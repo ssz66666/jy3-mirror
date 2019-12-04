@@ -1697,7 +1697,7 @@ t['menu'] = function(string_名字,int_编号,string_对话,int_对话位置,int
         return G.call("对话系统_显示对话选择下",string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_选择项)
     end
 end 
-t['join']=function(int_编号) --加入队友
+t['join']=function(int_编号,boolean_是否显示提示) --加入队友
     local o_role_人物编码 = 0x10040000+int_编号
     local int_位置 = 0
     local team = G.QueryName(0x10110001)
@@ -1714,7 +1714,9 @@ t['join']=function(int_编号) --加入队友
            G.call('通用_队伍检测')
            G.QueryName(0x10110001)[tostring(p+1)] = o_role_人物编码
            G.QueryName(0x10110001)[tostring(p+13)] = -10-int_编号
-           G.call('notice1','【'..G.QueryName(o_role_人物编码).姓名..'】加入队伍')
+            if boolean_是否显示提示 then 
+                G.call('notice1','【'..G.QueryName(o_role_人物编码).姓名..'】加入队伍')
+            end
            if G.call('get_point',237) >= 10 then
                for i = 3,8 do
                    G.call('set_role',int_编号,i,G.call('get_role',int_编号,900+i )  ) 

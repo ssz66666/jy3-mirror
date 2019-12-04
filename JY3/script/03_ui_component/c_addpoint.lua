@@ -248,10 +248,32 @@ function t:click(tar)
                     G.QueryName(0x10030001)[tostring(2)] = '年磨一剑'
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089006 --设定头像
                     G.call('learnmagic',190)
-                elseif str == '天宇妹妹最靓了' then
-                    G.QueryName(0x10030001)[tostring(50)] = 2 --二次结义机会
-                elseif str == '自古红颜多离人' then
-                    G.QueryName(0x10030001)[tostring(51)] = 2 --二次结婚机会
+                elseif str == '我的侠客' then
+                    G.QueryName(0x10030001).性别 = 1
+                    G.QueryName(0x10030001)[tostring(1)] = '田'
+                    G.QueryName(0x10030001)[tostring(2)] = '小六'
+                    G.QueryName(0x10030001)[tostring(119)] = 0x5608900a --设定头像
+                    local o_achieve = G.QueryName(0x1017000f)
+                    local _role = {}
+                    for i = 1,47 do
+                        if i ~= 31 and i ~= 37 then 
+                            table.insert(_role, o_achieve.进度列表[i].编号)
+                        end
+                    end
+                    local n = _role[math.ceil(20*G.call('通用_取随机')/100)]
+                    while true do
+                        if G.call('in_team',n) == false then 
+                            G.call('join',n)
+                            break
+                        else
+                            n = _role[math.random(#_role)]
+                        end     
+                    end
+                    if G.call('通用_取随机') > 50 then
+                        G.QueryName(0x10030001)[tostring(50)] = 2 
+                    else
+                        G.QueryName(0x10030001)[tostring(51)] = 2
+                    end    
                 elseif str == '半瓶神仙醋' then
                     G.QueryName(0x10030001).性别 = 1
                     G.QueryName(0x10030001)[tostring(1)] = '半瓶'
@@ -347,6 +369,11 @@ function t:click(tar)
             self.头像.img = 0x560800e2
             G.Play(0x4901000f, 1,false,100) 
         elseif str == '天宇妹妹最靓了' then
+            G.Play(0x4901000f, 1,false,100) 
+        elseif str == '我的侠客' then
+            self.obj.getChildByName('显示').getChildByName('姓').text = '田'
+            self.obj.getChildByName('显示').getChildByName('名').text = '小六'
+            self.头像.img = 0x5608900a
             G.Play(0x4901000f, 1,false,100) 
         elseif str == '自古红颜多离人' then
             G.Play(0x4901000f, 1,false,100) 
