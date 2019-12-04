@@ -268,7 +268,7 @@ function t:click(tar)
                     local n = _role[math.ceil(20*G.call('通用_取随机')/100)]
                     while true do
                         if G.call('in_team',n) == false then 
-                            G.call('join',n)
+                            G.call('join',n,1)
                             break
                         else
                             n = _role[math.random(#_role)]
@@ -346,7 +346,7 @@ function t:click(tar)
                         end   
                         while true do
                             if G.call('in_team',n) == false then 
-                                G.call('join',n)
+                                G.call('join',n,1)
                                 break
                             else
                                 n = wife[math.random(19)]

@@ -1714,7 +1714,7 @@ t['join']=function(int_编号,boolean_是否显示提示) --加入队友
            G.call('通用_队伍检测')
            G.QueryName(0x10110001)[tostring(p+1)] = o_role_人物编码
            G.QueryName(0x10110001)[tostring(p+13)] = -10-int_编号
-            if boolean_是否显示提示 then 
+            if not boolean_是否显示提示 then 
                 G.call('notice1','【'..G.QueryName(o_role_人物编码).姓名..'】加入队伍')
             end
            if G.call('get_point',237) >= 10 then
