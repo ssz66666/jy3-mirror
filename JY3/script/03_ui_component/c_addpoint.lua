@@ -249,10 +249,15 @@ function t:click(tar)
                     G.QueryName(0x10030001)[tostring(119)] = 0x56089006 --设定头像
                     G.call('learnmagic',190)
                 elseif str == '我的侠客' then
-                    G.QueryName(0x10030001).性别 = 1
-                    G.QueryName(0x10030001)[tostring(1)] = '田'
-                    G.QueryName(0x10030001)[tostring(2)] = '小六'
-                    G.QueryName(0x10030001)[tostring(119)] = 0x5608900a --设定头像
+                    if  G.QueryName(0x10030001).性别 == 1 then 
+                        G.QueryName(0x10030001)[tostring(1)] = '田'
+                        G.QueryName(0x10030001)[tostring(2)] = '小六'
+                        G.QueryName(0x10030001)[tostring(119)] = 0x5608900a --设定头像
+                    else
+                        G.QueryName(0x10030001)[tostring(1)] = '江'
+                        G.QueryName(0x10030001)[tostring(2)] = '灵露'
+                        G.QueryName(0x10030001)[tostring(119)] = 0x5608900b --设定头像
+                    end
                     local o_achieve = G.QueryName(0x1017000f)
                     local _role = {}
                     for i = 1,47 do
@@ -371,9 +376,15 @@ function t:click(tar)
         elseif str == '天宇妹妹最靓了' then
             G.Play(0x4901000f, 1,false,100) 
         elseif str == '我的侠客' then
-            self.obj.getChildByName('显示').getChildByName('姓').text = '田'
-            self.obj.getChildByName('显示').getChildByName('名').text = '小六'
-            self.头像.img = 0x5608900a
+            if  G.QueryName(0x10030001).性别 == 1 then 
+                self.obj.getChildByName('显示').getChildByName('姓').text = '田'
+                self.obj.getChildByName('显示').getChildByName('名').text = '小六'
+                self.头像.img = 0x5608900a
+            else
+                self.obj.getChildByName('显示').getChildByName('姓').text = '江'
+                self.obj.getChildByName('显示').getChildByName('名').text = '灵露'
+                self.头像.img = 0x5608900b
+            end
             G.Play(0x4901000f, 1,false,100) 
         elseif str == '自古红颜多离人' then
             G.Play(0x4901000f, 1,false,100) 
