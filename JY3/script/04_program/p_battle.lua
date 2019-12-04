@@ -2444,44 +2444,46 @@ t['集气'] = function()
 				    if ui.getChildByName('map').getChildByName(位置[i]).x > 150 then 
 						ui.getChildByName('map').getChildByName(位置[i]).x = 150
                     end 
-                    if G.misc().自动战斗 == 1  and ui.getChildByName('map').getChildByName(位置[1]).x == 150   then
-                        local int_队友 = 0
-                        local i_role = 0x10040000
-                        local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
-                        for i = 2,5 do 
-                            if o_battle[位置[i]] > 0 then 
-                                if G.QueryName(i_role + o_battle[位置[i]] ).生命 > 0 then 
-                                    int_队友 = int_队友 + 1
+                    if G.misc().自动战斗 == 1    then
+                        if ui.getChildByName('map').getChildByName(位置[1]).x == 150 then 
+                            local int_队友 = 0
+                            local i_role = 0x10040000
+                            local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
+                            for i = 2,5 do 
+                                if o_battle[位置[i]] > 0 then 
+                                    if G.QueryName(i_role + o_battle[位置[i]] ).生命 > 0 then 
+                                        int_队友 = int_队友 + 1
+                                    end
                                 end
                             end
-                        end
-                        if G.call('通用_取得内功轻功特效',0,18) then
-                            int_队友 = int_队友 + 1
-                        end
-                        G.misc().战斗状态 = 1
-                        local int_武功代码 = G.call('通用_选择自动攻击武功')
-                        ui.getChildByName('代码').getChildByName(位置[1]).text = int_武功代码
-                        local i_skill = 0x10050000 + int_武功代码
-                        local o_skill = G.QueryName(i_skill)
-                        if o_skill.范围 == 0 or o_skill.范围 == 1 then 
-                            if G.call('get_point',46) > 0 then 
+                            if G.call('通用_取得内功轻功特效',0,18) then
+                                int_队友 = int_队友 + 1
+                            end
+                            G.misc().战斗状态 = 1
+                            local int_武功代码 = G.call('通用_选择自动攻击武功')
+                            ui.getChildByName('代码').getChildByName(位置[1]).text = int_武功代码
+                            local i_skill = 0x10050000 + int_武功代码
+                            local o_skill = G.QueryName(i_skill)
+                            if o_skill.范围 == 0 or o_skill.范围 == 1 then 
+                                if G.call('get_point',46) > 0 then 
+                                    ui.getChildByName('状态').text = tostring(1) 
+                                    G.trig_event('主角准备')
+                                else
+                                    G.misc().战斗状态 = 0
+                                    G.call('notice1','内力为0无法使用辅助武功')   
+                                end     
+                            elseif  o_skill.范围 == 5 then  
                                 ui.getChildByName('状态').text = tostring(1) 
                                 G.trig_event('主角准备')
+                            elseif i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 9 and int_队友 >= 4   then
+                                ui.getChildByName('状态').text = tostring(1) 
+                                G.misc().范围无双 = 1
+                                G.trig_event('主角准备')
                             else
-                                G.misc().战斗状态 = 0
-                                G.call('notice1','内力为0无法使用辅助武功')   
-                            end     
-                        elseif  o_skill.范围 == 5 then  
-                            ui.getChildByName('状态').text = tostring(1) 
-                            G.trig_event('主角准备')
-                        elseif i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 9 and int_队友 >= 4   then
-                            ui.getChildByName('状态').text = tostring(1) 
-                            G.misc().范围无双 = 1
-                            G.trig_event('主角准备')
-                        else
-                            ui.getChildByName('状态').text = tostring(1) 
-                            G.trig_event('选择攻击目标')
-                        end 
+                                ui.getChildByName('状态').text = tostring(1) 
+                                G.trig_event('选择攻击目标')
+                            end 
+                        end
                     else
                         if ui.getChildByName('map').getChildByName(位置[1]).x == 150  and G.call('get_point',87) > 0 then 
                             G.misc().战斗状态 = 1
