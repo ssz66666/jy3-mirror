@@ -72,6 +72,7 @@ function t:onFrameEnd(tar, id)
 end
 function t:start()
     G.misc().自动选择 = 1
+    G.misc().选择目标 = 0
     if not G.misc().自动战斗 then 
        G.misc().自动战斗 = 0
        G.misc().自动技能序号 = 1
@@ -583,7 +584,7 @@ function t:keyDown(tar,info)
             end             
         end 
     end
-    if G.misc().战斗状态 == 0 then 
+    if G.misc().战斗状态 == 0 and G.misc().自动战斗 == 0 then  
         for i = 1,4 do 
             if key == 键值[i]  then 
                 if self.按钮.getChildByName(快捷[i]).mouseEnabled  == true then  
@@ -732,7 +733,7 @@ function t:click(tar)
             end 
         end   
     end
-    if G.misc().战斗状态 == 0 then 
+    if G.misc().战斗状态 == 0 and G.misc().自动战斗 == 0 then 
         for i = 1,4 do 
             if tar == self.按钮.getChildByName(快捷[i])      then 
                 self.obj.getChildByName('状态').text = tostring(2) 

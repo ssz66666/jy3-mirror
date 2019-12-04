@@ -1048,6 +1048,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     G.call('line_off')
     G.addUI('v_battle')
     G.start_program('集气')
+    G.start_program('战斗系统_自动战斗')
     G.start_program('战斗对话1')
     G.start_program('战斗对话2')
     G.start_program('异常显示')
@@ -1062,6 +1063,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
     G.remove_program('战斗系统_事件响应',1)
     G.remove_program('战斗系统_主角监控',1)
     G.remove_program('战斗系统_胜负监控',1)
+    G.remove_program('战斗系统_自动战斗')
     if G.misc().随机切磋 == nil then 
         G.misc().随机切磋 = 0
     end
