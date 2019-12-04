@@ -4941,3 +4941,27 @@ t['通用-门派完美发放奖励']=function()
         end
     end
 end
+t['通用_选择自动攻击武功']=function()
+    local ui ;
+	if not G.getUI('v_battle') then 
+		return
+	end 
+    ui = G.getUI('v_battle')
+    local c = ui.c_battle
+	local o_battle = G.QueryName(0x10150001)
+    local o_body = G.QueryName(0x10030001)
+    if G.QueryName(0x100c0001)[tostring(8)] and G.call('get_point',48) >= 100 then 
+        G.call('set_point',48,0) 
+        G.call('set_newpoint',48,-10)
+        return G.QueryName(0x100c0001)[tostring(8)] - 0x10050000
+    end
+    if G.QueryName(0x100c0001)[tostring(G.misc().自动技能序号)] then
+        return G.QueryName(0x100c0001)[tostring(G.misc().自动技能序号)] - 0x10050000 
+    end
+    for i = 7,1,-1 do 
+        if G.QueryName(0x100c0001)[tostring(i)] then
+            return  G.QueryName(0x100c0001)[tostring(i)] - 0x10050000
+        end
+    end
+    return 207
+end

@@ -10,6 +10,7 @@ function t:init()
     self.设置 = self.obj.getChildByName('设置')
     self.设置按钮 = self.设置.getChildByName('按钮')
     self.阈值 = self.设置.getChildByName('显示').getChildByName('阈值')
+    self.序号 = self.设置.getChildByName('显示').getChildByName('技能序号')
     self.记录 = self.记事本.getChildByName('记录')
     self.主菜单 = self.obj.getChildByName('主菜单')
     self.菜单 = self.主菜单.getChildByName('菜单')
@@ -70,6 +71,14 @@ function t:onFrameEnd(tar, id)
     -- end
 end
 function t:start()
+    G.misc().自动选择 = 1
+    if not G.misc().自动战斗 then 
+       G.misc().自动战斗 = 0
+       G.misc().自动技能序号 = 1
+    end
+    if not G.misc().自动技能序号 then 
+        G.misc().自动技能序号 = 1
+     end
     local i_battle = 0x10150001
     local i_role = 0x10040000
     local o_battle = G.QueryName(i_battle)
@@ -100,7 +109,6 @@ function t:start()
     -- --print('HP',G.call('get_point',44),G.call('get_newpoint',44))
     -- --print('MP',G.call('get_point',46),G.call('get_newpoint',46))
     G.call('set_point',80,0) --时序
-    G.misc().自动 = 1
     G.misc().战斗状态 = 0
     G.misc().范围无双 = 0
     self.层数.shadowX = 1
@@ -218,6 +226,13 @@ function t:start()
     elseif  G.misc().被动开关 == 1 then
         self.设置按钮.getChildByName('开').style = 3
         self.设置按钮.getChildByName('关').style = 9
+    end
+    if G.misc().自动战斗 == 0 then
+        self.设置按钮.getChildByName('自动开').style = 9
+        self.设置按钮.getChildByName('自动关').style = 3
+    elseif  G.misc().自动战斗 == 1 then
+        self.设置按钮.getChildByName('自动开').style = 3
+        self.设置按钮.getChildByName('自动关').style = 9
     end
     if G.misc().经验开关 == 0 then
         self.设置按钮.getChildByName('经验开').style = 9
@@ -513,7 +528,7 @@ function t:keyDown(tar,info)
     local 快捷 = {'q','w','e','r'}
     local 键值 = {81,87,69,82}
     local key = string.byte(info)
-    if G.misc().战斗状态 == 0 then  
+    if G.misc().战斗状态 == 0 and G.misc().自动战斗 == 0 then  
         local int_队友 = 0
         local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
         for i = 2,5 do 
@@ -616,6 +631,11 @@ function t:click(tar)
     elseif tar == self.设置按钮.getChildByName('经验关') then
         G.misc().经验开关 = 0
     end
+    if tar == self.设置按钮.getChildByName('自动开') then
+        G.misc().自动战斗 = 1     
+    elseif tar == self.设置按钮.getChildByName('自动关') then
+        G.misc().自动战斗 = 0
+    end
     if G.misc().被动开关 == 0 then
         self.设置按钮.getChildByName('开').style = 9
         self.设置按钮.getChildByName('关').style = 3
@@ -637,6 +657,13 @@ function t:click(tar)
         self.设置按钮.getChildByName('攻击最高').style = 3
         self.设置按钮.getChildByName('攻击最低').style = 9 
     end
+    if G.misc().自动战斗 == 0 then
+        self.设置按钮.getChildByName('自动开').style = 9
+        self.设置按钮.getChildByName('自动关').style = 3
+    elseif  G.misc().自动战斗 == 1 then
+        self.设置按钮.getChildByName('自动开').style = 3
+        self.设置按钮.getChildByName('自动关').style = 9
+    end
     if tar == self.设置按钮.getChildByName('加') then
         G.misc().加血阈值 = G.misc().加血阈值 + 10     
     elseif tar == self.设置按钮.getChildByName('减') then
@@ -644,11 +671,17 @@ function t:click(tar)
     end
     G.misc().加血阈值 = cc.limitX(G.misc().加血阈值, 10, 90)
     self.阈值.text = G.misc().加血阈值..'%'
-    --cc.limitX(o_store.物品[int_id].数量, 0, 999)
+    if tar == self.设置按钮.getChildByName('序号加') then
+        G.misc().自动技能序号 = G.misc().自动技能序号 + 1     
+    elseif tar == self.设置按钮.getChildByName('序号减') then
+        G.misc().自动技能序号 = G.misc().自动技能序号 - 1
+    end
+    G.misc().自动技能序号 = cc.limitX(G.misc().自动技能序号, 1, 7)
+    self.序号.text = G.misc().自动技能序号
     if tar == self.obj.getChildByName('逃跑') then
         G.trig_event('逃跑')
     end    
-    if G.misc().战斗状态 == 0 then  
+    if G.misc().战斗状态 == 0 and G.misc().自动战斗 == 0 then   
         local int_队友 = 0
         local i_magic_阵法 =  G.QueryName(0x100c0001)[tostring(15)]
         for i = 2,5 do 
@@ -718,12 +751,12 @@ function t:click(tar)
         end 
     end
     if tar == self.obj.getChildByName('select') then 
-        if G.misc().自动 == 0 then 
-            G.misc().自动 = 1
+        if G.misc().自动选择 == 0 then 
+            G.misc().自动选择 = 1
             self.obj.getChildByName('select').style = 8
             self.obj.getChildByName('select').text = '自动选择目标ON'
-        elseif G.misc().自动 == 1 then 
-            G.misc().自动 = 0
+        elseif G.misc().自动选择 == 1 then 
+            G.misc().自动选择 = 0
             self.obj.getChildByName('select').style = 1
             self.obj.getChildByName('select').text = '自动选择目标OFF'
         end     

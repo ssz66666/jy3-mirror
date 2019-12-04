@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_battle = require 'c_battle'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -7394,10 +7394,10 @@ tp = tc
 			tc = G.Quad()
 			tp.addChild(tc)
 			tc.name = '背景'
-			tc.left = -216.000
-			tc.right = 210.000
-			tc.bottom = -172.000
-			tc.top = 150.000
+			tc.left = -305.000
+			tc.right = 301.000
+			tc.bottom = -186.500
+			tc.top = 174.500
 			tc.mouseEnabled = true
 			tc.alpha = 150
 			tc.img = 0x56160020
@@ -7406,15 +7406,33 @@ tp = tc
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
-			tc.name = '文字1'
-			tc.left = -127.500
-			tc.right = 113.500
-			tc.bottom = 97.000
-			tc.top = 157.000
+			tc.name = '设置'
+			tc.pivotX = 0.000
+			tc.left = -45.000
+			tc.right = 77.000
+			tc.bottom = 110.000
+			tc.top = 170.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
-			tc.text = '队友攻击AI'
+			tc.text = '设置'
+			tc.font = 0x613c0000
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '文字1'
+			tc.pivotX = 0.000
+			tc.left = -285.000
+			tc.right = 7.000
+			tc.bottom = 70.000
+			tc.top = 130.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '队友攻击AI：'
 			tc.font = 0x61320000
 			tc.style = 2
 			tp = tc
@@ -7423,30 +7441,15 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '文字11'
-			tc.left = -109.000
-			tc.right = 95.000
-			tc.bottom = 32.000
-			tc.top = 92.000
+			tc.pivotX = 0.000
+			tc.left = -285.000
+			tc.right = -30.000
+			tc.bottom = 30.000
+			tc.top = 90.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
-			tc.text = '被动开关'
-			tc.font = 0x61320000
-			tc.style = 2
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = '文字111'
-			tc.left = -211.000
-			tc.right = 197.000
-			tc.bottom = -124.000
-			tc.top = -64.000
-			tc.scaleX = 0.500
-			tc.scaleY = 0.500
-			tc.autosize = 1
-			tc.text = '队友自动加血阈值'
+			tc.text = '被动开关：'
 			tc.font = 0x61320000
 			tc.style = 2
 			tp = tc
@@ -7455,10 +7458,10 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '文字1111'
-			tc.left = -160.000
-			tc.right = 146.000
-			tc.bottom = -47.000
-			tc.top = 13.000
+			tc.left = -100.000
+			tc.right = 206.000
+			tc.bottom = 30.000
+			tc.top = 90.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
@@ -7470,17 +7473,84 @@ tp = tc
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
+			tc.name = '文字111'
+			tc.pivotX = 0.000
+			tc.left = -285.000
+			tc.right = 174.000
+			tc.bottom = -10.000
+			tc.top = 50.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '队友自动加血阈值：'
+			tc.font = 0x61320000
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
 			tc.name = '阈值'
-			tc.left = -53.500
-			tc.right = 35.500
-			tc.bottom = -162.000
-			tc.top = -102.000
+			tc.left = 18.500
+			tc.right = 107.500
+			tc.bottom = -10.000
+			tc.top = 50.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
 			tc.text = '50%'
 			tc.font = 0x61320000
 			tc.style = 4
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '技能序号'
+			tc.left = 40.000
+			tc.right = 66.000
+			tc.bottom = -90.000
+			tc.top = -30.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '1'
+			tc.font = 0x61320000
+			tc.style = 4
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '文字1111'
+			tc.pivotX = 0.000
+			tc.left = -285.000
+			tc.right = 72.000
+			tc.bottom = -50.000
+			tc.top = 10.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '自动攻击开关：'
+			tc.font = 0x61320000
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '文字11111'
+			tc.pivotX = 0.000
+			tc.left = -285.000
+			tc.right = 174.000
+			tc.bottom = -90.000
+			tc.top = -30.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '自动攻击技能序号：'
+			tc.font = 0x61320000
+			tc.style = 2
 			tp = tc
 			tp = tp.parent
 			--end
@@ -7493,10 +7563,10 @@ tp = tc
 			tc = G.Quad()
 			tp.addChild(tc)
 			tc.name = '关闭'
-			tc.left = 165.500
-			tc.right = 198.500
-			tc.bottom = 127.500
-			tc.top = 158.500
+			tc.left = 261.500
+			tc.right = 294.500
+			tc.bottom = 138.500
+			tc.top = 169.500
 			tc.mouseEnabled = true
 			tc.img = 0x56160014
 			tp = tc
@@ -7505,10 +7575,10 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '攻击最高'
-			tc.left = -221.000
-			tc.right = 21.000
-			tc.bottom = 60.000
-			tc.top = 120.000
+			tc.left = -194.000
+			tc.right = 48.000
+			tc.bottom = 70.000
+			tc.top = 130.000
 			tc.mouseEnabled = true
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
@@ -7521,28 +7591,28 @@ tp = tc
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
-			tc.name = '开'
-			tc.left = -114.500
-			tc.right = -67.500
-			tc.bottom = -2.000
-			tc.top = 58.000
+			tc.name = '攻击最低'
+			tc.left = 41.000
+			tc.right = 283.000
+			tc.bottom = 70.000
+			tc.top = 130.000
 			tc.mouseEnabled = true
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
-			tc.text = 'ON'
+			tc.text = '攻击HP最低'
 			tc.font = 0x61300000
-			tc.style = 9
+			tc.style = 3
 			tp = tc
 			tp = tp.parent
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
-			tc.name = '经验开'
-			tc.left = -115.500
-			tc.right = -68.500
-			tc.bottom = -83.000
-			tc.top = -23.000
+			tc.name = '开'
+			tc.left = -148.500
+			tc.right = -101.500
+			tc.bottom = 30.000
+			tc.top = 90.000
 			tc.mouseEnabled = true
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
@@ -7556,15 +7626,32 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '关'
-			tc.left = 19.500
-			tc.right = 90.500
-			tc.bottom = -2.000
-			tc.top = 58.000
+			tc.left = -102.500
+			tc.right = -31.500
+			tc.bottom = 30.000
+			tc.top = 90.000
 			tc.mouseEnabled = true
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
 			tc.text = 'OFF'
+			tc.font = 0x61300000
+			tc.style = 9
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '经验开'
+			tc.left = 138.500
+			tc.right = 185.500
+			tc.bottom = 30.000
+			tc.top = 90.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = 'ON'
 			tc.font = 0x61300000
 			tc.style = 9
 			tp = tc
@@ -7573,10 +7660,10 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '经验关'
-			tc.left = 19.500
-			tc.right = 90.500
-			tc.bottom = -83.000
-			tc.top = -23.000
+			tc.left = 192.500
+			tc.right = 263.500
+			tc.bottom = 30.000
+			tc.top = 90.000
 			tc.mouseEnabled = true
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
@@ -7589,28 +7676,44 @@ tp = tc
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
-			tc.name = '攻击最低'
-			tc.left = -21.000
-			tc.right = 221.000
-			tc.bottom = 60.000
-			tc.top = 120.000
+			tc.name = '自动开'
+			tc.left = -76.500
+			tc.right = -29.500
+			tc.bottom = -50.000
+			tc.top = 10.000
 			tc.mouseEnabled = true
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
-			tc.text = '攻击HP最低'
+			tc.text = 'ON'
 			tc.font = 0x61300000
-			tc.style = 3
+			tc.style = 9
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '自动关'
+			tc.left = 20.500
+			tc.right = 91.500
+			tc.bottom = -50.000
+			tc.top = 10.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = 'OFF'
+			tc.font = 0x61300000
+			tc.style = 9
 			tp = tc
 			tp = tp.parent
 			--end
 			tc = G.loadUI('v_button')
 			tp.addChild(tc)
 			tc.name = '加'
-			tc.left = 61.000
-			tc.right = 89.000
-			tc.bottom = -152.000
-			tc.top = -112.000
+			tc.left = 134.000
+			tc.right = 162.000
+			tc.top = 40.000
 			tc.scaleX = -1.000
 			tp = tc
 				tc = tp.getChildByName('img')
@@ -7629,10 +7732,52 @@ tp = tc
 			tc = G.loadUI('v_button')
 			tp.addChild(tc)
 			tc.name = '减'
-			tc.left = -108.000
-			tc.right = -80.000
-			tc.bottom = -152.000
-			tc.top = -112.000
+			tc.left = -41.000
+			tc.right = -13.000
+			tc.top = 40.000
+			tp = tc
+				tc = tp.getChildByName('img')
+				if tc then
+				tc.img = 0x5616001e
+				tp = tc
+				end
+				tp = tp.parent
+				--end
+			com = tp.c_button
+			com['customsize'] =true
+			com['img_normal'] =1444282398.000
+			com['img_hover'] =1444282399.000
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_button')
+			tp.addChild(tc)
+			tc.name = '序号加'
+			tc.left = 134.000
+			tc.right = 162.000
+			tc.bottom = -80.000
+			tc.top = -40.000
+			tc.scaleX = -1.000
+			tp = tc
+				tc = tp.getChildByName('img')
+				if tc then
+				tc.img = 0x5616001e
+				tp = tc
+				end
+				tp = tp.parent
+				--end
+			com = tp.c_button
+			com['customsize'] =true
+			com['img_normal'] =1444282398.000
+			com['img_hover'] =1444282399.000
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_button')
+			tp.addChild(tc)
+			tc.name = '序号减'
+			tc.left = -41.000
+			tc.right = -13.000
+			tc.bottom = -80.000
+			tc.top = -40.000
 			tp = tc
 				tc = tp.getChildByName('img')
 				if tc then

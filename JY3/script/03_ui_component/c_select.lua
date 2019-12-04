@@ -47,6 +47,13 @@ function t:start()
         end 
     end
     self:刷新显示()
+    if G.misc().自动战斗 == 1 then 
+        local team = {'team2','team3','team4','team5'}
+        for i = 1,4 do  
+            G.QueryName(0x10150001)[team[i]] = G.misc().默认队伍[i] 
+        end 
+        G.trig_event('选择队友结束')
+    end
 end  
 function t:onFrameEnd(tar, id)
     local team = {'team2','team3','team4','team5'}
