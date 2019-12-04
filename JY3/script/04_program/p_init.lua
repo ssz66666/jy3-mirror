@@ -286,6 +286,7 @@ t['地图系统_防修改监控'] = function()
 		end
 	end
 	local o_team = G.QueryName(0x10110001)
+	local int_周目 = G.call('get_point',237) - 1
 	for j = 1,12 do 
 		local i_team = o_team[tostring(j)]
 		if i_team ~= nil then
@@ -295,11 +296,11 @@ t['地图系统_防修改监控'] = function()
 					o_role_人物[tostring(i)] = o_role_人物[tostring(900 + i)]
 				end
 				if i > 2 then
-					if o_role_人物[tostring(900 + i)] > 350 then 
+					if o_role_人物[tostring(900 + i)] > 350 + int_周目 then 
 						G.call('通用_强退游戏',215) 
 					end 
 					if i == 8 then
-						if o_role_人物[tostring(900 + i)] > 200 then 
+						if o_role_人物[tostring(900 + i)] > 200 + int_周目 then 
 							G.call('通用_强退游戏',215) 
 						end 
 					end
