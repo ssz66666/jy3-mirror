@@ -414,12 +414,15 @@ t['回答问题']=function()
         if  not o_role[tostring(901)] and o_role[tostring(1)] < 8000000 then 
             o_role[tostring(1)] = math.floor(o_role[tostring(1)] * (1+int_周目*0.1) )
             o_role[tostring(2)] = math.floor(o_role[tostring(2)] * (1+int_周目*0.1) )
+            o_role[tostring(1)] = math.min(o_role[tostring(1)],200000) 
+            o_role[tostring(2)] = math.min(o_role[tostring(2)],200000) 
             o_role.生命 = o_role[tostring(1)] 
             o_role.内力 = o_role[tostring(2)] 
             for j = 3,7 do
                 o_role[tostring(j)] = o_role[tostring(j)] + (math.floor(int_周目/3) + 1)*(math.floor(int_周目/3) + 1)
+                o_role[tostring(j)] = math.min(o_role[tostring(j)] ,500) 
             end
-            o_role[tostring(8)] = o_role[tostring(8)] + int_周目 
+            o_role[tostring(8)] = math.min(o_role[tostring(8)] + int_周目,150) 
         elseif o_role[tostring(901)] then 
             o_role[tostring(1)] = o_role[tostring(1)] + 250
             o_role[tostring(2)] = o_role[tostring(2)] + 250
@@ -427,6 +430,7 @@ t['回答问题']=function()
             o_role.内力 = o_role[tostring(2)] 
             for j = 3,7 do
                 o_role[tostring(j)] = o_role[tostring(j)] + int_周目
+                o_role[tostring(j)] = math.min(o_role[tostring(j)] ,300) 
             end
         end
     end    
