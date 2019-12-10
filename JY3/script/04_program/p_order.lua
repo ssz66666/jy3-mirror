@@ -4479,6 +4479,9 @@ t['通用_取得内功轻功特效']=function(int_编号,int_效果)
         end
 
     end
+    if G.call('get_magic',241) > 0 and int_效果 == 18 and int_编号 == 0 then 
+        result = true
+    end
     return result
 end
 t['通用_卸下装备']=function(i_role,i_equip)
