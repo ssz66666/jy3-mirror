@@ -13,6 +13,7 @@ function t:init()
     self.返回 = self.提示.getChildByName('返回')
 end
 function t:start()
+    G.addUI('v_bulletin')
     G.misc().code = 0
     G.misc().通关 = 0
     G.misc().清除成就 = 0
