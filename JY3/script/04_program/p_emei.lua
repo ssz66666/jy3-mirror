@@ -469,7 +469,7 @@ t['初入峨嵋派-出师'] = function()
     G.call("talk",'',61,'   '..G.call('get_fullname')..'你在峨嵋学艺一年有余，今日你便可下山了！',2,1)
     if G.QueryName(0x10030001)[tostring(9)] == '峨嵋亲传弟子' then 
         G.call("talk",'',61,'   芷若你也跟着'..G.call('get_fullname')..'以后一起有个照应，有时间多回峨嵋看看！',2,1)
-        G.call("talk",'',18,'   是，师父1',2,1)
+        G.call("talk",'',18,'   是，师父',2,1)
         G.call('join',18)
     end
     G.call('出师-增加被动')

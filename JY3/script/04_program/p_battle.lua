@@ -993,7 +993,7 @@ t['战斗系统_事件响应'] = function()
                                 local n = tonumber(ui.getChildByName('代码').getChildByName(位置[i]).getChildByName('id').text)
                                 --print(o_role_tb.姓名,o_skill.名称,G.QueryName(o_role + o_battle[位置[n] ]).姓名,G.QueryName(o_role + o_battle[位置[n] ]).生命 )
                                 local int_剑神无双 = 0 
-                                if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',o_battle[位置[i]],412)  or G.call('通用_取得人物特效',o_battle[位置[i]],33)) then
+                                if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',o_battle[位置[i]],412)  or G.call('通用_取得人物特效',o_battle[位置[i]],34)) then
                                     int_剑神无双 = 1
                                 end 
                                 if o_skill.范围 == 2 and int_剑神无双 == 0  then
@@ -1387,7 +1387,7 @@ t['战斗系统_事件响应'] = function()
                                     n = 1 
                                 end
                                 local int_剑神无双 = 0 
-                                if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',o_battle[位置[i]],412)  or G.call('通用_取得人物特效',o_battle[位置[i]],33)) then
+                                if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',o_battle[位置[i]],412)  or G.call('通用_取得人物特效',o_battle[位置[i]],34)) then
                                     int_剑神无双 = 1
                                 end 
                                 if (o_skill.范围 == 2  or o_skill.范围 == 4) and int_剑神无双 == 0  then
@@ -1702,7 +1702,7 @@ t['战斗系统_事件响应'] = function()
                             int_动作编号 = 6000 + math.random(2)
                         end
                         local int_剑神无双 = 0 
-                        if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,33)) then
+                        if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',0,412)  or G.call('通用_取得人物特效',0,34)) then
                             int_剑神无双 = 1
                         end 
                         if  o_skill.范围 == 2 and G.misc().范围无双 == 0 and int_剑神无双 == 0 then
