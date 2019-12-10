@@ -123,6 +123,13 @@ function t:start()
     else
         self.主菜单.visible = true
     end
+    if G.QueryName(0x10030001).性别 == 0 then
+        self.obj.getChildByName('tab').getChildByName(位置[1]).img = 0x33039997
+        self.obj.getChildByName('tab').getChildByName(位置[1]).x = 110
+        self.obj.getChildByName('tab').getChildByName(位置[1]).y = -110
+        self.obj.getChildByName('tab').getChildByName(位置[1]).getChildByName('yc').x = 10
+        self.obj.getChildByName('tab').getChildByName(位置[1]).getChildByName('yc').y = 64
+    end
     if G.QueryName(0x100c0001)[tostring(15)] ~= nil then
         self.阵法.text = G.QueryName(G.QueryName(0x100c0001)[tostring(15)]).名称
     else
