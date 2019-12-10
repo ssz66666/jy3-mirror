@@ -4972,4 +4972,17 @@ tp = tc
 		--end
 	tp = tp.parent
 	--end
+	tc = G.TextQuad()
+	tp.addChild(tc)
+	tc.name = '版本'
+	tc.left = -468.000
+	tc.right = -268.000
+	tc.bottom = -268.000
+	tc.top = -168.000
+	tc.text = 'ver3.02'
+	tc.font = 0x61200041
+	tc.style = 3
+	tp = tc
+	tp = tp.parent
+	--end
 tp.c_achieve = setmetatable({}, c_achieve)
