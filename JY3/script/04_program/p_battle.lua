@@ -260,6 +260,7 @@ t['战斗系统_主角监控'] = function()
                         end 
                     end
                 end 
+                print('1=',ui.getChildByName('状态').text)
                 ui.getChildByName('map').getChildByName(位置[1]).x = 151
                 ui.getChildByName('状态').text = tostring(0)
                 local int_几率 = math.random(100)
@@ -2505,7 +2506,8 @@ t['集气'] = function()
 						ui.getChildByName('map').getChildByName(位置[i]).x = 150
                     end 
                     if G.misc().自动战斗 == 1   then
-                        if ui.getChildByName('map').getChildByName(位置[1]).x == 150   then
+                        if ui.getChildByName('map').getChildByName(位置[1]).x == 150 and tonumber(ui.getChildByName('状态').text) == 0  then
+                            print('0=',ui.getChildByName('状态').text)
                             local i_battle = 0x10150001
                             local o_battle = G.QueryName(i_battle)
                             G.misc().选择目标 = 1
