@@ -520,6 +520,9 @@ t['地图系统_小游戏'] = function()
 			ui.getChildByName('动画').visible = true
 			G.Play(0x49020000+191 , 1,false,100)
 			G.wait_time(1000)
+			if not G.getUI('v_dig') then 
+				return
+			end 
 			ui.getChildByName('口白').text = b
 			local n = tonumber(ui.getChildByName('力').text)
 			local m = tonumber(ui.getChildByName('气').text)
@@ -635,6 +638,9 @@ t['地图系统_小游戏'] = function()
 				-- end
 				c.挖矿 = 1
 				G.wait_time(500)
+				if not G.getUI('v_dig') then 
+					return
+				end 
 				local qcbl = 0
 				if o_qcbl.完成 == 0 then
 					for i = 1,8 do 
