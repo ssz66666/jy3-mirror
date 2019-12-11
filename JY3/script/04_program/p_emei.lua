@@ -23,7 +23,7 @@ t['初入峨嵋'] = function()
     G.call('all_over')
     G.call('dark')
     G.call('goto_map',84)
-    G.call("talk",'',18,'   '..G.call('get_fullname')..',我现在传你少林的入门功夫——【峨嵋剑法】。少林的门派技能是【慈航】，你需要经常到师父跟前聆听教诲，才能慢慢提升修为，有不懂的地方可以来找我以及其他师姐！',2,1)
+    G.call("talk",'',18,'   '..G.call('get_fullname')..',我现在传你峨嵋的入门功夫——【峨嵋剑法】。峨嵋的门派技能是【慈航】，你需要经常到师父跟前聆听教诲，才能慢慢提升修为，有不懂的地方可以来找我以及其他师姐！',2,1)
     G.call("talk",'',18,'   另外本门三月、六月、九月中旬都会举行弟子比较，小师妹可别偷懒！',2,1)
     G.call("talk",'',0,'   多谢师姐！',0,0) 
     G.call('learnmagic',257)
@@ -38,7 +38,7 @@ t['初入峨嵋派-周芷若'] = function()
         if int_选项 == 1 then 
             if G.call('get_magicexp',251) == 0 then 
                 if G.call('get_point',11) >= 2 then 
-                    G.call("talk",'',18,'   我现在传授你少林入门轻功【峨嵋心法】，要想提升这门功夫需要消耗你身上的【修为点】。像【轻功】【内功】这2类功夫，需要装备在身上方能体现效果，否则是无用的。',2,1) 
+                    G.call("talk",'',18,'   我现在传授你峨嵋入门轻功【峨嵋心法】，要想提升这门功夫需要消耗你身上的【修为点】。像【轻功】【内功】这2类功夫，需要装备在身上方能体现效果，否则是无用的。',2,1) 
                     G.call('learnmagic',251)
                 else
                     G.call("talk",'',18,'   不要总是沉迷在武功上，你的【慈航】修为一直都没有长进，虽说你是俗家弟子，但也是我峨嵋子弟，不修慈航实属不该，尽快去师父那里聆听教诲吧。',2,1) 
@@ -62,7 +62,7 @@ t['初入峨嵋派-周芷若'] = function()
             end 
             G.call('all_over') 
         elseif int_选项 == 2 then  
-            G.call("talk",'',18,'   好！让我看看你的少林功夫最近练得如何了。',2,1) 
+            G.call("talk",'',18,'   好！让我看看你的峨嵋功夫最近练得如何了。',2,1) 
             G.call('all_over')
             G.call('call_battle',1,10,1,50,18,0,0,0,0,0)
             local o_battle_结果 = G.call('get_battle') --_root.War("演武场", 0, 91, 0, 0, 0, 0, 1, 0.5, 0);
@@ -104,7 +104,7 @@ t['初入峨嵋派-纪晓芙'] = function()
             end
             G.call('all_over')  
         elseif int_选项 == 3 then  
-            G.call("talk",'',422,'   好！让我看看你的少林功夫最近练得如何了。',2,1) 
+            G.call("talk",'',422,'   好！让我看看你的峨嵋功夫最近练得如何了。',2,1) 
             G.call('all_over')
             G.call('call_battle',1,10,1,50,422,0,0,0,0,0)
             local o_battle_结果 = G.call('get_battle') --_root.War("演武场", 0, 91, 0, 0, 0, 0, 1, 0.5, 0);
@@ -146,7 +146,7 @@ t['初入峨嵋派-丁敏君'] = function()
             end
             G.call('all_over')  
         elseif int_选项 == 3 then  
-            G.call("talk",'',421,'   好！让我看看你的少林功夫最近练得如何了。',2,1) 
+            G.call("talk",'',421,'   好！让我看看你的峨嵋功夫最近练得如何了。',2,1) 
             G.call('all_over')
             G.call('call_battle',1,10,1,50,421,0,0,0,0,0)
             local o_battle_结果 = G.call('get_battle') --_root.War("演武场", 0, 91, 0, 0, 0, 0, 1, 0.5, 0);
