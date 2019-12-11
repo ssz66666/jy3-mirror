@@ -2461,32 +2461,9 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
             G.call('set_point',76,G.call('get_point',76) + int_point  ) 
             G.call('set_point',3,0) 
             G.call('set_newpoint',3,-10) 
-            --int_升级经验 = math.floor(15 *G.call('get_point',4)* (G.call('get_point',4)+1) * (G.call('get_point',200) + 25)  /100)
             G.Play(0x4901000f, 1,false,100)
             G.trig_event('等级提升')
         end
-        -- while true  do  --循环判断升级
-        --     if G.call('get_point',3) >= int_升级经验  and int_升级经验 > 0 and G.call('get_point',4) < int_lvmax  then 
-        --         G.call('add_point',4, 1) 
-        --         local int_随机种子 = G.call('通用_取随机')
-        --         local int_point = math.floor(int_随机种子/100 * G.call('get_point',18)/20 + 0.5)+3
-        --         -- if G.call('通用_取得套装',0,2) == 3  then --套装2升级修为点+1
-        --         --     int_point = int_point + 1
-        --         -- end
-        --         if (G.call('通用_取得人物特效',0,16) or G.call('通用_取得套装',0,2) == 3) and G.call('get_point',4)%2 == 0  then 
-        --             int_point = int_point + 1
-        --         end
-        --         G.call('add_point',5,int_point  ) 
-        --         G.call('set_point',76,G.call('get_point',76) + int_point  ) 
-        --         G.call('set_point',3,G.call('get_point',3)- int_升级经验) 
-        --         G.call('set_newpoint',3,G.call('get_newpoint',3)+ int_升级经验) 
-        --         int_升级经验 = math.floor(15 *G.call('get_point',4)* (G.call('get_point',4)+1) * (G.call('get_point',200) + 25)  /100)
-        --         G.Play(0x4901000f, 1,false,100)
-        --         G.trig_event('等级提升')
-        --     else
-        --         break
-        --     end
-        -- end
     elseif int_代码 == 4 then   --等级计算 
         local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
         G.call('set_point',int_代码,G.call('get_point',int_代码)+ int_数量)

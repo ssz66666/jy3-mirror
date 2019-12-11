@@ -77,7 +77,9 @@ function t:click(tar)
     end
     if tar == self.按钮.getChildByName('是') then
         G.Play(0x49010035, 1,false,100) 
+        local  int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
         G.QueryName(0x10030001)[tostring(143)] = self.存档位置
+        G.QueryName(0x10160000 +G.call('get_point',143)).难度 = int_难度
         G.call('通用_存档',self.存档位置)
         self.确认.visible = false
         G.trig_event('save_over')
