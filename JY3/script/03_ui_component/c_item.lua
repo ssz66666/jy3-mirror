@@ -758,7 +758,7 @@ function t:click(tar)
                         G.call('notice','无需重复领悟')
                     else
                         if G.QueryName(0x10030001)[tostring(5)] >= o_item_物品.系数 then 
-                            if    o_item_物品.自宫 > 0  and G.call('get_point',41) == 0 and G.call('通用_取得套装',0,6) < 3 and not G.misc().太监 then 
+                            if    o_item_物品.自宫 > 0  and G.call('get_point',41) == 0 and G.call('通用_取得套装',0,6) < 3 and not G.misc().太监 and G.QueryName(0x10030001).性别 == 1  then 
                                 G.trig_event('主角自宫')  
                             else        
                                 G.call('use_item',o_item_物品代码+1,1) 
