@@ -545,6 +545,9 @@ t['地图系统_小游戏'] = function()
 				G.start_program('挖矿条')
 			end
 			G.wait_time(300) 
+			if not G.getUI('v_dig') then 
+				return
+			end 
             ui.getChildByName('击打值').visible = false
 			ui.getChildByName('人物').visible = true
 			ui.getChildByName('动画').visible = false
