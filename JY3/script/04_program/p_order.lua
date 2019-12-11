@@ -504,6 +504,7 @@ t['dig_earthworms'] = function()
     end
     c.按钮.visible = true   
     G.start_program("抓蚯蚓_计时器")
+    G.Play(0x49020097, 1,true,1) 
     G.wait1('dig_earthworms_over')
     G.remove_program('抓蚯蚓_计时器',1)  
     G.removeUI('v_dig_earthworms') 
