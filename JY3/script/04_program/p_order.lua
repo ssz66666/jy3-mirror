@@ -267,6 +267,8 @@ t['通用_读档'] = function(int_档案编号)
                 G.QueryName(0x10170010).进度列表[i].分数 = 10
             end
         end
+        G.QueryName(0x1017000e).进度列表[8].名称 = '丐帮'
+        G.QueryName(0x1017000e).进度列表[9].名称 = '星宿派'
         if not G.QueryName(0x1017000e).进度列表[10] then
             G.QueryName(0x1017000e).进度列表[10] = {}
             G.QueryName(0x1017000e).进度列表[10].名称 = '峨嵋派'

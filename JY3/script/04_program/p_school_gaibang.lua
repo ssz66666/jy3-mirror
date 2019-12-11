@@ -500,6 +500,6 @@ t['初入丐帮-出师'] = function()
     G.call('all_over')
     G.call('set_alltime',2,1,1,4,1) 
     G.call('set_point',146,2)
-    G.QueryName(0x1017000e).进度列表[9].完成 = 1
+    G.QueryName(0x1017000e).进度列表[8].完成 = 1
     G.call('初入聚贤庄')
 end
