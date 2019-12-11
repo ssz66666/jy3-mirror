@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
+local c_nature = require 'c_nature'
 local c_button = require 'c_button'
 local c_jm = require 'c_jm'
-local c_nature = require 'c_nature'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -600,6 +600,7 @@ tp = tc
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
 		tc.name = '2'
+		tc.visible = false
 		tp = tc
 			tc = G.Quad()
 			tp.addChild(tc)
@@ -1056,11 +1057,12 @@ tp = tc
 			tc.name = '兄弟'
 			tc.pivotX = 0.000
 			tc.left = -29.000
-			tc.right = 211.000
+			tc.right = -29.000
 			tc.bottom = -112.000
 			tc.top = -72.000
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
+			tc.autosize = 1
 			tc.font = 0x61280000
 			tc.align = 1
 			tc.wordSpace = -2
