@@ -40,7 +40,7 @@ function t:刷新显示()
             elseif  tonumber(t[3]) == 3 then    
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '难度:困难'
             end
-            local school = {'无门派','武当派','少林派','华山派','全真教','古墓派','逍遥派','血刀门','桃花岛','丐  帮','星宿派'}
+            local school = {'无门派','武当派','少林派','华山派','全真教','古墓派','逍遥派','血刀门','桃花岛','丐  帮','星宿派','峨嵋派'}
             local int_no = 1
             if t[7] ~= nil and t[7] ~= '' then 
                 int_no = tonumber(t[7])  
