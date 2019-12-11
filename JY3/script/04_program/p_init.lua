@@ -81,7 +81,7 @@ t['初始化'] = function()
 	G.start_program('地图系统_功能')
 	G.start_program('地图系统_提示')
 	G.call('mapoff') 
-    G.call('call_title')      --开始游戏界面  
+    G.call('call_title',true)      --开始游戏界面  
 end
 t['地图系统_提示'] = function()
 	while true do
@@ -380,13 +380,12 @@ t['地图系统_事件响应'] = function()
 			G.Tween("color", 800, ui, 0xffffff)
 			G.call('add_hour',6)
 			G.call("goto_map",G.QueryName(0x10030001)[tostring(140)]-0x10060000)
-			local o_gpmz =  G.QueryName(0x1017000f)
-			G.call('通用_存档',G.call('get_point',143))
+			G.call('call_save')
 		elseif r == 2 then
 			G.call('通用_战斗飘字')
 		elseif r == 9  then 
 			G.call('成就_读档',10)
-			G.call('call_title')	
+			G.call('call_title',false)	
 		elseif r == 10  then 
 			G.call('call_wood')
         elseif r == 4 then

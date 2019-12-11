@@ -8,6 +8,18 @@ local GF = require "gfbase"
 --type=通用指令
 --hide=false
 --private=false
+t['call_save'] = function()
+    if not G.getUI('v_save') then 
+        G.addUI('v_save')
+    end
+    local ui = G.getUI('v_save')
+    local c = ui.c_save
+    G.wait1('save_over')
+    G.removeUI('v_save')
+end
+--type=通用指令
+--hide=false
+--private=false
 t['通关_存档'] = function()
     G.wait_time(200)
     G.QueryName(0x10030001)[tostring(238)] = 1 --设置通关标志
@@ -540,7 +552,7 @@ t['gameout'] = function()  --游戏通关画面
     G.Play(0x4901001f, 1,true,1) 
     G.wait1('gameout_over')
     G.removeUI('v_gameout')
-    G.call('call_title')  
+    G.call('call_title',false)  
 end 
 t['load'] = function() --读档界面
     G.addUI('v_load')
@@ -701,8 +713,9 @@ t['重生']=function()
         G.call('create')    
     end
 end
-t['call_title']=function(int_代码)  --开始菜单
+t['call_title']=function(boolean_是否显示公告)  --开始菜单
     G.Stop(1)
+    G.misc().显示公告 = boolean_是否显示公告
     G.addUI('v_title')
     G.Play(0x49010038, 1,true,1) 
     G.wait1('开始结束')
@@ -760,7 +773,7 @@ t['gameover']=function()  --游戏失败画面
     G.call('photo_off')
     G.call('photo0_off')
     G.call('xunbao_off')
-    G.call('call_title')  
+    G.call('call_title',false)  
 end 
 t['select']=function()  --队友选择
     G.addUI('v_select')
