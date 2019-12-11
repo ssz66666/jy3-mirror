@@ -549,7 +549,7 @@ end
 t['gameout'] = function()  --游戏通关画面
     G.Stop(1)
     G.addUI('v_gameout')
-    G.Play(0x4901001f, 1,true,1) 
+    G.Play(0x49020096, 1,true,1) 
     G.wait1('gameout_over')
     G.removeUI('v_gameout')
     G.call('call_title',false)  
