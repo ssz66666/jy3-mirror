@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_save = require 'c_save'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -464,8 +464,8 @@ tp = tc
 		tc = G.Quad()
 		tp.addChild(tc)
 		tc.name = '输入框'
-		tc.left = -240.000
-		tc.right = 260.000
+		tc.left = -253.000
+		tc.right = 247.000
 		tc.bottom = 23.000
 		tc.top = 73.000
 		tc.img = 0x56160065
