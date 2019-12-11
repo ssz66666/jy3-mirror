@@ -504,7 +504,7 @@ t['地图系统_小游戏'] = function()
 			ui = G.getUI('v_dig');
 			local c = ui.c_dig;
 			G.remove_program('挖矿条',1)
-			c.挖矿 = 1
+			cui.挖矿 = 1
 			local a1 = '呀嘿—呀嘿——呀——嘿！！！'
 			local a2 = '水底练功兼采矿，一举两得！'
 			local a3 = '本游戏为专业人士演练，未成年人请不要在擅自效仿'
@@ -519,10 +519,7 @@ t['地图系统_小游戏'] = function()
             ui.getChildByName('人物').visible = false
 			ui.getChildByName('动画').visible = true
 			G.Play(0x49020000+191 , 1,false,100)
-			G.wait_time(1000)
-			if not G.getUI('v_dig') then 
-				return
-			end 
+			G.wait_time(1000) 
 			ui.getChildByName('口白').text = b
 			local n = tonumber(ui.getChildByName('力').text)
 			local m = tonumber(ui.getChildByName('气').text)
@@ -531,23 +528,20 @@ t['地图系统_小游戏'] = function()
 			ui.getChildByName('击打值').text = tostring(p)
 			if p > h then 
 				ui.getChildByName('耐久').text = '0'
-				c.挖矿值 = 0
+				cui.挖矿值 = 0
 			else
-				c.挖矿值 = c.挖矿值 + p
+				cui.挖矿值 = cui.挖矿值 + p
 				ui.getChildByName('耐久').text = h - p
-				if tonumber(ui.getChildByName('耐久').text) ~= math.abs(c.挖矿值) then
+				if tonumber(ui.getChildByName('耐久').text) ~= math.abs(cui.挖矿值) then
 					G.call('通用_强退游戏',301) 
 				end
 			end 
 			ui.getChildByName('击打值').visible = true
 			if ui.getChildByName('时间').width > 0 and tonumber(ui.getChildByName('耐久').text)  > 0  then
-				c.挖矿 = 0
+				cui.挖矿 = 0
 				G.start_program('挖矿条')
 			end
 			G.wait_time(300) 
-			if not G.getUI('v_dig') then 
-				return
-			end 
             ui.getChildByName('击打值').visible = false
 			ui.getChildByName('人物').visible = true
 			ui.getChildByName('动画').visible = false
@@ -635,15 +629,8 @@ t['地图系统_小游戏'] = function()
 					str2 = tostring(r3)..'块'
 				end	
 				ui.getChildByName('口白').text = '    得到'..name1..str1..'块 '..name2..str2..name3..str3
-				-- if ui.getChildByName('时间').width == 0 then
-				-- 	G.trig_event('挖矿结束')
-				-- 	return
-				-- end
-				c.挖矿 = 1
+				cui.挖矿 = 1
 				G.wait_time(500)
-				if not G.getUI('v_dig') then 
-					return
-				end 
 				local qcbl = 0
 				if o_qcbl.完成 == 0 then
 					for i = 1,8 do 
@@ -657,12 +644,8 @@ t['地图系统_小游戏'] = function()
 					end	
 				end
 				if ui.getChildByName('时间').width > 0 then
-					c.挖矿 = 0
+					cui.挖矿 = 0
 				end
-				-- if ui.getChildByName('时间').width == 0 then
-				-- 	G.trig_event('挖矿结束')
-				-- 	return
-				-- end
             end 
 		elseif r == 2 then
 			local ui3 ;
