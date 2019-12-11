@@ -633,6 +633,7 @@ t['地图系统_小游戏'] = function()
 				-- 	G.trig_event('挖矿结束')
 				-- 	return
 				-- end
+				c.挖矿 = 1
 				G.wait_time(500)
 				local qcbl = 0
 				if o_qcbl.完成 == 0 then
@@ -645,6 +646,9 @@ t['地图系统_小游戏'] = function()
 						o_qcbl.完成 = 1
 						G.call('notice1','完成成就【千锤百炼】')
 					end	
+				end
+				if ui.getChildByName('时间').width > 0 then
+					c.挖矿 = 0
 				end
 				-- if ui.getChildByName('时间').width == 0 then
 				-- 	G.trig_event('挖矿结束')
@@ -1265,6 +1269,9 @@ t['挖矿提示'] = function()
 		G.wait_time(4000) 
 		local b = a[math.random(7)]
 		ui2.getChildByName('提示').text = b
+		if ui2.getChildByName('时间').width == 0 then
+			break
+		end
 	end 
 end	
 t['钓鱼提示'] = function()
@@ -1330,7 +1337,6 @@ t['伐木条'] = function()
 		ui2.getChildByName('气').text = tostring(m) 
 	    ui2.getChildByName('力道').width = 137*n/100
 		ui2.getChildByName('气劲').width = 137*m/100
-	
 	end 
 end	
 t['挖矿条'] = function()
@@ -1355,6 +1361,9 @@ t['挖矿条'] = function()
 		ui2.getChildByName('气').text = tostring(m) 
 	    ui2.getChildByName('力道').width = 137*n/100
 		ui2.getChildByName('气劲').width = 137*m/100
+		if ui2.getChildByName('时间').width == 0 then
+			break
+		end
 	end 
 end	
 t['挖矿时间条'] = function()
@@ -1374,7 +1383,6 @@ t['挖矿时间条'] = function()
 			ui2.getChildByName('口白').text = '   换口气再来'
 			c.挖矿 = 1
 			G.wait_time(500)
-			c.挖矿 = 1
 			G.trig_event('挖矿结束')
 			break
 		end 
