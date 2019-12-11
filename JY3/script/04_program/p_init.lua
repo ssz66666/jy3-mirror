@@ -646,6 +646,7 @@ t['地图系统_小游戏'] = function()
 				if ui.getChildByName('时间').width > 0 then
 					cui.挖矿 = 0
 				end
+				G.trig_event('挖矿结束')
             end 
 		elseif r == 2 then
 			local ui3 ;
