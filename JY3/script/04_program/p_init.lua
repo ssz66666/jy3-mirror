@@ -502,7 +502,7 @@ t['地图系统_小游戏'] = function()
 				return
 			end 
 			ui = G.getUI('v_dig');
-			local c = ui.c_dig;
+			local cui = ui.c_dig;
 			G.remove_program('挖矿条',1)
 			cui.挖矿 = 1
 			local a1 = '呀嘿—呀嘿——呀——嘿！！！'
