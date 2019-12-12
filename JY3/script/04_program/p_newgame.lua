@@ -422,7 +422,7 @@ t['回答问题']=function()
                 o_role[tostring(j)] = o_role[tostring(j)] + (math.floor(int_周目/3) + 1)*(math.floor(int_周目/3) + 1)
                 o_role[tostring(j)] = math.min(o_role[tostring(j)] ,500) 
             end
-            o_role[tostring(8)] = math.min(o_role[tostring(8)] + int_周目,150) 
+            o_role[tostring(8)] = math.min(o_role[tostring(8)] + int_周目*2,180) 
         elseif o_role[tostring(901)] then 
             o_role[tostring(1)] = o_role[tostring(1)] + 250
             o_role[tostring(2)] = o_role[tostring(2)] + 250
