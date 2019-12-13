@@ -107,9 +107,6 @@ t['继承_读档'] = function(int_档案编号)
 		local zipbuf = G.LoadFile(path);
 		local buf = G.unzip(zipbuf);
         local obj = eris.unpersist(perms, buf);  
-        -- for i,v in ipairs({'o_body', 'o_storehouse','o_equip','o_files'}) do
-        --     G.newinst_cache[v] = obj[1][v]
-        -- end
         load_ofile(obj);
     end
 end
@@ -412,10 +409,9 @@ t['write_hour'] = function()
     return  math.floor(n/3600) 
 end
 t['test'] = function()
-    G.call('puzzle')
+    G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-    G.QueryName(0x10030001).性别 = 0
     --G.call('通关_存档')
     --G.call('模式_笑梦游记')
     --G.call('set_point',115,3)
@@ -429,6 +425,32 @@ t['new_test'] = function()
     -- G.call('天书_越女剑') 
     -- G.call('通用_印记状态')
 end   
+t['通用_华容道版块可移动'] = function(int_版块)
+    local ui = G.getUI('v_huarongdao')
+    local c = ui.c_huarongdao
+    local 基组 = {}
+    local 版块组 = {}
+    G.deepcopy(版块组,基组)
+    table.insert(版块组, c.板块_1)
+    table.insert(版块组, c.板块_1+1)
+    table.insert(版块组, c.板块_1+4)
+    table.insert(版块组, c.板块_1+5)
+    table.insert(版块组, c.板块_6)
+    table.insert(版块组, c.板块_6+1)
+    for i = 2,5 do
+        table.insert(版块组, c['板块_'..tostring(i)])  
+        table.insert(版块组, c['板块_'..tostring(i+4)])
+    end
+    for i = 7,10 do
+        table.insert(版块组, c['板块_'..tostring(i)])  
+    end
+    for i = 1,#版块组 do
+        if 版块组[i] ==  int_版块 then
+            return false 
+        end
+    end
+    return true
+end
 t['in_test'] = function() 
     G.misc().测试 = 1
 end 
@@ -530,6 +552,43 @@ t['拼图_计时器'] = function()
     G.misc().拼图结果 = 0
     G.trig_event('puzzle_over')
 end 
+t['华容道_计时器'] = function()
+    G.misc().计时器 =  1800.002
+    while true do 
+        local ui ;
+        if not G.getUI('v_huarongdao') then 
+            return
+        end 
+        ui = G.getUI('v_huarongdao');
+        ui.getChildByName('时间').text = string.format("%.2d:%.2d", math.floor(G.misc().计时器/60)%60 , math.floor(G.misc().计时器)%60) 
+        local c = ui.c_puzzle;
+        G.wait_time(1000) 
+        G.misc().计时器  =  G.misc().计时器 - 1  
+        local s = G.misc().计时器
+        ui.getChildByName('时间').text = string.format("%.2d:%.2d" , math.floor(G.misc().计时器/60)%60 , math.floor(G.misc().计时器)%60) 
+        if G.misc().计时器 <= 0 then
+            break 
+        end
+    end
+    G.misc().拼图结果 = 0
+    G.trig_event('huarongdao_over')
+end 
+t['小游戏_华容道'] = function()
+    G.addUI('v_huarongdao')
+    G.Play(0x49011004, 1,true,1) 
+    G.start_program("华容道_计时器")
+    G.wait1('huarongdao_over')
+    G.remove_program('华容道_计时器',1)
+    G.removeUI('v_huarongdao') 
+    if  G.misc().拼图结果 == 1 then 
+        G.call('notice1','恭喜完成华容道')
+        if 1800 - G.misc().计时器 <= 900 then 
+            G.call('通用_抽礼物',9,0) 
+        end
+    else
+        G.call('notice1','很遗憾没有完成！')
+    end    
+end  
 t['puzzle'] = function()
     G.misc().拼图结果 = 0
     G.addUI('v_puzzle')
