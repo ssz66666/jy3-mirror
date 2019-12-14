@@ -435,12 +435,47 @@ t['通用_华容道版块可移动'] = function(int_版块)
     table.insert(版块组, c.板块_1+1)
     table.insert(版块组, c.板块_1+4)
     table.insert(版块组, c.板块_1+5)
-    table.insert(版块组, c.板块_6)
-    table.insert(版块组, c.板块_6+1)
-    for i = 2,5 do
-        table.insert(版块组, c['板块_'..tostring(i)])  
-        table.insert(版块组, c['板块_'..tostring(i+4)])
+    if c.模式 == 1 then
+        table.insert(版块组, c.板块_6)
+        table.insert(版块组, c.板块_6+1)
+        for i = 2,5 do
+            table.insert(版块组, c['板块_'..tostring(i)])  
+            table.insert(版块组, c['板块_'..tostring(i+4)])
+        end
+    elseif c.模式 == 2 then
+        for i = 4,6 do
+            table.insert(版块组, c['板块_'..tostring(i)])  
+            table.insert(版块组, c['板块_'..tostring(i+1)])
+        end
+        for i = 2,3 do
+            table.insert(版块组, c['板块_'..tostring(i)])  
+            table.insert(版块组, c['板块_'..tostring(i+4)])
+        end
+    elseif c.模式 == 3 then
+        for i = 5,6 do
+            table.insert(版块组, c['板块_'..tostring(i)])  
+            table.insert(版块组, c['板块_'..tostring(i+1)])
+        end
+        for i = 2,4 do
+            table.insert(版块组, c['板块_'..tostring(i)])  
+            table.insert(版块组, c['板块_'..tostring(i+4)])
+        end
+    elseif c.模式 == 4 then
+        for i = 3,6 do
+            table.insert(版块组, c['板块_'..tostring(i)])  
+            table.insert(版块组, c['板块_'..tostring(i+1)])
+        end
+        for i = 2,2 do
+            table.insert(版块组, c['板块_'..tostring(i)])  
+            table.insert(版块组, c['板块_'..tostring(i+4)])
+        end
+    elseif c.模式 == 6 then
+        for i = 2,6 do
+            table.insert(版块组, c['板块_'..tostring(i)])  
+            table.insert(版块组, c['板块_'..tostring(i+1)])
+        end
     end
+
     for i = 7,10 do
         table.insert(版块组, c['板块_'..tostring(i)])  
     end
