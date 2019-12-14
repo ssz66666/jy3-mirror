@@ -553,7 +553,7 @@ t['拼图_计时器'] = function()
     G.trig_event('puzzle_over')
 end 
 t['华容道_计时器'] = function()
-    G.misc().计时器 =  1800.002
+    G.misc().计时器 =  900.002
     while true do 
         local ui ;
         if not G.getUI('v_huarongdao') then 
@@ -582,7 +582,7 @@ t['小游戏_华容道'] = function()
     G.removeUI('v_huarongdao') 
     if  G.misc().拼图结果 == 1 then 
         G.call('notice1','恭喜完成华容道')
-        if 1800 - G.misc().计时器 <= 900 then 
+        if 1800 - G.misc().计时器 <= 450 then 
             G.call('通用_抽礼物',9,0) 
         end
     else
