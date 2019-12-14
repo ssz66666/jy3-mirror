@@ -575,7 +575,7 @@ t['华容道_计时器'] = function()
 end 
 t['小游戏_华容道'] = function()
     G.addUI('v_huarongdao')
-    G.Play(0x49011004, 1,true,1) 
+    G.Play(0x49010096, 1,true,1) 
     G.start_program("华容道_计时器")
     G.wait1('huarongdao_over')
     G.remove_program('华容道_计时器',1)
