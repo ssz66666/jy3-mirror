@@ -204,9 +204,6 @@ t['地图系统_防修改监控'] = function()
 		--print('MP',G.call('get_point',47),G.call('get_newpoint',47))
 		int_检测 = int_检测 + 1
 	end
-	if (G.call('get_point',45) > 50000 + (G.call('get_point',237) - 1)*500) or (G.call('get_point',47) > 50000 + (G.call('get_point',237) - 1)*500) then 
-		G.call('通用_强退游戏',299) 
-	end
 	if G.call('get_point',63) ~= math.abs(G.call('get_newpoint',63) + 10)  then
 		--print('北冥',G.call('get_point',63),G.call('get_newpoint',63))
 		int_检测 = int_检测 + 1 
