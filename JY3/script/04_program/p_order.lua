@@ -469,13 +469,12 @@ t['通用_华容道版块可移动'] = function(int_版块)
             table.insert(版块组, c['板块_'..tostring(i)])  
             table.insert(版块组, c['板块_'..tostring(i+4)])
         end
-    elseif c.模式 == 6 then
+    elseif c.模式 == 5 then
         for i = 2,6 do
             table.insert(版块组, c['板块_'..tostring(i)])  
             table.insert(版块组, c['板块_'..tostring(i+1)])
         end
     end
-
     for i = 7,10 do
         table.insert(版块组, c['板块_'..tostring(i)])  
     end
