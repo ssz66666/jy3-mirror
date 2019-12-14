@@ -5014,14 +5014,16 @@ t['通用_选择自动攻击武功']=function()
         return G.QueryName(0x100c0001)[tostring(8)] - 0x10050000
     end
     if G.QueryName(0x100c0001)[tostring(G.misc().自动技能序号)] then
-        if G.QueryName(G.QueryName(0x100c0001)[tostring(G.misc().自动技能序号)]).类别 == 5 and  not G.QueryName(G.QueryName(0x100c0001)[tostring(G.misc().自动技能序号)]).招式 then
-            else
+        if G.QueryName(G.QueryName(0x100c0001)[tostring(G.misc().自动技能序号)]).类别 == 6 and  not G.QueryName(G.QueryName(0x100c0001)[tostring(G.misc().自动技能序号)]).招式 then
+        elseif G.QueryName(G.QueryName(0x100c0001)[tostring(G.misc().自动技能序号)]).类别 == 5 and   not G.call('get_point',198) then
+        else
         return G.QueryName(0x100c0001)[tostring(G.misc().自动技能序号)] - 0x10050000 
         end
     end
     for i = 7,1,-1 do 
         if G.QueryName(0x100c0001)[tostring(i)] then
-            if G.QueryName(G.QueryName(0x100c0001)[tostring(i)]).类别 == 5 and not G.QueryName(G.QueryName(0x100c0001)[tostring(i)]).招式  then
+            if G.QueryName(G.QueryName(0x100c0001)[tostring(i)]).类别 == 6 and not G.QueryName(G.QueryName(0x100c0001)[tostring(i)]).招式  then
+            elseif G.QueryName(G.QueryName(0x100c0001)[tostring(i)]).类别 == 5 and   not G.call('get_point',198) then
             else
             return  G.QueryName(0x100c0001)[tostring(i)] - 0x10050000
             end
