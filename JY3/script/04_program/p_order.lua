@@ -586,7 +586,7 @@ t['add_card'] = function(int_卡片,int_数量)
     if not o_cardhouse.卡片[int_卡片]['hold'] then 
         o_cardhouse.卡片[int_卡片]['hold'] = true
     end
-    G.call('set_newpoint',80,G.call('get_newpoint',80) - int_数量 )
+    G.call('set_newpoint',83,G.call('get_newpoint',83) - int_数量 )
     if int_数量 > 0 then 
         if o_card.数量 == 0 and o_card.品级 < 3 then
             o_card.数量 = 1
