@@ -65,8 +65,12 @@ t['成就_读档'] = function(int_档案编号)
 		local zipbuf = G.LoadFile(path);
 		local buf = G.unzip(zipbuf);
         local obj = eris.unpersist(perms, buf);
-        local db = obj[1]['o_achieve']
-        G.newinst_cache['o_achieve'] = db  
+        -- for i,v in ipairs('o_achieve','o_cardhouse') do
+        --     G.newinst_cache[v] = obj[1][v]
+        -- end 
+        --local db = obj[1]['o_achieve']
+        G.newinst_cache['o_achieve'] = obj[1]['o_achieve'] 
+        G.newinst_cache['o_cardhouse'] = obj[1]['o_cardhouse'] 
     end
 end
 t['故事_读档'] = function(int_档案编号)
@@ -287,6 +291,10 @@ t['通用_读档'] = function(int_档案编号)
             G.QueryName(0x1017000e).进度列表[10].分数 = 50
             G.QueryName(0x1017000e).进度列表[10].完美 = false
         end
+        local o_cardhouse = G.QueryName(0x10220001)
+        if #o_cardhouse.卡片 == 0 then
+            G.call('通用_卡片入库')
+        end
         if int_档案编号 > 0 and int_档案编号 <= 4 then
             local point = 0
             local maxpoint = 0
@@ -412,19 +420,685 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-    --G.call('通关_存档')
-    --G.call('模式_笑梦游记')
-    --G.call('set_point',115,3)
-    -- G.call('all_over')
-    -- G.call('set_team',36,0,0,0)
-    -- G.call('call_battle',1,134,4,150,110,175,176,177,0,0,0,66) 
-    --G.call('join',4)
-   -- G.call('add_equip',0x10180028 + 15,1)
-    -- local o_book_story = G.QueryName(0x101c000f)
-    -- o_book_story.流程 = 0
-    -- G.call('天书_越女剑') 
-    -- G.call('通用_印记状态')
-end   
+    
+end
+t['通用_无尽抽卡'] = function(int_类型)
+    local card = G.DBTable('o_card')
+    local o_cardhouse = G.QueryName(0x10220001)
+    local 卡组_1 = {}  --1% --100
+    local 卡组_2 = {}  --5% --500
+    local 卡组_3 = {}  --10% --1000
+    local 卡组_4 = {}  --20% --2000
+    local 卡组_5 = {}  --40% --4000
+    local 卡组_6 = {}  --24% --2400
+    local 卡组 = {卡组_1,卡组_2,卡组_3,卡组_4,卡组_5,卡组_6}
+    for i = 1,#o_cardhouse.卡片 do
+        local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
+        table.insert(卡组[o_card.品级], i) 
+    end
+    local int_随机数 = math.random(10000)
+    if int_类型 and  int_类型 == 1 then 
+        int_随机数 = int_随机数 - 100
+    end
+    local int_卡组 = 6
+    if int_随机数 <= 100 then 
+        int_卡组 = 1
+    elseif int_随机数 > 100 and int_随机数 <= 600 then 
+        int_卡组 = 2
+    elseif int_随机数 > 600 and int_随机数 <= 1600 then 
+        int_卡组 = 3
+    elseif int_随机数 > 1600 and int_随机数 <= 3600 then 
+        int_卡组 = 4
+    elseif int_随机数 > 3600 and int_随机数 <= 7600 then 
+        int_卡组 = 5
+    elseif  int_随机数 <= 10000 then 
+        int_卡组 = 6
+    end
+    local int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
+    if int_卡组 < 3 and  G.call('get_card_mod',int_卡片) then 
+        int_卡组 = int_卡组 - 1
+        int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
+    end
+    if int_卡组 < 3 and  G.call('get_card_mod',int_卡片) then 
+        int_卡组 = int_卡组 - 1
+        int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
+    end
+    G.call('add_card',int_卡片,1)
+end
+t['get_cardgame_lv']=function()
+    local o_cardhouse = G.QueryName(0x10220001)
+    local int_分数 = 0
+    for i = 1,#o_cardhouse.卡片 do
+        if G.call('get_card_true',i) then
+            int_分数 = int_分数 + (7 - G.call('get_card_lv',i))*5 
+        end
+    end
+    return math.floor(int_分数/300)
+end
+t['通用_分配卡片']=function()
+    local int_卡片游戏等级 = G.call('get_cardgame_lv')
+    local card = G.DBTable('o_card')
+    local o_cardhouse = G.QueryName(0x10220001)
+    local 卡组_1 = {}  --1% --50
+    local 卡组_2 = {}  --5% --200
+    local 卡组_3 = {}  --10% --750
+    local 卡组_4 = {}  --20% --1000
+    local 卡组_5 = {}  --40% --3000
+    local 卡组_6 = {}  --24% --5000
+    local 卡组 = {卡组_1,卡组_2,卡组_3,卡组_4,卡组_5,卡组_6}
+    for i = 1,#o_cardhouse.卡片 do
+        local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
+        table.insert(卡组[o_card.品级], i) 
+    end
+    local int_随机数 = 8000
+    local int_卡组 = 6
+    local int_卡片 = 63
+    local o_cardlist = G.QueryName(0x10200001)
+    for i = 1,5 do
+        int_随机数 = math.random(10000 -   int_卡片游戏等级*200 )
+        if int_随机数 <= 100 then 
+            int_卡组 = 1
+        elseif int_随机数 > 50 and int_随机数 <= 250 then 
+            int_卡组 = 2
+        elseif int_随机数 > 250 and int_随机数 <= 1000 then 
+            int_卡组 = 3
+        elseif int_随机数 > 1000 and int_随机数 <= 2000 then 
+            int_卡组 = 4
+        elseif int_随机数 > 2000 and int_随机数 <= 5000 then 
+            int_卡组 = 5
+        elseif  int_随机数 <= 10000 then 
+            int_卡组 = 6
+        end
+        while true do
+            int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
+            if int_卡组 < 3 and  G.call('get_card_mod',int_卡片) then 
+                int_卡组 = int_卡组 - 1
+                int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
+            else
+                break
+            end
+        end
+        o_cardlist['位置_'..(i+5)] = int_卡片   
+    end
+end
+t['通用_可否进行卡片游戏']=function()
+    local o_cardhouse = G.QueryName(0x10220001)
+    local int_数量 = 0
+    for i = 1,#o_cardhouse.卡片 do
+        int_数量 = int_数量 + G.call('get_card_num',i)
+    end
+    if int_数量 >= 5 then
+        return true 
+    end 
+    return false
+end
+t['get_card_true'] = function(int_卡片)
+    if not int_卡片 then 
+        return false
+    end 
+    local o_cardhouse = G.QueryName(0x10220001)
+    local i_card = o_cardhouse.卡片[int_卡片].卡片
+    return o_cardhouse.卡片[int_卡片]['hold']
+end 
+t['get_card_mod'] = function(int_卡片)
+    if not int_卡片 then 
+        return false
+    end 
+    local o_cardhouse = G.QueryName(0x10220001)
+    local i_card = o_cardhouse.卡片[int_卡片].卡片
+    local o_card = G.QueryName(i_card)
+    if o_card.数量 > 0 then 
+        return true
+    end
+    return false
+end  
+t['get_card_lv']=function(int_卡片)
+    local o_cardhouse = G.QueryName(0x10220001)
+    local i_card = o_cardhouse.卡片[int_卡片].卡片
+    local o_card = G.QueryName(i_card)
+    return o_card.品级
+end
+t['get_card_num'] = function(int_卡片)
+    if not int_卡片 then 
+        return 0
+    end 
+    local o_cardhouse = G.QueryName(0x10220001)
+    local i_card = o_cardhouse.卡片[int_卡片].卡片
+    return o_cardhouse.卡片[int_卡片].数量
+end  
+t['add_card'] = function(int_卡片,int_数量)
+    if not int_卡片 or not int_数量 or int_数量 == 0 then 
+        return
+    end
+    local o_cardhouse = G.QueryName(0x10220001)
+    local i_card = o_cardhouse.卡片[int_卡片].卡片
+    local o_card = G.QueryName(i_card)
+    o_cardhouse.卡片[int_卡片].数量 = o_cardhouse.卡片[int_卡片].数量 + int_数量
+    if not o_cardhouse.卡片[int_卡片]['hold'] then 
+        o_cardhouse.卡片[int_卡片]['hold'] = true
+    end
+    G.call('set_newpoint',80,G.call('get_newpoint',80) - int_数量 )
+    if int_数量 > 0 then 
+        if o_card.数量 == 0 and o_card.品级 < 3 then
+            o_card.数量 = 1
+        end
+        G.call('notice1','[05]恭喜获得[03]'..o_card.姓名..'[05]卡片')
+    else
+        G.call('notice1','[05]失去[03]'..o_card.姓名..'[05]卡片')
+    end
+end
+t['call_card_select'] = function(int_类型)
+    local ui = G.addUI('v_card_select')
+    local c = ui.c_card_select
+    local o_cardlist = G.QueryName(0x10200001)
+    local o_cardhouse = G.QueryName(0x10220001)
+    local int_卡片 = 0
+    c:卡片显示(int_类型)
+    c.类型 = int_类型
+    if int_类型 == 2 then
+        local int_time = 2000
+        local int_位置 = 1
+        c.卡区.getChildByName('闪光').visible = true
+        while true do
+            G.wait_time(100)
+            int_time = int_time - 100
+            int_位置 = int_位置 + 1
+            if int_位置 > 5 then
+                int_位置 = 1  
+            end
+            c.卡区.getChildByName('闪光').x = c.卡区.getChildByName('card_'..int_位置).x
+            if int_time <= 0 then
+                break 
+            end
+        end
+        local 属性 = {'力量','智慧','防御','速度'}
+        for m = 10,1,-1 do 
+            for i = 1,5 do 
+                local i_card = o_cardhouse.卡片[o_cardlist['位置_'..i]].卡片
+                local o_card = G.QueryName(i_card)
+                for j = 1,4 do 
+                    if o_card[属性[j]] == m then
+                        int_卡片 = i
+                        break
+                    end
+                end
+                if int_卡片 > 0 then
+                    break 
+                end
+            end
+            if int_卡片 > 0 then
+                break 
+            end
+        end 
+        c.卡区.getChildByName('闪光').x = c.卡区.getChildByName('card_'..int_卡片).x
+    else
+        G.wait1('card_select_over') 
+        int_卡片 = c.卡片 + 5
+    end
+    int_卡片 = o_cardlist['位置_'..int_卡片]
+    if int_类型 == 1 then
+        G.call('add_card',int_卡片,1)
+    else
+        G.call('add_card',int_卡片,-1)
+    end
+    G.wait_time(500)
+    G.removeUI('v_card_select')
+end
+t['call_cardgame_number'] = function(int_比拼卡,int_比拼位置)
+    local ui = G.getUI('v_cardgame')
+    local c = ui.c_cardgame
+    local o_card = c.cardmod[int_比拼卡].o_card_卡片
+    --卡片比拼计算
+    local int_归属 = c.cardmod[int_比拼卡].归属
+    local _编号 = {}
+    for i = 1,9 do
+        table.insert(_编号,c.卡区.getChildByName('card_'..i).getChildByName('卡片').getChildByName('编号').text)
+    end
+    local int_翻牌 = 0
+    if int_比拼位置 - 1 > 0 then
+        local int_卡片 = int_比拼位置 - 1
+        if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
+            if c.cardmod[int_比拼卡].速度 > c.cardmod[tonumber(_编号[int_卡片])].防御 then
+                int_翻牌 = int_翻牌 + 1
+            end
+        end 
+    end
+    if int_比拼位置%3 > 0 then
+        local int_卡片 = int_比拼位置 + 1
+        if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
+            if c.cardmod[int_比拼卡].防御 > c.cardmod[tonumber(_编号[int_卡片])].速度 then
+                int_翻牌 = int_翻牌 + 1
+            end
+        end 
+    end
+    if int_比拼位置 - 3 > 0 then
+        local int_卡片 = int_比拼位置 - 3
+        if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
+            if c.cardmod[int_比拼卡].力量 > c.cardmod[tonumber(_编号[int_卡片])].智慧 then
+                int_翻牌 = int_翻牌 + 1
+            end
+        end 
+    end
+    if int_比拼位置 + 3 < 9 then
+        local int_卡片 = int_比拼位置 + 3
+        if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
+            if c.cardmod[int_比拼卡].智慧 > c.cardmod[tonumber(_编号[int_卡片])].力量 then
+                int_翻牌 = int_翻牌 + 1
+            end
+        end 
+    end
+    return int_翻牌
+end 
+t['call_cardgame_pick'] = function(int_比拼卡,int_比拼位置)
+    local ui = G.getUI('v_cardgame')
+    local c = ui.c_cardgame
+    local o_card = c.cardmod[int_比拼卡].o_card_卡片
+    local 属性 = {'力量','智慧','防御','速度'}
+    for j = 1,4 do 
+        if o_card[属性[j]] == 10 then
+            c.卡区.getChildByName('card_'..int_比拼位置).getChildByName('卡片').getChildByName('属性').getChildByName(属性[j]).text = '[03]'..o_card[属性[j]]
+        elseif  o_card[属性[j]] <= 5 then
+            c.卡区.getChildByName('card_'..int_比拼位置).getChildByName('卡片').getChildByName('属性').getChildByName(属性[j]).text = '[01]'..o_card[属性[j]] 
+        else
+            c.卡区.getChildByName('card_'..int_比拼位置).getChildByName('卡片').getChildByName('属性').getChildByName(属性[j]).text = o_card[属性[j]] 
+        end 
+    end
+    c.卡区.getChildByName('card_'..int_比拼位置).getChildByName('卡片').getChildByName('图片').img = o_card.头像
+    c.卡区.getChildByName('card_'..int_比拼位置).getChildByName('卡片').getChildByName('编号').text = int_比拼卡
+    c.卡区.getChildByName('card_'..int_比拼位置).getChildByName('按钮').mouseEnabled = false
+    --卡片比拼计算
+    local int_归属 = c.cardmod[int_比拼卡].归属
+    local _编号 = {}
+    for i = 1,9 do
+       table.insert(_编号,c.卡区.getChildByName('card_'..i).getChildByName('卡片').getChildByName('编号').text)
+    end
+    if  (int_比拼位置 - 1) %3 > 0 then
+        local int_卡片 = int_比拼位置 - 1
+        if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
+            if c.cardmod[int_比拼卡].速度 > c.cardmod[tonumber(_编号[int_卡片])].防御 then
+                c.cardmod[tonumber(_编号[int_卡片])].归属 = int_归属
+            end
+        end 
+    end
+    if int_比拼位置%3 > 0    then
+        local int_卡片 = int_比拼位置 + 1
+        if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
+            if c.cardmod[int_比拼卡].防御 > c.cardmod[tonumber(_编号[int_卡片])].速度 then
+                c.cardmod[tonumber(_编号[int_卡片])].归属 = int_归属
+            end
+        end 
+    end
+    if int_比拼位置 - 3 > 0 then
+        local int_卡片 = int_比拼位置 - 3
+        if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
+            if c.cardmod[int_比拼卡].力量 > c.cardmod[tonumber(_编号[int_卡片])].智慧 then
+                c.cardmod[tonumber(_编号[int_卡片])].归属 = int_归属
+            end
+        end 
+    end
+    if int_比拼位置 + 3 < 9 then
+        local int_卡片 = int_比拼位置 + 3
+        if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
+            print('智慧比拼',c.cardmod[int_比拼卡].智慧,c.cardmod[tonumber(_编号[int_卡片])].力量)
+            if c.cardmod[int_比拼卡].智慧 > c.cardmod[tonumber(_编号[int_卡片])].力量 then
+                c.cardmod[tonumber(_编号[int_卡片])].归属 = int_归属
+            end
+        end 
+    end
+    c.cardmod[int_比拼卡].已放置 = 1
+end
+t['call_cardgame'] = function()
+    local ui = G.addUI('v_cardgame')
+    local c = ui.c_cardgame
+    local int_数值_1 = math.random(6)
+    local int_数值_2 = math.random(6)
+    local int_数值 = int_数值_1 + int_数值_2
+    local o_cardlist = G.QueryName(0x10200001)
+    local o_cardhouse = G.QueryName(0x10220001)
+    local 属性 = {'力量','速度','防御','智慧'}
+    G.wait1('选择卡牌结束')
+    ui.getChildByName('筛子区').visible = true
+    G.wait_time(500)
+    ui.getChildByName('筛子区').getChildByName('动画').visible = false
+    ui.getChildByName('筛子区').getChildByName('点数').visible = true
+    ui.getChildByName('筛子区').getChildByName('点数').getChildByName('一').img = 0x56100000 + int_数值_1
+    ui.getChildByName('筛子区').getChildByName('点数').getChildByName('二').img = 0x56100000 + int_数值_2
+    G.wait_time(500)
+    ui.getChildByName('筛子区').visible = false
+    print('int_数值',int_数值)
+    --int_数值 = 1
+    if int_数值%2 > 0 then
+        ui.getChildByName('轮换').getChildByName('二区').visible = true 
+        c.先开 = 1 
+        c.提示.getChildByName('文本').text = '由[03]红方'..'[05]先行放置卡片'
+        c.进程 = 4
+    else
+        c.先开 = 0
+        c.进程 = 3
+        ui.getChildByName('关闭').visible = true
+        ui.getChildByName('轮换').getChildByName('一区').visible = true
+        c.提示.getChildByName('文本').text = '由[04]蓝方'..'[05]先行放置卡片'
+    end
+    while true do
+        G.wait_time(50)
+        if c.进程 == 4 and c.已放置 < 9 then
+            G.wait_time(500)
+            c.提示.getChildByName('文本').text = '等待[03]红方'..'[05]进行卡片放置'
+            local _放置卡组 = {}
+            local _记录 = {}
+            for i = 6,10 do
+                if  c.cardmod[i].已放置 == 0 then
+                    table.insert(_放置卡组,i)
+                end
+            end
+            for i = 1,#_放置卡组 do
+                local int_放置位置 = 0
+                local int_翻卡数 = 0
+                for j = 1,9 do 
+                    if not c.卡区.getChildByName('card_'..j).getChildByName('卡片').visible then 
+                        int_放置位置 = j
+                        int_翻卡数 = G.call('call_cardgame_number',_放置卡组[i],j)
+                    end
+                    break
+                end
+                if int_放置位置 < 9 then 
+                    for j = int_放置位置+1,9 do 
+                        if not c.卡区.getChildByName('card_'..j).getChildByName('卡片').visible then 
+                            if G.call('call_cardgame_number',_放置卡组[i],j) > int_翻卡数 then 
+                                int_放置位置 = j
+                                int_翻卡数 = G.call('call_cardgame_number',_放置卡组[i],j)
+                            end
+                        end
+                    end
+                end
+                table.insert(_记录,{
+                    编号 = _放置卡组[i],
+                    翻卡数 = int_翻卡数,
+                    放置位置 = int_放置位置,
+                }
+                )
+            end
+            local int_放置卡 = _放置卡组[1]
+            local int_最终放置位置 = _记录[1].放置位置
+            local int_翻卡数 = _记录[1].翻卡数
+            if #_放置卡组 > 1 then
+                for i = 2,#_放置卡组 do
+                    if  _记录[i].翻卡数 > int_翻卡数 then 
+                        int_翻卡数 = _记录[i].翻卡数
+                        int_放置卡 = _放置卡组[i]
+                        int_最终放置位置 = _记录[i].放置位置
+                    end
+                end
+            end
+            if int_翻卡数 == 0 then
+                local _位置 = {}
+                if #_放置卡组 > 0 then 
+                    int_放置卡 = _放置卡组[math.random(#_放置卡组)]
+                end
+                for j = 1,9 do 
+                    if not c.卡区.getChildByName('card_'..j).getChildByName('卡片').visible then 
+                        table.insert(_位置,j)
+                    end
+                end
+                if #_位置 > 1 then
+                    for  i = 1,#_位置 do
+                        if _位置[i] == 5 then
+                            table.remove(_位置,i) 
+                        end
+                    end
+                    int_最终放置位置 = _位置[math.random(#_位置)]
+                    local  int_第一 = c.cardmod[int_放置卡].第一 
+                    local  int_第二 = c.cardmod[int_放置卡].第二 
+                    local  int_第三 = c.cardmod[int_放置卡].第三 
+                    print(int_第一,int_第二,int_第三)
+                    local int_结果 = 0
+                    if not c.卡区.getChildByName('card_'..1).getChildByName('卡片').visible then 
+                        if c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and int_第一 == 4 then 
+                            int_结果 = 1
+                        end
+                        if c.卡区.getChildByName('card_'..3).getChildByName('卡片').visible and int_第一 == 3 then 
+                            int_结果 = 1
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..3).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and int_第一 == 4 then 
+                            int_结果 = 3
+                        end
+                        if c.卡区.getChildByName('card_'..6).getChildByName('卡片').visible and int_第一 == 2 then 
+                            int_结果 = 3
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..7).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..3).getChildByName('卡片').visible and int_第一 == 3 then 
+                            int_结果 = 7
+                        end
+                        if c.卡区.getChildByName('card_'..8).getChildByName('卡片').visible and int_第一 == 1 then 
+                            int_结果 = 7
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..9).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..8).getChildByName('卡片').visible and int_第一 == 1 then 
+                            int_结果 = 9
+                        end
+                        if c.卡区.getChildByName('card_'..6).getChildByName('卡片').visible and int_第一 == 2 then 
+                            int_结果 = 9
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..1).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and int_第一 == 1 then 
+                            int_结果 = 2
+                        end
+                        if c.卡区.getChildByName('card_'..1).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible and int_第一 == 3 then 
+                            int_结果 = 2
+                        end
+                        if c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible and int_第一 == 2 then 
+                            int_结果 = 2
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..4).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..1).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible and int_第一 == 4 then 
+                            int_结果 = 4
+                        end
+                        if c.卡区.getChildByName('card_'..1).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..7).getChildByName('卡片').visible and int_第一 == 3 then 
+                            int_结果 = 4
+                        end
+                        if c.卡区.getChildByName('card_'..7).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible and int_第一 == 1 then 
+                            int_结果 = 4
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..6).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible and int_第一 == 4 then 
+                            int_结果 = 6
+                        end
+                        if c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..9).getChildByName('卡片').visible and int_第一 == 2 then 
+                            int_结果 = 6
+                        end
+                        if c.卡区.getChildByName('card_'..9).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible and int_第一 == 1 then 
+                            int_结果 = 6
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..8).getChildByName('卡片').visible and int_结果 == 0 then  
+                        if c.卡区.getChildByName('card_'..7).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible and int_第一 == 3 then 
+                            int_结果 = 8
+                        end
+                        if c.卡区.getChildByName('card_'..7).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..9).getChildByName('卡片').visible and int_第一 == 1 then 
+                            int_结果 = 8
+                        end
+                        if c.卡区.getChildByName('card_'..9).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible and int_第一 == 2 then 
+                            int_结果 = 8
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..4).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..6).getChildByName('卡片').visible and int_第一 == 4 then 
+                            int_结果 = 5
+                        end
+                        if c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..4).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..8).getChildByName('卡片').visible and int_第一 == 3 then 
+                            int_结果 = 5
+                        end
+                        if c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..8).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..6).getChildByName('卡片').visible and int_第一 == 2 then 
+                            int_结果 = 5
+                        end
+                        if c.卡区.getChildByName('card_'..8).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..4).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..6).getChildByName('卡片').visible and int_第一 == 1 then 
+                            int_结果 = 5
+                        end
+                    end                
+                    if not c.卡区.getChildByName('card_'..2).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..1).getChildByName('卡片').visible then
+                            if (int_第一 == 4 and int_第二 == 3) or (int_第一 == 3 and int_第二 == 4) then 
+                                int_结果 = 2
+                            end 
+                        end
+                        if c.卡区.getChildByName('card_'..3).getChildByName('卡片').visible then
+                            if (int_第一 == 2 and int_第二 == 4) or (int_第一 == 4 and int_第二 == 2) then 
+                                int_结果 = 2
+                            end 
+                        end
+                        if c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible then
+                            if (int_第一 == 2 and int_第三 == 3) or (int_第一 == 3 and int_第三 == 2) then 
+                                int_结果 = 2
+                            end 
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..4).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..1).getChildByName('卡片').visible then
+                            if (int_第一 == 4 and int_第二 == 3) or (int_第一 == 3 and int_第二 == 4) then 
+                                int_结果 = 4
+                            end 
+                        end
+                        if c.卡区.getChildByName('card_'..7).getChildByName('卡片').visible then
+                            if (int_第一 == 1 and int_第二 == 4) or (int_第一 == 4 and int_第二 == 1) then 
+                                int_结果 = 4
+                            end 
+                        end
+                        if c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible then
+                            if (int_第一 == 1 and int_第三 == 4) or (int_第一 == 4 and int_第三 == 1) then 
+                                int_结果 = 4
+                            end 
+                        end  
+                    end
+                    if not c.卡区.getChildByName('card_'..6).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..3).getChildByName('卡片').visible then
+                            if (int_第一 == 4 and int_第二 == 2) or (int_第一 == 2 and int_第二 == 4) then 
+                                int_结果 = 6
+                            end 
+                        end
+                        if c.卡区.getChildByName('card_'..9).getChildByName('卡片').visible then
+                            if (int_第一 == 1 and int_第二 == 2) or (int_第一 == 2 and int_第二 == 1) then 
+                                int_结果 = 6
+                            end 
+                        end
+                        if c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible then
+                            if (int_第一 == 1 and int_第三 == 4) or (int_第一 == 4 and int_第三 == 1) then 
+                                int_结果 = 6
+                            end 
+                        end  
+                    end
+                    if not c.卡区.getChildByName('card_'..8).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if c.卡区.getChildByName('card_'..7).getChildByName('卡片').visible then
+                            if (int_第一 == 1 and int_第二 == 3) or (int_第一 == 3 and int_第二 == 1) then 
+                                int_结果 = 8
+                            end 
+                        end
+                        if c.卡区.getChildByName('card_'..9).getChildByName('卡片').visible then
+                            if (int_第一 == 1 and int_第二 == 2) or (int_第一 == 2 and int_第二 == 1) then 
+                                int_结果 = 8
+                            end 
+                        end
+                        if c.卡区.getChildByName('card_'..5).getChildByName('卡片').visible then
+                            if (int_第一 == 2 and int_第三 == 3) or (int_第一 == 3 and int_第三 == 2) then 
+                                int_结果 = 8
+                            end 
+                        end  
+                    end
+                    if not c.卡区.getChildByName('card_'..1).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if (int_第一 == 4 and int_第二 == 3) or (int_第一 == 3 and int_第二 == 4) then 
+                            int_结果 = 1
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..3).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if (int_第一 == 4 and int_第二 == 2) or (int_第一 == 2 and int_第二 == 4) then 
+                            int_结果 = 3
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..7).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if (int_第一 == 1 and int_第二 == 3) or (int_第一 == 3 and int_第二 == 1) then 
+                            int_结果 = 7
+                        end
+                    end
+                    if not c.卡区.getChildByName('card_'..9).getChildByName('卡片').visible and int_结果 == 0 then 
+                        if (int_第一 == 1 and int_第二 == 2) or (int_第一 == 2 and int_第二 == 1) then 
+                            int_结果 = 9
+                        end
+                    end
+                    print('结果_2',int_结果)     
+                    if int_结果 > 0 then
+                        int_最终放置位置 = int_结果
+                    end
+                else
+                    int_最终放置位置 = _位置[1]
+                end
+            end
+            G.wait_time(500)
+            local int_卡位置 = int_放置卡 - 5
+            ui.getChildByName('二区').getChildByName('card_'..int_卡位置).x = ui.getChildByName('二区').getChildByName('card_'..int_卡位置).x + 20
+            G.wait_time(500)
+            ui.getChildByName('二区').getChildByName('card_'..int_卡位置).visible = false
+            c.卡区.getChildByName('card_'..int_最终放置位置).getChildByName('卡片').visible = true
+            G.call('call_cardgame_pick',int_放置卡,int_最终放置位置) 
+            c.已放置 = c.已放置 +1
+            if c.已放置 < 9 then 
+                c.进程 = 3
+                ui.getChildByName('轮换').getChildByName('一区').visible = true
+                ui.getChildByName('轮换').getChildByName('二区').visible = false
+                c.提示.getChildByName('文本').text = '开始选择需要放置的卡片'
+                c:卡区刷新()
+            else
+                c:卡区刷新()
+                ui.getChildByName('轮换').getChildByName('一区').visible = false
+                ui.getChildByName('轮换').getChildByName('二区').visible = false
+            end
+        end
+        if  c.已放置 == 9   then
+            break 
+        end
+        if  c.已放置 == 10   then
+            break 
+        end
+    end
+    local int_红 = 0
+    local int_绿 = 0
+    for i = 1,10 do
+        if c.cardmod[i].归属 == 2 then
+            int_红 = int_红 + 1
+        elseif c.cardmod[i].归属 == 1 then
+            int_绿 = int_绿 + 1
+        end
+    end
+    local result = 0
+    if int_绿 > int_红 then 
+        result = 1
+    elseif int_绿 < int_红 then 
+        result = 2
+    elseif int_绿 == int_红 then 
+        int_绿 = 0
+    end
+    if  c.已放置 == 10   then
+        result = 2
+    end
+    if result > 0 then
+        ui.getChildByName('结果').visible = true
+        if  result == 1 then
+            ui.getChildByName('结果').img = 0x5616004c
+            G.Play(0x4901000c, 1,false,100) 
+        elseif  result == 2 then
+            ui.getChildByName('结果').img = 0x5616004d
+            G.Play(0x4901000d, 1,false,100) 
+        end
+    end
+    G.wait_time(500)
+    G.removeUI('v_cardgame')
+    return result
+end
 t['通用_华容道版块可移动'] = function(int_版块)
     local ui = G.getUI('v_huarongdao')
     local c = ui.c_huarongdao
@@ -5064,4 +5738,19 @@ t['通用_选择自动攻击武功']=function()
         end
     end
     return 207
+end
+t['通用_卡片入库']=function()
+    local card = G.DBTable('o_card')
+    local o_cardhouse = G.QueryName(0x10220001)
+    for i = 1,#card do
+        local i_card = 0x101f0000 + i
+        o_cardhouse.卡片[i] = {}
+        o_cardhouse.卡片[i].卡片 = i_card
+        o_cardhouse.卡片[i].数量 = 0
+        o_cardhouse.卡片[i]['hold'] = false
+    end
+    if not G.misc().获得卡片 then
+        G.misc().获得卡片 = 1
+        G.call('set_newpoint',80,-1000)
+    end
 end

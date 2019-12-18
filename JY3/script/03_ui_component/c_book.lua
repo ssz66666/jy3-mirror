@@ -434,6 +434,10 @@ function t:click(tar)
         G.call('notice1','已经做回自己')
         G.call('set_point',119,G.misc().人物头像)
     end
+    if tar == self.主菜单.getChildByName('卡片') then
+        G.removeUI('v_book') 
+        G.addUI('v_card')
+    end
     for i = 1,#str_菜单 do
         if tar == self.主菜单.getChildByName(str_菜单[i]) then
             G.Play(0x49011003, 1,false,100) 

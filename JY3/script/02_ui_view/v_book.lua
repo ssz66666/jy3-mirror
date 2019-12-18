@@ -147,6 +147,23 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '卡片'
+			tc.pivotX = 0.000
+			tc.left = -240.000
+			tc.right = 760.000
+			tc.top = 60.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '4，卡片查看'
+			tc.font = 0x61380000
+			tc.align = 1
+			tc.style = 10
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.loadUI('v_empty')

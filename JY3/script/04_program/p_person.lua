@@ -2145,8 +2145,9 @@ t['副本_通天塔']=function(int_模式)
             if G.misc().通天塔层数 >= 100 then 
                 if int_模式 == 0 then 
                     G.call('通用_抽礼物',2,0,1,0,1) 
+                    G.call('通用_无尽抽卡') 
                 else
-                    G.call('通用_抽礼物',3,0,1,0,1) 
+                    G.call('通用_无尽抽卡',1)  
                 end
                 G.misc().通天塔层数 = 101
                 break
@@ -2766,17 +2767,51 @@ t['锻造师-BT']=function()
         G.call("talk",'？？？？',390,'   现在不要打搅我，我正在想怎么转换和重新打造这个世界的神奇装备！',1,1) 
         G.call("talk",'',0,'   真是个BT！',0,0)
     else
-        if not G.misc().初识BT then  
+        if not G.misc().再BT then  
             G.call("talk",'',0,'   你是谁？怎么在这里。。。，看着很奇怪的感觉？！',0,0)
             G.call("talk",'？？？？',390,'   你看我像谁我就是谁，我嗖一下就到这里来了！',1,1) 
             G.call("talk",'',0,'   那你能做些什么呢？',0,0)
             G.call("talk",'？？？？',390,'   那我得想想，我貌似可以将你们多余的神奇装备转换成神秘宝石，也可以用这些宝石打造新的神奇装备，当然也可以转换装备的品质....',1,1) 
-            G.misc().初识BT = 1
-            G.call('通用_锻造')
+            G.call("talk",'？？？？',390,'   我们还可以进行卡片游戏，那我先送你几张卡片吧！',1,1) 
+            for i = 63,67 do
+                G.call('add_card',i,1)
+            end
+            G.misc().再识BT = 1
+            G.call('通用_锻造卡片选择')
         else
-            G.call('通用_锻造')
+            G.call('通用_锻造卡片选择')
         end
     end
+    G.call('all_over')
+end
+t['通用_锻造卡片选择']=function()
+    G.call("talk",'？？？？',390,'   你是要进行锻造还是和我来玩玩卡片游戏？',1,1)
+    local int_选项 = 0       
+    while int_选项 == 0 do
+        int_选项 = G.call("menu",'',0,'',0,0,{"1,还是锻造吧","2,玩玩卡片游戏","3,没有事情"},0)
+        if int_选项 == 1 then 
+            G.call('通用_锻造')
+        elseif int_选项 == 2 then
+            if G.call('通用_可否进行卡片游戏') then 
+                G.call("talk",'？？？？',390,'   那我们就开始吧！',1,1)
+                G.call('通用_分配卡片')
+                local int_结果 = G.call('call_cardgame') 
+                if int_结果 > 0 then
+                    G.call('call_card_select',int_结果)
+                end
+                if int_结果 == 0 then
+                    G.call("talk",'？？？？',390,'   看来是遇到敌手了！',1,1)
+                elseif int_结果 == 1 then
+                    G.call("talk",'？？？？',390,'   不错，你已经掌握了本游戏精髓啊！',1,1)
+                elseif int_结果 == 2 then
+                    G.call("talk",'？？？？',390,'   你的游戏水平有待提高！',1,1)
+                end
+            else
+                G.call("talk",'？？？？',390,'   你还不够卡片进行游戏，等你有卡片再来吧！',1,1)
+            end 
+
+        end
+    end 
     G.call('all_over')
 end
 t['通用_锻造']=function()
