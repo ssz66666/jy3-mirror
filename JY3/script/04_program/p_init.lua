@@ -247,9 +247,9 @@ t['地图系统_防修改监控'] = function()
 	end
 	--print('int_检测',int_检测)
 	G.call('通用_队伍检测') 
-	if int_检测 > 0 and int_检测 < 10 then
-		G.call('通用_强退游戏',301)  
-	end
+	-- if int_检测 > 0 and int_检测 < 10 then
+	-- 	G.call('通用_强退游戏',301)  
+	-- end
 	if int_检测 == 9 then
 		G.call('指令_备份基础属性')
 	end
