@@ -233,15 +233,17 @@ t['地图系统_防修改监控'] = function()
 	end
 	local int_卡片数量 = 0
 	local card = G.DBTable('o_cardhouse')
-    for i = 1,#card do
-        local o_cardhouse = G.QueryName(0x10220000 + i)
-		if o_cardhouse.卡片[i].数量 > 0 then
-            int_卡片数量 = int_卡片数量 + o_cardhouse.卡片[i].数量 
-        end
-	end
-	if int_卡片数量 ~= math.abs(G.call('get_newpoint',80)+1000) then 
-		--print('物品数量',int_物品数量,G.call('get_newpoint',76))
-		int_检测 = int_检测 + 1
+	local o_cardhouse = G.QueryName(0x10220001)
+	if #o_cardhouse.卡片 > 0 then 
+		for i = 1,#o_cardhouse.卡片 do
+			if o_cardhouse.卡片[i].数量 > 0 then
+				int_卡片数量 = int_卡片数量 + o_cardhouse.卡片[i].数量 
+			end
+		end
+		if int_卡片数量 ~= math.abs(G.call('get_newpoint',80)+1000) then 
+			--print('物品数量',int_物品数量,G.call('get_newpoint',76))
+			int_检测 = int_检测 + 1
+		end
 	end
 	--print('int_检测',int_检测)
 	G.call('通用_队伍检测') 
