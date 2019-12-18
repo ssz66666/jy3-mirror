@@ -14,6 +14,7 @@ function t:init()
     self.卡组 = self.卡选区.getChildByName('卡组')
     self.展示卡组 = {}
     self.卡片组 = {}
+    self.游戏卡组 = {}
     self.进程 = 0
     self.先开 = 0
     self.已放置 = 0
@@ -250,7 +251,8 @@ function t:click(tar)
             self.进程 = 2
         elseif tar == self.确认.getChildByName('按钮').getChildByName('否') then
             local int_编号五  = tonumber(self.一区.getChildByName('card_5').getChildByName('编号').text)
-            self.卡片组[int_编号五].数量 = self.卡片组[int_编号五].数量 + 1
+            local int_位置 = G.call('get_card_dress',int_编号五)
+            self.卡片组[int_位置].数量 = self.卡片组[int_位置].数量 + 1
             self:卡牌显示()
             self.一区.getChildByName('card_'..5).visible = false
             self.确认.visible = false
@@ -258,7 +260,9 @@ function t:click(tar)
         if tar == self.obj.getChildByName('取消') then
             for i = 5,1,-1 do
                 if  self.一区.getChildByName('card_'..i).visible then 
-                    self.卡片组[i].数量 = self.卡片组[i].数量 + 1
+                    local int_编号  = tonumber(self.一区.getChildByName('card_'..i).getChildByName('编号').text)
+                    local int_位置 = G.call('get_card_dress',int_编号)
+                    self.卡片组[int_位置].数量 = self.卡片组[int_位置].数量 + 1
                     self:卡牌显示()
                     self.一区.getChildByName('card_'..i).visible = false
                     break

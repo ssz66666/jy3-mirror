@@ -475,6 +475,15 @@ t['get_cardgame_lv']=function()
     end
     return math.floor(int_分数/300)
 end
+t['get_card_dress']=function(int_编号)
+    local ui = G.getUI('v_cardgame')
+    local c = ui.c_cardgame
+    for i = 1,#c.卡片组 do
+        if c.卡片组[i].编号 == int_编号 then
+            return i 
+        end
+    end
+end
 t['通用_分配卡片']=function()
     local int_卡片游戏等级 = G.call('get_cardgame_lv')
     local card = G.DBTable('o_card')
