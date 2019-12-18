@@ -292,7 +292,7 @@ t['通用_读档'] = function(int_档案编号)
             G.QueryName(0x1017000e).进度列表[10].完美 = false
         end
         local o_cardhouse = G.QueryName(0x10220001)
-        if #o_cardhouse.卡片 == 0 then
+        if #o_cardhouse.卡片 == 0 or not G.misc().获取卡片 then
             G.call('通用_卡片入库')
         end
         if int_档案编号 > 0 and int_档案编号 <= 4 then
