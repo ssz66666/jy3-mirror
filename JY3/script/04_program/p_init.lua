@@ -140,12 +140,12 @@ t['地图系统_防修改监控'] = function()
 	local int_检测 = 0
 	if int_成就 > 0 then 
 		if int_成就 ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			--print('成就',int_成就,G.call('get_newpoint',80))
+			print('成就',int_成就,G.call('get_newpoint',80))
 			int_检测 = int_检测 + 1
 		end
 	else
 		if math.abs(int_成就) ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			--print('成就',int_成就,G.call('get_newpoint',80))
+			print('成就',int_成就,G.call('get_newpoint',80))
 			int_检测 = int_检测 + 1
 		end
 	end
@@ -240,12 +240,12 @@ t['地图系统_防修改监控'] = function()
 				int_卡片数量 = int_卡片数量 + o_cardhouse.卡片[i].数量 
 			end
 		end
-		if int_卡片数量 ~= math.abs(G.call('get_newpoint',80)+1000) then 
+		if int_卡片数量 ~= math.abs(G.call('get_newpoint',83)+1000) then 
 			--print('物品数量',int_物品数量,G.call('get_newpoint',76))
 			int_检测 = int_检测 + 1
 		end
 	end
-	--print('int_检测',int_检测)
+	print('int_检测',int_检测)
 	G.call('通用_队伍检测') 
 	if int_检测 > 0 and int_检测 < 10 then
 		G.call('通用_强退游戏',301)  

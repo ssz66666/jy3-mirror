@@ -5749,8 +5749,8 @@ t['通用_卡片入库']=function()
         o_cardhouse.卡片[i].数量 = 0
         o_cardhouse.卡片[i]['hold'] = false
     end
-    if not G.misc().获得卡片 then
-        G.misc().获得卡片 = 1
-        G.call('set_newpoint',80,-1000)
+    if not G.misc().获取卡片 then
+        G.misc().获取卡片 = 1
+        G.call('set_newpoint',83,-1000)
     end
 end
