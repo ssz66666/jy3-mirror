@@ -292,7 +292,7 @@ t['通用_读档'] = function(int_档案编号)
             G.QueryName(0x1017000e).进度列表[10].完美 = false
         end
         local o_cardhouse = G.QueryName(0x10220001)
-        if #o_cardhouse.卡片 == 0 or not G.misc().获取卡片 then
+        if #o_cardhouse.卡片 == 0  then
             G.call('通用_卡片入库')
         end
         if int_档案编号 > 0 and int_档案编号 <= 4 then
@@ -3192,6 +3192,17 @@ t['指令_备份基础属性']=function() --
     for i = 45,47 do 
         G.call('set_newpoint',i,-G.call('get_point',i)-10) 
     end
+    local int_卡片数量 = 0
+	local card = G.DBTable('o_cardhouse')
+	local o_cardhouse = G.QueryName(0x10220001)
+	if #o_cardhouse.卡片 > 0 then 
+		for i = 1,#o_cardhouse.卡片 do
+			if o_cardhouse.卡片[i].数量 > 0 then
+				int_卡片数量 = int_卡片数量 + o_cardhouse.卡片[i].数量 
+			end
+		end
+	end
+    G.call('set_newpoint',83,-1000 +int_卡片数量 )
     G.misc().检测_1010 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
