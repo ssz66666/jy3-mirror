@@ -3965,6 +3965,314 @@ tp = tc
 			--end
 			tc = G.loadUI('v_empty')
 			tp.addChild(tc)
+			tc.name = '28'
+			tc.visible = false
+			tp = tc
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '1'
+				tc.left = 50.000
+				tc.right = 50.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '卡牌新人'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '2'
+				tc.left = 380.000
+				tc.right = 380.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '卡牌新秀'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '3'
+				tc.left = 50.000
+				tc.right = 50.000
+				tc.bottom = -70.000
+				tc.top = -70.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '卡牌达人'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '4'
+				tc.left = 380.000
+				tc.right = 380.000
+				tc.bottom = -70.000
+				tc.top = -70.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '卡牌大师'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '5'
+				tc.left = 50.000
+				tc.right = 50.000
+				tc.bottom = -140.000
+				tc.top = -140.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '无限卡牌'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_empty')
+			tp.addChild(tc)
 			tc.name = '15'
 			tc.visible = false
 			tp = tc

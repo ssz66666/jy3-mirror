@@ -165,6 +165,11 @@ t['地图系统_防修改监控'] = function()
             int_周目成就 = int_周目成就 + 1
         end
 	end
+	for i = 1,#G.QueryName(0x1017001c).进度列表 do 
+        if G.QueryName(0x1017001c).进度列表[i].当前进度 == 1 then
+            int_周目成就 = int_周目成就 + 1
+        end
+    end
 	if  G.misc().检测_1012 == nil  then
 		G.misc().检测_1012 = 1
 		G.call('set_newpoint',81,-int_周目成就-2000)

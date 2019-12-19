@@ -311,7 +311,7 @@ t['通用_读档'] = function(int_档案编号)
                     end
                 end  
             end  
-            if  maxpoint > 5500 or point > 5500  then
+            if  maxpoint > 5825 or point > 5825  then
                 G.call('通用_强退游戏') 
             end
             if G.QueryName(0x10170012).进度列表[1].完成 == 1 and not G.misc().一鸣惊人完成 then 
@@ -599,6 +599,29 @@ t['add_card'] = function(int_卡片,int_数量)
         G.call('notice1','[05]恭喜获得[03]'..o_card.姓名..'[05]卡片')
     else
         G.call('notice1','[05]失去[03]'..o_card.姓名..'[05]卡片')
+    end
+    local int_卡片获取数量 = 0
+    for i = 1,#o_cardhouse do 
+        if o_cardhouse.卡片[i]['hold'] then
+            int_卡片获取数量 = int_卡片获取数量 + 1 
+        end
+    end
+    local int_卡牌等级 = G.call('get_cardgame_lv')
+    local o_achieve = G.QueryName(0x1017001c)
+    if o_achieve.进度列表[5].完成 == 0 then
+        o_achieve.进度列表[5].完成 = 1
+        o_achieve.进度列表[5].当前进度 = 1 
+        G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
+        G.call('notice1','恭喜完成[03]'..o_achieve.进度列表[5].名称)
+    end
+    local 卡牌等级 = {1,4,7,10}
+    for i = 1,4 do
+        if o_achieve.进度列表[i].完成 == 0 and int_卡牌等级 >= 卡牌等级[i]  then
+            o_achieve.进度列表[i].完成 = 1
+            o_achieve.进度列表[i].当前进度 = 1 
+            G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
+            G.call('notice1','恭喜完成[03]'..o_achieve.进度列表[i].名称) 
+        end
     end
 end
 t['call_card_select'] = function(int_类型)
@@ -3170,6 +3193,11 @@ t['指令_备份基础属性']=function() --
     end
     for i = 1,#G.QueryName(0x10170019).进度列表 do 
         if G.QueryName(0x10170019).进度列表[i].当前进度 == 1 then
+            int_周目成就 = int_周目成就 + 1
+        end
+    end
+    for i = 1,#G.QueryName(0x1017001c).进度列表 do 
+        if G.QueryName(0x1017001c).进度列表[i].当前进度 == 1 then
             int_周目成就 = int_周目成就 + 1
         end
     end
