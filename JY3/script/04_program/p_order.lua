@@ -1373,23 +1373,9 @@ t['call_cardgame'] = function()
             end
             G.wait_time(500)
             local int_卡位置 = int_放置卡 - 5
-            ui.getChildByName('二区').getChildByName('card_'..int_卡位置).x = ui.getChildByName('二区').getChildByName('card_'..int_卡位置).x + 20
-            G.wait_time(500)
-            ui.getChildByName('二区').getChildByName('card_'..int_卡位置).visible = false
-            c.卡区.getChildByName('card_'..int_最终放置位置).getChildByName('卡片').visible = true
-            G.call('call_cardgame_pick',int_放置卡,int_最终放置位置) 
-            c.已放置 = c.已放置 +1
-            if c.已放置 < 9 then 
-                c.进程 = 3
-                ui.getChildByName('轮换').getChildByName('一区').visible = true
-                ui.getChildByName('轮换').getChildByName('二区').visible = false
-                c.提示.getChildByName('文本').text = '开始选择需要放置的卡片'
-                c:卡区刷新()
-            else
-                c:卡区刷新()
-                ui.getChildByName('轮换').getChildByName('一区').visible = false
-                ui.getChildByName('轮换').getChildByName('二区').visible = false
-            end
+            c:zoomOut(int_放置卡)
+            local tar = c.卡区.getChildByName('card_'..int_最终放置位置).getChildByName('按钮') 
+            G.call('play_card',int_最终放置位置,tar,2,int_卡位置)
         end
         if  c.已放置 == 9   then
             break 
@@ -1431,6 +1417,59 @@ t['call_cardgame'] = function()
     G.wait_time(500)
     G.removeUI('v_cardgame')
     return result
+end
+t['play_card'] = function(i,tar,int_阵营,int_卡位置)
+    local ui = G.getUI('v_cardgame')
+    local c = ui.c_cardgame
+    local dur = 500
+    local p = c.cardID
+    local x, y = tar.localToGlobal(0,0)
+    if int_阵营 == 1 then 
+        x, y = c.一区.globalToLocal(x, y)
+    elseif int_阵营 == 2 then 
+        x, y = c.二区.globalToLocal(x, y) 
+        p = int_卡位置 + 5
+    end
+    G.Tween('x', dur, c.card[p], x)--tar.x)
+    -- c.card[i].x = c.cardX[i]
+    G.Tween('y', dur, c.card[p], y)
+    G.Tween('rotation', dur, c.card[p], 0)
+    G.Tween('scaleX', dur, c.card[p], 1)
+    G.Tween('scaleY', dur, c.card[p], 1)
+    G.wait_time(dur)
+    if int_阵营 == 1 then 
+        c.一区.getChildByName('card_'..c.选择卡片).visible = false
+        c.卡区.getChildByName('card_'..i).getChildByName('卡片').visible = true
+        G.call('call_cardgame_pick',c.选择卡片,i)
+        c.选择卡片 = 0
+        c.进程 = 4
+        c:卡区刷新()
+        c.已放置 = c.已放置 +1
+        if c.已放置 < 9 then 
+            c.obj.getChildByName('轮换').getChildByName('一区').visible = false
+            c.obj.getChildByName('轮换').getChildByName('二区').visible = true
+            c.提示.getChildByName('文本').text = '等待[03]红方'..'[05]进行卡片放置'
+        else
+            c.obj.getChildByName('轮换').getChildByName('一区').visible = false
+            c.obj.getChildByName('轮换').getChildByName('二区').visible = false
+        end
+    elseif int_阵营 == 2 then 
+        ui.getChildByName('二区').getChildByName('card_'..int_卡位置).visible = false
+        c.卡区.getChildByName('card_'..i).getChildByName('卡片').visible = true
+        G.call('call_cardgame_pick',int_卡位置 + 5,i) 
+        c.已放置 = c.已放置 +1
+        if c.已放置 < 9 then 
+            c.进程 = 3
+            ui.getChildByName('轮换').getChildByName('一区').visible = true
+            ui.getChildByName('轮换').getChildByName('二区').visible = false
+            c.提示.getChildByName('文本').text = '开始选择需要放置的卡片'
+            c:卡区刷新()
+        else
+            c:卡区刷新()
+            ui.getChildByName('轮换').getChildByName('一区').visible = false
+            ui.getChildByName('轮换').getChildByName('二区').visible = false
+        end
+    end
 end
 t['通用_华容道版块可移动'] = function(int_版块)
     local ui = G.getUI('v_huarongdao')

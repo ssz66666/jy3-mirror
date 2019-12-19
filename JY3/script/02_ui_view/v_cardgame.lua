@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
-local c_scrollview = require 'c_scrollview'
 local c_cardgame = require 'c_cardgame'
 local c_button = require 'c_button'
+local c_scrollview = require 'c_scrollview'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -35,1103 +35,6 @@ tp = tc
 	tc.top = 170.500
 	tc.img = 0x56160077
 	tp = tc
-	tp = tp.parent
-	--end
-	tc = G.Entity()
-	tp.addChild(tc)
-	tc.name = '一区'
-	tc.left = -30.000
-	tc.right = 70.000
-	tc.bottom = -70.000
-	tc.top = 30.000
-	tp = tc
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_1'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = 59.000
-		tc.top = 201.000
-		tc.mouseEnabled = true
-		tc.visible = false
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '图片'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.mouseEnabled = true
-			tc.img = 0x56080001
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = '编号'
-			tc.left = -30.000
-			tc.right = 30.000
-			tc.bottom = -20.000
-			tc.top = 20.000
-			tc.visible = false
-			tc.scaleX = 0.500
-			tc.scaleY = 0.500
-			tc.text = '0'
-			tc.font = 0x603c0000
-			tc.style = 4
-			tp = tc
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_2'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = -6.000
-		tc.top = 136.000
-		tc.mouseEnabled = true
-		tc.visible = false
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '图片'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.mouseEnabled = true
-			tc.img = 0x56080001
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = '编号'
-			tc.left = -30.000
-			tc.right = 30.000
-			tc.bottom = -20.000
-			tc.top = 20.000
-			tc.visible = false
-			tc.scaleX = 0.500
-			tc.scaleY = 0.500
-			tc.text = '0'
-			tc.font = 0x603c0000
-			tc.style = 4
-			tp = tc
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_3'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = -71.000
-		tc.top = 71.000
-		tc.mouseEnabled = true
-		tc.visible = false
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '图片'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.mouseEnabled = true
-			tc.img = 0x56080001
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = '编号'
-			tc.left = -30.000
-			tc.right = 30.000
-			tc.bottom = -20.000
-			tc.top = 20.000
-			tc.visible = false
-			tc.scaleX = 0.500
-			tc.scaleY = 0.500
-			tc.text = '0'
-			tc.font = 0x603c0000
-			tc.style = 4
-			tp = tc
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_4'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = -136.000
-		tc.top = 6.000
-		tc.mouseEnabled = true
-		tc.visible = false
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '图片'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.mouseEnabled = true
-			tc.img = 0x56080001
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = '编号'
-			tc.left = -30.000
-			tc.right = 30.000
-			tc.bottom = -20.000
-			tc.top = 20.000
-			tc.visible = false
-			tc.scaleX = 0.500
-			tc.scaleY = 0.500
-			tc.text = '0'
-			tc.font = 0x603c0000
-			tc.style = 4
-			tp = tc
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_5'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = -201.000
-		tc.top = -59.000
-		tc.mouseEnabled = true
-		tc.visible = false
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '图片'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.mouseEnabled = true
-			tc.img = 0x56080001
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-			tc = G.TextQuad()
-			tp.addChild(tc)
-			tc.name = '编号'
-			tc.left = -30.000
-			tc.right = 30.000
-			tc.bottom = -20.000
-			tc.top = 20.000
-			tc.visible = false
-			tc.scaleX = 0.500
-			tc.scaleY = 0.500
-			tc.text = '0'
-			tc.font = 0x603c0000
-			tc.style = 4
-			tp = tc
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
-		tc = G.Quad()
-		tp.addChild(tc)
-		tc.name = '闪光'
-		tc.left = 178.000
-		tc.right = 322.000
-		tc.bottom = 47.500
-		tc.top = 212.500
-		tc.visible = false
-		tc.img = 0x33010001
-		tp = tc
-		tp = tp.parent
-		--end
-	tp = tp.parent
-	--end
-	tc = G.Entity()
-	tp.addChild(tc)
-	tc.name = '二区'
-	tc.left = -570.000
-	tc.right = -470.000
-	tc.bottom = -70.000
-	tc.top = 30.000
-	tp = tc
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_1'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = 59.000
-		tc.top = 201.000
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = '图片'
-				tc.left = -60.000
-				tc.right = 60.000
-				tc.bottom = -71.000
-				tc.top = 71.000
-				tc.img = 0x56080001
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_2'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = -6.000
-		tc.top = 136.000
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = '图片'
-				tc.left = -60.000
-				tc.right = 60.000
-				tc.bottom = -71.000
-				tc.top = 71.000
-				tc.img = 0x56080001
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_3'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = -71.000
-		tc.top = 71.000
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = '图片'
-				tc.left = -60.000
-				tc.right = 60.000
-				tc.bottom = -71.000
-				tc.top = 71.000
-				tc.img = 0x56080001
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_4'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = -136.000
-		tc.top = 6.000
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = '图片'
-				tc.left = -60.000
-				tc.right = 60.000
-				tc.bottom = -71.000
-				tc.top = 71.000
-				tc.img = 0x56080001
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
-		tc = G.Entity()
-		tp.addChild(tc)
-		tc.name = 'card_5'
-		tc.left = 190.000
-		tc.right = 310.000
-		tc.bottom = -201.000
-		tc.top = -59.000
-		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
-			tc = G.Entity()
-			tp.addChild(tc)
-			tc.name = '属性'
-			tc.left = -50.000
-			tc.right = 50.000
-			tc.bottom = -50.000
-			tc.top = 50.000
-			tp = tc
-				tc = G.Quad()
-				tp.addChild(tc)
-				tc.name = '图片'
-				tc.left = -60.000
-				tc.right = 60.000
-				tc.bottom = -71.000
-				tc.top = 71.000
-				tc.img = 0x56080001
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '力量'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 46.000
-				tc.top = 86.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '智慧'
-				tc.left = -60.000
-				tc.right = 0.000
-				tc.bottom = 14.000
-				tc.top = 54.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '速度'
-				tc.left = -80.000
-				tc.right = -20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-				tc = G.TextQuad()
-				tp.addChild(tc)
-				tc.name = '防御'
-				tc.left = -40.000
-				tc.right = 20.000
-				tc.bottom = 30.000
-				tc.top = 70.000
-				tc.scaleX = 0.500
-				tc.scaleY = 0.500
-				tc.text = '10'
-				tc.font = 0x603c0000
-				tc.style = 4
-				tp = tc
-				tp = tp.parent
-				--end
-			tp = tp.parent
-			--end
-		tp = tp.parent
-		--end
 	tp = tp.parent
 	--end
 	tc = G.Entity()
@@ -2452,11 +1355,1117 @@ tp = tc
 	--end
 	tc = G.Entity()
 	tp.addChild(tc)
+	tc.name = '一区'
+	tc.left = 670.000
+	tc.right = 770.000
+	tc.bottom = -70.000
+	tc.top = 30.000
+	tp = tc
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_1'
+		tc.left = -440.000
+		tc.right = -320.000
+		tc.bottom = 59.000
+		tc.top = 201.000
+		tc.mouseEnabled = true
+		tc.visible = false
+		tc.rotation = 16.000
+		tc.scaleX = 1.000
+		tc.scaleY = 1.000
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '图片'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.img = 0x56080001
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '编号'
+			tc.left = -30.000
+			tc.right = 30.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '0'
+			tc.font = 0x603c0000
+			tc.style = 4
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_2'
+		tc.left = -455.000
+		tc.right = -335.000
+		tc.bottom = -6.000
+		tc.top = 136.000
+		tc.mouseEnabled = true
+		tc.visible = false
+		tc.rotation = 8.000
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '图片'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.img = 0x56080001
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '编号'
+			tc.left = -30.000
+			tc.right = 30.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '0'
+			tc.font = 0x603c0000
+			tc.style = 4
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_3'
+		tc.left = -460.000
+		tc.right = -340.000
+		tc.bottom = -71.000
+		tc.top = 71.000
+		tc.mouseEnabled = true
+		tc.visible = false
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '图片'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.img = 0x56080001
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '编号'
+			tc.left = -30.000
+			tc.right = 30.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '0'
+			tc.font = 0x603c0000
+			tc.style = 4
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_4'
+		tc.left = -455.000
+		tc.right = -335.000
+		tc.bottom = -136.000
+		tc.top = 6.000
+		tc.mouseEnabled = true
+		tc.visible = false
+		tc.rotation = -8.000
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '图片'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.img = 0x56080001
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '编号'
+			tc.left = -30.000
+			tc.right = 30.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '0'
+			tc.font = 0x603c0000
+			tc.style = 4
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_5'
+		tc.left = -440.000
+		tc.right = -320.000
+		tc.bottom = -201.000
+		tc.top = -59.000
+		tc.mouseEnabled = true
+		tc.visible = false
+		tc.rotation = -16.000
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '图片'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.img = 0x56080001
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '编号'
+			tc.left = -30.000
+			tc.right = 30.000
+			tc.bottom = -20.000
+			tc.top = 20.000
+			tc.visible = false
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '0'
+			tc.font = 0x603c0000
+			tc.style = 4
+			tp = tc
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = '闪光'
+		tc.left = 178.000
+		tc.right = 322.000
+		tc.bottom = 47.500
+		tc.top = 212.500
+		tc.visible = false
+		tc.img = 0x33010001
+		tp = tc
+		tp = tp.parent
+		--end
+	tp = tp.parent
+	--end
+	tc = G.Entity()
+	tp.addChild(tc)
+	tc.name = '二区'
+	tc.left = -770.000
+	tc.right = -670.000
+	tc.bottom = -70.000
+	tc.top = 30.000
+	tc.visible = false
+	tp = tc
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_1'
+		tc.left = 320.000
+		tc.right = 440.000
+		tc.bottom = 59.000
+		tc.top = 201.000
+		tc.rotation = -16.000
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.Quad()
+				tp.addChild(tc)
+				tc.name = '图片'
+				tc.left = -60.000
+				tc.right = 60.000
+				tc.bottom = -71.000
+				tc.top = 71.000
+				tc.img = 0x56080001
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_2'
+		tc.left = 335.000
+		tc.right = 455.000
+		tc.bottom = -6.000
+		tc.top = 136.000
+		tc.rotation = -8.000
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.Quad()
+				tp.addChild(tc)
+				tc.name = '图片'
+				tc.left = -60.000
+				tc.right = 60.000
+				tc.bottom = -71.000
+				tc.top = 71.000
+				tc.img = 0x56080001
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_3'
+		tc.left = 340.000
+		tc.right = 460.000
+		tc.bottom = -71.000
+		tc.top = 71.000
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.Quad()
+				tp.addChild(tc)
+				tc.name = '图片'
+				tc.left = -60.000
+				tc.right = 60.000
+				tc.bottom = -71.000
+				tc.top = 71.000
+				tc.img = 0x56080001
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_4'
+		tc.left = 335.000
+		tc.right = 455.000
+		tc.bottom = -136.000
+		tc.top = 6.000
+		tc.rotation = 8.000
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.Quad()
+				tp.addChild(tc)
+				tc.name = '图片'
+				tc.left = -60.000
+				tc.right = 60.000
+				tc.bottom = -71.000
+				tc.top = 71.000
+				tc.img = 0x56080001
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = 'card_5'
+		tc.left = 320.000
+		tc.right = 440.000
+		tc.bottom = -201.000
+		tc.top = -59.000
+		tc.rotation = 16.000
+		tc.scaleX = 1.000
+		tc.scaleY = 1.000
+		tp = tc
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Entity()
+			tp.addChild(tc)
+			tc.name = '属性'
+			tc.left = -50.000
+			tc.right = 50.000
+			tc.bottom = -50.000
+			tc.top = 50.000
+			tp = tc
+				tc = G.Quad()
+				tp.addChild(tc)
+				tc.name = '图片'
+				tc.left = -60.000
+				tc.right = 60.000
+				tc.bottom = -71.000
+				tc.top = 71.000
+				tc.img = 0x56080001
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '力量'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 46.000
+				tc.top = 86.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '智慧'
+				tc.left = -60.000
+				tc.right = 0.000
+				tc.bottom = 14.000
+				tc.top = 54.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '速度'
+				tc.left = -80.000
+				tc.right = -20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+				tc = G.TextQuad()
+				tp.addChild(tc)
+				tc.name = '防御'
+				tc.left = -40.000
+				tc.right = 20.000
+				tc.bottom = 30.000
+				tc.top = 70.000
+				tc.scaleX = 0.500
+				tc.scaleY = 0.500
+				tc.text = '10'
+				tc.font = 0x603c0000
+				tc.style = 4
+				tp = tc
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+		tp = tp.parent
+		--end
+	tp = tp.parent
+	--end
+	tc = G.Entity()
+	tp.addChild(tc)
 	tc.name = '显示'
 	tc.left = -50.000
 	tc.right = 50.000
 	tc.bottom = -50.000
 	tc.top = 50.000
+	tc.visible = false
 	tp = tc
 		tc = G.TextQuad()
 		tp.addChild(tc)
@@ -2534,6 +2543,7 @@ tp = tc
 	tc.right = 50.000
 	tc.bottom = -50.000
 	tc.top = 50.000
+	tc.visible = false
 	tp = tc
 		tc = G.Quad()
 		tp.addChild(tc)
@@ -2566,10 +2576,10 @@ tp = tc
 	tc = G.TextQuad()
 	tp.addChild(tc)
 	tc.name = '取消'
-	tc.left = 272.000
-	tc.right = 472.000
-	tc.bottom = 132.000
-	tc.top = 232.000
+	tc.left = 275.000
+	tc.right = 475.000
+	tc.bottom = 160.000
+	tc.top = 260.000
 	tc.mouseEnabled = true
 	tc.visible = false
 	tc.scaleX = 0.500
@@ -2585,8 +2595,8 @@ tp = tc
 	tc.name = '关闭'
 	tc.pivotX = 0.000
 	tc.pivotY = 1.000
-	tc.left = 354.000
-	tc.right = 498.000
+	tc.left = 191.000
+	tc.right = 335.000
 	tc.bottom = -303.000
 	tc.top = -167.000
 	tc.mouseEnabled = true
@@ -2610,6 +2620,7 @@ tp = tc
 	tc.bottom = 46.000
 	tc.top = 182.000
 	tc.mouseEnabled = true
+	tc.visible = false
 	tc.scaleX = 0.500
 	tc.scaleY = 0.500
 	tc.text = '规则说明'
@@ -4043,6 +4054,7 @@ tp = tc
 	tc.bottom = 161.000
 	tc.top = 261.000
 	tc.mouseEnabled = true
+	tc.visible = false
 	tc.scaleX = 0.500
 	tc.scaleY = 0.500
 	tc.autosize = 1

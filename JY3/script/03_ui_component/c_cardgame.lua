@@ -21,6 +21,18 @@ function t:init()
     self.已放置 = 0
     self.选择卡片 = 0
     self.cardmod = {}
+    self.card = {}
+    for i = 1, 5 do
+        self.card[i] = self.一区.getChildAt(i - 1)
+    end
+    for i = 6, 10 do
+        self.card[i] = self.二区.getChildAt(i - 6)
+    end
+    self.cardX = {-380, -395, -400, -395, -380,380,395,400,395,380}
+    self.cardY = {130, 65, 0, -65, -130,130, 65, 0, -65, -130}
+    self.cardR = {16, 8, 0, -8, -16,16, 8, 0, -8, -16}
+    self:reSetPosition()
+    self.cardID = 0
 end
 function t:start()
     self.obj.getChildByName('等级').text = '卡片游戏等级：[07]'..G.call('get_cardgame_lv')
@@ -134,6 +146,80 @@ function t:刷新显示()
         end
     end
 end
+function t:reSetPosition(dur)
+    if dur ~= nil and dur > 0 then
+        for i = 1, 5 do
+            G.Tween('x', dur, self.card[i], self.cardX[i])
+            G.Tween('y', dur, self.card[i], self.cardY[i])
+            G.Tween('rotation', dur, self.card[i], self.cardR[i])
+        end
+    else
+        for i = 1, 5 do
+            self.card[i].x = self.cardX[i]
+            self.card[i].y = self.cardY[i]
+            self.card[i].rotation = self.cardR[i]
+        end
+    end
+end
+function t:highlighCard(cardID)
+    if cardID == self.curCardID then
+        return
+    end
+    if self.curCardID > 0 then
+        local i = self.curCardID
+        local dur = 250
+        -- G.Tween('x', dur, self.card[i], self.cardX[i])
+        self.card[i].x = self.cardX[i]
+        -- G.Tween('y', dur, self.card[i], self.cardY[i])
+        -- G.Tween('rotation', dur, self.card[i], self.cardR[i])
+    end
+    self.curCardID = cardID
+    do
+        local i = self.curCardID
+        local dur = 250
+        G.Tween('x', dur, self.card[i], self.cardX[i] * 1.2)
+        -- G.Tween('y', dur, self.card[i], self.cardY[i] * 1.2)
+        -- G.Tween('rotation', dur, self.card[i], self.cardR[i])
+    end
+end
+function t:zoomOut(i)
+    local dur = 100
+    if i > 10 then return end
+    print(i,self.card[i],self.cardX[i])
+    G.Tween('x', dur, self.card[i], self.cardX[i] * 1.05)
+    G.Tween('y', dur, self.card[i], self.cardY[i] * 1.05)
+    -- G.Tween('rotation', dur, self.card[i], self.cardR[i])
+    G.Tween('scaleX', dur, self.card[i], 1.1)
+    G.Tween('scaleY', dur, self.card[i], 1.1)
+end
+function t:zoomIn(i)
+    local dur = 200
+    if i > 10 then return end
+    G.Tween('x', dur, self.card[i], self.cardX[i])
+    -- self.card[i].x = self.cardX[i]
+    G.Tween('y', dur, self.card[i], self.cardY[i])
+    -- G.Tween('rotation', dur, self.card[i], self.cardR[i])
+    G.Tween('scaleX', dur, self.card[i], 1)
+    G.Tween('scaleY', dur, self.card[i], 1)
+end
+function t:rollOver(tar)
+    if tar.parent == self.一区 and  self.进程 == 3 then
+        local i = tar.getIndex() + 1
+        if i == self.cardID then
+            return
+        end
+        self:zoomOut(i)
+    end
+end
+function t:rollOut(tar)
+    if tar.parent == self.一区 and  self.进程 == 3 then
+        local i = tar.getIndex() + 1
+        if i == self.cardID then
+            return
+        end
+        self:zoomIn(i)
+    end
+end
 function t:click(tar)
     local 属性 = {'力量','智慧','防御','速度'}
     local o_cardhouse = G.QueryName(0x10220001)
@@ -172,6 +258,7 @@ function t:click(tar)
     if self.进程 == 1 then
         if tar == self.确认.getChildByName('按钮').getChildByName('是') then 
             local o_cardlist = G.QueryName(0x10200001)
+            self.二区.visible = true 
             for i = 1,5 do
                 local int_编号 = tonumber(self.一区.getChildByName('card_'..i).getChildByName('编号').text)
                 o_cardlist['位置_'..i] = int_编号
@@ -279,38 +366,22 @@ function t:click(tar)
         elseif tar == self.确认.getChildByName('按钮').getChildByName('否') then 
             self.确认.visible = false
         end
-        for i = 1,5 do
-            if   tar == self.一区.getChildByName('card_'..i).getChildByName('图片')   then 
-                local int_卡片 =  self.选择卡片
-                if self.选择卡片 == i then 
-                    return
-                end
-                self.一区.getChildByName('card_'..i).x = self.一区.getChildByName('card_'..i).x - 20
-                self.提示.getChildByName('文本').text = '选择卡片放置位置'
-                if int_卡片 > 0 then 
-                    self.一区.getChildByName('card_'..int_卡片).x = self.一区.getChildByName('card_'..int_卡片).x + 20
-                end
-                self.选择卡片 = i
+        if tar.parent == self.一区 then
+            local i = tar.getIndex() + 1
+            if self.cardID ~= i then
+                self:zoomIn(self.cardID)
+                self.cardID = i
+                self.选择卡片 = math.floor(i)
+            else
+                self:zoomIn(i)
+                self.选择卡片 = 0
+                self.cardID = 0
             end
         end
         if self.选择卡片 > 0 then 
             for i = 1,9 do
-                if tar == self.卡区.getChildByName('card_'..i).getChildByName('按钮')   then  
-                    self.一区.getChildByName('card_'..self.选择卡片).visible = false
-                    self.卡区.getChildByName('card_'..i).getChildByName('卡片').visible = true
-                    G.call('call_cardgame_pick',self.选择卡片,i)
-                    self.选择卡片 = 0
-                    self.进程 = 4
-                    self:卡区刷新()
-                    self.已放置 = self.已放置 +1
-                    if self.已放置 < 9 then 
-                        self.obj.getChildByName('轮换').getChildByName('一区').visible = false
-                        self.obj.getChildByName('轮换').getChildByName('二区').visible = true
-                        self.提示.getChildByName('文本').text = '等待[03]红方'..'[05]进行卡片放置'
-                    else
-                        self.obj.getChildByName('轮换').getChildByName('一区').visible = false
-                        self.obj.getChildByName('轮换').getChildByName('二区').visible = false
-                    end
+                if tar == self.卡区.getChildByName('card_'..i).getChildByName('按钮')   then 
+                    G.RunAction('play_card',i,tar,1)
                 end
             end
         end
@@ -321,5 +392,7 @@ function t:click(tar)
     if tar == self.说明.getChildByName('关闭') then 
         self.说明.visible = false
     end
+
+
 end
 return t
