@@ -456,11 +456,11 @@ t['通用_无尽抽卡'] = function(int_类型)
     end
     local int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
     if int_卡组 < 3 and  G.call('get_card_mod',int_卡片) then 
-        int_卡组 = int_卡组 - 1
+        int_卡组 = int_卡组 + 1
         int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
     end
     if int_卡组 < 3 and  G.call('get_card_mod',int_卡片) then 
-        int_卡组 = int_卡组 - 1
+        int_卡组 = int_卡组 + 1
         int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
     end
     G.call('add_card',int_卡片,1)
