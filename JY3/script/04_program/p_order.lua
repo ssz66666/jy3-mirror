@@ -1134,7 +1134,7 @@ t['call_cardgame'] = function()
                     end
                     break
                 end
-                if int_放置位置 < 9 then 
+                if int_放置位置 <= 9 then 
                     for j = int_放置位置+1,9 do 
                         if not c.卡区.getChildByName('card_'..j).getChildByName('卡片').visible then 
                             if G.call('call_cardgame_number',_放置卡组[i],j) > int_翻卡数 then 
