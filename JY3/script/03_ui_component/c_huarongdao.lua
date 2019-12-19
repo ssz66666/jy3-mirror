@@ -205,6 +205,7 @@ function t:click(tar)
         end
         if int_上 > 0  then
             if tar == self.按钮内.getChildByName(tostring(int_上)) or tar == self.按钮内.getChildByName(tostring(int_上 + 1)) then
+                print(int_上,int_上+1,G.call('通用_华容道版块可移动',int_上),G.call('通用_华容道版块可移动',int_上+1))
                 if G.call('通用_华容道版块可移动',int_上)  and G.call('通用_华容道版块可移动',int_上 + 1) then 
                     self['板块_'..tostring(self.当前按钮)] = int_上 
                     self.当前按钮 = 0 
