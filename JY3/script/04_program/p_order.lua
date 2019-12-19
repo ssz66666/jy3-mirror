@@ -698,11 +698,16 @@ t['call_cardgame_number'] = function(int_比拼卡,int_比拼位置)
         table.insert(_编号,c.卡区.getChildByName('card_'..i).getChildByName('卡片').getChildByName('编号').text)
     end
     local int_翻牌 = 0
+    local int_上 = 0
+    local int_下 = 0
+    local int_左 = 0
+    local int_右 = 0
     if int_比拼位置 - 1 > 0 then
         local int_卡片 = int_比拼位置 - 1
         if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
             if c.cardmod[int_比拼卡].速度 > c.cardmod[tonumber(_编号[int_卡片])].防御 then
                 int_翻牌 = int_翻牌 + 1
+                int_左 = 1
             end
         end 
     end
@@ -711,6 +716,7 @@ t['call_cardgame_number'] = function(int_比拼卡,int_比拼位置)
         if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
             if c.cardmod[int_比拼卡].防御 > c.cardmod[tonumber(_编号[int_卡片])].速度 then
                 int_翻牌 = int_翻牌 + 1
+                int_右 = 1
             end
         end 
     end
@@ -719,16 +725,170 @@ t['call_cardgame_number'] = function(int_比拼卡,int_比拼位置)
         if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
             if c.cardmod[int_比拼卡].力量 > c.cardmod[tonumber(_编号[int_卡片])].智慧 then
                 int_翻牌 = int_翻牌 + 1
+                int_上 = 1
             end
         end 
     end
-    if int_比拼位置 + 3 < 9 then
+    if int_比拼位置 + 3 <= 9 then
         local int_卡片 = int_比拼位置 + 3
         if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
             if c.cardmod[int_比拼卡].智慧 > c.cardmod[tonumber(_编号[int_卡片])].力量 then
                 int_翻牌 = int_翻牌 + 1
+                int_下 = 1
             end
         end 
+    end
+    if G.call('get_cardgame_lv') > 5 then 
+        --右下
+        if int_比拼位置%3 > 0 and int_比拼位置 + 3 <= 9   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置+1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置+3)).getChildByName('卡片').visible then 
+                if (c.cardmod[int_比拼卡].防御 +  c.cardmod[int_比拼卡].智慧) == c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 + c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 and int_右 == 0 then 
+                        int_右 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 and int_下 == 0 then 
+                        int_下 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+                if c.cardmod[int_比拼卡].防御 == c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 and int_右 == 0 then 
+                        int_右 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属  and int_下 == 0 then 
+                        int_下 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+            end
+        end
+        --左下
+        if (int_比拼位置 - 1) %3 > 0 and int_比拼位置 + 3 <= 9   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置-1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置+3)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].速度 + c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 == c.cardmod[int_比拼卡].智慧 + c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 and int_左 == 0 then 
+                        int_左 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 and int_下 == 0 then 
+                        int_下 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+                if c.cardmod[int_比拼卡].速度 == c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 and int_左 == 0 then 
+                        int_左 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 and int_下 == 0 then 
+                        int_下 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+            end
+        end
+        --左上 
+        if (int_比拼位置 - 1) %3 > 0 and int_比拼位置 - 3 > 0   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置-1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-3)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].速度 + c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 == c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 and int_左 == 0 then 
+                        int_左 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 and int_上 == 0 then 
+                        int_上 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+                if c.cardmod[int_比拼卡].速度 == c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 and c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 and int_左 == 0 then 
+                        int_左 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 and int_上 == 0 then 
+                        int_上 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+            end
+        end
+        --右上 
+        if int_比拼位置%3 > 0 and int_比拼位置 - 3 > 0   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置+1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-3)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].防御 + c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 == c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 and int_右 == 0 then 
+                        int_右 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 and int_上 == 0 then 
+                        int_上 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+                if c.cardmod[int_比拼卡].防御 == c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 and c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 and int_右 == 0 then 
+                        int_右 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属  and int_上 == 0 then 
+                        int_上 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+            end
+        end
+        --上下
+        if int_比拼位置 + 3 <= 9 and int_比拼位置 - 3 > 0   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置+3)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-3)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置+3])].智慧 == c.cardmod[int_比拼卡].智慧 + c.cardmod[tonumber(_编号[int_比拼位置-3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 and int_上 == 0 then 
+                        int_上 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 and int_下 == 0 then 
+                        int_下 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+                if c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置+3])].智慧 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置-3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 and int_list_1 == 0 and int_上 == 0 then 
+                        int_上 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 and int_list_2 == 0 and int_下 == 0 then 
+                        int_下 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+            end
+        end
+        --左右
+        if (int_比拼位置 - 1) %3 > 0 and int_比拼位置%3 > 0   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置+1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-1)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].防御 + c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 == c.cardmod[int_比拼卡].速度 + c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 and int_左 == 0 then 
+                        int_左 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 and int_右 == 0 then 
+                        int_右 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+                if c.cardmod[int_比拼卡].防御 == c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 and c.cardmod[int_比拼卡].速度 == c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 and int_list_1 == 0 and int_左 == 0 then 
+                        int_左 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 and int_list_2 == 0 and int_右 == 0 then 
+                        int_右 = 1
+                        int_翻牌 = int_翻牌 + 1
+                    end
+                end
+            end
+        end
     end
     return int_翻牌
 end 
@@ -782,12 +942,140 @@ t['call_cardgame_pick'] = function(int_比拼卡,int_比拼位置)
     if int_比拼位置 + 3 <= 9 then
         local int_卡片 = int_比拼位置 + 3
         if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
-            print('智慧比拼',c.cardmod[int_比拼卡].智慧,c.cardmod[tonumber(_编号[int_卡片])].力量)
             if c.cardmod[int_比拼卡].智慧 > c.cardmod[tonumber(_编号[int_卡片])].力量 then
                 c.cardmod[tonumber(_编号[int_卡片])].归属 = int_归属
             end
         end 
     end
+    if G.call('get_cardgame_lv') > 5 then 
+        --右下
+        if int_比拼位置%3 > 0 and int_比拼位置 + 3 <= 9   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置+1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置+3)).getChildByName('卡片').visible then
+                if c.cardmod[int_比拼卡].防御 + c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 == c.cardmod[int_比拼卡].智慧 + c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 = int_归属
+                    end
+                end
+                if c.cardmod[int_比拼卡].防御 == c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 = int_归属
+                    end
+                end
+            end
+        end
+        --左下
+        if (int_比拼位置 - 1) %3 > 0 and int_比拼位置 + 3 <= 9   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置-1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置+3)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].速度 + c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 == c.cardmod[int_比拼卡].智慧 + c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 = int_归属
+                    end
+                end
+                if c.cardmod[int_比拼卡].速度 == c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 = int_归属
+                    end
+                end
+            end
+        end
+        --左上 
+        if (int_比拼位置 - 1) %3 > 0 and int_比拼位置 - 3 > 0   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置-1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-3)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].速度 + c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 == c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 = int_归属
+                    end
+                end
+                if c.cardmod[int_比拼卡].速度 == c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 and c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 = int_归属
+                    end
+                end
+            end
+        end
+        --右上 
+        if int_比拼位置%3 > 0 and int_比拼位置 - 3 > 0   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置+1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-3)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].防御 + c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 == c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 = int_归属
+                    end
+                end
+                if c.cardmod[int_比拼卡].防御 == c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 and c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 = int_归属
+                    end
+                end
+            end
+        end
+        --上下
+        if int_比拼位置 + 3 <= 9 and int_比拼位置 - 3 > 0   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置+3)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-3)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置+3])].智慧 == c.cardmod[int_比拼卡].智慧 + c.cardmod[tonumber(_编号[int_比拼位置-3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 = int_归属
+                    end
+                end
+                if c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置+3])].智慧 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置-3])].力量 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 = int_归属
+                    end
+                end
+            end
+        end
+        --左右
+        if (int_比拼位置 - 1) %3 > 0 and int_比拼位置%3 > 0   then
+            if c.卡区.getChildByName('card_'..(int_比拼位置+1)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-1)).getChildByName('卡片').visible then 
+                if c.cardmod[int_比拼卡].防御 + c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 == c.cardmod[int_比拼卡].速度 + c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 = int_归属
+                    end
+                end
+                if c.cardmod[int_比拼卡].防御 == c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 and c.cardmod[int_比拼卡].速度 == c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 then
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 = int_归属
+                    end
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 then 
+                        c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 = int_归属
+                    end
+                end
+            end
+        end
+    end
+
     c.cardmod[int_比拼卡].已放置 = 1
 end
 t['call_cardgame'] = function()
