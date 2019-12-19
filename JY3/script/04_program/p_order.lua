@@ -606,11 +606,13 @@ t['add_card'] = function(int_卡片,int_数量)
             int_卡片获取数量 = int_卡片获取数量 + 1 
         end
     end
-    if int_卡片获取数量 < #o_cardhouse.卡片 then 
-        o_achieve.进度列表[5].完成 = 0
-    end
     local int_卡牌等级 = G.call('get_cardgame_lv')
     local o_achieve = G.QueryName(0x1017001c)
+    if int_卡片获取数量 < #o_cardhouse.卡片  and o_achieve.进度列表[5].完成 == 1  then 
+        o_achieve.进度列表[5].完成 = 0
+        o_achieve.进度列表[5].当前进度 = 0
+        G.call('set_newpoint',81,G.call('get_newpoint',81)+ 1   )
+    end
     if o_achieve.进度列表[5].完成 == 0 and int_卡片获取数量 == #o_cardhouse.卡片 then
         o_achieve.进度列表[5].完成 = 1
         o_achieve.进度列表[5].当前进度 = 1 
