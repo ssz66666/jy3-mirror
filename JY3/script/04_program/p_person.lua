@@ -2776,8 +2776,8 @@ t['锻造师-BT']=function()
             for i = 63,67 do
                 G.call('add_card',i,1)
             end
-            G.call('add_card',36,1)
-            G.call('add_card',37,1)
+            G.call('add_card',138,1)
+            G.call('add_card',137,1)
             G.call('add_card',54,1)
             G.call('add_card',55,1)
             G.misc().再识BT = 1
