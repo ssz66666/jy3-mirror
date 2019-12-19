@@ -1682,7 +1682,7 @@ t['聚贤庄任务_昔日皇妃']=function()
             G.call('learnmagic',190)
             G.call("talk",'',86,'   这是我近些年自创一门有趣的功夫，叫做【左右互博】，攻敌时可以心分二用，让你的功夫陡然提升一倍。但是这个功夫须得装备上才能有用，而且还和其他内功心法相互冲突，这却是这门功夫的缺憾之处。',1,1)    
         end
-        if G.call('get_point',8) == 5 and G.call('get_magic',231) == 0 and  G.call('in_team',6) then 
+        if G.call('get_point',8) == 5  and  G.call('in_team',6) then 
             G.call("talk",'',86,'   小[兄弟]呀，我再带你去看好玩的！',1,1)
             G.call('地图_进入地图','百花谷',123,44)
             G.call("talk",'',86,'   小[兄弟]你看我这的玉蜂！',1,1)
