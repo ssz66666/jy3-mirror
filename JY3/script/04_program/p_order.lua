@@ -504,8 +504,13 @@ t['通用_分配卡片']=function()
     local int_卡片 = 63
     local o_cardlist = G.QueryName(0x10200001)
     for i = 1,5 do
-        int_随机数 = math.random(10000 -   int_卡片游戏等级*250  -  math.floor(int_卡片游戏等级/2)*500  )
-        if int_随机数 <= 100 then 
+        if int_卡片游戏等级 < 6 then 
+            int_随机数 = math.random(10000 -   int_卡片游戏等级*500  -  math.floor(int_卡片游戏等级/2)*1000  )
+        else
+            int_卡片游戏等级 = int_卡片游戏等级 - 5
+            int_随机数 = math.random(5000 -   int_卡片游戏等级*200  )
+        end
+        if int_随机数 <= 50 then 
             int_卡组 = 1
         elseif int_随机数 > 50 and int_随机数 <= 250 then 
             int_卡组 = 2
