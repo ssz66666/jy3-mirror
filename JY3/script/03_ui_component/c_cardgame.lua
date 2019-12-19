@@ -22,6 +22,7 @@ function t:init()
     self.cardmod = {}
 end
 function t:start()
+    self.obj.getChildByName('等级').text = '卡片游戏等级：[07]'..G.call('get_cardgame_lv')
     local 属性 = {'力量','智慧','防御','速度'}
     local o_cardhouse = G.QueryName(0x10220001)
     local o_cardlist = G.QueryName(0x10200001)

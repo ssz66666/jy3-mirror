@@ -4015,4 +4015,22 @@ tp = tc
 	tp = tc
 	tp = tp.parent
 	--end
+	tc = G.TextQuad()
+	tp.addChild(tc)
+	tc.name = '等级'
+	tc.pivotX = 0.000
+	tc.left = -411.000
+	tc.right = -89.000
+	tc.bottom = 161.000
+	tc.top = 261.000
+	tc.mouseEnabled = true
+	tc.scaleX = 0.500
+	tc.scaleY = 0.500
+	tc.autosize = 1
+	tc.text = '卡片游戏LV：[07]0'
+	tc.font = 0x60320000
+	tc.style = 5
+	tp = tc
+	tp = tp.parent
+	--end
 tp.c_cardgame = setmetatable({}, c_cardgame)
