@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_scrollview = require 'c_scrollview'
 local c_cardgame = require 'c_cardgame'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -2600,6 +2600,25 @@ tp = tc
 	tp = tc
 	tp = tp.parent
 	--end
+	tc = G.TextQuad()
+	tp.addChild(tc)
+	tc.name = '规则'
+	tc.pivotX = 0.000
+	tc.pivotY = 1.000
+	tc.left = -414.000
+	tc.right = -270.000
+	tc.bottom = 46.000
+	tc.top = 182.000
+	tc.mouseEnabled = true
+	tc.scaleX = 0.500
+	tc.scaleY = 0.500
+	tc.text = '规则说明'
+	tc.wrap = true
+	tc.font = 0x61400000
+	tc.style = 11
+	tp = tc
+	tp = tp.parent
+	--end
 	tc = G.Entity()
 	tp.addChild(tc)
 	tc.name = '筛子区'
@@ -4031,6 +4050,59 @@ tp = tc
 	tc.font = 0x60320000
 	tc.style = 5
 	tp = tc
+	tp = tp.parent
+	--end
+	tc = G.Entity()
+	tp.addChild(tc)
+	tc.name = '说明'
+	tc.left = -427.000
+	tc.right = 427.000
+	tc.bottom = -240.000
+	tc.top = 240.000
+	tc.mouseEnabled = true
+	tc.visible = false
+	tp = tc
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = '背景'
+		tc.left = -418.000
+		tc.right = 186.000
+		tc.bottom = -236.000
+		tc.top = 180.000
+		tc.img = 0x56059002
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.TextQuad()
+		tp.addChild(tc)
+		tc.name = '文本'
+		tc.pivotX = 0.000
+		tc.pivotY = 1.000
+		tc.left = -392.000
+		tc.right = 678.000
+		tc.bottom = -631.000
+		tc.top = 169.000
+		tc.scaleX = 0.500
+		tc.scaleY = 0.500
+		tc.text = '[03]【规则说明】[br][05]比大小：[br][04]        该规则下相邻的卡牌相邻数字进行大小比较，如果是对方卡牌且比对方大则对方卡牌暂时变成本方；[br][05]相同:[br]        [04]该规则下比较放置卡牌区周围上下左右二个范围卡牌数值，如果邻接二个位置数字皆相同，则该位置卡牌都可北翻开；[br][05]相加[br][04]      该规则相对于相同规则不同的是，则是邻接的数字相加，对比二个位置的和，如果和相同则也会被翻；[br][05]胜负说明：[br][04]      当放完卡牌哪方多则哪方胜利，初始只有比大小规则，游戏超过5级追加相同与相加规则；'
+		tc.wrap = true
+		tc.font = 0x60320000
+		tc.align = 1
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.Quad()
+		tp.addChild(tc)
+		tc.name = '关闭'
+		tc.left = 140.500
+		tc.right = 173.500
+		tc.bottom = 144.500
+		tc.top = 175.500
+		tc.mouseEnabled = true
+		tc.img = 0x56160014
+		tp = tc
+		tp = tp.parent
+		--end
 	tp = tp.parent
 	--end
 tp.c_cardgame = setmetatable({}, c_cardgame)

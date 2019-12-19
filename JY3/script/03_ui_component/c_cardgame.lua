@@ -5,6 +5,7 @@
 local G = require "gf"
 local t = G.com()
 function t:init()
+    self.说明 = self.obj.getChildByName('说明')
     self.提示 = self.obj.getChildByName('提示')
     self.确认 = self.obj.getChildByName('确认')
     self.一区 = self.obj.getChildByName('一区')
@@ -312,6 +313,12 @@ function t:click(tar)
                 end
             end
         end
+    end
+    if tar == self.obj.getChildByName('规则') then 
+        self.说明.visible = true
+    end
+    if tar == self.说明.getChildByName('关闭') then 
+        self.说明.visible = false
     end
 end
 return t
