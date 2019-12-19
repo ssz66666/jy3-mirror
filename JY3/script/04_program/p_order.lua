@@ -745,7 +745,7 @@ t['call_cardgame_pick'] = function(int_比拼卡,int_比拼位置)
             end
         end 
     end
-    if int_比拼位置 + 3 < 9 then
+    if int_比拼位置 + 3 <= 9 then
         local int_卡片 = int_比拼位置 + 3
         if c.卡区.getChildByName('card_'..int_卡片).getChildByName('卡片').visible and int_归属 ~= c.cardmod[tonumber(_编号[int_卡片])].归属 then 
             print('智慧比拼',c.cardmod[int_比拼卡].智慧,c.cardmod[tonumber(_编号[int_卡片])].力量)

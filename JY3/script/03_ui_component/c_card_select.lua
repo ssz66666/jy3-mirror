@@ -27,24 +27,25 @@ function t:卡片显示(int_显示类型)
     for i = int_序列,int_序列 + 4 do 
         local i_card = o_cardhouse.卡片[o_cardlist['位置_'..i]].卡片
         local o_card = G.QueryName(i_card)
+        local p = i
         if int_显示类型 == 1 then
-            i = i - 5 
+            p = p - 5 
         end
-        self.卡区.getChildByName('card_'..i).getChildByName('图片').img = o_card.头像
+        self.卡区.getChildByName('card_'..p).getChildByName('图片').img = o_card.头像
         if o_cardhouse.卡片[o_cardlist['位置_'..i]]['hold'] and o_cardhouse.卡片[o_cardlist['位置_'..i]].数量 == 0 then 
-            self.卡区.getChildByName('card_'..i).getChildByName('名称').text = '[04]'..o_card.姓名
+            self.卡区.getChildByName('card_'..p).getChildByName('名称').text = '[04]'..o_card.姓名
         elseif not o_cardhouse.卡片[o_cardlist['位置_'..i]]['hold'] and o_cardhouse.卡片[o_cardlist['位置_'..i]].数量 == 0 then 
-            self.卡区.getChildByName('card_'..i).getChildByName('名称').text = '[03]'..o_card.姓名
+            self.卡区.getChildByName('card_'..p).getChildByName('名称').text = '[03]'..o_card.姓名
         elseif o_cardhouse.卡片[o_cardlist['位置_'..i]].数量 > 0 then 
-            self.卡区.getChildByName('card_'..i).getChildByName('名称').text = '[05]'..o_card.姓名
+            self.卡区.getChildByName('card_'..p).getChildByName('名称').text = '[05]'..o_card.姓名
         end
         for j = 1,4 do 
             if o_card[属性[j]] == 10 then
-                self.卡区.getChildByName('card_'..i).getChildByName('属性').getChildByName(属性[j]).text = '[03]'..o_card[属性[j]]
+                self.卡区.getChildByName('card_'..p).getChildByName('属性').getChildByName(属性[j]).text = '[03]'..o_card[属性[j]]
             elseif  o_card[属性[j]] <= 5 then
-                self.卡区.getChildByName('card_'..i).getChildByName('属性').getChildByName(属性[j]).text = '[01]'..o_card[属性[j]] 
+                self.卡区.getChildByName('card_'..p).getChildByName('属性').getChildByName(属性[j]).text = '[01]'..o_card[属性[j]] 
             else
-                self.卡区.getChildByName('card_'..i).getChildByName('属性').getChildByName(属性[j]).text = o_card[属性[j]] 
+                self.卡区.getChildByName('card_'..p).getChildByName('属性').getChildByName(属性[j]).text = o_card[属性[j]] 
             end 
         end
     end
