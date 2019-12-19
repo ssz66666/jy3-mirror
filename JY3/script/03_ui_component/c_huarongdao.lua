@@ -26,6 +26,7 @@ function t:init()
 end
 function t:start()
     self.模式 = math.ceil(math.random(100)/20)
+    self.模式 = 5
     if self.模式 == 2  then
         self.板块_7 = 9
         self.板块_8 = 12
