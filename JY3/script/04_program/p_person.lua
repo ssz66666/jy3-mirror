@@ -2767,7 +2767,7 @@ t['锻造师-BT']=function()
         G.call("talk",'？？？？',390,'   现在不要打搅我，我正在想怎么转换和重新打造这个世界的神奇装备！',1,1) 
         G.call("talk",'',0,'   真是个BT！',0,0)
     else
-        if not G.misc().再BT then  
+        if not G.misc().再识BT then  
             G.call("talk",'',0,'   你是谁？怎么在这里。。。，看着很奇怪的感觉？！',0,0)
             G.call("talk",'？？？？',390,'   你看我像谁我就是谁，我嗖一下就到这里来了！',1,1) 
             G.call("talk",'',0,'   那你能做些什么呢？',0,0)
@@ -2776,6 +2776,10 @@ t['锻造师-BT']=function()
             for i = 63,67 do
                 G.call('add_card',i,1)
             end
+            G.call('add_card',36,1)
+            G.call('add_card',37,1)
+            G.call('add_card',54,1)
+            G.call('add_card',55,1)
             G.misc().再识BT = 1
             G.call('通用_锻造卡片选择')
         else
