@@ -853,11 +853,11 @@ t['call_cardgame_number'] = function(int_比拼卡,int_比拼位置)
                     end
                 end
                 if c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置+3])].智慧 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置-3])].力量 then
-                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 and int_list_1 == 0 and int_上 == 0 then 
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属  and int_上 == 0 then 
                         int_上 = 1
                         int_翻牌 = int_翻牌 + 1
                     end
-                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属 and int_list_2 == 0 and int_下 == 0 then 
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-3])].归属  and int_下 == 0 then 
                         int_下 = 1
                         int_翻牌 = int_翻牌 + 1
                     end
@@ -878,11 +878,11 @@ t['call_cardgame_number'] = function(int_比拼卡,int_比拼位置)
                     end
                 end
                 if c.cardmod[int_比拼卡].防御 == c.cardmod[tonumber(_编号[int_比拼位置+1])].速度 and c.cardmod[int_比拼卡].速度 == c.cardmod[tonumber(_编号[int_比拼位置-1])].防御 then
-                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 and int_list_1 == 0 and int_左 == 0 then 
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+1])].归属 and  int_左 == 0 then 
                         int_左 = 1
                         int_翻牌 = int_翻牌 + 1
                     end
-                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 and int_list_2 == 0 and int_右 == 0 then 
+                    if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置-1])].归属 and  int_右 == 0 then 
                         int_右 = 1
                         int_翻牌 = int_翻牌 + 1
                     end
