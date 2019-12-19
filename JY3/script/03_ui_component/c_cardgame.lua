@@ -299,6 +299,7 @@ function t:click(tar)
                     self.一区.getChildByName('card_'..self.选择卡片).visible = false
                     self.卡区.getChildByName('card_'..i).getChildByName('卡片').visible = true
                     G.call('call_cardgame_pick',self.选择卡片,i)
+                    self.选择卡片 = 0
                     self.进程 = 4
                     self:卡区刷新()
                     self.已放置 = self.已放置 +1
