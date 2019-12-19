@@ -1087,6 +1087,7 @@ t['call_cardgame'] = function()
     local o_cardlist = G.QueryName(0x10200001)
     local o_cardhouse = G.QueryName(0x10220001)
     local 属性 = {'力量','速度','防御','智慧'}
+    G.Play(0x49010095, 1,true,1) 
     G.wait1('选择卡牌结束')
     ui.getChildByName('筛子区').visible = true
     G.wait_time(500)
