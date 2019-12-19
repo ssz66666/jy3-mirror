@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
+local c_card = require 'c_card'
 local c_button = require 'c_button'
 local c_scrollview = require 'c_scrollview'
-local c_card = require 'c_card'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -126,7 +126,7 @@ tp = tc
 		--end
 		tc = G.TextQuad()
 		tp.addChild(tc)
-		tc.name = '速度'
+		tc.name = '智慧'
 		tc.left = 326.000
 		tc.right = 386.000
 		tc.bottom = 60.000
@@ -140,7 +140,7 @@ tp = tc
 		--end
 		tc = G.TextQuad()
 		tp.addChild(tc)
-		tc.name = '智慧'
+		tc.name = '速度'
 		tc.left = 290.000
 		tc.right = 350.000
 		tc.bottom = 110.000
