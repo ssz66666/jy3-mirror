@@ -504,6 +504,7 @@ t['通用_分配卡片']=function()
     local int_卡片 = 63
     local o_cardlist = G.QueryName(0x10200001)
     for i = 1,5 do
+        int_卡片游戏等级 = G.call('get_cardgame_lv')
         if int_卡片游戏等级 < 6 then 
             int_随机数 = math.random(10000 -   int_卡片游戏等级*500  -  math.floor(int_卡片游戏等级/2)*1000  )
         else
