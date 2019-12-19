@@ -31,13 +31,12 @@ function t:卡片显示(int_显示类型)
             i = i - 5 
         end
         self.卡区.getChildByName('card_'..i).getChildByName('图片').img = o_card.头像
-        self.卡区.getChildByName('card_'..i).getChildByName('名称').text = o_card.姓名
         if o_cardhouse.卡片[o_cardlist['位置_'..i]]['hold'] and o_cardhouse.卡片[o_cardlist['位置_'..i]].数量 == 0 then 
-            self.卡区.getChildByName('card_'..i).getChildByName('名称').style = 4
+            self.卡区.getChildByName('card_'..i).getChildByName('名称').text = '[04]'..o_card.姓名
         elseif not o_cardhouse.卡片[o_cardlist['位置_'..i]]['hold'] and o_cardhouse.卡片[o_cardlist['位置_'..i]].数量 == 0 then 
-            self.卡区.getChildByName('card_'..i).getChildByName('名称').style = 3
+            self.卡区.getChildByName('card_'..i).getChildByName('名称').text = '[03]'..o_card.姓名
         elseif o_cardhouse.卡片[o_cardlist['位置_'..i]].数量 > 0 then 
-            self.卡区.getChildByName('card_'..i).getChildByName('名称').style = 5
+            self.卡区.getChildByName('card_'..i).getChildByName('名称').text = '[05]'..o_card.姓名
         end
         for j = 1,4 do 
             if o_card[属性[j]] == 10 then
