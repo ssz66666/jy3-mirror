@@ -175,7 +175,6 @@ end
 function t:zoomOut(i)
     local dur = 100
     if i > 10 then return end
-    print(i,self.card[i],self.cardX[i])
     G.Tween('x', dur, self.card[i], self.cardX[i] * 1.05)
     G.Tween('y', dur, self.card[i], self.cardY[i] * 1.05)
     -- G.Tween('rotation', dur, self.card[i], self.cardR[i])

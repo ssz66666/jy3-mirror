@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
+local c_scrollview = require 'c_scrollview'
 local c_button = require 'c_button'
 local c_cardgame = require 'c_cardgame'
-local c_scrollview = require 'c_scrollview'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -1944,18 +1944,6 @@ tp = tc
 		tc.top = 201.000
 		tc.rotation = -16.000
 		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
 			tc = G.Entity()
 			tp.addChild(tc)
 			tc.name = '属性'
@@ -2035,6 +2023,18 @@ tp = tc
 				tp = tc
 				tp = tp.parent
 				--end
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
 			tp = tp.parent
 			--end
 		tp = tp.parent
@@ -2048,18 +2048,6 @@ tp = tc
 		tc.top = 136.000
 		tc.rotation = -8.000
 		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
 			tc = G.Entity()
 			tp.addChild(tc)
 			tc.name = '属性'
@@ -2139,6 +2127,18 @@ tp = tc
 				tp = tc
 				tp = tp.parent
 				--end
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
 			tp = tp.parent
 			--end
 		tp = tp.parent
@@ -2151,18 +2151,6 @@ tp = tc
 		tc.bottom = -71.000
 		tc.top = 71.000
 		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
 			tc = G.Entity()
 			tp.addChild(tc)
 			tc.name = '属性'
@@ -2242,6 +2230,18 @@ tp = tc
 				tp = tc
 				tp = tp.parent
 				--end
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
 			tp = tp.parent
 			--end
 		tp = tp.parent
@@ -2255,18 +2255,6 @@ tp = tc
 		tc.top = 6.000
 		tc.rotation = 8.000
 		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
 			tc = G.Entity()
 			tp.addChild(tc)
 			tc.name = '属性'
@@ -2346,6 +2334,18 @@ tp = tc
 				tp = tc
 				tp = tp.parent
 				--end
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
 			tp = tp.parent
 			--end
 		tp = tp.parent
@@ -2361,18 +2361,6 @@ tp = tc
 		tc.scaleX = 1.000
 		tc.scaleY = 1.000
 		tp = tc
-			tc = G.Quad()
-			tp.addChild(tc)
-			tc.name = '背景'
-			tc.left = -60.000
-			tc.right = 60.000
-			tc.bottom = -71.000
-			tc.top = 71.000
-			tc.visible = false
-			tc.img = 0x56160044
-			tp = tc
-			tp = tp.parent
-			--end
 			tc = G.Entity()
 			tp.addChild(tc)
 			tc.name = '属性'
@@ -2452,6 +2440,18 @@ tp = tc
 				tp = tc
 				tp = tp.parent
 				--end
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
 			tp = tp.parent
 			--end
 		tp = tp.parent
@@ -4222,9 +4222,9 @@ tp = tc
 		tc.top = 169.000
 		tc.scaleX = 0.500
 		tc.scaleY = 0.500
-		tc.text = '[03]【规则说明】[br][05]比大小：[br][04]        该规则下相邻的卡牌相邻数字进行大小比较，如果是对方卡牌且比对方大则对方卡牌暂时变成本方；[br][05]相同:[br]        [04]该规则下比较放置卡牌区周围上下左右二个范围卡牌数值，如果邻接二个位置数字皆相同，则该位置卡牌都可被翻开；[br][05]相加[br][04]        该规则相对于相同规则不同的是，则是邻接的数字相加，对比二个位置的和，如果和相同则也会被翻；[br][05]胜负说明：[br][04]       当放完卡牌哪方多则哪方胜利，初始只有比大小规则，游戏超过5级追加相同与相加规则；'
+		tc.text = '[03]【规则说明】[br][05]比大小：[br][04]        该规则下相邻的卡牌相邻数字进行大小比较，如果是对方卡牌且比对方大则对方卡牌暂时变成本方；[br][05]相同:[br]        [04]该规则下比较放置卡牌区周围上下左右二个范围卡牌数值，如果邻接二个位置数字皆相同，则该位置卡牌都可被翻开；[br][05]相加[br][04]        该规则相对于相同规则不同的是，则是邻接的数字相加，对比二个位置的和，如果和相同则也会被翻；[br][05]胜负说明：[br][04]       当放完卡牌哪方多则哪方胜利，初始只有比大小规则，游戏超过5级追加相同与相加规则；游戏超过9级相加和相同翻开的牌将连锁和周围的卡牌再次进行比大小！'
 		tc.wrap = true
-		tc.font = 0x60320000
+		tc.font = 0x602f0000
 		tc.align = 1
 		tp = tc
 		tp = tp.parent
