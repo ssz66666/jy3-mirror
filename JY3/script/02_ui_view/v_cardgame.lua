@@ -2691,6 +2691,7 @@ tp = tc
 	tc.right = 50.000
 	tc.bottom = -45.000
 	tc.top = 55.000
+	tc.visible = false
 	tp = tc
 		tc = G.Quad()
 		tp.addChild(tc)

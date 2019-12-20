@@ -35,6 +35,7 @@ function t:init()
     self.cardID = 0
 end
 function t:start()
+    self.卡选区.visible = true
     self.obj.getChildByName('等级').text = '卡片游戏等级：[07]'..G.call('get_cardgame_lv')
     local 属性 = {'力量','智慧','防御','速度'}
     local o_cardhouse = G.QueryName(0x10220001)
