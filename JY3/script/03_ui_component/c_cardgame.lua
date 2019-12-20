@@ -337,11 +337,13 @@ function t:click(tar)
                     }
                 )
             end
+            G.Play(0x49011003, 1,false,100) 
             G.trig_event('选择卡牌结束')
             self.进程 = 2
         elseif tar == self.确认.getChildByName('按钮').getChildByName('否') then
             local int_编号五  = tonumber(self.一区.getChildByName('card_5').getChildByName('编号').text)
             local int_位置 = G.call('get_card_dress',int_编号五)
+            G.Play(0x49011003, 1,false,100) 
             self.卡片组[int_位置].数量 = self.卡片组[int_位置].数量 + 1
             self:卡牌显示()
             self.一区.getChildByName('card_'..5).visible = false
@@ -355,6 +357,7 @@ function t:click(tar)
                     self.卡片组[int_位置].数量 = self.卡片组[int_位置].数量 + 1
                     self:卡牌显示()
                     self.一区.getChildByName('card_'..i).visible = false
+                    G.Play(0x49011003, 1,false,100) 
                     break
                 end
             end 
@@ -370,6 +373,7 @@ function t:click(tar)
         if tar.parent == self.一区 then
             local i = tar.getIndex() + 1
             if self.cardID ~= i then
+                G.Play(0x49011003, 1,false,100) 
                 self:zoomIn(self.cardID)
                 self.cardID = i
                 self.选择卡片 = math.floor(i)
@@ -383,6 +387,7 @@ function t:click(tar)
             for i = 1,9 do
                 if tar == self.卡区.getChildByName('card_'..i).getChildByName('按钮')   then 
                     G.RunAction('play_card',i,tar,1)
+                    G.Play(0x49010035, 1,false,100) 
                 end
             end
         end

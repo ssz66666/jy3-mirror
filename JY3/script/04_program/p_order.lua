@@ -1373,8 +1373,9 @@ t['call_cardgame'] = function()
             end
             G.wait_time(500)
             local int_卡位置 = int_放置卡 - 5
+               G.Play(0x49011003, 1,false,100) 
             c:zoomOut(int_放置卡)
-            local tar = c.卡区.getChildByName('card_'..int_最终放置位置).getChildByName('按钮') 
+            local tar = c.卡区.getChildByName('card_'..int_最终放置位置).getChildByName('按钮')
             G.call('play_card',int_最终放置位置,tar,2,int_卡位置)
         end
         if  c.已放置 == 9   then
@@ -1430,6 +1431,7 @@ t['play_card'] = function(i,tar,int_阵营,int_卡位置)
         x, y = c.二区.globalToLocal(x, y) 
         p = int_卡位置 + 5
     end
+    G.Play(0x49010035, 1,false,100) 
     G.Tween('x', dur, c.card[p], x)--tar.x)
     -- c.card[i].x = c.cardX[i]
     G.Tween('y', dur, c.card[p], y)

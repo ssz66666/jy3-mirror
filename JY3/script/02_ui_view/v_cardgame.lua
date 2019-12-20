@@ -2465,7 +2465,6 @@ tp = tc
 	tc.right = 50.000
 	tc.bottom = -50.000
 	tc.top = 50.000
-	tc.visible = false
 	tp = tc
 		tc = G.TextQuad()
 		tp.addChild(tc)
