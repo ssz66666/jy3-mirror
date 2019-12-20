@@ -29,7 +29,7 @@ function t:start()
         end
         table.insert(self['卡组_'..o_card.品级], i) 
     end
-    self.obj.getChildByName('数量').text = '[05]总数：[03]'..int_数量..'[04]/241'
+    self.obj.getChildByName('数量').text = '[05]总数：[03]'..int_数量..'[04]/'..#o_cardhouse.卡片
 end
 function t:刷新显示()
     local o_cardhouse = G.QueryName(0x10220001)
