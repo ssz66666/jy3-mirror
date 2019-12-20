@@ -77,7 +77,7 @@ function t:start()
         local o_card = G.QueryName(i_card)
         self.二区.getChildByName('card_'..i).getChildByName('属性').getChildByName('图片').img = o_card.头像
         if int_卡牌等级 > 5 then 
-            self.二区.getChildByName('card_'..i).getChildByName('背景 ').visible = true
+            self.二区.getChildByName('card_'..i).getChildByName('背景').visible = true
         end
         for j = 1,4 do 
             if o_card[属性[j]] == 10 then
