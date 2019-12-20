@@ -507,23 +507,23 @@ t['通用_分配卡片']=function()
     for i = 1,5 do
         int_卡片游戏等级 = G.call('get_cardgame_lv')
         if int_卡片游戏等级 < 6 then 
-            int_随机数 = math.random(15000 -   int_卡片游戏等级*500  -  math.floor(int_卡片游戏等级/2)*1000  -int_周目* 200)
+            int_随机数 = math.random(10000 -   int_卡片游戏等级*200  -  math.floor(int_卡片游戏等级/2)*100  -int_周目* 50)
         else
             int_卡片游戏等级 = int_卡片游戏等级 - 5
-            int_随机数 = math.random(5000 -   int_卡片游戏等级*100 -int_周目* 5 )
+            int_随机数 = math.random(10000 -   int_卡片游戏等级*200  -  math.floor(int_卡片游戏等级/2)*100  -int_周目* 50)
         end
         if int_随机数 <= 50 then 
             int_卡组 = 1
         elseif int_随机数 > 50 and int_随机数 <= 250 then 
             int_卡组 = 2
         elseif int_随机数 > 250 and int_随机数 <= 1000 then 
-            int_卡组 = 3
-        elseif int_随机数 > 1000 and int_随机数 <= 2000 then 
-            int_卡组 = 4
-        elseif int_随机数 > 2000 and int_随机数 <= 5000 then 
-            int_卡组 = 5
-        elseif  int_随机数 <= 10000 then 
             int_卡组 = 6
+        elseif int_随机数 > 1000 and int_随机数 <= 2000 then 
+            int_卡组 = 3
+        elseif int_随机数 > 2000 and int_随机数 <= 5000 then 
+            int_卡组 = 4
+        elseif  int_随机数 <= 10000 then 
+            int_卡组 = 5
         end
         while true do
             int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
