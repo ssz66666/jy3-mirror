@@ -12,11 +12,20 @@ function t:init()
     self.二区 = self.obj.getChildByName('二区')
     self.卡区 = self.obj.getChildByName('卡区')
     self.卡选区 = self.obj.getChildByName('卡选区')
+    self.按钮 = self.卡选区.getChildByName('按钮')
     self.卡组 = self.卡选区.getChildByName('卡组')
     self.展示卡组 = {}
+    self.已选卡组 = {}
+    self.卡组_1 = {}
+    self.卡组_2 = {}
+    self.卡组_3 = {}
+    self.卡组_4 = {}
+    self.卡组_5 = {}
+    self.卡组_6 = {}
     self.卡片组 = {}
+    self.当前卡片组 = 0
     self.游戏卡组 = {}
-    self.进程 = 0
+    self.进程 = 1
     self.先开 = 0
     self.已放置 = 0
     self.选择卡片 = 0
@@ -39,16 +48,26 @@ function t:start()
     local 属性 = {'力量','智慧','防御','速度'}
     local o_cardhouse = G.QueryName(0x10220001)
     local o_cardlist = G.QueryName(0x10200001)
+    local o_cardhouse = G.QueryName(0x10220001)
     for i = 1,#o_cardhouse.卡片 do
-        if o_cardhouse.卡片[i].数量 > 0 then 
-            local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
-            table.insert(self.卡片组, {
+        local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
+        if  o_cardhouse.卡片[i].数量 > 0 then 
+            table.insert(self['卡组_'..o_card.品级], {
                 卡片 = o_cardhouse.卡片[i].卡片,
                 数量 = o_cardhouse.卡片[i].数量,
+                位置 = 1 + #self['卡组_'..o_card.品级],
                 编号 = i,
             }
-        ) 
+            )
         end
+    
+    end
+    for i = 1,5 do 
+        table.insert(self.已选卡组, {
+            卡组 = 0,
+            位置 = 0,
+        }
+        )
     end
     local int_卡牌等级 = G.call('get_cardgame_lv')
     self.obj.getChildByName('等级').text = '卡片游戏等级：[07]'..int_卡牌等级
@@ -70,40 +89,6 @@ function t:start()
             end 
         end
     end
-    local h = math.floor(#self.卡片组/9 + 1)
-    self.卡组.getChildByName('content').height = 71*(h+1) + (h - 1)*4
-    local height = self.卡组.getChildByName('content').height/2
-    for x = 1, 9, 1 do
-        for y = 1, h, 1 do
-            local ui_sub = G.Clone(self.卡组.getChildByName('卡底'))
-            ui_sub.x = -270 + (x - 1) * 65 
-            ui_sub.y = -40  + height +(y - 1) * -75
-            self.卡组.getChildByName('content').addChild(ui_sub)
-            ui_sub.visible = false
-            self.展示卡组[(y - 1) * 9 + x] = ui_sub
-        end
-    end
-    self:卡牌显示()
-end
-function t:卡牌显示()
-    local 属性 = {'力量','智慧','防御','速度'}
-    for i  = 1,#self.卡片组 do 
-        local i_card = self.卡片组[i].卡片
-        local o_card = G.QueryName(i_card)
-        self.展示卡组[i].visible = true 
-        self.展示卡组[i].getChildByName('图片').img = o_card.头像
-        self.展示卡组[i].getChildByName('属性').getChildByName('数量').text = self.卡片组[i].数量
-        for j = 1,#属性 do
-            if o_card[属性[j]] == 10 then
-                self.展示卡组[i].getChildByName('属性').getChildByName(属性[j]).text = '[03]'..o_card[属性[j]]
-            elseif  o_card[属性[j]] <= 5 then
-                self.展示卡组[i].getChildByName('属性').getChildByName(属性[j]).text = '[01]'..o_card[属性[j]] 
-            else
-                self.展示卡组[i].getChildByName('属性').getChildByName(属性[j]).text = o_card[属性[j]] 
-            end 
-        end
-    end
-    self.进程 = 1
 end
 function t:卡区刷新()
     for i = 1,9 do
@@ -225,34 +210,99 @@ function t:rollOut(tar)
         self:zoomIn(i)
     end
 end
+function t:卡牌显示()
+    local o_cardhouse = G.QueryName(0x10220001)
+    if self.当前卡片组 <= 0 then
+        self.卡组.visible = false
+        --self.卡组.getChildByName('content').getChildByName('闪光').visible = false
+        return 
+    end
+    local 卡片组 = self['卡组_'..self.当前卡片组]
+    if #卡片组 <= 0 then 
+        return 
+    end
+    local h = math.floor(#self['卡组_'..self.当前卡片组]/9 + 1)
+    self.卡组.getChildByName('content').height = 71*(h + 1) + (h - 1)*5
+    local height = self.卡组.getChildByName('content').height/2
+    self.显示数量 = #卡片组
+    self.展示卡组 = {}
+    for x = 1, 9, 1 do
+        for y = 1, h, 1 do
+            local ui_sub = G.Clone(self.卡组.getChildByName('卡底'))
+            ui_sub.x = -270 + (x - 1) * 65 
+            ui_sub.y = -40  + height +(y - 1) * -75
+            self.卡组.getChildByName('content').addChild(ui_sub)
+            ui_sub.visible = false
+            self.展示卡组[(y - 1) * 9 + x] = ui_sub
+        end
+    end
+    local 属性 = {'力量','智慧','防御','速度'}
+    for i = 1,#self.展示卡组 do 
+        self.展示卡组[i].visible = false
+    end
+    for i  = 1,#self['卡组_'..self.当前卡片组] do 
+        local i_card = self['卡组_'..self.当前卡片组][i].卡片
+        local o_card = G.QueryName(i_card)
+        self.展示卡组[i].visible = true 
+        self.展示卡组[i].getChildByName('图片').img = o_card.头像
+        self.展示卡组[i].getChildByName('属性').getChildByName('数量').text = self['卡组_'..self.当前卡片组][i].数量
+        for j = 1,#属性 do
+            if o_card[属性[j]] == 10 then
+                self.展示卡组[i].getChildByName('属性').getChildByName(属性[j]).text = '[03]'..o_card[属性[j]]
+            elseif  o_card[属性[j]] <= 5 then
+                self.展示卡组[i].getChildByName('属性').getChildByName(属性[j]).text = '[01]'..o_card[属性[j]] 
+            else
+                self.展示卡组[i].getChildByName('属性').getChildByName(属性[j]).text = o_card[属性[j]] 
+            end 
+        end
+    end
+
+end
 function t:click(tar)
     local 属性 = {'力量','智慧','防御','速度'}
     local o_cardhouse = G.QueryName(0x10220001)
-    for i  = 1,#self.卡片组 do
-        if tar ==  self.展示卡组[i].getChildByName('图片') then
-            if self.卡片组[i].数量 > 0 then 
-                self.卡片组[i].数量 = self.卡片组[i].数量 - 1
-                self:卡牌显示()
-                local o_card = G.QueryName(self.卡片组[i].卡片)
-                local n = 0
-                for j = 1,5 do
-                    if  not self.一区.getChildByName('card_'..j).visible then 
-                        n = j
-                        break
-                    end
-                end 
-                self.一区.getChildByName('card_'..n).visible = true
-                self.一区.getChildByName('card_'..n).getChildByName('编号').text = self.卡片组[i].编号
-                self.一区.getChildByName('card_'..n).getChildByName('图片').img = o_card.头像
-                for j = 1,4 do 
-                    if o_card[属性[j]] == 10 then
-                        self.一区.getChildByName('card_'..n).getChildByName('属性').getChildByName(属性[j]).text = '[03]'..o_card[属性[j]]
-                    elseif  o_card[属性[j]] <= 5 then
-                        self.一区.getChildByName('card_'..n).getChildByName('属性').getChildByName(属性[j]).text = '[01]'..o_card[属性[j]] 
-                    else
-                        self.一区.getChildByName('card_'..n).getChildByName('属性').getChildByName(属性[j]).text = o_card[属性[j]] 
+    local 品级 = {'传奇','宗师','英雄','优秀','一般','普通'}
+    for i = 1,#品级 do
+        if tar ==  self.按钮.getChildByName(品级[i]) then
+            self.按钮.getChildByName('闪光').visible = true
+            self.按钮.getChildByName('闪光').x = self.按钮.getChildByName(品级[i]).x 
+            self.按钮.getChildByName('闪光').y = self.按钮.getChildByName(品级[i]).y 
+            self.当前卡片组 = i
+            self.卡组.visible = true
+            self.卡组.getChildByName('content').y = 0
+            self.卡组.getChildByName('content').removeAllChildren()
+            self:卡牌显示()
+        end
+    end
+    if self.当前卡片组 > 0 then 
+        for i  = 1,#self['卡组_'..self.当前卡片组] do
+            if tar ==  self.展示卡组[i].getChildByName('图片') then
+                if self['卡组_'..self.当前卡片组][i].数量 > 0 then 
+                    self['卡组_'..self.当前卡片组][i].数量 = self['卡组_'..self.当前卡片组][i].数量 - 1
+                    self:卡牌显示()
+                    local o_card = G.QueryName(self['卡组_'..self.当前卡片组][i].卡片)
+                    local n = 0
+                    for j = 1,5 do
+                        if  not self.一区.getChildByName('card_'..j).visible then 
+                            n = j
+                            self.已选卡组[j].卡组 = self.当前卡片组
+                            self.已选卡组[j].位置 = i
+                            break
+                        end
                     end 
-                end
+                    self.一区.getChildByName('card_'..n).visible = true
+                    self.一区.getChildByName('card_'..n).getChildByName('编号').text = self['卡组_'..self.当前卡片组][i].编号
+                    self.一区.getChildByName('card_'..n).getChildByName('图片').img = o_card.头像
+                    for j = 1,4 do 
+                        if o_card[属性[j]] == 10 then
+                            self.一区.getChildByName('card_'..n).getChildByName('属性').getChildByName(属性[j]).text = '[03]'..o_card[属性[j]]
+                        elseif  o_card[属性[j]] <= 5 then
+                            self.一区.getChildByName('card_'..n).getChildByName('属性').getChildByName(属性[j]).text = '[01]'..o_card[属性[j]] 
+                        else
+                            self.一区.getChildByName('card_'..n).getChildByName('属性').getChildByName(属性[j]).text = o_card[属性[j]] 
+                        end 
+                    end
+                end    
             end
         end
     end
@@ -345,10 +395,10 @@ function t:click(tar)
             G.trig_event('选择卡牌结束')
             self.进程 = 2
         elseif tar == self.确认.getChildByName('按钮').getChildByName('否') then
-            local int_编号五  = tonumber(self.一区.getChildByName('card_5').getChildByName('编号').text)
-            local int_位置 = G.call('get_card_dress',int_编号五)
             G.Play(0x49011003, 1,false,100) 
-            self.卡片组[int_位置].数量 = self.卡片组[int_位置].数量 + 1
+            local int_卡组 = self.已选卡组[5].卡组 
+            local int_位置 = self.已选卡组[5].位置 
+            self['卡组_'..int_卡组][int_位置].数量 = self['卡组_'..int_卡组][int_位置].数量 + 1
             self:卡牌显示()
             self.一区.getChildByName('card_'..5).visible = false
             self.确认.visible = false
@@ -356,9 +406,9 @@ function t:click(tar)
         if tar == self.obj.getChildByName('取消') then
             for i = 5,1,-1 do
                 if  self.一区.getChildByName('card_'..i).visible then 
-                    local int_编号  = tonumber(self.一区.getChildByName('card_'..i).getChildByName('编号').text)
-                    local int_位置 = G.call('get_card_dress',int_编号)
-                    self.卡片组[int_位置].数量 = self.卡片组[int_位置].数量 + 1
+                    local int_卡组 = self.已选卡组[i].卡组 
+                    local int_位置 = self.已选卡组[i].位置 
+                    self['卡组_'..int_卡组][int_位置].数量 = self['卡组_'..int_卡组][int_位置].数量 + 1
                     self:卡牌显示()
                     self.一区.getChildByName('card_'..i).visible = false
                     G.Play(0x49011003, 1,false,100) 

@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
-local c_card = require 'c_card'
-local c_button = require 'c_button'
 local c_scrollview = require 'c_scrollview'
+local c_button = require 'c_button'
+local c_card = require 'c_card'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)

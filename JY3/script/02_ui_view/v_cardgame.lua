@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_cardgame = require 'c_cardgame'
 local c_button = require 'c_button'
+local c_cardgame = require 'c_cardgame'
 local c_scrollview = require 'c_scrollview'
 local tp,tc,com,tk
 tc = G.Entity()
@@ -2690,7 +2690,6 @@ tp = tc
 	tc.right = 50.000
 	tc.bottom = -45.000
 	tc.top = 55.000
-	tc.visible = false
 	tp = tc
 		tc = G.Quad()
 		tp.addChild(tc)
@@ -2712,6 +2711,18 @@ tp = tc
 		tc.bottom = -236.000
 		tc.top = 180.000
 		tc.img = 0x56059002
+		tp = tc
+		tp = tp.parent
+		--end
+		tc = G.loadUI('v_background')
+		tp.addChild(tc)
+		tc.name = '底板'
+		tc.pivotX = 0.000
+		tc.pivotY = 1.000
+		tc.left = -414.500
+		tc.right = 175.500
+		tc.bottom = 117.000
+		tc.top = 174.000
 		tp = tc
 		tp = tp.parent
 		--end
@@ -2826,10 +2837,11 @@ tp = tc
 		tc = G.loadUI('v_scrollview')
 		tp.addChild(tc)
 		tc.name = '卡组'
-		tc.left = -402.500
-		tc.right = 194.500
-		tc.bottom = -230.500
-		tc.top = 176.500
+		tc.left = -414.500
+		tc.right = 182.500
+		tc.bottom = -233.000
+		tc.top = 107.000
+		tc.visible = false
 		tp = tc
 			tc = tp.getChildByName('content')
 			if tc then
@@ -3940,6 +3952,122 @@ tp = tc
 		com = tp.c_scrollview
 		com['autoMove'] =false
 		com['hideSlider'] =true
+		tp = tp.parent
+		--end
+		tc = G.Entity()
+		tp.addChild(tc)
+		tc.name = '按钮'
+		tc.left = -33.000
+		tc.right = 67.000
+		tc.bottom = -94.000
+		tc.top = 6.000
+		tp = tc
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '普通'
+			tc.left = -450.000
+			tc.right = -270.000
+			tc.bottom = 140.000
+			tc.top = 240.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '普通'
+			tc.font = 0x60370000
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '一般'
+			tc.left = -360.000
+			tc.right = -180.000
+			tc.bottom = 140.000
+			tc.top = 240.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '一般'
+			tc.font = 0x60370000
+			tc.style = 6
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '优秀'
+			tc.left = -270.000
+			tc.right = -90.000
+			tc.bottom = 140.000
+			tc.top = 240.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '优秀'
+			tc.font = 0x60370000
+			tc.style = 4
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '英雄'
+			tc.left = -180.000
+			tc.right = 0.000
+			tc.bottom = 139.000
+			tc.top = 239.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '英雄'
+			tc.font = 0x60370000
+			tc.style = 7
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '宗师'
+			tc.left = -90.000
+			tc.right = 90.000
+			tc.bottom = 140.000
+			tc.top = 240.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '宗师'
+			tc.font = 0x60370000
+			tc.style = 8
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '传奇'
+			tc.right = 180.000
+			tc.bottom = 140.000
+			tc.top = 240.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '传奇'
+			tc.font = 0x60370000
+			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '闪光'
+			tc.left = -410.000
+			tc.right = -310.000
+			tc.bottom = 170.000
+			tc.top = 210.000
+			tc.visible = false
+			tc.img = 0x33010001
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 	tp = tp.parent
