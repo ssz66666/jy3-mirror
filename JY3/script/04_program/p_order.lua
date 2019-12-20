@@ -474,7 +474,6 @@ t['get_cardgame_lv']=function()
         end
     end
     local int_等级 = math.floor(int_分数/300)
-    int_等级 = 10
     return int_等级
 end
 t['get_card_dress']=function(int_编号)
