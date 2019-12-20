@@ -21,10 +21,15 @@ function t:init()
 end
 function t:start()
     local o_cardhouse = G.QueryName(0x10220001)
+    local int_数量 = 0
     for i = 1,#o_cardhouse.卡片 do
         local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
+        if o_cardhouse.卡片[i]['hold']  then
+            int_数量 = int_数量 + 1
+        end
         table.insert(self['卡组_'..o_card.品级], i) 
     end
+    self.obj.getChildByName('数量').text = '[05]总数：[03]'..int_数量..'[04]/241'
 end
 function t:刷新显示()
     local o_cardhouse = G.QueryName(0x10220001)

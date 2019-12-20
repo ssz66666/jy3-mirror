@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_scrollview = require 'c_scrollview'
 local c_button = require 'c_button'
+local c_scrollview = require 'c_scrollview'
 local c_card = require 'c_card'
 local tp,tc,com,tk
 tc = G.Entity()
@@ -456,6 +456,23 @@ tp = tc
 		tp = tc
 		tp = tp.parent
 		--end
+	tp = tp.parent
+	--end
+	tc = G.TextQuad()
+	tp.addChild(tc)
+	tc.name = '数量'
+	tc.pivotX = 0.000
+	tc.left = 170.000
+	tc.right = 467.000
+	tc.bottom = -237.000
+	tc.top = -197.000
+	tc.scaleX = 0.500
+	tc.scaleY = 0.500
+	tc.autosize = 1
+	tc.text = '总数：[04]241/241'
+	tc.font = 0x60320000
+	tc.style = 5
+	tp = tc
 	tp = tp.parent
 	--end
 tp.c_card = setmetatable({}, c_card)
