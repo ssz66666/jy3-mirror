@@ -3575,7 +3575,7 @@ t['指令_备份基础属性']=function() --
 	if #o_cardhouse.卡片 > 0 then 
 		for i = 1,#o_cardhouse.卡片 do
 			if o_cardhouse.卡片[i].数量 > 0 then
-				int_卡片数量 = int_卡片数量 + o_cardhouse.卡片[i].数量 
+				o_cardhouse.卡片[i].数量 = 0
 			end
 		end
 	end
