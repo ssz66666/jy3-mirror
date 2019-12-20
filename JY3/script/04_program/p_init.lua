@@ -72,11 +72,6 @@ t['初始化'] = function()
 	G.misc().出师 = nil
 	G.misc().双十一礼包 = nil
 	G.misc().一鸣惊人 = nil
-	-- do
-		
-	-- 	G.addUI('v_cardgame',true)      --开始游戏界面  
-	-- 	return
-	-- end
 	G.call('通用_存档',0)
 	G.start_program("地图系统_初始化地图系统")
 	G.start_program('地图系统_事件响应')

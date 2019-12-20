@@ -3579,7 +3579,7 @@ t['指令_备份基础属性']=function() --
 			end
 		end
 	end
-    G.call('set_newpoint',83,-1000 +int_卡片数量 )
+    G.call('set_newpoint',83,-1000 -int_卡片数量 )
     G.misc().检测_1010 = 1
 end 
 t['get_newpoint']=function(int_代码) --取得主角副属性
