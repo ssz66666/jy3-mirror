@@ -36,7 +36,6 @@ function t:init()
 end
 function t:start()
     self.卡选区.visible = true
-    self.obj.getChildByName('等级').text = '卡片游戏等级：[07]'..G.call('get_cardgame_lv')
     local 属性 = {'力量','智慧','防御','速度'}
     local o_cardhouse = G.QueryName(0x10220001)
     local o_cardlist = G.QueryName(0x10200001)
@@ -51,11 +50,16 @@ function t:start()
         ) 
         end
     end
+    local int_卡牌等级 = G.call('get_cardgame_lv')
+    self.obj.getChildByName('等级').text = '卡片游戏等级：[07]'..int_卡牌等级
     for i = 1,5 do 
         local n = i+5
         local i_card = o_cardhouse.卡片[o_cardlist['位置_'..n]].卡片
         local o_card = G.QueryName(i_card)
         self.二区.getChildByName('card_'..i).getChildByName('属性').getChildByName('图片').img = o_card.头像
+        if int_卡牌等级 > 5 then 
+            self.二区.getChildByName('card_'..i).getChildByName('背景 ').visible = true
+        end
         for j = 1,4 do 
             if o_card[属性[j]] == 10 then
                 self.二区.getChildByName('card_'..i).getChildByName('属性').getChildByName(属性[j]).text = '[03]'..o_card[属性[j]]
