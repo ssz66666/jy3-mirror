@@ -1408,7 +1408,7 @@ t['call_cardgame'] = function()
         ui.getChildByName('结果').visible = true
         if  result == 1 then
             ui.getChildByName('结果').img = 0x5616004c
-            G.Play(0x4901000c, 1,false,100) 
+            G.Play(0x49010035, 1,false,100) 
         elseif  result == 2 then
             ui.getChildByName('结果').img = 0x5616004d
             G.Play(0x4901000d, 1,false,100) 
