@@ -420,7 +420,6 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-    
 end
 t['通用_无尽抽卡'] = function(int_类型)
     local card = G.DBTable('o_card')
@@ -5298,7 +5297,7 @@ t['通用_检测装备']=function()
         G.call('通用_强退游戏',9999)
     end
 end
-t['produce_equip']=function(i_equip_装备,int_数量,int_随机类型,int_品质级别,int_递增属性) 
+t['produce_equip']=function(i_equip_装备,int_数量,int_随机类型,int_品质级别,int_递增属性,int_宝物类型) 
     if not i_equip_装备 then return end
     local i_equip =  i_equip_装备
     local o_equip_子物品 = G.QueryName(i_equip)
@@ -5314,7 +5313,7 @@ t['produce_equip']=function(i_equip_装备,int_数量,int_随机类型,int_品�
                 local o_equip_物品 = G.QueryName(i_equip)
                 local str_品质 = {'普通的','華麗的','璀璨的','五彩的','傳家的'}	
                 o_equip_子物品 = o_equip_物品
-                G.call('功能_物品转换',i_equip,int_随机类型,int_品质级别,int_递增属性)
+                G.call('功能_物品转换',i_equip,int_随机类型,int_品质级别,int_递增属性,int_宝物类型)
 				if o_equip_物品.套装 > 0 then 
                     if o_equip_物品.套装 == 1 then
                         o_equip_物品.名称 = '游俠之'..o_equip_物品.名称
@@ -5452,7 +5451,7 @@ t['功能_周目套装成就记录']=function()
     end
 
 end
-t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级别,int_递增属性)
+t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级别,int_递增属性,int_宝物类型)
     local o_equip_物品 = G.QueryName(i_equip_装备)
     local str = {'生命','内力','拆招','搏击','闪躲','内功','轻身','减伤','左右','斗转'}
     local str_品质 = {'普通的','華麗的','璀璨的','五彩的','傳家的'}				
@@ -5502,6 +5501,9 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
 	if o_equip_物品.套装 > 0 then 
         o_equip_物品.品质 = 4
         o_equip_物品.装备类型 = 4
+    end
+    if int_宝物类型 == 1 then
+        o_equip_物品.品质 = 5 
     end
     local o_equip = {}
     local o_equip_mod = {}
@@ -5988,7 +5990,7 @@ t['通用_替换装备']=function(i_role,i_equip)
     G.call('add_role',int_队员编号,15,int_生命)
     G.call('add_role',int_队员编号,14,int_内力)
 end
-t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_品质级别,int_递增属性)
+t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_品质级别,int_递增属性,int_宝物类型,int_套装)
     local o_store = G.QueryName(0x10190001)
     local int_继承个数 = 0
     for i = 1,#o_store.装备 do
@@ -6038,6 +6040,9 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
         int_几率 = G.call('通用_取宝物随机')
     else
         int_几率 = math.random(100)
+    end
+    if int_宝物类型 == 1 then
+        int_级别 = 5 
     end
     if int_类型 > 3 then
         if int_随机类型 == 1 then 
@@ -6110,8 +6115,53 @@ t['通用_抽礼物']=function(int_类型,int_随机类型,int_通关级别,int_
             int_礼物 = math.max(1,6*int_几率/100) + 34
         end
     end
+    if int_宝物类型 == 2 then
+        if int_类型 == 1 then 
+            if  int_套装 == 1 then
+                int_礼物 = 10
+            elseif int_套装 == 2 then
+                int_礼物 = 11
+            elseif int_套装 == 3 then
+                int_礼物 = 12
+            elseif int_套装 == 4 then
+                int_礼物 = 13
+            elseif int_套装 == 5 then
+                int_礼物 = 14
+            elseif int_套装 == 6 then
+                int_礼物 = 15
+            end
+        elseif int_类型 == 2 then 
+            if  int_套装 == 1 then
+                int_礼物 = 36
+            elseif int_套装 == 2 then
+                int_礼物 = 38
+            elseif int_套装 == 3 then
+                int_礼物 = 39
+            elseif int_套装 == 4 then
+                int_礼物 = 37
+            elseif int_套装 == 5 then
+                int_礼物 = 40
+            elseif int_套装 == 6 then
+                int_礼物 = 35
+            end
+        elseif int_类型 == 3 then 
+            if  int_套装 == 1 then
+                int_礼物 = 25
+            elseif int_套装 == 2 then
+                int_礼物 = 24
+            elseif int_套装 == 3 then
+                int_礼物 = 26
+            elseif int_套装 == 4 then
+                int_礼物 = 29
+            elseif int_套装 == 5 then
+                int_礼物 = 27
+            elseif int_套装 == 6 then
+                int_礼物 = 28
+            end
+        end
+    end
     local i_equip = 0x10180000 + int_礼物
-    G.call('produce_equip',i_equip,1,int_随机类型,int_品质级别,int_递增属性)
+    G.call('produce_equip',i_equip,1,int_随机类型,int_品质级别,int_递增属性,int_宝物类型,int_套装)
 end
 t['通用_发放礼包']=function()
     if G.misc().双十一礼包 == nil or (G.misc().双十一礼包 == 1 and G.call('get_point',4) < 50) then

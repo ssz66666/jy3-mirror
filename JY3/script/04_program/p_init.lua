@@ -240,12 +240,17 @@ t['地图系统_防修改监控'] = function()
 	local card = G.DBTable('o_cardhouse')
 	local o_cardhouse = G.QueryName(0x10220001)
 	if #o_cardhouse.卡片 > 0 then 
+		local int_卡片超量 = 0
 		for i = 1,#o_cardhouse.卡片 do
+			local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
 			if o_cardhouse.卡片[i].数量 > 0 then
 				int_卡片数量 = int_卡片数量 + o_cardhouse.卡片[i].数量 
 			end
+			if o_cardhouse.卡片[i].数量 > 1 and o_card.品级 <= 2 then
+				int_卡片超量 = 1
+			end
 		end
-		if int_卡片数量 ~= math.abs(G.call('get_newpoint',83)+1000) then 
+		if int_卡片数量 ~= math.abs(G.call('get_newpoint',83)+1000) or int_卡片超量 == 1  then 
 			--print('物品数量',int_物品数量,G.call('get_newpoint',76))
 			int_检测 = int_检测 + 1
 		end

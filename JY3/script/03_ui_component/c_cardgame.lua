@@ -45,8 +45,8 @@ function t:init()
 end
 function t:start()
     self.卡选区.visible = true
+    self.二区.visible = false
     local 属性 = {'力量','智慧','防御','速度'}
-    local o_cardhouse = G.QueryName(0x10220001)
     local o_cardlist = G.QueryName(0x10200001)
     local o_cardhouse = G.QueryName(0x10220001)
     for i = 1,#o_cardhouse.卡片 do

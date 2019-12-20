@@ -2790,10 +2790,10 @@ t['锻造师-BT']=function()
     G.call('all_over')
 end
 t['通用_锻造卡片选择']=function()
-    G.call("talk",'？？？？',390,'   你是要进行锻造还是和我来玩玩卡片游戏？',1,1)
+    G.call("talk",'？？？？',390,'   你是要进行锻造还是和我来玩玩卡片游戏？当然你还可以用收集的卡片与我换神奇装备或者神奇宝石？',1,1)
     local int_选项 = 0       
     while int_选项 == 0 do
-        int_选项 = G.call("menu",'',0,'',0,0,{"1,还是锻造吧","2,玩玩卡片游戏","3,没有事情"},0)
+        int_选项 = G.call("menu",'',0,'',0,0,{"1,还是锻造吧","2,玩玩卡片游戏","3,卡片兑换","4,没有事情"},0)
         if int_选项 == 1 then 
             G.call('通用_锻造')
         elseif int_选项 == 2 then
@@ -2814,7 +2814,88 @@ t['通用_锻造卡片选择']=function()
             else
                 G.call("talk",'？？？？',390,'   你还不够卡片进行游戏，等你有卡片再来吧！',1,1)
             end 
-
+        elseif int_选项 == 3 then
+            local 卡组_1 = {}
+            local 卡组_2 = {}
+            local o_cardhouse = G.QueryName(0x10220001)
+            local int_宗师 = 0
+            local int_传奇 = 0
+            for i = 1,#o_cardhouse.卡片 do
+                local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
+                if  o_card.品级 == 1    then 
+                    if  o_cardhouse.卡片[i].数量 > 0 then
+                        int_传奇 = int_传奇 + 1
+                    end
+                    table.insert(卡组_1, {
+                        卡片 = o_cardhouse.卡片[i].卡片,
+                        编号 = i,
+                    }
+                    )
+                end
+                if  o_card.品级 == 2    then 
+                    if  o_cardhouse.卡片[i].数量 > 0 then
+                        int_宗师 = int_宗师 + 1
+                    end
+                    table.insert(卡组_2, {
+                        卡片 = o_cardhouse.卡片[i].卡片,
+                        编号 = i,
+                    }
+                    )
+                end
+            end
+            G.call('all_over')
+            G.call("talk",'？？？？',390,'   你要换取什么?',1,1)
+            local int_选项 = 0       
+            while int_选项 == 0 do
+                int_选项 = G.call("menu",'',0,'',0,0,{"1,全套传奇卡片换一套套装","2,全套宗师卡片换取一件传家","3,全部传奇卡片换取神奇宝石","4,全部宗师卡片换取神奇宝石","5,没有事情"},0)
+                if int_选项 == 1 then 
+                    if int_传奇 == #卡组_1  and not G.misc().传奇换取 then
+                        for i = 1,#卡组_1  do 
+                            G.call('add_card',卡组_1[i].编号,-o_cardhouse.卡片[卡组_1[i].编号].数量)
+                        end
+                        G.call("talk",'？？？？',390,'   我就收下你这些卡片，见证奇迹的时候到了！',1,1)
+                        local int_套装 =  math.ceil(3*G.call('通用_取随机')/100)
+                        for j = 1,3 do 
+                            G.call('通用_抽礼物',j,1,0,0,0,2,int_套装)
+                        end
+                        G.misc().传奇换取 = 1
+                    else
+                        G.call("talk",'？？？？',390,'   你还不够条件，下次再来！',1,1)
+                    end
+                elseif int_选项 == 2 then 
+                    if int_宗师 == #卡组_2  and not G.misc().宗师换取 then
+                        for i = 1,#卡组_2  do 
+                            G.call('add_card',卡组_2[i].编号,-o_cardhouse.卡片[卡组_2[i].编号].数量)
+                        end
+                        G.call("talk",'？？？？',390,'   我就收下你这些卡片，见证奇迹的时候到了！',1,1)
+                        G.call('通用_抽礼物',9,1,0,0,0,1)
+                        G.misc().宗师换取 = 1
+                    else
+                        G.call("talk",'？？？？',390,'   你还不够条件，下次再来！',1,1)
+                    end
+                elseif int_选项 == 3 then 
+                    if int_传奇 > 0 then
+                        for i = 1,#卡组_1  do 
+                            G.call('add_card',卡组_1[i].编号,-o_cardhouse.卡片[卡组_1[i].编号].数量)
+                        end
+                        G.call("talk",'？？？？',390,'   我就收下你这些卡片，见证奇迹的时候到了！',1,1)
+                        G.call('add_item',340,int_传奇*40)
+                    else
+                        G.call("talk",'？？？？',390,'   你还不够条件，下次再来！',1,1)
+                    end
+                elseif int_选项 == 4 then 
+                    if int_宗师 > 0 then
+                        for i = 1,#卡组_2  do 
+                            G.call('add_card',卡组_2[i].编号,-o_cardhouse.卡片[卡组_2[i].编号].数量)
+                        end
+                        G.call("talk",'？？？？',390,'   我就收下你这些卡片，见证奇迹的时候到了！',1,1)
+                        G.call('add_item',340,int_宗师*20)
+                    else
+                        G.call("talk",'？？？？',390,'   你还不够条件，下次再来！',1,1)
+                    end
+                end
+            end
+            G.call('all_over')
         end
     end 
     G.call('all_over')
