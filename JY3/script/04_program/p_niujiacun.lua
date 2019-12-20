@@ -29,8 +29,8 @@ t['牛家村-秀才']=function()
                 if G.call('get_point',35) < 100 then 
                     if G.call('get_money') >= 1000 then 
                         G.call("talk",'',66,'   学后感觉怎么样？是不是觉得非常亏本啦？哇塞，你开窍了耶，记得下次不要再花冤枉钱咯。',2,1) 
-                        local int_随机数_1 = G.call('通用_取随机')
-                        local int_随机数_2 = G.call('通用_取随机')
+                        local int_随机数_1 = math.random(100)
+                        local int_随机数_2 = math.random(100)
                         G.call('add_point',104,  math.floor(int_随机数_1/2) + 49   )
                         G.call('add_point',35,math.ceil(int_随机数_2/100 *5)    )
                         if G.call('get_point',35) >= 30 and G.call('get_point',134) == 0  then 
