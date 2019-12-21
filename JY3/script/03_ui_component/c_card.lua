@@ -15,6 +15,12 @@ function t:init()
     self.卡组_4 = {}
     self.卡组_5 = {}
     self.卡组_6 = {}
+    self.卡数_1 = 0
+    self.卡数_2 = 0
+    self.卡数_3 = 0
+    self.卡数_4 = 0
+    self.卡数_5 = 0
+    self.卡数_6 = 0
     self.卡片组 = 0
     self.当前卡片 = 0
     self.显示数量 = 0
@@ -26,10 +32,11 @@ function t:start()
         local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
         if o_cardhouse.卡片[i]['hold']  then
             int_数量 = int_数量 + 1
+            self['卡数_'..o_card.品级] = self['卡数_'..o_card.品级] + 1
         end
         table.insert(self['卡组_'..o_card.品级], i) 
     end
-    self.obj.getChildByName('数量').text = '[05]总数：[03]'..int_数量..'[04]/'..#o_cardhouse.卡片
+    self.obj.getChildByName('总数').text = '[05]总数：[03]'..int_数量..'[04]/'..#o_cardhouse.卡片
 end
 function t:刷新显示()
     local o_cardhouse = G.QueryName(0x10220001)
@@ -67,6 +74,8 @@ function t:刷新显示()
         self.展示卡组[i].visible = true 
         self.展示卡组[i].getChildByName('卡片').img = G.QueryName(o_cardhouse.卡片[卡片组[i]].卡片).头像     
     end
+    self.obj.getChildByName('数量').visible = true
+    self.obj.getChildByName('数量').text = '[05]当前组数量：[03]'..self['卡数_'..self.卡片组]..'[04]/'..#self['卡组_'..self.卡片组]
 end
 function t:详细显示()
     local o_cardhouse = G.QueryName(0x10220001)

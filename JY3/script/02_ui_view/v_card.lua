@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_scrollview = require 'c_scrollview'
 local c_card = require 'c_card'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -75,10 +75,10 @@ tp = tc
 	tc.name = '关闭'
 	tc.pivotX = 0.000
 	tc.pivotY = 1.000
-	tc.left = 340.000
-	tc.right = 484.000
-	tc.bottom = -294.000
-	tc.top = -158.000
+	tc.left = 355.000
+	tc.right = 499.000
+	tc.bottom = -253.000
+	tc.top = -117.000
 	tc.mouseEnabled = true
 	tc.scaleX = 0.500
 	tc.scaleY = 0.500
@@ -460,12 +460,30 @@ tp = tc
 	--end
 	tc = G.TextQuad()
 	tp.addChild(tc)
-	tc.name = '数量'
+	tc.name = '总数'
 	tc.pivotX = 0.000
 	tc.left = 170.000
 	tc.right = 467.000
 	tc.bottom = -237.000
 	tc.top = -197.000
+	tc.scaleX = 0.500
+	tc.scaleY = 0.500
+	tc.autosize = 1
+	tc.text = '总数：[04]241/241'
+	tc.font = 0x60320000
+	tc.style = 5
+	tp = tc
+	tp = tp.parent
+	--end
+	tc = G.TextQuad()
+	tp.addChild(tc)
+	tc.name = '数量'
+	tc.pivotX = 0.000
+	tc.left = 170.000
+	tc.right = 467.000
+	tc.bottom = -216.000
+	tc.top = -176.000
+	tc.visible = false
 	tc.scaleX = 0.500
 	tc.scaleY = 0.500
 	tc.autosize = 1
