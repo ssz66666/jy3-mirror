@@ -494,9 +494,19 @@ t['通用_分配卡片']=function()
     local 卡组_4 = {}  --20% --1000
     local 卡组_5 = {}  --40% --3000
     local 卡组_6 = {}  --24% --5000
+    local 卡数_1 = 0  --1% --50
+    local 卡数_2 = 0  --5% --200
+    local 卡数_3 = 0  --10% --750
+    local 卡数_4 = 0  --20% --1000
+    local 卡数_5 = 0  --40% --3000
+    local 卡数_6 = 0  --24% --5000
     local 卡组 = {卡组_1,卡组_2,卡组_3,卡组_4,卡组_5,卡组_6}
+    local 卡数 = {卡数_1,卡数_2,卡数_3,卡数_4,卡数_5,卡数_6}
     for i = 1,#o_cardhouse.卡片 do
         local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
+        if o_card.数量 > 0 then
+            卡数[o_card.品级] = 卡数[o_card.品级]  + 1
+        end
         table.insert(卡组[o_card.品级], i) 
     end
     local int_随机数 = 8000
@@ -528,6 +538,9 @@ t['通用_分配卡片']=function()
         while true do
             int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
             if int_卡组 < 3 and  G.call('get_card_mod',int_卡片)  then 
+                if 卡数[int_卡组] == #卡组[int_卡组] then
+                    int_卡组 = int_卡组 + 1  
+                end
             else
                 break
             end
