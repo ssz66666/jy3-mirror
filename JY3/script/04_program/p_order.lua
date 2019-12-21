@@ -3829,7 +3829,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
         G.call('set_newpoint',3,G.call('get_newpoint',3)- int_数量) 
         if G.call('get_point',3) >= int_升级经验  and int_升级经验 > 0 and G.call('get_point',4) < int_lvmax  then 
             G.call('add_point',4, 1) 
-            local int_随机种子 = G.call('通用_取随机')
+            local int_随机种子 = G.call('通用_取宝物随机')
             local int_point = math.floor(int_随机种子/100 * G.call('get_point',18)/20 + 0.5)+3
             -- if G.call('通用_取得套装',0,2) == 3  then --套装2升级修为点+1
             --     int_point = int_point + 1
