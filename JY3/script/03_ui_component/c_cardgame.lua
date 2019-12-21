@@ -71,6 +71,21 @@ function t:start()
     end
     local int_卡牌等级 = G.call('get_cardgame_lv')
     self.obj.getChildByName('等级').text = '卡片游戏等级：[07]'..int_卡牌等级
+    local int_分数 = 0
+    for i = 1,#o_cardhouse.卡片 do
+        if G.call('get_card_true',i) then
+            int_分数 = int_分数 + (7 - G.call('get_card_lv',i))*5 
+        end
+    end
+    local int_升级分数 = (int_卡牌等级+1)*300
+    if int_卡牌等级 < 10 then 
+        self.obj.getChildByName('经验').text = '[01]'..int_分数..'[05]/[04]'..int_升级分数
+    else
+        self.obj.getChildByName('经验').text = '[01]--[05]/[04]--'
+    end
+
+
+
     for i = 1,5 do 
         local n = i+5
         local i_card = o_cardhouse.卡片[o_cardlist['位置_'..n]].卡片

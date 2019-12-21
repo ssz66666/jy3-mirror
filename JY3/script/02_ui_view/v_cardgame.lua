@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
+local c_cardgame = require 'c_cardgame'
 local c_scrollview = require 'c_scrollview'
 local c_button = require 'c_button'
-local c_cardgame = require 'c_cardgame'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -2688,8 +2688,8 @@ tp = tc
 	tc.name = '卡选区'
 	tc.left = -50.000
 	tc.right = 50.000
-	tc.bottom = -45.000
-	tc.top = 55.000
+	tc.bottom = -55.000
+	tc.top = 45.000
 	tp = tc
 		tc = G.Quad()
 		tp.addChild(tc)
@@ -4176,15 +4176,33 @@ tp = tc
 	tp.addChild(tc)
 	tc.name = '等级'
 	tc.pivotX = 0.000
-	tc.left = -422.000
-	tc.right = -100.000
-	tc.bottom = 163.000
-	tc.top = 263.000
+	tc.left = -421.000
+	tc.right = -99.000
+	tc.bottom = 167.000
+	tc.top = 267.000
 	tc.mouseEnabled = true
 	tc.scaleX = 0.500
 	tc.scaleY = 0.500
 	tc.autosize = 1
 	tc.text = '卡片游戏LV：[07]0'
+	tc.font = 0x60320000
+	tc.style = 5
+	tp = tc
+	tp = tp.parent
+	--end
+	tc = G.TextQuad()
+	tp.addChild(tc)
+	tc.name = '经验'
+	tc.pivotX = 0.000
+	tc.left = -341.000
+	tc.right = -125.000
+	tc.bottom = 141.000
+	tc.top = 241.000
+	tc.mouseEnabled = true
+	tc.scaleX = 0.500
+	tc.scaleY = 0.500
+	tc.autosize = 1
+	tc.text = '[01]3200[05]/[04]3200'
 	tc.font = 0x60320000
 	tc.style = 5
 	tp = tc
