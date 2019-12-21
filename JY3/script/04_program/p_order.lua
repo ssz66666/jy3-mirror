@@ -907,7 +907,7 @@ t['call_cardgame_number'] = function(int_比拼卡,int_比拼位置)
         --上下
         if int_比拼位置 + 3 <= 9 and int_比拼位置 - 3 > 0   then
             if c.卡区.getChildByName('card_'..(int_比拼位置+3)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-3)).getChildByName('卡片').visible then 
-                if c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置+3])].智慧 == c.cardmod[int_比拼卡].智慧 + c.cardmod[tonumber(_编号[int_比拼位置-3])].力量 then
+                if c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 == c.cardmod[int_比拼卡].智慧 + c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
                     if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 and int_上 == 0 then 
                         int_上 = 1
                         int_翻牌 = int_翻牌 + 1
@@ -925,7 +925,7 @@ t['call_cardgame_number'] = function(int_比拼卡,int_比拼位置)
                         end
                     end
                 end
-                if c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置+3])].智慧 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置-3])].力量 then
+                if c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
                     if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属  and int_上 == 0 then 
                         int_上 = 1
                         int_翻牌 = int_翻牌 + 1
@@ -1239,7 +1239,7 @@ t['call_cardgame_pick'] = function(int_比拼卡,int_比拼位置)
         --上下
         if int_比拼位置 + 3 <= 9 and int_比拼位置 - 3 > 0   then
             if c.卡区.getChildByName('card_'..(int_比拼位置+3)).getChildByName('卡片').visible and c.卡区.getChildByName('card_'..(int_比拼位置-3)).getChildByName('卡片').visible then 
-                if c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置+3])].智慧 == c.cardmod[int_比拼卡].智慧 + c.cardmod[tonumber(_编号[int_比拼位置-3])].力量 then
+                if c.cardmod[int_比拼卡].力量 + c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 == c.cardmod[int_比拼卡].智慧 + c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
                     if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 then 
                         c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 = int_归属
                         G.call('call_cardgame_pick_next',tonumber(_编号[int_比拼位置+3]),int_比拼位置+3)
@@ -1249,7 +1249,7 @@ t['call_cardgame_pick'] = function(int_比拼卡,int_比拼位置)
                         G.call('call_cardgame_pick_next',tonumber(_编号[int_比拼位置-3]),int_比拼位置-3)
                     end
                 end
-                if c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置+3])].智慧 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置-3])].力量 then
+                if c.cardmod[int_比拼卡].力量 == c.cardmod[tonumber(_编号[int_比拼位置-3])].智慧 and c.cardmod[int_比拼卡].智慧 == c.cardmod[tonumber(_编号[int_比拼位置+3])].力量 then
                     if int_归属 ~= c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 then 
                         c.cardmod[tonumber(_编号[int_比拼位置+3])].归属 = int_归属
                         G.call('call_cardgame_pick_next',tonumber(_编号[int_比拼位置+3]),int_比拼位置+3)
