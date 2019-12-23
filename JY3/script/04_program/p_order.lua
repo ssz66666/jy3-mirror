@@ -3798,8 +3798,11 @@ t['指令_备份基础属性']=function() --
 	local card = G.DBTable('o_cardhouse')
 	local o_cardhouse = G.QueryName(0x10220001)
 	if #o_cardhouse.卡片 > 0 then 
-		for i = 1,#o_cardhouse.卡片 do
+        for i = 1,#o_cardhouse.卡片 do
             o_cardhouse.卡片[i]['hold'] = false
+			if o_cardhouse.卡片[i].数量 > 0 then
+				o_cardhouse.卡片[i].数量 = 0
+			end
 		end
 	end
     G.call('set_newpoint',83,-1000 -int_卡片数量 )
