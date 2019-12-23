@@ -815,11 +815,7 @@ t['call_card_select'] = function(int_结果)
             c.被抽卡组 = {1,2,3,4,5}
         end
     end
-    for i = 1,5 do
-        print('c.被抽卡组[n]',c.被抽卡组[i]) 
-    end
     local int_抽取卡片 = (math.ceil(math.abs(c.结果)/2))
-    print( 'int_抽取卡片', int_抽取卡片)
     for i = 1,int_抽取卡片 do 
         c.卡区.getChildByName('card_'..c.被抽卡组[i]).getChildByName('背景').visible = true
     end
@@ -1847,7 +1843,7 @@ t['call_cardgame'] = function()
     -- end
     result = int_绿 - int_红
     if  c.已放置 == 10   then
-        result = -5
+        result = -10
     end
     print('result=',result)
     if result > 0 then
