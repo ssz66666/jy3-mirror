@@ -579,6 +579,9 @@ t['通用_随机抽取卡片']=function()
         end
         o_cardlist['位置_'..tostring(i)] = int_卡片   
     end
+    for i = 1,5 do
+        print('i=', o_cardlist['位置_'..tostring(i)] )
+    end
 end
 t['通用_分配卡片']=function()
     local int_卡片游戏等级 = G.call('get_cardgame_lv')
@@ -1834,13 +1837,6 @@ t['call_cardgame'] = function()
         end
     end
     local result = 0
-    -- if int_绿 > int_红 then 
-    --     result = int_绿 - int_红
-    -- elseif int_绿 < int_红 then 
-    --     result = 2
-    -- elseif int_绿 == int_红 then 
-    --     int_绿 = 0
-    -- end
     result = int_绿 - int_红
     if  c.已放置 == 10   then
         result = -10

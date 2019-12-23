@@ -11,6 +11,7 @@ function t:init()
     self.卡区 = self.obj.getChildByName('卡区')
     self.卡片 = 0
     self.结果 = 0
+    self.待翻卡 = 0
     self.被抽卡组 = {0,0,0,0,0}
 end
 function t:start()
@@ -58,7 +59,8 @@ function t:click(tar)
         local int_卡数 = math.ceil(self.结果/2)
         for i = 1,5 do 
             if tar == self.obj.getChildByName('卡区').getChildByName('card_'..i).getChildByName('图片') then 
-                if  not self.obj.getChildByName('卡区').getChildByName('card_'..i).getChildByName('背景').visible then 
+                if  not self.obj.getChildByName('卡区').getChildByName('card_'..i).getChildByName('背景').visible   then 
+                    self.待翻卡 = i
                     self.obj.getChildByName('卡区').getChildByName('card_'..i).getChildByName('背景').visible = true 
                 else
                     self.obj.getChildByName('卡区').getChildByName('card_'..i).getChildByName('背景').visible = false
@@ -87,6 +89,7 @@ function t:click(tar)
         G.trig_event('card_select_over')  
     elseif tar == self.确认.getChildByName('按钮').getChildByName('否') then 
         self.确认.visible = false
+        self.obj.getChildByName('卡区').getChildByName('card_'..self.待翻卡).getChildByName('背景').visible = false
     end
 end
 return t

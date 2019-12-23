@@ -2776,11 +2776,16 @@ t['锻造师-BT']=function()
             G.call("talk",'？？？？',390,'   我们还可以进行卡片游戏，那我先送你几张卡片吧！',1,1) 
             for i = 63,67 do
                 G.call('add_card',i,1)
+                G.wait_time(400)
             end
             G.call('add_card',138,1)
+            G.wait_time(400)
             G.call('add_card',137,1)
+            G.wait_time(400)
             G.call('add_card',54,1)
+            G.wait_time(400)
             G.call('add_card',55,1)
+            G.wait_time(400)
             G.misc().再识BT = 1
             G.call('通用_锻造卡片选择')
         else
@@ -2857,6 +2862,7 @@ t['通用_锻造卡片选择']=function()
                         local int_套装 =  math.ceil(3*G.call('通用_取随机')/100)
                         for j = 1,3 do 
                             G.call('通用_抽礼物',j,1,0,0,0,2,int_套装)
+                            G.wait_time(400)
                         end
                         G.misc().传奇换取 = 1
                     else
