@@ -70,7 +70,7 @@ t['成就_读档'] = function(int_档案编号)
         -- end 
         --local db = obj[1]['o_achieve']
         G.newinst_cache['o_achieve'] = obj[1]['o_achieve'] 
-        G.newinst_cache['o_cardhouse'] = obj[1]['o_cardhouse'] 
+        --G.newinst_cache['o_cardhouse'] = obj[1]['o_cardhouse'] 
     end
 end
 t['故事_读档'] = function(int_档案编号)
