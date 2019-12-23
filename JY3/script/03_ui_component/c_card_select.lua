@@ -21,7 +21,7 @@ function t:卡片显示(int_显示类型)
     local o_cardhouse = G.QueryName(0x10220001)
     local int_序列 = 1
     if int_显示类型 == 1 then 
-        local str_字符串 = G.call('to_chinese',math.min(5,self.结果))
+        local str_字符串 = G.call('to_chinese',math.ceil(self.结果/2))
         self.提示.getChildByName('文本').text = '[08]恭喜你，可以选择[03]'..str_字符串..'[08]张卡片！'
         int_序列 = 6
     elseif int_显示类型 == 2 then 
