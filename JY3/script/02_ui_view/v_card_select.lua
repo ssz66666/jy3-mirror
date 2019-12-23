@@ -178,6 +178,18 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Entity()
@@ -284,6 +296,18 @@ tp = tc
 			tc.text = '王语嫣'
 			tc.font = 0x60370000
 			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
 			tp = tc
 			tp = tp.parent
 			--end
@@ -396,6 +420,18 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Entity()
@@ -505,6 +541,18 @@ tp = tc
 			tp = tc
 			tp = tp.parent
 			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
+			tp = tc
+			tp = tp.parent
+			--end
 		tp = tp.parent
 		--end
 		tc = G.Entity()
@@ -611,6 +659,18 @@ tp = tc
 			tc.text = '王语嫣'
 			tc.font = 0x60370000
 			tc.style = 5
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.Quad()
+			tp.addChild(tc)
+			tc.name = '背景'
+			tc.left = -60.000
+			tc.right = 60.000
+			tc.bottom = -71.000
+			tc.top = 71.000
+			tc.visible = false
+			tc.img = 0x56160044
 			tp = tc
 			tp = tp.parent
 			--end

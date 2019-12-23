@@ -2801,14 +2801,14 @@ t['通用_锻造卡片选择']=function()
                 G.call("talk",'？？？？',390,'   那我们就开始吧！',1,1)
                 G.call('通用_分配卡片')
                 local int_结果 = G.call('call_cardgame') 
-                if int_结果 > 0 then
+                if int_结果 ~= 0 then
                     G.call('call_card_select',int_结果)
                 end
                 if int_结果 == 0 then
                     G.call("talk",'？？？？',390,'   看来是遇到敌手了！',1,1)
-                elseif int_结果 == 1 then
+                elseif int_结果 > 0 then
                     G.call("talk",'？？？？',390,'   不错，你已经掌握了本游戏精髓啊！',1,1)
-                elseif int_结果 == 2 then
+                elseif int_结果 < 0 then
                     G.call("talk",'？？？？',390,'   你的游戏水平有待提高！',1,1)
                 end
             else

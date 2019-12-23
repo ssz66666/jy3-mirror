@@ -89,7 +89,7 @@ t['地图系统_提示'] = function()
 		G.case(2, '监控')
 		local r = G.wait_case();
 		if r == 1 then
-			G.wait_time(1200)
+			G.wait_time(300)
 			G.removeUI('v_prompt1')
 		elseif r == 2 then 
 			G.call('地图系统_防修改监控')

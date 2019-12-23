@@ -484,6 +484,102 @@ t['get_card_dress']=function(int_编号)
         end
     end
 end
+t['通用_随机抽取卡片']=function()
+    local ui = G.addUI('v_cardgame')
+    local c = ui.c_cardgame
+    local int_卡片游戏等级 = G.call('get_cardgame_lv')
+    local card = G.DBTable('o_card')
+    local o_cardhouse = G.QueryName(0x10220001)
+    local 属性 = {'力量','智慧','防御','速度'}
+    local 卡组_1 = {}  --1% --50
+    local 卡组_2 = {}  --5% --200
+    local 卡组_3 = {}  --10% --750
+    local 卡组_4 = {}  --20% --1000
+    local 卡组_5 = {}  --40% --3000
+    local 卡组_6 = {}  --24% --5000
+    local 卡数_1 = 0  --1% --50
+    local 卡数_2 = 0  --5% --200
+    local 卡数_3 = 0  --10% --750
+    local 卡数_4 = 0  --20% --1000
+    local 卡数_5 = 0  --40% --3000
+    local 卡数_6 = 0  --24% --5000
+    local 卡组 = {卡组_1,卡组_2,卡组_3,卡组_4,卡组_5,卡组_6}
+    local 卡数 = {卡数_1,卡数_2,卡数_3,卡数_4,卡数_5,卡数_6}
+    for i = 1,#o_cardhouse.卡片 do
+        local o_card = G.QueryName(o_cardhouse.卡片[i].卡片)
+        if o_cardhouse.卡片[i].数量 > 0 then
+            table.insert(卡组[o_card.品级],{
+            卡片 =  o_card,   
+            编号 = i,
+            数量 = o_cardhouse.卡片[i].数量, 
+            }
+            ) 
+        end  
+    end
+    local int_随机数 = 8000
+    local int_卡组 = 6
+    local int_卡片 = 63
+    local o_cardlist = G.QueryName(0x10200001)
+    local int_周目 = G.call('get_point',237) - 1
+    for i = 1,5 do
+        int_卡片游戏等级 = G.call('get_cardgame_lv')
+        if int_卡片游戏等级 < 6 then 
+            int_随机数 = math.random(10000 -   int_卡片游戏等级*200  -  math.floor(int_卡片游戏等级/2)*100  -int_周目* 50)
+        else
+            int_卡片游戏等级 = int_卡片游戏等级 - 5
+            int_随机数 = math.random(10000 -   int_卡片游戏等级*200  -  math.floor(int_卡片游戏等级/2)*100  -int_周目* 50)
+        end
+        if int_随机数 <= 25 then 
+            int_卡组 = 1
+        elseif int_随机数 > 25 and int_随机数 <= 250 then 
+            int_卡组 = 2
+        elseif int_随机数 > 250 and int_随机数 <= 500 then 
+            int_卡组 = 6
+        elseif int_随机数 > 500 and int_随机数 <= 1500 then 
+            int_卡组 = 3
+        elseif int_随机数 > 1500 and int_随机数 <= 5000 then 
+            int_卡组 = 4
+        elseif  int_随机数 <= 10000 then 
+            int_卡组 = 5
+        end
+        while true do
+            if #卡组[int_卡组] > 0     then 
+                local int_序号 = math.random(#卡组[int_卡组])
+                if 卡组[int_卡组][int_序号].数量 > 0 then 
+                    int_卡片 = 卡组[int_卡组][int_序号].编号
+                    卡组[int_卡组][int_序号].数量 = 卡组[int_卡组][int_序号].数量 - 1
+                    local o_card = 卡组[int_卡组][int_序号].卡片
+                    c.一区.getChildByName('card_'..i).getChildByName('编号').text = int_卡片
+                    c.一区.getChildByName('card_'..i).getChildByName('图片').img = o_card.头像
+                    c.一区.getChildByName('card_'..i).visible = true
+                    for j = 1,4 do 
+                        if o_card[属性[j]] == 10 then
+                            c.一区.getChildByName('card_'..i).getChildByName('属性').getChildByName(属性[j]).text = '[03]'..o_card[属性[j]]
+                        elseif  o_card[属性[j]] <= 5 then
+                            c.一区.getChildByName('card_'..i).getChildByName('属性').getChildByName(属性[j]).text = '[01]'..o_card[属性[j]] 
+                        else
+                            c.一区.getChildByName('card_'..i).getChildByName('属性').getChildByName(属性[j]).text = o_card[属性[j]] 
+                        end 
+                    end
+                    break
+                else
+                    if int_卡组 == 6 then
+                        int_卡组 = 1 
+                    else
+                       int_卡组 = int_卡组 + 1
+                    end
+                end
+            else
+                if int_卡组 == 6 then
+                    int_卡组 = 1 
+                else
+                   int_卡组 = int_卡组 + 1
+                end
+            end
+        end
+        o_cardlist['位置_'..(i)] = int_卡片   
+    end
+end
 t['通用_分配卡片']=function()
     local int_卡片游戏等级 = G.call('get_cardgame_lv')
     local card = G.DBTable('o_card')
@@ -642,12 +738,19 @@ t['add_card'] = function(int_卡片,int_数量)
         end
     end
 end
-t['call_card_select'] = function(int_类型)
+t['call_card_select'] = function(int_结果)
     local ui = G.addUI('v_card_select')
     local c = ui.c_card_select
     local o_cardlist = G.QueryName(0x10200001)
     local o_cardhouse = G.QueryName(0x10220001)
     local int_卡片 = 0
+    c.结果 = int_结果
+    local int_类型 = 2
+    if int_结果 > 0 then
+        int_类型 = 1
+    else
+        int_类型 = 2
+    end
     c:卡片显示(int_类型)
     c.类型 = int_类型
     if int_类型 == 2 then
@@ -666,37 +769,70 @@ t['call_card_select'] = function(int_类型)
                 break 
             end
         end
+        local 待选卡组 = {}
+        for i = 1,5 do 
+            local i_card = o_cardhouse.卡片[o_cardlist['位置_'..i]].卡片
+            local o_card = G.QueryName(i_card)
+            table.insert(待选卡组,{
+                卡片 = o_card,
+                编号 = o_cardlist['位置_'..i],
+                位置 = i,
+            }
+            )
+        end
         local 属性 = {'力量','智慧','防御','速度'}
-        for m = 10,1,-1 do 
-            for i = 1,5 do 
-                local i_card = o_cardhouse.卡片[o_cardlist['位置_'..i]].卡片
-                local o_card = G.QueryName(i_card)
-                for j = 1,4 do 
-                    if o_card[属性[j]] == m then
-                        int_卡片 = i
-                        break
+        if int_结果 <= -5 then
+            c.被抽卡组 = {1,2,3,4,5}
+        else 
+            for n = 1,math.abs(int_结果) do 
+                for m = 10,1,-1 do 
+                    for i = 1,#待选卡组 do 
+                        local o_card = 待选卡组[i].卡片
+                        for j = 1,4 do 
+                            if o_card[属性[j]] == m then
+                                c.被抽卡组[n] = 待选卡组[i].位置
+                                table.remove(待选卡组,i)
+                                break
+                            end
+                        end
+                        if c.被抽卡组[n] > 0 then
+                            break 
+                        end
                     end
-                end
-                if int_卡片 > 0 then
-                    break 
-                end
+                    if c.被抽卡组[n] > 0 then
+                        break 
+                    end
+                end 
             end
-            if int_卡片 > 0 then
-                break 
-            end
-        end 
-        c.卡区.getChildByName('闪光').x = c.卡区.getChildByName('card_'..int_卡片).x
+        end
+        c.卡区.getChildByName('闪光').visible = false
+        --c.卡区.getChildByName('闪光').x = c.卡区.getChildByName('card_'..int_卡片).x
     else
-        G.wait1('card_select_over') 
-        int_卡片 = c.卡片 + 5
+        if int_结果 < 5 then 
+            G.wait1('card_select_over') 
+            int_卡片 = c.卡片 + 5
+        else
+            c.被抽卡组 = {1,2,3,4,5}
+        end
     end
-    int_卡片 = o_cardlist['位置_'..int_卡片]
+    local int_抽取卡片 = math.min(5,math.abs(int_结果))
+    for i = 1,int_抽取卡片 do 
+        c.卡区.getChildByName('card_'..c.被抽卡组[i]).getChildByName('背景').visible = true
+    end
     if int_类型 == 1 then
-        G.call('add_card',int_卡片,1)
+        for i = 1,int_抽取卡片 do 
+            int_卡片 = o_cardlist['位置_'..c.被抽卡组[i]+5]
+            G.wait_time(400)
+            G.call('add_card',int_卡片,1)
+        end
     else
-        G.call('add_card',int_卡片,-1)
+        for i = 1,int_抽取卡片 do 
+            int_卡片 = o_cardlist['位置_'..c.被抽卡组[i]]
+            G.wait_time(400)
+            G.call('add_card',int_卡片,-1)
+        end
     end
-    G.wait_time(500)
+    G.wait_time(300)
     G.removeUI('v_card_select')
 end
 t['call_cardgame_number'] = function(int_比拼卡,int_比拼位置)
@@ -1311,7 +1447,86 @@ t['call_cardgame'] = function()
     local o_cardhouse = G.QueryName(0x10220001)
     local 属性 = {'力量','速度','防御','智慧'}
     G.Play(0x49010095, 1,true,1) 
-    G.wait1('选择卡牌结束')
+    if G.call('get_cardgame_lv') >= 5 and math.random(100) > 50  then 
+        c.二区.visible = true
+        c.确认.visible = false
+        c.卡选区.visible = false
+        ui.getChildByName('取消').visible = false 
+        c.进程 = 2
+        G.call('通用_随机抽取卡片')
+        local int_归属 = 1
+        for i = 1,10 do 
+            local i_card = o_cardhouse.卡片[o_cardlist['位置_'..i]].卡片
+            local o_card = G.QueryName(i_card)
+            if i > 5 then
+                int_归属 = 2 
+            end
+            local int_第一 = 1
+            local int_第二 = 0
+            local int_第三 = 0
+            local int_属性 = o_card.力量
+            if o_card.智慧 - int_属性 > 0 then 
+                int_第一 = 4
+            end
+            if o_card.防御 - int_属性 > 0 then 
+                int_第一 = 3
+            end
+            if o_card.速度 - int_属性 > 0 then 
+                int_第一 = 2
+            end
+            if int_第一 == 1  or int_第一 == 4  then
+                if  o_card.速度 > o_card.防御 then 
+                    int_第二 = 2
+                else
+                    int_第二 = 3
+                end
+                if int_第一 == 1 then 
+                    if o_card.智慧 > int_第二 then
+                        int_第三 = 4 
+                    end
+                end
+                if int_第一 == 4 then 
+                    if o_card.力量 > int_第二 then
+                        int_第三 = 1 
+                    end
+                end
+            elseif int_第一 == 2  or int_第一 == 3 then
+                if  o_card.力量 > o_card.智慧 then 
+                    int_第二 = 1
+                else
+                    int_第二 = 4
+                end
+                if int_第一 == 2 then 
+                    if o_card.防御 > int_第二 then
+                        int_第三 = 3 
+                    end
+                end
+                if int_第一 == 3 then 
+                    if o_card.速度 > int_第二 then
+                        int_第三 = 2 
+                    end
+                end
+            end
+            table.insert(c.cardmod, {
+                    o_card_卡片 = o_card,
+                    卡片 = i_card,
+                    编号 = i,
+                    力量 = o_card.力量,
+                    智慧 = o_card.智慧,
+                    速度 = o_card.速度,
+                    防御 = o_card.防御,
+                    归属 = int_归属,
+                    已放置 = 0,
+                    第一 = int_第一,
+                    第二 = int_第二,
+                    第三 = int_第三,
+                    总强度 = o_card.力量 + o_card.智慧 + o_card.防御 + o_card.速度,
+                }
+            )
+        end
+    else
+        G.wait1('选择卡牌结束')
+    end
     ui.getChildByName('筛子区').visible = true
     G.wait_time(500)
     ui.getChildByName('筛子区').getChildByName('动画').visible = false
@@ -1618,26 +1833,29 @@ t['call_cardgame'] = function()
         end
     end
     local result = 0
-    if int_绿 > int_红 then 
-        result = 1
-    elseif int_绿 < int_红 then 
-        result = 2
-    elseif int_绿 == int_红 then 
-        int_绿 = 0
-    end
+    -- if int_绿 > int_红 then 
+    --     result = int_绿 - int_红
+    -- elseif int_绿 < int_红 then 
+    --     result = 2
+    -- elseif int_绿 == int_红 then 
+    --     int_绿 = 0
+    -- end
+    result = int_绿 - int_红
     if  c.已放置 == 10   then
-        result = 2
+        result = -5
     end
+    print('result=',result)
     if result > 0 then
         ui.getChildByName('结果').visible = true
-        if  result == 1 then
+        if  result > 0 then
             ui.getChildByName('结果').img = 0x5616004c
             G.Play(0x49010035, 1,false,100) 
-        elseif  result == 2 then
+        elseif  result < 0 then
             ui.getChildByName('结果').img = 0x5616004d
             G.Play(0x4901000d, 1,false,100) 
         end
     end
+    c:卡区刷新()
     G.wait_time(500)
     G.removeUI('v_cardgame')
     return result
