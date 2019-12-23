@@ -781,10 +781,10 @@ t['call_card_select'] = function(int_结果)
             )
         end
         local 属性 = {'力量','智慧','防御','速度'}
-        if int_结果 <= -5 then
+        if math.ceil(c.结果/2) >= 5 then
             c.被抽卡组 = {1,2,3,4,5}
         else 
-            for n = 1,math.abs(int_结果) do 
+            for n = 1,math.ceil(c.结果/2) do 
                 for m = 10,1,-1 do 
                     for i = 1,#待选卡组 do 
                         local o_card = 待选卡组[i].卡片
@@ -815,7 +815,7 @@ t['call_card_select'] = function(int_结果)
             c.被抽卡组 = {1,2,3,4,5}
         end
     end
-    local int_抽取卡片 = math.min(5,math.abs(int_结果))
+    local int_抽取卡片 = math.ceil(c.结果/2)
     for i = 1,int_抽取卡片 do 
         c.卡区.getChildByName('card_'..c.被抽卡组[i]).getChildByName('背景').visible = true
     end

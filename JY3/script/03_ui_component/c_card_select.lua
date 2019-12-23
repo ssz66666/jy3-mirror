@@ -55,7 +55,7 @@ function t:卡片显示(int_显示类型)
 end
 function t:click(tar)
     if self.结果 > 0 then
-        local int_卡数 = math.min(5,self.结果)
+        local int_卡数 = math.ceil(self.结果/2)
         for i = 1,5 do 
             if tar == self.obj.getChildByName('卡区').getChildByName('card_'..i).getChildByName('图片') then 
                 if  not self.obj.getChildByName('卡区').getChildByName('card_'..i).getChildByName('背景').visible then 
