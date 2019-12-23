@@ -577,7 +577,7 @@ t['通用_随机抽取卡片']=function()
                 end
             end
         end
-        o_cardlist['位置_'..(i)] = int_卡片   
+        o_cardlist['位置_'..tostring(i)] = int_卡片   
     end
 end
 t['通用_分配卡片']=function()
@@ -815,10 +815,11 @@ t['call_card_select'] = function(int_结果)
             c.被抽卡组 = {1,2,3,4,5}
         end
     end
-    local int_抽取卡片 = math.ceil(c.结果/2)
+    local int_抽取卡片 = math.abs(math.ceil(c.结果/2))
     for i = 1,int_抽取卡片 do 
         c.卡区.getChildByName('card_'..c.被抽卡组[i]).getChildByName('背景').visible = true
     end
+    print( 'int_抽取卡片', int_抽取卡片)
     if int_类型 == 1 then
         for i = 1,int_抽取卡片 do 
             int_卡片 = o_cardlist['位置_'..c.被抽卡组[i]+5]
@@ -828,6 +829,7 @@ t['call_card_select'] = function(int_结果)
     else
         for i = 1,int_抽取卡片 do 
             int_卡片 = o_cardlist['位置_'..c.被抽卡组[i]]
+            print( 'int_卡片', int_卡片)
             G.wait_time(400)
             G.call('add_card',int_卡片,-1)
         end
