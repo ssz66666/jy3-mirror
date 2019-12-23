@@ -70,7 +70,7 @@ t['成就_读档'] = function(int_档案编号)
         -- end 
         --local db = obj[1]['o_achieve']
         G.newinst_cache['o_achieve'] = obj[1]['o_achieve'] 
-        --G.newinst_cache['o_cardhouse'] = obj[1]['o_cardhouse'] 
+        G.newinst_cache['o_cardhouse'] = obj[1]['o_cardhouse'] 
     end
 end
 t['故事_读档'] = function(int_档案编号)
@@ -3799,9 +3799,7 @@ t['指令_备份基础属性']=function() --
 	local o_cardhouse = G.QueryName(0x10220001)
 	if #o_cardhouse.卡片 > 0 then 
 		for i = 1,#o_cardhouse.卡片 do
-			if o_cardhouse.卡片[i].数量 > 0 then
-				o_cardhouse.卡片[i].数量 = 0
-			end
+            o_cardhouse.卡片[i]['hold'] = false
 		end
 	end
     G.call('set_newpoint',83,-1000 -int_卡片数量 )
