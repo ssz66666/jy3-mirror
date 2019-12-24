@@ -91,6 +91,31 @@ function t:start()
     if G.misc().被动开关 == nil then
         G.misc().被动开关 = 1  
     end
+    local int_减伤 = 0
+    if G.call('get_point',196) ~= nil then   
+        local o_skill = G.QueryName(G.call('get_point',196))
+        if o_skill.内功轻功效果 == 4 then --内功减伤效果计算
+            int_减伤 = o_skill_ta.效果等级*o_skill.修为等级/10
+        end 
+    end 
+    int_减伤 = int_减伤 + G.call('get_point',28+179)/4 + G.call('get_point',27+179)/6+G.call('通用_取得装备减伤效果',0)/2
+    if G.call('get_point',194) ~= nil then  --按主角装备的防具再次计算伤害
+        local o_item = G.QueryName(G.call('get_point',194))
+        int_减伤 = int_减伤 + o_item.系数-100/2 
+    end 
+    if int_减伤 > 25 then 
+        int_减伤 = 25 + (int_减伤 - 25)/2
+    end
+    if int_减伤 > 50 then 
+        int_减伤 = 50 + (int_减伤 - 50)/2
+    end
+    if int_减伤 > 75 then 
+        int_减伤 = 75 + (int_减伤 - 75)/2
+    end
+    int_减伤 = math.min(80,int_减伤)
+    local str_字符串 = string.format('%.2f',int_减伤)
+    self.基础属性1.getChildByName('免伤').text = '[02]免伤:[03]'..str_字符串..'%'
+
     self:刷新属性()
 end
 function t:刷新属性()

@@ -2,9 +2,9 @@
 
 ]]
 local G = require 'gf'
-local c_nature = require 'c_nature'
-local c_button = require 'c_button'
 local c_jm = require 'c_jm'
+local c_button = require 'c_button'
+local c_nature = require 'c_nature'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -391,9 +391,26 @@ tp = tc
 			--end
 			tc = G.TextQuad()
 			tp.addChild(tc)
+			tc.name = '免伤'
+			tc.pivotX = 0.000
+			tc.left = 20.000
+			tc.right = 194.000
+			tc.bottom = 52.000
+			tc.top = 92.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '[02]免伤:[03]99%'
+			tc.font = 0x61280000
+			tc.style = 2
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
 			tc.name = '等级'
-			tc.left = -56.000
-			tc.right = 44.000
+			tc.left = -60.000
+			tc.right = 40.000
 			tc.bottom = 52.000
 			tc.top = 92.000
 			tc.scaleX = 0.500
