@@ -95,7 +95,7 @@ function t:start()
     if G.call('get_point',196) ~= nil then   
         local o_skill = G.QueryName(G.call('get_point',196))
         if o_skill.内功轻功效果 == 4 then --内功减伤效果计算
-            int_减伤 = o_skill_ta.效果等级*o_skill.修为等级/5
+            int_减伤 = o_skill.效果等级*o_skill.修为等级/5
         end 
     end 
     int_减伤 = int_减伤 + G.call('get_point',28+179)/4 + G.call('get_point',27+179)/6+G.call('通用_取得装备减伤效果',0)/2
