@@ -4612,7 +4612,7 @@ t['magic_power3'] = function(int_id,int_no)
             end
             if G.call('get_point',194) ~= nil then  --按主角装备的防具再次计算伤害
                 local o_item = G.QueryName(G.call('get_point',194))
-                int_减伤 = int_减伤 + o_item.系数-100/2 
+                int_减伤 = int_减伤 + (o_item.系数-100)/2 
                 --hurt = hurt*(1-(o_item.系数-100)/2/100)
             end 
             if int_减伤 > 25 then 
