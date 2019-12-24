@@ -2500,7 +2500,6 @@ t['call_wood']=function()
         G.misc().木桩 = 1
         --G.call('set_point',87,1)
         --G.call('set_point',97,99999)
-        G.call('set_team',2,3,4,16)
         G.call('call_battle',1,10,3,0.000000003,223,0,0,0,0,0)
         for i = 3,8 do
             G.call('set_role',223,i,100)
