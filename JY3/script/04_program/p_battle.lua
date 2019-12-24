@@ -2472,6 +2472,9 @@ t['集气'] = function()
             G.call('add_point',48,-1)  
         end 
         for i = 1,11 do 
+            if speed[i] > 120 then
+                speed[i] = 120 +  (speed[i] - 120)*0.5
+            end
 			if ui.getChildByName('map').getChildByName(位置[i]).visible == true and o_battle[位置[i]] > 0  then 
                 if ui.getChildByName('map').getChildByName(位置[i]).x < 150 then 
                     local o_battle = G.QueryName(0x10150001)
@@ -2771,12 +2774,16 @@ t['magic_power1'] = function(int_id,int_no)
     end  
     if G.call('get_point',18) <= 50 and G.call('get_magic',190) > 0 then --左右被动
         local int_左右 = 0
-        int_左右 =  G.call('get_magic_lv',190)*4*(100-G.call('get_point',18) )/5 + G.call('通用_取得装备左右效果',0)
+        int_左右 =  G.call('get_magic_lv',190)*2*(100-G.call('get_point',18) )/5 + G.call('通用_取得装备左右效果',0)
         if G.call('通用_取得套装',0,6) == 3 then
             int_左右 = int_左右*1.5
         elseif  G.call('通用_取得套装',0,6) == 2 then
             int_左右 = int_左右*1.25
         end
+        if int_左右 > 200 then
+            int_左右 = 200 + (int_左右 - 200)*0.5 
+        end
+        int_左右 = math.min(300,int_左右)
         if string_字符串_1 == '' then 
             string_字符串_1 = string_字符串_1..'左右互搏'
         else
@@ -2978,7 +2985,8 @@ t['magic_power1'] = function(int_id,int_no)
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
     if math.random(a+20) > math.random(math.floor(b/3)+1+int_闪避) or G.call('通用_取得装备特效',0,208) or o_skill.附加效果 == 14 or o_skill.附加效果 == 13 or G.call('通用_取得套装',0,3) == 3 then  --命中计算     
         if hurt > 0 then 
-            hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
+            local int_减伤 = G.call('通用_取得NPC内功效果',int_id,4)/2
+            --hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
             if  o_skill.附加效果 == 14  then 
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'九破'
@@ -3000,9 +3008,11 @@ t['magic_power1'] = function(int_id,int_no)
                     string_字符串_2 = string_字符串_2..'.'..'玉女破防'
                 end
                 if G.call('get_magic',241) > 0 then
-                    hurt = math.floor(hurt *(1- d/1200)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                    int_减伤 = int_减伤 + d/12 + G.call('通用_取得装备减伤效果',int_id)
+                    --hurt = math.floor(hurt *(1- d/1200)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
                 else
-                    hurt = math.floor(hurt *(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
+                    int_减伤 = int_减伤 + d/6 + G.call('通用_取得装备减伤效果',int_id)
+                    --hurt = math.floor(hurt *(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   ) 
                 end
             elseif G.call('通用_取得人物特效',0,21)  then --武当被动和真武阵判断
                 if string_字符串_2 == '' then 
@@ -3011,12 +3021,15 @@ t['magic_power1'] = function(int_id,int_no)
                     string_字符串_2 = string_字符串_2..'.'..'真武破防'
                 end
                 if G.call('get_point',8) == 1 then 
-                    hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.3-int_真武效果*10/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                    int_减伤 = int_减伤 + c/4+d/6*(1 - 0.3-int_真武效果*10/100) + G.call('通用_取得装备减伤效果',int_id) /2
+                   -- hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.3-int_真武效果*10/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )
                 else
-                    hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.15-int_真武效果*10/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/100 )   )
+                    int_减伤 = int_减伤 + c/4+d/6*(1 - 0.15-int_真武效果*10/100) + G.call('通用_取得装备减伤效果',int_id)/2 
+                    --hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.15-int_真武效果*10/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )
                 end
             else 
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
+                int_减伤 = int_减伤 + c/4+d/6 + G.call('通用_取得装备减伤效果',int_id)/2
+                --hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if o_skill.类别 == 2 then --五岳剑阵效果
                 hurt = math.floor(hurt* (int_五岳剑阵效果*5/100 +1)  )
@@ -3031,6 +3044,18 @@ t['magic_power1'] = function(int_id,int_no)
             elseif  G.call('通用_取得套装',int_id,4) == 2 then
                 hurt = math.floor(hurt *0.9)
             end
+            if int_减伤 > 25 then 
+                int_减伤 = 25 + (int_减伤 - 25)/2
+            end
+            if int_减伤 > 50 then 
+                int_减伤 = 50 + (int_减伤 - 50)/2
+            end
+            if int_减伤 > 75 then 
+                int_减伤 = 75 + (int_减伤 - 75)/2
+            end
+            int_减伤 = math.min(80,int_减伤)
+            print('int_减伤_1',int_减伤)
+            hurt = math.floor(hurt *(1-int_减伤/100))
             if o_battle.模式 ~= 99 then
                 local int_比例 = math.ceil(G.call('get_point',4)/20)*2
                 if int_id == 418 then
@@ -3047,12 +3072,17 @@ t['magic_power1'] = function(int_id,int_no)
                 else
                     string_字符串_4 = string_字符串_4..'.'..'斗转星移'
                 end
-                hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_id)/2 )   /100 ) 
+                local int_斗转效果 = 20 + G.call('通用_取得装备斗转效果',int_id)
                 if G.call('通用_取得套装',int_id,6) == 3 then
-                    hurt3 = math.floor(hurt3*1.5)
+                    int_斗转效果 = int_斗转效果*1.5
                 elseif  G.call('通用_取得套装',int_id,6) == 2 then
-                    hurt3 = math.floor(hurt3*1.25)
+                    int_斗转效果 = int_斗转效果*1.25
                 end
+                if int_斗转效果 > 100 then
+                    int_斗转效果 =  100 +  (int_斗转效果 - 100)/2
+                end
+                int_斗转效果 = math.min(150,int_斗转效果)
+                hurt3 = math.floor(hurt * int_斗转效果  /100 ) 
             end
             if G.call('通用_取得人物特效',0,19) and (not G.call('get_point',241) or G.call('get_point',241) == 0)     then --舔血效果计算
             --if (int_no == 205 or int_no == 206 or int_no == 21 or int_no == 235 ) and G.call('通用_取得人物特效',0,19)     then --舔血效果计算
@@ -3585,6 +3615,10 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
         elseif  G.call('通用_取得套装',int_id,6) == 2 then
             int_左右 = int_左右*1.25
         end
+        if int_左右 > 200 then
+            int_左右 = 200 + (int_左右 - 200)*0.5 
+        end
+        int_左右 = math.min(300,int_左右)
         if string_字符串_1 == '' then 
             string_字符串_1 = string_字符串_1..'左右互搏'
         else
@@ -3770,7 +3804,8 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
     if math.random(a+20) > math.random(math.floor(b/3)+int_闪避+1) or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 14 or o_skill.附加效果 == 13 or G.call('通用_取得套装',int_id,3) == 3 then  --命中计算
         if hurt > 0 then 
-            hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
+            local int_减伤 = G.call('通用_取得NPC内功效果',int_enemy,4)/2
+           -- hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
             if  o_skill.附加效果 == 14  then 
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'九破'
@@ -3786,9 +3821,11 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21) then --真武效果
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.6)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 )  ) 
+                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',int_enemy)/2
+                --hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.6)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 )  ) 
             else
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 ) )  --按敌人的拆招和内功免伤进行计算伤害
+                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',int_enemy)/2
+                --hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 ) )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if G.call('通用_取得套装',int_id,3) == 3 then --套装3和套装4强伤和减伤效果
                 hurt = math.floor(hurt *1.3)
@@ -3800,6 +3837,18 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
             elseif  G.call('通用_取得套装',int_enemy,4) == 2 then
                 hurt = math.floor(hurt *0.9)
             end
+            if int_减伤 > 25 then 
+                int_减伤 = 25 + (int_减伤 - 25)/2
+            end
+            if int_减伤 > 50 then 
+                int_减伤 = 50 + (int_减伤 - 50)/2
+            end
+            if int_减伤 > 75 then 
+                int_减伤 = 75 + (int_减伤 - 75)/2
+            end
+            int_减伤 = math.min(80,int_减伤)
+            print('int_减伤_2',int_减伤)
+            hurt = math.floor(hurt *(1-int_减伤/100))
             if o_battle.模式 ~= 5 then
                 print('hurt',hurt)
                 local int_比例 = math.ceil(G.call('get_point',4)/20)*2
@@ -3821,17 +3870,22 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                hurt = math.random(10)
             end   
             if math.random(100) > 50 and G.call('get_npcskill',int_enemy,0x10050097) > 0 then   --斗转被动 
-                hurt3 = math.floor(hurt * (20 + G.call('通用_取得装备斗转效果',int_enemy)/2  )   /100 ) 
                 if string_字符串_4 == '' then 
                     string_字符串_4 = string_字符串_4..'斗转星移'
                 else
                     string_字符串_4 = string_字符串_4..'.'..'斗转星移'
                 end
+                local int_斗转效果 = 20 + G.call('通用_取得装备斗转效果',int_enemy)
                 if G.call('通用_取得套装',int_enemy,6) == 3 then
-                    hurt3 = math.floor(hurt3*1.5)
+                    int_斗转效果 = int_斗转效果*1.5
                 elseif  G.call('通用_取得套装',int_enemy,6) == 2 then
-                    hurt3 = math.floor(hurt3*1.25)
+                    int_斗转效果 = int_斗转效果*1.25
                 end
+                if int_斗转效果 > 100 then
+                    int_斗转效果 =  100 +  (int_斗转效果 - 100)/2
+                end
+                int_斗转效果 = math.min(150,int_斗转效果)
+                hurt3 = math.floor(hurt * int_斗转效果  /100 ) 
             end
             if G.call('通用_取得人物特效',int_id,19) and (not G.call('get_role',int_id,241) or G.call('get_role',int_id,241) == 0)   then--舔血效果计算
                 if string_字符串_2 == '' then 
@@ -4336,6 +4390,10 @@ t['magic_power3'] = function(int_id,int_no)
         elseif  G.call('通用_取得套装',int_id,6) == 2 then
             int_左右 = int_左右*1.25
         end
+        if int_左右 > 200 then
+            int_左右 = 200 + (int_左右 - 200)*0.5 
+        end
+        int_左右 = math.min(300,int_左右)
         if string_字符串_1 == '' then 
             string_字符串_1 = string_字符串_1..'左右互搏'
         else
@@ -4523,10 +4581,12 @@ t['magic_power3'] = function(int_id,int_no)
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
     if math.random(a+20) > math.random(math.floor(b/3)+int_闪避 + 1)  or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 14 or o_skill.附加效果 == 13  or G.call('通用_取得套装',int_id,3) == 3 then  --命中计算
         if hurt > 0 then 
+            local int_减伤 = 0
             if G.call('get_point',196) ~= nil then   
                 local o_skill_ta = G.QueryName(G.call('get_point',196))
                 if o_skill_ta.内功轻功效果 == 4 then --内功减伤效果计算
-                    hurt = hurt * (100-o_skill_ta.效果等级*o_skill_ta.修为等级/10)/100
+                    int_减伤 = o_skill_ta.效果等级*o_skill_ta.修为等级/10
+                    --hurt = hurt * (100-o_skill_ta.效果等级*o_skill_ta.修为等级/10)/100
                 end 
             end  
             if  o_skill.附加效果 == 14  then 
@@ -4544,14 +4604,29 @@ t['magic_power3'] = function(int_id,int_no)
                 end
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21)then
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )
+                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',0)/2
+                --hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )
             else
-                hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )  --按主角的拆招和内功免伤计算
+                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',0)/2
+                --hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )  --按主角的拆招和内功免伤计算
             end
             if G.call('get_point',194) ~= nil then  --按主角装备的防具再次计算伤害
                 local o_item = G.QueryName(G.call('get_point',194))
-                hurt = hurt*(1-(o_item.系数-100)/2/100)
+                int_减伤 = int_减伤 + o_item.系数-100/2 
+                --hurt = hurt*(1-(o_item.系数-100)/2/100)
             end 
+            if int_减伤 > 25 then 
+                int_减伤 = 25 + (int_减伤 - 25)/2
+            end
+            if int_减伤 > 50 then 
+                int_减伤 = 50 + (int_减伤 - 50)/2
+            end
+            if int_减伤 > 75 then 
+                int_减伤 = 75 + (int_减伤 - 75)/2
+            end
+            int_减伤 = math.min(80,int_减伤)
+            print('int_减伤_3',int_减伤)
+            hurt = math.floor(hurt *(1-int_减伤/100))
             if G.call('通用_取得人物特效',int_id,19) and (not G.call('get_role',int_id,241) or G.call('get_role',int_id,241) == 0)   then--舔血效果计算
                 if string_字符串_2 == '' then 
                     string_字符串_2 = string_字符串_2..'舔血'
@@ -4567,12 +4642,17 @@ t['magic_power3'] = function(int_id,int_no)
                 else
                     string_字符串_4 = string_字符串_4..'.'..'斗转星移'
                 end
-                hurt3 = math.floor(hurt * (20+G.call('通用_取得装备斗转效果',0)/2  )   *G.call('get_magic_lv',152)/500  )
+                local int_斗转效果 = 20 + G.call('通用_取得装备斗转效果',0)
                 if G.call('通用_取得套装',0,6) == 3 then
-                    hurt3 = math.floor(hurt3*1.5)
+                    int_斗转效果 = int_斗转效果*1.5
                 elseif  G.call('通用_取得套装',0,6) == 2 then
-                    hurt3 = math.floor(hurt3*1.25)
+                    int_斗转效果 = int_斗转效果*1.25
                 end
+                if int_斗转效果 > 100 then
+                    int_斗转效果 =  100 +  (int_斗转效果 - 100)/2
+                end
+                int_斗转效果 = math.min(150,int_斗转效果)
+                hurt3 = math.floor(hurt * int_斗转效果  /100 ) 
             end 
             if G.call('通用_取得人物特效',int_id,20) and math.random(100) < 50 then
                 G.call('add_role',int_id,14,1500)
