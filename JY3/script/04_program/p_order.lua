@@ -529,9 +529,9 @@ t['通用_随机抽取卡片']=function()
             int_卡片游戏等级 = int_卡片游戏等级 - 5
             int_随机数 = math.random(10000 -   int_卡片游戏等级*200  -  math.floor(int_卡片游戏等级/2)*100  -int_周目* 50)
         end
-        if int_随机数 <= 25 then 
+        if int_随机数 <= 50 then 
             int_卡组 = 1
-        elseif int_随机数 > 25 and int_随机数 <= 250 then 
+        elseif int_随机数 > 50 and int_随机数 <= 250 then 
             int_卡组 = 2
         elseif int_随机数 > 250 and int_随机数 <= 500 then 
             int_卡组 = 6
@@ -621,9 +621,9 @@ t['通用_分配卡片']=function()
             int_卡片游戏等级 = int_卡片游戏等级 - 5
             int_随机数 = math.random(10000 -   int_卡片游戏等级*200  -  math.floor(int_卡片游戏等级/2)*100  -int_周目* 50)
         end
-        if int_随机数 <= 25 then 
+        if int_随机数 <= 50 then 
             int_卡组 = 1
-        elseif int_随机数 > 25 and int_随机数 <= 250 then 
+        elseif int_随机数 > 50 and int_随机数 <= 250 then 
             int_卡组 = 2
         elseif int_随机数 > 250 and int_随机数 <= 500 then 
             int_卡组 = 6
