@@ -3821,10 +3821,10 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 end
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21) then --真武效果
-                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',int_enemy)/2
+                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',int_enemy)
                 --hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.6)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 )  ) 
             else
-                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',int_enemy)/2
+                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',int_enemy)
                 --hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_enemy)/200 ) )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if G.call('通用_取得套装',int_id,3) == 3 then --套装3和套装4强伤和减伤效果
@@ -4604,10 +4604,10 @@ t['magic_power3'] = function(int_id,int_no)
                 end
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21)then
-                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',0)/2
+                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',0)
                 --hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )
             else
-                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',0)/2
+                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',0)
                 --hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )  --按主角的拆招和内功免伤计算
             end
             if G.call('get_point',194) ~= nil then  --按主角装备的防具再次计算伤害
