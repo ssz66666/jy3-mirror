@@ -2985,7 +2985,7 @@ t['magic_power1'] = function(int_id,int_no)
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
     if math.random(a+20) > math.random(math.floor(b/3)+1+int_闪避) or G.call('通用_取得装备特效',0,208) or o_skill.附加效果 == 14 or o_skill.附加效果 == 13 or G.call('通用_取得套装',0,3) == 3 then  --命中计算     
         if hurt > 0 then 
-            local int_减伤 = G.call('通用_取得NPC内功效果',int_id,4)/2
+            local int_减伤 = G.call('通用_取得NPC内功效果',int_id,4)
             --hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_id,4)/2)/100 
             if  o_skill.附加效果 == 14  then 
                 if string_字符串_4 == '' then 
@@ -3028,7 +3028,7 @@ t['magic_power1'] = function(int_id,int_no)
                     --hurt = math.floor(hurt *(1- c/400)*(1- d/600*(1 - 0.15-int_真武效果*10/100) ) *(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )
                 end
             else 
-                int_减伤 = int_减伤 + c/4+d/6 + G.call('通用_取得装备减伤效果',int_id)/2
+                int_减伤 = int_减伤 + c/4+d/6 + G.call('通用_取得装备减伤效果',int_id)
                 --hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',int_id)/200 )   )  --按敌人的拆招和内功免伤进行计算伤害
             end
             if o_skill.类别 == 2 then --五岳剑阵效果
@@ -3804,7 +3804,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
     local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
     if math.random(a+20) > math.random(math.floor(b/3)+int_闪避+1) or G.call('通用_取得装备特效',int_id,208) or o_skill.附加效果 == 14 or o_skill.附加效果 == 13 or G.call('通用_取得套装',int_id,3) == 3 then  --命中计算
         if hurt > 0 then 
-            local int_减伤 = G.call('通用_取得NPC内功效果',int_enemy,4)/2
+            local int_减伤 = G.call('通用_取得NPC内功效果',int_enemy,4)
            -- hurt = hurt * (100-G.call('通用_取得NPC内功效果',int_enemy,4)/2)/100 --内功特效减伤
             if  o_skill.附加效果 == 14  then 
                 if string_字符串_4 == '' then 
@@ -4585,7 +4585,7 @@ t['magic_power3'] = function(int_id,int_no)
             if G.call('get_point',196) ~= nil then   
                 local o_skill_ta = G.QueryName(G.call('get_point',196))
                 if o_skill_ta.内功轻功效果 == 4 then --内功减伤效果计算
-                    int_减伤 = o_skill_ta.效果等级*o_skill_ta.修为等级/10
+                    int_减伤 = o_skill_ta.效果等级*o_skill_ta.修为等级/5
                     --hurt = hurt * (100-o_skill_ta.效果等级*o_skill_ta.修为等级/10)/100
                 end 
             end  
@@ -4604,10 +4604,10 @@ t['magic_power3'] = function(int_id,int_no)
                 end
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21)then
-                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',0)
+                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',0)/2
                 --hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )
             else
-                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',0)
+                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',0)/2
                 --hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )  --按主角的拆招和内功免伤计算
             end
             if G.call('get_point',194) ~= nil then  --按主角装备的防具再次计算伤害
