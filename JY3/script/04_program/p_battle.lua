@@ -2529,6 +2529,9 @@ t['集气'] = function()
                             end
                             G.misc().战斗状态 = 1
                             local int_武功代码 = G.call('通用_选择自动攻击武功')
+                            if not int_武功代码 then
+                                int_武功代码 = 207 
+                            end
                             ui.getChildByName('代码').getChildByName(位置[1]).text = int_武功代码
                             local i_skill = 0x10050000 + int_武功代码
                             local o_skill = G.QueryName(i_skill)
