@@ -48,7 +48,7 @@ function t:click(tar)
             --G.call('成就_读档',10)
         --end
         G.misc().出师 = nil
-        G.misc().双十一礼包 = nil
+        G.misc().新年礼包 = nil
         G.misc().切磋次数 = 0
         G.misc().清除成就 = 0 
         if tonumber(self.obj.getChildByName('no').text) > 0 then 

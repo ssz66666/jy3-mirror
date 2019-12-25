@@ -70,7 +70,7 @@ t['初始化'] = function()
 	G.misc().重置梦幻 = nil
 	G.misc().密令序号 = nil
 	G.misc().出师 = nil
-	G.misc().双十一礼包 = nil
+	G.misc().新年礼包 = nil
 	G.misc().一鸣惊人 = nil
 	G.call('通用_存档',0)
 	G.start_program("地图系统_初始化地图系统")

@@ -409,12 +409,12 @@ function t:click(tar)
             --     G.call('add_equip',0x10180028 + i,1)
             -- end
             -- G.misc().梦幻测试 = 1
-        -- elseif self.文本.getChildByName('secret').getChildByName('文本').text == '双十一狂欢'  then
-        --     if G.call('get_point',237) > 1 then 
-        --         G.call('通用_发放礼包')
-        --     else
-        --         G.call('notice1','必须二周目后才可以领取！') 
-        --     end
+        elseif self.文本.getChildByName('secret').getChildByName('文本').text == 'happy new year'  then
+            if G.call('get_point',237) > 1 then 
+                G.call('通用_发放礼包')
+            else
+                G.call('notice1','必须二周目后才可以领取！') 
+            end
         else
             G.call('notice1','密码错误')
 
