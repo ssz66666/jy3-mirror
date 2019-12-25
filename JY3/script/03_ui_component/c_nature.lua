@@ -101,7 +101,7 @@ function t:start()
     int_减伤 = int_减伤 + G.call('get_point',28+179)/4 + G.call('get_point',27+179)/6+G.call('通用_取得装备减伤效果',0)/2
     if G.call('get_point',194) ~= nil then  --按主角装备的防具再次计算伤害
         local o_item = G.QueryName(G.call('get_point',194))
-        int_减伤 = int_减伤 +  (o_item.系数-100)/2 
+        int_减伤 = int_减伤 +  (o_item.系数-100)
     end 
     if int_减伤 > 25 then 
         int_减伤 = 25 + (int_减伤 - 25)/2

@@ -4604,15 +4604,15 @@ t['magic_power3'] = function(int_id,int_no)
                 end
                 hurt = hurt
             elseif G.call('通用_取得人物特效',int_id,21)then
-                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',0)/2
+                int_减伤 = int_减伤 + c/4 + c/6*0.8+G.call('通用_取得装备减伤效果',0)
                 --hurt = math.floor(hurt *(1- c/400)*(1- d/600*0.8)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )
             else
-                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',0)/2
+                int_减伤 = int_减伤 + c/4 + c/6+G.call('通用_取得装备减伤效果',0)
                 --hurt = math.floor(hurt *(1- c/400)*(1- d/600)*(1 - G.call('通用_取得装备减伤效果',0)/200 )   )  --按主角的拆招和内功免伤计算
             end
             if G.call('get_point',194) ~= nil then  --按主角装备的防具再次计算伤害
                 local o_item = G.QueryName(G.call('get_point',194))
-                int_减伤 = int_减伤 + (o_item.系数-100)/2 
+                int_减伤 = int_减伤 + (o_item.系数-100)
                 --hurt = hurt*(1-(o_item.系数-100)/2/100)
             end 
             if int_减伤 > 25 then 
