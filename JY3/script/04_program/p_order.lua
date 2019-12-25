@@ -6395,7 +6395,7 @@ t['通用_发放礼包']=function()
         G.call('notice1','礼包需入[03]聚贤庄[01]且等级超过[03]50级[01]才能领取！')
     elseif G.misc().新年礼包 == 0  then
         G.call('notice1','你已经领取过该礼包，请关注后续活动！')
-    elseif G.misc().新年礼包 == 1 and G.call('get_point',4) >= 0  then
+    elseif G.misc().新年礼包 == 1 and G.call('get_point',4) >= 50  then
         local int_套装 =  math.ceil(3*G.call('通用_取随机')/100)
         for j = 1,3 do 
             G.call('通用_抽礼物',j,1,0,0,0,2,int_套装)
