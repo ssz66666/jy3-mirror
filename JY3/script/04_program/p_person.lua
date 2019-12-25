@@ -1889,7 +1889,7 @@ t['事件_随机切磋']=function()
     end 
     local name = G.call('get_point',1)
     G.call("talk",'',int_role,'   【'..name..'】[大侠]，久闻大名，今日特来领教阁下高招！',1,1)
-    G.call('call_battle',1,10,1,555,int_role,0,0,0,0,0,0,0,1)
+    G.call('call_battle',1,10,1,500,int_role,0,0,0,0,0,0,0,1)
     if int_被动 > 0 and int_role ~= 418 then--还原被动
         for j = 1,int_被动 do 
             G.call('set_role',int_role,110+j,team_skill[j]) 
@@ -2102,9 +2102,9 @@ t['副本_通天塔']=function(int_模式)
             G.call("talk",'',38,'   下面是第'..G.misc().通天塔层数..'层，请小心应对！',2,1) 
         end
         if int_模式 == 1 then 
-            G.call('call_battle',0,80,1,100 + G.misc().通天塔层数*5 ,team_final[2],team_final[1],team_final[3],team_final[4],team_final[5],team_final[6],0,0,1)
+            G.call('call_battle',0,80,1,50 + G.misc().通天塔层数*5 ,team_final[2],team_final[1],team_final[3],team_final[4],team_final[5],team_final[6],0,0,1)
         else
-            G.call('call_battle',0,80,3,100 + G.misc().通天塔层数*5 ,team_final[2],team_final[1],team_final[3],team_final[4],team_final[5],team_final[6],0,0,1)
+            G.call('call_battle',0,80,3,50 + G.misc().通天塔层数*5 ,team_final[2],team_final[1],team_final[3],team_final[4],team_final[5],team_final[6],0,0,1)
             --G.call('call_battle',1,80,3,0.00001 ,team_final[2],team_final[1],team_final[3],team_final[4],team_final[5],team_final[6])
         end    
         for i = 1,#team_final do --还原敌人被动
