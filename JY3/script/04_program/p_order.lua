@@ -420,6 +420,7 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
+    
 end
 t['通用_无尽抽卡'] = function(int_类型)
     local card = G.DBTable('o_card')
@@ -6396,12 +6397,12 @@ t['通用_发放礼包']=function()
     elseif G.misc().新年礼包 == 0  then
         G.call('notice1','你已经领取过该礼包，请关注后续活动！')
     elseif G.misc().新年礼包 == 1 and G.call('get_point',4) >= 50  then
+        G.misc().新年礼包 = 0
         local int_套装 =  math.ceil(3*G.call('通用_取随机')/100)
         for j = 1,3 do 
             G.call('通用_抽礼物',j,1,0,0,0,2,int_套装)
             G.wait_time(400)
         end
-        G.misc().新年礼包 = 0
     end 
 end
 t['count_inversion']=function(_table_数组) --逆序数计算
