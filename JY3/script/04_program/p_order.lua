@@ -420,7 +420,7 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-    
+  
 end
 t['通用_无尽抽卡'] = function(int_类型)
     local card = G.DBTable('o_card')
@@ -6401,7 +6401,6 @@ t['通用_发放礼包']=function()
         local int_套装 =  math.ceil(3*G.call('通用_取随机')/100)
         for j = 1,3 do 
             G.call('通用_抽礼物',j,1,0,0,0,2,int_套装)
-            G.wait_time(400)
         end
     end 
 end
