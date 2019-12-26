@@ -2859,7 +2859,7 @@ t['通用_锻造卡片选择']=function()
                             G.call('add_card',卡组_1[i].编号,-o_cardhouse.卡片[卡组_1[i].编号].数量)
                         end
                         G.call("talk",'？？？？',390,'   我就收下你这些卡片，见证奇迹的时候到了！',1,1)
-                        local int_套装 =  math.ceil(3*G.call('通用_取随机')/100)
+                        local int_套装 =  math.ceil(6*G.call('通用_取随机')/100)
                         for j = 1,3 do 
                             G.call('通用_抽礼物',j,1,0,0,0,2,int_套装)
                             G.wait_time(400)
