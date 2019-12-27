@@ -586,31 +586,6 @@ function t:click(tar)
             end    
         end 
     end 
-    if  G.misc().data == 16 then
-        local o_achieve = G.QueryName(0x10170000+G.misc().data) 
-        if ys < zys then
-            显示数量 = 12
-        else
-            显示数量 = #o_achieve.进度列表 - 12 *( zys -1) 
-        end 
-        for i = 1,12 do 
-            self.list_16[i].visible = false
-        end  
-        for i = 1,显示数量 do 
-            self.list_16[i].getChildByName('名称').text = o_achieve.进度列表[(ys-1)*12+i].名称
-            self.list_16[i].getChildByName('头像').img = 0x56080000+o_achieve.进度列表[(ys-1)*12+i].编号
-            self.list_16[i].visible = true
-            if o_achieve.进度列表[(ys-1)*12+i].完成 == 0 then 
-                self.list_16[i].getChildByName('完成').img = 0x56160073
-                self.list_16[i].getChildByName('名称').style = 10
-                self.list_16[i].getChildByName('闪光').visible = false
-            else
-                self.list_16[i].getChildByName('完成').img = 0x56160072
-                self.list_16[i].getChildByName('名称').style = 5
-                self.list_16[i].getChildByName('闪光').visible = true
-            end    
-        end 
-    end 
     if  G.misc().data == 26 then
         local o_achieve = G.QueryName(0x10170000+G.misc().data) 
         if ys < zys then

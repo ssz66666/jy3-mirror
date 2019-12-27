@@ -420,7 +420,7 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-  
+
 end
 t['通用_无尽抽卡'] = function(int_类型)
     local card = G.DBTable('o_card')
@@ -1990,7 +1990,7 @@ t['通用_华容道版块可移动'] = function(int_版块)
     return true
 end
 t['in_test'] = function() 
-    G.misc().测试 = 1
+   
 end 
 t['通用_选取队友是否为结婚结义对象'] = function(int_人物序号)
     if G.QueryName(0x10030001)[tostring(13)] == int_人物序号 then 
@@ -6609,6 +6609,7 @@ t['通用-门派完美发放奖励']=function()
     for i = 1,#o_门派成就.进度列表 do 
         if o_门派成就.进度列表[i].完美 then
             G.call('learnmagic',magic_1[i]) 
+            G.call('set_magicexp',magic_1[i],999)
             G.call('learnmagic',magic_2[i])  
         end
     end
