@@ -565,14 +565,14 @@ t['通用_随机抽取卡片']=function()
                     break
                 else
                     if int_卡组 == 6 then
-                        int_卡组 = 1 
+                        int_卡组 = 3
                     else
                        int_卡组 = int_卡组 + 1
                     end
                 end
             else
                 if int_卡组 == 6 then
-                    int_卡组 = 1 
+                    int_卡组 = 3
                 else
                    int_卡组 = int_卡组 + 1
                 end
@@ -614,6 +614,10 @@ t['通用_分配卡片']=function()
     local int_卡片 = 63
     local o_cardlist = G.QueryName(0x10200001)
     local int_周目 = G.call('get_point',237) - 1
+    local int_选卡数 = 0
+    for i = 1,5 do
+        o_cardlist['位置_'..(i+5)] = nil
+    end
     for i = 1,5 do
         int_卡片游戏等级 = G.call('get_cardgame_lv')
         if int_卡片游戏等级 < 6 then 
@@ -637,12 +641,30 @@ t['通用_分配卡片']=function()
         end
         while true do
             int_卡片 = 卡组[int_卡组][math.random(#卡组[int_卡组])]
-            if int_卡组 < 3 and  G.call('get_card_mod',int_卡片)  then 
-                if 卡数[int_卡组] == #卡组[int_卡组] then
-                    int_卡组 = int_卡组 + 1  
+            local result = false
+            if i > 1 and int_卡组 < 3 then 
+                for j = 1,i do 
+                    if o_cardlist['位置_'..(j+5)] == int_卡片 then
+                        result = true 
+                        break
+                    end
+                end
+            end
+            if result then
+                if  int_卡组 < 6 then 
+                   int_卡组 = int_卡组 + 1
+                else
+                    int_卡组 = 3
                 end
             else
-                break
+                if int_卡组 < 3 and  G.call('get_card_mod',int_卡片)  then 
+                    if 卡数[int_卡组] == #卡组[int_卡组]  then
+                        int_卡组 = int_卡组 + 1
+                    end
+                else
+                    --int_选卡数 = int_选卡数 + 1
+                    break
+                end
             end
         end
         o_cardlist['位置_'..(i+5)] = int_卡片   
