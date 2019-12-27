@@ -150,6 +150,7 @@ t['通用_存档'] = function(int_档案编号)
         local file,err=io.open(path)--打开文件
         if file then--如果有这个文件
             io.close(file)
+            G.call('通用-门派完美判断')
         else
             G.call('信息_读档',10)
             for i = 1,4 do 
