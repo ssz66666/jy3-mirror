@@ -422,7 +422,7 @@ t['回答问题']=function()
                 o_role[tostring(j)] = o_role[tostring(j)] + (math.floor(int_周目/3) + 1)*(math.floor(int_周目/3) + 1)
                 o_role[tostring(j)] = math.min(o_role[tostring(j)] ,500) 
             end
-            o_role[tostring(8)] = math.min(o_role[tostring(8)] + int_周目*2,180) 
+            o_role[tostring(8)] = math.min(o_role[tostring(8)] + int_周目*2,300) 
         elseif o_role[tostring(901)] then 
             o_role[tostring(1)] = o_role[tostring(1)] + 250
             o_role[tostring(2)] = o_role[tostring(2)] + 250
@@ -452,28 +452,28 @@ t['回答问题']=function()
 
     end  
     --根据周目数随机出主角4个被动
-    local m = {0,0,0,0}
-    local t = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31}
-    --local t = {1,4,5,7,8,10,11,12,13,14,22,23,24}
-    local len = #t
-    local  r = math.ceil(len*G.call('通用_取随机')/100)
-    m[1] =t[r]
-    table.remove(t, r)
-    len = #t
-    r = math.ceil(len*G.call('通用_取随机')/100)	
-    m[2] =t[r]
-    table.remove(t, r)
-    len = #t
-    r = math.ceil(len*G.call('通用_取随机')/100)	
-    m[3] =t[r]
-    table.remove(t, r)
-    len = #t
-    r = math.ceil(len*G.call('通用_取随机')/100)	
-    m[4] =t[r]
-    table.remove(t, r)
-    if G.misc().奇才 == 1 then
-        m[1] = 16
-    end
+    -- local m = {0,0,0,0}
+    -- local t = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31}
+    -- --local t = {1,4,5,7,8,10,11,12,13,14,22,23,24}
+    -- local len = #t
+    -- local  r = math.ceil(len*G.call('通用_取随机')/100)
+    -- m[1] =t[r]
+    -- table.remove(t, r)
+    -- len = #t
+    -- r = math.ceil(len*G.call('通用_取随机')/100)	
+    -- m[2] =t[r]
+    -- table.remove(t, r)
+    -- len = #t
+    -- r = math.ceil(len*G.call('通用_取随机')/100)	
+    -- m[3] =t[r]
+    -- table.remove(t, r)
+    -- len = #t
+    -- r = math.ceil(len*G.call('通用_取随机')/100)	
+    -- m[4] =t[r]
+    -- table.remove(t, r)
+    -- if G.misc().奇才 == 1 then
+    --     m[1] = 16
+    -- end
     local point = 0
     local maxpoint = 0
     local achieve = G.DBTable('o_achieve')

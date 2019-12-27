@@ -2165,7 +2165,7 @@ t['load'] = function() --读档界面
     G.wait1('load_over')
     G.removeUI('v_load') 
 end
-t['通用_记录继承装备']=function(int_重生)
+t['通用_记录继承装备']=function(int_继承类型)
     local _o_继承装备 = {}
     local o_body = G.QueryName(0x10030001)
     local o_store = G.QueryName(0x10190001)
@@ -2187,7 +2187,7 @@ t['通用_记录继承装备']=function(int_重生)
     if i_继承装备_4 then 
         table.insert(_o_继承装备,i_继承装备_4)
     end
-    if G.call('get_point',237) > 1 and int_重生 > 0 then 
+    if G.call('get_point',237) > 1 and int_继承类型 == 0 then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
@@ -2197,7 +2197,7 @@ t['通用_记录继承装备']=function(int_重生)
             end
         end
     end
-    if G.call('get_point',237) > 1 and int_重生 > 0  then 
+    if G.call('get_point',237) > 1 and int_继承类型 == 0  then 
         if #o_store.装备 > 0 then
             for i = 1, #o_store.装备 do
                 local o_equip = G.QueryName(o_store.装备[i].代码)
@@ -2234,7 +2234,7 @@ t['重生']=function()
     local int_周目 = G.call('get_point',237)
     local int_清除成就 = G.misc().清除成就
     local int_继承个数 = #o_store.装备
-    table_继承装备 = G.call('通用_记录继承装备',0)
+    table_继承装备 = G.call('通用_记录继承装备',G.misc().清除周目)
     local o_equip_usb = {}
     local i_equip
     if #table_继承装备 > 0 then 

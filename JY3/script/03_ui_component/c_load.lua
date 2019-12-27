@@ -122,7 +122,7 @@ function t:click(tar)
                         end
                         local table_继承装备 = {}
                         G.call('set_point',237,int_周目)
-                        table_继承装备 =  G.call('通用_记录继承装备',1)
+                        table_继承装备 =  G.call('通用_记录继承装备',0)
                         local o_equip_usb = {}
                         local i_equip
                         if #table_继承装备 > 0 then 

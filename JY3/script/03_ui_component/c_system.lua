@@ -17,6 +17,7 @@ function t:start()
     G.misc().作弊菜单 = 0
     G.misc().开启 = 0
     G.misc().清除成就 = 0
+    G.misc().清除周目 = 0
     if G.misc().切磋开关 == nil  then
         G.misc().切磋开关 = 1  
     end
@@ -189,6 +190,7 @@ function t:click(tar)
             G.call('notice1','此特殊人物不可以重生')
         else
             if G.call('get_point',4) >= 50  then 
+                G.misc().清除周目 = 0
                 G.removeUI('v_system') 
                 G.trig_event('重生')
             else
@@ -206,6 +208,7 @@ function t:click(tar)
                    G.call('set_point',237,2)
                    G.call('set_newpoint',237,-12)
                 end
+                G.misc().清除周目 = 1
                 G.trig_event('重生')
             else
                 G.call('notice1','等级不够50无法重生！')   
@@ -218,6 +221,7 @@ function t:click(tar)
         else
             if G.call('get_point',4) >= 50 then 
                 G.removeUI('v_system') 
+                G.misc().清除周目 = 0
                 G.misc().清除成就 = 1
                 G.trig_event('重生')
             else
