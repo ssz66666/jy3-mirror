@@ -640,7 +640,8 @@ function t:click(tar)
         G.misc().经验开关 = 0
     end
     if tar == self.设置按钮.getChildByName('自动开') then
-        G.misc().自动战斗 = 1     
+        G.misc().自动战斗 = 1   
+        G.call('notice1','[04]开启[03]自动攻击[04]将跳过队友选择，自动读取[03]上场战斗[04]队伍！')  
     elseif tar == self.设置按钮.getChildByName('自动关') then
         G.misc().自动战斗 = 0
     end

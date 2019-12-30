@@ -7408,6 +7408,25 @@ tp = tc
 			tp.addChild(tc)
 			tc.name = '设置'
 			tc.pivotX = 0.000
+			tc.pivotY = 1.000
+			tc.left = -279.000
+			tc.right = 841.000
+			tc.bottom = -278.000
+			tc.top = -78.000
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.text = '注意：[04]如开启[03]自动攻击[04]将跳过队友选择，将自动读取[03]上场战斗[04]队伍！'
+			tc.wrap = true
+			tc.font = 0x61370000
+			tc.align = 1
+			tc.style = 3
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '设置1'
+			tc.pivotX = 0.000
 			tc.left = -45.000
 			tc.right = 77.000
 			tc.bottom = 110.000
