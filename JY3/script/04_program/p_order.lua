@@ -759,6 +759,15 @@ t['add_card'] = function(int_卡片,int_数量)
             G.call('notice1','恭喜完成[03]'..o_achieve.进度列表[i].名称) 
         end
     end
+    local int_完成个数 = 0
+    for i = 1,#o_achieve.进度列表 do 
+        if o_achieve.进度列表[i].完成 == 1 then 
+            int_完成个数 = int_完成个数 + 1
+        end
+    end
+    if #o_achieve.进度列表 == int_完成个数 and o_achieve.完成 == 0 then
+        o_achieve.完成 = 1
+    end
 end
 t['call_card_select'] = function(int_结果)
     local ui = G.addUI('v_card_select')
