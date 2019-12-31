@@ -421,8 +421,7 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-    G.QueryName(0x10030001).性别 = 0
-    G.call("talk",'',38,'   做为你的[媳妇]吗？你可要认真考虑，机会只有一次，无论错过还是草率结合都是来不及后悔的。成为你[媳妇]的[女子]，各项属性均会大涨，成为你打架斗殴时的贤[内助]，可要慎重考虑！',1,1) 
+
 end
 t['通用_无尽抽卡'] = function(int_类型)
     local card = G.DBTable('o_card')
