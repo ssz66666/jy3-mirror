@@ -2130,7 +2130,7 @@ t['小游戏_华容道'] = function()
     G.removeUI('v_huarongdao') 
     if  G.misc().拼图结果 == 1 then 
         G.call('notice1','恭喜完成华容道')
-        if 1800 - G.misc().计时器 <= 450 then 
+        if 900 - G.misc().计时器 <= 450 then 
             G.call('通用_抽礼物',9,0) 
         end
     else
