@@ -421,7 +421,8 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-
+    G.QueryName(0x10030001).性别 = 0
+    G.call("talk",'',38,'   做为你的[媳妇]吗？你可要认真考虑，机会只有一次，无论错过还是草率结合都是来不及后悔的。成为你[媳妇]的[女子]，各项属性均会大涨，成为你打架斗殴时的贤[内助]，可要慎重考虑！',1,1) 
 end
 t['通用_无尽抽卡'] = function(int_类型)
     local card = G.DBTable('o_card')
@@ -4770,7 +4771,7 @@ t['通用_称谓转换'] = function(string_文本)
     local start,e,string_转换前 = string.find(string_文本, "%[(.-)%]")
     local string_result = string_文本
     while start and string_转换前 do
-        --print(start,e,string_转换前)
+        print(start,e,string_转换前)
         local string_转换后
         if string_转换前 == '随机称谓' then
             string_转换后 = 转换规则[math.random(1,8)][1]
@@ -4783,7 +4784,7 @@ t['通用_称谓转换'] = function(string_文本)
         end
         if string_转换后 then
             string_result = string.gsub(string_result, '%[' .. string_转换前 .. '%]', string_转换后)
-            start,e,string_转换前 = string.find(string_result, "%[(.*)%]")
+            start,e,string_转换前 = string.find(string_result, "%[(.-)%]")
         else
             string_文本 = string.sub(string_文本,e+1)
             start,e,string_转换前 = string.find(string_文本, "%[(.-)%]")
