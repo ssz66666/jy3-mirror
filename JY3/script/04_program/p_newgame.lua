@@ -348,8 +348,8 @@ t['回答问题']=function()
     else
         local int_选项 = 0
         while int_选项 == 0 do
-            int_选项 = G.call("menu",'',0,'十三：请选择游戏难度',1,1,
-            {"1,休闲","2,普通","3,困难"},1)
+            int_选项 = G.call("menu",'',0,'十三：请选择游戏难度(噩梦无法重铸,重生,难度双倍)',1,1,
+            {"1,休闲","2,普通","3,困难","4,噩梦"},1)
             if int_选项 == 1 then
                 G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 1 
                 G.QueryName(0x10030001)[tostring(200)] = 25
@@ -362,6 +362,10 @@ t['回答问题']=function()
                 G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 3
                 G.QueryName(0x10030001)[tostring(200)] = 125
                 G.call('all_over') 
+            elseif  int_选项 == 4 then
+                G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 4
+                G.QueryName(0x10030001)[tostring(200)] = 250
+                G.call('all_over')
             end
         end
         G.QueryName(0x10160000 +4).难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度

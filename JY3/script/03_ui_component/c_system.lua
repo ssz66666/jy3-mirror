@@ -168,8 +168,8 @@ function t:click(tar)
         self.文本.getChildByName('secret').visible = true
     elseif  tar == self.重铸.getChildByName('按钮') then
         local str = G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]
-        if str == '十年磨一剑' then
-            G.call('notice1','此特殊人物不可以重铸')
+        if str == '十年磨一剑'  or G.QueryName(0x10160000 +G.call('get_point',143)).难度 < 4 then 
+            G.call('notice1','此存档不可以重铸')
         else
             if G.call('get_point',4)%20 == 0 then 
                 G.call('指令_重铸')
@@ -202,7 +202,7 @@ function t:click(tar)
         if str == '十年磨一剑' then
             G.call('notice1','此特殊人物不可以重生')
         else
-            if G.call('get_point',4) >= 50 then 
+            if G.call('get_point',4) >= 50 and G.QueryName(0x10160000 +G.call('get_point',143)).难度 < 4 then 
                 G.removeUI('v_system') 
                 if G.call('get_point',237) >= 2 then 
                    G.call('set_point',237,2)
@@ -211,7 +211,7 @@ function t:click(tar)
                 G.misc().清除周目 = 1
                 G.trig_event('重生')
             else
-                G.call('notice1','等级不够50无法重生！')   
+                G.call('notice1','需要等级达到50且非噩梦难度才可以重生！')    
             end
         end  
     elseif  tar == self.重生.getChildByName('清除成就') then
@@ -219,13 +219,13 @@ function t:click(tar)
         if str == '十年磨一剑' then
             G.call('notice1','此特殊人物不可以重生')
         else
-            if G.call('get_point',4) >= 50 then 
+            if G.call('get_point',4) >= 50 and G.QueryName(0x10160000 +G.call('get_point',143)).难度 < 4 then 
                 G.removeUI('v_system') 
                 G.misc().清除周目 = 0
                 G.misc().清除成就 = 1
                 G.trig_event('重生')
             else
-                G.call('notice1','等级不够50无法重生！')   
+                G.call('notice1','需要等级达到50且非噩梦难度才可以重生！')   
             end
         end 
     elseif  tar == self.按钮.getChildByName('重生') then

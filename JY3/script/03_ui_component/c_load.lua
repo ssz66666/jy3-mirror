@@ -35,6 +35,8 @@ function t:start()
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '难度:普通'
             elseif  tonumber(t[3]) == 3 then    
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '难度:困难'
+            elseif  tonumber(t[3]) == 4 then    
+                self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '难度:噩梦'
             end
             local school = {'无门派','武当派','少林派','华山派','全真教','古墓派','逍遥派','血刀门','桃花岛','丐  帮','星宿派','峨嵋派'}
             local int_no = 1
