@@ -4260,7 +4260,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
                 int_点数 = 100+ G.call('get_point',237) - 1
             elseif int_难度 == 2 then 
                 int_点数 = 120+ G.call('get_point',237) - 1
-            elseif int_难度 == 3 then 
+            elseif int_难度 == 3 or int_难度 == 4 then 
                 int_点数 = 150+ G.call('get_point',237) - 1
             end
         end
