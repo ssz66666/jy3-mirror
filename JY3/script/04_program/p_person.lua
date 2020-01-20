@@ -667,7 +667,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 int_点数 = 100 +G.call('get_point',237) - 1
                             elseif int_难度 == 2 then 
                                 int_点数 = 120+G.call('get_point',237) - 1
-                            elseif int_难度 == 3 then 
+                            elseif int_难度 == 3 or int_难度 == 4 then
                                 int_点数 = 150+G.call('get_point',237) - 1
                             end
                             if int_选项 == 1 then 
@@ -836,7 +836,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 int_点数 = 100 +G.call('get_point',237) - 1
                             elseif int_难度 == 2 then 
                                 int_点数 = 120+G.call('get_point',237) - 1
-                            elseif int_难度 == 3 then 
+                            elseif int_难度 == 3 or int_难度 == 4 then
                                 int_点数 = 150+G.call('get_point',237) - 1
                             end
                             if int_选项 == 1 then 
@@ -1122,7 +1122,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 int_点数 = 100 +G.call('get_point',237) - 1
                             elseif int_难度 == 2 then 
                                 int_点数 = 120+G.call('get_point',237) - 1
-                            elseif int_难度 == 3 then 
+                            elseif int_难度 == 3 or int_难度 == 4 then
                                 int_点数 = 150+G.call('get_point',237) - 1
                             end
                             if int_选项 == 1 then 
@@ -1304,7 +1304,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 int_点数 = 100 +G.call('get_point',237) - 1
                             elseif int_难度 == 2 then 
                                 int_点数 = 120+G.call('get_point',237) - 1
-                            elseif int_难度 == 3 then 
+                            elseif int_难度 == 3 or int_难度 == 4 then
                                 int_点数 = 150+G.call('get_point',237) - 1
                             end
                             if int_选项 == 1 then 
@@ -2192,7 +2192,7 @@ t['副本_通天塔']=function(int_模式)
                     o_wjtz.进度列表[6].完成 = 1
                     G.call('notice1','恭喜完成中级无尽20层') 
                 end 
-            elseif int_难度 == 3 then  
+            elseif int_难度 == 3 or int_难度 == 4 then
                 if o_wjtz.进度列表[11].完成 == 0 then
                     o_wjtz.进度列表[11].完成 = 1
                     G.call('notice1','恭喜完成高级级无尽20层') 
@@ -2213,7 +2213,7 @@ t['副本_通天塔']=function(int_模式)
                     o_wjtz.进度列表[7].完成 = 1
                     G.call('notice1','恭喜完成中级无尽40层') 
                 end 
-            elseif int_难度 == 3 then  
+            elseif int_难度 == 3 or int_难度 == 4 then  
                 if o_wjtz.进度列表[12].完成 == 0 then
                     o_wjtz.进度列表[12].完成 = 1
                     G.call('notice1','恭喜完成高级级无尽40层') 
@@ -2234,7 +2234,7 @@ t['副本_通天塔']=function(int_模式)
                     o_wjtz.进度列表[8].完成 = 1
                     G.call('notice1','恭喜完成中级无尽60层') 
                 end 
-            elseif int_难度 == 3 then  
+            elseif int_难度 == 3 or int_难度 == 4 then  
                 if o_wjtz.进度列表[13].完成 == 0 then
                     o_wjtz.进度列表[13].完成 = 1
                     G.call('notice1','恭喜完成高级级无尽60层') 
@@ -2255,7 +2255,7 @@ t['副本_通天塔']=function(int_模式)
                     o_wjtz.进度列表[9].完成 = 1
                     G.call('notice1','恭喜完成中级无尽80层') 
                 end 
-            elseif int_难度 == 3 then  
+            elseif int_难度 == 3 or int_难度 == 4 then  
                 if o_wjtz.进度列表[14].完成 == 0 then
                     o_wjtz.进度列表[14].完成 = 1
                     G.call('notice1','恭喜完成高级级无尽80层') 
@@ -2279,7 +2279,7 @@ t['副本_通天塔']=function(int_模式)
                     o_wjtz.进度列表[10].完成 = 1
                     G.call('notice1','恭喜完成中级无尽100层') 
                 end 
-            elseif int_难度 == 3 then  
+            elseif int_难度 == 3 or int_难度 == 4 then  
                 if o_wjtz.进度列表[15].完成 == 0 then
                     o_wjtz.进度列表[15].完成 = 1
                     G.call('notice1','恭喜完成高级级无尽100层') 

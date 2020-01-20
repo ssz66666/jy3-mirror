@@ -2330,7 +2330,7 @@ t['集气'] = function()
                                 int_speed = int_speed*1.1 
                             elseif  int_难度 == 2 then    
                                 int_speed = int_speed * 1.3
-                            elseif  int_难度 == 3 then    
+                            elseif  int_难度 == 3 or int_难度 == 4 then    
                                 int_speed = int_speed * 1.5
                             end
                         end

@@ -401,7 +401,7 @@ t['回答问题']=function()
                 int_点数 = 100
             elseif int_难度 == 2 then 
                 int_点数 = 120
-            elseif int_难度 == 3 then 
+            elseif int_难度 == 3 or int_难度 == 4 then 
                 int_点数 = 150
             end
         end

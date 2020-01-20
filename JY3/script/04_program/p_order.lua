@@ -2573,7 +2573,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         int_战斗难度 = 25 
     elseif int_难度 == 2 then
         int_战斗难度 = 75
-    elseif int_难度 == 3 then
+    elseif int_难度 == 3 or int_难度 == 4 then
         int_战斗难度 = 100    
     end
     if G.call('get_point',237) == 1 then
@@ -3818,7 +3818,7 @@ t['指令_存储属性'] = function() --计算主角最终属性
         int_点数 = 200
     elseif int_难度 == 2 then 
         int_点数 = 220
-    elseif int_难度 == 3 then 
+    elseif int_难度 == 3 or int_难度 == 4 then
         int_点数 = 250
     end
     if G.call('get_point',206) >  int_点数 then 
@@ -3837,7 +3837,7 @@ t['指令_存储属性'] = function() --计算主角最终属性
         int_点数 = 100+ G.call('get_point',237) - 1
     elseif int_难度 == 2 then 
         int_点数 = 110+ G.call('get_point',237) - 1
-    elseif int_难度 == 3 then 
+    elseif int_难度 == 3 or int_难度 == 4 then 
         int_点数 = 120+ G.call('get_point',237) - 1
     end
     if G.call('get_point',210) > int_点数 then

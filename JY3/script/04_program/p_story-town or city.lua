@@ -551,7 +551,7 @@ t['城镇-塞外']=function()
             int_难度系数 = 100
         elseif int_难度 == 2 then
             int_难度系数 = 120
-        elseif int_难度 == 3 then
+        elseif int_难度 == 3 or int_难度 == 4 then
             int_难度系数 = 150
         end  
         G.call('call_battle',1,42,1,int_难度系数,36,0,0,0,0,0,0,66)  
