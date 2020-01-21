@@ -168,7 +168,7 @@ function t:click(tar)
         self.文本.getChildByName('secret').visible = true
     elseif  tar == self.重铸.getChildByName('按钮') then
         local str = G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]
-        if str == '十年磨一剑'  or G.QueryName(0x10160000 +G.call('get_point',143)).难度 < 4 then 
+        if str == '十年磨一剑'  or G.QueryName(0x10160000 +G.call('get_point',143)).难度 >= 4 then 
             G.call('notice1','此存档不可以重铸')
         else
             if G.call('get_point',4)%20 == 0 then 
