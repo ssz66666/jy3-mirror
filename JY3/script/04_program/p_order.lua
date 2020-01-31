@@ -6619,7 +6619,7 @@ t['通用-门派完美发放奖励']=function()
     for i = 1,#o_门派成就.进度列表 do 
         if o_门派成就.进度列表[i].完美 then
             G.call('learnmagic',magic_1[i]) 
-            G.call('set_magicexp',magic_1[i],999)
+            G.call('set_magic_lv',magic_1[i],5)
             G.call('learnmagic',magic_2[i])  
         end
     end
