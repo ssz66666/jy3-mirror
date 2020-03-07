@@ -2392,12 +2392,12 @@ t['副本_通天塔']=function(int_模式)
         G.call('notice1','恭喜完成【无尽挑战】') 
     end 
     local int_完成数 = 0
-    for i = 1,#生存成就 do
+    for i = 1,#o_生存成就.进度列表 do
         if o_生存成就.进度列表[i].完成 == 1 then 
             int_完成数 = int_完成数 + 1
         end
     end
-    if 生存成就 == #o_周目成就.进度列表  and o_生存成就.完成 == 0 then
+    if int_完成数 == #o_周目成就.进度列表  and o_生存成就.完成 == 0 then
         --print('int_完成数',int_完成数)
         o_周目成就.完成 = 1
         G.call('notice1','恭喜完成[03]强者生存')
