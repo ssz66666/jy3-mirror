@@ -212,6 +212,7 @@ function t:click(tar)
                 end
                 G.misc().清除周目 = 1
                 G.misc().死亡次数 = 0
+                G.misc().生存 = 1
                 G.trig_event('重生')
             else
                 G.call('notice1','需要等级达到50且非噩梦难度才可以重生！')    
