@@ -204,7 +204,7 @@ function t:click(tar)
         if str == '十年磨一剑' then
             G.call('notice1','此特殊人物不可以重生')
         else
-            if G.call('get_point',4) >= 50 and G.QueryName(0x10160000 +G.call('get_point',143)).难度 < 4 then 
+            if G.call('get_point',4) >= 50 and G.QueryName(0x10160000 +G.call('get_point',143)).难度 <= 5 then 
                 G.removeUI('v_system') 
                 if G.call('get_point',237) >= 2 then 
                    G.call('set_point',237,2)
@@ -222,7 +222,7 @@ function t:click(tar)
         if str == '十年磨一剑' then
             G.call('notice1','此特殊人物不可以重生')
         else
-            if G.call('get_point',4) >= 50 and G.QueryName(0x10160000 +G.call('get_point',143)).难度 < 4 then 
+            if G.call('get_point',4) >= 50 and G.QueryName(0x10160000 +G.call('get_point',143)).难度 <=5then 
                 G.removeUI('v_system') 
                 if G.call('get_point',237) >= 2 then 
                    G.call('set_point',237,2)
