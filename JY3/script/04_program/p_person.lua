@@ -974,7 +974,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                             end
                             G.call('all_over')
                             local int_min = G.call('通用_读取时间差') 
-                            if G.call('get_point',237) >= 10 then
+                            if G.call('get_point',237) >= 10 or  G.misc().生存 == 1 then
                                 int_min = 60
                             end 
                             if int_min   >= 60  then   
