@@ -62,7 +62,7 @@ function t:start()
                 self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text = 1
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('周目').text = '周目'..G.call('to_chinese',tonumber(t[4]))..'(通关)'
             elseif tonumber(t[5]) == 2 then 
-                self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text = 1
+                self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text = 2
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('周目').text = '周目'..G.call('to_chinese',tonumber(t[4]))..'(重开)'
             else
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('周目').text = '周目'..G.call('to_chinese',tonumber(t[4]))
@@ -110,14 +110,29 @@ function t:click(tar)
             ui = G.getUI('v_title');
             if  self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('true').visible == true then
                 local  n = tonumber(self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text)
-                if n > 0  then
+                local reulst = false
+                local int_检查 = 0
+                for i = 11,99 do
+                    local path = G.GetSavePath(string.format('R%d.grp', i));
+                    if G.IsFileExist(path) then 
+                        int_检查 = i - 10
+                        break
+                    end
+                end
+                if not G.misc().死亡次数 then
+                    G.misc().死亡次数 = 0 
+                end
+                G.call('信息_读档',5)
+                local o_files = G.QueryName(0x10160000 + i)
+                local int_周目 = o_files.周目
+                local int_通关 = o_files.通关
+                G.call('继承_读档',10)
+                if int_检查 ~= G.misc().死亡次数 and int_检查 > 0 then
+                    reulst = true
+                end
+                if n > 0 or reulst then
                     G.call('mapoff')
                     G.Play(0x49011001, 1,true,1)
-                    G.call('信息_读档',5)
-                    local o_files = G.QueryName(0x10160000 + i)
-                    local int_周目 = o_files.周目
-                    local int_通关 = o_files.通关
-                    G.call('继承_读档',10)
                     if G.call('通用_存档剔除') and  G.misc().重置数据存档 == nil then
                         G.call('notice1','请重新开始游戏')
                         return 
@@ -129,11 +144,9 @@ function t:click(tar)
                     if not G.misc().死亡次数 then 
                         G.misc().死亡次数 = 0
                     end
-                    local path = G.GetSavePath(string.format('R%d.grp', 10+G.misc().死亡次数));
-                    local newpath = G.GetSavePath(string.format('R%d.grp', 11+G.misc().死亡次数));
-                    if int_通关 > 0 or  G.IsFileExist(newpath) then 
+                    if int_通关 > 0 or reulst then 
                         local o_store = G.QueryName(0x10190001)
-                        if int_通关 == 1 and not G.IsFileExist(newpath) then 
+                        if int_通关 == 1 and not reulst then 
                            int_周目 = int_周目 + 1
                         end
                         local int_继承个数 = 0
@@ -152,7 +165,7 @@ function t:click(tar)
                         end
                         local int_生存 = G.misc().生存
                         local int_死亡次数 = G.misc().死亡次数
-                        if #table_继承装备 > 0 and (int_生存 ~= 1 or (int_生存 == 1 and not G.IsFileExist(newpath))  )then
+                        if #table_继承装备 > 0 and int_生存 ~= 1  then
                             for i = 1,#table_继承装备 do 
                                 o_equip_usb[i] = {}
                             end

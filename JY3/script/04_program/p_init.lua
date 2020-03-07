@@ -416,7 +416,10 @@ t['地图系统_事件响应'] = function()
 			G.Tween("color", 800, ui, 0xffffff)
 			G.call('add_hour',6)
 			G.call("goto_map",G.QueryName(0x10030001)[tostring(140)]-0x10060000)
-			G.call('call_save')
+			G.call('add_point',64,1)
+			G.call('通用_存档',G.QueryName(0x10030001)[tostring(143)])
+			G.call('通用_存档',4)
+			--G.call('call_save')
 		elseif r == 2 then
 			G.call('通用_战斗飘字')
 		elseif r == 9  then 

@@ -34,6 +34,7 @@ t['生存_存档'] = function()
     G.QueryName(0x10030001)[tostring(238)] = 2 --设置通关标志
     G.misc().死亡次数 = G.misc().死亡次数 + 1
     G.call('通用_存档',G.call('get_point',143))--保存通关存档 
+    G.call('通用_存档',4)
     G.call('通用_存档',10+G.misc().死亡次数)
     if G.misc().死亡次数 > 1 then
         local path = G.GetSavePath(string.format('R%d.grp', 9+G.misc().死亡次数));
@@ -196,6 +197,9 @@ t['通用_存档'] = function(int_档案编号)
         G.WriteFile(path, zipbuf);
     elseif int_档案编号  == 10 then
         path = G.GetSavePath('R10.grp');  
+        G.WriteFile(path, zipbuf);
+    else
+        path = G.GetSavePath(string.format('R%d.grp', int_档案编号)); 
         G.WriteFile(path, zipbuf);
     end
     if int_档案编号 > 0 and int_档案编号 <=4 then 
@@ -2281,7 +2285,7 @@ t['重生']=function()
     table_继承装备 = G.call('通用_记录继承装备',G.misc().清除周目)
     local o_equip_usb = {}
     local i_equip
-    if #table_继承装备 > 0 and int_生存 ~= 1 then 
+    if #table_继承装备 > 0 and int_生存 ~= 1   then
         for i = 1,#table_继承装备 do 
             o_equip_usb[i] = {}
         end
