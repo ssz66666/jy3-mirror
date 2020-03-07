@@ -134,6 +134,76 @@ t['地图系统_游戏加速监控'] = function()
 
 	end
 end
+t['地图系统_防修改还原'] = function()
+	if G.call('get_point',237) == 1 then return end
+	G.call('通用_重置检测')
+	local o_body = G.QueryName(0x10030001)
+	local o_newbody = G.QueryName(0x101b0001)
+	if G.call('get_point',5) ~= math.abs(G.call('get_newpoint',5) + 10)  then
+		--print('修为点',G.call('get_point',5),G.call('get_newpoint',5))
+		G.call('set_point',5, math.abs(G.call('get_newpoint',5) + 10)) 
+		--int_检测 = int_检测 + 1
+	end 
+	if G.call('get_point',3) ~= math.abs(G.call('get_newpoint',3)+10)  then
+		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
+		G.call('set_point',3, math.abs(G.call('get_newpoint',3) + 10)) 
+		--int_检测 = int_检测 + 1
+	end
+	if G.call('get_point',4) ~= math.abs(G.call('get_newpoint',4)+10)  then
+		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
+		G.call('set_point',4, math.abs(G.call('get_newpoint',4) + 10)) 
+		--int_检测 = int_检测 + 1
+	end
+	if G.call('get_point',110) ~= math.abs(G.call('get_newpoint',110)+2000)  then
+		G.call('set_point',110, math.abs(G.call('get_newpoint',110) + 2000)) 
+		--print('金钱',G.call('get_point',110),G.call('get_newpoint',110))
+		--int_检测 = int_检测 + 1
+	end
+	if G.call('get_point',45) ~= math.abs(G.call('get_newpoint',45) + 10)  then
+		--print('HP',G.call('get_point',45),G.call('get_newpoint',45))
+		G.call('set_point',45, math.abs(G.call('get_newpoint',45) + 10)) 
+		--int_检测 = int_检测 + 1 
+	end 
+	if G.call('get_point',47) ~= math.abs(G.call('get_newpoint',47) + 10)  then
+		--print('MP',G.call('get_point',47),G.call('get_newpoint',47))
+		G.call('set_point',47, math.abs(G.call('get_newpoint',47) + 10)) 
+		--int_检测 = int_检测 + 1
+	end
+	if G.call('get_point',63) ~= math.abs(G.call('get_newpoint',63) + 10)  then
+		--print('北冥',G.call('get_point',63),G.call('get_newpoint',63))
+		G.call('set_point',63, math.abs(G.call('get_newpoint',63) + 10)) 
+		--int_检测 = int_检测 + 1 
+	end
+	if G.call('get_magicexp',83) ~= math.abs(G.call('get_newpoint',77) + 10) then 
+		--print('野球拳',G.call('get_magicexp',83),G.call('get_newpoint',77))
+		G.call('set_point',83, math.abs(G.call('get_newpoint',77) + 10)) 
+		--int_检测 = int_检测 + 1
+	end
+	for i = 111,115 do
+		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 10)  then 
+			G.call('set_point',i ,math.abs(G.call('get_newpoint',i) + 10)) 
+			--print(i,G.call('get_point',i),G.call('get_newpoint',i)+10)
+			-- G.call('通用_强退游戏',211) 
+			-- break
+		end
+	end
+	for i = 120,124 do
+		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i))  then 
+			G.call('set_point',i, math.abs(G.call('get_newpoint',5) + 0)) 
+			--print(i,G.call('get_point',i),G.call('get_newpoint',i))
+			-- G.call('通用_强退游戏',212) 
+			-- break
+		end
+	end
+	for i = 16,34 do 
+		if G.call('get_point',i) ~=  math.abs(G.call('get_newpoint',i) + 10)  then
+			G.call('set_point',i ,math.abs(G.call('get_newpoint',i) + 10)) 
+			-- --print(i,G.call('get_point',i),G.call('get_newpoint',i))
+			-- G.call('通用_强退游戏',214) 
+			-- break
+		end
+	end
+end
 t['地图系统_防修改监控'] = function()
 	G.call('通用_重置检测')
 	local int_成就 = G.QueryName(0x10170002).进度列表[1].当前进度 + G.QueryName(0x10170004).进度列表[1].当前进度+ G.QueryName(0x10170005).进度列表[1].当前进度 + G.QueryName(0x10170007).进度列表[1].当前进度+ G.QueryName(0x10170008).进度列表[1].当前进度+ G.QueryName(0x1017000a).进度列表[1].当前进度+ G.QueryName(0x1017000b).进度列表[1].当前进度+ G.QueryName(0x10170015).进度列表[1].当前进度+ G.QueryName(0x10170014).进度列表[1].当前进度+ G.QueryName(0x10170012).进度列表[6].当前进度+ G.QueryName(0x10170011).进度列表[1].当前进度+ G.QueryName(0x10170009).进度列表[1].当前进度
@@ -185,42 +255,6 @@ t['地图系统_防修改监控'] = function()
 	if G.call('get_point',237) == 1 then return end
 	local o_body = G.QueryName(0x10030001)
 	local o_newbody = G.QueryName(0x101b0001)
-	if G.call('get_point',5) ~= math.abs(G.call('get_newpoint',5) + 10)  then
-		--print('修为点',G.call('get_point',5),G.call('get_newpoint',5))
-		int_检测 = int_检测 + 1
-	end 
-	if G.call('get_point',3) ~= math.abs(G.call('get_newpoint',3)+10)  then
-		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
-		int_检测 = int_检测 + 1
-	end
-	if G.call('get_point',4) ~= math.abs(G.call('get_newpoint',4)+10)  then
-		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
-		int_检测 = int_检测 + 1
-	end
-	if G.call('get_point',110) ~= math.abs(G.call('get_newpoint',110)+2000)  then
-		--print('金钱',G.call('get_point',110),G.call('get_newpoint',110))
-		int_检测 = int_检测 + 1
-	end
-	if G.call('get_point',45) ~= math.abs(G.call('get_newpoint',45) + 10)  then
-		--print('HP',G.call('get_point',45),G.call('get_newpoint',45))
-		int_检测 = int_检测 + 1 
-	end 
-	if G.call('get_point',47) ~= math.abs(G.call('get_newpoint',47) + 10)  then
-		--print('MP',G.call('get_point',47),G.call('get_newpoint',47))
-		int_检测 = int_检测 + 1
-	end
-	if G.call('get_point',63) ~= math.abs(G.call('get_newpoint',63) + 10)  then
-		--print('北冥',G.call('get_point',63),G.call('get_newpoint',63))
-		int_检测 = int_检测 + 1 
-	end
-	-- if G.call('get_point',130) ~= math.abs(G.call('get_newpoint',130) + 10)  then
-	-- 	--print('本金',G.call('get_point',130),G.call('get_newpoint',130))
-	-- 	G.call('通用_强退游戏') 
-	-- end
-	if G.call('get_magicexp',83) ~= math.abs(G.call('get_newpoint',77) + 10) then 
-		--print('野球拳',G.call('get_magicexp',83),G.call('get_newpoint',77))
-		int_检测 = int_检测 + 1
-	end
 	local int_物品数量 = 0
 	local item = G.DBTable('o_item')
     for i = 1,#item do
@@ -257,7 +291,7 @@ t['地图系统_防修改监控'] = function()
 	end
 	print('int_检测',int_检测)
 	G.call('通用_队伍检测') 
-	if int_检测 > 0 and int_检测 < 10 then
+	if int_检测 > 0 then
 		G.call('通用_强退游戏',301)  
 	end
 	if int_检测 == 9 then
@@ -265,20 +299,6 @@ t['地图系统_防修改监控'] = function()
 	end
 	if G.call('get_newpoint',115) == 0  then 
 		G.call('set_newpoint',115,-10-G.call('get_point',115)) 
-	end
-	for i = 111,115 do
-		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 10)  then 
-			--print(i,G.call('get_point',i),G.call('get_newpoint',i)+10)
-			G.call('通用_强退游戏',211) 
-			break
-		end
-	end
-	for i = 120,124 do
-		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i))  then 
-			--print(i,G.call('get_point',i),G.call('get_newpoint',i))
-			G.call('通用_强退游戏',212) 
-			break
-		end
 	end
 	for i = 16,34 do 
 		if i < 22 then 
@@ -299,11 +319,6 @@ t['地图系统_防修改监控'] = function()
 			if G.call('get_point',i)  > int_点数   then 
 				G.call('通用_强退游戏',213)
 			end 
-		end
-		if G.call('get_point',i) ~=  math.abs(G.call('get_newpoint',i) + 10)  then
-			--print(i,G.call('get_point',i),G.call('get_newpoint',i))
-			G.call('通用_强退游戏',214) 
-			break
 		end
 	end
 	local o_team = G.QueryName(0x10110001)
