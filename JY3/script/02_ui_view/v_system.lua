@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_system = require 'c_system'
 local c_button = require 'c_button'
+local c_system = require 'c_system'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -926,15 +926,32 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '清除周目'
-			tc.left = -202.000
-			tc.right = -38.000
+			tc.left = -284.000
+			tc.right = 44.000
 			tc.bottom = -80.000
 			tc.top = -20.000
 			tc.mouseEnabled = true
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
 			tc.autosize = 1
-			tc.text = '清除周目'
+			tc.text = '清除周目（生存）'
+			tc.font = 0x61280000
+			tc.style = 7
+			tp = tc
+			tp = tp.parent
+			--end
+			tc = G.TextQuad()
+			tp.addChild(tc)
+			tc.name = '清除周目二'
+			tc.left = -300.500
+			tc.right = 68.500
+			tc.bottom = -120.000
+			tc.top = -60.000
+			tc.mouseEnabled = true
+			tc.scaleX = 0.500
+			tc.scaleY = 0.500
+			tc.autosize = 1
+			tc.text = '清除周目（非生存）'
 			tc.font = 0x61280000
 			tc.style = 7
 			tp = tc
@@ -943,10 +960,10 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '清除成就'
-			tc.left = -82.000
-			tc.right = 82.000
-			tc.bottom = -80.000
-			tc.top = -20.000
+			tc.left = 12.000
+			tc.right = 176.000
+			tc.bottom = -81.000
+			tc.top = -21.000
 			tc.mouseEnabled = true
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500
@@ -960,10 +977,10 @@ tp = tc
 			tc = G.TextQuad()
 			tp.addChild(tc)
 			tc.name = '都不清除'
-			tc.left = 38.000
-			tc.right = 202.000
-			tc.bottom = -80.000
-			tc.top = -20.000
+			tc.left = 12.000
+			tc.right = 176.000
+			tc.bottom = -120.000
+			tc.top = -60.000
 			tc.mouseEnabled = true
 			tc.scaleX = 0.500
 			tc.scaleY = 0.500

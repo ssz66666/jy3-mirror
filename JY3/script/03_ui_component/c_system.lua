@@ -41,6 +41,8 @@ function t:start()
     self.重生.getChildByName('都不清除').shadowX = 1 
     self.重生.getChildByName('都不清除').shadowAlpha = 255
     self.重生.getChildByName('清除周目').shadowX = 1 
+    self.重生.getChildByName('清除周目二').shadowAlpha = 255
+    self.重生.getChildByName('清除周目二').shadowX = 1 
     self.重生.getChildByName('清除周目').shadowAlpha = 255
     self.重生.getChildByName('清除成就').shadowX = 1 
     self.重生.getChildByName('清除成就').shadowAlpha = 255
@@ -210,6 +212,25 @@ function t:click(tar)
                 end
                 G.misc().清除周目 = 1
                 G.misc().死亡次数 = 0
+                G.trig_event('重生')
+            else
+                G.call('notice1','需要等级达到50且非噩梦难度才可以重生！')    
+            end
+        end  
+    elseif  tar == self.重生.getChildByName('清除周目二') then
+        local str = G.QueryName(0x10030001)[tostring(1)]..G.QueryName(0x10030001)[tostring(2)]
+        if str == '十年磨一剑' then
+            G.call('notice1','此特殊人物不可以重生')
+        else
+            if G.call('get_point',4) >= 50 and G.QueryName(0x10160000 +G.call('get_point',143)).难度 < 4 then 
+                G.removeUI('v_system') 
+                if G.call('get_point',237) >= 2 then 
+                   G.call('set_point',237,2)
+                   G.call('set_newpoint',237,-12)
+                end
+                G.misc().清除周目 = 1
+                G.misc().死亡次数 = 0
+                G.misc().生存 = 0
                 G.trig_event('重生')
             else
                 G.call('notice1','需要等级达到50且非噩梦难度才可以重生！')    
