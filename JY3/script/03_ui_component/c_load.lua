@@ -113,7 +113,7 @@ function t:click(tar)
                 local reulst = false
                 local int_检查 = 0
                 for i = 21,99 do
-                    local path = G.GetSavePath(string.format('R%d.grp', i));
+                    local path = G.WritePath(string.format('log/S%d.txt', 20+i));
                     if G.IsFileExist(path) then 
                         int_检查 = i - 20
                         break

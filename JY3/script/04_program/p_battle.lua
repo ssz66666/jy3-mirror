@@ -3057,7 +3057,6 @@ t['magic_power1'] = function(int_id,int_no)
                 int_减伤 = 75 + (int_减伤 - 75)/2
             end
             int_减伤 = math.min(80,int_减伤)
-            print('int_减伤_1',int_减伤)
             hurt = math.floor(hurt *(1-int_减伤/100))
             if o_battle.模式 ~= 99 then
                 local int_比例 = math.ceil(G.call('get_point',4)/20)*2
@@ -3850,7 +3849,6 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                 int_减伤 = 75 + (int_减伤 - 75)/2
             end
             int_减伤 = math.min(80,int_减伤)
-            print('int_减伤_2',int_减伤)
             hurt = math.floor(hurt *(1-int_减伤/100))
             if o_battle.模式 ~= 5 then
                 print('hurt',hurt)
@@ -4628,7 +4626,6 @@ t['magic_power3'] = function(int_id,int_no)
                 int_减伤 = 75 + (int_减伤 - 75)/2
             end
             int_减伤 = math.min(80,int_减伤)
-            print('int_减伤_3',int_减伤)
             hurt = math.floor(hurt *(1-int_减伤/100))
             if G.call('通用_取得人物特效',int_id,19) and (not G.call('get_role',int_id,241) or G.call('get_role',int_id,241) == 0)   then--舔血效果计算
                 if string_字符串_2 == '' then 

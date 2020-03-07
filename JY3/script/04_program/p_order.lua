@@ -17,54 +17,6 @@ t['call_save'] = function()
     G.wait1('save_over')
     G.removeUI('v_save')
 end
---type=通用指令
---hide=false
---private=false
-t['通关_存档'] = function()
-    G.wait_time(200)
-    G.QueryName(0x10030001)[tostring(238)] = 1 --设置通关标志
-    G.call('通用_存档',G.call('get_point',143))--保存通关存档
-    G.call('通用_存档',10) 
-end
---type=通用指令
---hide=false
---private=false
-t['生存_存档'] = function()
-    G.wait_time(200)
-    G.QueryName(0x10030001)[tostring(238)] = 2 --设置通关标志
-    G.misc().死亡次数 = G.misc().死亡次数 + 1
-    G.call('通用_存档',G.call('get_point',143))--保存通关存档 
-    G.call('通用_存档',4)
-    G.call('通用_存档',20+G.misc().死亡次数)
-    if G.misc().死亡次数 > 1 then
-        local path = G.GetSavePath(string.format('R%d.grp', 19+G.misc().死亡次数));
-        if G.IsFileExist(path)  then
-            os.remove(path)
-        end
-    end
-end
-t['信息_读档'] = function(int_档案编号)
-    local perms = {
-		_ENV = _ENV,
-		-- 1 = [c],
-		-- [2] = co,
-		-- [3] = co.yield,
-		-- [4] = co.resume,
-		[5] = GF,
-		-- [6] = xpcall,
-		[7] = GF.o_meta,
-		[8] = GF.new_meta
-    };
-    local path = G.GetSavePath(string.format('R%d.grp', int_档案编号));
-	if G.IsFileExist(path)  then
-		local zipbuf = G.LoadFile(path);
-		local buf = G.unzip(zipbuf);
-        local obj = eris.unpersist(perms, buf);
-        for i,v in ipairs({'o_files'}) do
-            G.newinst_cache[v] = obj[1][v]
-        end 
-    end
-end
 t['成就_读档'] = function(int_档案编号)
     local perms = {
 		_ENV = _ENV,
@@ -77,18 +29,69 @@ t['成就_读档'] = function(int_档案编号)
 		[7] = GF.o_meta,
 		[8] = GF.new_meta
     };
-    local path = G.GetSavePath(string.format('R%d.grp', int_档案编号));
-	if G.IsFileExist(path)  then
-		local zipbuf = G.LoadFile(path);
-		local buf = G.unzip(zipbuf);
+    local newpath = G.WritePath('log/achieve.txt');
+    local oldpath = G.GetSavePath(string.format('R%d.grp', int_档案编号));
+    local zipbuf
+	if G.IsFileExist(newpath)  then
+        zipbuf = G.LoadFile(newpath);
+        local buf = G.unzip(zipbuf);
         local obj = eris.unpersist(perms, buf);
-        -- for i,v in ipairs('o_achieve','o_cardhouse') do
-        --     G.newinst_cache[v] = obj[1][v]
-        -- end 
-        --local db = obj[1]['o_achieve']
+        G.newinst_cache['o_achieve'] = obj[1]['o_achieve'] 
+        G.newinst_cache['o_cardhouse'] = obj[1]['o_cardhouse'] 
+    elseif G.IsFileExist(oldpath)  then
+        zipbuf = G.LoadFile(oldpath);
+        local buf = G.unzip(zipbuf);
+        local obj = eris.unpersist(perms, buf);
         G.newinst_cache['o_achieve'] = obj[1]['o_achieve'] 
         G.newinst_cache['o_cardhouse'] = obj[1]['o_cardhouse'] 
     end
+end
+--type=通用指令
+--hide=false
+--private=false
+t['通关_存档'] = function()
+    G.wait_time(200)
+    G.QueryName(0x10030001)[tostring(238)] = 1 --设置通关标志
+    G.call('通用_存档',G.call('get_point',143))--保存通关存档
+    local perms = {
+        [_ENV] = '_ENV',
+        [GF] = 5,
+		[GF.o_meta] = 7,
+		[GF.new_meta] = 8
+    };
+    local obj = save_ofile();
+    local buf = eris.persist(perms, obj);
+    local zipbuf = G.zip(buf);
+    local path = G.WritePath('log/achieve.txt');
+    G.WriteFile(path, zipbuf);
+end
+--type=通用指令
+--hide=false
+--private=false
+t['生存_存档'] = function()
+    G.wait_time(200)
+    G.QueryName(0x10030001)[tostring(238)] = 2 --设置通关标志
+    G.misc().死亡次数 = G.misc().死亡次数 + 1
+    G.call('通用_存档',G.call('get_point',143))--保存通关存档 
+    G.call('通用_存档',4)
+    G.call('备份_存档',20+G.misc().死亡次数)
+    local path = G.WritePath(string.format('log/S%d.txt', 19+G.misc().死亡次数));
+    if G.misc().死亡次数 > 1 and G.IsFileExist(path) then 
+        os.remove(pach)
+    end
+end
+t['备份_存档'] = function(int_档案编号)
+	local perms = {
+        [_ENV] = '_ENV',
+        [GF] = 5,
+		[GF.o_meta] = 7,
+		[GF.new_meta] = 8
+    };
+    local obj = save_ofile();
+    local buf = eris.persist(perms, obj);
+    local zipbuf = G.zip(buf);
+    local path = G.WritePath(string.format('log/S%d.txt', int_档案编号));
+    G.WriteFile(path, zipbuf);
 end
 t['故事_读档'] = function(int_档案编号)
     local perms = {
@@ -102,17 +105,25 @@ t['故事_读档'] = function(int_档案编号)
 		[7] = GF.o_meta,
 		[8] = GF.new_meta
     };
-    local path = G.GetSavePath(string.format('R%d.grp', int_档案编号));
-	if G.IsFileExist(path)  then
-		local zipbuf = G.LoadFile(path);
-		local buf = G.unzip(zipbuf);
+    local newpath = G.WritePath('log/achieve.txt');
+    local oldpath = G.GetSavePath('R10.grp');
+    local zipbuf
+	if G.IsFileExist(newpath)  then
+        zipbuf = G.LoadFile(newpath);
+        local buf = G.unzip(zipbuf);
+        local obj = eris.unpersist(perms, buf);
+        local db = obj[1]['o_book_story_list']
+        G.newinst_cache['o_book_story_list'] = db  
+    elseif G.IsFileExist(oldpath)  then
+        zipbuf = G.LoadFile(oldpath);
+        local buf = G.unzip(zipbuf);
         local obj = eris.unpersist(perms, buf);
         local db = obj[1]['o_book_story_list']
         G.newinst_cache['o_book_story_list'] = db  
     end
 end
 t['继承_读档'] = function(int_档案编号)
-    local perms = {
+	local perms = {
 		_ENV = _ENV,
 		-- 1 = [c],
 		-- [2] = co,
@@ -122,12 +133,19 @@ t['继承_读档'] = function(int_档案编号)
 		-- [6] = xpcall,
 		[7] = GF.o_meta,
 		[8] = GF.new_meta
-    };
-    local path = G.GetSavePath(string.format('R%d.grp', int_档案编号));
-	if G.IsFileExist(path) then
-		local zipbuf = G.LoadFile(path);
-		local buf = G.unzip(zipbuf);
-        local obj = eris.unpersist(perms, buf);  
+	};
+    local newpath = G.WritePath('log/achieve.txt');
+    local oldpath = G.GetSavePath('R10.grp');
+    local zipbuf
+	if G.IsFileExist(newpath)  then
+        zipbuf = G.LoadFile(newpath);
+        local buf = G.unzip(zipbuf);
+        local obj = eris.unpersist(perms, buf);
+        load_ofile(obj);
+    elseif G.IsFileExist(oldpath)  then
+        zipbuf = G.LoadFile(oldpath);
+        local buf = G.unzip(zipbuf);
+        local obj = eris.unpersist(perms, buf);
         load_ofile(obj);
     end
 end
@@ -139,6 +157,50 @@ t['通用_存档剔除'] = function(int_档案编号)
         --result = true
     end
     return  result
+end
+t['信息_读档'] = function(int_档案编号)
+    local perms = {
+		_ENV = _ENV,
+		-- 1 = [c],
+		-- [2] = co,
+		-- [3] = co.yield,
+		-- [4] = co.resume,
+		[5] = GF,
+		-- [6] = xpcall,
+		[7] = GF.o_meta,
+		[8] = GF.new_meta
+    };
+    local newpath = G.WritePath('log/mes.txt');
+    local oldpath = G.GetSavePath(string.format('R%d.grp', int_档案编号));
+    local zipbuf
+	if G.IsFileExist(newpath)  then
+        zipbuf = G.LoadFile(newpath);
+        local buf = G.unzip(zipbuf);
+        local obj = eris.unpersist(perms, buf);
+        for i,v in ipairs({'o_files'}) do
+            G.newinst_cache[v] = obj[1][v]
+        end 
+    elseif G.IsFileExist(oldpath)  then
+        zipbuf = G.LoadFile(oldpath);
+        local buf = G.unzip(zipbuf);
+        local obj = eris.unpersist(perms, buf);
+        for i,v in ipairs({'o_files'}) do
+            G.newinst_cache[v] = obj[1][v]
+        end 
+    end
+end
+t['信息_存档'] = function(int_档案编号)
+    local perms = {
+        [_ENV] = '_ENV',
+        [GF] = 5,
+		[GF.o_meta] = 7,
+		[GF.new_meta] = 8
+    };
+    local obj = save_ofile();
+    local buf = eris.persist(perms, obj);
+    local zipbuf = G.zip(buf);
+    local path = G.WritePath('log/mes.txt');
+    G.WriteFile(path, zipbuf);
 end
 t['通用_存档'] = function(int_档案编号)
 	local perms = {
@@ -231,7 +293,7 @@ t['通用_存档'] = function(int_档案编号)
             end
             o_files.次数 = G.misc().死亡次数 
         end
-        G.call('通用_存档',5)
+        G.call('信息_存档',5)
         G.call('通用_检测装备')
         G.call('地图系统_防修改监控')
     end 
@@ -450,8 +512,17 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-    G.misc().死亡次数 = 2
-    G.call('生存_存档')
+    -- local perms = {
+    --     [_ENV] = '_ENV',
+    --     [GF] = 5,
+	-- 	[GF.o_meta] = 7,
+	-- 	[GF.new_meta] = 8
+    -- };
+    -- local newpath = G.WritePath('log/save.txt');  
+    -- local obj = save_ofile();
+    -- local buf = eris.persist(perms, obj);
+    -- local zipbuf = G.zip(buf);
+    -- G.WriteFile(newpath, zipbuf);
 end
 t['通用_无尽抽卡'] = function(int_类型)
     local card = G.DBTable('o_card')
@@ -6728,3 +6799,25 @@ t['通用_卡片入库']=function()
         G.call('set_newpoint',83,-1000)
     end
 end
+function CopyFile(src, dst)
+    local src_file, err = io.open(src,"r")
+    
+    if (not src_file) then
+        return false, err
+    end
+
+    local content = src_file:read("*a")
+    src_file:close()
+    local dst_file, err = io.open(dst, "w")
+
+    -- if (not dst_file) then
+    --     return false, err
+    -- end
+    print('99999999999999999')
+
+    dst_file:write(content)
+    dst_file:close()
+
+    return true
+end
+
