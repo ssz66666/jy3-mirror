@@ -5335,12 +5335,12 @@ t['通用_检测装备']=function()
                         int属性_2 = 0
                     end 
                 end
-                if o_equip[属性[1]] > int属性_1 + int_递增属性*500 or o_equip[属性[1]] > 20000 then
+                if o_equip[属性[1]] > int属性_1 + int_递增属性*500 or o_equip[属性[1]] > 30000 then
                     --print('000002')
                     result = true
                     break
                 end
-                if o_equip[属性[2]] > int属性_2 + int_递增属性*500 or o_equip[属性[2]] > 20000 then
+                if o_equip[属性[2]] > int属性_2 + int_递增属性*500 or o_equip[属性[2]] > 30000 then
                     result = true
                     --print('000003')
                     break
