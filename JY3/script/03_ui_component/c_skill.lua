@@ -250,7 +250,7 @@ function t:click(tar)
     local o_skill_武功= G.QueryName(G.call('get_point',191))
     for i = 1,6 do 
         if tar == self.快捷键.getChildByName(tostring(i)) then 
-            if o_skill_武功.类别 < 6 then 
+            if o_skill_武功 and o_skill_武功.类别 < 6 then 
                 G.Play(0x49011003, 1,false,100) 
                 self.快捷键.getChildByName(tostring(i)).c_button.img_normal = o_skill_武功.图像
                 G.QueryName(0x100c0001)[tostring(i)] = G.call('get_point',191)
