@@ -2311,7 +2311,7 @@ t['副本_通天塔']=function(int_模式)
                     G.misc().获取剑神 = 1
                     G.call('add_equip',0x10180028 + 15,1)
                 end
-                if int_印记数量 < 14 and G.misc().重生 == 0 then
+                if int_印记数量 < 14 and (G.misc().重生 == 0 or G.misc().生存 == 1) then
                     G.call('add_equip',0x10180028 + 印记[math.random(#印记)],1)  --随机给出印记   
                 end
                 G.misc().获取印记 = 1
