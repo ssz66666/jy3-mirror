@@ -23,12 +23,12 @@ function t:start()
     end
     self.设置.getChildByName('data2').text = G.misc().切磋开关
     if not G.getUI('v_title')  then
+        local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度 
         self.按钮.getChildByName('密令').visible = true
         self.按钮.getChildByName('返回').visible = true
-        self.按钮.getChildByName('重铸').visible = true
-        self.按钮.getChildByName('重生').visible = false
-        if G.call('get_point',237) > 1 then 
-           self.按钮.getChildByName('重生').visible = true
+        self.按钮.getChildByName('重生').visible = true
+        if G.call('get_point',237) > 1 and int_难度 < 4 then 
+           self.按钮.getChildByName('重铸').visible = true
         end
     else
         self.按钮.getChildByName('密令').visible = false
@@ -209,6 +209,7 @@ function t:click(tar)
                    G.call('set_newpoint',237,-12)
                 end
                 G.misc().清除周目 = 1
+                G.misc().死亡次数 = 0
                 G.trig_event('重生')
             else
                 G.call('notice1','需要等级达到50且非噩梦难度才可以重生！')    

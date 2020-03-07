@@ -7,6 +7,7 @@ local t = G.com()
 local GF = require "gfbase"
 function t:init()
     self.存档 = self.obj.getChildByName('save')
+    self.通关 = 0
 end
 function t:start()
     --local r = {'R1.lua','R2.lua','R3.lua','R4.lua'}
@@ -23,6 +24,9 @@ function t:start()
         t[4] = o_files.周目 
         t[7] = o_files.记录 
         t[8] = o_files.次数 
+        if o_files.次数 > 999 then
+            t[8] = '???'
+        end
         if t[8] == nil then
             t[8] = 0 
         end
@@ -37,6 +41,8 @@ function t:start()
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '难度:困难'
             elseif  tonumber(t[3]) == 4 then    
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '难度:噩梦'
+            elseif  tonumber(t[3]) == 5 then    
+                self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '生存模式'
             end
             local school = {'无门派','武当派','少林派','华山派','全真教','古墓派','逍遥派','血刀门','桃花岛','丐  帮','星宿派','峨嵋派'}
             local int_no = 1
@@ -47,10 +53,17 @@ function t:start()
             self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('门派').text = school[tonumber(t[2])+1]
             self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('等级').text = place..t[1]..'级'
             self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('时间').text = t[6] 
-            self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('次数').text = t[8]..'次' 
-            if tonumber(t[5]) > 0 then 
+            if t[3] == 5 then 
+                self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('次数').text = '死亡'..t[8]..'次' 
+            else
+                self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('次数').text = '存档'..t[8]..'次' 
+            end
+            if tonumber(t[5]) == 1 then 
                 self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text = 1
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('周目').text = '周目'..G.call('to_chinese',tonumber(t[4]))..'(通关)'
+            elseif tonumber(t[5]) == 2 then 
+                self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text = 1
+                self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('周目').text = '周目'..G.call('to_chinese',tonumber(t[4]))..'(重开)'
             else
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('周目').text = '周目'..G.call('to_chinese',tonumber(t[4]))
                 self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text = 0
@@ -113,9 +126,16 @@ function t:click(tar)
                     local int_清除成就 = G.misc().清除成就
                     local _随机库 = G.misc().随机库
                     local int_随机序号 = G.misc().随机序号
-                    if int_通关 > 0  then 
+                    if not G.misc().死亡次数 then 
+                        G.misc().死亡次数 = 0
+                    end
+                    local path = G.GetSavePath(string.format('R%d.grp', 10+G.misc().死亡次数));
+                    local newpath = G.GetSavePath(string.format('R%d.grp', 11+G.misc().死亡次数));
+                    if int_通关 > 0 or  G.IsFileExist(newpath) then 
                         local o_store = G.QueryName(0x10190001)
-                        int_周目 = int_周目 + 1
+                        if int_通关 == 1 and not G.IsFileExist(newpath) then 
+                           int_周目 = int_周目 + 1
+                        end
                         local int_继承个数 = 0
                         for i = 1,#o_store.装备 do
                             if o_store.装备[i].数量 > 0 then
@@ -127,7 +147,12 @@ function t:click(tar)
                         table_继承装备 =  G.call('通用_记录继承装备',0)
                         local o_equip_usb = {}
                         local i_equip
-                        if #table_继承装备 > 0 then 
+                        if not G.misc().生存 then 
+                            G.misc().生存 = 0
+                        end
+                        local int_生存 = G.misc().生存
+                        local int_死亡次数 = G.misc().死亡次数
+                        if #table_继承装备 > 0 and (int_生存 ~= 1 or (int_生存 == 1 and not G.IsFileExist(newpath))  )then
                             for i = 1,#table_继承装备 do 
                                 o_equip_usb[i] = {}
                             end
@@ -147,6 +172,8 @@ function t:click(tar)
                         G.misc().一鸣惊人完成 = int_一鸣惊人完成
                         G.misc().获取剑神 = int_获取剑神
                         G.misc().随机序号 = int_随机序号
+                        G.misc().生存 = int_生存
+                        G.misc().死亡次数 = int_死亡次数
                         G.misc().随机库 = _随机库
                         G.misc().出师 = nil
                         G.misc().新年礼包 = int_礼包

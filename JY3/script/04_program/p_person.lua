@@ -667,7 +667,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 int_点数 = 100 +G.call('get_point',237) - 1
                             elseif int_难度 == 2 then 
                                 int_点数 = 120+G.call('get_point',237) - 1
-                            elseif int_难度 == 3 or int_难度 == 4 then
+                            elseif int_难度 >= 3 then
                                 int_点数 = 150+G.call('get_point',237) - 1
                             end
                             if int_选项 == 1 then 
@@ -836,7 +836,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 int_点数 = 100 +G.call('get_point',237) - 1
                             elseif int_难度 == 2 then 
                                 int_点数 = 120+G.call('get_point',237) - 1
-                            elseif int_难度 == 3 or int_难度 == 4 then
+                            elseif int_难度 >= 3 then
                                 int_点数 = 150+G.call('get_point',237) - 1
                             end
                             if int_选项 == 1 then 
@@ -1122,7 +1122,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 int_点数 = 100 +G.call('get_point',237) - 1
                             elseif int_难度 == 2 then 
                                 int_点数 = 120+G.call('get_point',237) - 1
-                            elseif int_难度 == 3 or int_难度 == 4 then
+                            elseif int_难度 >= 3 then
                                 int_点数 = 150+G.call('get_point',237) - 1
                             end
                             if int_选项 == 1 then 
@@ -1304,7 +1304,7 @@ t['聚贤庄-半瓶神仙醋']=function()
                                 int_点数 = 100 +G.call('get_point',237) - 1
                             elseif int_难度 == 2 then 
                                 int_点数 = 120+G.call('get_point',237) - 1
-                            elseif int_难度 == 3 or int_难度 == 4 then
+                            elseif int_难度 >= 3 then
                                 int_点数 = 150+G.call('get_point',237) - 1
                             end
                             if int_选项 == 1 then 
@@ -2176,6 +2176,7 @@ t['副本_通天塔']=function(int_模式)
     G.misc().通天塔 = 0 
     local o_wjtz = G.QueryName(0x10170013)
     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度 
+    local o_生存成就 =  G.QueryName(0x1017001d)
     if int_模式 == 0 then 
         if G.misc().通天塔层数 > 20 and G.misc().通天塔奖励_1 == 0 then
             G.misc().通天塔奖励_1 = 1
@@ -2192,7 +2193,7 @@ t['副本_通天塔']=function(int_模式)
                     o_wjtz.进度列表[6].完成 = 1
                     G.call('notice1','恭喜完成中级无尽20层') 
                 end 
-            elseif int_难度 == 3 or int_难度 == 4 then
+            elseif int_难度 >= 3 then
                 if o_wjtz.进度列表[11].完成 == 0 then
                     o_wjtz.进度列表[11].完成 = 1
                     G.call('notice1','恭喜完成高级级无尽20层') 
@@ -2299,6 +2300,12 @@ t['副本_通天塔']=function(int_模式)
                     int_完美 = int_完美 + 1
                 end
             end
+            if o_生存成就.进度列表[2].完成 == 0  and  G.misc().生存 == 1 then 
+                o_生存成就.进度列表[2].完成 = 1
+                o_生存成就.进度列表[2].当前进度 = 1
+                G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
+                G.call('notice1','恭喜完成[03]'..o_生存成就.进度列表[2].名称)
+            end
             if not G.misc().获取印记 then 
                 if int_完美 == 14 and not G.call('通用_拥有印记',15)  and not G.misc().获取剑神 and G.misc().重生 == 0 then
                     G.misc().获取剑神 = 1
@@ -2339,6 +2346,12 @@ t['副本_通天塔']=function(int_模式)
                 G.call('notice1','恭喜完成单人无尽75层') 
             end 
         elseif  G.misc().通天塔层数 > 100 and G.misc().通天塔单人奖励_4 == 0 then
+            if o_生存成就.进度列表[3].完成 == 0  and  G.misc().生存 == 1 then 
+                o_生存成就.进度列表[3].完成 = 1
+                o_生存成就.进度列表[3].当前进度 = 1
+                G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
+                G.call('notice1','恭喜完成[03]'..o_生存成就.进度列表[3].名称)
+            end
             G.misc().通天塔单人奖励_4 = 1
             G.call('add_item',341,1)
             G.call('通用_抽礼物',9,1,2,2,1)
@@ -2353,6 +2366,18 @@ t['副本_通天塔']=function(int_模式)
             if G.misc().梦幻完成 and G.misc().梦幻完成 == 1 then
                 G.misc().密令序号 = tostring(math.random(999999)) 
                 G.call("talk",'',38,'   恭喜突破100层，这是给你的奖励！恭喜完成全部梦幻剧情，你的幸运密令为[03]'..G.misc().密令序号,2,1) 
+                if o_生存成就.进度列表[5].完成 == 0  and  G.misc().生存 == 1 then 
+                    o_生存成就.进度列表[5].完成 = 1
+                    o_生存成就.进度列表[5].当前进度 = 1
+                    G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
+                    G.call('notice1','恭喜完成[03]'..o_生存成就.进度列表[5].名称)
+                end
+                if o_生存成就.进度列表[6].完成 == 0  and  G.misc().生存 == 1 and G.misc().死亡次数 == 0 then 
+                    o_生存成就.进度列表[6].完成 = 1
+                    o_生存成就.进度列表[6].当前进度 = 1
+                    G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
+                    G.call('notice1','恭喜完成[03]'..o_生存成就.进度列表[6].名称)
+                end
             end 
         end
     end
@@ -2366,6 +2391,17 @@ t['副本_通天塔']=function(int_模式)
         o_wjtz.完成  = 1
         G.call('notice1','恭喜完成【无尽挑战】') 
     end 
+    local int_完成数 = 0
+    for i = 1,#生存成就 do
+        if o_生存成就.进度列表[i].完成 == 1 then 
+            int_完成数 = int_完成数 + 1
+        end
+    end
+    if 生存成就 == #o_周目成就.进度列表  and o_生存成就.完成 == 0 then
+        --print('int_完成数',int_完成数)
+        o_周目成就.完成 = 1
+        G.call('notice1','恭喜完成[03]强者生存')
+    end
 end    
 t['特别剧情-十年生死两茫茫']=function()
     G.misc().密令年数 = G.call('get_year')

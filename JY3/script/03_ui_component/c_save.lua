@@ -27,6 +27,9 @@ function t:刷新显示()
         t[4] = o_files.周目 
         t[7] = o_files.记录 
         t[8] = o_files.次数 
+        if o_files.次数 > 999 then
+            t[8] = '???'
+        end
         if t[8] == nil then
             t[8] = 0 
         end
@@ -41,6 +44,8 @@ function t:刷新显示()
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '难度:困难'
             elseif  tonumber(t[3]) == 4 then    
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '难度:噩梦'
+            elseif  tonumber(t[3]) == 5 then    
+                self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('难度').text = '生存模式'
             end
             local school = {'无门派','武当派','少林派','华山派','全真教','古墓派','逍遥派','血刀门','桃花岛','丐  帮','星宿派','峨嵋派'}
             local int_no = 1
@@ -51,14 +56,21 @@ function t:刷新显示()
             self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('门派').text = school[tonumber(t[2])+1]
             self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('等级').text = place..t[1]..'级'
             self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('时间').text = t[6] 
-            self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('次数').text = t[8]..'次' 
-            if tonumber(t[5]) > 0 then 
+            if t[3] == 5 then 
+                self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('次数').text = '死亡'..t[8]..'次' 
+            else
+                self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('次数').text = '存档'..t[8]..'次' 
+            end
+            if tonumber(t[5]) == 1 then 
                 self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text = 1
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('周目').text = '周目'..G.call('to_chinese',tonumber(t[4]))..'(通关)'
+            elseif tonumber(t[5]) == 2 then 
+                self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text = 1
+                self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('周目').text = '周目'..G.call('to_chinese',tonumber(t[4]))..'(重开)'
             else
                 self.存档.getChildByName(save[i]).getChildByName('true').getChildByName('周目').text = '周目'..G.call('to_chinese',tonumber(t[4]))
                 self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text = 0
-            end     
+            end    
         else
             self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('true').visible = false
             self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('false').visible = true
@@ -82,6 +94,7 @@ function t:click(tar)
         local  int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
         G.QueryName(0x10030001)[tostring(143)] = self.存档位置
         G.QueryName(0x10160000 +G.call('get_point',143)).难度 = int_难度
+        G.call('add_point',64,1)
         G.call('通用_存档',self.存档位置)
         self.确认.visible = false
         G.trig_event('save_over')

@@ -132,7 +132,7 @@ t['门派-桃花岛']=function()
                             int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
                             int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 or int_难度 == 4 then
+                        elseif int_难度 >= 3 then
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
@@ -484,7 +484,7 @@ t['门派-血刀门']=function()
                             int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
                             int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 or int_难度 == 4 then 
+                        elseif int_难度 >= 3 then 
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
@@ -739,7 +739,7 @@ t['门派-全真教']=function()
                             int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
                             int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 or int_难度 == 4 then 
+                        elseif int_难度 >= 3 then 
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
@@ -1052,7 +1052,7 @@ t['门派-武当派']=function()
                             int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
                             int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 or int_难度 == 4 then 
+                        elseif int_难度 >= 3 then 
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
@@ -1349,7 +1349,7 @@ t['门派-少林寺']=function()
                             int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
                             int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 or int_难度 == 4 then 
+                        elseif int_难度 >= 3 then 
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
@@ -1945,7 +1945,7 @@ t['门派-华山派']=function()
                             int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
                             int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 or int_难度 == 4 then 
+                        elseif int_难度 >= 3 then 
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
@@ -2250,7 +2250,7 @@ t['门派-峨嵋派']=function()
                             int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
                             int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 or int_难度 == 4 then 
+                        elseif int_难度 >= 3 then 
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
@@ -2477,7 +2477,7 @@ t['门派-丐帮']=function()
                             int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
                             int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 or int_难度 == 4 then 
+                        elseif int_难度 >= 3 then 
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 
@@ -2787,7 +2787,7 @@ t['门派-星宿派']=function()
                             int_点数 = 100 +G.call('get_point',237) - 1
                         elseif int_难度 == 2 then 
                             int_点数 = 120+G.call('get_point',237) - 1
-                        elseif int_难度 == 3 or int_难度 == 4 then 
+                        elseif int_难度 >= 3 then 
                             int_点数 = 150+G.call('get_point',237) - 1
                         end
                         if int_选项 == 1 then 

@@ -170,7 +170,7 @@ function t:刷新属性()
             int_点数 = 100
         elseif int_难度 == 2 then 
             int_点数 = 120
-        elseif int_难度 == 3 or int_难度 == 4 then 
+        elseif int_难度 >= 3 then 
             int_点数 = 150
         end
         if G.call('get_point',21+i) >= int_点数 then 

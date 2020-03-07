@@ -2,10 +2,10 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
+local c_dialogue_system_select = require 'c_dialogue_system_select'
 local c_layout_v = require 'c_layout_v'
 local c_scrollview = require 'c_scrollview'
-local c_dialogue_system_select = require 'c_dialogue_system_select'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -30,8 +30,8 @@ tp = tc
 	tc = G.loadUI('v_empty')
 	tp.addChild(tc)
 	tc.name = '移动'
-	tc.left = -320.000
-	tc.right = 320.000
+	tc.left = -330.000
+	tc.right = 310.000
 	tc.bottom = -240.000
 	tc.top = 240.000
 	tp = tc
@@ -96,7 +96,6 @@ tp = tc
 		tc.bottom = -347.000
 		tc.top = -335.000
 		tc.anchor = 0x64640000
-		tc.visible = false
 		tp = tc
 			tc = tp.getChildByName('text')
 			if tc then
@@ -108,7 +107,7 @@ tp = tc
 			tc.scaleY = 0.500
 			tc.sample = 0
 			tc.wrap = true
-			tc.font = 0x611e0000
+			tc.font = 0x61140000
 			tc.align = 1
 			tc.wordSpace = -3
 			tp = tc

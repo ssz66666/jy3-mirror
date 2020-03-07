@@ -26,6 +26,22 @@ t['通关_存档'] = function()
     G.call('通用_存档',G.call('get_point',143))--保存通关存档
     G.call('通用_存档',10) 
 end
+--type=通用指令
+--hide=false
+--private=false
+t['生存_存档'] = function()
+    G.wait_time(200)
+    G.QueryName(0x10030001)[tostring(238)] = 2 --设置通关标志
+    G.misc().死亡次数 = G.misc().死亡次数 + 1
+    G.call('通用_存档',G.call('get_point',143))--保存通关存档 
+    G.call('通用_存档',10+G.misc().死亡次数)
+    if G.misc().死亡次数 > 1 then
+        local path = G.GetSavePath(string.format('R%d.grp', 9+G.misc().死亡次数));
+        if G.IsFileExist(path)  then
+            os.remove(path)
+        end
+    end
+end
 t['信息_读档'] = function(int_档案编号)
     local perms = {
 		_ENV = _ENV,
@@ -130,9 +146,6 @@ t['通用_存档'] = function(int_档案编号)
 		[GF.o_meta] = 7,
 		[GF.new_meta] = 8
     };
-    if int_档案编号 > 0 and int_档案编号 <=4 then 
-        G.call('add_point',64,1)
-    end
     local school = G.call('get_point',8)
     local time =  os.date()
     local lv = G.call('get_point',4)
@@ -208,6 +221,12 @@ t['通用_存档'] = function(int_档案编号)
             o_files.记录 = place
             o_files.次数 = number  
         end 
+        if o_files.难度 == 5 then
+            if not G.misc().死亡次数 then 
+                G.misc().死亡次数 = 0
+            end
+            o_files.次数 = G.misc().死亡次数 
+        end
         G.call('通用_存档',5)
         G.call('通用_检测装备')
         G.call('地图系统_防修改监控')
@@ -304,7 +323,7 @@ t['通用_读档'] = function(int_档案编号)
                 local o_achieve = G.QueryName(0x10170000+i)
                 for n = 1,#o_achieve.进度列表 do 
                     maxpoint = maxpoint + o_achieve.进度列表[n].分数
-                    if o_achieve.进度列表[n].分数 > 200 then
+                    if o_achieve.进度列表[n].分数 > 200 and i < 29 then
                         G.call('通用_强退游戏') 
                     end
                     if o_achieve.进度列表[n].完成 == 1 then
@@ -312,7 +331,13 @@ t['通用_读档'] = function(int_档案编号)
                     end
                 end  
             end  
-            if  maxpoint > 5825 or point > 5825  then
+            if not G.misc().死亡次数 then 
+                G.misc().死亡次数 = 0
+            end
+            if not G.misc().生存 then 
+                G.misc().生存 = 0
+            end
+            if  maxpoint > 7125 or point > 7125  then
                 G.call('通用_强退游戏') 
             end
             if G.QueryName(0x10170012).进度列表[1].完成 == 1 and not G.misc().一鸣惊人完成 then 
@@ -421,7 +446,8 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-
+    G.misc().死亡次数 = 2
+    G.call('生存_存档')
 end
 t['通用_无尽抽卡'] = function(int_类型)
     local card = G.DBTable('o_card')
@@ -2239,6 +2265,14 @@ t['重生']=function()
     local o_body = G.QueryName(0x10030001)
     local o_store = G.QueryName(0x10190001)
     local int_存档位置 = G.call('get_point',143) 
+    if not G.misc().生存 then 
+        G.misc().生存 = 0
+    end
+    if not G.misc().死亡次数 then 
+        G.misc().死亡次数 = 0
+    end
+    local int_生存 = G.misc().生存
+    local int_死亡次数 = G.misc().死亡次数
     local 礼包 = G.misc().新年礼包
     local table_继承装备 = {}
     local int_周目 = G.call('get_point',237)
@@ -2247,7 +2281,7 @@ t['重生']=function()
     table_继承装备 = G.call('通用_记录继承装备',G.misc().清除周目)
     local o_equip_usb = {}
     local i_equip
-    if #table_继承装备 > 0 then 
+    if #table_继承装备 > 0 and int_生存 ~= 1 then 
         for i = 1,#table_继承装备 do 
             o_equip_usb[i] = {}
         end
@@ -2313,6 +2347,8 @@ t['重生']=function()
         G.misc().随机库 = _随机库
         G.misc().新年礼包 = 礼包
         G.misc().切磋次数 = 0
+        G.misc().生存 = int_生存
+        G.misc().死亡次数 = int_死亡次数
         G.call('set_point',237,int_周目)
         G.call('set_newpoint',237,-int_周目-10)
         G.call('set_point',143,int_存档位置) 
@@ -2372,6 +2408,7 @@ t['playmovie']=function(int_序号,int_延时,int_x,int_y)  --播放动画
 end
 t['gameover']=function()  --游戏失败画面
     G.call('all_over') 
+    G.call('生存_存档')
     G.Stop(1)
     G.addUI('v_gameover')
     G.Stop(1)
@@ -2573,7 +2610,7 @@ t['call_battle']=function(int_no,int_map,int_mod,int_diffty,int_enemy1,int_enemy
         int_战斗难度 = 25 
     elseif int_难度 == 2 then
         int_战斗难度 = 75
-    elseif int_难度 == 3 or int_难度 == 4 then
+    elseif int_难度 >= 3 then
         int_战斗难度 = 100    
     end
     if G.call('get_point',237) == 1 then
@@ -3818,7 +3855,7 @@ t['指令_存储属性'] = function() --计算主角最终属性
         int_点数 = 200
     elseif int_难度 == 2 then 
         int_点数 = 220
-    elseif int_难度 == 3 or int_难度 == 4 then
+    elseif int_难度  >= 3 then
         int_点数 = 250
     end
     if G.call('get_point',206) >  int_点数 then 
@@ -4260,7 +4297,7 @@ t['add_point']=function(int_代码,int_数量) --增加主角部分属性
                 int_点数 = 100+ G.call('get_point',237) - 1
             elseif int_难度 == 2 then 
                 int_点数 = 120+ G.call('get_point',237) - 1
-            elseif int_难度 == 3 or int_难度 == 4 then 
+            elseif int_难度 >= 3 then 
                 int_点数 = 150+ G.call('get_point',237) - 1
             end
         end
@@ -5637,12 +5674,19 @@ end
 t['功能_周目套装成就记录']=function()
     local o_周目成就 =  G.QueryName(0x10170018)
     local o_套装成就 =  G.QueryName(0x10170019)
+    local o_生存成就 =  G.QueryName(0x1017001d)
     local int_取得套装 = 0
     for i = 1,6 do 
         if G.call('通用_取得套装',0,i) == 3 then
             int_取得套装 = i
             break 
         end
+    end
+    if o_生存成就.进度列表[1].完成 == 0  and  G.misc().生存 == 1 then 
+        o_生存成就.进度列表[1].完成 = 1
+        o_生存成就.进度列表[1].当前进度 = 1
+        G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
+        G.call('notice1','恭喜完成[03]'..o_生存成就.进度列表[1].名称)
     end
     if int_取得套装 > 0 then 
         if o_套装成就.进度列表[int_取得套装].完成 == 0 then 
@@ -6524,6 +6568,15 @@ t['模式_笑梦游记']=function()
                 if o_book_story.完成 == 1 and o_achieve_xmyj.完成 == 0 then
                     o_achieve_xmyj.完成 = 1
                     G.call('notice1','完成成就【'..str[int_天书]..'】！')
+                end
+                local o_生存成就 =  G.QueryName(0x1017001d)
+                if o_book_story.完成 == 1 then
+                    if o_生存成就.进度列表[4].完成 == 0  and  G.misc().生存 == 1 then 
+                        o_生存成就.进度列表[4].完成 = 1
+                        o_生存成就.进度列表[4].当前进度 = 1
+                        G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
+                        G.call('notice1','恭喜完成[03]'..o_生存成就.进度列表[4].名称)
+                    end
                 end
                 G.call('通用_印记状态')
             else

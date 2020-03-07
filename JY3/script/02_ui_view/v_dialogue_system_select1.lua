@@ -2,10 +2,10 @@
 
 ]]
 local G = require 'gf'
-local c_dialogue_system_select1 = require 'c_dialogue_system_select1'
-local c_button = require 'c_button'
-local c_scrollview = require 'c_scrollview'
 local c_layout_v = require 'c_layout_v'
+local c_dialogue_system_select1 = require 'c_dialogue_system_select1'
+local c_scrollview = require 'c_scrollview'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -30,10 +30,10 @@ tp = tc
 	tc = G.loadUI('v_scrollview')
 	tp.addChild(tc)
 	tc.name = '选项'
-	tc.left = -260.000
-	tc.right = 260.000
-	tc.bottom = -99.000
-	tc.top = 69.000
+	tc.left = -263.000
+	tc.right = 353.000
+	tc.bottom = -102.000
+	tc.top = 66.000
 	tp = tc
 		tc = tp.getChildByName('content')
 		if tc then
@@ -83,19 +83,28 @@ tp = tc
 	tc.name = '选项原型'
 	tc.pivotX = 0.000
 	tc.pivotY = 1.000
-	tc.left = 78.000
-	tc.right = 578.000
+	tc.left = 58.000
+	tc.right = 668.000
 	tc.bottom = -208.000
 	tc.top = -190.000
 	tc.anchor = 0x64640000
-	tc.visible = false
 	tp = tc
+		tc = tp.getChildByName('img')
+		if tc then
+		tc.left = 9.000
+		tc.right = 9.000
+		tc.bottom = -3.000
+		tc.top = -3.000
+		tp = tc
+		end
+		tp = tp.parent
+		--end
 		tc = tp.getChildByName('text')
 		if tc then
-		tc.left = -109.500
-		tc.right = -118.500
-		tc.bottom = -4.500
-		tc.top = 8.500
+		tc.left = -310.500
+		tc.right = 370.500
+		tc.bottom = -3.500
+		tc.top = 9.500
 		tc.scaleX = 0.500
 		tc.scaleY = 0.500
 		tc.sample = 0

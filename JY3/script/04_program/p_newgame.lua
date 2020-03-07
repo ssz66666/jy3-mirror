@@ -31,8 +31,7 @@ t['回答问题']=function()
             for i = 16,21 do             --基础属性全+2
                 G.call('add_point',i,2)
             end     
-            G.call('all_over')
-            
+            G.call('all_over')    
         end 
 
     end  
@@ -346,27 +345,53 @@ t['回答问题']=function()
         end 
         G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 1 
     else
-        local int_选项 = 0
-        while int_选项 == 0 do
-            int_选项 = G.call("menu",'',0,'十三：请选择游戏难度(噩梦无法重铸,重生,难度双倍)',1,1,
-            {"1,休闲","2,普通","3,困难","4,噩梦"},1)
-            if int_选项 == 1 then
-                G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 1 
-                G.QueryName(0x10030001)[tostring(200)] = 25
-                G.call('all_over') 
-            elseif  int_选项 == 2 then  
-                G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 2
-                G.QueryName(0x10030001)[tostring(200)] = 75  
-                G.call('all_over') 
-            elseif  int_选项 == 3 then
-                G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 3
-                G.QueryName(0x10030001)[tostring(200)] = 125
-                G.call('all_over') 
-            elseif  int_选项 == 4 then
-                G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 4
-                G.QueryName(0x10030001)[tostring(200)] = 250
-                G.call('all_over')
+        if not G.misc().生存 then 
+            G.misc().生存 = 0
+        end
+        if G.misc().生存 ~= 1  then 
+            local int_选项 = 0
+            while int_选项 == 0 do
+                if week == 2 then 
+                    int_选项 = G.call("menu",'',0,'十三：请选择游戏难度',1,1,
+                    {"1,休闲","2,普通","3,困难","4,噩梦(无法重铸，难度同困难)","5,生存(死亡则重生，清除全部装备，难度同困难)"},1)
+                else
+                    int_选项 = G.call("menu",'',0,'十三：请选择游戏难度',1,1,
+                    {"1,休闲","2,普通","3,困难","4,噩梦(无法重铸,难度同困难)"},1)
+                end
+                if int_选项 == 1 then
+                    G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 1 
+                    G.QueryName(0x10030001)[tostring(200)] = 25
+                    G.call('all_over') 
+                elseif  int_选项 == 2 then  
+                    G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 2
+                    G.QueryName(0x10030001)[tostring(200)] = 75  
+                    G.call('all_over') 
+                elseif  int_选项 == 3 then
+                    G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 3
+                    G.QueryName(0x10030001)[tostring(200)] = 125
+                    G.call('all_over') 
+                elseif  int_选项 == 4 then
+                    G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 4
+                    G.QueryName(0x10030001)[tostring(200)] = 250
+                    G.call('all_over')
+                elseif  int_选项 == 5 then
+                    local o_store = G.QueryName(0x10190001)
+                    if #o_store.装备 > 0 then 
+                        for i = #o_store.装备,1,-1 do
+                            table.remove(o_store.装备, i)   
+                        end
+                    end
+                    G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 5
+                    G.misc().生存 = 1
+                    G.misc().死亡次数 = 0
+                    G.QueryName(0x10030001)[tostring(200)] = 125
+                    G.call('all_over')
+                end
             end
+        else
+            G.misc().死亡次数 = 0
+            G.QueryName(0x10160000 +G.call('get_point',143)).难度 = 5
+            G.QueryName(0x10030001)[tostring(200)] = 125
         end
         G.QueryName(0x10160000 +4).难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度
         --print(G.QueryName(0x10160000 +G.call('get_point',143)).难度,G.QueryName(0x10160000 +4).难度)
@@ -401,7 +426,7 @@ t['回答问题']=function()
                 int_点数 = 100
             elseif int_难度 == 2 then 
                 int_点数 = 120
-            elseif int_难度 == 3 or int_难度 == 4 then 
+            elseif int_难度 >= 3 then 
                 int_点数 = 150
             end
         end

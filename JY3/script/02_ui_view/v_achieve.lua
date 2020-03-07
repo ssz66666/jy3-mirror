@@ -2,8 +2,8 @@
 
 ]]
 local G = require 'gf'
-local c_button = require 'c_button'
 local c_achieve = require 'c_achieve'
+local c_button = require 'c_button'
 local tp,tc,com,tk
 tc = G.Entity()
 G.cacheUI(tc)
@@ -1228,7 +1228,6 @@ tp = tc
 		tc = G.loadUI('v_empty')
 		tp.addChild(tc)
 		tc.name = '进度'
-		tc.visible = false
 		tp = tc
 			tc = G.Quad()
 			tp.addChild(tc)
@@ -3995,7 +3994,7 @@ tp = tc
 					tc.top = 156.000
 					tc.scaleX = 0.500
 					tc.scaleY = 0.500
-					tc.text = '卡牌新人'
+					tc.text = '卡片新人'
 					tc.font = 0x613c0000
 					tc.align = 3
 					tc.style = 2
@@ -4238,6 +4237,375 @@ tp = tc
 					tc.scaleX = 0.500
 					tc.scaleY = 0.500
 					tc.text = '无限卡牌'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+			tp = tp.parent
+			--end
+			tc = G.loadUI('v_empty')
+			tp.addChild(tc)
+			tc.name = '29'
+			tc.visible = false
+			tp = tc
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '1'
+				tc.left = 50.000
+				tc.right = 50.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '华山论剑'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '2'
+				tc.left = 380.000
+				tc.right = 380.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '组队无尽'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '3'
+				tc.left = 50.000
+				tc.right = 50.000
+				tc.bottom = -70.000
+				tc.top = -70.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '单人无尽'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '4'
+				tc.left = 380.000
+				tc.right = 380.000
+				tc.bottom = -70.000
+				tc.top = -70.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '初识梦幻'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '5'
+				tc.left = 50.000
+				tc.right = 50.000
+				tc.bottom = -140.000
+				tc.top = -140.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '无尽梦幻'
+					tc.font = 0x613c0000
+					tc.align = 3
+					tc.style = 2
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '完成'
+					tc.left = -312.000
+					tc.right = -272.000
+					tc.bottom = 100.000
+					tc.top = 140.000
+					tc.img = 0x56160073
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = '闪光'
+					tc.left = -348.000
+					tc.right = -108.000
+					tc.bottom = 85.500
+					tc.top = 150.500
+					tc.visible = false
+					tc.img = 0x33010001
+					tp = tc
+					tp = tp.parent
+					--end
+				tp = tp.parent
+				--end
+				tc = G.loadUI('v_empty')
+				tp.addChild(tc)
+				tc.name = '6'
+				tc.left = 380.000
+				tc.right = 380.000
+				tc.bottom = -140.000
+				tc.top = -140.000
+				tp = tc
+					tc = G.Quad()
+					tp.addChild(tc)
+					tc.name = 'c1'
+					tc.left = -325.000
+					tc.right = -125.000
+					tc.bottom = 95.000
+					tc.top = 145.000
+					tc.alpha = 150
+					tc.img = 0x5603002b
+					tp = tc
+					tp = tp.parent
+					--end
+					tc = G.TextQuad()
+					tp.addChild(tc)
+					tc.name = '名称'
+					tc.left = -343.000
+					tc.right = -83.000
+					tc.bottom = 76.000
+					tc.top = 156.000
+					tc.scaleX = 0.500
+					tc.scaleY = 0.500
+					tc.text = '强者之证'
 					tc.font = 0x613c0000
 					tc.align = 3
 					tc.style = 2
@@ -5287,7 +5655,7 @@ tp = tc
 	tc.right = -268.000
 	tc.bottom = -268.000
 	tc.top = -168.000
-	tc.text = 'ver3.03'
+	tc.text = 'ver3.10'
 	tc.font = 0x61200041
 	tc.style = 3
 	tp = tc
