@@ -112,10 +112,10 @@ function t:click(tar)
                 local  n = tonumber(self.obj.getChildByName('save').getChildByName(save[i]).getChildByName('over').text)
                 local reulst = false
                 local int_检查 = 0
-                for i = 11,99 do
+                for i = 21,99 do
                     local path = G.GetSavePath(string.format('R%d.grp', i));
                     if G.IsFileExist(path) then 
-                        int_检查 = i - 10
+                        int_检查 = i - 20
                         break
                     end
                 end

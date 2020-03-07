@@ -35,9 +35,9 @@ t['生存_存档'] = function()
     G.misc().死亡次数 = G.misc().死亡次数 + 1
     G.call('通用_存档',G.call('get_point',143))--保存通关存档 
     G.call('通用_存档',4)
-    G.call('通用_存档',10+G.misc().死亡次数)
+    G.call('通用_存档',20+G.misc().死亡次数)
     if G.misc().死亡次数 > 1 then
-        local path = G.GetSavePath(string.format('R%d.grp', 9+G.misc().死亡次数));
+        local path = G.GetSavePath(string.format('R%d.grp', 19+G.misc().死亡次数));
         if G.IsFileExist(path)  then
             os.remove(path)
         end
