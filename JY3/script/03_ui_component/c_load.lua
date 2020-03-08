@@ -249,6 +249,11 @@ function t:click(tar)
                     G.trig_event('监控')
                     G.trig_event('load_over')
                     G.trig_event('开始结束')
+                    if int_检查 ~= G.misc().死亡次数 and int_检查 > 0 and G.misc().生存 == 1 then
+                        G.QueryName(0x10030001)[tostring(238)] = 2 --设置通关标志 
+                        G.call('通用_存档',i)
+                        G.call('通用_存档',4)
+                    end
                 end
             else
                 G.Play(0x49011003, 1,false,100) 
