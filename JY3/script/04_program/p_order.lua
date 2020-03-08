@@ -3654,6 +3654,16 @@ t['通用_强退游戏'] = function(int_类型)
     if not int_类型 then
         int_类型 = '000'
     end
+    if G.call('get_point',237) == 1 then 
+        local path = G.WritePath('log/achieve.txt');
+        if  G.IsFileExist(path) then 
+            os.remove(pach)
+        end
+        local path = G.GetSavePath('R10.GRP');
+        if  G.IsFileExist(path) then 
+            os.remove(pach)
+        end
+    end
     G.call('notice','正当游戏，拒绝不良操作【'..int_类型..'】')
     G.wait_time(200)
     os.exit(); 
