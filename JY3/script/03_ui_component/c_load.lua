@@ -254,6 +254,11 @@ function t:click(tar)
                         G.call('通用_存档',i)
                         G.call('通用_存档',4)
                     end
+                    if G.misc().死亡次数 > 0 and G.misc().生存 == 1 and int_检查 == 0 then 
+                        G.QueryName(0x10030001)[tostring(238)] = 2 --设置通关标志 
+                        G.call('通用_存档',i)
+                        G.call('通用_存档',4)
+                    end
                 end
             else
                 G.Play(0x49011003, 1,false,100) 
