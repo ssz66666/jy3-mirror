@@ -2483,7 +2483,9 @@ t['playmovie']=function(int_序号,int_延时,int_x,int_y)  --播放动画
 end
 t['gameover']=function()  --游戏失败画面
     G.call('all_over') 
-    G.call('生存_存档')
+    if G.misc().生存 == 1 then 
+       G.call('生存_存档')
+    end
     G.Stop(1)
     G.addUI('v_gameover')
     G.Stop(1)
