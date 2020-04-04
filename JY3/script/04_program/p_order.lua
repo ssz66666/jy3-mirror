@@ -6000,6 +6000,30 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
                 o_equip_物品.内力 = math.random(2500,5000+ int_递增属性 * 250)
             end
         end
+        local int属性_1 = o_equip[属性[1]]
+        local int属性_2 = o_equip[属性[2]]
+        if o_equip.特效 == 101 then
+            int属性_1 = 10000 
+        elseif o_equip.特效 == 102 then
+            int属性_2 = 10000 
+        elseif o_equip.特效 == 103 then
+            int属性_1 = 5000 
+            int属性_2 = 5000
+        else
+            if o_equip.名称 == '鹿' or o_equip.名称 == '越'   then
+                int属性_1 = 2500
+                int属性_2 = 2500
+            else
+                int属性_1 = 0
+                int属性_2 = 0
+            end 
+        end
+        if o_equip[属性[1]] > int属性_1 + int_递增属性*500 then
+            o_equip[属性[1]] = int属性_1 + int_递增属性*500 
+        end
+        if o_equip[属性[2]] > int属性_2 + int_递增属性*500 then
+            o_equip[属性[2]] = int属性_2 + int_递增属性*500 
+        end
         if o_equip_物品.生命 > 20000 then 
             o_equip_物品.生命 = 20000
         end

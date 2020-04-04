@@ -41,9 +41,9 @@ t['战斗系统_胜负监控'] = function()
             else
                 if G.call('get_point',4) < 50 then 
                     int_比例 = int_lvmax/50
-                    exp = math.floor(int_比例*exp/2  )
+                    exp = math.floor(int_比例*exp  )
                 else
-                    exp = math.floor(int_比例*exp/5  )
+                    exp = math.floor(int_比例*exp/2 )
                 end
             end
             local int_人数  = 1
