@@ -2416,7 +2416,7 @@ t['重生']=function()
                 o_book_story_list.完美 = 0
             end
         end
-        G.misc().获取剑神 = int_获取剑神
+        G.misc().获取剑神 = 0
         G.misc().一鸣惊人完成 = int_一鸣惊人完成
         G.misc().随机序号 = int_随机序号
         G.misc().随机库 = _随机库
