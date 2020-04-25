@@ -200,15 +200,23 @@ t['地图系统_人物'] = function()
             G.call("talk",'',0,'   今日天气真不错，看能挖到多少蚯蚓吧!',0,0)
             G.call('dig_earthworms')
             G.call("talk",'',0,'   挖到了'..G.misc().蚯蚓数量..'条蚯蚓',0,0)
+            if not G.misc().挖宝数量 then
+                G.misc().挖宝数量 = 0
+            end
             if G.misc().蚯蚓数量 > 20 then 
                 G.misc().蚯蚓数量 = 20
             end
             if G.misc().计时器 >= 5 and G.misc().蚯蚓数量 >= 15 then 
                 G.misc().挖宝 = 0
+            else
+                G.misc().挖宝数量 = G.misc().挖宝数量 + 1
             end
             if G.misc().挖宝 == 1 and  G.misc().蚯蚓数量 >= 10 then
                 if math.random(100) > 50 then 
                     local int_几率 = math.random(10000)
+                    if G.misc().挖宝数量 >= 999 then
+                        int_几率 = math.random(9950)
+                    end
                     local item_1 = {5,32,63,188} --
                     local item_2 = {5,32,63,188,17,43,65}    --
                     local item_3 = {5,32,63,188,17,43,65,115,249,265} --
