@@ -6034,6 +6034,34 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
 
     end
 end  
+t['通用_取得剑神属性']=function()
+    local int_指数 = G.call('get_point',22)
+    local int_武功类型 = 22
+    local int_剑神属性 = 2
+    for i = 23,26 do 
+        if G.call('get_point',i) - int_指数 > 0 then 
+            int_指数 = G.call('get_point',i)
+            int_武功类型 = i
+        end
+    end
+    if G.call('get_point',34) - int_指数 > 0 then 
+        int_指数 = G.call('get_point',34)
+        int_武功类型 = 34
+    end
+    if int_武功类型 == 22 then
+        int_剑神属性 = 1
+    elseif int_武功类型 == 23 then
+        int_剑神属性 = 0
+    elseif int_武功类型 == 24 then
+        int_剑神属性 = 2
+    elseif int_武功类型 == 25 then
+        int_剑神属性 = 3
+    elseif int_武功类型 == 26 then
+        int_剑神属性 = 4
+    elseif int_武功类型 == 34 then
+        int_剑神属性 = 5
+    end
+end
 t['通用_取得敌方队伍特效']=function(int_特效号)
     local o_battle = G.QueryName(0x10150001)
     local 位置 = {'team1','team2','team3','team4','team5','enemy1','enemy2','enemy3','enemy4','enemy5','enemy6'}

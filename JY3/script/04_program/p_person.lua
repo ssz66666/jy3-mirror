@@ -1867,7 +1867,7 @@ t['事件_随机切磋']=function()
     for j = 1,24 do 
         table.insert(skill,j )
     end 
-    for i = 32,36 do 
+    for i = 32,37 do 
         table.insert(skill,i )
     end
     local team_skill = {0,0,0,0,0}
@@ -1888,7 +1888,6 @@ t['事件_随机切磋']=function()
         skill_mod[i] = skill[r]
         table.remove(skill, r)
     end
-    local magic = {'破绽','慈悲','先攻','妙手','急速','冰心','暴击','激励','见切','万毒','强体','回春','强力','强行','复生','奇才','活力','阴毒','舔血','北冥','真武','霸王','真意','昊天','朱雀','玄武','青龙','白虎'}
     o_role = G.QueryName(0x10040000 + int_role)
     if int_被动 > 0 and int_role ~= 418 then --分配被动
         for j = 1,int_被动 do 
@@ -2010,7 +2009,7 @@ t['副本_通天塔']=function(int_模式)
     for j = 1,25 do 
        table.insert(skill_use,j )
     end 
-    for i = 32,36 do 
+    for i = 32,37 do 
         table.insert(skill_use,i )
     end
     while true do 
