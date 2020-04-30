@@ -6061,6 +6061,7 @@ t['通用_取得剑神属性']=function()
     elseif int_武功类型 == 34 then
         int_剑神属性 = 5
     end
+    return int_剑神属性 
 end
 t['通用_取得敌方队伍特效']=function(int_特效号)
     local o_battle = G.QueryName(0x10150001)
