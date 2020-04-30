@@ -997,7 +997,7 @@ t['战斗系统_事件响应'] = function()
                                 if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',o_battle[位置[i]],412)  or G.call('通用_取得人物特效',o_battle[位置[i]],34)) then
                                     int_剑神无双 = 1
                                 end 
-                                if G.call('通用_取得装备特效',o_battle[位置[i]],412)  then
+                                if G.call('通用_取得装备特效',o_battle[位置[i]],412) or G.call('通用_取得人物特效',o_battle[位置[i]],37)   then
                                     int_剑神无双 = 1
                                 end 
                                 if o_skill.范围 == 2 and int_剑神无双 == 0  then
@@ -1394,7 +1394,7 @@ t['战斗系统_事件响应'] = function()
                                 if o_skill.类别 == 2 and  ( G.call('通用_取得装备特效',o_battle[位置[i]],412)  or G.call('通用_取得人物特效',o_battle[位置[i]],34)) then
                                     int_剑神无双 = 1
                                 end 
-                                if G.call('通用_取得装备特效',o_battle[位置[i]],412)  then
+                                if G.call('通用_取得装备特效',o_battle[位置[i]],412) or G.call('通用_取得人物特效',o_battle[位置[i]],37) then
                                     int_剑神无双 = 1
                                 end 
                                 if (o_skill.范围 == 2  or o_skill.范围 == 4) and int_剑神无双 == 0  then
@@ -1712,7 +1712,7 @@ t['战斗系统_事件响应'] = function()
                         if o_skill.类别 == 2 and  G.call('通用_取得人物特效',0,34) then
                             int_剑神无双 = 1
                         end 
-                        if G.call('通用_取得装备特效',0,412) and G.call('通用_取得剑神属性') == o_skill.类别 then
+                        if (G.call('通用_取得装备特效',0,412)  or  G.call('通用_取得人物特效',0,37)) and G.call('通用_取得剑神属性') == o_skill.类别 then
                             int_剑神无双 = 1
                         end 
                         if  o_skill.范围 == 2 and G.misc().范围无双 == 0 and int_剑神无双 == 0 then
@@ -3396,7 +3396,7 @@ t['magic_power1'] = function(int_id,int_no)
                     hurt = G.call('get_role',int_id,15)
                 end  
             end
-            if G.call('通用_取得装备特效',0,412) and G.call('通用_取得剑神属性') == o_skill.类别 then
+            if (G.call('通用_取得装备特效',0,412) or G.call('通用_取得人物特效',0,37)) and G.call('通用_取得剑神属性') == o_skill.类别 then
                 if string_字符串_1 == '' then 
                     string_字符串_1 = string_字符串_1..'武神无双'
                 else
@@ -4198,7 +4198,7 @@ t['magic_power2'] = function(int_id,int_enemy,int_no)
                     hurt = G.call('get_role',int_enemy,15)
                 end  
             end
-            if G.call('通用_取得装备特效',int_id,412)   then  --剑神无双效果
+            if G.call('通用_取得装备特效',int_id,412) or G.call('通用_取得人物特效',int_id,37)  then  --剑神无双效果
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
                 local int_lvmax = 100 + 5 * math.floor((G.call('get_point',237) - 1)/5)
@@ -5017,7 +5017,7 @@ t['magic_power3'] = function(int_id,int_no)
                     hurt = G.call('get_point',44)
                 end  
             end
-            if  G.call('通用_取得装备特效',int_id,412)  then  --剑神无双效果
+            if  G.call('通用_取得装备特效',int_id,412) or G.call('通用_取得人物特效',int_id,37) then  --剑神无双效果
                 local int_斩杀血量 = 6000
                 local int_斩杀百分比 = 10
                 if int_id == 418 or int_id == 419 then 
