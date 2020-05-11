@@ -2544,25 +2544,30 @@ t['集气'] = function()
                             ui.getChildByName('代码').getChildByName(位置[1]).text = int_武功代码
                             local i_skill = 0x10050000 + int_武功代码
                             local o_skill = G.QueryName(i_skill)
-                            if o_skill.范围 == 0 or o_skill.范围 == 1 then 
-                                if G.call('get_point',46) > 0 then 
+                            if G.call('get_point',84) == 0 then 
+                                if o_skill.范围 == 0 or o_skill.范围 == 1 then 
+                                    if G.call('get_point',46) > 0 then 
+                                        ui.getChildByName('状态').text = tostring(1) 
+                                        G.trig_event('主角准备')
+                                    else
+                                        G.misc().战斗状态 = 0
+                                        G.call('notice1','内力为0无法使用辅助武功')   
+                                    end     
+                                elseif  o_skill.范围 == 5 then  
                                     ui.getChildByName('状态').text = tostring(1) 
                                     G.trig_event('主角准备')
+                                elseif i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 9 and int_队友 >= 4   then
+                                    ui.getChildByName('状态').text = tostring(1) 
+                                    G.misc().范围无双 = 1
+                                    G.trig_event('主角准备')
                                 else
-                                    G.misc().战斗状态 = 0
-                                    G.call('notice1','内力为0无法使用辅助武功')   
-                                end     
-                            elseif  o_skill.范围 == 5 then  
-                                ui.getChildByName('状态').text = tostring(1) 
-                                G.trig_event('主角准备')
-                            elseif i_magic_阵法 and G.QueryName(i_magic_阵法).附加效果 == 9 and int_队友 >= 4   then
-                                ui.getChildByName('状态').text = tostring(1) 
-                                G.misc().范围无双 = 1
-                                G.trig_event('主角准备')
+                                    ui.getChildByName('状态').text = tostring(1) 
+                                    G.trig_event('选择攻击目标')
+                                end 
                             else
-                                ui.getChildByName('状态').text = tostring(1) 
-                                G.trig_event('选择攻击目标')
-                            end 
+                                G.misc().战斗状态 = 0
+                                ui.getChildByName('map').getChildByName(位置[1]).x == 0
+                            end
                         end
                         --G.trig_event('主角自动战斗')
                     else
@@ -2582,10 +2587,15 @@ t['集气'] = function()
                             end
                         end
                     end	
-                    for i = 2,11 do 
-                        if ui.getChildByName('map').getChildByName(位置[i]).x == 150 then 
-                            G.misc().行动序号 = i          
-                            G.trig_event('准备')
+                    for j = 2,11 do 
+                        local int_role = o_battle[位置[j]] 
+                        if ui.getChildByName('map').getChildByName(位置[j]).x == 150 then 
+                            if G.call('get_role',int_role,84 )  == 0 then 
+                                G.misc().行动序号 = j         
+                                G.trig_event('准备')
+                            else
+                                ui.getChildByName('map').getChildByName(位置[j]).x = 0
+                            end
                         end
                     end 
 				end 
