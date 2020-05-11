@@ -222,6 +222,14 @@ t['通用_存档'] = function(int_档案编号)
     local zipbuf = G.zip(buf);
     local path = G.GetSavePath('R4.grp');
     if int_档案编号 < 5 and  int_档案编号 > 0 then
+        if not G.misc().当前时间 then
+            G.misc().当前时间 = os.time()
+        end
+        if   G.misc().当前时间  - os.time() > 600 then 
+            G.call("talk",'',0,'   这也太快了吧！',0,0)
+            return  
+        end
+        G.misc().当前时间 = os.time()
         local path = GF.GetSavePath('R5.grp')
         local file,err=io.open(path)--打开文件
         if file then--如果有这个文件
@@ -235,6 +243,7 @@ t['通用_存档'] = function(int_档案编号)
             G.call('set_point',237,1)
             G.call('通用_存档',5)
         end
+        
     end
     if int_档案编号 == 0 then 
         path = G.GetSavePath('R0.grp');
@@ -333,6 +342,14 @@ t['通用_读档'] = function(int_档案编号)
                     G.QueryName(0x10040000 + i)[tostring(p+10)] = 0
                 end 
             end 
+            -- if not G.misc().当前时间 then
+            --     G.misc().当前时间 = os.time()
+            -- end
+            -- if   G.misc().当前时间  - os.time() > 600 then 
+            --     G.call('通用_强退游戏') 
+            -- else
+            --     G.misc().当前时间 = os.time()
+            -- end
             if int_档案编号 < 4 then 
                 G.call("goto_map",G.call('get_point',140)-0x10060000)
             else
