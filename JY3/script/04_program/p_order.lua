@@ -226,7 +226,7 @@ t['通用_存档'] = function(int_档案编号)
             G.misc().当前时间 = os.time()
         end
         if   G.misc().当前时间  - os.time() > 600 then 
-            G.call("talk",'',0,'   这也太快了吧！',0,0)
+            --G.call("talk",'',0,'   这也太快了吧！',0,0)
             return  
         end
         G.misc().当前时间 = os.time()
