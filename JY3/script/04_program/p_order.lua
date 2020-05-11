@@ -464,7 +464,7 @@ t['通用_读档'] = function(int_档案编号)
             if int_继承个数 >= 400 then
                 G.call('通用_强退游戏',int_继承个数) 
             end
-            G.call('通用_存档',int_档案编号)
+            --G.call('通用_存档',int_档案编号)
             G.call('通用_印记状态')
             G.start_program('地图系统_游戏时长监控')
         end 
