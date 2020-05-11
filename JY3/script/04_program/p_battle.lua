@@ -2566,12 +2566,20 @@ t['集气'] = function()
                         end
                         --G.trig_event('主角自动战斗')
                     else
-                        if G.misc().战斗状态 == 1  and ui.getChildByName('map').getChildByName(位置[1]).x == 150 then 
-                            G.trig_event('准备结束')
+                        if G.misc().战斗状态 == 1  and ui.getChildByName('map').getChildByName(位置[1]).x == 150  then 
+                            if G.call('get_point',84) == 0 then 
+                                G.trig_event('准备结束')
+                            else
+                                ui.getChildByName('map').getChildByName(位置[1]).x == 0
+                            end
                         end
                         if ui.getChildByName('map').getChildByName(位置[1]).x == 150  and G.call('get_point',87) > 0 then 
-                            G.misc().战斗状态 = 1
-                            G.trig_event('主角准备')
+                            if G.call('get_point',84) == 0 then 
+                                G.misc().战斗状态 = 1
+                                G.trig_event('主角准备')
+                            else
+                                ui.getChildByName('map').getChildByName(位置[1]).x == 0
+                            end
                         end
                     end	
                     for i = 2,11 do 
