@@ -119,10 +119,10 @@ function t:update_select(mod,_select,int_选择项)
 
     end 
     self.选项个数 = #_select
-    if #_select >= 2 then
-        for i = 1,self.选项个数  do
-            table.insert(self.选项组, i)
-        end
+    for i = 1,self.选项个数  do
+        table.insert(self.选项组, i)
+    end
+    if #_select >= 2  and _select[#_select] ~= ''  then
         for i = 1,self.选项个数  do 
             local len = #self.选项组
             local r = math.random(len)
@@ -131,12 +131,12 @@ function t:update_select(mod,_select,int_选择项)
             print(self.选择顺序[i])
         end
     else
-        self.选择顺序 = {1,2}
+        G.deepcopy( self.选项组,self.选择顺序)
     end
     local _选项组 = {}
     G.deepcopy( _select,_选项组)
     for i = 1,#_select do 
-        if #_select >= 2  then
+        if #_select >= 2 and _select[#_select] ~= '' then
             _选项组[i] = G.utf8sub(_选项组[i],2,G.getStrLen(_选项组[i]) )    
         end
     end
@@ -147,7 +147,7 @@ function t:update_select(mod,_select,int_选择项)
             ui_select = G.Clone(self.选项原型)
             ui_select.visible = true
             self.选项.addChild(ui_select)
-            if #_select >= 2  then
+            if #_select >= 2 and _select[#_select] ~= '' then
                _select[i] = G.call('通用_称谓转换',   _选项组[self.选择顺序[i]]) 
                _select[i] = tostring(i).._select[i]
             else
