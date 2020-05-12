@@ -197,70 +197,81 @@ t['地图系统_人物'] = function()
 			G.call('add_time',4)
 			G.call('turn_map')
         elseif r == 1014 then
-            G.call("talk",'',0,'   今日天气真不错，看能挖到多少蚯蚓吧!',0,0)
-            G.call('dig_earthworms')
-            G.call("talk",'',0,'   挖到了'..G.misc().蚯蚓数量..'条蚯蚓',0,0)
-            if not G.misc().挖宝数量 then
-                G.misc().挖宝数量 = 0
-            end
-            if G.misc().蚯蚓数量 > 20 then 
-                G.misc().蚯蚓数量 = 20
-            end
-            if G.misc().计时器 >= 5 and G.misc().蚯蚓数量 >= 15 then 
-                G.misc().挖宝 = 0
-            else
-                G.misc().挖宝数量 = G.misc().挖宝数量 + 1
-            end
-            if G.misc().挖宝 == 1 and  G.misc().蚯蚓数量 >= 10 then
-                if math.random(100) > 50 then 
-                    local int_几率 = math.random(10000)
-                    if G.misc().挖宝数量 >= 999 then
-                        int_几率 = math.random(9950)
+            local int_选项 = 0
+            while true do
+                int_选项 = G.call("menu",'',0,'今日天气真不错，要挖蚯蚓吗？!',5,0, {"1,开始挖吧！","2,改日再来"},0,nil,1)
+                if int_选项 == 1 then
+                    G.call('all_over')
+                    G.call('dig_earthworms')
+                    G.call("talk",'',0,'   挖到了'..G.misc().蚯蚓数量..'条蚯蚓',0,0)
+                    if not G.misc().挖宝数量 then
+                        G.misc().挖宝数量 = 0
                     end
-                    local item_1 = {5,32,63,188} --
-                    local item_2 = {5,32,63,188,17,43,65}    --
-                    local item_3 = {5,32,63,188,17,43,65,115,249,265} --
-                    local item_4 = {5,32,63,188,17,43,65,115,249,265,214,215,234,235} --
-                    local item_5 = {5,32,63,188,17,43,65,115,249,265,214,215,234,235,97,118,121 }  --
-                    local item = 5
-                    if int_几率 <= 5890 then 
-                        item = item_1[math.random(#item_1)]
-                    elseif int_几率 <= 8890 and int_几率 > 5890 then
-                        item = item_2[math.random(#item_2)]
-                    elseif int_几率 <= 9950 and int_几率 > 8890 then
-                        item = item_3[math.random(#item_3)]
-                    elseif int_几率 <= 9995 and int_几率 > 9950 then 
-                        item = item_4[math.random(#item_4)]
-                    elseif int_几率 <= 10000 and int_几率 > 9995 then  
-                        item = item_5[math.random(#item_5)] 
+                    if G.misc().蚯蚓数量 > 20 then 
+                        G.misc().蚯蚓数量 = 20
                     end
-                    local str = G.QueryName(0x100b0000 + item - 1).名称
-                    G.call('add_item',item,1)
-                    G.call("talk",'',0,'   心在跳，火在烧，竟然还挖到一个宝箱，里面竟然是【'..str..'】！',0,0)
-                    if int_几率 > 8890 then
-                        G.call("talk",'',0,'   心在跳，火在烧，竟然还有一个额外奖励！',0,0)
-                        G.call('通用_抽礼物',9,0) 
+                    if G.misc().计时器 >= 5 and G.misc().蚯蚓数量 >= 15 then 
+                        G.misc().挖宝 = 0
+                    else
+                        G.misc().挖宝数量 = G.misc().挖宝数量 + 1
                     end
-                else
-                    G.call("talk",'',0,'   心在跳，火在烧，竟然还挖到一个宝箱....里面竟然有1文钱！',0,0)
-                    G.call('add_money',1)
+                    if G.misc().挖宝 == 1 and  G.misc().蚯蚓数量 >= 10 then
+                        if math.random(100) > 50 then 
+                            local int_几率 = math.random(10000)
+                            if G.misc().挖宝数量 >= 999 then
+                                int_几率 = math.random(9950)
+                            end
+                            local item_1 = {5,32,63,188} --
+                            local item_2 = {5,32,63,188,17,43,65}    --
+                            local item_3 = {5,32,63,188,17,43,65,115,249,265} --
+                            local item_4 = {5,32,63,188,17,43,65,115,249,265,214,215,234,235} --
+                            local item_5 = {5,32,63,188,17,43,65,115,249,265,214,215,234,235,97,118,121 }  --
+                            local item = 5
+                            if int_几率 <= 5890 then 
+                                item = item_1[math.random(#item_1)]
+                            elseif int_几率 <= 8890 and int_几率 > 5890 then
+                                item = item_2[math.random(#item_2)]
+                            elseif int_几率 <= 9950 and int_几率 > 8890 then
+                                item = item_3[math.random(#item_3)]
+                            elseif int_几率 <= 9995 and int_几率 > 9950 then 
+                                item = item_4[math.random(#item_4)]
+                            elseif int_几率 <= 10000 and int_几率 > 9995 then  
+                                item = item_5[math.random(#item_5)] 
+                            end
+                            local str = G.QueryName(0x100b0000 + item - 1).名称
+                            G.call('add_item',item,1)
+                            G.call("talk",'',0,'   心在跳，火在烧，竟然还挖到一个宝箱，里面竟然是【'..str..'】！',0,0)
+                            if int_几率 > 8890 then
+                                G.call("talk",'',0,'   心在跳，火在烧，竟然还有一个额外奖励！',0,0)
+                                G.call('通用_抽礼物',9,0) 
+                            end
+                        else
+                            G.call("talk",'',0,'   心在跳，火在烧，竟然还挖到一个宝箱....里面竟然有1文钱！',0,0)
+                            G.call('add_money',1)
+                        end
+                    end    
+                    local o_zzqy = G.QueryName(0x10170014)
+                    if o_zzqy.完成 == 0 then 
+                        o_zzqy.进度列表[1].当前进度 = o_zzqy.进度列表[1].当前进度 + G.misc().蚯蚓数量
+                        G.call('set_newpoint',80,G.call('get_newpoint',80)- G.misc().蚯蚓数量  )
+                    end
+                    if o_zzqy.进度列表[1].当前进度 >= 10000 then 
+                        o_zzqy.进度列表[1].完成 = 1
+                        if o_zzqy.完成 == 0 then 
+                            o_zzqy.完成 = 1
+                            G.call('notice1','恭喜完成成就【抓抓蚯蚓】')
+                        end
+                    end
+                    G.call('add_item',318,G.misc().蚯蚓数量)
+                    G.call('all_over')
+                    G.call('turn_map')
+                    break 
                 end
-            end    
-            local o_zzqy = G.QueryName(0x10170014)
-            if o_zzqy.完成 == 0 then 
-                o_zzqy.进度列表[1].当前进度 = o_zzqy.进度列表[1].当前进度 + G.misc().蚯蚓数量
-                G.call('set_newpoint',80,G.call('get_newpoint',80)- G.misc().蚯蚓数量  )
-            end
-            if o_zzqy.进度列表[1].当前进度 >= 10000 then 
-                o_zzqy.进度列表[1].完成 = 1
-                if o_zzqy.完成 == 0 then 
-                    o_zzqy.完成 = 1
-                    G.call('notice1','恭喜完成成就【抓抓蚯蚓】')
+                if int_选项 == 2 then
+                    G.call('all_over')
+                    break
                 end
-            end
-            G.call('add_item',318,G.misc().蚯蚓数量)
-            G.call('all_over')
-            G.call('turn_map')
+            end        
         elseif r == 2 then
             G.call('途径牛家村-曲菲菲')
         elseif r == 3 then
