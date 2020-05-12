@@ -154,6 +154,7 @@ t['门派-桃花岛']=function()
                             else
                                 if G.call('get_point',5) >= 2  then 
                                     G.call('add_point',29,3)
+                                    G.call('notice1','【搏击】+[03]3')
                                     G.call('add_point',5,-2)
                                 else
                                     G.call("talk",'',83,'   还要继续修炼啊',2,1) 
@@ -166,6 +167,7 @@ t['门派-桃花岛']=function()
                             else
                                 if G.call('get_point',5) >= 2  then 
                                     G.call('add_point',28,3)
+                                    G.call('notice1','【拆招】+[03]3')
                                     G.call('add_point',5,-2)
                                 else
                                     G.call("talk",'',83,'   还要继续修炼啊',2,1) 

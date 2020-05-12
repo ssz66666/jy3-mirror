@@ -36,7 +36,7 @@ function noti.对话系统_显示对话下ui(string_名字,int_编号,string_对
 end
 
 
-function noti.对话系统_显示选择上ui(int_位置,_string_选项,int_选择项)
+function noti.对话系统_显示选择上ui(int_位置,_string_选项,int_选择项,int_随机)
     local ui_select
     ui_select = G.getUI('v_dialogue_system_select')
     if not ui_select then
@@ -44,10 +44,10 @@ function noti.对话系统_显示选择上ui(int_位置,_string_选项,int_选�
     end
     ui_select.visible = true
     if ui_select.c_dialogue_system_select then
-        ui_select.c_dialogue_system_select:setData(int_位置,_string_选项,int_选择项)
+        ui_select.c_dialogue_system_select:setData(int_位置,_string_选项,int_选择项,int_随机)
     end
 end
-function noti.对话系统_显示选择下ui(int_位置,_string_选项,int_选择项)
+function noti.对话系统_显示选择下ui(int_位置,_string_选项,int_选择项,int_随机)
     local ui_select
     ui_select = G.getUI('v_dialogue_system_select1')
     if not ui_select then
@@ -55,7 +55,7 @@ function noti.对话系统_显示选择下ui(int_位置,_string_选项,int_选�
     end
     ui_select.visible = true
     if ui_select.c_dialogue_system_select1 then
-        ui_select.c_dialogue_system_select1:setData(int_位置,_string_选项,int_选择项)
+        ui_select.c_dialogue_system_select1:setData(int_位置,_string_选项,int_选择项,int_随机)
     end
 end
 

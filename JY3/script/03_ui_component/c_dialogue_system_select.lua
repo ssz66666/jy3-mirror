@@ -23,13 +23,14 @@ function t:start()
         self.选择.getChildByName(tostring(i)).shadowAlpha = 180
     end   
 end
-function t:setData(mod,_select,int_选择项)
+function t:setData(mod,_select,int_选择项,int_随机)
     self.obj.visible = true
     self.obj.parent.addChild(self.obj)
-    self:update_select(mod,_select,int_选择项)
+    self:update_select(mod,_select,int_选择项,int_随机)
 end
 
-function t:update_select(mod,_select,int_选择项)
+function t:update_select(mod,_select,int_选择项,int_随机)
+    --print('int_随机',int_随机)
     local ui_select
     self.选项.removeAllChildren()
     --self.选项原型.getChildByName('text').text = G.call('通用_称谓转换',self.选项原型.getChildByName('text').text)
@@ -122,7 +123,7 @@ function t:update_select(mod,_select,int_选择项)
     for i = 1,self.选项个数  do
         table.insert(self.选项组, i)
     end
-    if #_select >= 2  and _select[#_select] ~= ''  then
+    if #_select >= 2  and _select[#_select] ~= '' and int_随机 == 1  then
         for i = 1,self.选项个数  do 
             local len = #self.选项组
             local r = math.random(len)

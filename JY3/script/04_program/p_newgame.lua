@@ -855,7 +855,7 @@ t['途径牛家村-乞丐乙']=function()
         G.call("talk",'乞丐乙',173,'   这位[小哥]有没有兴趣跟着赌几把？咱赌小的，一注五两，说不定你还能发笔小财呢。',1,1)
         local int_选项 = 0
         while int_选项 == 0 do
-            int_选项 = G.call("menu",nil,0,'',0,0,{"1,好吧，我便试试手气","2,我一向运气不好，还是不赌了"},0)  
+            int_选项 = G.call("menu",nil,0,'',0,0,{"1,好吧，我便试试手气","2,我一向运气不好，还是不赌了"},0,nil,1)  
             if int_选项 == 1 then 
                 G.call('all_over')
                 if G.call('get_point',130) >= 50 then 
@@ -875,7 +875,7 @@ t['途径牛家村-乞丐乙']=function()
         local int_选项 = 0
         while int_选项 == 0 do
             if (G.call('get_point',237) > 1  or G.misc().测试  ) then 
-                int_选项 = G.call("menu",nil,0,'',0,0,{"1,小赌怡情咱就图个乐，这些钱你先拿去耍吧","2,我想加入【丐帮】,大哥引荐一下吧！","3,等你有钱了咱们再赌几把"},0)  
+                int_选项 = G.call("menu",nil,0,'',0,0,{"1,小赌怡情咱就图个乐，这些钱你先拿去耍吧","2,我想加入【丐帮】,大哥引荐一下吧！","3,等你有钱了咱们再赌几把"},0,nil,1)  
                 if int_选项 == 1 then 
                     G.call('set_newpoint',130,G.call('get_newpoint',130) - math.floor(G.call('get_money')/2) )
                     G.call('set_point',130,G.call('get_point',130) + math.floor(G.call('get_money')/2) )
@@ -1015,7 +1015,7 @@ t['途径牛家村-渔夫']=function()
     G.call("talk",'渔  夫',137,'   “孤舟蓑笠翁，独钓寒江雪”，我这是在钓有缘人哪，哈哈。',1,1)
     local int_选项 = 0
     while int_选项 == 0 do
-        int_选项 = G.call("menu",nil,0,'',0,0,{"1,我想请教垂钓之术","2,怎么能弄到蚯蚓？",'3,没什么事情，我是路过的'},0) 
+        int_选项 = G.call("menu",nil,0,'',0,0,{"1,我想请教垂钓之术","2,怎么能弄到蚯蚓？",'3,没什么事情，我是路过的'},0,nil,1) 
         if int_选项 == 1 then 
             if G.call('get_item',282) < 1 then 
                 G.call('add_item',282,1)
@@ -1050,7 +1050,7 @@ t['途径牛家村-老猎人']=function()
     G.call("talk",'老猎人',54,'   年岁不饶人，老朽这【百步穿杨】的名号怕是早已名存实亡了。打不到青蛇胆和黑熊胆，老朽的【百胆大补酒】更是要功亏一篑喽。',1,1)
     local int_选项 = 0
 	while int_选项 == 0 do
-        int_选项 = G.call("menu",nil,0,'',0,0,{"1,向老人家请教射猎之术","2,我这里有些熊胆、蛇胆之类，都给了你吧",'3,没什么事情，我是路过的'},0) 
+        int_选项 = G.call("menu",nil,0,'',0,0,{"1,向老人家请教射猎之术","2,我这里有些熊胆、蛇胆之类，都给了你吧",'3,没什么事情，我是路过的'},0,nil,1) 
         if int_选项 == 1 then 
             if G.call('get_item',277) < 1 then 
                 G.call('add_item',277,1)
@@ -1102,7 +1102,7 @@ t['途径牛家村-中年樵夫']=function()
     G.call("talk",'中年樵夫',138,'   砍树伐木也是讲究技巧的，只会使蛮力拿镰刀斧头向树干拼命招呼，便是新打磨的也砍不到几颗树。',1,1)
     local int_选项 = 0
 	while int_选项 == 0 do
-        int_选项 = G.call("menu",nil,0,'',0,0,{"1,向大叔请教伐木之术","2,我这里有些砍下的木柴，你收下吧",'3,没什么事情，我是路过的'},0) 
+        int_选项 = G.call("menu",nil,0,'',0,0,{"1,向大叔请教伐木之术","2,我这里有些砍下的木柴，你收下吧",'3,没什么事情，我是路过的'},0,nil,1) 
         if int_选项 == 1 then 
             if G.call('get_item',31) < 1 then 
                 G.call('add_item',31,1)

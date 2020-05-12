@@ -3440,15 +3440,17 @@ t['talk'] = function(string_名字,int_编号,string_对话,int_位置,int_当�
         G.call("对话系统_显示对话大",string_名字,int_编号,string_对话,int_位置)
     end 
 end 
-t['menu'] = function(string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_当前UI,int_选择项)  --同上，用于对选框UI的切换
+t['menu'] = function(string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_当前UI,int_选择项,int_随机)  --同上，用于对选框UI的切换
     for i = 1,#_string_选项 do
         G.call('通用_称谓转换',_string_选项[i]) 
     end
     if  int_当前UI == 0 or nil then 
-        return G.call("对话系统_显示对话选择上",string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_选择项)
+        print('int_0',int_选择项)
+        print('int_1',int_随机)
+        return G.call("对话系统_显示对话选择上",string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_选择项,int_随机)
     end     
     if int_当前UI > 0 then        
-        return G.call("对话系统_显示对话选择下",string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_选择项)
+        return G.call("对话系统_显示对话选择下",string_名字,int_编号,string_对话,int_对话位置,int_选框位置,_string_选项,int_选择项,int_随机)
     end
 end 
 t['join']=function(int_编号,boolean_是否显示提示) --加入队友

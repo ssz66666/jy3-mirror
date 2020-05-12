@@ -327,7 +327,7 @@ t['城镇-渡口']=function()
     if G.call('get_point',237) > 1 or  G.misc().测试 then 
         local int_选项 = 0 
         while int_选项 == 0 do
-            int_选项 = G.call("menu",'',0,'',0,0,{"1,去【神龙教】","2,去【桃花岛】","3,去【海底采矿】","4,哪里也不想去"},0) 
+            int_选项 = G.call("menu",'',0,'',0,0,{"1,去【神龙教】","2,去【桃花岛】","3,去【海底采矿】","4,哪里也不想去"},0,nil,1) 
             if int_选项 == 1 then
                 G.call('all_over') 
                 G.call('dark')
@@ -363,7 +363,7 @@ t['城镇-渡口']=function()
     else
         local int_选项 = 0 
         while int_选项 == 0 do
-            int_选项 = G.call("menu",'',0,'',0,0,{"1,去【神龙教】","2,去【海底采矿】","3,哪里也不想去"},0) 
+            int_选项 = G.call("menu",'',0,'',0,0,{"1,去【神龙教】","2,去【海底采矿】","3,哪里也不想去"},0,nil,1) 
             if int_选项 == 1 then
                 G.call('all_over') 
                 G.call('dark')

@@ -75,7 +75,7 @@ t['初入丐帮-全冠清'] = function()
         G.call("talk",'',173,'   [师弟]有没有兴趣跟着赌几把？咱赌小的，一注五两，说不定你还能发笔小财呢。',1,1)
         local int_选项 = 0
         while int_选项 == 0 do
-            int_选项 = G.call("menu",nil,0,'',0,0,{"1,好吧，我便试试手气","2,我一向运气不好，还是不赌了"},0)  
+            int_选项 = G.call("menu",nil,0,'',0,0,{"1,好吧，我便试试手气","2,我一向运气不好，还是不赌了"},0,nil,1)  
             if int_选项 == 1 then 
                 G.call('all_over')
                 if G.call('get_point',130) >= 50 then 
@@ -97,7 +97,7 @@ t['初入丐帮-全冠清'] = function()
         G.call("talk",'',173,'   师兄袋里的钱都叫[师弟]赢光了，做不成庄，还是不赌了。',1,1)
         local int_选项 = 0
         while int_选项 == 0 do
-            int_选项 = G.call("menu",nil,0,'',0,0,{"1,小赌怡情咱就图个乐，这些钱师兄先拿去耍吧","2,等师兄有钱了咱们再赌几把"},0)  
+            int_选项 = G.call("menu",nil,0,'',0,0,{"1,小赌怡情咱就图个乐，这些钱师兄先拿去耍吧","2,等师兄有钱了咱们再赌几把"},0,nil,1)  
             if int_选项 == 1 then 
                 if G.call('get_money') > 1000 then
                     G.call('set_newpoint',130,G.call('get_newpoint',130) - 1000 )

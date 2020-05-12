@@ -66,17 +66,17 @@ end
 --private=false
 --ret=int
 --text=<03>【显示对话】[var:1]："[var:3]" [var:4]，[var:5]
-t['对话系统_显示对话选择上'] = function(string_名字,int_编号,string_对话,int_对话位置,int_选择位置,_string_选项,int_选择项)
+t['对话系统_显示对话选择上'] = function(string_名字,int_编号,string_对话,int_对话位置,int_选择位置,_string_选项,int_选择项,int_随机)
     G.log("通过该接口显示选择并返回选项 id")
     G.call('对话系统_显示对话上ui',string_名字, int_编号,string_对话,int_对话位置)
-    G.call('对话系统_显示选择上ui',int_选择位置,_string_选项,int_选择项)
+    G.call('对话系统_显示选择上ui',int_选择位置,_string_选项,int_选择项,int_随机)
     G.wait1('选择1结束')
     return G.event_info()
 end
-t['对话系统_显示对话选择下'] = function(string_名字,int_编号,string_对话,int_对话位置,int_选择位置,_string_选项,int_选择项)
+t['对话系统_显示对话选择下'] = function(string_名字,int_编号,string_对话,int_对话位置,int_选择位置,_string_选项,int_选择项,int_随机)
     G.log("通过该接口显示选择并返回选项 id")
     G.call('对话系统_显示对话大ui', string_名字,int_编号,string_对话,int_对话位置)
-    G.call('对话系统_显示选择下ui',int_选择位置,_string_选项,int_选择项)
+    G.call('对话系统_显示选择下ui',int_选择位置,_string_选项,int_选择项,int_随机)
     G.wait1('选择2结束')
     return G.event_info()
 end
