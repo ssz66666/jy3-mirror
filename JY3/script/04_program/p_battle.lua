@@ -4834,6 +4834,7 @@ t['magic_power3'] = function(int_id,int_no)
                 if G.call('通用_取得人物特效',int_id,18) then  --阴毒效果
                     seed = math.max(1,math.floor(seed/2))
                 end  
+                seed = math.floor(seed)
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',90) == 0 then 
                         if string_字符串_4 == '' then 
@@ -4849,6 +4850,7 @@ t['magic_power3'] = function(int_id,int_no)
                     end  
                 end
             end
+            seed = math.floor(seed)
             if  o_skill.附加效果 == 2 then
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if G.call('get_point',82) == 0 then 
@@ -4921,6 +4923,7 @@ t['magic_power3'] = function(int_id,int_no)
                 if G.call('通用_取得人物特效',int_id,18) then 
                     seed = seed/2
                 end 
+                seed = math.floor(seed)
                 if math.random(seed) < 5 + math.floor(G.call('get_role',int_id,6)/10 - G.call('get_point',21)/10) then 
                     if string_字符串_4 == '' then 
                         string_字符串_4 = string_字符串_4..'重伤'
