@@ -5147,6 +5147,9 @@ t['get_magicexp']=function(int_编号) --取得主角武功当前熟练度
     return G.QueryName(0x10050000+int_编号-1).当前熟练度 
 end 
 t['get_magic_lv']=function(int_编号) --取得主角武功当前修为等级
+    if G.QueryName(0x10050000+int_编号-1).修为等级  > 5 then 
+        G.call('通用_强退游戏',888) 
+    end
     return G.QueryName(0x10050000+int_编号-1).修为等级 
 end 
 t['set_magic_lv']=function(int_编号,int_no) --设置主角武功当前修为等级
