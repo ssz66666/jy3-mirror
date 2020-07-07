@@ -29,6 +29,7 @@ function t:init()
     self.先开 = 0
     self.已放置 = 0
     self.选择卡片 = 0
+    self.放置卡片中 = 0
     self.cardmod = {}
     self.card = {}
     for i = 1, 5 do
@@ -207,7 +208,7 @@ function t:zoomIn(i)
     G.Tween('scaleY', dur, self.card[i], 1)
 end
 function t:rollOver(tar)
-    if tar.parent == self.一区 and  self.进程 == 3 then
+    if tar.parent == self.一区 and  self.进程 == 3 and self.放置卡片中 == 0 then
         local i = tar.getIndex() + 1
         if i == self.cardID then
             return
@@ -216,7 +217,7 @@ function t:rollOver(tar)
     end
 end
 function t:rollOut(tar)
-    if tar.parent == self.一区 and  self.进程 == 3 then
+    if tar.parent == self.一区 and  self.进程 == 3 and self.放置卡片中 == 0 then
         local i = tar.getIndex() + 1
         if i == self.cardID then
             return
@@ -276,6 +277,8 @@ function t:click(tar)
     local 属性 = {'力量','智慧','防御','速度'}
     local o_cardhouse = G.QueryName(0x10220001)
     local 品级 = {'传奇','宗师','英雄','优秀','一般','普通'}
+    if self.放置卡片中 == 1 then return 
+    end
     for i = 1,#品级 do
         if tar ==  self.按钮.getChildByName(品级[i]) then
             self.按钮.getChildByName('闪光').visible = true
@@ -454,7 +457,8 @@ function t:click(tar)
         if self.选择卡片 > 0 then 
             for i = 1,9 do
                 if tar == self.卡区.getChildByName('card_'..i).getChildByName('按钮')   then 
-                    G.RunAction('play_card',i,tar,1)
+                    self.放置卡片中 = 1
+                    G.RunAction('play_run_card',i,tar,1)
                     G.Play(0x49010035, 1,false,100) 
                 end
             end

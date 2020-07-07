@@ -30,7 +30,7 @@ t['动画通用_播放动画序列'] = function(o_dialogue_system_actionlist_序
         end
     end
 end
-t['play_card'] = function(i,tar,int_阵营,int_卡位置)
+t['play_run_card'] = function(i,tar,int_阵营,int_卡位置)
     local ui = G.getUI('v_cardgame')
     local c = ui.c_cardgame
     local dur = 500
@@ -81,4 +81,5 @@ t['play_card'] = function(i,tar,int_阵营,int_卡位置)
             ui.getChildByName('轮换').getChildByName('二区').visible = false
         end
     end
+    c.放置卡片中 = 0
 end
