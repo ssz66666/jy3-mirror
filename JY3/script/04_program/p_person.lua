@@ -2182,13 +2182,17 @@ t['副本_通天塔']=function(int_模式)
                 end
                 G.misc().通天塔层数 = G.misc().通天塔层数 + 1
                 int_通天塔层数 = int_通天塔层数 - 1
-                if G.misc().通天塔层数 ~= math.abs(int_通天塔层数 + 7 ) then 
-                    G.misc().通天塔 = 0 
-                    G.call('通用_强退游戏',402) 
-                end
+    
             end
         else
             break 
+        end
+        if G.misc().通天塔层数 ~= math.abs(int_通天塔层数 + 7 ) then 
+            G.misc().通天塔 = 0 
+            G.call('通用_强退游戏',402) 
+        end
+        if G.misc().通天塔层数 > 101 then    
+            G.call('通用_强退游戏',403) 
         end
     end
     G.misc().通天塔 = 0 
@@ -2280,7 +2284,7 @@ t['副本_通天塔']=function(int_模式)
                     G.call('notice1','恭喜完成高级级无尽80层') 
                 end   
             end
-        elseif  G.misc().通天塔层数 > 100 and G.misc().通天塔奖励_5 == 0 then
+        elseif  G.misc().通天塔层数 > 100 and   and G.misc().通天塔奖励_5 == 0 then
             G.misc().通天塔奖励_5 = 1
             G.call('add_item',224,5)
             G.call('add_item',341,1)
@@ -2318,6 +2322,7 @@ t['副本_通天塔']=function(int_模式)
                     int_完美 = int_完美 + 1
                 end
             end
+
             if o_生存成就.进度列表[2].完成 == 0  and  G.misc().生存 == 1 then 
                 o_生存成就.进度列表[2].完成 = 1
                 o_生存成就.进度列表[2].当前进度 = 1
