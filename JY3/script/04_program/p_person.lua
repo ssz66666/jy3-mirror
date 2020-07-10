@@ -2284,7 +2284,7 @@ t['副本_通天塔']=function(int_模式)
                     G.call('notice1','恭喜完成高级级无尽80层') 
                 end   
             end
-        elseif  G.misc().通天塔层数 > 100 and   and G.misc().通天塔奖励_5 == 0 then
+        elseif  G.misc().通天塔层数 > 100  and G.misc().通天塔奖励_5 == 0 then
             G.misc().通天塔奖励_5 = 1
             G.call('add_item',224,5)
             G.call('add_item',341,1)
