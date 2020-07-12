@@ -2189,10 +2189,12 @@ t['副本_通天塔']=function(int_模式)
         end
         if G.misc().通天塔层数 ~= math.abs(int_通天塔层数 + 7 ) then 
             G.misc().通天塔 = 0 
-            G.call('通用_强退游戏',402) 
+            G.misc().修改检测 = 1
+            --G.call('通用_强退游戏',402) 
         end
         if G.misc().通天塔层数 > 101 then    
-            G.call('通用_强退游戏',403) 
+            --G.call('通用_强退游戏',403) 
+            G.misc().修改检测  = 1
         end
     end
     G.misc().通天塔 = 0 
@@ -2329,7 +2331,7 @@ t['副本_通天塔']=function(int_模式)
                 G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
                 G.call('notice1','恭喜完成[03]'..o_生存成就.进度列表[2].名称)
             end
-            if not G.misc().获取印记 then 
+            if not G.misc().获取印记 and G.misc().修改检测 ~= 1  then
                 if int_完美 == 14 and not G.call('通用_拥有印记',15)  and (not G.misc().获取剑神 or G.misc().获取剑神 == 0) and G.misc().重生 == 0 then
                     G.misc().获取剑神 = 1
                     G.call('add_equip',0x10180028 + 15,1)
@@ -2386,7 +2388,7 @@ t['副本_通天塔']=function(int_模式)
                 o_wjtz.进度列表[19].完成 = 1
                 G.call('notice1','恭喜完成单人无尽100层') 
             end
-            if G.misc().梦幻完成 and G.misc().梦幻完成 == 1 then
+            if G.misc().梦幻完成 and G.misc().梦幻完成 == 1 and G.misc().修改检测 ~= 1  then
                 G.misc().密令序号 = tostring(math.random(999999)) 
                 G.call("talk",'',38,'   恭喜突破100层，这是给你的奖励！恭喜完成全部梦幻剧情，你的幸运密令为[03]'..G.misc().密令序号,2,1) 
                 if o_生存成就.进度列表[5].完成 == 0  and  G.misc().生存 == 1 then 

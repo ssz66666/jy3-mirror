@@ -210,13 +210,11 @@ t['地图系统_防修改监控'] = function()
 	local int_检测 = 0
 	if int_成就 > 0 then 
 		if int_成就 ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			print('成就',int_成就,G.call('get_newpoint',80))
-			int_检测 = int_检测 + 1
+			G.misc().修改检测 = 1
 		end
 	else
 		if math.abs(int_成就) ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			print('成就',int_成就,G.call('get_newpoint',80))
-			int_检测 = int_检测 + 1
+			G.misc().修改检测 = 1
 		end
 	end
 	local int_周目成就 = 0
@@ -251,7 +249,7 @@ t['地图系统_防修改监控'] = function()
 	end
 	if math.abs(int_周目成就) ~= math.abs(G.call('get_newpoint',81)+2000) then 
 		--print('int_周目成就',int_周目成就,G.call('get_newpoint',81))
-		int_检测 = int_检测 + 1
+		G.misc().修改检测 = 1
 	end
 	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 10 )  then
 		--print('周目',G.call('get_point',237),G.call('get_newpoint',237))
@@ -678,7 +676,7 @@ t['地图系统_小游戏'] = function()
 				cui.挖矿 = 1
 				G.wait_time(500)
 				local qcbl = 0
-				if o_qcbl.完成 == 0 then
+				if o_qcbl.完成 == 0  then 
 					for i = 1,8 do 
 						if o_qcbl.进度列表[i].完成 == 1 then
 							qcbl = qcbl + 1
@@ -753,11 +751,11 @@ t['地图系统_小游戏'] = function()
 				ui3.getChildByName('口白').text = '累死了，总算砍完了'
 				G.call('add_point',101,50)
 				G.call('add_item',280,1)
-				if o_mxyl.完成 == 0 then 
+				if o_mxyl.完成 == 0  then 
 					o_mxyl.进度列表[1].当前进度 = o_mxyl.进度列表[1].当前进度 + 1
 					G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
 				end
-				if o_mxyl.进度列表[1].当前进度 >= 500 and o_mxyl.完成 == 0 then 
+				if o_mxyl.进度列表[1].当前进度 >= 500 and o_mxyl.完成 == 0  then 
 					o_mxyl.进度列表[1].完成 = 1
 					o_mxyl.完成 = 1
 					G.call('notice1','完成成就【木秀于林】')
@@ -821,7 +819,7 @@ t['地图系统_小游戏'] = function()
 							local money = math.random(100)
 							G.call('add_money',money)
 							G.call('add_point',19,2)
-							if o_wjyd.完成 == 0 then
+							if o_wjyd.完成 == 0  then 
 								o_wjyd.进度列表[1].当前进度 = o_wjyd.进度列表[1].当前进度 + money							
 								G.call('set_newpoint',80,G.call('get_newpoint',80)- money   )
 							end
@@ -849,7 +847,7 @@ t['地图系统_小游戏'] = function()
 					ui2.getChildByName('物品').img = 0x56100011
 					ui2.getChildByName('显示').getChildByName(tostring(1)).text  = tostring(tonumber(ui2.getChildByName('显示').getChildByName(tostring(1)).text ) +1       )
 					o_dyns.进度列表[1].当前进度 = o_dyns.进度列表[1].当前进度 + 1
-					if o_dyns.进度列表[1].当前进度 >= 100 then 
+					if o_dyns.进度列表[1].当前进度 >= 100  then 
 						o_dyns.进度列表[1].完成 = 1
 				    end		
 				elseif b == 3 then 
@@ -858,7 +856,7 @@ t['地图系统_小游戏'] = function()
 					ui2.getChildByName('物品').img = 0x56100012
 					ui2.getChildByName('显示').getChildByName(tostring(2)).text  = tostring(tonumber(ui2.getChildByName('显示').getChildByName(tostring(2)).text  ) +1)
 					o_dyns.进度列表[2].当前进度 = o_dyns.进度列表[2].当前进度 + 1
-					if o_dyns.进度列表[2].当前进度 >= 100 then 
+					if o_dyns.进度列表[2].当前进度 >= 100  then  
 						o_dyns.进度列表[2].完成 = 1
 				    end	
 				elseif b == 4 then 	
@@ -867,7 +865,7 @@ t['地图系统_小游戏'] = function()
 					ui2.getChildByName('物品').img = 0x56100013	
 					ui2.getChildByName('显示').getChildByName(tostring(3)).text  = tostring(tonumber(ui2.getChildByName('显示').getChildByName(tostring(3)).text ) +1)
 					o_dyns.进度列表[3].当前进度 = o_dyns.进度列表[3].当前进度 + 1
-					if o_dyns.进度列表[3].当前进度 >= 100 then 
+					if o_dyns.进度列表[3].当前进度 >= 100  then 
 						o_dyns.进度列表[3].完成 = 1
 				    end	
 				end  
@@ -883,7 +881,7 @@ t['地图系统_小游戏'] = function()
 					ui2.getChildByName('物品').img = 0x56100014
 					ui2.getChildByName('显示').getChildByName(tostring(4)).text  = tostring(tonumber(ui2.getChildByName('显示').getChildByName(tostring(4)).text ) +1)
 					o_dyns.进度列表[4].当前进度 = o_dyns.进度列表[4].当前进度 + 1
-					if o_dyns.进度列表[4].当前进度 >= 100 then 
+					if o_dyns.进度列表[4].当前进度 >= 100  then  
 						o_dyns.进度列表[4].完成 = 1
 				    end	
 				elseif b == 6 then 
@@ -892,7 +890,7 @@ t['地图系统_小游戏'] = function()
 					ui2.getChildByName('物品').img = 0x56100015
 					ui2.getChildByName('显示').getChildByName(tostring(5)).text  = tostring(tonumber(ui2.getChildByName('显示').getChildByName(tostring(5)).text ) +1)
 					o_dyns.进度列表[5].当前进度 = o_dyns.进度列表[5].当前进度 + 1
-					if o_dyns.进度列表[5].当前进度 >= 100 then 
+					if o_dyns.进度列表[5].当前进度 >= 100  then 
 						o_dyns.进度列表[5].完成 = 1
 				    end	
 				elseif b == 7 then 	
@@ -901,7 +899,7 @@ t['地图系统_小游戏'] = function()
 					ui2.getChildByName('物品').img = 0x56100016	
 					ui2.getChildByName('显示').getChildByName(tostring(6)).text  = tostring(tonumber(ui2.getChildByName('显示').getChildByName(tostring(6)).text ) +1)
 					o_dyns.进度列表[6].当前进度 = o_dyns.进度列表[6].当前进度 + 1
-					if o_dyns.进度列表[6].当前进度 >= 100 then 
+					if o_dyns.进度列表[6].当前进度 >= 100  then 
 						o_dyns.进度列表[6].完成 = 1
 				    end	
 				end 
@@ -917,7 +915,7 @@ t['地图系统_小游戏'] = function()
 					ui2.getChildByName('物品').img = 0x56100017
 					ui2.getChildByName('显示').getChildByName(tostring(7)).text  = tostring(tonumber(ui2.getChildByName('显示').getChildByName(tostring(7)).text ) +1)
 					o_dyns.进度列表[7].当前进度 = o_dyns.进度列表[7].当前进度 + 1
-					if o_dyns.进度列表[7].当前进度 >= 100 then 
+					if o_dyns.进度列表[7].当前进度 >= 100  then 
 						o_dyns.进度列表[7].完成 = 1
 				    end	
 				elseif b == 9 then 
@@ -926,7 +924,7 @@ t['地图系统_小游戏'] = function()
 					ui2.getChildByName('物品').img = 0x56100018
 					ui2.getChildByName('显示').getChildByName(tostring(8)).text  = tostring(tonumber(ui2.getChildByName('显示').getChildByName(tostring(8)).text ) +1)
 					o_dyns.进度列表[8].当前进度 = o_dyns.进度列表[8].当前进度 + 1
-					if o_dyns.进度列表[8].当前进度 >= 100 then 
+					if o_dyns.进度列表[8].当前进度 >= 100  then 
 						o_dyns.进度列表[8].完成 = 1
 				    end	
 				end
@@ -941,11 +939,11 @@ t['地图系统_小游戏'] = function()
 			ui2.getChildByName('背景').visible = false
 			ui2.getChildByName('物品').visible = false
 			G.call('add_item',318,-1)
-			if o_dsyy.完成 == 0 then 
+			if o_dsyy.完成 == 0  then  
 				o_dsyy.进度列表[1].当前进度 = o_dsyy.进度列表[1].当前进度 + 1
 				G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
 			end
-			if o_dsyy.进度列表[1].当前进度 >= 10000 and o_dsyy.完成 == 0 then 
+			if o_dsyy.进度列表[1].当前进度 >= 10000 and o_dsyy.完成 == 0  then 
 				o_dsyy.进度列表[1].完成 = 1
 				o_dsyy.完成 = 1 
 				G.call('notice1','完成成就【钓胜于鱼】')
@@ -962,7 +960,7 @@ t['地图系统_小游戏'] = function()
 					G.call('notice1','完成成就【钓鱼能手】')		
 				end	
 			end
-			if o_wjyd.进度列表[1].当前进度 >= 10000 and o_wjyd.完成 == 0 then 
+			if o_wjyd.进度列表[1].当前进度 >= 10000 and o_wjyd.完成 == 0  then 
 				o_wjyd.进度列表[1].完成 = 1
 				o_wjyd.完成 = 1
 				G.call('notice1','完成成就【万金于钓】')
@@ -1005,6 +1003,7 @@ t['地图系统_小游戏'] = function()
 						if G.QueryName(0x10030001)[tostring(32)] < math.random(30)    then  
 							ui4.getChildByName('口白').text = '   糟糕！中毒了！'
 							ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 50
+							G.misc().小游戏检测时间 = G.misc().小游戏检测时间 + 50
 							if ui4.getChildByName('时间').width < 0 then 
 								ui4.getChildByName('时间').widt = 0 
 							end 
@@ -1035,6 +1034,7 @@ t['地图系统_小游戏'] = function()
 						ui4.getChildByName('口白').text = '   呜啊！好疼！！！'	
 						ui4.getChildByName('猎物').getChildByName(tostring(MB)).getChildByName(tostring(WZ)).getChildByName(tostring(3)).visible = true 
 						ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 20
+						G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 20
 						if ui4.getChildByName('时间').width < 0 then 
 							ui4.getChildByName('时间').widt = 0 
 						end 
@@ -1043,6 +1043,7 @@ t['地图系统_小游戏'] = function()
 						if JL > 0 and JL<= 35 then  
 							if G.QueryName(0x10030001)[tostring(32)] < math.random(30)    then  
 								ui4.getChildByName('口白').text = '   糟糕！中毒了！'
+								G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 50
 								ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 50
 								if ui4.getChildByName('时间').width < 0 then 
 									ui4.getChildByName('时间').widt = 0 
@@ -1104,6 +1105,7 @@ t['地图系统_小游戏'] = function()
 				if math.random(100) > 50 and G.misc().模式 == 2 then 
 					ui4.getChildByName('口白').text = '   呜啊！好疼！！！'	
 					ui4.getChildByName('猎物').getChildByName(tostring(MB)).getChildByName(tostring(WZ)).getChildByName(tostring(3)).visible = true 
+					G.misc().小游戏检测时间 = G.misc().小游戏检测时间 + 20
 					ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 20
 					if ui4.getChildByName('时间').width < 0 then 
 						ui4.getChildByName('时间').widt = 0 
@@ -1137,6 +1139,7 @@ t['地图系统_小游戏'] = function()
 				if math.random(100) > 50 and G.misc().模式 == 2 then
 					ui4.getChildByName('口白').text = '   呜啊！好疼！！！'	
 					ui4.getChildByName('猎物').getChildByName(tostring(MB)).getChildByName(tostring(WZ)).getChildByName(tostring(3)).visible = true 
+					G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 20
 					ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 20
 					if ui4.getChildByName('时间').width < 0 then 
 						ui4.getChildByName('时间').widt = 0 
@@ -1147,7 +1150,7 @@ t['地图系统_小游戏'] = function()
 						if JL < 15 then
 							ui4.getChildByName('口白').text = '   运气真不错，得到【'..'虎皮'..'】一付'
 							G.call('add_item',328,1)
-							if o_yhmp.完成 == 0 then 
+							if o_yhmp.完成 == 0  then 
 								o_yhmp.进度列表[1].当前进度 = o_yhmp.进度列表[1].当前进度 + 1	
 								G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
 							end
@@ -1171,6 +1174,7 @@ t['地图系统_小游戏'] = function()
 				if math.random(100) > 50 and G.misc().模式 == 2 then
 					ui4.getChildByName('口白').text = '   呜啊！好疼！！！'	
 					ui4.getChildByName('猎物').getChildByName(tostring(MB)).getChildByName(tostring(WZ)).getChildByName(tostring(3)).visible = true 
+					G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 20
 					ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 20
 					if ui4.getChildByName('时间').width < 0 then 
 						ui4.getChildByName('时间').widt = 0 
@@ -1180,7 +1184,7 @@ t['地图系统_小游戏'] = function()
 					if  JL < 35 then 
 						ui4.getChildByName('口白').text = '   运气真不错，得到【'..'熊胆'..'】一只'
 						G.call('add_item',218,1)
-						if o_yssd.完成 == 0 then 
+						if o_yssd.完成 == 0  then  
 							o_yssd.进度列表[1].当前进度 = o_yssd.进度列表[1].当前进度 + 1
 							G.call('set_newpoint',80,G.call('get_newpoint',80)- 1   )
 						end
@@ -1239,12 +1243,12 @@ t['地图系统_小游戏'] = function()
 			G.call('add_point',103,exp)	
 			ui4.getChildByName('猎物').getChildByName(tostring(MB)).getChildByName(tostring(WZ)).getChildByName('dead').text = 1 
 			G.trig_event('打猎动画关闭')
-			if o_yssd.进度列表[1].当前进度 >= 500 and o_yssd.完成 == 0 then 
+			if o_yssd.进度列表[1].当前进度 >= 500 and o_yssd.完成 == 0   then 
 				o_yssd.进度列表[1].完成 = 1
 				o_yssd.完成 = 1
 				G.call('notice1','完成成就【一身是胆】')
 			end	
-			if o_yhmp.进度列表[1].当前进度 >= 100 and o_yhmp.完成 == 0 then 
+			if o_yhmp.进度列表[1].当前进度 >= 100 and o_yhmp.完成 == 0  then 
 				o_yhmp.进度列表[1].完成 = 1
 				o_yhmp.完成 = 1
 				G.call('notice1','完成成就【与虎谋皮】')
@@ -1383,7 +1387,7 @@ t['挖矿条'] = function()
 	if not G.getUI('v_dig') then 
 		return
 	end 
-    ui2 = G.getUI('v_dig');
+	ui2 = G.getUI('v_dig');
 	while true do 
 		G.wait_time(5) 
 		local n = tonumber(ui2.getChildByName('力').text)
@@ -1414,6 +1418,7 @@ t['挖矿时间条'] = function()
 	local c = ui2.c_dig
 	while true do 
 		G.wait_time(100)
+		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
@@ -1425,6 +1430,10 @@ t['挖矿时间条'] = function()
 			G.trig_event('挖矿结束')
 			break
 		end 
+		G.misc().小游戏时间 = ui2.getChildByName('时间').width
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc.修改检测 == 0 then 
+			G.misc.修改检测 = 1
+		end
 	end 
 end	
 t['钓鱼时间条'] = function()
@@ -1435,11 +1444,15 @@ t['钓鱼时间条'] = function()
     ui2 = G.getUI('v_fishing');
 	while true do 
 		G.wait_time(100)
-		
+		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
 		end 
+		G.misc().小游戏时间 = ui2.getChildByName('时间').width
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc.修改检测 == 0 then 
+			G.misc.修改检测 = 1
+		end
 		if ui2.getChildByName('时间').width == 0 then
 			ui2.getChildByName(tostring(1)).visible = true
 			ui2.getChildByName(tostring(1)).getChildByName(tostring(1)).text = '   时间到'
@@ -1457,10 +1470,15 @@ t['打猎时间条'] = function()
     ui2 = G.getUI('v_hunting');
 	while true do 
 		G.wait_time(100)
+		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
 		end 
+		G.misc().小游戏时间 = ui2.getChildByName('时间').width
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc.修改检测 == 0 then 
+			G.misc.修改检测 = 1
+		end
 		if ui2.getChildByName('时间').width == 0 then
 			ui2.getChildByName('口白').text = '   时间过的好快！好多猎物还没打到呢。'
 			G.wait_time(500)

@@ -524,7 +524,10 @@ t['回答问题']=function()
         end
 	end
     point = point + math.random(5)
-    if point >= 1000 then 
+    if not G.misc().修改检测 then
+        G.misc().修改检测 = 0
+    end
+    if point >= 1000 and   G.misc().修改检测 == 0 then 
         local int_选项 = 0
         while int_选项 == 0 do
             int_选项 = G.call("menu",'',0,'十五：需要消耗1000成就点换取下列哪一项？',1,1,
@@ -568,7 +571,7 @@ t['回答问题']=function()
         int_no = 4
     end
     local int_true = 0
-    if int_no >= 2 then 
+    if int_no >= 2 and   G.misc().修改检测 == 0 then 
         local int_选项 = 0
         while true do
             int_选项 = G.call("menu",'',0,'十六：[02]你能兑换[03]'..int_no..'[02]个被动,需要兑换几个？',1,1,
@@ -612,7 +615,7 @@ t['回答问题']=function()
         end
     end  
     local int_point = math.floor( (point - 250*int_true*(int_true + 1 )   )      /20)
-    if int_point > 0 then 
+    if int_point > 0 and   G.misc().修改检测 == 0 then 
         G.call('add_point',5,int_point)
     end
     G.misc().被动个数 = int_true
