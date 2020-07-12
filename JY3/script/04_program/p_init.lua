@@ -1414,8 +1414,8 @@ t['挖矿时间条'] = function()
 	if not G.getUI('v_dig') then 
 		return
 	end 
-    G.misc().小游戏检测时间 = -ui2.getChildByName('时间').width - 10
 	ui2 = G.getUI('v_dig');
+    G.misc().小游戏检测时间 = -ui2.getChildByName('时间').width - 10
 	local c = ui2.c_dig
 	while true do 
 		G.wait_time(100)
