@@ -414,8 +414,8 @@ t['通用_读档'] = function(int_档案编号)
                     end
                 end  
             end  
-            if not G.misc.修改检测  then 
-                G.misc.修改检测  = 0
+            if not G.misc().修改检测  then 
+                G.misc().修改检测  = 0
             end
             if not G.misc().死亡次数 then 
                 G.misc().死亡次数 = 0

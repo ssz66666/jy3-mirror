@@ -1431,8 +1431,8 @@ t['挖矿时间条'] = function()
 			break
 		end 
 		G.misc().小游戏时间 = ui2.getChildByName('时间').width
-		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc.修改检测 == 0 then 
-			G.misc.修改检测 = 1
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改检测 == 0 then 
+			G.misc().修改检测 = 1
 		end
 	end 
 end	
@@ -1450,8 +1450,8 @@ t['钓鱼时间条'] = function()
 			ui2.getChildByName('时间').width = 0
 		end 
 		G.misc().小游戏时间 = ui2.getChildByName('时间').width
-		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc.修改检测 == 0 then 
-			G.misc.修改检测 = 1
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改检测 == 0 then 
+			G.misc().修改检测 = 1
 		end
 		if ui2.getChildByName('时间').width == 0 then
 			ui2.getChildByName(tostring(1)).visible = true
@@ -1476,8 +1476,8 @@ t['打猎时间条'] = function()
 			ui2.getChildByName('时间').width = 0
 		end 
 		G.misc().小游戏时间 = ui2.getChildByName('时间').width
-		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc.修改检测 == 0 then 
-			G.misc.修改检测 = 1
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改检测 == 0 then 
+			G.misc().修改检测 = 1
 		end
 		if ui2.getChildByName('时间').width == 0 then
 			ui2.getChildByName('口白').text = '   时间过的好快！好多猎物还没打到呢。'
