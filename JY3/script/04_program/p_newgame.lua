@@ -627,7 +627,7 @@ t['回答问题']=function()
     --         end
     --     end 
     -- end
-    if G.misc().被动个数 > 0 then 
+    if G.misc().被动个数 > 0 and   G.misc().修改检测 == 0 then 
         G.call('select_magic')
     end
     --定制出个人的一鸣惊人
