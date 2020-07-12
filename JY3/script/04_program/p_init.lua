@@ -1414,7 +1414,7 @@ t['挖矿时间条'] = function()
 	if not G.getUI('v_dig') then 
 		return
 	end 
-    G.misc().小游戏检测时间 = -self.obj.getChildByName('时间').width - 10
+    G.misc().小游戏检测时间 = -ui2.getChildByName('时间').width - 10
 	ui2 = G.getUI('v_dig');
 	local c = ui2.c_dig
 	while true do 
@@ -1443,7 +1443,7 @@ t['钓鱼时间条'] = function()
 		return
 	end 
 	ui2 = G.getUI('v_fishing');
-	G.misc().小游戏检测时间 = -self.obj.getChildByName('时间').width - 10
+	G.misc().小游戏检测时间 = -ui2.getChildByName('时间').width - 10
 	while true do 
 		G.wait_time(100)
 		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
@@ -1470,7 +1470,7 @@ t['打猎时间条'] = function()
 		return
 	end 
 	ui2 = G.getUI('v_hunting');
-	G.misc().小游戏检测时间 = -self.obj.getChildByName('时间').width - 10
+	G.misc().小游戏检测时间 = -ui2.getChildByName('时间').width - 10
 	while true do 
 		G.wait_time(100)
 		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
