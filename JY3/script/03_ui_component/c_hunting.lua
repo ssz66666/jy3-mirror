@@ -16,7 +16,6 @@ function t:start()
     self.obj.getChildByName('捕猎').width = 60
     self.obj.getChildByName('捕猎').height = 60
     G.misc().小游戏时间 = self.obj.getChildByName('时间').width
-	G.misc().小游戏检测时间 = -self.obj.getChildByName('时间').width - 10
 end
 function t:update()
  

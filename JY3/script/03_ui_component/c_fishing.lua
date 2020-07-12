@@ -15,7 +15,6 @@ function t:start()
         self.obj.getChildByName('显示').getChildByName('蚯蚓').text = '????'
     end
     G.misc().小游戏时间 = self.obj.getChildByName('时间').width
-	G.misc().小游戏检测时间 = -self.obj.getChildByName('时间').width - 10
     G.misc().钓鱼 = 0
 end
 function t:update()
