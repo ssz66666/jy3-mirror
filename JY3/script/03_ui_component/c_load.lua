@@ -122,7 +122,7 @@ function t:click(tar)
                 if not G.misc().死亡次数 then
                     G.misc().死亡次数 = 0 
                 end
-                local int_修改检测 = G.misc().修改检测
+                local int_修改检测 = G.misc().修改锁定检测
                 G.call('信息_读档',5)
                 local o_files = G.QueryName(0x10160000 + i)
                 local int_周目 = o_files.周目
@@ -191,7 +191,7 @@ function t:click(tar)
                         G.misc().随机库 = _随机库
                         G.misc().出师 = nil
                         G.misc().新年礼包 = int_礼包
-                        G.misc().修改检测 = int_修改检测
+                        G.misc().修改锁定检测 = int_修改检测
                         if int_清除成就 ~= 1 then   
                             G.call('成就_读档',10)
                             G.call('故事_读档',10)

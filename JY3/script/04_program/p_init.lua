@@ -210,11 +210,11 @@ t['地图系统_防修改监控'] = function()
 	local int_检测 = 0
 	if int_成就 > 0 then 
 		if int_成就 ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			G.misc().修改检测 = 1
+			G.misc().修改锁定检测 = 1
 		end
 	else
 		if math.abs(int_成就) ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			G.misc().修改检测 = 1
+			G.misc().修改锁定检测 = 1
 		end
 	end
 	local int_周目成就 = 0
@@ -249,7 +249,7 @@ t['地图系统_防修改监控'] = function()
 	end
 	if math.abs(int_周目成就) ~= math.abs(G.call('get_newpoint',81)+2000) then 
 		--print('int_周目成就',int_周目成就,G.call('get_newpoint',81))
-		G.misc().修改检测 = 1
+		G.misc().修改锁定检测 = 1
 	end
 	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 10 )  then
 		--print('周目',G.call('get_point',237),G.call('get_newpoint',237))
@@ -1004,6 +1004,7 @@ t['地图系统_小游戏'] = function()
 							ui4.getChildByName('口白').text = '   糟糕！中毒了！'
 							ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 50
 							G.misc().小游戏检测时间 = G.misc().小游戏检测时间 + 50
+							G.misc().小游戏时间 = G.misc().小游戏时间 -50
 							if ui4.getChildByName('时间').width < 0 then 
 								ui4.getChildByName('时间').widt = 0 
 							end 
@@ -1035,6 +1036,7 @@ t['地图系统_小游戏'] = function()
 						ui4.getChildByName('猎物').getChildByName(tostring(MB)).getChildByName(tostring(WZ)).getChildByName(tostring(3)).visible = true 
 						ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 20
 						G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 20
+						G.misc().小游戏时间 = G.misc().小游戏时间 -20
 						if ui4.getChildByName('时间').width < 0 then 
 							ui4.getChildByName('时间').widt = 0 
 						end 
@@ -1044,6 +1046,7 @@ t['地图系统_小游戏'] = function()
 							if G.QueryName(0x10030001)[tostring(32)] < math.random(30)    then  
 								ui4.getChildByName('口白').text = '   糟糕！中毒了！'
 								G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 50
+								G.misc().小游戏时间 = G.misc().小游戏时间 -50
 								ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 50
 								if ui4.getChildByName('时间').width < 0 then 
 									ui4.getChildByName('时间').widt = 0 
@@ -1106,6 +1109,7 @@ t['地图系统_小游戏'] = function()
 					ui4.getChildByName('口白').text = '   呜啊！好疼！！！'	
 					ui4.getChildByName('猎物').getChildByName(tostring(MB)).getChildByName(tostring(WZ)).getChildByName(tostring(3)).visible = true 
 					G.misc().小游戏检测时间 = G.misc().小游戏检测时间 + 20
+					G.misc().小游戏时间 = G.misc().小游戏时间 -20
 					ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 20
 					if ui4.getChildByName('时间').width < 0 then 
 						ui4.getChildByName('时间').widt = 0 
@@ -1140,6 +1144,7 @@ t['地图系统_小游戏'] = function()
 					ui4.getChildByName('口白').text = '   呜啊！好疼！！！'	
 					ui4.getChildByName('猎物').getChildByName(tostring(MB)).getChildByName(tostring(WZ)).getChildByName(tostring(3)).visible = true 
 					G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 20
+					G.misc().小游戏时间 = G.misc().小游戏时间 -20
 					ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 20
 					if ui4.getChildByName('时间').width < 0 then 
 						ui4.getChildByName('时间').widt = 0 
@@ -1175,6 +1180,7 @@ t['地图系统_小游戏'] = function()
 					ui4.getChildByName('口白').text = '   呜啊！好疼！！！'	
 					ui4.getChildByName('猎物').getChildByName(tostring(MB)).getChildByName(tostring(WZ)).getChildByName(tostring(3)).visible = true 
 					G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 20
+					G.misc().小游戏时间 = G.misc().小游戏时间 -20
 					ui4.getChildByName('时间').width = ui4.getChildByName('时间').width - 20
 					if ui4.getChildByName('时间').width < 0 then 
 						ui4.getChildByName('时间').widt = 0 
@@ -1415,11 +1421,13 @@ t['挖矿时间条'] = function()
 		return
 	end 
 	ui2 = G.getUI('v_dig');
-    G.misc().小游戏检测时间 = -ui2.getChildByName('时间').width - 10
+	G.misc().小游戏检测时间 = -ui2.getChildByName('时间').width - 10
+	G.misc().小游戏时间 = ui2.getChildByName('时间').width
 	local c = ui2.c_dig
 	while true do 
 		G.wait_time(100)
 		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
+		G.misc().小游戏时间 = G.misc().小游戏时间 -0.5
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
@@ -1431,9 +1439,9 @@ t['挖矿时间条'] = function()
 			G.trig_event('挖矿结束')
 			break
 		end 
-		G.misc().小游戏时间 = ui2.getChildByName('时间').width
-		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改检测 == 0 then 
-			G.misc().修改检测 = 1
+		--G.misc().小游戏时间 = ui2.getChildByName('时间').width
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改锁定检测 == 0 then 
+			G.misc().修改锁定检测 = 1
 		end
 	end 
 end	
@@ -1444,16 +1452,17 @@ t['钓鱼时间条'] = function()
 	end 
 	ui2 = G.getUI('v_fishing');
 	G.misc().小游戏检测时间 = -ui2.getChildByName('时间').width - 10
+	G.misc().小游戏时间 = ui2.getChildByName('时间').width
 	while true do 
 		G.wait_time(100)
 		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
+		G.misc().小游戏时间 = G.misc().小游戏时间 -0.5
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
 		end 
-		G.misc().小游戏时间 = ui2.getChildByName('时间').width
-		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改检测 == 0 then 
-			G.misc().修改检测 = 1
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改锁定检测 == 0 then 
+			G.misc().修改锁定检测 = 1
 		end
 		if ui2.getChildByName('时间').width == 0 then
 			ui2.getChildByName(tostring(1)).visible = true
@@ -1471,16 +1480,17 @@ t['打猎时间条'] = function()
 	end 
 	ui2 = G.getUI('v_hunting');
 	G.misc().小游戏检测时间 = -ui2.getChildByName('时间').width - 10
+	G.misc().小游戏时间 = ui2.getChildByName('时间').width
 	while true do 
 		G.wait_time(100)
 		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
+		G.misc().小游戏时间 = G.misc().小游戏时间 -0.5
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
 		end 
-		G.misc().小游戏时间 = ui2.getChildByName('时间').width
-		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改检测 == 0 then 
-			G.misc().修改检测 = 1
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改锁定检测 == 0 then 
+			G.misc().修改锁定检测 = 1
 		end
 		if ui2.getChildByName('时间').width == 0 then
 			ui2.getChildByName('口白').text = '   时间过的好快！好多猎物还没打到呢。'

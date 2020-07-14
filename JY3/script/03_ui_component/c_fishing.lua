@@ -14,7 +14,7 @@ function t:start()
     if G.QueryName(0x100b013d).数量  > 9999 then 
         self.obj.getChildByName('显示').getChildByName('蚯蚓').text = '????'
     end
-    G.misc().小游戏时间 = self.obj.getChildByName('时间').width
+    --G.misc().小游戏时间 = self.obj.getChildByName('时间').width
     G.misc().钓鱼 = 0
 end
 function t:update()
