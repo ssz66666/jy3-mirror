@@ -166,7 +166,7 @@ function t:click(tar)
                         end
                         local int_生存 = G.misc().生存
                         local int_死亡次数 = G.misc().死亡次数
-                        if #table_继承装备 > 0 and (int_生存 ~= 1   or (int_生存 == 1 and not reulst) ) then
+                        if #table_继承装备 > 0 and (int_生存 ~= 1   or (int_生存 == 1 and not reulst) ) and G.misc().修改锁定检测 ~= 1 then 
                             for i = 1,#table_继承装备 do 
                                 o_equip_usb[i] = {}
                             end

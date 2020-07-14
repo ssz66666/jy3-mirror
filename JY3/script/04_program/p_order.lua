@@ -2380,7 +2380,7 @@ t['重生']=function()
     table_继承装备 = G.call('通用_记录继承装备',G.misc().清除周目)
     local o_equip_usb = {}
     local i_equip
-    if #table_继承装备 > 0 and int_生存 ~= 1   then
+    if #table_继承装备 > 0 and int_生存 ~= 1  and  G.misc().修改锁定检测 ~= 1 then 
         for i = 1,#table_继承装备 do 
             o_equip_usb[i] = {}
         end
