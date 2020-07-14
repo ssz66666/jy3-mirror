@@ -2201,7 +2201,7 @@ t['副本_通天塔']=function(int_模式)
     local o_wjtz = G.QueryName(0x10170013)
     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度 
     local o_生存成就 =  G.QueryName(0x1017001d)
-    if int_模式 == 0 then 
+    if int_模式 == 0 and G.misc().修改锁定检测 ~= 1 then 
         if G.misc().通天塔层数 > 20 and G.misc().通天塔奖励_1 == 0 then
             G.misc().通天塔奖励_1 = 1
             G.call('add_item',224,1)
@@ -2342,7 +2342,7 @@ t['副本_通天塔']=function(int_模式)
                 G.misc().获取印记 = 1
             end
         end
-    elseif int_模式 == 1 then
+    elseif int_模式 == 1 and G.misc().修改锁定检测 ~= 1 then
         if G.misc().通天塔层数 > 25 and G.misc().通天塔单人奖励_1 == 0 then
             G.misc().通天塔单人奖励_1 = 1
             G.call('add_item',238,1)

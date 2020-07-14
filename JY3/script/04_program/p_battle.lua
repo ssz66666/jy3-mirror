@@ -47,10 +47,16 @@ t['战斗系统_胜负监控'] = function()
                 end
             end
             local int_人数  = 1
+            local int_编号 = 0
             if G.misc().经验开关 == 1 then 
                 for i = 2,5 do 
                     if G.QueryName(0x10150001)[位置[i]] > 0 then
                         if	G.QueryName(0x10040000 + G.QueryName(0x10150001)[位置[i] ]).生命 > 0 then 
+                            if G.QueryName(0x10150001)[位置[i]] ~= int_编号  then 
+                                int_编号 = G.QueryName(0x10150001)[位置[i]]
+                            else
+                                G.misc().修改锁定检测 = 1
+                            end
                             if not G.call('通用_是否满属性',G.QueryName(0x10150001)[位置[i]]) then 
                                 int_人数 = int_人数 + 1	
                             end
