@@ -55,7 +55,7 @@ t['战斗系统_胜负监控'] = function()
                             if G.QueryName(0x10150001)[位置[i]] ~= int_编号  then 
                                 int_编号 = G.QueryName(0x10150001)[位置[i]]
                             else
-                                G.misc().修改锁定检测 = 1
+                                G.misc().修改锁定检测_1 = 1
                             end
                             if not G.call('通用_是否满属性',G.QueryName(0x10150001)[位置[i]]) then 
                                 int_人数 = int_人数 + 1	
@@ -2712,16 +2712,16 @@ t['magic_power1'] = function(int_id,int_no)
     if o_skill.类别 < 6 then 
         hurt = p * o_skill.伤害倍数/10
         if o_skill.伤害倍数 > 3000 then 
-            G.misc().修改锁定检测 = 1
+            G.misc().修改锁定检测_1 = 1
         end
     elseif o_skill.类别 ==  8 then
         if o_skill.伤害倍数 > 5500 then 
-            G.misc().修改锁定检测 = 1
+            G.misc().修改锁定检测_1 = 1
         end
         hurt = o_skill.伤害倍数
     else
         if o_skill.伤害倍数 > 5000 then 
-            G.misc().修改锁定检测 = 1
+            G.misc().修改锁定检测_1 = 1
         end
         hurt = o_skill.修为等级 * o_skill.伤害倍数/5 
     end 
