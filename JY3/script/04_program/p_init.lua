@@ -196,7 +196,7 @@ t['地图系统_防修改还原'] = function()
 		end
 	end
 	if G.call('get_point',111) > 15   or (G.call('get_point',112) > 22 and G.call('get_point',112) < 36)  or G.call('get_point',113) < 22 or G.call('get_point',114) < 22 then 
-		G.call('通用_强退游戏',300) 
+		G.misc().修改锁定检测 = 1
 	end 
 	local magic_1= {1,4,5,7,8,10,11,12,13,14}
     local magic_2= {2,3,6,9,15,16,17,18,19,20,21,36}
