@@ -535,17 +535,7 @@ t['test'] = function()
     G.call('小游戏_华容道')
 end   
 t['new_test'] = function()
-    -- local perms = {
-    --     [_ENV] = '_ENV',
-    --     [GF] = 5,
-	-- 	[GF.o_meta] = 7,
-	-- 	[GF.new_meta] = 8
-    -- };
-    -- local newpath = G.WritePath('log/save.txt');  
-    -- local obj = save_ofile();
-    -- local buf = eris.persist(perms, obj);
-    -- local zipbuf = G.zip(buf);
-    -- G.WriteFile(newpath, zipbuf);
+
 end
 t['通用_无尽抽卡'] = function(int_类型)
     local card = G.DBTable('o_card')

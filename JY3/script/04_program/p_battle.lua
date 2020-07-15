@@ -2711,7 +2711,13 @@ t['magic_power1'] = function(int_id,int_no)
     end  
     if o_skill.类别 < 6 then 
         hurt = p * o_skill.伤害倍数/10
+        if o_skill.伤害倍数 > 3000 then 
+            G.misc().修改锁定检测 = 1
+        end
     elseif o_skill.类别 ==  8 then
+        if o_skill.伤害倍数 > 5000 then 
+            G.misc().修改锁定检测 = 1
+        end
         hurt = o_skill.伤害倍数
     else
         hurt = o_skill.修为等级 * o_skill.伤害倍数/5 
