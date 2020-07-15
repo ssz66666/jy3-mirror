@@ -189,11 +189,19 @@ t['地图系统_防修改还原'] = function()
 	for i = 111,115 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 10)  then 
 			G.call('set_point',i ,math.abs(G.call('get_newpoint',i) + 10)) 
+			G.misc().修改锁定检测 = 1
 			--print(i,G.call('get_point',i),G.call('get_newpoint',i)+10)
 			-- G.call('通用_强退游戏',211) 
 			-- break
 		end
 	end
+	if G.call('get_point',111) > 15   or (G.call('get_point',112) > 22 and G.call('get_point',112) < 36)  or G.call('get_point',113) < 22 or G.call('get_point',114) < 22 then 
+		G.call('通用_强退游戏',300) 
+	end 
+	local magic_1= {1,4,5,7,8,10,11,12,13,14}
+    local magic_2= {2,3,6,9,15,16,17,18,19,20,21,36}
+	local magic_3 = {22,23,24,25,26,27,28,29,30,31}
+	
 	for i = 120,124 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i))  then 
 			G.call('set_point',i, math.abs(G.call('get_newpoint',5) + 0)) 
