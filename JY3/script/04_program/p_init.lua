@@ -139,40 +139,41 @@ t['地图系统_防修改还原'] = function()
 	G.call('通用_重置检测')
 	local o_body = G.QueryName(0x10030001)
 	local o_newbody = G.QueryName(0x101b0001)
+	print('3',G.misc().修改锁定检测_3)
 	if G.call('get_point',5) ~= math.abs(G.call('get_newpoint',5) + 10)  then
 		--print('修为点',G.call('get_point',5),G.call('get_newpoint',5))
 		G.call('set_point',5, math.abs(G.call('get_newpoint',5) + 10)) 
-		G.misc().修改锁定检测_2 = 1
+		G.misc().修改锁定检测_3 = 1
 		--int_检测 = int_检测 + 1
 	end 
 	if G.call('get_point',3) ~= math.abs(G.call('get_newpoint',3)+10)  then
 		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
 		G.call('set_point',3, math.abs(G.call('get_newpoint',3) + 10)) 
-		G.misc().修改锁定检测_2 = 1
+		G.misc().修改锁定检测_3 = 1
 		--int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',4) ~= math.abs(G.call('get_newpoint',4)+10)  then
 		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
 		G.call('set_point',4, math.abs(G.call('get_newpoint',4) + 10)) 
-		G.misc().修改锁定检测_2 = 1
+		G.misc().修改锁定检测_3 = 1
 		--int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',110) ~= math.abs(G.call('get_newpoint',110)+2000)  then
 		G.call('set_point',110, math.abs(G.call('get_newpoint',110) + 2000)) 
-		G.misc().修改锁定检测_2 = 1
+		G.misc().修改锁定检测_3 = 1
 		--print('金钱',G.call('get_point',110),G.call('get_newpoint',110))
 		--int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',45) ~= math.abs(G.call('get_newpoint',45) + 10)  then
 		--print('HP',G.call('get_point',45),G.call('get_newpoint',45))
 		G.call('set_point',45, math.abs(G.call('get_newpoint',45) + 10)) 
-		G.misc().修改锁定检测_2 = 1
+		G.misc().修改锁定检测_3 = 1
 		--int_检测 = int_检测 + 1 
 	end 
 	if G.call('get_point',47) ~= math.abs(G.call('get_newpoint',47) + 10)  then
 		--print('MP',G.call('get_point',47),G.call('get_newpoint',47))
 		G.call('set_point',47, math.abs(G.call('get_newpoint',47) + 10)) 
-		G.misc().修改锁定检测_2 = 1
+		G.misc().修改锁定检测_3 = 1
 		--int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',63) ~= math.abs(G.call('get_newpoint',63) + 10)  then
@@ -183,20 +184,23 @@ t['地图系统_防修改还原'] = function()
 	if G.call('get_magicexp',83) ~= math.abs(G.call('get_newpoint',77) + 10) then 
 		--print('野球拳',G.call('get_magicexp',83),G.call('get_newpoint',77))
 		G.call('set_point',83, math.abs(G.call('get_newpoint',77) + 10)) 
-		G.misc().修改锁定检测_2 = 1
+		G.misc().修改锁定检测_3 = 1
 		--int_检测 = int_检测 + 1
 	end
 	for i = 111,115 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 10)  then 
 			G.call('set_point',i ,math.abs(G.call('get_newpoint',i) + 10)) 
-			G.misc().修改锁定检测_2 = 1
+			G.misc().修改锁定检测_3 = 1
 			--print(i,G.call('get_point',i),G.call('get_newpoint',i)+10)
 			-- G.call('通用_强退游戏',211) 
 			-- break
 		end
 	end
-	if G.call('get_point',111) > 15   or G.call('get_point',112) > 15  or (G.call('get_point',113) > 22 and G.call('get_point',113) < 36)  or G.call('get_point',114) < 22 then 
-		G.misc().修改锁定检测_2 = 1
+	for i = 111,114 do 
+		print(G.call('get_point',i))
+	end
+	if G.call('get_point',111) > 15   or G.call('get_point',112) > 15  or (G.call('get_point',113) > 22 and G.call('get_point',113) < 36)  or (G.call('get_point',114) < 22 and  G.call('get_point',114) > 0  )then 
+		G.misc().修改锁定检测_3 = 1
 	end 
 	local magic_1= {1,4,5,7,8,10,11,12,13,14}
     local magic_2= {2,3,6,9,15,16,17,18,19,20,21,36}
@@ -205,7 +209,7 @@ t['地图系统_防修改还原'] = function()
 	for i = 120,124 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i))  then 
 			G.call('set_point',i, math.abs(G.call('get_newpoint',5) + 0)) 
-			G.misc().修改锁定检测_2 = 1
+			G.misc().修改锁定检测_3 = 1
 			--print(i,G.call('get_point',i),G.call('get_newpoint',i))
 			-- G.call('通用_强退游戏',212) 
 			-- break
@@ -214,12 +218,13 @@ t['地图系统_防修改还原'] = function()
 	for i = 16,34 do 
 		if G.call('get_point',i) ~=  math.abs(G.call('get_newpoint',i) + 10)  then
 			G.call('set_point',i ,math.abs(G.call('get_newpoint',i) + 10)) 
-			G.misc().修改锁定检测_2 = 1
+			G.misc().修改锁定检测_3 = 1
 			-- --print(i,G.call('get_point',i),G.call('get_newpoint',i))
 			-- G.call('通用_强退游戏',214) 
 			-- break
 		end
 	end
+	print('4',G.misc().修改锁定检测_3)
 end
 t['地图系统_防修改监控'] = function()
 	G.call('通用_重置检测')
@@ -227,11 +232,11 @@ t['地图系统_防修改监控'] = function()
 	local int_检测 = 0
 	if int_成就 > 0 then 
 		if int_成就 ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			G.misc().修改锁定检测_2 = 1
+			G.misc().修改锁定检测_3 = 1
 		end
 	else
 		if math.abs(int_成就) ~= math.abs(G.call('get_newpoint',80)+2000) then 
-			G.misc().修改锁定检测_2 = 1
+			G.misc().修改锁定检测_3 = 1
 		end
 	end
 	local int_周目成就 = 0
@@ -266,7 +271,7 @@ t['地图系统_防修改监控'] = function()
 	end
 	if math.abs(int_周目成就) ~= math.abs(G.call('get_newpoint',81)+2000) then 
 		--print('int_周目成就',int_周目成就,G.call('get_newpoint',81))
-		G.misc().修改锁定检测_2 = 1
+		G.misc().修改锁定检测_3 = 1
 	end
 	if G.call('get_point',237) ~= math.abs(G.call('get_newpoint',237) + 10 )  then
 		--print('周目',G.call('get_point',237),G.call('get_newpoint',237))
@@ -321,7 +326,7 @@ t['地图系统_防修改监控'] = function()
 			G.call('set_newpoint',i,-10) 
 		end
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i) + 10)  then 
-			G.misc().修改锁定检测_2 = 1
+			G.misc().修改锁定检测_3 = 1
 		end
 	end
 	for i = 16,34 do 
@@ -1462,8 +1467,8 @@ t['挖矿时间条'] = function()
 			break
 		end 
 		--G.misc().小游戏时间 = ui2.getChildByName('时间').width
-		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改锁定检测_2 == 0 then 
-			G.misc().修改锁定检测_2 = 1
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改锁定检测_3 == 0 then 
+			G.misc().修改锁定检测_3 = 1
 		end
 	end 
 end	
@@ -1483,8 +1488,8 @@ t['钓鱼时间条'] = function()
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
 		end 
-		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改锁定检测_2 == 0 then 
-			G.misc().修改锁定检测_2 = 1
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改锁定检测_3 == 0 then 
+			G.misc().修改锁定检测_3 = 1
 		end
 		if ui2.getChildByName('时间').width == 0 then
 			ui2.getChildByName(tostring(1)).visible = true
@@ -1511,8 +1516,8 @@ t['打猎时间条'] = function()
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
 		end 
-		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改锁定检测_2 == 0 then 
-			G.misc().修改锁定检测_2 = 1
+		if G.misc().小游戏时间 ~= math.abs(G.misc().小游戏检测时间 +10) and G.misc().修改锁定检测_3 == 0 then 
+			G.misc().修改锁定检测_3 = 1
 		end
 		if ui2.getChildByName('时间').width == 0 then
 			ui2.getChildByName('口白').text = '   时间过的好快！好多猎物还没打到呢。'
