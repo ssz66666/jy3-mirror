@@ -414,8 +414,8 @@ t['通用_读档'] = function(int_档案编号)
                     end
                 end  
             end  
-            if not G.misc().修改锁定检测_1  then 
-                G.misc().修改锁定检测_1  = 0
+            if not G.misc().修改锁定检测_2  then 
+                G.misc().修改锁定检测_2  = 0
             end
             if not G.misc().死亡次数 then 
                 G.misc().死亡次数 = 0
@@ -2360,7 +2360,7 @@ t['重生']=function()
         G.misc().死亡次数 = 0
     end
     local int_生存 = G.misc().生存
-    local int_修改检测 = G.misc().修改锁定检测_1
+    local int_修改检测 = G.misc().修改锁定检测_2
     local int_死亡次数 = G.misc().死亡次数
     local 礼包 = G.misc().新年礼包
     local table_继承装备 = {}
@@ -2370,7 +2370,7 @@ t['重生']=function()
     table_继承装备 = G.call('通用_记录继承装备',G.misc().清除周目)
     local o_equip_usb = {}
     local i_equip
-    if #table_继承装备 > 0 and int_生存 ~= 1  and  G.misc().修改锁定检测_1 ~= 1 then 
+    if #table_继承装备 > 0 and int_生存 ~= 1  and  G.misc().修改锁定检测_2 ~= 1 then 
         for i = 1,#table_继承装备 do 
             o_equip_usb[i] = {}
         end
@@ -2430,7 +2430,7 @@ t['重生']=function()
                 o_book_story_list.完美 = 0
             end
         end
-        G.misc().修改锁定检测_1 = int_修改检测
+        G.misc().修改锁定检测_2 = int_修改检测
         G.misc().获取剑神 = 0
         G.misc().一鸣惊人完成 = int_一鸣惊人完成
         G.misc().随机序号 = int_随机序号
@@ -5910,7 +5910,7 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
     if int_宝物类型 == 1 then
         o_equip_物品.品质 = 5 
     end
-    if  G.misc().修改锁定检测_1 == 1 then 
+    if  G.misc().修改锁定检测_2 == 1 then 
         o_equip_物品.品质 = 1
         o_equip_物品.套装 = 0
     end
