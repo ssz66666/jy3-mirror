@@ -2720,6 +2720,9 @@ t['magic_power1'] = function(int_id,int_no)
         end
         hurt = o_skill.伤害倍数
     else
+        if o_skill.伤害倍数 > 5000 then 
+            G.misc().修改锁定检测 = 1
+        end
         hurt = o_skill.修为等级 * o_skill.伤害倍数/5 
     end 
     if o_skill.类别 == 0 or o_skill.类别 == 1  then   --武器配合
