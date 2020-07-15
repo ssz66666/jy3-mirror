@@ -1456,6 +1456,9 @@ t['挖矿时间条'] = function()
 		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
 		G.misc().小游戏时间 = G.misc().小游戏时间 -0.5
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
+		if ui2.getChildByName('时间').width  > G.misc().小游戏时间 then 
+			G.misc().修改锁定检测_3 = 1
+		end
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
 		end 
@@ -1485,6 +1488,9 @@ t['钓鱼时间条'] = function()
 		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
 		G.misc().小游戏时间 = G.misc().小游戏时间 -0.5
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
+		if ui2.getChildByName('时间').width  > G.misc().小游戏时间 then 
+			G.misc().修改锁定检测_3 = 1
+		end
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
 		end 
@@ -1513,6 +1519,9 @@ t['打猎时间条'] = function()
 		G.misc().小游戏检测时间 = G.misc().小游戏检测时间  + 0.5
 		G.misc().小游戏时间 = G.misc().小游戏时间 -0.5
 		ui2.getChildByName('时间').width = ui2.getChildByName('时间').width - 0.5
+		if ui2.getChildByName('时间').width  > G.misc().小游戏时间 then 
+			G.misc().修改锁定检测_3 = 1
+		end
 		if ui2.getChildByName('时间').width  < 0 then 
 			ui2.getChildByName('时间').width = 0
 		end 
