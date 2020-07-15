@@ -142,31 +142,37 @@ t['地图系统_防修改还原'] = function()
 	if G.call('get_point',5) ~= math.abs(G.call('get_newpoint',5) + 10)  then
 		--print('修为点',G.call('get_point',5),G.call('get_newpoint',5))
 		G.call('set_point',5, math.abs(G.call('get_newpoint',5) + 10)) 
+		G.misc().修改锁定检测 = 1
 		--int_检测 = int_检测 + 1
 	end 
 	if G.call('get_point',3) ~= math.abs(G.call('get_newpoint',3)+10)  then
 		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
 		G.call('set_point',3, math.abs(G.call('get_newpoint',3) + 10)) 
+		G.misc().修改锁定检测 = 1
 		--int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',4) ~= math.abs(G.call('get_newpoint',4)+10)  then
 		--print('等级',G.call('get_point',4),G.call('get_newpoint',4))
 		G.call('set_point',4, math.abs(G.call('get_newpoint',4) + 10)) 
+		G.misc().修改锁定检测 = 1
 		--int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',110) ~= math.abs(G.call('get_newpoint',110)+2000)  then
 		G.call('set_point',110, math.abs(G.call('get_newpoint',110) + 2000)) 
+		G.misc().修改锁定检测 = 1
 		--print('金钱',G.call('get_point',110),G.call('get_newpoint',110))
 		--int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',45) ~= math.abs(G.call('get_newpoint',45) + 10)  then
 		--print('HP',G.call('get_point',45),G.call('get_newpoint',45))
 		G.call('set_point',45, math.abs(G.call('get_newpoint',45) + 10)) 
+		G.misc().修改锁定检测 = 1
 		--int_检测 = int_检测 + 1 
 	end 
 	if G.call('get_point',47) ~= math.abs(G.call('get_newpoint',47) + 10)  then
 		--print('MP',G.call('get_point',47),G.call('get_newpoint',47))
 		G.call('set_point',47, math.abs(G.call('get_newpoint',47) + 10)) 
+		G.misc().修改锁定检测 = 1
 		--int_检测 = int_检测 + 1
 	end
 	if G.call('get_point',63) ~= math.abs(G.call('get_newpoint',63) + 10)  then
@@ -177,6 +183,7 @@ t['地图系统_防修改还原'] = function()
 	if G.call('get_magicexp',83) ~= math.abs(G.call('get_newpoint',77) + 10) then 
 		--print('野球拳',G.call('get_magicexp',83),G.call('get_newpoint',77))
 		G.call('set_point',83, math.abs(G.call('get_newpoint',77) + 10)) 
+		G.misc().修改锁定检测 = 1
 		--int_检测 = int_检测 + 1
 	end
 	for i = 111,115 do
@@ -190,6 +197,7 @@ t['地图系统_防修改还原'] = function()
 	for i = 120,124 do
 		if G.call('get_point',i) ~= math.abs(G.call('get_newpoint',i))  then 
 			G.call('set_point',i, math.abs(G.call('get_newpoint',5) + 0)) 
+			G.misc().修改锁定检测 = 1
 			--print(i,G.call('get_point',i),G.call('get_newpoint',i))
 			-- G.call('通用_强退游戏',212) 
 			-- break
@@ -198,6 +206,7 @@ t['地图系统_防修改还原'] = function()
 	for i = 16,34 do 
 		if G.call('get_point',i) ~=  math.abs(G.call('get_newpoint',i) + 10)  then
 			G.call('set_point',i ,math.abs(G.call('get_newpoint',i) + 10)) 
+			G.misc().修改锁定检测 = 1
 			-- --print(i,G.call('get_point',i),G.call('get_newpoint',i))
 			-- G.call('通用_强退游戏',214) 
 			-- break
