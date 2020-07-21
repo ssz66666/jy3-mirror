@@ -304,7 +304,7 @@ t['通用_存档'] = function(int_档案编号)
         end
         G.call('信息_存档',5)
         G.call('通用_检测装备')
-        G.call('地图系统_防修改监控')
+        --G.call('地图系统_防修改监控')
     end 
 end
 --type=通用指令
@@ -2370,7 +2370,7 @@ t['重生']=function()
     table_继承装备 = G.call('通用_记录继承装备',G.misc().清除周目)
     local o_equip_usb = {}
     local i_equip
-    if #table_继承装备 > 0 and int_生存 ~= 1  and  G.misc().修改锁定检测_5 ~= 1 then 
+    if #table_继承装备 > 0 and int_生存 ~= 1  then 
         for i = 1,#table_继承装备 do 
             o_equip_usb[i] = {}
         end
@@ -2479,7 +2479,7 @@ t['create']=function()  --建立角色
     G.addUI('v_addpoint')
     G.wait1('建立角色结束')
     G.removeUI('v_addpoint')
-    G.call('地图系统_防修改监控')
+    --G.call('地图系统_防修改监控')
     G.call('回答问题')
 end
 t['playmovie']=function(int_序号,int_延时,int_x,int_y)  --播放动画
@@ -3122,7 +3122,7 @@ t['goto_map']=function(int_地图代码) --跳转地图
                 G.misc().人物头像 = G.call('get_point',119) 
             end
             G.call('set_point',119,G.misc().人物头像)
-            G.call('地图系统_防修改监控')
+            --G.call('地图系统_防修改监控')
             G.call('通用_存档',4)
             G.call('write_min')
             G.call('notice1','自动记录完成')
@@ -5716,10 +5716,6 @@ t['produce_equip']=function(i_equip_装备,int_数量,int_随机类型,int_品�
                 local str_品质 = {'普通的','華麗的','璀璨的','五彩的','傳家的'}	
                 o_equip_子物品 = o_equip_物品
                 G.call('功能_物品转换',i_equip,int_随机类型,int_品质级别,int_递增属性,int_宝物类型)
-                if  G.misc().修改锁定检测_5 == 1 then 
-                    o_equip_物品.品质 = 1
-                    o_equip_物品.套装 = 0
-                end
 				if o_equip_物品.套装 > 0 then 
                     if o_equip_物品.套装 == 1 then
                         o_equip_物品.名称 = '游俠之'..o_equip_物品.名称
@@ -5917,10 +5913,6 @@ t['功能_物品转换']=function(i_equip_装备,int_随机类型,int_品质级�
     end
     if int_宝物类型 == 1 then
         o_equip_物品.品质 = 5 
-    end
-    if  G.misc().修改锁定检测_5 == 1 then 
-        o_equip_物品.品质 = 1
-        o_equip_物品.套装 = 0
     end
     local o_equip = {}
     local o_equip_mod = {}

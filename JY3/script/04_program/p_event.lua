@@ -12,7 +12,7 @@ t['地图事件_逻辑处理'] = function()
     local c = ui_map .c_citymap_system_map;
     --游戏结局逻辑
     local int_year = G.QueryName(0x10030001)[tostring(66)] 
-    G.call('地图系统_防修改还原')
+    --G.call('地图系统_防修改还原')
     if G.call('get_year') == 1 and   G.call('get_month') == 1 and  G.call('get_day') < 7  then     --初始牛家村逻辑
         if G.call('get_day') >= 2  and G.call('get_day') <= 5 then   
             G.QueryName(0x10060002).城市列表[10].隐藏 = nil

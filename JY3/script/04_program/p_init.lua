@@ -92,7 +92,7 @@ t['地图系统_提示'] = function()
 			G.wait_time(300)
 			G.removeUI('v_prompt1')
 		elseif r == 2 then 
-			G.call('地图系统_防修改监控')
+			--G.call('地图系统_防修改监控')
 		end	
 	end
 end	
@@ -434,7 +434,7 @@ t['地图系统_事件响应'] = function()
 		if r == 1 then
 			G.Tween("color", 800, ui, 0)
 			G.Play(0x49010035, 1,false,100) 
-			G.call('地图系统_防修改监控')
+			--G.call('地图系统_防修改监控')
 			G.wait_time(1200)
 			G.call('rest')
 			G.Tween("color", 800, ui, 0xffffff)

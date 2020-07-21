@@ -2201,7 +2201,7 @@ t['副本_通天塔']=function(int_模式)
     local o_wjtz = G.QueryName(0x10170013)
     local int_难度 = G.QueryName(0x10160000 +G.call('get_point',143)).难度 
     local o_生存成就 =  G.QueryName(0x1017001d)
-    if int_模式 == 0 and G.misc().修改锁定检测_5 ~= 1 then 
+    if int_模式 == 0  then 
         if G.misc().通天塔层数 > 20 and G.misc().通天塔奖励_1 == 0 then
             G.misc().通天塔奖励_1 = 1
             G.call('add_item',224,1)
@@ -2342,7 +2342,7 @@ t['副本_通天塔']=function(int_模式)
                 G.misc().获取印记 = 1
             end
         end
-    elseif int_模式 == 1 and G.misc().修改锁定检测_5 ~= 1 then
+    elseif int_模式 == 1  then
         if G.misc().通天塔层数 > 25 and G.misc().通天塔单人奖励_1 == 0 then
             G.misc().通天塔单人奖励_1 = 1
             G.call('add_item',238,1)
@@ -2388,7 +2388,7 @@ t['副本_通天塔']=function(int_模式)
                 o_wjtz.进度列表[19].完成 = 1
                 G.call('notice1','恭喜完成单人无尽100层') 
             end
-            if G.misc().梦幻完成 and G.misc().梦幻完成 == 1 and G.misc().修改锁定检测_5 ~= 1  then
+            if G.misc().梦幻完成 and G.misc().梦幻完成 == 1  then
                 G.misc().密令序号 = tostring(math.random(999999)) 
                 G.call("talk",'',38,'   恭喜突破100层，这是给你的奖励！恭喜完成全部梦幻剧情，你的幸运密令为[03]'..G.misc().密令序号,2,1) 
                 if o_生存成就.进度列表[5].完成 == 0  and  G.misc().生存 == 1 then 
@@ -3000,7 +3000,7 @@ t['通用_锻造']=function()
                 G.wait_time(500)
                 G.call('通用_抽礼物',9,1)
                 G.wait_time(500)
-                G.call('地图系统_防修改监控') 
+                --G.call('地图系统_防修改监控') 
                 local int_宝石数量 = G.call('get_item',340)
                 G.call("talk",'？？？？',390,'   你现在拥有'..int_宝石数量..'颗【神奇宝石】，有什么需要？',1,1) 
             else
@@ -3024,7 +3024,7 @@ t['通用_转换装备']=function(i_equip)
         G.call('dark')
         G.wait_time(500)
         G.call('功能_物品转换',i_equip,1)
-        G.call('地图系统_防修改监控') 
+        --G.call('地图系统_防修改监控') 
         local ui 
         if not G.getUI('v_equip') then 
             return
