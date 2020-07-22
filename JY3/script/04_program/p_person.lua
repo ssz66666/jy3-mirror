@@ -2331,7 +2331,7 @@ t['副本_通天塔']=function(int_模式)
                 G.call('set_newpoint',81,G.call('get_newpoint',81)- 1   )
                 G.call('notice1','恭喜完成[03]'..o_生存成就.进度列表[2].名称)
             end
-            if not G.misc().获取印记 and G.misc().修改锁定检测_5 ~= 1  then
+            if not G.misc().获取印记   then
                 if int_完美 == 14 and not G.call('通用_拥有印记',15)  and (not G.misc().获取剑神 or G.misc().获取剑神 == 0) and G.misc().重生 == 0 then
                     G.misc().获取剑神 = 1
                     G.call('add_equip',0x10180028 + 15,1)
